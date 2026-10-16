@@ -1,0 +1,1561 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "e54c6274-b022-53ff-a9b6-2f303d1e9d09")
+	(paper "A4")
+	(title_block
+		(title "fome-mc Stepper Driver + ETB2 H-Bridge + Low-Side Clamps + BOOT0 Recovery")
+		(date "2026-10-16")
+		(rev "v1.0")
+	)
+	(lib_symbols
+		(symbol "fome_local:DRV8825PWPR"
+			(pin_names (offset 1.016))
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U" (at 0 15.24 0) (effects (font (size 1.27 1.27))))
+			(property "Value" "DRV8825PWPR" (at 0 -15.24 0) (effects (font (size 1.27 1.27))))
+			(property "Footprint" "Package_SO:HTSSOP-28-1EP_4.4x9.7mm_P0.65mm_EP2.85x5.4mm" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/drv8825.pdf" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(symbol "DRV8825PWPR_0_1"
+				(rectangle (start -12.7 12.7) (end 12.7 -12.7) (stroke (width 0.254) (type default)) (fill (type background)))
+			)
+			(symbol "DRV8825PWPR_1_1"
+				(pin input line (at -15.24 7.62 0) (length 2.54) (name "STEP" (effects (font (size 1.27 1.27)))) (number "22" (effects (font (size 1.27 1.27)))))
+				(pin input line (at -15.24 5.08 0) (length 2.54) (name "DIR" (effects (font (size 1.27 1.27)))) (number "20" (effects (font (size 1.27 1.27)))))
+				(pin input line (at -15.24 2.54 0) (length 2.54) (name "nENBL" (effects (font (size 1.27 1.27)))) (number "21" (effects (font (size 1.27 1.27)))))
+				(pin input line (at -15.24 0 0) (length 2.54) (name "nSLP_nRST" (effects (font (size 1.27 1.27)))) (number "16" (effects (font (size 1.27 1.27)))))
+				(pin input line (at -15.24 -2.54 0) (length 2.54) (name "VREF" (effects (font (size 1.27 1.27)))) (number "12" (effects (font (size 1.27 1.27)))))
+				(pin power_in line (at -15.24 10.16 0) (length 2.54) (name "VMA_VMB" (effects (font (size 1.27 1.27)))) (number "11" (effects (font (size 1.27 1.27)))))
+				(pin power_in line (at -15.24 -10.16 0) (length 2.54) (name "GND_PAD" (effects (font (size 1.27 1.27)))) (number "29" (effects (font (size 1.27 1.27)))))
+				(pin output line (at 15.24 7.62 180) (length 2.54) (name "AOUT1" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
+				(pin output line (at 15.24 5.08 180) (length 2.54) (name "AOUT2" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))
+				(pin output line (at 15.24 2.54 180) (length 2.54) (name "BOUT1" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))
+				(pin output line (at 15.24 0 180) (length 2.54) (name "BOUT2" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))
+			)
+		)
+		(symbol "tle9201_2:TLE9201SG" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+      (property "Reference" "U" (id 0) (at -8.89 -13.97 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "TLE9201SG" (id 1) (at -3.81 12.7 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (id 2) (at -3.81 1.27 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "" (id 3) (at -3.81 1.27 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "TLE9201SG_0_1"
+        (rectangle (start -10.16 11.43) (end 8.89 -12.7)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+      )
+      (symbol "TLE9201SG_1_1"
+        (pin input line (at -12.7 0 0) (length 2.54)
+          (name "DIR" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin input line (at 11.43 -3.81 180) (length 2.54)
+          (name "SCK" (effects (font (size 1.27 1.27))))
+          (number "10" (effects (font (size 1.27 1.27))))
+        )
+        (pin input line (at -12.7 2.54 0) (length 2.54)
+          (name "DIS" (effects (font (size 1.27 1.27))))
+          (number "11" (effects (font (size 1.27 1.27))))
+        )
+        (pin input line (at -12.7 -2.54 0) (length 2.54)
+          (name "PWM" (effects (font (size 1.27 1.27))))
+          (number "12" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at -12.7 -11.43 0) (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "13" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at 11.43 -11.43 180) (length 2.54)
+          (name "VSO" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+        (pin output line (at 11.43 -8.89 180) (length 2.54)
+          (name "SO" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at -12.7 10.16 0) (length 2.54)
+          (name "VS" (effects (font (size 1.27 1.27))))
+          (number "4" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_out line (at 11.43 10.16 180) (length 2.54)
+          (name "OUT1" (effects (font (size 1.27 1.27))))
+          (number "5" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at -12.7 -8.89 0) (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "6" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_out line (at 11.43 7.62 180) (length 2.54)
+          (name "OUT2" (effects (font (size 1.27 1.27))))
+          (number "7" (effects (font (size 1.27 1.27))))
+        )
+        (pin input line (at 11.43 -6.35 180) (length 2.54)
+          (name "SI" (effects (font (size 1.27 1.27))))
+          (number "8" (effects (font (size 1.27 1.27))))
+        )
+        (pin input line (at 11.43 -1.27 180) (length 2.54)
+          (name "CSN" (effects (font (size 1.27 1.27))))
+          (number "9" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+		(symbol "Device:D_Schottky"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Schottky"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Schottky diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "diode Schottky"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "D_Schottky_0_1"
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_Schottky_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R" (pin_numbers hide) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "R" (id 0) (at 2.032 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "R" (id 1) (at 0 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (id 2) (at -1.778 0 90)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (id 3) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "R res resistor" (id 4) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Resistor" (id 5) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "R_*" (id 6) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "R_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54)
+          (stroke (width 0.254) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+      )
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+		(symbol "Device:C" (pin_numbers hide) (pin_names (offset 0.254)) (in_bom yes) (on_board yes)
+      (property "Reference" "C" (id 0) (at 0.635 2.54 0)
+        (effects (font (size 1.27 1.27)) (justify left))
+      )
+      (property "Value" "C" (id 1) (at 0.635 -2.54 0)
+        (effects (font (size 1.27 1.27)) (justify left))
+      )
+      (property "Footprint" "" (id 2) (at 0.9652 -3.81 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (id 3) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "cap capacitor" (id 4) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Unpolarized capacitor" (id 5) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "C_*" (id 6) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762)
+          )
+          (stroke (width 0.508) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762)
+          )
+          (stroke (width 0.508) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+      )
+      (symbol "C_1_1"
+        (pin passive line (at 0 3.81 270) (length 2.794)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 2.794)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+		(symbol "power:GND" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "#PWR" (id 0) (at 0 -6.35 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Value" "GND" (id 1) (at 0 -3.81 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (id 2) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "" (id 3) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "power-flag" (id 4) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Power symbol creates a global label with name \"GND\" , ground" (id 5) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "GND_0_1"
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0 -1.27)
+            (xy 1.27 -1.27)
+            (xy 0 -2.54)
+            (xy -1.27 -1.27)
+            (xy 0 -1.27)
+          )
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+      )
+      (symbol "GND_1_1"
+        (pin power_in line (at 0 0 270) (length 0) hide
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+		(symbol "power:+3.3V" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "#PWR" (id 0) (at 0 -3.81 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Value" "+3.3V" (id 1) (at 0 3.556 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (id 2) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "" (id 3) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "power-flag" (id 4) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Power symbol creates a global label with name \"+3.3V\"" (id 5) (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "+3.3V_0_1"
+        (polyline
+          (pts
+            (xy -0.762 1.27)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 2.54)
+            (xy 0.762 1.27)
+          )
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+      )
+      (symbol "+3.3V_1_1"
+        (pin power_in line (at 0 0 90) (length 0) hide
+          (name "+3V3" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+	)
+	(symbol
+		(lib_id "fome_local:DRV8825PWPR")
+		(at 63.5 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "36e14907-1e8f-5377-bee8-41138f1b81b7")
+		(property "Reference" "U202" (at 63.5 25.4 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "DRV8825PWPR" (at 63.5 55.88 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_SO:HTSSOP-28-1EP_4.4x9.7mm_P0.65mm_EP2.85x5.4mm" (at 63.5 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C50506" (at 63.5 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "22" (uuid "6c9e59ad-38c7-5aa0-8aef-b702cff08f6c"))
+		(pin "20" (uuid "1cab07ff-588c-57c7-ba89-325563539d66"))
+		(pin "21" (uuid "64864319-d54a-5fc4-a3d1-453b2d3b95f8"))
+		(pin "16" (uuid "4159ce36-7d79-5472-bcef-8155aa22a2c9"))
+		(pin "12" (uuid "9a85b6b4-26e6-5352-a604-b46248ed7852"))
+		(pin "11" (uuid "f06e8f71-5454-514f-841a-4da1ec0c173f"))
+		(pin "29" (uuid "b741b124-7fa6-5b58-be66-604410ba0f7a"))
+		(pin "4" (uuid "0ec620ca-f026-5ee4-992c-77c7b9d87325"))
+		(pin "6" (uuid "dfce85ce-1e83-57f7-82e9-b0aae0efe8a5"))
+		(pin "9" (uuid "1a8ae4cf-9f1b-5dc0-bdac-8754568521d0"))
+		(pin "7" (uuid "ce18b9c0-29af-50ee-b919-76338e10d8ec"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U202") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U202") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 38.1 30.48) (xy 48.26 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33780d78-5590-5146-835c-d925660bf028")
+	)
+	(hierarchical_label "12V_MR"
+		(shape input)
+		(at 38.1 30.48 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d438b696-a062-5fe7-968f-e9e192fd9332")
+	)
+	(label "12V_MR"
+		(at 43.18 30.48 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "94555ba7-4b93-5607-bfa1-7599907571e5")
+	)
+	(wire
+		(pts
+			(xy 38.1 33.02) (xy 48.26 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a05b2fd3-2804-5e68-af9f-f5fbe60ac0bc")
+	)
+	(hierarchical_label "STEP_IN"
+		(shape input)
+		(at 38.1 33.02 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "204392ff-71be-50c7-b27f-dd09a29a06e0")
+	)
+	(wire
+		(pts
+			(xy 38.1 35.56) (xy 48.26 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5893cced-7a3b-5b69-b164-fd0803627fda")
+	)
+	(hierarchical_label "DIR_IN"
+		(shape input)
+		(at 38.1 35.56 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f298cad4-fde9-5177-b835-94f827e6e4b4")
+	)
+	(wire
+		(pts
+			(xy 38.1 38.1) (xy 48.26 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9fd1e4b0-a1b1-5d8a-8415-205026ab5a74")
+	)
+	(hierarchical_label "nENBL_IN"
+		(shape input)
+		(at 38.1 38.1 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6042c37b-4629-585b-b1ae-96f1ce225f2a")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 48.26 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1cdc5517-0173-5c20-afc3-64a31b3b1de9")
+		(property "Reference" "#PWR0850" (at 48.26 38.1 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+3.3V" (at 48.26 38.1 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 48.26 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 48.26 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "4317e9f1-ab3f-5428-ba88-b68d2fd2c59e"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0850") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0850") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 48.26 43.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "628fcc8e-dcb8-5f38-bd00-ac49bbd64699")
+		(property "Reference" "#PWR0851" (at 48.26 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+3.3V" (at 48.26 40.64 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 48.26 43.18 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 48.26 43.18 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "18aa05f7-b679-5dbe-9804-4d1402b07963"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0851") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0851") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 48.26 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "14f47140-2de5-5383-8151-c0ad7874561e")
+		(property "Reference" "#PWR0852" (at 48.26 53.339999999999996 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 48.26 53.339999999999996 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 48.26 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 48.26 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "6bf40e3e-885b-5b03-8f9b-dad1adf8746c"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0852") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0852") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 78.74 33.02) (xy 88.9 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3a97dba-26e2-51bd-9ade-e568586755d8")
+	)
+	(hierarchical_label "STEP_1A"
+		(shape output)
+		(at 88.9 33.02 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2bfba333-2db9-5992-928b-4cd654b3dd02")
+	)
+	(wire
+		(pts
+			(xy 78.74 35.56) (xy 88.9 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "adbbb8e6-87b3-5dad-880a-c0a89f749814")
+	)
+	(hierarchical_label "STEP_1B"
+		(shape output)
+		(at 88.9 35.56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1f34da61-df44-5d9f-80b9-643a870253ec")
+	)
+	(wire
+		(pts
+			(xy 78.74 38.1) (xy 88.9 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45517fd4-cc27-5fd2-8476-9438f7438f60")
+	)
+	(hierarchical_label "STEP_2A"
+		(shape output)
+		(at 88.9 38.1 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bc89ba23-5e5c-556f-b0e2-1545aba63f43")
+	)
+	(wire
+		(pts
+			(xy 78.74 40.64) (xy 88.9 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ae70711-3565-5c58-a814-94fc8606f725")
+	)
+	(hierarchical_label "STEP_2B"
+		(shape output)
+		(at 88.9 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a6081cc7-225f-56bd-8c6a-4187f8f77bb5")
+	)
+	(symbol
+		(lib_id "tle9201_2:TLE9201SG")
+		(at 63.5 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8a8a980c-1539-5054-906e-1bb11532aa84")
+		(property "Reference" "U203" (at 63.5 74.93 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "TLE9201SG" (at 63.5 105.41 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Package_SO:Infineon_PG-DSO-12-9" (at 63.5 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C112633" (at 63.5 90.17 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2efa5f2b-b9ac-5433-b6b6-461b0c16710a"))
+		(pin "2" (uuid "00f89b0e-b86e-5b06-9fa7-7ec5861d6f41"))
+		(pin "3" (uuid "0264609e-f99d-59d3-aaff-f3daee3821a5"))
+		(pin "4" (uuid "0801b95e-9071-5bc2-a5b5-0f6f36f161ff"))
+		(pin "5" (uuid "4f62d8f6-414c-58e6-a212-a9653a1feb94"))
+		(pin "6" (uuid "cb48dd83-09b5-5877-b45d-96ce216e5061"))
+		(pin "7" (uuid "921de532-a361-53c2-ac9f-9e8f096c308e"))
+		(pin "8" (uuid "8adc4ab2-be42-5c47-a8b4-5cec3c2262d9"))
+		(pin "9" (uuid "dda689cf-91e9-5ade-ab61-b020ce30c313"))
+		(pin "10" (uuid "842d94a2-e5f5-5375-97d5-b94c99b7b4f5"))
+		(pin "11" (uuid "96e7e3a2-e128-5f4e-b69e-97ff5a57eded"))
+		(pin "12" (uuid "b2988168-8ec6-5399-b1d9-d193f1a7352a"))
+		(pin "13" (uuid "70ceb4d7-d5c7-5c52-a675-11a16fe73e2e"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U203") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U203") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 38.1 80.01) (xy 50.8 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0516c77-b14d-5d2b-af4e-72c0e9903bd7")
+	)
+	(label "12V_MR"
+		(at 38.1 80.01 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fe4d586c-ccc6-544b-bc4b-60a24ddcbb42")
+	)
+	(wire
+		(pts
+			(xy 38.1 87.63) (xy 50.8 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04de16e9-01f2-5c62-9ab8-174195b06e77")
+	)
+	(hierarchical_label "ETB2_DIS"
+		(shape input)
+		(at 38.1 87.63 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "89ae4602-b5d2-547b-a415-3a5528941426")
+	)
+	(wire
+		(pts
+			(xy 38.1 90.17) (xy 50.8 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1109337-4e45-5c79-a7e9-dc3c8c63a92d")
+	)
+	(hierarchical_label "ETB2_DIR"
+		(shape input)
+		(at 38.1 90.17 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1889b0d1-559d-5ace-a72e-9c9539a5b403")
+	)
+	(wire
+		(pts
+			(xy 38.1 92.71) (xy 50.8 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "240c8957-97ee-5ad9-a881-1ea0e4cd9bfc")
+	)
+	(hierarchical_label "ETB2_PWM"
+		(shape input)
+		(at 38.1 92.71 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "543a2096-3729-5131-8325-3b4ac3d75718")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 50.8 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "781a1ffb-aabd-526b-9ac9-48746802b1b0")
+		(property "Reference" "#PWR0854" (at 50.8 101.60000000000001 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 50.8 101.60000000000001 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 50.8 99.06 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 50.8 99.06 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b313fbb9-579e-5b4a-8341-fbcb4caecccf"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0854") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0854") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 50.8 101.6 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1b47fd17-bbed-50f0-b498-328f1d383508")
+		(property "Reference" "#PWR0855" (at 50.8 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 50.8 104.14 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 50.8 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 50.8 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a05054cd-62ca-59c5-99da-630e5eeb3954"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0855") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0855") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 74.93 80.01) (xy 88.9 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70cb3e92-0d69-551c-bff0-52d898ac87ae")
+	)
+	(hierarchical_label "ETB2_OUT+"
+		(shape output)
+		(at 88.9 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e957d76b-d2af-5a50-ad82-200981702bea")
+	)
+	(wire
+		(pts
+			(xy 74.93 82.55) (xy 88.9 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db192417-f550-5d35-be79-85c627eca018")
+	)
+	(hierarchical_label "ETB2_OUT-"
+		(shape output)
+		(at 88.9 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c3596b1f-27e0-529b-9b83-a0f900a6fb15")
+	)
+	(no_connect
+		(at 74.93 91.44)
+		(uuid "efdf5d7c-63f6-5671-a02b-9f67c94ad464")
+	)
+	(no_connect
+		(at 74.93 93.98)
+		(uuid "cda6c588-2b53-50c0-9ec2-d41e5f91bdb6")
+	)
+	(no_connect
+		(at 74.93 96.52)
+		(uuid "0fabf37c-c5ec-5161-8522-18bdda3ddefb")
+	)
+	(no_connect
+		(at 74.93 99.06)
+		(uuid "c01980c4-5e4e-583a-8826-379bb20b7e39")
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 74.93 101.6 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f0690239-cea8-570c-b8d8-ad44e1eb16c4")
+		(property "Reference" "#PWR0856" (at 74.93 99.05999999999999 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+3.3V" (at 74.93 99.05999999999999 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 74.93 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 74.93 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "7e582771-d2bc-5b0f-926a-d7091875d778"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0856") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0856") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b3e779c5-0af7-50d8-b1f4-a810c891ec3a")
+		(property "Reference" "D201" (at 139.7 27.94 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 33.02 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 30.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 30.48 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "9f60392a-fed6-5a58-b506-968e339fc3e0"))
+		(pin "2" (uuid "536dc940-8c94-5fc1-84a0-ef1ad60deab7"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D201") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D201") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 30.48) (xy 135.89 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6da589fd-0361-53a1-a389-22e7546ebdbe")
+	)
+	(label "12V_MR"
+		(at 129.54 30.48 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "dae28aef-34d3-57db-bde8-da227fe092bd")
+	)
+	(wire
+		(pts
+			(xy 143.51 30.48) (xy 152.4 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fcef93e9-4770-5fc1-9abc-babbd3d41d75")
+	)
+	(hierarchical_label "LS1_CLAMP"
+		(shape passive)
+		(at 152.4 30.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "48c9e343-a065-5a78-a67f-229e9f6c488c")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "94ddce75-fca1-5668-b876-4cffe08b60bc")
+		(property "Reference" "D202" (at 139.7 38.1 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 43.18 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 40.64 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "79be5179-0545-5878-8cd3-62f4a457236f"))
+		(pin "2" (uuid "9f3013f6-72df-5f35-aa67-ef3f32c9b5b5"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D202") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D202") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 40.64) (xy 135.89 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0faba145-4967-5711-b035-7a40c4a3ea5b")
+	)
+	(label "12V_MR"
+		(at 129.54 40.64 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "111a86cc-5a95-5070-94df-39b74c0861a5")
+	)
+	(wire
+		(pts
+			(xy 143.51 40.64) (xy 152.4 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e28b9eb6-5728-5a8c-9b1b-281db3087457")
+	)
+	(hierarchical_label "LS2_CLAMP"
+		(shape passive)
+		(at 152.4 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "31204d22-14f1-5c2a-b23b-da1eecb3e708")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "381f0bfc-1169-521c-af60-47f556d08ee2")
+		(property "Reference" "D203" (at 139.7 48.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 53.339999999999996 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "37fe5952-2d64-50f2-b5f5-a2867089b05a"))
+		(pin "2" (uuid "819be503-d08d-5176-bf44-8c74354aca8c"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D203") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D203") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 50.8) (xy 135.89 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b535dc11-ad9e-5081-a0cd-04fcfc44dac1")
+	)
+	(label "12V_MR"
+		(at 129.54 50.8 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "6a8daa39-843f-579a-885b-754c00bb0351")
+	)
+	(wire
+		(pts
+			(xy 143.51 50.8) (xy 152.4 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5311c582-38d1-5ed5-9515-5d151e6ae551")
+	)
+	(hierarchical_label "LS3_CLAMP"
+		(shape passive)
+		(at 152.4 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f90bf1be-9fcd-5bdd-b283-66a9924bed2a")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 60.96 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6b0a46f7-9554-5ade-874f-86479da625ab")
+		(property "Reference" "D204" (at 139.7 58.42 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 63.5 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "5a37505f-f25c-51cd-8f19-27133c8b7dc9"))
+		(pin "2" (uuid "76de3f40-c20e-5952-b112-99fc87a1db5a"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D204") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D204") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 60.96) (xy 135.89 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b89ff37-55c0-5c0d-a1f0-df55efec619d")
+	)
+	(label "12V_MR"
+		(at 129.54 60.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c7e7e710-2815-514b-8311-d097592c1743")
+	)
+	(wire
+		(pts
+			(xy 143.51 60.96) (xy 152.4 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5aeb0cc-cbd9-5d6d-8b53-ca80488d9e85")
+	)
+	(hierarchical_label "LS4_CLAMP"
+		(shape passive)
+		(at 152.4 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ede84d0b-44c2-5adb-b07d-52e8dc9e7066")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 71.12 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "94d738e1-f7e3-511b-a3c6-316256fb5055")
+		(property "Reference" "D205" (at 139.7 68.58 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 73.66000000000001 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 71.12 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "53c84fd8-ce43-55ef-a42c-d58bfc0974d7"))
+		(pin "2" (uuid "b1741d7c-e313-50e5-955b-fe8202f77503"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D205") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D205") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 71.12) (xy 135.89 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8716741d-b925-520d-99c1-dd21921deaef")
+	)
+	(label "12V_MR"
+		(at 129.54 71.12 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "37c16151-1c61-596a-9a1d-c84e5efd2e8b")
+	)
+	(wire
+		(pts
+			(xy 143.51 71.12) (xy 152.4 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db964daf-e9b3-575f-a8ae-3ce6d00ed257")
+	)
+	(hierarchical_label "LS5_CLAMP"
+		(shape passive)
+		(at 152.4 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "34ee12ed-c473-55cd-b8e5-ceda950a412e")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 81.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ed652b21-26e0-57f9-82c3-735ff8088ced")
+		(property "Reference" "D206" (at 139.7 78.74 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 83.82000000000001 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 81.28 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "118540e2-31d1-541b-8de5-09694b722caa"))
+		(pin "2" (uuid "52a01032-4466-5fc5-97a8-7f4dd28b6b76"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D206") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D206") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 81.28) (xy 135.89 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cde71fde-5b5c-5456-aa70-ea10d5fb166e")
+	)
+	(label "12V_MR"
+		(at 129.54 81.28 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "790e2829-5e3a-54b5-8aee-ac4c2b610bc7")
+	)
+	(wire
+		(pts
+			(xy 143.51 81.28) (xy 152.4 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d648d7e-e4fa-596d-aa16-5db5ee5cc2b2")
+	)
+	(hierarchical_label "LS6_CLAMP"
+		(shape passive)
+		(at 152.4 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "24958193-9085-502f-968e-5847e2c7e994")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 91.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "06dce7d4-491b-57a9-a2a4-2b7fad7b895e")
+		(property "Reference" "D207" (at 139.7 88.89999999999999 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 93.98 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 91.44 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "7df8107d-362c-5a7e-ba4a-be11125947f9"))
+		(pin "2" (uuid "d7c9cbf9-29ab-59c0-a96c-4c50ede35800"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D207") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D207") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 91.44) (xy 135.89 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ded33b49-7d1b-537e-ac8f-e79e385102f4")
+	)
+	(label "12V_MR"
+		(at 129.54 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "51a8dfe6-08c6-5c25-8faf-421b52c8c2f3")
+	)
+	(wire
+		(pts
+			(xy 143.51 91.44) (xy 152.4 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2d6a1ed-5ba7-542f-9c09-5dd084a8d37d")
+	)
+	(hierarchical_label "LS7_CLAMP"
+		(shape passive)
+		(at 152.4 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ec198c60-8c77-58e8-8b3c-ececb8f25ae5")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 139.7 101.60000000000001 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "545e6456-9da3-5499-9a92-b43676ab94cc")
+		(property "Reference" "D208" (at 139.7 99.06 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B340A-13-F" (at 139.7 104.14000000000001 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SMA" (at 139.7 101.60000000000001 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 139.7 101.60000000000001 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "af46c4fa-910e-5b62-a773-3856c8f0aaea"))
+		(pin "2" (uuid "f35fd4b1-a818-55cf-9ff5-f2bbf635f371"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D208") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D208") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 129.54 101.60000000000001) (xy 135.89 101.60000000000001)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "657275d6-84cf-5fd9-8b36-0e8bda1f3fe1")
+	)
+	(label "12V_MR"
+		(at 129.54 101.60000000000001 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "950240d9-7e6b-5737-adaa-f150ad394e8f")
+	)
+	(wire
+		(pts
+			(xy 143.51 101.60000000000001) (xy 152.4 101.60000000000001)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9460d48-486f-5d2d-8ac4-d90bc82f7afd")
+	)
+	(hierarchical_label "LS8_CLAMP"
+		(shape passive)
+		(at 152.4 101.60000000000001 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9eb13534-4778-5363-aef5-e96866dce7d6")
+	)
+	(hierarchical_label "USB_VBUS_BOOT0"
+		(shape input)
+		(at 38.1 121.92 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e29025c6-fb15-55af-b3eb-b257f854d118")
+	)
+	(wire
+		(pts
+			(xy 38.1 121.92) (xy 45.72 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ffaf79d-92e8-523e-aa20-a3702a6a9575")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 49.53 121.92 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d39d0ebb-8b79-54b9-834a-67303896ab00")
+		(property "Reference" "R209" (at 49.53 119.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 49.53 124.46 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C25744" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "b6052c1e-977d-5516-b28d-183cd5de7802"))
+		(pin "2" (uuid "f5ef7924-c81f-5c29-b398-164c8e1a9edd"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R209") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R209") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 53.34 121.92) (xy 60.96 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7b81b8d-c89b-585e-93f9-6eced986d7a8")
+	)
+	(hierarchical_label "BOOT0_OUT"
+		(shape output)
+		(at 60.96 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2494709f-03e6-5701-af5f-d8a1dadef229")
+	)
+	(label "12V_MR"
+		(at 38.1 132.08 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4dc6d67b-8cc9-567b-b294-4e8dff77af2a")
+	)
+	(wire
+		(pts
+			(xy 38.1 132.08) (xy 45.72 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6908c435-8ec2-5538-a9d3-46068353243d")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 49.53 132.08 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d7aeb5b0-9bfa-5fea-9adc-bc98f1d70f2c")
+		(property "Reference" "R212" (at 49.53 129.54 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "2.2k" (at 49.53 134.62 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 49.53 132.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C22976" (at 49.53 132.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a4fcb351-8d4f-5595-8dc0-2baf4e118309"))
+		(pin "2" (uuid "cba035d0-6f33-51db-ba43-33899b91c719"))
+		(instances
+			(project "Atlas-clone" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R212") (unit 1)))
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R212") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 53.34 132.08) (xy 60.96 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd8d6684-08f8-5639-bc2c-cbece0ae2393")
+	)
+	(hierarchical_label "DASH_TECH_PULLUP"
+		(shape passive)
+		(at 60.96 132.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d9fa37a9-7929-5add-a2c7-669c12d0b72d")
+	)
+)

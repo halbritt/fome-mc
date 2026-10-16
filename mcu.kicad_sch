@@ -10845,7 +10845,7 @@
 		)
 		(uuid "321c97ce-037e-4926-8c05-7be14a63f7fd")
 	)
-	(label "SD_SCK"
+	(label "SD_CLK"
 		(at 286.385 174.625 180)
 		(fields_autoplaced yes)
 		(effects
@@ -10944,7 +10944,7 @@
 		)
 		(uuid "78a4062b-d2b4-4346-a029-0257bf4c7e99")
 	)
-	(label "SD_MOSI"
+	(label "SD_CMD"
 		(at 286.385 169.545 180)
 		(fields_autoplaced yes)
 		(effects
@@ -11120,7 +11120,7 @@
 		)
 		(uuid "b748f219-0f44-41d7-bcf2-9a96e7f8b594")
 	)
-	(label "SD_CS"
+	(label "SD_D3"
 		(at 286.385 167.005 180)
 		(fields_autoplaced yes)
 		(effects
@@ -11241,7 +11241,7 @@
 		)
 		(uuid "f80a85fd-e6d4-41d6-ba9f-12f575651e85")
 	)
-	(label "SD_MISO"
+	(label "SD_D0"
 		(at 286.385 179.705 180)
 		(fields_autoplaced yes)
 		(effects
@@ -20230,7 +20230,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005f3076e2")
-		(property "Reference" "J10"
+		(property "Reference" "U25"
 			(at 313.69 153.8732 0)
 			(effects
 				(font
@@ -20238,7 +20238,7 @@
 				)
 			)
 		)
-		(property "Value" "Micro_SD_Card"
+		(property "Value" "XTSD04GLGEAG"
 			(at 313.69 156.1846 0)
 			(effects
 				(font
@@ -20246,7 +20246,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_Card:microSD_HC_Wuerth_693072010801"
+		(property "Footprint" "ampseal:LGA-8_6x8mm_P1.25mm"
 			(at 344.17 164.465 0)
 			(effects
 				(font
@@ -20255,7 +20255,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://katalog.we-online.de/em/datasheet/693072010801.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2005251034_XTX-XTSD04GLGEAG_C558840.pdf"
 			(at 314.96 172.085 0)
 			(effects
 				(font
@@ -20264,7 +20264,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "4Gbit (512MB) Soldered Pottable SD NAND Flash LGA-8 6x8mm"
 			(at 314.96 172.085 0)
 			(effects
 				(font
@@ -20273,7 +20273,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C164170"
+		(property "LCSC" "C558840"
 			(at 314.96 172.085 0)
 			(effects
 				(font
@@ -20282,7 +20282,7 @@
 				(hide yes)
 			)
 		)
-		(property "PN" "47219-2001"
+		(property "PN" "XTSD04GLGEAG"
 			(at 314.96 172.085 0)
 			(effects
 				(font
@@ -20321,7 +20321,13 @@
 		(instances
 			(project "Atlas-clone"
 				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/00000000-0000-0000-0000-00005d99e6ee"
-					(reference "J10")
+					(reference "U25")
+					(unit 1)
+				)
+			)
+			(project "fome-mc"
+				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/00000000-0000-0000-0000-00005d99e6ee"
+					(reference "U25")
 					(unit 1)
 				)
 			)
@@ -23039,21 +23045,49 @@
 			)
 		)
 	)
-	(no_connect
-		(at 104.14 192.405)
-		(uuid "7634f525-1179-4656-a3ab-f55151b5a70a")
+	(hierarchical_label "WBO1_NRST"
+		(shape output)
+		(at 104.14 192.405 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "03a3f170-7e7b-5e89-b135-b5bf0c4ad4d5")
 	)
-	(no_connect
-		(at 104.14 194.945)
-		(uuid "a66eac29-063c-4b24-a754-d26856d12a62")
+	(hierarchical_label "WBO1_BOOT0"
+		(shape output)
+		(at 104.14 194.945 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fbfbbe86-012d-5940-be25-4fbd6c130ed5")
 	)
-	(no_connect
-		(at 104.14 197.485)
-		(uuid "daf7b038-58b9-47dc-8ace-0ec9f95a7461")
+	(hierarchical_label "WBO2_NRST"
+		(shape output)
+		(at 104.14 197.485 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a06a28d2-1393-5299-9596-44be3645d7be")
 	)
-	(no_connect
-		(at 104.14 200.025)
-		(uuid "83e41693-574a-4fa5-92ad-bb78f15bfc94")
+	(hierarchical_label "WBO2_BOOT0"
+		(shape output)
+		(at 104.14 200.025 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "33d6c0cf-7995-5441-b99f-f398a7d889e7")
 	)
 	(no_connect
 		(at 104.14 202.565)
@@ -24685,7 +24719,7 @@
 			(at 235.0 39.37 0)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Oscillator:Oscillator_SMD_SeikoEpson_SG8002LB-4Pin_3.2x2.5mm"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
 			(at 235.0 34.29 0)
 			(effects (font (size 1.27 1.27)) (hide yes))
 		)
@@ -24710,5 +24744,16 @@
 				)
 			)
 		)
+	)
+	(hierarchical_label "BOOT0"
+		(shape input)
+		(at 104.14 83.185 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "506cad74-a654-51c2-b517-2e79022d3b3c")
 	)
 )
