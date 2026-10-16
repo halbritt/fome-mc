@@ -1,0 +1,222 @@
+{
+  "kind": "project",
+  "project": "fome-mc",
+  "label": "fome-mc-worktree",
+  "description": "FOME-MC brain module (Atlas-clone, STM32H7)",
+  "status": "FAIL",
+  "started_utc": "2026-10-16T21:55:39.766004+00:00",
+  "finished_utc": "2026-10-16T21:57:59.013818+00:00",
+  "run_dir": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z",
+  "fill_mode": "asis",
+  "tool_versions": {
+    "kicad-cli": "10.0.7",
+    "ngspice": "42",
+    "kibot": "1.9.1",
+    "kicad-happy": "06840467ad0f5d76af45f64449b1f5ecb10f052f",
+    "fome-kicad-libraries": "ab9c5f8a1517a04b9cada6880d67d190bfd48c05",
+    "python": "3.12.3"
+  },
+  "snapshot": {
+    "project": "fome-mc",
+    "source_dir": "/home/halbritt/git/Atlas-clone",
+    "source": "working tree",
+    "source_git_head": "c43ad7bafc9a8e3be337f1342ae0cb259918882a",
+    "source_dirty_files": [
+      "M Atlas-clone.kicad_sch",
+      " M etb-9201.kicad_sch",
+      " M fp-lib-table",
+      " M mcu.kicad_sch",
+      " M sym-lib-table",
+      "?? ampseal.pretty/LGA-8_6x8mm_P1.25mm.kicad_mod",
+      "?? fome-mc.kicad_pro",
+      "?? fome-mc.kicad_sch",
+      "?? ign_igbt.kicad_sch",
+      "?? stepper_etb.kicad_sch",
+      "?? wbo1.kicad_sch",
+      "?? wbo2.kicad_sch"
+    ],
+    "schematic": "Atlas-clone.kicad_sch",
+    "pcb": "Atlas-clone.kicad_pcb",
+    "schematic_files": [
+      "Atlas-clone.kicad_sch",
+      "ign4.kicad_sch",
+      "lowside_quad.kicad_sch",
+      "mcu.kicad_sch",
+      "quad_analog.kicad_sch",
+      "psu.kicad_sch",
+      "quad_analog_pullup.kicad_sch",
+      "highside_quad.kicad_sch",
+      "triggers.kicad_sch",
+      "knock.kicad_sch",
+      "Keep_Alive.kicad_sch",
+      "ign_igbt.kicad_sch",
+      "etb-9201.kicad_sch",
+      "stepper_etb.kicad_sch",
+      "wbo1.kicad_sch",
+      "wbo2.kicad_sch"
+    ],
+    "sheet_instances": 21,
+    "sheet_case_aliases": [],
+    "missing_sheets": [],
+    "library_links": [
+      {
+        "path": "../kicad-libraries",
+        "target": "/home/halbritt/git/kicad-libraries",
+        "library_head": "ab9c5f8a1517a04b9cada6880d67d190bfd48c05"
+      }
+    ],
+    "library_issues": [
+      "fp-lib-table: ${KIPRJMOD}/../kicad-libraries/project_footprints.pretty does not exist",
+      "fp-lib-table: ${KIPRJMOD}/../kicad-libraries/mx120.pretty does not exist"
+    ]
+  },
+  "steps": {
+    "erc": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": false,
+      "findings": {
+        "sheets_checked": 21,
+        "violations": 2223,
+        "by_severity": {
+          "warning": 2154,
+          "error": 69
+        },
+        "by_type": {
+          "endpoint_off_grid": 1626,
+          "lib_symbol_mismatch": 327,
+          "multiple_net_names": 56,
+          "similar_labels": 41,
+          "isolated_pin_label": 35,
+          "lib_symbol_issues": 30,
+          "pin_not_connected": 22,
+          "label_dangling": 21,
+          "pin_to_pin": 20,
+          "unconnected_wire_endpoint": 19,
+          "power_pin_not_driven": 9,
+          "footprint_link_issues": 7,
+          "pin_not_driven": 6,
+          "same_local_global_label": 2,
+          "no_connect_dangling": 2
+        },
+        "ignored_checks": [
+          "single_global_label",
+          "four_way_junction",
+          "simulation_model_issue",
+          "footprint_filter"
+        ]
+      }
+    },
+    "drc": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": false,
+      "findings": {
+        "violations": 540,
+        "unconnected_items": 99,
+        "schematic_parity": 480,
+        "by_severity": {
+          "warning": 787,
+          "error": 332
+        },
+        "by_type": {
+          "lib_footprint_mismatch": 199,
+          "footprint_symbol_field_mismatch": 199,
+          "shorting_items": 149,
+          "missing_footprint": 144,
+          "net_conflict": 109,
+          "unconnected_items": 99,
+          "clearance": 50,
+          "starved_thermal": 42,
+          "silk_over_copper": 36,
+          "courtyards_overlap": 28,
+          "silk_overlap": 25,
+          "footprint_symbol_mismatch": 20,
+          "extra_footprint": 8,
+          "hole_clearance": 6,
+          "lib_footprint_issues": 5
+        },
+        "ignored_checks": [
+          "missing_courtyard",
+          "solder_mask_bridge",
+          "track_not_centered_on_via",
+          "tuning_profile_track_geometries",
+          "footprint_filters_mismatch",
+          "pth_inside_courtyard",
+          "npth_inside_courtyard"
+        ]
+      }
+    },
+    "netlist": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": null,
+      "findings": {
+        "components": 472,
+        "nets": 452
+      }
+    },
+    "export": {
+      "status": "FAIL",
+      "reasons": [
+        "kibot: exit code 22"
+      ],
+      "design_clean": null,
+      "findings": {
+        "artifacts": {
+          "schematic PDF": 21,
+          "schematic SVG": 21,
+          "PCB PDF": 6,
+          "BOM CSV": 7508
+        }
+      }
+    },
+    "analyze": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": null,
+      "findings": {
+        "schematic": {
+          "components": 472,
+          "nets": 450,
+          "findings": {
+            "error": 23,
+            "warning": 36,
+            "info": 337
+          },
+          "native_netlist_components": 472
+        },
+        "pcb": {
+          "footprints": 336,
+          "nets": 349,
+          "routing_complete": false,
+          "cross_reference_input": "schematic.json",
+          "power_net_resolution_source": "schematic",
+          "findings": {
+            "error": 33,
+            "warning": 27,
+            "info": 120
+          }
+        },
+        "cross_analysis": {
+          "checks_run": 10,
+          "findings": {
+            "error": 0,
+            "warning": 8,
+            "info": 1
+          }
+        },
+        "spice": {
+          "simulator": "/usr/bin/ngspice",
+          "summary": {
+            "total": 145,
+            "pass": 117,
+            "warn": 8,
+            "fail": 0,
+            "skip": 20
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "step": "analyze",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-schematic.log",
+      "exit_code": 0,
+      "duration_s": 0.796
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb",
+        "--full",
+        "--schematic",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-pcb.log",
+      "exit_code": 0,
+      "duration_s": 112.982
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
+        "-s",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "-p",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/cross.json"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-cross_analysis.log",
+      "exit_code": 0,
+      "duration_s": 0.205
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "--simulator",
+        "ngspice",
+        "-w",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice.json"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-spice.log",
+      "exit_code": 0,
+      "duration_s": 0.694
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c",
+    "Atlas-clone.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json": {
+      "sha256": "bf4c17c7ee7dbd6d24c8bebef1b23bf32ca566ce0e1a00b1e9d793d169ff53dc",
+      "bytes": 11047627
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json": {
+      "sha256": "94f2186351890cdbb981e476eb2a02682fbc6e88c0925bd34447257ae5e57efd",
+      "bytes": 2398927
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/cross.json": {
+      "sha256": "64bb612af7d78650629ce39a52009a5c737ac89bce5af9d924227d149928de19",
+      "bytes": 16241
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice.json": {
+      "sha256": "bf89b13c5491a4a7efc2726b66a400b8b82b2566d37f8c2ebccfa9408e911bdb",
+      "bytes": 82800
+    }
+  },
+  "findings": {
+    "schematic": {
+      "components": 336,
+      "nets": 349,
+      "findings": {
+        "error": 19,
+        "warning": 26,
+        "info": 242
+      },
+      "native_netlist_components": 336
+    },
+    "pcb": {
+      "footprints": 336,
+      "nets": 349,
+      "routing_complete": false,
+      "cross_reference_input": "schematic.json",
+      "power_net_resolution_source": "schematic",
+      "findings": {
+        "error": 33,
+        "warning": 27,
+        "info": 120
+      }
+    },
+    "cross_analysis": {
+      "checks_run": 10,
+      "findings": {
+        "error": 0,
+        "warning": 5,
+        "info": 0
+      }
+    },
+    "spice": {
+      "simulator": "/usr/bin/ngspice",
+      "summary": {
+        "total": 98,
+        "pass": 78,
+        "warn": 4,
+        "fail": 0,
+        "skip": 16
+      }
+    }
+  }
+}

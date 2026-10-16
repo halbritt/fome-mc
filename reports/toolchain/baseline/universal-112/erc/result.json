@@ -1,0 +1,62 @@
+{
+  "step": "erc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "erc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/erc/erc.json",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_sch"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/erc/kicad-cli-erc.log",
+      "exit_code": 0,
+      "duration_s": 4.214
+    }
+  ],
+  "inputs": {
+    "Polygonus-Universal-Base.kicad_sch": "be98a40c80abf7d7b77b4966d70b30b391736229a1efdf76eb861165b3427719"
+  },
+  "outputs": {
+    "build/runs/project/universal-112/20261016T215103.802539Z/erc/erc.json": {
+      "sha256": "1a06f3632cbf4cdc2d26e885f8df2aebd0dc90b2ac8c0e7946058418550062e7",
+      "bytes": 226344
+    }
+  },
+  "findings": {
+    "sheets_checked": 10,
+    "violations": 353,
+    "by_severity": {
+      "warning": 348,
+      "error": 5
+    },
+    "by_type": {
+      "endpoint_off_grid": 229,
+      "lib_symbol_mismatch": 89,
+      "lib_symbol_issues": 14,
+      "footprint_link_issues": 8,
+      "isolated_pin_label": 5,
+      "power_pin_not_driven": 3,
+      "multiple_net_names": 2,
+      "pin_not_connected": 1,
+      "pin_to_pin": 1,
+      "same_local_global_label": 1
+    },
+    "ignored_checks": [
+      "single_global_label",
+      "four_way_junction",
+      "simulation_model_issue",
+      "footprint_filter"
+    ]
+  },
+  "design_clean": false
+}

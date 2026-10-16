@@ -1,0 +1,67 @@
+{
+  "step": "erc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "erc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/erc/erc.json",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/erc/kicad-cli-erc.log",
+      "exit_code": 0,
+      "duration_s": 5.932
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_sch": "0f3c9609bd3b4c8c9c1729302bc18858c1d0c777d2a46001146c86e79c4180fd"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/erc/erc.json": {
+      "sha256": "81b53b3b9a6687719efcd4569181b1561e86e62c33b7e8c7841fecd2a4a8046c",
+      "bytes": 1444952
+    }
+  },
+  "findings": {
+    "sheets_checked": 21,
+    "violations": 2223,
+    "by_severity": {
+      "warning": 2154,
+      "error": 69
+    },
+    "by_type": {
+      "endpoint_off_grid": 1626,
+      "lib_symbol_mismatch": 327,
+      "multiple_net_names": 56,
+      "similar_labels": 41,
+      "isolated_pin_label": 35,
+      "lib_symbol_issues": 30,
+      "pin_not_connected": 22,
+      "label_dangling": 21,
+      "pin_to_pin": 20,
+      "unconnected_wire_endpoint": 19,
+      "power_pin_not_driven": 9,
+      "footprint_link_issues": 7,
+      "pin_not_driven": 6,
+      "same_local_global_label": 2,
+      "no_connect_dangling": 2
+    },
+    "ignored_checks": [
+      "single_global_label",
+      "four_way_junction",
+      "simulation_model_issue",
+      "footprint_filter"
+    ]
+  },
+  "design_clean": false
+}

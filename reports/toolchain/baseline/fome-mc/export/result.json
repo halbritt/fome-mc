@@ -1,0 +1,306 @@
+{
+  "step": "export",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "pdf",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-schematic.pdf",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/export/kicad-cli-schematic-pdf.log",
+      "exit_code": 0,
+      "duration_s": 0.552
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "svg",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/export/kicad-cli-schematic-svg.log",
+      "exit_code": 0,
+      "duration_s": 0.598
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "export",
+        "pdf",
+        "--mode-multipage",
+        "-l",
+        "F.Cu,B.Cu,F.SilkS,B.SilkS,F.Fab,B.Fab",
+        "--cl",
+        "Edge.Cuts",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-layers.pdf",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/export/kicad-cli-pcb-pdf.log",
+      "exit_code": 0,
+      "duration_s": 1.122
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "bom",
+        "--fields",
+        "Reference,Value,Footprint,${QUANTITY},${DNP}",
+        "--labels",
+        "Refs,Value,Footprint,Qty,DNP",
+        "--group-by",
+        "Value,Footprint",
+        "--ref-range-delimiter",
+        "",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-bom.csv",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/export/kicad-cli-bom-csv.log",
+      "exit_code": 0,
+      "duration_s": 0.41
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/kibot",
+        "-A",
+        "-c",
+        "/home/halbritt/git/Atlas-clone/toolchain/kibot/export.kibot.yaml",
+        "-e",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch",
+        "-b",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb",
+        "-d",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot.log",
+      "exit_code": 0,
+      "duration_s": 52.453
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c",
+    "Atlas-clone.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-schematic.pdf": {
+      "sha256": "d3d257af66f4e3879e5d5d6f966f8ee756e67ab884169195daabb1df02ec7bc9",
+      "bytes": 1018485
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-Keep_Alive.svg": {
+      "sha256": "d246ef0fe0b5fc573c7af80cfbf0545266c16aef0d37312cea08a3f2eefee283",
+      "bytes": 213630
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-highside_quad.svg": {
+      "sha256": "931cd0759e888b64de6564f03639d672089ebf836f18599f8b10ea3a1893056d",
+      "bytes": 362195
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-ign1.svg": {
+      "sha256": "381ba8c14047ff9a3a4bfcc2c70bce65a05daa85f72229e777cce4a9986e8112",
+      "bytes": 335238
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-ign2.svg": {
+      "sha256": "a58b000ff7fab0949187e6c1e5d328cc5673896f183804754c5c33f32adf3013",
+      "bytes": 336458
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-knock.svg": {
+      "sha256": "32b0e8b4a0f01fbb907c24f4442f57b96b1f3a2ce84869f6ef067b31fc085ea7",
+      "bytes": 368086
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-lowside_quad1.svg": {
+      "sha256": "677eb05b7d4f6ca8ab6bdfee7d154cbf939a7aa4460cc4420509ebcb260413b2",
+      "bytes": 294939
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-lowside_quad2.svg": {
+      "sha256": "231649eeef3a7ee23f2a264c9cff9d88c1dcbb8e211cb458be828e3e02ceb376",
+      "bytes": 290651
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-lowside_quad4.svg": {
+      "sha256": "e96ae4dbe3be6fa3d4813b48152b16f56814034cb89bdfc8055e9f0f1664e9b4",
+      "bytes": 293241
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-mcu.svg": {
+      "sha256": "83b457baef6c5981cf794ce2939c7db7846dfc0a89c6d2583da0a0424a8481c0",
+      "bytes": 3057199
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-psu.svg": {
+      "sha256": "9af77da349cd12be1a1eade7d9ff3ff39e6d43e83dd57d932a5b8108039d356e",
+      "bytes": 988544
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-quad_analog1.svg": {
+      "sha256": "ba2ef39c2853906ad4ee4db74abdc3dbee01c7701d16dea17b47df8bf29081f7",
+      "bytes": 479564
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-quad_analog2.svg": {
+      "sha256": "1e2a5f85a7a6e1d16a70db30b8cf2c9ce4d9897c3b5b980706435945c34cd2ce",
+      "bytes": 482934
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-quad_analog3.svg": {
+      "sha256": "1ad8fad30c59547765f0063edb16418ef995385ebbb550030b11896d5b896586",
+      "bytes": 491998
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-quad_analog_temp.svg": {
+      "sha256": "04642f85dc3d56a60e974fc0bbbd4ee2ac88cc778671f7246e8c6f67d070f9eb",
+      "bytes": 472634
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone-triggers.svg": {
+      "sha256": "d764ae0eee1d00fce11a9ce211112cc8f4846ab7bffee7039e1f67f148ffa9ac",
+      "bytes": 840563
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/schematic-svg/Atlas-clone.svg": {
+      "sha256": "8ea9978afedfb5920804f1e33543b2a22dd4cd05772c5b7d8cf24278a91f1a8d",
+      "bytes": 1813101
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-layers.pdf": {
+      "sha256": "89b24dea091cee7570c3cd58b0a19a5e0891deac7a2f489bd8f92e9265ef8233",
+      "bytes": 2134145
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/native/Atlas-clone-bom.csv": {
+      "sha256": "8e7419f3722cc4cde681c50b86cf5f04a89fe62cf703dc42b43c7a76c8ed2e27",
+      "bytes": 5746
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/assembly/Atlas-clone-bottom_pos.csv": {
+      "sha256": "7565b037b9375e5a5070ba77a93488768c56409db7c519ace55cc83bb2f74819",
+      "bytes": 35
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/assembly/Atlas-clone-top_pos.csv": {
+      "sha256": "3e326154381641950ee15de28aefbcc35f0395cb8753722ba52612728db2ab4b",
+      "bytes": 20296
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/bom/Atlas-clone-bom.csv": {
+      "sha256": "f05299c5f04dc3bef99fec090676582f842f2eed0ca0e2be4ba09d4f861f10c5",
+      "bytes": 9699
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/bom/Atlas-clone-bom.html": {
+      "sha256": "cd1c8131181ba0f525b9c54c6c4a023abaaedabaf67b1f965ba66eb8aaf57953",
+      "bytes": 205582
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-B_Cu.gbr": {
+      "sha256": "2f33a783ca8411278f83cd5c57e1becaf6c729c7f4a17c9371dd209a8c8270fa",
+      "bytes": 601259
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-B_Mask.gbr": {
+      "sha256": "94e4e7c4e229c2bc9afb5b9346ad3f0467edfe8c8c73f432a433480625464bed",
+      "bytes": 107109
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-B_Paste.gbr": {
+      "sha256": "0ed2764af8191f6756fc52b26a04f5800ead0d7e612352c0ffb5ccf8e2d0b280",
+      "bytes": 1185
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-B_Silkscreen.gbr": {
+      "sha256": "591d94099ad24aa9b1c89a156d2828bd58975b55684a1fbfe057762f57f52a6e",
+      "bytes": 6241
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-Edge_Cuts.gbr": {
+      "sha256": "490ba35e970f50f3cbfe4b02fbb91d619398fe91511fbc686b84904027e8e369",
+      "bytes": 1034
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-F_Cu.gbr": {
+      "sha256": "458bdb1ee633b77325d63767eb03251b2363ea2efb6a93f24fef2a9f57034a2c",
+      "bytes": 1406214
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-F_Mask.gbr": {
+      "sha256": "852734645ada9a5e763f561ade3ff803d20277b56847f787cdedd2d3c28f201d",
+      "bytes": 1051133
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-F_Paste.gbr": {
+      "sha256": "3983368f642f5c376aa4a965eeb9e686cbd3ec2fe1638cb5a138b9f60ce1d413",
+      "bytes": 43122
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-F_Silkscreen.gbr": {
+      "sha256": "9a17b9de5a9bf078d4cb610f0675971dbc064c62964e5f1f1ee2aafcf34a703c",
+      "bytes": 219250
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-In1_Cu.gbr": {
+      "sha256": "9c1d11a79c10473650d3a34eb1045b58af168c8bbbec03af95cca54561d9e5d9",
+      "bytes": 528309
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-In2_Cu.gbr": {
+      "sha256": "b905ccd388080a92c99bb97b02cd1d422364c0ea67eb902537a23add870eb3bb",
+      "bytes": 933653
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-drill.drl": {
+      "sha256": "d5c0ab04071425f2f0daa834a779759ec6071f16d075b384134043c0f4a46c64",
+      "bytes": 17191
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-drill_map.pdf": {
+      "sha256": "caa2a8e7834da5e33577297e57f174b1c2fecb0a333fb50252c99ffef66b80c9",
+      "bytes": 54198
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-drill_report.txt": {
+      "sha256": "95f494a18ee879f00e34fbe2e27006669ff32cb78fb297c084c9fad7f44ba1a9",
+      "bytes": 1047
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/gerbers/Atlas-clone-job.gbrjob": {
+      "sha256": "ae04e79c54ae4262d96dc3005e00894d071cbec626a99a9c9abfd44eca4feae9",
+      "bytes": 3766
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/pcb/Atlas-clone-assembly.pdf": {
+      "sha256": "b7ad782a76617783abf69260019a2f20b14fb7fb7eac14958706fa1d9245c410",
+      "bytes": 1049918
+    },
+    "build/runs/project/fome-mc/20261016T214759.589014Z/export/kibot/schematic/Atlas-clone-schematic.pdf": {
+      "sha256": "cfa76b885eeb39f071a760c481449fc17621d643835ad59ee206c0481b177418",
+      "bytes": 1017849
+    }
+  },
+  "findings": {
+    "artifacts": {
+      "schematic PDF": 16,
+      "schematic SVG": 16,
+      "PCB PDF": 6,
+      "BOM CSV": 5746,
+      "kibot gerber F.Cu": 1,
+      "kibot gerber B.Cu": 1,
+      "kibot gerber Edge.Cuts": 1,
+      "kibot gerber job file": 1,
+      "kibot excellon drill": 1,
+      "kibot drill report": 1,
+      "kibot position files": 2,
+      "kibot BOM CSV": 1,
+      "kibot BOM HTML": 1,
+      "kibot schematic PDF": 1,
+      "kibot PCB print PDF": 1
+    }
+  },
+  "board_sha256": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85",
+  "schematic_pdf_refs_found": "324/336",
+  "bom": {
+    "lines": 77,
+    "references": 336,
+    "netlist_refs_not_in_bom": [],
+    "bom_refs_not_in_netlist": []
+  },
+  "kibot_diagnostics": {
+    "errors": 1,
+    "known_non_critical": [
+      "Unable to expand `REFERENCE` in `${REFERENCE}` (kibot - config.py:130)"
+    ],
+    "warnings_by_code": {
+      "W135": 314,
+      "W013": 9,
+      "W004": 4,
+      "W188": 3,
+      "W181": 1,
+      "W187": 1,
+      "W010": 1
+    }
+  }
+}

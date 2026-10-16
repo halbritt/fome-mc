@@ -1,0 +1,66 @@
+{
+  "step": "drc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "drc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--schematic-parity",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/drc/drc.json",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/drc/kicad-cli-drc.log",
+      "exit_code": 0,
+      "duration_s": 8.158
+    }
+  ],
+  "inputs": {
+    "Polygonus-Universal-Base.kicad_pcb": "4e059d571e0f46911d9101b86c8178298cefb866e2f19d5295a30c35dadedd53"
+  },
+  "outputs": {
+    "build/runs/project/universal-112/20261016T215103.802539Z/drc/drc.json": {
+      "sha256": "ffb954bd4050beca358acccfeca43247a22e2299caaff0bcdc41994689af6a8f",
+      "bytes": 142607
+    }
+  },
+  "findings": {
+    "violations": 142,
+    "unconnected_items": 0,
+    "schematic_parity": 114,
+    "by_severity": {
+      "warning": 243,
+      "error": 13
+    },
+    "by_type": {
+      "footprint_symbol_field_mismatch": 111,
+      "lib_footprint_mismatch": 106,
+      "silk_over_copper": 14,
+      "lib_footprint_issues": 9,
+      "padstack": 5,
+      "annular_width": 5,
+      "starved_thermal": 3,
+      "footprint_symbol_mismatch": 3
+    },
+    "ignored_checks": [
+      "missing_courtyard",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries",
+      "footprint_filters_mismatch",
+      "pth_inside_courtyard",
+      "npth_inside_courtyard"
+    ]
+  },
+  "fill_mode": "asis",
+  "board_sha256_checked": "4e059d571e0f46911d9101b86c8178298cefb866e2f19d5295a30c35dadedd53",
+  "design_clean": false
+}

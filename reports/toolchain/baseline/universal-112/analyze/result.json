@@ -1,0 +1,137 @@
+{
+  "step": "analyze",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_sch",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-schematic.log",
+      "exit_code": 0,
+      "duration_s": 0.46
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_pcb",
+        "--full",
+        "--schematic",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-pcb.log",
+      "exit_code": 0,
+      "duration_s": 200.663
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
+        "-s",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "-p",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/cross.json"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-cross_analysis.log",
+      "exit_code": 0,
+      "duration_s": 0.125
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "--simulator",
+        "ngspice",
+        "-w",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice_work",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice.json"
+      ],
+      "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
+      "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-spice.log",
+      "exit_code": 0,
+      "duration_s": 0.22
+    }
+  ],
+  "inputs": {
+    "Polygonus-Universal-Base.kicad_sch": "be98a40c80abf7d7b77b4966d70b30b391736229a1efdf76eb861165b3427719",
+    "Polygonus-Universal-Base.kicad_pcb": "4e059d571e0f46911d9101b86c8178298cefb866e2f19d5295a30c35dadedd53"
+  },
+  "outputs": {
+    "build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json": {
+      "sha256": "bfe2654db020064fafe5f7f9edce77a0726f2bc4663a613ab57a54658b049047",
+      "bytes": 3989394
+    },
+    "build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json": {
+      "sha256": "eda7863a2e9511d2ec21c6ffd1ea96aa654604619af8a375701525a4acf25108",
+      "bytes": 1795448
+    },
+    "build/runs/project/universal-112/20261016T215103.802539Z/analyze/cross.json": {
+      "sha256": "49e476ae3721f110d6a8bdb3175f0e97080be8870322bfad17b0405713d76508",
+      "bytes": 5363
+    },
+    "build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice.json": {
+      "sha256": "b7edfd65b4a9f974bc43e1f904b86edbe986d46058caeaef1f315c33ebcfe123",
+      "bytes": 24999
+    }
+  },
+  "findings": {
+    "schematic": {
+      "components": 139,
+      "nets": 200,
+      "findings": {
+        "error": 2,
+        "warning": 35,
+        "info": 108
+      },
+      "native_netlist_components": 139
+    },
+    "pcb": {
+      "footprints": 139,
+      "nets": 199,
+      "routing_complete": true,
+      "cross_reference_input": "schematic.json",
+      "power_net_resolution_source": "schematic",
+      "findings": {
+        "error": 5,
+        "warning": 7,
+        "info": 67
+      }
+    },
+    "cross_analysis": {
+      "checks_run": 10,
+      "findings": {
+        "error": 0,
+        "warning": 0,
+        "info": 1
+      }
+    },
+    "spice": {
+      "simulator": "/usr/bin/ngspice",
+      "summary": {
+        "total": 27,
+        "pass": 17,
+        "warn": 2,
+        "fail": 0,
+        "skip": 8
+      }
+    }
+  }
+}

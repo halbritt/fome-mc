@@ -1,0 +1,72 @@
+{
+  "step": "drc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "drc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--schematic-parity",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/drc/drc.json",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/drc/kicad-cli-drc.log",
+      "exit_code": 0,
+      "duration_s": 10.383
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc/20261016T214759.589014Z/drc/drc.json": {
+      "sha256": "fb5b0bd8815e8cde0b9d1a21174138320279b349dcf174ca7520d56aaf1cf017",
+      "bytes": 595848
+    }
+  },
+  "findings": {
+    "violations": 540,
+    "unconnected_items": 99,
+    "schematic_parity": 259,
+    "by_severity": {
+      "warning": 566,
+      "error": 332
+    },
+    "by_type": {
+      "lib_footprint_mismatch": 199,
+      "footprint_symbol_field_mismatch": 199,
+      "shorting_items": 149,
+      "unconnected_items": 99,
+      "clearance": 50,
+      "starved_thermal": 42,
+      "net_conflict": 39,
+      "silk_over_copper": 36,
+      "courtyards_overlap": 28,
+      "silk_overlap": 25,
+      "footprint_symbol_mismatch": 21,
+      "hole_clearance": 6,
+      "lib_footprint_issues": 5
+    },
+    "ignored_checks": [
+      "missing_courtyard",
+      "solder_mask_bridge",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries",
+      "footprint_filters_mismatch",
+      "pth_inside_courtyard",
+      "npth_inside_courtyard"
+    ]
+  },
+  "fill_mode": "asis",
+  "board_sha256_checked": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85",
+  "design_clean": false
+}

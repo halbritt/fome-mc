@@ -1,0 +1,218 @@
+{
+  "step": "export",
+  "status": "FAIL",
+  "reasons": [
+    "kibot: exit code 22"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "pdf",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-schematic.pdf",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kicad-cli-schematic-pdf.log",
+      "exit_code": 0,
+      "duration_s": 1.205
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "svg",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kicad-cli-schematic-svg.log",
+      "exit_code": 0,
+      "duration_s": 0.974
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "export",
+        "pdf",
+        "--mode-multipage",
+        "-l",
+        "F.Cu,B.Cu,F.SilkS,B.SilkS,F.Fab,B.Fab",
+        "--cl",
+        "Edge.Cuts",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-layers.pdf",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kicad-cli-pcb-pdf.log",
+      "exit_code": 0,
+      "duration_s": 1.063
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "bom",
+        "--fields",
+        "Reference,Value,Footprint,${QUANTITY},${DNP}",
+        "--labels",
+        "Refs,Value,Footprint,Qty,DNP",
+        "--group-by",
+        "Value,Footprint",
+        "--ref-range-delimiter",
+        "",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-bom.csv",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kicad-cli-bom-csv.log",
+      "exit_code": 0,
+      "duration_s": 0.487
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/kibot",
+        "-A",
+        "-c",
+        "/home/halbritt/git/Atlas-clone/toolchain/kibot/export.kibot.yaml",
+        "-e",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch",
+        "-b",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_pcb",
+        "-d",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kibot"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/kibot.log",
+      "exit_code": 22,
+      "duration_s": 3.203
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_sch": "0f3c9609bd3b4c8c9c1729302bc18858c1d0c777d2a46001146c86e79c4180fd",
+    "Atlas-clone.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-schematic.pdf": {
+      "sha256": "02cb130f98e9b59e3bc158fbb6388c3d2d58bd626c31a7974684573ba9733a03",
+      "bytes": 1430755
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-Keep_Alive.svg": {
+      "sha256": "3e037dce556f6f6e11458551ffa030f78cff24bfcb04a5af871292dfb19d2907",
+      "bytes": 213058
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-etb1.svg": {
+      "sha256": "f2e40a531e013ec447ba9b8bbe9631f0a13312948ab7571a241474f8e627c8a8",
+      "bytes": 279490
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-highside_quad.svg": {
+      "sha256": "4d6bf59522b0069de2bb4e2631489eb30d632556c62658b2db2de512a72a73c3",
+      "bytes": 361623
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-ign1.svg": {
+      "sha256": "5526f52fc66ef1e1b5437e048ec57b6b7c1980152d81eb8b56a2e55de31cc5db",
+      "bytes": 334666
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-ign2.svg": {
+      "sha256": "3079487151b0876c2ae84aed6bf85b2b56767b897d1c59a524858ffa1b706322",
+      "bytes": 335886
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-ign_igbt.svg": {
+      "sha256": "9092ca95282b2e12a88a834d17564670bbd87dc106569d64a8c7548477c65172",
+      "bytes": 330857
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-knock.svg": {
+      "sha256": "f83c9e9cce075ddbafecd4d5f392984ef1b297b1ec542b60238e99ca2e56084e",
+      "bytes": 367514
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-lowside_quad1.svg": {
+      "sha256": "920011143ebf979a05add468ee071278bf331ad17dd260722be1141356109209",
+      "bytes": 294367
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-lowside_quad2.svg": {
+      "sha256": "6980132886768c343cf9bc0961fae2582f6ea77a82a83fa151558f18e1bbd64f",
+      "bytes": 290079
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-lowside_quad4.svg": {
+      "sha256": "0af541cfcfeecb3e068f2b92981de6e264e5ed0b1ec16b0cbdea6614e3fc0713",
+      "bytes": 292669
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-mcu.svg": {
+      "sha256": "9c1d3918315a8ea540d6d157e3c565cc5352745c1e30f8376420a4990d279a6e",
+      "bytes": 3056415
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-psu.svg": {
+      "sha256": "9204f2838bd38b659cce22cb1ab2cd0d03bda85feeb79cf4c6adea95fab903f8",
+      "bytes": 987972
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-quad_analog1.svg": {
+      "sha256": "4724129e51eb5309a66ad5346b87885fe62a518e2bea5e0e7f7730e6ec496e08",
+      "bytes": 478992
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-quad_analog2.svg": {
+      "sha256": "ae693270226c156c9c4d520a2ee3a937d54efa121a6bd96d8355eac769b0c282",
+      "bytes": 482362
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-quad_analog3.svg": {
+      "sha256": "9f98dfe581e70bd699f601e7686bd6034adf9584715c49cc6453228b372aaf48",
+      "bytes": 491426
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-quad_analog_temp.svg": {
+      "sha256": "559b38ddbb47bc2892abb9f02211cc1d9d960783fd44ce39082f26d8ea697e45",
+      "bytes": 472062
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-stepper_etb.svg": {
+      "sha256": "ae7cee0306f920fc05ab00a745420f173f890e56896f2fcad9debd8f85baf9ee",
+      "bytes": 384938
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-triggers.svg": {
+      "sha256": "6c0f2619afd96bcc266caa813f3d82b93708dc3c86940e00d792d88b0c8ef8a6",
+      "bytes": 839991
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-wbo1.svg": {
+      "sha256": "e57bbf25038fefb95630e53b2816dfb0ddfc5ded37e7800e75eabf3f979985f5",
+      "bytes": 1623935
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone-wbo2.svg": {
+      "sha256": "26cf3f51de9d42b3d22004f8b81e8bfa0a1189e2b1b37c95875e786928063b3b",
+      "bytes": 1578752
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/schematic-svg/Atlas-clone.svg": {
+      "sha256": "50ec80d185275d82903b619d2dc58805d77a42849203995a77ead856fff2ad00",
+      "bytes": 2064772
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-layers.pdf": {
+      "sha256": "e35c0797db574c4f2eae066f527293883d0b52799b6cb37d6751898817fbf945",
+      "bytes": 2134145
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/export/native/Atlas-clone-bom.csv": {
+      "sha256": "58cb5c3cb655c8bf484b1d07006c7ca0865099eb841cab8a129d9883a713f5fe",
+      "bytes": 7508
+    }
+  },
+  "findings": {
+    "artifacts": {
+      "schematic PDF": 21,
+      "schematic SVG": 21,
+      "PCB PDF": 6,
+      "BOM CSV": 7508
+    }
+  },
+  "board_sha256": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85",
+  "schematic_pdf_refs_found": "460/472",
+  "bom": {
+    "lines": 100,
+    "references": 472,
+    "netlist_refs_not_in_bom": [],
+    "bom_refs_not_in_netlist": []
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "step": "netlist",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "netlist",
+        "--format",
+        "kicadsexpr",
+        "-o",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/netlist/Atlas-clone.net",
+        "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/snapshot/Atlas-clone",
+      "log": "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/netlist/kicad-cli-netlist.log",
+      "exit_code": 0,
+      "duration_s": 0.557
+    }
+  ],
+  "inputs": {
+    "Atlas-clone.kicad_sch": "0f3c9609bd3b4c8c9c1729302bc18858c1d0c777d2a46001146c86e79c4180fd"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/netlist/Atlas-clone.net": {
+      "sha256": "77490e2878b2fca52afb290ba8288cf94d3bff8e42fab95ecb5d94957cbbe436",
+      "bytes": 797725
+    },
+    "build/runs/project/fome-mc-worktree/20261016T215539.765831Z/netlist/connectivity.json": {
+      "sha256": "0dbfd14d3537f8e4756c29174d61985f3ca2a26712821643557080215aaec769",
+      "bytes": 48181
+    }
+  },
+  "findings": {
+    "components": 472,
+    "nets": 452
+  },
+  "coverage": {
+    "schematic_references": 353,
+    "missing_from_netlist": []
+  }
+}

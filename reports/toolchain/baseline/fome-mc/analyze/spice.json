@@ -1,0 +1,2529 @@
+{
+  "analyzer_type": "spice",
+  "schema_version": "1.4.0",
+  "summary": {
+    "total": 98,
+    "total_findings": 4,
+    "pass": 78,
+    "warn": 4,
+    "fail": 0,
+    "skip": 16,
+    "by_severity": {
+      "error": 0,
+      "warning": 4,
+      "info": 94
+    }
+  },
+  "findings": [
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "lc_filter L1/C7 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of lc_filter (L1/C7) converged with warnings. Expected: resonant_hz=15487.74, impedance_ohms=0.21. Simulated: resonant_hz=15490.0, gain_peak_dB=39.9945, Q_factor=115.6, bandwidth_hz=134.0. Delta: f_error_pct: +0.01%.",
+      "components": [
+        "L1",
+        "C7"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "resonant_hz": 15487.74,
+        "impedance_ohms": 0.21
+      },
+      "simulated": {
+        "resonant_hz": 15490.0,
+        "gain_peak_dB": 39.9945,
+        "Q_factor": 115.6,
+        "bandwidth_hz": 134.0
+      },
+      "delta": {
+        "f_error_pct": 0.01
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U7 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U7) converged with warnings. Expected: gain=-4.7, gain_dB=13.4. Simulated: gain_dB=-22.26, gain_linear=0.077, bandwidth_hz=10669900.0, gain_low_dB=-22.26, gain_high_dB=-22.26, gain_spread_dB=0.0. Delta: gain_error_dB: +35.66%.",
+      "components": [
+        "U7"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -4.7,
+        "gain_dB": 13.4
+      },
+      "simulated": {
+        "gain_dB": -22.26,
+        "gain_linear": 0.077,
+        "bandwidth_hz": 10669900.0,
+        "gain_low_dB": -22.26,
+        "gain_high_dB": -22.26,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 35.66
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U7 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U7) converged with warnings. Expected: gain=-4.7, gain_dB=13.4. Simulated: gain_dB=-22.26, gain_linear=0.077, bandwidth_hz=10669900.0, gain_low_dB=-22.26, gain_high_dB=-22.26, gain_spread_dB=0.0. Delta: gain_error_dB: +35.66%.",
+      "components": [
+        "U7"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -4.7,
+        "gain_dB": 13.4
+      },
+      "simulated": {
+        "gain_dB": -22.26,
+        "gain_linear": 0.077,
+        "bandwidth_hz": 10669900.0,
+        "gain_low_dB": -22.26,
+        "gain_high_dB": -22.26,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 35.66
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "crystal_circuit Y1 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of crystal_circuit (Y1) converged with warnings. Expected: frequency_hz=8000000.0, load_capacitance_pF=19.5. Simulated: load_capacitance_pF=19.5, f_series_hz=0.0, f_error_pct=100.0, motional_resistance_ohm=30.0. Delta: no numeric delta.",
+      "components": [
+        "Y1"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "frequency_hz": 8000000.0,
+        "load_capacitance_pF": 19.5
+      },
+      "simulated": {
+        "load_capacitance_pF": 19.5,
+        "f_series_hz": 0.0,
+        "f_error_pct": 100.0,
+        "motional_resistance_ohm": 30.0
+      },
+      "delta": {}
+    }
+  ],
+  "simulation_results": [
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R113",
+        "C100"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R113_C100.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R113_C100.log",
+      "elapsed_s": 0.006,
+      "reference": "R113/C100"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R114",
+        "C101"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R114_C101.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R114_C101.log",
+      "elapsed_s": 0.005,
+      "reference": "R114/C101"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R115",
+        "C102"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R115_C102.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R115_C102.log",
+      "elapsed_s": 0.005,
+      "reference": "R115/C102"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R17",
+        "C18"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 19504.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 19458.0,
+        "phase_at_fc_deg": -0.7842
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R17_C18.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R17_C18.log",
+      "elapsed_s": 0.005,
+      "reference": "R17/C18"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R19",
+        "C18"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 1575.79,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 1572.05,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R19_C18.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R19_C18.log",
+      "elapsed_s": 0.006,
+      "reference": "R19/C18"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R18",
+        "C19"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 19504.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 19458.0,
+        "phase_at_fc_deg": -0.7842
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R18_C19.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R18_C19.log",
+      "elapsed_s": 0.006,
+      "reference": "R18/C19"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R20",
+        "C19"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 1575.79,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 1572.05,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R20_C19.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R20_C19.log",
+      "elapsed_s": 0.006,
+      "reference": "R20/C19"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R21",
+        "C20"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 12792.78,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 12762.4,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R21_C20.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R21_C20.log",
+      "elapsed_s": 0.005,
+      "reference": "R21/C20"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R22",
+        "C21"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 12792.78,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 12762.4,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R22_C21.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R22_C21.log",
+      "elapsed_s": 0.006,
+      "reference": "R22/C21"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R23",
+        "C24"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R23_C24.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R23_C24.log",
+      "elapsed_s": 0.008,
+      "reference": "R23/C24"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R29",
+        "C24"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C24.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C24.log",
+      "elapsed_s": 0.006,
+      "reference": "R29/C24"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R24",
+        "C25"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R24_C25.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R24_C25.log",
+      "elapsed_s": 0.005,
+      "reference": "R24/C25"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R30",
+        "C25"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C25.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C25.log",
+      "elapsed_s": 0.005,
+      "reference": "R30/C25"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R25",
+        "C26"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R25_C26.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R25_C26.log",
+      "elapsed_s": 0.006,
+      "reference": "R25/C26"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R31",
+        "C26"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C26.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C26.log",
+      "elapsed_s": 0.005,
+      "reference": "R31/C26"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R26",
+        "C27"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R26_C27.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R26_C27.log",
+      "elapsed_s": 0.005,
+      "reference": "R26/C27"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R32",
+        "C27"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C27.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C27.log",
+      "elapsed_s": 0.005,
+      "reference": "R32/C27"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R27",
+        "C28"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R27_C28.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R27_C28.log",
+      "elapsed_s": 0.006,
+      "reference": "R27/C28"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R33",
+        "C28"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C28.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C28.log",
+      "elapsed_s": 0.005,
+      "reference": "R33/C28"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R28",
+        "C29"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R28_C29.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R28_C29.log",
+      "elapsed_s": 0.005,
+      "reference": "R28/C29"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R34",
+        "C29"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C29.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C29.log",
+      "elapsed_s": 0.005,
+      "reference": "R34/C29"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R29",
+        "C30"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C30.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C30.log",
+      "elapsed_s": 0.005,
+      "reference": "R29/C30"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R30",
+        "C31"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C31.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C31.log",
+      "elapsed_s": 0.005,
+      "reference": "R30/C31"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R31",
+        "C32"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C32.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C32.log",
+      "elapsed_s": 0.005,
+      "reference": "R31/C32"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R32",
+        "C33"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C33.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C33.log",
+      "elapsed_s": 0.005,
+      "reference": "R32/C33"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R33",
+        "C34"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C34.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C34.log",
+      "elapsed_s": 0.005,
+      "reference": "R33/C34"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R34",
+        "C35"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C35.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C35.log",
+      "elapsed_s": 0.005,
+      "reference": "R34/C35"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R35",
+        "C36"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R35_C36.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R35_C36.log",
+      "elapsed_s": 0.005,
+      "reference": "R35/C36"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R37",
+        "C36"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C36.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C36.log",
+      "elapsed_s": 0.005,
+      "reference": "R37/C36"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R36",
+        "C37"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R36_C37.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R36_C37.log",
+      "elapsed_s": 0.005,
+      "reference": "R36/C37"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R38",
+        "C37"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C37.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C37.log",
+      "elapsed_s": 0.005,
+      "reference": "R38/C37"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R37",
+        "C38"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C38.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C38.log",
+      "elapsed_s": 0.006,
+      "reference": "R37/C38"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R38",
+        "C39"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 58946.28,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 58806.5,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C39.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C39.log",
+      "elapsed_s": 0.005,
+      "reference": "R38/C39"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R89",
+        "C79"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159.15,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158.778,
+        "phase_at_fc_deg": -0.784179
+      },
+      "delta": {
+        "fc_error_pct": 0.23
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R89_C79.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R89_C79.log",
+      "elapsed_s": 0.005,
+      "reference": "R89/C79"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R107",
+        "C89"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 338.63,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 337.824,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R107_C89.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R107_C89.log",
+      "elapsed_s": 0.005,
+      "reference": "R107/C89"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R108",
+        "C93"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R108_C93.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R108_C93.log",
+      "elapsed_s": 0.005,
+      "reference": "R108/C93"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R109",
+        "C94"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R109_C94.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R109_C94.log",
+      "elapsed_s": 0.005,
+      "reference": "R109/C94"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R110",
+        "C95"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R110_C95.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R110_C95.log",
+      "elapsed_s": 0.005,
+      "reference": "R110/C95"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R111",
+        "C96"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R111_C96.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R111_C96.log",
+      "elapsed_s": 0.005,
+      "reference": "R111/C96"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R112",
+        "C99"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 159154.94,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 158777.0,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R112_C99.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R112_C99.log",
+      "elapsed_s": 0.005,
+      "reference": "R112/C99"
+    },
+    {
+      "subcircuit_type": "lc_filter",
+      "components": [
+        "L1",
+        "C7"
+      ],
+      "expected": {
+        "resonant_hz": 15487.74,
+        "impedance_ohms": 0.21
+      },
+      "simulated": {
+        "resonant_hz": 15490.0,
+        "gain_peak_dB": 39.9945,
+        "Q_factor": 115.6,
+        "bandwidth_hz": 134.0
+      },
+      "delta": {
+        "f_error_pct": 0.01
+      },
+      "status": "warn",
+      "warnings": [
+        "High Q factor (115.6) \u2014 underdamped, risk of oscillation or ringing in power path"
+      ],
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/lc-filter_L1_C7.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/lc-filter_L1_C7.log",
+      "elapsed_s": 0.006,
+      "reference": "L1/C7"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R11",
+        "R12"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R11_R12.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R11_R12.log",
+      "elapsed_s": 0.005,
+      "reference": "R11/R12"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R116",
+        "R117"
+      ],
+      "expected": {
+        "ratio": 0.108696,
+        "vout_V": 0.3586968
+      },
+      "simulated": {
+        "vout_V": 0.358696
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R116_R117.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R116_R117.log",
+      "elapsed_s": 0.005,
+      "reference": "R116/R117"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R118",
+        "R119"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R118_R119.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R118_R119.log",
+      "elapsed_s": 0.006,
+      "reference": "R118/R119"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R120",
+        "R121"
+      ],
+      "expected": {
+        "ratio": 0.108696,
+        "vout_V": 0.3586968
+      },
+      "simulated": {
+        "vout_V": 0.358696
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R120_R121.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R120_R121.log",
+      "elapsed_s": 0.005,
+      "reference": "R120/R121"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R43",
+        "R47"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R43_R47.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R43_R47.log",
+      "elapsed_s": 0.005,
+      "reference": "R43/R47"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R44",
+        "R48"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R44_R48.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R44_R48.log",
+      "elapsed_s": 0.005,
+      "reference": "R44/R48"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R45",
+        "R49"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R45_R49.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R45_R49.log",
+      "elapsed_s": 0.004,
+      "reference": "R45/R49"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R46",
+        "R50"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R46_R50.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R46_R50.log",
+      "elapsed_s": 0.006,
+      "reference": "R46/R50"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R6",
+        "R5"
+      ],
+      "expected": {
+        "ratio": 0.15,
+        "vout_V": 0.75
+      },
+      "simulated": {
+        "vout_V": 0.75
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R6_R5.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R6_R5.log",
+      "elapsed_s": 0.006,
+      "reference": "R6/R5"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R55",
+        "R59"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R55_R59.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R55_R59.log",
+      "elapsed_s": 0.005,
+      "reference": "R55/R59"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R56",
+        "R60"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R56_R60.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R56_R60.log",
+      "elapsed_s": 0.005,
+      "reference": "R56/R60"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R57",
+        "R61"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R57_R61.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R57_R61.log",
+      "elapsed_s": 0.006,
+      "reference": "R57/R61"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R58",
+        "R62"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R58_R62.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R58_R62.log",
+      "elapsed_s": 0.008,
+      "reference": "R58/R62"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R67",
+        "R71"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R67_R71.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R67_R71.log",
+      "elapsed_s": 0.005,
+      "reference": "R67/R71"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R68",
+        "R72"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R68_R72.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R68_R72.log",
+      "elapsed_s": 0.005,
+      "reference": "R68/R72"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R69",
+        "R73"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R69_R73.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R69_R73.log",
+      "elapsed_s": 0.005,
+      "reference": "R69/R73"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R70",
+        "R74"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R70_R74.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R70_R74.log",
+      "elapsed_s": 0.005,
+      "reference": "R70/R74"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R79",
+        "R83"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R79_R83.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R79_R83.log",
+      "elapsed_s": 0.005,
+      "reference": "R79/R83"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R80",
+        "R84"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R80_R84.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R80_R84.log",
+      "elapsed_s": 0.005,
+      "reference": "R80/R84"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R81",
+        "R85"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R81_R85.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R81_R85.log",
+      "elapsed_s": 0.005,
+      "reference": "R81/R85"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R82",
+        "R86"
+      ],
+      "expected": {
+        "ratio": 0.641026,
+        "vout_V": 2.1153858
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R82_R86.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R82_R86.log",
+      "elapsed_s": 0.005,
+      "reference": "R82/R86"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U15"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R43.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R43.log",
+      "elapsed_s": 0.006,
+      "reference": "U15"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U15"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R44.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R44.log",
+      "elapsed_s": 0.006,
+      "reference": "U15"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U15"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R45.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R45.log",
+      "elapsed_s": 0.006,
+      "reference": "U15"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U15"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R46.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R46.log",
+      "elapsed_s": 0.006,
+      "reference": "U15"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U17"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R55.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R55.log",
+      "elapsed_s": 0.007,
+      "reference": "U17"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U17"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R56.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R56.log",
+      "elapsed_s": 0.009,
+      "reference": "U17"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U17"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R57.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R57.log",
+      "elapsed_s": 0.007,
+      "reference": "U17"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U17"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R58.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R58.log",
+      "elapsed_s": 0.007,
+      "reference": "U17"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U19"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R67.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R67.log",
+      "elapsed_s": 0.007,
+      "reference": "U19"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U19"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R68.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R68.log",
+      "elapsed_s": 0.007,
+      "reference": "U19"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U19"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R69.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R69.log",
+      "elapsed_s": 0.007,
+      "reference": "U19"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U19"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R70.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R70.log",
+      "elapsed_s": 0.007,
+      "reference": "U19"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U21"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R79.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R79.log",
+      "elapsed_s": 0.007,
+      "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U21"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R80.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R80.log",
+      "elapsed_s": 0.007,
+      "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U21"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R81.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R81.log",
+      "elapsed_s": 0.006,
+      "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U21"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R82.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R82.log",
+      "elapsed_s": 0.006,
+      "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U7"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R116.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R116.log",
+      "elapsed_s": 0.006,
+      "reference": "U7"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U7"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R39.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R39.log",
+      "elapsed_s": 0.006,
+      "reference": "U7"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U7"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -4.7,
+        "gain_dB": 13.4
+      },
+      "simulated": {
+        "gain_dB": -22.26,
+        "gain_linear": 0.077,
+        "bandwidth_hz": 10669900.0,
+        "gain_low_dB": -22.26,
+        "gain_high_dB": -22.26,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 35.66
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 35.7 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R15_R13.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R15_R13.log",
+      "elapsed_s": 0.006,
+      "reference": "U7"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U7"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -4.7,
+        "gain_dB": 13.4
+      },
+      "simulated": {
+        "gain_dB": -22.26,
+        "gain_linear": 0.077,
+        "bandwidth_hz": 10669900.0,
+        "gain_low_dB": -22.26,
+        "gain_high_dB": -22.26,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 35.66
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 35.7 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R16_R14.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R16_R14.log",
+      "elapsed_s": 0.006,
+      "reference": "U7"
+    },
+    {
+      "subcircuit_type": "crystal_circuit",
+      "components": [
+        "Y1"
+      ],
+      "expected": {
+        "frequency_hz": 8000000.0,
+        "load_capacitance_pF": 19.5
+      },
+      "simulated": {
+        "load_capacitance_pF": 19.5,
+        "f_series_hz": 0.0,
+        "f_error_pct": 100.0,
+        "motional_resistance_ohm": 30.0
+      },
+      "delta": {},
+      "model_note": "generic crystal equivalent circuit \u2014 actual Rm may differ",
+      "status": "warn",
+      "note": "Load caps present: C74, C75 Series resonance 0.000 MHz deviates 100.0% from nominal.",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/crystal-circuit_Y1.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/crystal-circuit_Y1.log",
+      "elapsed_s": 0.005,
+      "reference": "Y1"
+    },
+    {
+      "subcircuit_type": "protection_device",
+      "components": [
+        "D1"
+      ],
+      "device_type": "diode",
+      "expected": {
+        "rail_voltage_V": 3.3
+      },
+      "simulated": {},
+      "delta": {},
+      "model_note": "generic diode model \u2014 real TVS has specific clamping characteristics",
+      "status": "pass",
+      "note": "Protection diode present \u2014 clamping voltage requires manufacturer model for accurate measurement",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/protection-device_idx0.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/protection-device_idx0.log",
+      "elapsed_s": 0.005,
+      "reference": "D1"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C104"
+      ],
+      "rail": "5V_SENSE_DIVIDED",
+      "cap_count": 1,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.3162,
+        "z_at_1MHz_ohms": 1.6183,
+        "z_at_100kHz_ohms": 15.9182
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=1.618\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C104.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C104.log",
+      "elapsed_s": 0.006,
+      "reference": "C104"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C92",
+        "C91",
+        "C98",
+        "C97",
+        "C46"
+      ],
+      "rail": "+5V",
+      "cap_count": 10,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0047,
+        "f_at_zmin_hz": 1496240.0,
+        "z_at_1MHz_ohms": 0.0064,
+        "z_at_100kHz_ohms": 0.0763
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.006\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.log",
+      "elapsed_s": 0.008,
+      "reference": "C92/C91/C98/C97/C46"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C67",
+        "C68",
+        "C69",
+        "C71",
+        "C72"
+      ],
+      "rail": "+3V3",
+      "cap_count": 14,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0086,
+        "z_at_1MHz_ohms": 0.0105,
+        "z_at_100kHz_ohms": 0.0657
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.010\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.log",
+      "elapsed_s": 0.009,
+      "reference": "C67/C68/C69/C71/C72"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C2",
+        "C5"
+      ],
+      "rail": "/00000000-0000-0000-0000-00005da72eff/12v_PROT",
+      "cap_count": 2,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.05,
+        "f_at_zmin_hz": 6025570.0,
+        "z_at_1MHz_ohms": 0.0921,
+        "z_at_100kHz_ohms": 0.7971
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.092\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C2_C5.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C2_C5.log",
+      "elapsed_s": 0.007,
+      "reference": "C2/C5"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C82",
+        "C81"
+      ],
+      "rail": "VDDA",
+      "cap_count": 2,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0444,
+        "z_at_1MHz_ohms": 0.0534,
+        "z_at_100kHz_ohms": 0.3342
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.053\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C82_C81.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C82_C81.log",
+      "elapsed_s": 0.006,
+      "reference": "C82/C81"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C84"
+      ],
+      "rail": "12V_DIVIDED",
+      "cap_count": 1,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.1,
+        "z_at_1MHz_ohms": 0.1843,
+        "z_at_100kHz_ohms": 1.5942
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.184\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C84.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C84.log",
+      "elapsed_s": 0.006,
+      "reference": "C84"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C9"
+      ],
+      "rail": "/00000000-0000-0000-0000-00005da72eff/5V_SENSOR_2",
+      "cap_count": 1,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.1,
+        "z_at_1MHz_ohms": 0.1843,
+        "z_at_100kHz_ohms": 1.5942
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.184\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C9.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C9.log",
+      "elapsed_s": 0.006,
+      "reference": "C9"
+    },
+    {
+      "subcircuit_type": "regulator_feedback",
+      "components": [
+        "R6",
+        "R5"
+      ],
+      "regulator": "U1",
+      "expected": {
+        "ratio": 0.15,
+        "vfb_V": 0.49499999999999994,
+        "vin_V": 3.3
+      },
+      "simulated": {
+        "vfb_V": 0.495
+      },
+      "delta": {
+        "vfb_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U1_R6_R5.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U1_R6_R5.log",
+      "elapsed_s": 0.005,
+      "reference": "R6/R5"
+    },
+    {
+      "subcircuit_type": "regulator_feedback",
+      "components": [
+        "R6",
+        "R5"
+      ],
+      "regulator": "U2",
+      "expected": {
+        "ratio": 0.15,
+        "vfb_V": 0.49499999999999994,
+        "vin_V": 3.3
+      },
+      "simulated": {
+        "vfb_V": 0.495
+      },
+      "delta": {
+        "vfb_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U2_R6_R5.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U2_R6_R5.log",
+      "elapsed_s": 0.005,
+      "reference": "R6/R5"
+    },
+    {
+      "subcircuit_type": "regulator_feedback",
+      "components": [
+        "R6",
+        "R5"
+      ],
+      "regulator": "U3",
+      "expected": {
+        "ratio": 0.15,
+        "vref_V": 0.6,
+        "vfb_V": 0.75,
+        "vin_V": 5.0
+      },
+      "simulated": {
+        "vfb_V": 0.75
+      },
+      "delta": {
+        "vfb_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U3_R6_R5.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U3_R6_R5.log",
+      "elapsed_s": 0.005,
+      "reference": "R6/R5"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C9"
+      ],
+      "regulator": "U2",
+      "expected": {
+        "v_target_V": 5.0,
+        "estimated_inrush_A": 0.01
+      },
+      "simulated": {
+        "v_settled_V": 5.0
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx0.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx0.log",
+      "elapsed_s": 0.008,
+      "reference": "C9"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C92",
+        "C91",
+        "C98",
+        "C97",
+        "C46"
+      ],
+      "regulator": "U3",
+      "expected": {
+        "v_target_V": 4.0,
+        "estimated_inrush_A": 0.083
+      },
+      "simulated": {
+        "v_settled_V": 4.0
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx1.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx1.log",
+      "elapsed_s": 0.008,
+      "reference": "C92/C91/C98/C97/C46"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C67",
+        "C68",
+        "C69",
+        "C71",
+        "C72"
+      ],
+      "regulator": "U6",
+      "expected": {
+        "v_target_V": 3.3,
+        "estimated_inrush_A": 0.161
+      },
+      "simulated": {
+        "v_settled_V": 3.3
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx2.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx2.log",
+      "elapsed_s": 0.01,
+      "reference": "C67/C68/C69/C71/C72"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C90"
+      ],
+      "regulator": "U41",
+      "expected": {
+        "v_target_V": 3.3,
+        "estimated_inrush_A": 0.015
+      },
+      "simulated": {
+        "v_settled_V": 3.3
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx3.cir",
+      "log_file": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx3.log",
+      "elapsed_s": 0.008,
+      "reference": "C90"
+    }
+  ],
+  "trust_summary": {
+    "total_findings": 4,
+    "trust_level": "high",
+    "by_confidence": {
+      "deterministic": 4,
+      "heuristic": 0,
+      "datasheet_backed": 0
+    },
+    "by_evidence_source": {
+      "datasheet": 0,
+      "topology": 0,
+      "heuristic_rule": 4,
+      "symbol_footprint": 0,
+      "bom": 0,
+      "geometry": 0,
+      "api_lookup": 0
+    },
+    "provenance_coverage_pct": 0.0
+  },
+  "workdir": "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work",
+  "total_elapsed_s": 0.567,
+  "simulator": "/usr/bin/ngspice",
+  "ngspice": "/usr/bin/ngspice"
+}

@@ -1,0 +1,198 @@
+{
+  "analyzer_type": "cross_analysis",
+  "schema_version": "1.4.0",
+  "inputs": {
+    "source_files": [
+      "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+      "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json"
+    ],
+    "source_hashes": {
+      "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json": "bfe2654db020064fafe5f7f9edce77a0726f2bc4663a613ab57a54658b049047",
+      "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json": "eda7863a2e9511d2ec21c6ffd1ea96aa654604619af8a375701525a4acf25108"
+    },
+    "run_id": "20261016T215217Z-a15594",
+    "config_hash": null,
+    "upstream_artifacts": {
+      "schematic": {
+        "path": "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "sha256": "bfe2654db020064fafe5f7f9edce77a0726f2bc4663a613ab57a54658b049047",
+        "schema_version": "1.4.0",
+        "run_id": "20261016T215217Z-a15594"
+      },
+      "pcb": {
+        "path": "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json",
+        "sha256": "eda7863a2e9511d2ec21c6ffd1ea96aa654604619af8a375701525a4acf25108",
+        "schema_version": "1.4.0",
+        "run_id": "20261016T215217Z-a15594"
+      }
+    }
+  },
+  "compat": {
+    "minimum_consumer_version": "1.4.0",
+    "deprecated_fields": [],
+    "experimental_fields": []
+  },
+  "elapsed_s": 0.06,
+  "summary": {
+    "total_findings": 1,
+    "by_severity": {
+      "error": 0,
+      "warning": 0,
+      "info": 1
+    }
+  },
+  "findings": [
+    {
+      "detector": "check_plane_splits",
+      "rule_id": "PS-002",
+      "category": "plane_integrity",
+      "summary": "+5V plane split: 2 islands",
+      "description": "+5V plane has 2 disconnected islands.",
+      "components": [],
+      "nets": [
+        "+5V"
+      ],
+      "pins": [],
+      "severity": "info",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+      "report_context": {
+        "section": "Plane Integrity",
+        "impact": "Return path discontinuity increases EMI",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:PS-002:+5v",
+      "stages": [
+        "layout"
+      ]
+    }
+  ],
+  "assessments": [],
+  "checks_run": [
+    {
+      "check": "CC-001",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 19,
+      "findings": 0
+    },
+    {
+      "check": "EG-001",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 19,
+      "findings": 0
+    },
+    {
+      "check": "DA-001",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 0,
+      "findings": 0
+    },
+    {
+      "check": "XV-001..003",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 139,
+      "findings": 0
+    },
+    {
+      "check": "NR-001",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 2207,
+      "findings": 0
+    },
+    {
+      "check": "RP-002",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 2207,
+      "findings": 0
+    },
+    {
+      "check": "TW-001",
+      "ran": false,
+      "reason_skipped": "no power regulator current estimates in schematic analysis",
+      "items_examined": 0,
+      "findings": 0
+    },
+    {
+      "check": "PS-002",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 199,
+      "findings": 1
+    },
+    {
+      "check": "VS-002",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 1224,
+      "findings": 0
+    },
+    {
+      "check": "DP-005",
+      "ran": true,
+      "reason_skipped": null,
+      "items_examined": 1,
+      "findings": 0
+    }
+  ],
+  "trust_summary": {
+    "total_findings": 1,
+    "trust_level": "high",
+    "by_confidence": {
+      "deterministic": 1,
+      "heuristic": 0,
+      "datasheet_backed": 0
+    },
+    "by_evidence_source": {
+      "datasheet": 0,
+      "topology": 1,
+      "heuristic_rule": 0,
+      "symbol_footprint": 0,
+      "bom": 0,
+      "geometry": 0,
+      "api_lookup": 0
+    },
+    "provenance_coverage_pct": 0.0
+  },
+  "audience_summary": {
+    "designer": {
+      "total_findings": 1,
+      "by_severity": {
+        "error": 0,
+        "warning": 0,
+        "info": 1
+      },
+      "by_category": {
+        "plane_integrity": 1
+      },
+      "top_issues": []
+    },
+    "reviewer": {
+      "total_findings": 0,
+      "by_category": {},
+      "top_issues": []
+    },
+    "manager": {
+      "risk_level": "none",
+      "blocker_count": 0,
+      "warning_count": 0,
+      "stage_readiness": {
+        "schematic": "pass",
+        "layout": "pass",
+        "pre_fab": "pass",
+        "bring_up": "pass"
+      },
+      "one_liner": "No errors or warnings \u2014 all stages ready."
+    }
+  },
+  "capability_mode_ref": {
+    "source": "analysis/capability_mode.json",
+    "run_id": "20261016T215217Z-a15594"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "exported_netlist": ".title KiCad schematic\nR1 /IN /OUT 10k\nC1 /OUT GND 100n\n.end\n",
+  "result": {
+    "step": "simulate",
+    "status": "PASS",
+    "reasons": [],
+    "commands": [
+      {
+        "argv": [
+          "ngspice",
+          "-n",
+          "-b",
+          "-o",
+          "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log",
+          "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate/control.sp"
+        ],
+        "cwd": "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/sim",
+        "log": "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate/ngspice-console.log",
+        "exit_code": 0,
+        "duration_s": 0.018
+      }
+    ],
+    "inputs": {
+      "deck.cir": "9a28fb9534f530bdfa3383a0635ce19ebd1c81e35771c5fcefe65548e283292f"
+    },
+    "outputs": {
+      "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate/result.raw": {
+        "sha256": "bacb81da1dbd0de1b6be9046adc2f4d58e7e6c84ff77af5e6bfeb40c060baace",
+        "bytes": 192982
+      },
+      "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log": {
+        "sha256": "a29987f91a7a6548f6e5d98aecca9863659e840a755a24322cd5fcd81319e0de",
+        "bytes": 892
+      }
+    },
+    "findings": {},
+    "run_dir": "/tmp/pytest-of-halbritt/pytest-1171/test_ngspice_simulates_kicad_e0/out/simulate",
+    "method": "ngspice -n -b -o <log> <control.sp>; control: set ngbehavior=kicad, source, run, write",
+    "measurements": {
+      "v_at_tau": 0.6321204,
+      "t_half": 0.000693148
+    },
+    "raw": {
+      "variables": [
+        "time",
+        "v(/in)",
+        "v(/out)",
+        "i(v1)"
+      ],
+      "points": 6022
+    }
+  },
+  "analytic": {
+    "v_at_tau": 0.6321205588285577,
+    "t_half": 0.0006931471805599453,
+    "v_at_5tau": 0.9932620530009145
+  }
+}
