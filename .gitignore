@@ -33,3 +33,11 @@ fp-info-cache
 *.xml
 gerber/
 production_files/
+
+# --- EDA toolchain (toolchain/README.md) ---
+build/
+toolchain/.venv/
+toolchain/vendor/
+__pycache__/
+# Committed toolchain reports keep their netlists/BOMs despite the rules above.
+!reports/toolchain/**

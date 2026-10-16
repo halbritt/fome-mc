@@ -1,0 +1,76 @@
+# KiBot export bundle for review and manufacturing-file inspection.
+#
+# Invoked by `toolchain/eda.py export` against a snapshot of the project, after
+# native ERC/DRC have run on the same snapshot. Zone fills are NOT touched here:
+# the bundle is plotted from the copper fill that is saved in the snapshot board,
+# which is the same file (same sha256) that native DRC checked. Run
+# `make export FILL=refill` to refill-and-save the snapshot first.
+#
+# KiBot ERC/DRC preflights are intentionally absent: KiCad's own `kicad-cli
+# sch erc` / `pcb drc` are the authoritative checks and run separately.
+kibot:
+  version: 1
+
+preflight:
+  fill_zones: false
+  check_zone_fills: false
+
+outputs:
+  - name: gerbers
+    comment: Gerber copper/mask/silk/paste/edge layers (saved zone fill)
+    type: gerber
+    dir: gerbers
+    layers: [copper, F.Mask, B.Mask, F.SilkS, B.SilkS, F.Paste, B.Paste, Edge.Cuts]
+    options:
+      create_gerber_job_file: true
+
+  - name: drill
+    comment: Excellon drill files with a drill report
+    type: excellon
+    dir: gerbers
+    options:
+      report:
+        filename: '%f-%i.%x'
+      map: pdf
+
+  - name: position
+    comment: Pick-and-place position files (CSV)
+    type: position
+    dir: assembly
+    options:
+      format: CSV
+      only_smd: false
+
+  - name: bom_csv
+    comment: Grouped BOM (CSV)
+    type: bom
+    dir: bom
+    options:
+      format: CSV
+
+  - name: bom_html
+    comment: Grouped BOM (HTML)
+    type: bom
+    dir: bom
+    options:
+      format: HTML
+
+  - name: schematic_pdf
+    comment: Full schematic as PDF
+    type: pdf_sch_print
+    dir: schematic
+
+  - name: pcb_pdf
+    comment: PCB layer prints as a multi-page PDF
+    type: pcb_print
+    dir: pcb
+    options:
+      format: PDF
+      pages:
+        - layers: [F.Cu, F.SilkS, Edge.Cuts]
+          sheet: Front copper
+        - layers: [B.Cu, B.SilkS, Edge.Cuts]
+          mirror: true
+          sheet: Back copper
+        - layers: [F.Fab, Edge.Cuts]
+          sheet: Front fabrication

@@ -1,0 +1,15 @@
+* RC low-pass step response (toolchain fixture; same values as rc_filter.kicad_sch)
+* R = 10k, C = 100n  ->  tau = R*C = 1 ms, fc = 1/(2*pi*R*C) = 159.15 Hz
+* Run with:  make simulate DECK=toolchain/fixtures/rc_filter/sim/rc_step.cir
+*            (the runner supplies the .control block; do not add one here)
+V1 in 0 PULSE(0 1 0 1n 1n 1 2)
+R1 in out 10k
+C1 out 0 100n
+.tran 1u 6m 0 1u
+* v(out) at t = tau should be 1 - e^-1
+.meas tran v_at_tau FIND v(out) AT=1m
+* time to reach half of the step should be tau*ln(2)
+.meas tran t_half WHEN v(out)=0.5 RISE=1
+* v(out) at t = 5*tau should be 1 - e^-5
+.meas tran v_at_5tau FIND v(out) AT=5m
+.end

@@ -1,0 +1,18 @@
+[project]
+name = "fome-mc-eda-toolchain"
+version = "0.1.0"
+description = "Pinned Python environment for the FOME-MC KiCad/KiBot/kicad-happy/ngspice toolchain"
+requires-python = "==3.12.*"
+dependencies = [
+    "kibot==1.9.1",
+    "pytest==8.4.2",
+    "numpy==2.3.3",
+    # Required by the vendored kicad-happy datasheets scripts (merge/validate/sanity).
+    "jsonschema==4.25.1",
+    "pyyaml==6.0.3",
+    # KiBot imports lxml from its plug-in set but does not declare it.
+    "lxml==6.0.2",
+]
+
+[tool.uv]
+package = false

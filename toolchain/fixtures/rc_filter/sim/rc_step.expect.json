@@ -1,0 +1,8 @@
+{
+  "_comment": "Analytic first-order RC step response, V(t) = 1 - exp(-t/tau), tau = 10k * 100n = 1 ms. Values computed by hand, independent of ngspice; the smoke test recomputes them in Python.",
+  "measurements": {
+    "v_at_tau":  {"expected": 0.6321205588, "rel_tol": 0.001},
+    "t_half":    {"expected": 0.000693147181, "rel_tol": 0.002},
+    "v_at_5tau": {"expected": 0.9932620530, "rel_tol": 0.001}
+  }
+}

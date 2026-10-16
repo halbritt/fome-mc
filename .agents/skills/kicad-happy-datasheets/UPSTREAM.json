@@ -1,0 +1,14 @@
+{
+  "upstream": "https://github.com/aklofas/kicad-happy.git",
+  "tag": "v2.3.1",
+  "commit": "06840467ad0f5d76af45f64449b1f5ecb10f052f",
+  "skill_subdir": "skills/datasheets",
+  "upstream_skill_md_sha256": "84fb369c6ff1b4ecb1f31750246b6b05f648ff44e184df2e2d22c3a3c42eaa0c",
+  "license": "MIT",
+  "adaptations": [
+    "frontmatter name 'datasheets' -> 'kicad-happy-datasheets' (avoid generic skill-name collisions)",
+    "frontmatter description replaced with a short house description",
+    "project header inserted above the verbatim upstream body",
+    "scripts/references stay in toolchain/vendor/kicad-happy (not copied)"
+  ]
+}

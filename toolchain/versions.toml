@@ -1,0 +1,61 @@
+# Pinned toolchain for fome-mc. `toolchain/bootstrap.sh` installs exactly these;
+# `make doctor` fails when anything installed differs.
+#
+# Python packages are pinned separately in toolchain/pyproject.toml + uv.lock.
+
+[apt]
+# Ubuntu 24.04 (noble). kicad* come from ppa:kicad/kicad-10.0-releases (stable 10.0
+# series); everything else from the Ubuntu archive.
+kicad = "10.0.7~ubuntu24.04.1"
+kicad-symbols = "10.0.7~ubuntu24.04.1"
+kicad-footprints = "10.0.7~ubuntu24.04.1"
+kicad-templates = "10.0.7~ubuntu24.04.1"
+ngspice = "42+ds-3build1"            # standalone ngspice CLI (KiCad links libngspice0 42)
+poppler-utils = "24.02.0-1ubuntu9.10" # pdftotext / pdftoppm / pdfinfo for datasheets
+mupdf-tools = "1.23.10+ds1-1build3"   # mutool (page render / text extraction fallback)
+librsvg2-bin = "2.58.0+dfsg-1ubuntu0.1" # rsvg-convert, needed by KiBot pcb_print PDF
+ghostscript = "10.02.1~dfsg1-0ubuntu7.9"
+"python3-wxgtk4.0" = "4.2.1+dfsg-3build2" # wx; KiBot imports it, KiCad's pcbnew is built against it
+
+[tools]
+kicad_cli_version = "10.0.7"
+ngspice_version = "42"
+kibot_version = "1.9.1"
+kiauto_version = "2.3.10"
+python = "3.12"
+
+[upstream.kicad-happy]
+url = "https://github.com/aklofas/kicad-happy.git"
+tag = "v2.3.1"
+commit = "06840467ad0f5d76af45f64449b1f5ecb10f052f"
+license = "MIT"
+# Skills exposed to agents (renamed with a kicad-happy- prefix; see toolchain/sync_skills.py).
+skills = ["kicad", "spice", "datasheets"]
+
+[libraries.fome]
+# FOME-Tech/kicad-libraries: the shared library repository. Polygonus-Universal-112
+# pins it as the `fome-kicad-libs` submodule; fome-mc references it as ../kicad-libraries.
+path = "~/git/kicad-libraries"
+url = "https://github.com/FOME-Tech/kicad-libraries.git"
+
+[projects.fixture]
+description = "RC low-pass toolchain fixture (not the ECU design)"
+dir = "toolchain/fixtures/rc_filter"
+schematic = "rc_filter.kicad_sch"
+pcb = "rc_filter.kicad_pcb"
+
+[projects.fome-mc]
+description = "FOME-MC brain module (Atlas-clone, STM32H7)"
+dir = "."
+schematic = "Atlas-clone.kicad_sch"
+pcb = "Atlas-clone.kicad_pcb"
+
+[projects.universal-112]
+description = "Polygonus Universal 112 dual-WBO base board (electrical baseline donor)"
+dir = "~/git/Polygonus-Universal-112"
+schematic = "Polygonus-Universal-Base.kicad_sch"
+pcb = "Polygonus-Universal-Base.kicad_pcb"
+# The donor's fome-kicad-libs submodule is not initialised; map it to the shared
+# library repository. Doctor/baseline record whether the commits match.
+[projects.universal-112.library_dirs]
+fome-kicad-libs = "fome"
