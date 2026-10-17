@@ -58,3 +58,14 @@ GND pours: F.Cu, B.Cu and In1.Cu (relief gap 0.2286 mm, spoke 0.254 mm).
 - Cause: a signal track or via of another net within about 0.1-0.35 mm of the pad on
   F.Cu (for example `/ETB1_DIR` at C67, `/mcu/VBOOST_DIVIDED` at C40, `/WBO1_BOOT0` and
   `+3V3` at U26.120, `/mcu/VR_1` at U13.8) cuts off the other spokes.
+
+## Follow-up (2026-10-17)
+
+- Owner: the moved footprints, the +3V3 zone redraw, the new rule area and the rerouted
+  copper were intended.
+- Narrow tracks are not a current problem: every narrowed net is a mA-level signal; on
+  `+3V3` they are stubs of at most 7.1 mm from STM32 VDD pins and their decoupling
+  capacitors to vias or wide tracks (bulk current on the In2.Cu plane). 0.127 mm in 1 oz
+  copper is about 0.5 A outer / 0.27 A inner at a 10 C rise, 3.9 mOhm/mm. Remaining
+  minor points: no fab margin at the 0.127 mm minimum, teardrops disabled (vibration).
+- Thermal fixes tracked as Plane FOMEMC-11.
