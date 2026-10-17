@@ -10,6 +10,172 @@
 		(rev "v1.0-atlas-h7")
 	)
 	(lib_symbols
+		(symbol "Device:D_Schottky"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Schottky"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Schottky diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode Schottky"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_Schottky_0_1"
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_Schottky_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C_Small"
 			(pin_numbers hide)
 			(pin_names
@@ -2105,6 +2271,151 @@
 			(project "fome-mc"
 				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/46495fed-359e-4c30-808a-9217af090de7"
 					(reference "#FLG01401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(hierarchical_label "12V_IGN_SW"
+		(shape input)
+		(at 67.31 45.72 180)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "61499001-0000-4000-8000-000000000001")
+	)
+	(hierarchical_label "12V_MR"
+		(shape input)
+		(at 67.31 55.88 180)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "61499001-0000-4000-8000-000000000002")
+	)
+	(hierarchical_label "12V_RAW"
+		(shape output)
+		(at 120.65 45.72 0)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "61499001-0000-4000-8000-000000000003")
+	)
+	(wire
+		(pts (xy 67.31 45.72) (xy 86.36 45.72))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000004")
+	)
+	(wire
+		(pts (xy 67.31 55.88) (xy 86.36 55.88))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000005")
+	)
+	(wire
+		(pts (xy 93.98 45.72) (xy 105.41 45.72))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000006")
+	)
+	(wire
+		(pts (xy 93.98 55.88) (xy 105.41 55.88))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000007")
+	)
+	(wire
+		(pts (xy 105.41 55.88) (xy 105.41 45.72))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000008")
+	)
+	(wire
+		(pts (xy 105.41 45.72) (xy 120.65 45.72))
+		(stroke (width 0) (type default))
+		(uuid "61499001-0000-4000-8000-000000000009")
+	)
+	(junction
+		(at 105.41 45.72)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61499001-0000-4000-8000-00000000000a")
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 90.17 45.72 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499001-0000-4000-8000-000000000010")
+		(property "Reference" "D20"
+			(at 90.17 43.18 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "B340A-13-F"
+			(at 90.17 48.26 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 90.17 45.72 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Datasheet" "~"
+			(at 90.17 45.72 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Description" "40V 3A Schottky Barrier Diode (IGN_SW -> 12V_RAW OR-ing)"
+			(at 90.17 45.72 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C8598"
+			(at 90.17 45.72 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(pin "1" (uuid "61499001-0000-4000-8000-000000000011"))
+		(pin "2" (uuid "61499001-0000-4000-8000-000000000012"))
+		(instances
+			(project "fome-mc"
+				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/46495fed-359e-4c30-808a-9217af090de7"
+					(reference "D20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 90.17 55.88 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499001-0000-4000-8000-000000000020")
+		(property "Reference" "D21"
+			(at 90.17 53.34 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "B340A-13-F"
+			(at 90.17 58.42 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Diode_SMD:D_SMA"
+			(at 90.17 55.88 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Datasheet" "~"
+			(at 90.17 55.88 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Description" "40V 3A Schottky Barrier Diode (12V_MR -> 12V_RAW Keep-Alive OR-ing)"
+			(at 90.17 55.88 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C8598"
+			(at 90.17 55.88 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(pin "1" (uuid "61499001-0000-4000-8000-000000000021"))
+		(pin "2" (uuid "61499001-0000-4000-8000-000000000022"))
+		(instances
+			(project "fome-mc"
+				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/46495fed-359e-4c30-808a-9217af090de7"
+					(reference "D21")
 					(unit 1)
 				)
 			)
