@@ -4,11 +4,11 @@
 #   make bootstrap | doctor | erc | drc | netlist | export | analyze | check
 #   make simulate DECK=path.cir [EXPECT=path.expect.json]
 #   make smoke | baseline
-#   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']
-#   make route-validate RUN=dir | route-compare RUNS='dir dir' | route-publish RUN=dir
-#   make route-update | route-smoke
+#   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']   (kicad-route)
+#   make route-validate RUN=dir [AGAINST=dir] | route-compare RUNS='dir dir' | route-publish RUN=dir
+#   make route-audit OLD=rev [NEW=HEAD] | route-update | route-smoke
 #
-# PROJECT=fome-mc|universal-112|fixture|route-fixture (see toolchain/versions.toml)
+# PROJECT=fome-mc|universal-112|fixture (see toolchain/versions.toml)
 # FILL=asis|refill  (asis: use the saved zone fill; refill: refill+save the snapshot first)
 # REV=<git rev>     snapshot a committed revision instead of the working tree
 
@@ -19,10 +19,13 @@ EDA     := $(PY) toolchain/eda.py
 RUN     := $(EDA) run --project $(PROJECT) --fill $(FILL) $(if $(REV),--rev $(REV)) --steps
 
 BUDGET  ?= 300
-ROUTE   := $(PY) toolchain/route.py
+KICAD_ROUTE ?= kicad-route
+ROUTE   := $(KICAD_ROUTE) --out build/route
+ROUTE_OK = @command -v $(KICAD_ROUTE) >/dev/null || { echo "kicad-route is not installed: git clone \
+https://github.com/halbritt/kicad-route ~/git/kicad-route && ~/git/kicad-route/scripts/install.sh"; exit 2; }
 
 .PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean \
-        route-doctor route route-validate route-compare route-publish route-update route-smoke
+        route-doctor route route-validate route-compare route-publish route-audit route-update route-smoke
 
 help:
 	@sed -n '1,16p' Makefile
@@ -70,30 +73,43 @@ baseline:
 skills:
 	$(PY) toolchain/sync_skills.py
 
-# Routing (toolchain/ROUTING.md). Attempts run on copies under build/runs/route/.
+# Routing with kicad-route (toolchain/ROUTING.md). Attempts route copies of the board
+# under build/route/runs/fome-mc/; the design is never modified.
 route-doctor:
+	$(ROUTE_OK)
 	$(ROUTE) doctor
 
 route:
-	@test -n "$(BACKEND)" || { echo "usage: make route BACKEND=krt|freerouting [PROJECT=..] [BUDGET=s] [ARGS='...']"; exit 2; }
-	$(ROUTE) run --backend $(BACKEND) --project $(PROJECT) --budget $(BUDGET) $(if $(REV),--rev $(REV)) $(ARGS)
+	$(ROUTE_OK)
+	@test -n "$(BACKEND)" || { echo "usage: make route BACKEND=krt|freerouting [BUDGET=s] [REV=HEAD] [ARGS='...']"; exit 2; }
+	$(ROUTE) run --backend $(BACKEND) --dir . --board fome-mc.kicad_pcb --budget $(BUDGET) $(if $(REV),--rev $(REV)) $(ARGS)
 
 route-validate:
-	@test -n "$(RUN)" || { echo "usage: make route-validate RUN=build/runs/route/<project>/<label>/<stamp>"; exit 2; }
+	$(ROUTE_OK)
+	@test -n "$(RUN)" || { echo "usage: make route-validate RUN=build/route/runs/fome-mc/<label>/<stamp> [AGAINST=<first run>]"; exit 2; }
 	$(ROUTE) validate $(RUN) $(if $(AGAINST),--against $(AGAINST))
 
 route-compare:
+	$(ROUTE_OK)
 	@test -n "$(RUNS)" || { echo "usage: make route-compare RUNS='run_dir run_dir ...'"; exit 2; }
 	$(ROUTE) compare $(RUNS)
 
 route-publish:
-	@test -n "$(RUN)" || { echo "usage: make route-publish RUN=build/runs/route/<project>/<label>/<stamp>"; exit 2; }
-	$(ROUTE) publish $(RUN)
+	$(ROUTE_OK)
+	@test -n "$(RUN)" || { echo "usage: make route-publish RUN=build/route/runs/fome-mc/<label>/<stamp>"; exit 2; }
+	$(ROUTE) publish $(RUN) --to reports/toolchain/routing
+
+route-audit:
+	$(ROUTE_OK)
+	@test -n "$(OLD)" || { echo "usage: make route-audit OLD=<parent rev> [NEW=HEAD]"; exit 2; }
+	$(ROUTE) audit --dir . --board fome-mc.kicad_pcb --old $(OLD) --new $(or $(NEW),HEAD)
 
 route-update:
+	$(ROUTE_OK)
 	$(ROUTE) update
 
 route-smoke:
+	$(ROUTE_OK)
 	$(ROUTE) smoke
 
 clean:

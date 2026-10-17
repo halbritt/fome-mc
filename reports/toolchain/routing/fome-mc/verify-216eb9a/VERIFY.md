@@ -3,7 +3,10 @@
 Independent check, 2026-10-17, KiCad 10.0.7 `kicad-cli`, same grading as `route.py`:
 snapshot of each commit, zones refilled, JSON DRC with `--severity-all
 --schematic-parity`, and the `route.py` preservation checks of 216eb9a against 6af7bf4.
-Reproduce with `verify_routing.py 6af7bf4 216eb9a` (raw numbers in `verify.json`).
+Raw numbers in `verify.json`. `verify_routing.py` ran against the in-repo routing code
+that has since moved to kicad-route; reproduce with `make route-audit OLD=6af7bf4
+NEW=216eb9a` (kicad-route `audit`, which reports the same rule change and the same 24
+hidden `starved_thermal` findings).
 
 ## Claim: routing complete, DRC closed
 
