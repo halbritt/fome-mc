@@ -1,0 +1,367 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "v0.23.1",
+    "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+    "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "rust_router": "0.23.1"
+  },
+  "input": {
+    "project": "fome-mc",
+    "board": "fome-mc.kicad_pcb",
+    "fingerprint": "48c3eb26ea89c5b7e92b1b931da8c4fcc71914a5d32bb5a5a752b9815faeb667",
+    "source_dir": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T061208.669111Z/candidate/fome-mc",
+    "source": "working tree",
+    "source_git_head": "2864afbc90bd2bbfda7fb82b699cfc5e350794c0",
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/48c3eb26ea89c5b7e92b1b931da8c4fcc71914a5d32bb5a5a752b9815faeb667/baseline-drc.json",
+      "cached": false,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 1500,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_PLANE_FINALIZE": "0"
+    },
+    "mode": "selected",
+    "net_patterns": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ],
+    "netclasses": []
+  },
+  "scope": {
+    "mode": "selected",
+    "nets": 16,
+    "nets_list": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ]
+  },
+  "unsupported": [
+    "KRT moves copper gr_text and net-less copper graphics to silkscreen (not switchable on the CLI); the copper_graphics preservation check reports it",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class"
+  ],
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "exit_code": 0,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv-route/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/krt/py_router/route.py",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "--output",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/krt-out/fome-mc.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "/WBO2_BOOT0",
+          "/WBO2_NRST",
+          "/highside_quad/IN4",
+          "/ign2/IN3",
+          "/ign2/IN4",
+          "/lowside_quad1/IN3",
+          "/lowside_quad2/IN2",
+          "/lowside_quad2/IN3",
+          "/mcu/5V_SENSE_DIVIDED",
+          "/mcu/5V_SENSOR_1_PG",
+          "/mcu/LED2",
+          "/mcu/LED3",
+          "/mcu/SD_CMD",
+          "/mcu/SD_D3",
+          "/mcu/VBOOST_DIVIDED",
+          "/mcu/VR_1"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_PLANE_FINALIZE": "0"
+        },
+        "budget_s": 1500,
+        "exit_code": 0,
+        "duration_s": 324.563,
+        "output_tail": ")\", \"U26.36 F.Paste (pad)\", \"U26.68 F.Paste (pad)\", \"U3.3 F.Paste (pad)\", \"U302.21 F.Paste (pad)\", \"U307.3 F.Paste (pad)\", \"U307.4 F.Paste (pad)\", \"U307.6 F.Paste (pad)\", \"U307.7 F.Paste (pad)\", \"U309.3 F.Paste (pad)\", \"U40.10 F.Paste (pad)\", \"U402.18 F.Paste (pad)\", \"U402.21 F.Paste (pad)\", \"U402.22 F.Paste (pad)\", \"U405.5 F.Paste (pad)\", \"U407.1 F.Paste (pad)\", \"U407.3 F.Paste (pad)\", \"U407.4 F.Paste (pad)\", \"U407.6 F.Paste (pad)\", \"U44.2 F.Paste (pad)\", \"U46.1 F.Paste (pad)\", \"U9.6 F.Paste (pad)\"], \"stamped\": 0, \"restored\": 0, \"protected\": 137, \"unstampable\": 0, \"site_created\": 0, \"unprotected\": [{\"site\": \"BT1.2 B.Paste (pad)\", \"x\": 135.8235, \"y\": 92.7278, \"why\": \"own spec kept\"}, {\"site\": \"U20.6 F.Paste (pad)\", \"x\": 143.6914, \"y\": 114.5797, \"why\": \"own spec kept\"}, {\"site\": \"U20.5 F.Paste (pad)\", \"x\": 143.6914, \"y\": 113.5637, \"why\": \"own spec kept\"}, {\"site\": \"C46.1 F.Paste (pad)\", \"x\": 135.464, \"y\": 126.648, \"why\": \"own spec kept\"}, {\"site\": \"U20.1 F.Paste (pad)\", \"x\": 145.8794, \"y\": 114.5112, \"why\": \"own spec kept\"}, {\"site\": \"U20.3 F.Paste (pad)\", \"x\": 145.9299, \"y\": 112.5926, \"why\": \"own spec kept\"}, {\"site\": \"U20.4 F.Paste (pad)\", \"x\": 143.6914, \"y\": 112.5477, \"why\": \"own spec kept\"}, {\"site\": \"U22.1 F.Paste (pad)\", \"x\": 143.084, \"y\": 102.518, \"why\": \"own spec kept\"}, {\"site\": \"U22.3 F.Paste (pad)\", \"x\": 143.084, \"y\": 100.486, \"why\": \"own spec kept\"}, {\"site\": \"J8.10 B.Paste (pad)\", \"x\": 111.207, \"y\": 119.282, \"why\": \"own spec kept\"}, {\"site\": \"U16.3 F.Paste (pad)\", \"x\": 143.084, \"y\": 96.168, \"why\": \"own spec kept\"}, {\"site\": \"U16.1 F.Paste (pad)\", \"x\": 143.084, \"y\": 98.2, \"why\": \"own spec kept\"}], \"note\": \"via-in-pad requires IPC-4761 Type VII (filled + capped + plated); state it on the fab drawing or solder wicks into the barrel\"}\nJSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 16, \"seconds\": 1.27, \"routed_single\": [], \"failed_single\": [\"/WBO2_BOOT0\", \"/WBO2_NRST\", \"/highside_quad/IN4\", \"/ign2/IN3\", \"/ign2/IN4\", \"/lowside_quad1/IN3\", \"/lowside_quad2/IN2\", \"/lowside_quad2/IN3\", \"/mcu/5V_SENSOR_1_PG\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/SD_CMD\", \"/mcu/SD_D3\", \"/mcu/VBOOST_DIVIDED\", \"/mcu/VR_1\"], \"open_single\": [], \"failed_multipoint\": [{\"net_name\": \"/mcu/5V_SENSE_DIVIDED\", \"failed_pads\": [{\"x\": 117.4065, \"y\": 110.9695, \"component_ref\": \"U26\", \"pad_number\": \"?\"}]}], \"multipoint_pads_total\": 4, \"multipoint_pads_connected\": 3, \"successful\": 0, \"failed\": 16, \"unowned_broken\": [], \"recovered\": [], \"broken_by_run\": []}\n\n============================================================\nRun complete -- whole run, re-graded on the written board (16 net(s), 1.3s)\n============================================================\n  Single-ended:  0/16 routed (15 FAILED)\n  Multi-point:   3/4 pads connected (1 FAILED)\n  Ships broken: 16 net(s) -- the `failed` count, over every net the run owns\n  route summary written to /home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/krt-out/summary.json\nJSON_IMPROVEMENT_GATE: {\"lost\": [], \"gained\": [], \"worsened\": [], \"disconnected_pads_before\": 18, \"disconnected_pads_after\": 18, \"nets_compared\": 351, \"verdict\": \"accept\"}\nJSON_SUMMARY_MIN: {\"escalations\": 0, \"failed\": 16, \"failed_single\": [\"/WBO2_BOOT0\", \"/WBO2_NRST\", \"/highside_quad/IN4\", \"/ign2/IN3\", \"/ign2/IN4\", \"/lowside_quad1/IN3\", \"/lowside_quad2/IN2\", \"/lowside_quad2/IN3\", \"/mcu/5V_SENSOR_1_PG\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/SD_CMD\", \"/mcu/SD_D3\", \"/mcu/VBOOST_DIVIDED\", \"/mcu/VR_1\"], \"main_loop_time_s\": 9.59, \"min_clearance_used\": 0.1524, \"multipoint_deficit\": 1, \"open_single\": [], \"pad_pairs_open\": {\"count\": 16, \"nets\": [\"/WBO2_BOOT0\", \"/WBO2_NRST\", \"/highside_quad/IN4\", \"/ign2/IN3\", \"/ign2/IN4\", \"/lowside_quad1/IN3\", \"/lowside_quad2/IN2\", \"/lowside_quad2/IN3\", \"/mcu/5V_SENSE_DIVIDED\", \"/mcu/5V_SENSOR_1_PG\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/SD_CMD\", \"/mcu/SD_D3\", \"/mcu/VBOOST_DIVIDED\", \"/mcu/VR_1\"]}, \"regraded_nets\": 16, \"routed\": 0, \"scope\": \"merged\", \"terminal_restores_broken\": [], \"vias\": 0}\nEXIT=0\n"
+      },
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_locks.py",
+          "restore",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/krt-out/fome-mc.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/locks.json"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/work/restore-locks.log",
+        "exit_code": 0,
+        "duration_s": 1.282
+      }
+    ],
+    "backend_report": {
+      "successful": 0,
+      "failed": 16,
+      "failed_single": [
+        "/WBO2_BOOT0",
+        "/WBO2_NRST",
+        "/highside_quad/IN4",
+        "/ign2/IN3",
+        "/ign2/IN4",
+        "/lowside_quad1/IN3",
+        "/lowside_quad2/IN2",
+        "/lowside_quad2/IN3",
+        "/mcu/5V_SENSOR_1_PG",
+        "/mcu/LED2",
+        "/mcu/LED3",
+        "/mcu/SD_CMD",
+        "/mcu/SD_D3",
+        "/mcu/VBOOST_DIVIDED",
+        "/mcu/VR_1"
+      ],
+      "open_single": [],
+      "failed_multipoint": [
+        {
+          "net_name": "/mcu/5V_SENSE_DIVIDED",
+          "failed_pads": [
+            {
+              "x": 117.4065,
+              "y": 110.9695,
+              "component_ref": "U26",
+              "pad_number": "?"
+            }
+          ]
+        }
+      ],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 12,
+      "pad_pairs_total": 28,
+      "total_vias": 0,
+      "total_iterations": 160774,
+      "total_time": 9.59,
+      "protected_skipped": null,
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [],
+        "fab_tier_escalations": 0,
+        "min_delivered": {},
+        "unsupported_rules": []
+      },
+      "improvement_gate": {
+        "lost": [],
+        "gained": [],
+        "worsened": [],
+        "disconnected_pads_before": 18,
+        "disconnected_pads_after": 18,
+        "nets_compared": 351,
+        "verdict": "accept"
+      },
+      "project_writes": null
+    },
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 10579
+      },
+      "lock_exit": 0,
+      "restore": {
+        "restored": 10579,
+        "not_found": 0
+      }
+    },
+    "project_writeback": [
+      {
+        "file": "fome-mc.kicad_prl",
+        "identical_to_input": true
+      },
+      {
+        "file": "fome-mc.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 328.006
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 16,
+    "unconnected_total": 26,
+    "baseline_unconnected_total": 26,
+    "unrouted_nets": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ],
+    "stats": {
+      "new_tracks": 0,
+      "new_vias": 0,
+      "new_track_length_mm": 0,
+      "new_track_length_mm_by_layer": {},
+      "new_copper_nets": 0,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 19.294
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 14.247
+      }
+    ],
+    "delivered_board_sha256": "633a86bf5e6be3bb63d3a39df2335937dc701ef027cbe24bfcb32dcacc02bf6b",
+    "validated_board_sha256": "633a86bf5e6be3bb63d3a39df2335937dc701ef027cbe24bfcb32dcacc02bf6b",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 239,
+      "parity_total": 382,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 239,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc",
+    "board": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc/fome-mc.kicad_pcb"
+  },
+  "run_dir": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z",
+  "runtime_s": 405.991,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T08:44:38.860467+00:00",
+  "exit_code": 2
+}

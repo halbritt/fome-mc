@@ -1,0 +1,139 @@
+{
+  "kind": "route-validate",
+  "run_dir": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z",
+  "against": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T061208.669111Z",
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 26,
+    "unconnected_total": 26,
+    "baseline_unconnected_total": 235,
+    "unrouted_nets": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1",
+      "GND"
+    ],
+    "stats": {
+      "new_tracks": 6386,
+      "new_vias": 415,
+      "new_track_length_mm": 9074.457,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 1417.753,
+        "F.Cu": 2493.874,
+        "In1.Cu": 2986.548,
+        "In2.Cu": 2176.282
+      },
+      "new_copper_nets": 159,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "18 new DRC violations: starved_thermal 14, track_dangling 2, via_dangling 2"
+    ],
+    "dir": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/revalidate-origin/20261017T084708.904924Z",
+    "chain": [
+      "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z",
+      "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T061208.669111Z"
+    ],
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/revalidate-origin/20261017T084708.904924Z/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/revalidate-origin/20261017T084708.904924Z/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 34.026
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/revalidate-origin/20261017T084708.904924Z/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-continue/20261017T083752.440288Z/revalidate-origin/20261017T084708.904924Z/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 20.957
+      }
+    ],
+    "delivered_board_sha256": "633a86bf5e6be3bb63d3a39df2335937dc701ef027cbe24bfcb32dcacc02bf6b",
+    "validated_board_sha256": "633a86bf5e6be3bb63d3a39df2335937dc701ef027cbe24bfcb32dcacc02bf6b",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 239,
+      "parity_total": 382,
+      "new_violations": {
+        "count": 18,
+        "by_type": {
+          "starved_thermal": 14,
+          "track_dangling": 2,
+          "via_dangling": 2
+        },
+        "by_severity": {
+          "warning": 18
+        }
+      },
+      "preexisting_violations": 221,
+      "resolved_violations": 11,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "exit_code": 3
+}

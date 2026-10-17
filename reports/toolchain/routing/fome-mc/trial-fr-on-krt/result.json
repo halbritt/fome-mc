@@ -1,0 +1,312 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "freerouting",
+    "version": "v2.5.0",
+    "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+    "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+    "java_required": 25,
+    "source": "https://github.com/freerouting/freerouting"
+  },
+  "input": {
+    "project": "fome-mc",
+    "board": "fome-mc.kicad_pcb",
+    "fingerprint": "48c3eb26ea89c5b7e92b1b931da8c4fcc71914a5d32bb5a5a752b9815faeb667",
+    "source_dir": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T061208.669111Z/candidate/fome-mc",
+    "source": "working tree",
+    "source_git_head": "c883c2f25166602499986fa153c262e27546c447",
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/48c3eb26ea89c5b7e92b1b931da8c4fcc71914a5d32bb5a5a752b9815faeb667/baseline-drc.json",
+      "cached": true,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "freerouting",
+    "budget_s": 600,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": 100,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": 0.01,
+    "backend_args": [],
+    "backend_env": {},
+    "mode": "selected",
+    "net_patterns": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ],
+    "netclasses": []
+  },
+  "scope": {
+    "mode": "selected",
+    "nets": 16,
+    "nets_list": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ]
+  },
+  "unsupported": [
+    "Freerouting never rips up pre-existing copper (KiCad exports it as fixed/protected); --protect locked behaves like --protect existing",
+    "Specctra carries per-class width/clearance/via only: custom .kicad_dru rules, diff pairs and length tuning are not exported; KiCad DRC grades them",
+    "rule areas export only their no-tracks/no-vias restrictions; zones export as plane outlines"
+  ],
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_specctra.py",
+          "export",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.dsn",
+          "--skip-nets",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/skip-nets.json",
+          "--clearance-margin",
+          "10"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work",
+        "log": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/export-dsn.log",
+        "exit_code": 0,
+        "duration_s": 1.678
+      },
+      {
+        "argv": [
+          "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+          "-Djava.awt.headless=true",
+          "-jar",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/freerouting/current/freerouting-2.5.0.jar",
+          "-de",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.dsn",
+          "-do",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.ses",
+          "--gui.enabled=false",
+          "-da",
+          "--api_server.enabled=false",
+          "--user_data_path=/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/freerouting-userdata",
+          "--router.result_json=/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/freerouting-result.json",
+          "--router.automatic_neckdown=false",
+          "--router.fanout.enabled=false",
+          "--router.job_timeout=00:10:00",
+          "--router.autorouter.max_passes=100",
+          "--router.autorouter.ignore_net_classes=kicad_default__skip,diffpair__skip"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work",
+        "log": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/freerouting.log",
+        "env": {
+          "HTTPS_PROXY": "http://127.0.0.1:9",
+          "HTTP_PROXY": "http://127.0.0.1:9",
+          "FREEROUTING__USAGE_AND_DIAGNOSTIC_DATA__DISABLE_ANALYTICS": "true"
+        },
+        "budget_s": 660,
+        "exit_code": 0,
+        "duration_s": 659.522,
+        "output_tail": "54.011 WARN   Design Error: Component 'U29' pin '17' (ID 4119) is outside board outline at (425400,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '16' (ID 4118) is outside board outline at (415240,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '15' (ID 4117) is outside board outline at (405080,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '14' (ID 4116) is outside board outline at (394920,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '13' (ID 4115) is outside board outline at (384760,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '12' (ID 4114) is outside board outline at (374600,-1448600).\n2026-10-17 02:22:54.011 WARN   Design Error: Component 'U29' pin '11' (ID 4113) is outside board outline at (364440,-1448600).\n2026-10-17 02:22:54.012 WARN   Design Error: Component 'U29' pin '10' (ID 4112) is outside board outline at (326350,-1418120).\n2026-10-17 02:22:54.012 WARN   Design Error: Component 'U29' pin '9' (ID 4111) is outside board outline at (326350,-1407960).\n2026-10-17 02:22:54.031 INFO   [BC716F\\878884] Job 'BC716F\\878884' started at 2026-10-17T09:22:54.031432008Z.\n2026-10-17 02:23:10.400 WARN   Design Warning: Board has 2742 pre-existing clearance violation(s) in the loaded design (before routing):\n  - 2742 unfixable violation(s) (cannot be resolved by Freerouting):\n      * 6 pin-to-pin clearance violations (first 5 shown):\n          - C1201.1 [net GND] <-> C106.2\n          - U24.8 [net GND] <-> U24.7 [net unconnected-(U24-INT_DRDY-Pad7)]\n          - U24.6 [net +3V3] <-> U24.5 [net GND]\n          - U24.3 [net GND] <-> U24.2 [net /mcu/BARO_SCL]\n          - JP2.2 [net Net-(C17-Pad1)] <-> JP2.1 [net /KNOCK_2]\n          ... and 1 more\n      * 2736 fixed trace/via clearance violations (first 5 shown):\n          - FixedVia#15326 [net /LS4] <-> FixedTrace#13423 [net /STEP_2B]\n          - FixedVia#15326 [net /LS4] <-> FixedTrace#11983 [net /12V_MR]\n          - FixedVia#15326 [net /LS4] <-> FixedTrace#11970 [net /12V_MR]\n          - FixedVia#15319 [net /WBO1_H-] <-> FixedTrace#13519 [net /WBO1_VM]\n          - FixedVia#15319 [net /WBO1_H-] <-> FixedTrace#13514 [net /WBO1_VM]\n          ... and 2731 more\n  - 0 potentially fixable violations\nNotice: Freerouting does not modify component placement, board outlines, or fixed items.\nResolving these 2742 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).\n2026-10-17 02:23:10.577 INFO   [BC716F\\878884] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=11.\n2026-10-17 02:23:43.606 INFO   [BC716F\\878884] Auto-routing stage started on board 'ac760d95206e3b4bc1e3eb31a5fa1c16' with baseline score 133.65 for 909 unrouted items.\n2026-10-17 02:27:51.727 INFO   [BC716F\\878884] Auto-routing pass #1 on board 'ac760d95206e3b4bc1e3eb31a5fa1c16' was completed in 230.26 seconds with score 135.86 (905 unrouted and 2742 violations), using 270.02 CPU seconds and the job allocated 86.08 GB of memory so far.\n2026-10-17 02:31:42.999 INFO   [BC716F\\878884] Auto-routing pass #2 on board '5e40408e92d1824801b5ea48a4bd767a' was completed in 213.74 seconds with score 134.20 (908 unrouted and 2742 violations), using 497.10 CPU seconds and the job allocated 162.67 GB of memory so far.\n2026-10-17 02:33:24.368 INFO   Saving output file '/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.ses' (SES)...\n2026-10-17 02:33:24.369 INFO   Successfully saved output file '/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.ses' (26207 bytes).\n2026-10-17 02:33:37.409 INFO   [BC716F\\878884] Auto-routing pass #3 on board '5e40408e92d1824801b5ea48a4bd767a' was completed in 0.00 seconds with score 135.86 (905 unrouted and 2742 violations), using 568.75 CPU seconds and the job allocated 191.29 GB of memory so far.\n"
+      },
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_specctra.py",
+          "import",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.ses",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/freerouting-out/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work",
+        "log": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/import-ses.log",
+        "exit_code": 0,
+        "duration_s": 1.443
+      }
+    ],
+    "exit_code": 0,
+    "backend_report": {
+      "final_state": "TIMED_OUT",
+      "exit_code": 0,
+      "output_written": true,
+      "incomplete_connections": 908,
+      "clearance_violations": 2742
+    },
+    "bridge": {
+      "export": {
+        "ignored_classes": [
+          "kicad_default__skip",
+          "diffpair__skip"
+        ],
+        "clearance_raised": [],
+        "existing_copper_locked_for_export": 10579,
+        "clearance_margin": {
+          "um": 10.0,
+          "rules": 4
+        }
+      },
+      "import": {
+        "placement_dropped": true,
+        "session": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/work/board.noplacement.ses",
+        "existing_copper_locked": 10579,
+        "lock_flags_restored": 10579
+      }
+    },
+    "project_writeback": [],
+    "runtime_s": 663.081
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 16,
+    "unconnected_total": 26,
+    "baseline_unconnected_total": 26,
+    "unrouted_nets": [
+      "/WBO2_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/ign2/IN4",
+      "/lowside_quad1/IN3",
+      "/lowside_quad2/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/5V_SENSE_DIVIDED",
+      "/mcu/5V_SENSOR_1_PG",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/SD_CMD",
+      "/mcu/SD_D3",
+      "/mcu/VBOOST_DIVIDED",
+      "/mcu/VR_1"
+    ],
+    "stats": {
+      "new_tracks": 1,
+      "new_vias": 0,
+      "new_track_length_mm": 0.005,
+      "new_track_length_mm_by_layer": {
+        "F.Cu": 0.005
+      },
+      "new_copper_nets": 1,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 19.364
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 14.178
+      }
+    ],
+    "delivered_board_sha256": "4e7b2c47ee7d65c9a610424ce6c6287293d46b2559f40e2a8576648d53c08345",
+    "validated_board_sha256": "4e7b2c47ee7d65c9a610424ce6c6287293d46b2559f40e2a8576648d53c08345",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 239,
+      "parity_total": 382,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 239,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc",
+    "board": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z/candidate/fome-mc/fome-mc.kicad_pcb"
+  },
+  "run_dir": "build/runs/route/fome-mc/trial-fr-on-krt/20261017T092247.075697Z",
+  "runtime_s": 699.569,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T09:34:27.087480+00:00",
+  "exit_code": 2
+}

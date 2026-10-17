@@ -295,7 +295,7 @@ Bounded trials on an isolated copy of the committed board (`--rev HEAD` at `e763
 changed in `f3b0f47`): 475 footprints, 4 copper layers, placed and partly routed
 (2899 tracks, 879 vias, none locked). The untouched input already has 228 DRC violations,
 235 unconnected items and 382 parity issues (graded the same way: refill, then DRC);
-they are counted as pre-existing. All nets in scope, `--protect existing`. Evidence in
+they are counted as pre-existing. All nets in scope unless noted, `--protect existing`. Evidence in
 `reports/toolchain/routing/fome-mc/<label>/`; candidates under `build/runs/route/fome-mc/`.
 
 | Attempt | Result | What it showed |
@@ -305,15 +305,21 @@ they are counted as pre-existing. All nets in scope, `--protect existing`. Evide
 | `trial-krt-nofinalize-before-locking` (`KICAD_PLANE_FINALIZE=0`) | INCOMPLETE 14, validation FAIL | KRT's rescue reworked 138 existing items despite its keep-copper flags (wrapper now locks them) |
 | `trial-freerouting` (1200 s, fixed bridge) | INCOMPLETE 188 (from 235), validation FAIL | every preservation check PASS (3778 existing items locked and restored); 3 new findings: a `/LS7` track shorting a GND pad of U1102, two `/CAN2+` clearance misses (0.148 and 0.113 mm vs 0.1524); one autorouting pass in 20 min; Freerouting's own model starts with 700 clearance violations |
 | `trial-krt-nofinalize` (1500 s budget, 767 s used) | INCOMPLETE 26 (from 235) on 17 nets, validation FAIL | every preservation check PASS, no existing copper removed, no conductor below its class; 18 new warnings: 14 `starved_thermal`, 2 `track_dangling`, 2 `via_dangling` |
+| `trial-krt-continue` (`--dir` the candidate above, the 16 open signal nets) | 0 of 16 routed in 406 s, validation PASS | with all copper locked (including KRT's own from the step before) there is no room left for these nets |
+| `trial-fr-on-krt` (same input and scope, Freerouting) | 0 of 16 (one 5 µm stub), validation PASS | same conclusion from the other backend. Its first two attempts exposed a bridge defect (scope split cut a class header at the `(` in `"Net-(BT1-+)"`, unparsable DSN; fixed) and a timeout case (session saved at the job timeout, process kept running; the adapter now grades a session reported saved before the kill) |
+| `trial-krt-hardfirst` (the 16 nets first, on the original input) | 11 of 16 routed in 160 s; 2 new `starved_thermal` | routing order matters: the nets that fail last route when the board is still open |
+| `trial-krt-hardfirst-rest` (`--dir` that candidate, all nets, 1086 s) | **INCOMPLETE 20 on 14 nets** (`+3V3` and `GND` among them); graded against the original input with `validate --against`: 10 new warnings (9 `starved_thermal` on GND pads of small passives on F.Cu, 1 `track_dangling` of 0.026 mm on `+3V3_WBO1`), 10 input violations resolved, every preservation check PASS | best result so far. KRT reports 18 vias at 0.599 mm where the class asks 0.5994 mm ("last-resort via-in-pad", 0.4 µm under); KiCad DRC raises nothing and `new_copper_netclass_geometry` accepts it inside its 1 µm quantisation tolerance |
 
-Neither real-board candidate is adoptable as delivered; both verdicts come from KiCad
-against the board's own rules. Next actions, without weakening any requirement:
+No real-board candidate is adoptable as delivered; every verdict comes from KiCad
+against the board's own rules. Best: `trial-krt-hardfirst-rest`. Next actions, without
+weakening any requirement:
 
-- KRT is the productive backend here (6386 new tracks, 415 vias). Continue from its
-  candidate with a second attempt scoped to the 17 open nets
-  (`--dir <run>/candidate/fome-mc --nets …`), and inspect the starved thermals and
-  dangling items with `krt-review-routed-board`; they are new-route geometry, not
-  pre-existing copper.
+- Open nets: continuing from `trial-krt-hardfirst-rest` with only its 12 open signal
+  nets would fail the same way `trial-krt-continue` did. Route them first instead (the
+  union of both open sets on the original input, then the rest), or by hand.
+- Starved thermals: the new F.Cu tracks crowd thermal spokes of GND pads; a design call
+  (GND stitching vias next to those pads, or keep signal tracks off F.Cu there) before
+  adopting.
 - The plane nets need a plan: KRT's plane finalize is the step that ran away. Try it
   alone on the KRT candidate with a longer budget, or route `GND`/`+3V3`/`+5V` taps by
   hand.

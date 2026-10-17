@@ -1061,10 +1061,18 @@ def freerouting_route(work, board, scope, facts, settings):
     if rec.get("error"):
         proc.update(status=FAIL, reasons=[f"Freerouting could not start: {rec.get('detail')}"])
         return proc
+    log_text = Path(work / "freerouting.log").read_text(errors="replace")
+    saved = f"Successfully saved output file '{ses}'" in log_text and ses.exists()
     if rec.get("killed"):
-        proc.update(status=FAIL, reasons=[f"Freerouting exceeded the budget and was killed"])
-        return proc
-    if rec["exit_code"] != 0 or not ses.exists():
+        # At --router.job_timeout Freerouting saves its session, but it can keep
+        # running afterwards. A session it reported saved before the kill is complete
+        # and is graded like any other; without one there is no candidate.
+        if not saved:
+            proc.update(status=FAIL, reasons=["Freerouting exceeded the budget and was killed"])
+            return proc
+        proc["reasons"] = ["Freerouting saved its session at the job timeout but did not exit; "
+                           "killed after the grace period (session graded)"]
+    elif rec["exit_code"] != 0 or not ses.exists():
         proc.update(status=FAIL, reasons=[f"Freerouting exited {rec['exit_code']} without a session file"])
         return proc
     out = work / "freerouting-out" / board.name
