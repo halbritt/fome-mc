@@ -29,6 +29,7 @@ update notes, and the decision record: `toolchain/ROUTING.md`.
 | `make route-doctor` | Readiness, versions, capabilities of both backends (`build/route-doctor/doctor.json`) |
 | `make route BACKEND=krt\|freerouting [PROJECT=…] [BUDGET=300] [ARGS='…']` | One attempt; prints the run directory |
 | `make route-validate RUN=<run_dir>` | Re-grade a candidate (e.g. after hand edits) into `<run_dir>/revalidate/<stamp>/` |
+| `make route-validate RUN=<last> AGAINST=<first>` | Grade the end of a `--dir` chain against the first run's input (`revalidate-origin/<stamp>/`); a chain step's own result counts earlier steps' findings as pre-existing |
 | `make route-compare RUNS='<run_dir> <run_dir> …'` | Side-by-side table; refuses to call different inputs comparable |
 | `make route-publish RUN=<run_dir>` | Copy the attempt's structured evidence (not the board) to `reports/toolchain/routing/<project>/<label>/` for committing |
 | `make route-update` | Move both backends to their latest upstream release, then `route-smoke` |
@@ -36,7 +37,7 @@ update notes, and the decision record: `toolchain/ROUTING.md`.
 
 `ARGS` are `toolchain/route.py run` options:
 
-- Scope: `--nets PAT …` selects by **net name** (fnmatch, `!PAT` excludes);
+- Scope: `--nets PAT …` selects by **net name** (fnmatch, `!PAT` excludes; exclusions alone start from all nets);
   `--netclass CLASS …` selects by **effective KiCad net class**. Default: all nets.
 - Budget: `--budget SECONDS` (wall clock, default 300); `--max-iterations N` (KRT);
   `--passes N` (Freerouting).
@@ -81,7 +82,7 @@ Exit code: 0 complete and valid, 1 process failure (no candidate), 2 valid but i
 | Evidence | Next attempt |
 |---|---|
 | new `clearance` violations naming a `.kicad_dru` rule, rule listed in `unsupported` | `--default-clearance <rule value>`; for Freerouting class-to-class rules are already translated, add `--clearance-margin 0.01` for micrometre misses |
-| `routing INCOMPLETE`, `unrouted_nets` few | larger `--budget`; Freerouting `--passes 100`; route the hard nets first with `--nets`, then continue from that candidate with `--dir <run>/candidate/<project>` |
+| `routing INCOMPLETE`, `unrouted_nets` few | larger `--budget`; Freerouting `--passes 100`; route the hard nets first with `--nets` **on the original input**, then continue from that candidate with `--dir <run>/candidate/<project>` (finishing them *after* everything else rarely works: existing copper is locked); grade the end with `AGAINST=<first run>` |
 | `process FAIL` "exceeded the … budget" (KRT) | larger `--budget`, or `--backend-env KICAD_NET_RESCUE=0` to skip the long rescue search |
 | Freerouting INCOMPLETE at SMD pads or plane connections | `--backend-arg=--router.fanout.enabled=true` (fanout is off by default because it can neck traces to 3/4–1/2 width; `new_copper_netclass_geometry` catches that if it happens) |
 | `via_dangling` / `track_dangling` new | Freerouting left fanout stubs on a net it could not finish: treat as incomplete routing; retry as above or with the other backend |

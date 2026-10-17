@@ -175,6 +175,40 @@ def test_net_name_selection():
     assert result["exit_code"] == 0
 
 
+def test_chained_attempts_graded_against_origin():
+    """Continue from a partial candidate with --dir, then grade the chain's end
+    against the first attempt's input with validate --against."""
+    first = eda.BUILD / "runs" / "route" / "route-fixture" / "smoke-krt-nets" / "latest"
+    cand = first / json.loads((first / "attempt.json").read_text())["candidate_dir"]
+    r, run_dir, result = run("run", "--backend", "krt", "--budget", "180", "--dir", str(cand),
+                             "--board", "route_demo.kicad_pcb", "--nets", "!/SIG_A*",
+                             "--default-clearance", "0.4", "--label", "smoke-krt-chain")
+    assert result["process"]["status"] == route.PASS
+    v = subprocess.run([sys.executable, str(TOOLCHAIN / "route.py"), "validate", str(run_dir),
+                        "--against", str(first.resolve())], capture_output=True, text=True, timeout=600,
+                       cwd=eda.REPO)
+    res = json.loads((sorted((run_dir / "revalidate-origin").iterdir())[-1] / "result.json").read_text())
+    record("chain", {"step": summary(result), "against_origin": res})
+    assert result["routing"]["status"] == route.COMPLETE     # this step's own scope
+    assert res["routing"]["status"] == route.COMPLETE        # origin scope /SIG_A* still connected
+    assert res["validation"]["status"] == route.PASS, res["validation"]["reasons"]
+    assert res["validation"]["preservation"]["protected_copper"] == route.PASS
+    assert v.returncode == 0
+
+
+def test_bridge_scope_split_handles_parenthesised_net_names():
+    """KiCad names unlabeled nets like "Net-(BT1-+)"; the scope split must not stop
+    at a parenthesis inside quotes (it produced an unparsable DSN on fome-mc)."""
+    import route_specctra
+    dsn = ('(pcb x (network\n    (class kicad_default A "Net-(BT1-+)" B\n'
+           '      (circuit (use_via V))\n      (rule (width 254) (clearance 200)))))')
+    out, ignored = route_specctra.split_classes(dsn, {"Net-(BT1-+)"})
+    assert ignored == ["kicad_default__skip"]
+    assert '(class kicad_default A B\n' in out
+    assert '(class "kicad_default__skip" "Net-(BT1-+)"\n' in out
+    assert route_specctra.block_span(out, 0) == len(out)
+
+
 def test_net_class_selection():
     r, run_dir, result = run("run", "--backend", "freerouting", "--budget", "180", "--netclass", "Power",
                              "--clearance-margin", "0.01", "--backend-arg=--router.fanout.enabled=true",

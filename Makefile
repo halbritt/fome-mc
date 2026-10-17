@@ -80,7 +80,7 @@ route:
 
 route-validate:
 	@test -n "$(RUN)" || { echo "usage: make route-validate RUN=build/runs/route/<project>/<label>/<stamp>"; exit 2; }
-	$(ROUTE) validate $(RUN)
+	$(ROUTE) validate $(RUN) $(if $(AGAINST),--against $(AGAINST))
 
 route-compare:
 	@test -n "$(RUNS)" || { echo "usage: make route-compare RUNS='run_dir run_dir ...'"; exit 2; }

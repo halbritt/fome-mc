@@ -70,6 +70,19 @@ def block_span(text, start):
     raise ValueError("unbalanced s-expression")
 
 
+def find_open(text, start):
+    """Index of the first `(` at or after `start` outside a quoted string, or -1.
+    Net names such as "Net-(BT1-+)" carry parentheses inside their quotes."""
+    in_str = False
+    for i in range(start, len(text)):
+        c = text[i]
+        if c == '"':
+            in_str = not in_str
+        elif c == "(" and not in_str:
+            return i
+    return -1
+
+
 def atoms(text):
     return re.findall(r'"(?:[^"])*"|[^\s()]+', text)
 
@@ -86,7 +99,7 @@ def split_classes(dsn, skip):
             continue
         end = block_span(dsn, m.start())
         block = dsn[m.start():end]
-        first_sub = block.find("(", 1)
+        first_sub = find_open(block, 1)
         head = block[:first_sub] if first_sub > 0 else block[:-1]
         body = block[first_sub:-1] if first_sub > 0 else ""
         names = atoms(head[len("(class"):])

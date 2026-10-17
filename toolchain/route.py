@@ -151,11 +151,13 @@ def board_facts(board, out):
 
 def select_nets(facts, patterns, netclasses):
     """Net names in scope. Patterns match net names (fnmatch, `!pat` excludes);
-    net classes match the effective class KiCad resolved for each net."""
+    net classes match the effective class KiCad resolved for each net. Exclusions
+    alone (`--nets '!GND'`) start from every net."""
     names = sorted(facts["nets"])
     if not patterns and not netclasses:
         return names, {"mode": "all"}
-    chosen = set()
+    only_excludes = not netclasses and all(p.startswith("!") for p in patterns)
+    chosen = set(names) if only_excludes else set()
     for pat in patterns or []:
         if pat.startswith("!"):
             continue
@@ -472,19 +474,42 @@ def route_stats(tracks, vias):
 
 # ------------------------------------------------------------------ validation
 
-def validate(run_dir, out_dir=None):
+def validate(run_dir, out_dir=None, origin=None):
     """Grade run_dir/candidate against run_dir/reference. Re-runnable: an agent may
-    edit the candidate and validate it again into a fresh directory."""
+    edit the candidate and validate it again into a fresh directory. With origin (an
+    earlier run whose candidate this run's input descends from through --dir steps),
+    grade against the origin's input instead: its rules, baseline, facts and
+    protection, with the union of every step's net scope, so a chain of attempts is
+    judged against the original design."""
     attempt = load_json(run_dir / "attempt.json")
     if attempt is None:
         sys.exit(f"{run_dir}: not a routing run (attempt.json missing)")
+    cand_dir = run_dir / attempt["candidate_dir"]
+    scope = set(attempt["scope"]["nets"])
+    chain = []
+    if origin is not None:
+        chain, step = [eda.rel(run_dir)], (run_dir, attempt)
+        while step[0].resolve() != origin.resolve():
+            src = Path(step[1]["source"].get("source_dir") or "/").resolve()
+            prev = src.parent.parent
+            prev_attempt = load_json(prev / "attempt.json")
+            if prev_attempt is None or (prev / prev_attempt["candidate_dir"]).resolve() != src:
+                sys.exit(f"{eda.rel(step[0])}: input is not a routing candidate, so it does not descend "
+                         f"from {eda.rel(origin)}")
+            if prev_attempt["board"] != attempt["board"]:
+                sys.exit(f"{eda.rel(prev)}: board {prev_attempt['board']} is not {attempt['board']}")
+            step = (prev, prev_attempt)
+            chain.append(eda.rel(prev))
+            scope |= set(prev_attempt["scope"]["nets"])
+        attempt, run_dir = step[1], step[0]
     out_dir = out_dir or run_dir / "validate"
     out_dir.mkdir(parents=True, exist_ok=False)
     board_name = attempt["board"]
     ref_dir = run_dir / attempt["reference_dir"]
-    cand_dir = run_dir / attempt["candidate_dir"]
     board = cand_dir / board_name
     v = {"status": None, "reasons": [], "dir": eda.rel(out_dir)}
+    if chain:
+        v["chain"] = chain  # this run back to the origin; scope is the union of the steps' scopes
     if not board.exists():
         v.update(status=NOT_RUN, reasons=["no candidate board"])
         return v, {"status": NOT_RUN, "reasons": ["no candidate board"]}
@@ -520,7 +545,6 @@ def validate(run_dir, out_dir=None):
         v["reasons"].append(f"schematic parity was not performed: {info.get('parity_skip_message')}")
     v["parity_performed"] = info["parity_performed"] if attempt.get("schematic") else None
 
-    scope = set(attempt["scope"]["nets"])
     unconnected = cand["unconnected_items"]
     in_scope = [u for u in unconnected if item_nets(u) & scope]
     routing = {"status": COMPLETE if not in_scope else INCOMPLETE,
@@ -1351,11 +1375,13 @@ BACKENDS = {
 
 def cmd_validate(args):
     run_dir = Path(args.run_dir).resolve()
-    out = run_dir / "revalidate" / eda.now_utc().strftime("%Y%m%dT%H%M%S.%fZ")
-    validation, routing = validate(run_dir, out)
+    origin = Path(args.against).resolve() if args.against else None
+    out = run_dir / ("revalidate-origin" if origin else "revalidate") / eda.now_utc().strftime("%Y%m%dT%H%M%S.%fZ")
+    validation, routing = validate(run_dir, out, origin)
     result = load_json(run_dir / "result.json") or {}
     proc = result.get("process", {"status": PASS})
-    rec = {"kind": "route-validate", "run_dir": eda.rel(run_dir), "routing": routing, "validation": validation,
+    rec = {"kind": "route-validate", "run_dir": eda.rel(run_dir), "against": eda.rel(origin) if origin else None,
+           "routing": routing, "validation": validation,
            "exit_code": overall_exit(proc, routing, validation)}
     eda.write_json(out / "result.json", rec)
     log(f"[validate] routing: {routing['status']}  validation: {validation['status']}"
@@ -1397,6 +1423,8 @@ def main(argv=None):
                     help="extra environment variable for the backend, e.g. a KRT KICAD_* knob (recorded)")
     vp = sub.add_parser("validate", help="re-grade a run's candidate against its reference")
     vp.add_argument("run_dir")
+    vp.add_argument("--against", metavar="ORIGIN_RUN",
+                    help="grade against an earlier run's input (the start of a --dir chain) instead of this run's")
     cp = sub.add_parser("compare", help="compare candidates routed from the same input")
     cp.add_argument("run_dirs", nargs="+")
     pp = sub.add_parser("publish", help="copy a run's structured evidence to reports/toolchain/routing/")

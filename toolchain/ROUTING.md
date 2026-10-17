@@ -12,6 +12,7 @@ make route BACKEND=krt                               # route fome-mc (copy), 300
 make route BACKEND=freerouting PROJECT=route-fixture ARGS='--clearance-margin 0.01'
 make route BACKEND=krt REV=HEAD ARGS='--nets "/CAN*" --budget 600'
 make route-validate RUN=build/runs/route/<project>/<label>/<stamp>
+make route-validate RUN=<last step> AGAINST=<first run>   # grade a --dir chain vs the original input
 make route-compare RUNS='<run_dir> <run_dir>'
 make route-publish RUN=<run_dir>                     # evidence -> reports/toolchain/routing/
 make route-update                                    # newest upstream releases + route-smoke
@@ -248,7 +249,13 @@ they are not install requirements.
   class-to-class clearances, diff pairs, or length tuning; arcs export as chords.
 - Attempts route one scope at a time; chain scopes by routing from a previous candidate
   (`--dir <run>/candidate/<project>`), which keeps the original rules (the candidate's
-  project files are the input's).
+  project files are the input's). Each step is graded against its own input, so a step
+  inherits the previous step's findings as pre-existing; grade the end of the chain with
+  `route.py validate <last> --against <first>`, which follows the steps' recorded
+  inputs back to the first run (refusing a board that does not descend from it) and
+  grades against the original input, baseline and protection with the union of the
+  steps' scopes (`revalidate-origin/<stamp>/result.json`). With `--protect existing` a
+  later step cannot move copper an earlier step placed, so route the hardest nets first.
 - Board facts and the bridge depend on KiCad's SWIG module (see Decisions).
 
 ## Fixture and evidence
