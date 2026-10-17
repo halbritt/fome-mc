@@ -69,3 +69,7 @@ GND pours: F.Cu, B.Cu and In1.Cu (relief gap 0.2286 mm, spoke 0.254 mm).
   copper is about 0.5 A outer / 0.27 A inner at a 10 C rise, 3.9 mOhm/mm. Remaining
   minor points: no fab margin at the 0.127 mm minimum, teardrops disabled (vibration).
 - Thermal fixes tracked as Plane FOMEMC-11.
+- Also new in 216eb9a: 62 through vias at 0.45 mm / 0.2 mm drill (class via 0.5994/0.2997;
+  the parent had none), on signal nets plus GND x5 and +3V3 x1. They meet the board
+  minimums; the 0.2 mm drill is an 8:1 aspect ratio in 1.6 mm. Teardrops (all three
+  `td_enabled: false`), track/via margins and these vias are tracked as Plane FOMEMC-12.
