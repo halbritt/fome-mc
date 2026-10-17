@@ -128,6 +128,172 @@
         )
       )
     )
+		(symbol "Device:D_Zener"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Zener"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Zener diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_Zener_0_1"
+				(polyline
+					(pts
+						(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_Zener_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:D_Schottky"
 			(pin_numbers
 				(hide yes)
@@ -2047,7 +2213,7 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 121.92) (xy 45.72 121.92)
+			(xy 38.1 121.92) (xy 43.18 121.92)
 		)
 		(stroke
 			(width 0)
@@ -2055,29 +2221,93 @@
 		)
 		(uuid "9ffaf79d-92e8-523e-aa20-a3702a6a9575")
 	)
+	(wire
+		(pts
+			(xy 43.18 121.92) (xy 45.72 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-000000000001")
+	)
+	(wire
+		(pts
+			(xy 43.18 121.92) (xy 43.18 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-000000000002")
+	)
+	(wire
+		(pts
+			(xy 43.18 111.76) (xy 45.72 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-000000000003")
+	)
+	(junction
+		(at 43.18 121.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61499007-0000-4000-8000-000000000004")
+	)
+	(symbol
+		(lib_id "Device:D_Zener")
+		(at 49.53 121.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000005")
+		(property "Reference" "D210" (at 49.53 119.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "BZT52C6V8" (at 49.53 124.46 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C173404" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-000000000006"))
+		(pin "2" (uuid "61499007-0000-4000-8000-000000000007"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D210") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 53.34 121.92) (xy 55.88 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-000000000008")
+	)
 	(symbol
 		(lib_id "Device:R")
-		(at 49.53 121.92 90)
+		(at 59.69 121.92 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "d39d0ebb-8b79-54b9-834a-67303896ab00")
-		(property "Reference" "R209" (at 49.53 119.38 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "10k" (at 49.53 124.46 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "LCSC" "C25744" (at 49.53 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Reference" "R209" (at 59.69 119.38 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "12k" (at 59.69 124.46 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 59.69 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C25752" (at 59.69 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "b6052c1e-977d-5516-b28d-183cd5de7802"))
 		(pin "2" (uuid "f5ef7924-c81f-5c29-b398-164c8e1a9edd"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R209") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R209") (unit 1)))
 		)
 	)
 	(wire
 		(pts
-			(xy 53.34 121.92) (xy 60.96 121.92)
+			(xy 63.5 121.92) (xy 68.58 121.92)
 		)
 		(stroke
 			(width 0)
@@ -2087,7 +2317,7 @@
 	)
 	(hierarchical_label "BOOT0_OUT"
 		(shape output)
-		(at 60.96 121.92 0)
+		(at 68.58 121.92 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2095,6 +2325,152 @@
 			(justify left)
 		)
 		(uuid "2494709f-03e6-5701-af5f-d8a1dadef229")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 49.53 111.76 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000009")
+		(property "Reference" "R217" (at 49.53 109.22 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10k" (at 49.53 114.3 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 49.53 111.76 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C25744" (at 49.53 111.76 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-00000000000a"))
+		(pin "2" (uuid "61499007-0000-4000-8000-00000000000b"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R217") (unit 1)))
+		)
+	)
+	(wire
+		(pts
+			(xy 53.34 111.76) (xy 58.42 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-00000000000c")
+	)
+	(wire
+		(pts
+			(xy 58.42 111.76) (xy 63.5 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-00000000000d")
+	)
+	(wire
+		(pts
+			(xy 63.5 111.76) (xy 68.58 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "61499007-0000-4000-8000-00000000000e")
+	)
+	(junction
+		(at 58.42 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61499007-0000-4000-8000-00000000000f")
+	)
+	(junction
+		(at 63.5 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61499007-0000-4000-8000-000000000010")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 58.42 115.57 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000011")
+		(property "Reference" "R218" (at 58.42 113.03 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "12k" (at 58.42 118.11 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 58.42 115.57 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C25752" (at 58.42 115.57 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-000000000012"))
+		(pin "2" (uuid "61499007-0000-4000-8000-000000000013"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R218") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 58.42 119.38 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000014")
+		(property "Reference" "#PWR0861" (at 58.42 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "GND" (at 58.42 121.92 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 58.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 58.42 119.38 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-000000000015"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0861") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Schottky")
+		(at 63.5 107.95 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000016")
+		(property "Reference" "D211" (at 66.04 106.68 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "B5819W" (at 66.04 109.22 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Diode_SMD:D_SOD-123" (at 63.5 107.95 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "LCSC" "C8598" (at 63.5 107.95 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-000000000017"))
+		(pin "2" (uuid "61499007-0000-4000-8000-000000000018"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D211") (unit 1)))
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 63.5 104.14 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61499007-0000-4000-8000-000000000019")
+		(property "Reference" "#PWR0862" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "+3V3" (at 63.5 101.6 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 63.5 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 63.5 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "61499007-0000-4000-8000-00000000001a"))
+		(instances
+			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0862") (unit 1)))
+		)
+	)
+	(hierarchical_label "VBUS_SENSE_OUT"
+		(shape output)
+		(at 68.58 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "61499007-0000-4000-8000-00000000001b")
 	)
 	(label "12V_MR"
 		(at 38.1 132.08 180)
