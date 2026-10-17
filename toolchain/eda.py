@@ -1136,7 +1136,7 @@ def doctor():
     fp = KICAD_SHARE / "footprints" / "Resistor_SMD.pretty"
     add("stock footprint library", PASS if fp.exists() else FAIL, str(fp.parent))
     add("stock 3D models", PASS if (KICAD_SHARE / "3dmodels").exists() else UNSUPPORTED,
-        "kicad-packages3d not installed; 3D render/STEP exports are out of scope", required=False)
+        "Stock model library is optional; make render-3d can use a separate persistent model cache", required=False)
     cfg = ensure_kicad_config()
     add("hermetic KiCad config (global lib tables)",
         PASS if (cfg / "sym-lib-table").exists() and (cfg / "fp-lib-table").exists() else FAIL, rel(cfg))

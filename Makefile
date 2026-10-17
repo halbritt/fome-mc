@@ -7,6 +7,7 @@
 #   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']   (kicad-route)
 #   make route-validate RUN=dir [AGAINST=dir] | route-compare RUNS='dir dir' | route-publish RUN=dir
 #   make route-audit OLD=rev [NEW=HEAD] | route-update | route-smoke
+#   make render-3d [MODELS=cache] [FETCH_MODELS=1] | render-3d-publish RUN=dir
 #
 # PROJECT=fome-mc|universal-112|fixture (see toolchain/versions.toml)
 # FILL=asis|refill  (asis: use the saved zone fill; refill: refill+save the snapshot first)
@@ -24,7 +25,16 @@ ROUTE   := $(KICAD_ROUTE) --out build/route
 ROUTE_OK = @command -v $(KICAD_ROUTE) >/dev/null || { echo "kicad-route is not installed: git clone \
 https://github.com/halbritt/kicad-route ~/git/kicad-route && ~/git/kicad-route/scripts/install.sh"; exit 2; }
 
-.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean \
+AGENT_EE ?= agent-ee
+MODELS ?= $(HOME)/.cache/agent-ee/models
+FETCH_MODELS ?= 0
+RENDER_WIDTH ?= 4096
+RENDER_HEIGHT ?= 3072
+RENDER_QUALITY ?= high
+RENDER_JOBS ?= 3
+RENDER_TIMEOUT ?= 1200
+
+.PHONY: help bootstrap doctor erc drc netlist export analyze check renders render-3d render-3d-publish verify-io simulate smoke baseline skills clean \
         route-doctor route route-validate route-compare route-publish route-audit route-update route-smoke
 
 help:
@@ -56,6 +66,15 @@ check:
 
 renders:
 	$(PY) scripts/render_docs.py
+
+render-3d:
+	$(PY) scripts/render_3d.py render --agent-ee "$(AGENT_EE)" --models "$(MODELS)" \
+	  --width $(RENDER_WIDTH) --height $(RENDER_HEIGHT) --quality $(RENDER_QUALITY) \
+	  --jobs $(RENDER_JOBS) --timeout $(RENDER_TIMEOUT) $(if $(filter 1,$(FETCH_MODELS)),--fetch-models)
+
+render-3d-publish:
+	@test -d "$(RUN)" || { echo "usage: make render-3d-publish RUN=build/runs/project/fome-mc/3d-renders-<stamp>"; exit 2; }
+	$(PY) scripts/render_3d.py publish "$(RUN)"
 
 verify-io:
 	$(PY) scripts/verify_io_map.py
