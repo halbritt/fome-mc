@@ -1502,7 +1502,6 @@
 		(pin "13" (uuid "70ceb4d7-d5c7-5c52-a675-11a16fe73e2e"))
 		(instances
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U203") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "U203") (unit 1)))
 		)
 	)
 	(wire
@@ -1605,7 +1604,6 @@
 		(pin "1" (uuid "b313fbb9-579e-5b4a-8341-fbcb4caecccf"))
 		(instances
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0854") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0854") (unit 1)))
 		)
 	)
 	(symbol
@@ -1623,7 +1621,6 @@
 		(property "Datasheet" "" (at 50.8 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "a05054cd-62ca-59c5-99da-630e5eeb3954"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0855") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0855") (unit 1)))
 		)
 	)
@@ -1701,17 +1698,22 @@
 		(pin "1" (uuid "7e582771-d2bc-5b0f-926a-d7091875d778"))
 		(instances
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0856") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "#PWR0856") (unit 1)))
 		)
+	)
+	(text "D201..D204: DNP on INJ1..4 (/LS1../LS4) so U1001/U1002 VNLD5090TR-E use internal 42V active clamp for fast injector turn-off.\nD205..D209: Populated on LS5..LS8 & MAIN_RLY inductive relay/solenoid channels."
+		(exclude_from_sim no)
+		(at 129.54 22.86 0)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "b3e779c5-0af7-50d8-b1f4-a810c891ec30")
 	)
 	(symbol
 		(lib_id "Device:D_Schottky")
 		(at 139.7 30.48 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "b3e779c5-0af7-50d8-b1f4-a810c891ec3a")
 		(property "Reference" "D201" (at 139.7 27.94 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "B340A-13-F" (at 139.7 33.02 0) (effects (font (size 1.27 1.27))))
@@ -1720,7 +1722,6 @@
 		(pin "1" (uuid "9f60392a-fed6-5a58-b506-968e339fc3e0"))
 		(pin "2" (uuid "536dc940-8c94-5fc1-84a0-ef1ad60deab7"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D201") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D201") (unit 1)))
 		)
 	)
@@ -1771,9 +1772,9 @@
 		(at 139.7 40.64 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "94ddce75-fca1-5668-b876-4cffe08b60bc")
 		(property "Reference" "D202" (at 139.7 38.1 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "B340A-13-F" (at 139.7 43.18 0) (effects (font (size 1.27 1.27))))
@@ -1782,7 +1783,6 @@
 		(pin "1" (uuid "79be5179-0545-5878-8cd3-62f4a457236f"))
 		(pin "2" (uuid "9f3013f6-72df-5f35-aa67-ef3f32c9b5b5"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D202") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D202") (unit 1)))
 		)
 	)
@@ -1833,9 +1833,9 @@
 		(at 139.7 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "381f0bfc-1169-521c-af60-47f556d08ee2")
 		(property "Reference" "D203" (at 139.7 48.26 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "B340A-13-F" (at 139.7 53.339999999999996 0) (effects (font (size 1.27 1.27))))
@@ -1844,7 +1844,6 @@
 		(pin "1" (uuid "37fe5952-2d64-50f2-b5f5-a2867089b05a"))
 		(pin "2" (uuid "819be503-d08d-5176-bf44-8c74354aca8c"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D203") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D203") (unit 1)))
 		)
 	)
@@ -1895,9 +1894,9 @@
 		(at 139.7 60.96 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "6b0a46f7-9554-5ade-874f-86479da625ab")
 		(property "Reference" "D204" (at 139.7 58.42 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "B340A-13-F" (at 139.7 63.5 0) (effects (font (size 1.27 1.27))))
@@ -1906,7 +1905,6 @@
 		(pin "1" (uuid "5a37505f-f25c-51cd-8f19-27133c8b7dc9"))
 		(pin "2" (uuid "76de3f40-c20e-5952-b112-99fc87a1db5a"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D204") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D204") (unit 1)))
 		)
 	)
@@ -1969,7 +1967,6 @@
 		(pin "2" (uuid "b1741d7c-e313-50e5-955b-fe8202f77503"))
 		(instances
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D205") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D205") (unit 1)))
 		)
 	)
 	(wire
@@ -2030,7 +2027,6 @@
 		(pin "1" (uuid "118540e2-31d1-541b-8de5-09694b722caa"))
 		(pin "2" (uuid "52a01032-4466-5fc5-97a8-7f4dd28b6b76"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D206") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D206") (unit 1)))
 		)
 	)
@@ -2093,7 +2089,6 @@
 		(pin "2" (uuid "d7c9cbf9-29ab-59c0-a96c-4c50ede35800"))
 		(instances
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D207") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D207") (unit 1)))
 		)
 	)
 	(wire
@@ -2154,7 +2149,6 @@
 		(pin "1" (uuid "af46c4fa-910e-5b62-a773-3856c8f0aaea"))
 		(pin "2" (uuid "f35fd4b1-a818-55cf-9ff5-f2bbf635f371"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D208") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "D208") (unit 1)))
 		)
 	)
@@ -2509,7 +2503,6 @@
 		(pin "1" (uuid "a4fcb351-8d4f-5595-8dc0-2baf4e118309"))
 		(pin "2" (uuid "cba035d0-6f33-51db-ba43-33899b91c719"))
 		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R212") (unit 1)))
 			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4/a1000000-0000-4000-8000-000000000002" (reference "R212") (unit 1)))
 		)
 	)
