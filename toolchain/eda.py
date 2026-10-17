@@ -1176,7 +1176,7 @@ def smoke():
     out.mkdir(parents=True)
     junit = out / "junit.xml"
     r = subprocess.run([str(venv_python()), "-m", "pytest", "-v", "-p", "no:cacheprovider",
-                        f"--junitxml={junit}", str(TOOLCHAIN / "tests")], cwd=REPO, env=tool_env())
+                        f"--junitxml={junit}", str(TOOLCHAIN / "tests" / "test_smoke.py")], cwd=REPO, env=tool_env())
     status = PASS if r.returncode == 0 else FAIL
     collected = {}
     for p in sorted(out.glob("*.json")):

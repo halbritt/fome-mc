@@ -135,14 +135,14 @@ def render_floorplan_diagram() -> None:
     # Exact functional zones matching native KiCad PCB coordinates (X=26..188, Y=25..140)
     zones = [
         # (x_mm, y_mm, w_mm, h_mm, fill, stroke, title, subtitle)
-        (32.0, 27.5, 72.0, 28.0, "#1c2430", "#58a6ff", "J1: TE AMPSEAL 35-PIN (BLACK 776163-1)", "Power, Grounds, INJ1..4, IGBT1..4, AUX_LS1..4, ETB1/2, STEP, WBO HTR, DFU"),
-        (110.0, 27.5, 74.0, 28.0, "#24292f", "#a5d6ff", "J2: TE AMPSEAL 35-PIN (GREY 776163-2)", "CLT, IAT, TPS1/2, MAP1/2, Baro, Gear, Knock, VR1/2, Hall, WBO1/2 Cells, CAN1, USB"),
+        (32.0, 27.5, 72.0, 28.0, "#1c2430", "#58a6ff", "J1: TE AMPSEAL 35-PIN (BLACK 776163-1)", "Power, Grounds, INJ1..4, IGBT1..4, AUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR, DFU"),
+        (110.0, 27.5, 74.0, 28.0, "#24292f", "#a5d6ff", "J2: TE AMPSEAL 35-PIN (GREY 776163-2)", "CLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock, VR1/2, Hall, WBO1/2, CAN1, USB"),
         (28.0, 58.0, 22.0, 49.0, "#3b1d2e", "#f85149", "4x IGNITION IGBTs", "Q201-Q204 FGD3040G2 (400V)"),
-        (28.0, 108.5, 33.5, 29.5, "#1f2d3d", "#58a6ff", "STEPPER, H-BRIDGES & SDNAND", "U201/U203 TLE9201 • U202 DRV8825 • U25 SDNAND"),
-        (62.5, 58.0, 91.5, 46.5, "#2b2318", "#d29922", "POWER SUPPLY, LDOs, CAN, IGN BUFFERS, LOW-SIDE & HIGH-SIDE DRIVERS", "U3 LMR14020 5V • U1/U2 TLS115D0E • U40 BTS716G • U1001..U1102 VNLD5090 • U42..U45 MIC4427"),
-        (62.5, 106.0, 91.5, 32.0, "#162b24", "#3fb950", "STM32H753 BRAIN, BARO, PRECISION REF & ANALOG FRONT-END", "U26 STM32H753ZIT6 • U24 LPS25HB • U23 REF3333 • U1201/U1202 VNLD5090 • U7/U15..U21 MCP6004"),
-        (155.5, 58.0, 30.5, 34.5, "#271d3b", "#bc8cff", "WIDEBAND #1 (LSU 4.9)", "U302 F042 • Q301 HTR • U301/U305/U307"),
-        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 & VBOOST", "U402 F042 • Q401 HTR • U401/U405 • U46 LM2733"),
+        (28.0, 108.5, 33.5, 29.5, "#1f2d3d", "#58a6ff", "STEPPER, H-BRIDGES, 4GB SDNAND & WI-FI", "U201/U203 TLE9201 • U202 DRV8825 • U25 4GB • U29 Wi-Fi"),
+        (62.5, 58.0, 91.5, 46.5, "#2b2318", "#d29922", "POWER SUPPLY, KEEP-ALIVE, LDOs, CAN, IGN & LOW/HIGH-SIDE DRIVERS", "D20/D21 OR • D1 SMCJ33A • Q1 AO4485 • U3 LMR16020 5V • U1/U2 TLS115D0E • U6 TLV75733 • U41 MIC5205 • U4/U5 CAN1/2"),
+        (62.5, 106.0, 91.5, 32.0, "#162b24", "#3fb950", "STM32H753 BRAIN, PRECISION REF & ANALOG FRONT-END", "U26 STM32H753ZIT6 • U23 REF3333 • U24 LPS25HB (DNP) • U1201/U1202 VNLD5090 (MAIN_RLY) • U7/U15..U21 MCP6004"),
+        (155.5, 58.0, 30.5, 34.5, "#271d3b", "#bc8cff", "WIDEBAND #1 (LSU 4.9)", "U302 F042 (0x190) • Q301 HTR • U301/U305/U307"),
+        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 (LSU 4.9)", "U402 F042 (0x192) • Q401 HTR • U401/U405/U407"),
     ]
 
     lines = [
@@ -161,7 +161,7 @@ def render_floorplan_diagram() -> None:
         '</defs>',
         f'<rect class="bg" x="0" y="0" width="{img_w}" height="{img_h}"/>',
         f'<text class="title" x="{pad_x}" y="48">fome-mc — 4-Layer Integrated Motorcycle ECU Floorplan &amp; Functional Zones</text>',
-        f'<text class="subtitle" x="{pad_x}" y="74">Board Dimensions: 162.0 mm × 115.0 mm (Edge.Cuts X=26..188, Y=25..140) • 474 Placed Components • Dual 35-Pin TE AMPSEAL Headers</text>',
+        f'<text class="subtitle" x="{pad_x}" y="74">Board Dimensions: 162.0 mm × 115.0 mm (Edge.Cuts X=26..188, Y=25..140) • 475 Schematic Components (106 BOM Lines) • Dual 35-Pin TE AMPSEAL Headers</text>',
         f'<rect class="pcb" x="{tx(bx0)}" y="{ty(by0)}" width="{bw*scale}" height="{bh*scale}" rx="15" ry="15"/>',
     ]
 
@@ -193,41 +193,44 @@ def render_floorplan_diagram() -> None:
         lines.append(f'<circle cx="{tx(mx)}" cy="{ty(my)}" r="33" fill="#161b22" stroke="#d29922" stroke-width="2.5" stroke-dasharray="4,2"/>')
         lines.append(f'<circle cx="{tx(mx)}" cy="{ty(my)}" r="21" fill="#0d1117" stroke="#f0f6fc" stroke-width="2"/>')
 
+    orphaned_removed_refs = {"U46", "U28", "L3", "D18", "C107", "D2"}
     major_highlights = {
-        "U26": (20.0, 20.0, "#238636", "U26 STM32H753ZIT6"),
-        "U25": (6.0, 8.0, "#1f6feb", "U25 SDNAND"),
-        "U24": (4.5, 4.5, "#d29922", "U24 BARO"),
-        "Q201": (9.0, 6.6, "#da3633", "Q201 IGBT1"),
-        "Q202": (9.0, 6.6, "#da3633", "Q202 IGBT2"),
-        "Q203": (9.0, 6.6, "#da3633", "Q203 IGBT3"),
-        "Q204": (9.0, 6.6, "#da3633", "Q204 IGBT4"),
-        "U201": (7.5, 10.0, "#1f6feb", "U201 TLE9201 #1"),
-        "U202": (6.4, 9.7, "#388bfd", "U202 DRV8825"),
-        "U203": (7.5, 10.0, "#1f6feb", "U203 TLE9201 #2"),
-        "U302": (7.0, 7.0, "#8957e5", "U302 WBO1 F042"),
-        "Q301": (6.6, 9.0, "#a371f7", "Q301 WBO1 HTR"),
-        "U307": (5.0, 4.0, "#8957e5", "U307 CAN"),
-        "U402": (7.0, 7.0, "#8957e5", "U402 WBO2 F042"),
-        "Q401": (6.6, 9.0, "#a371f7", "Q401 WBO2 HTR"),
-        "U407": (5.0, 4.0, "#8957e5", "U407 CAN"),
-        "U46": (5.5, 4.0, "#d29922", "U46 VBOOST"),
-        "U1": (6.5, 5.0, "#d29922", "U1 5VP_1"),
-        "U2": (6.5, 5.0, "#d29922", "U2 5VP_2"),
-        "U3": (5.5, 5.0, "#d29922", "U3 5V BUCK"),
-        "U4": (5.5, 4.0, "#e3b341", "U4 CAN1"),
-        "U5": (5.5, 4.0, "#e3b341", "U5 CAN2"),
-        "U40": (11.0, 7.5, "#2ea043", "U40 BTS716G HS"),
-        "U1001": (6.0, 4.5, "#2ea043", "U1001 INJ1/2"),
-        "U1002": (6.0, 4.5, "#2ea043", "U1002 INJ3/4"),
-        "U1101": (6.0, 4.5, "#2ea043", "U1101 LS5/6"),
-        "U1102": (6.0, 4.5, "#2ea043", "U1102 LS7/8"),
-        "U1201": (6.0, 4.5, "#2ea043", "U1201 LS9/10"),
-        "U1202": (6.0, 4.5, "#2ea043", "U1202 LS11/12"),
+        "U26": (20.0, 20.0, "#238636", "U26 STM32H753ZIT6", 0.0, 0.0),
+        "U25": (8.5, 5.2, "#1f6feb", "U25 4GB SDNAND", 0.0, 0.3),
+        "U29": (9.8, 4.8, "#0969da", "U29 WINC1500 Wi-Fi", 2.0, 0.6),
+        "U24": (6.5, 4.2, "#6e7681", "U24 BARO (DNP)", 0.0, 0.0),
+        "Q201": (9.0, 6.6, "#da3633", "Q201 IGBT1", 0.0, 0.0),
+        "Q202": (9.0, 6.6, "#da3633", "Q202 IGBT2", 0.0, 0.0),
+        "Q203": (9.0, 6.6, "#da3633", "Q203 IGBT3", 0.0, 0.0),
+        "Q204": (9.0, 6.6, "#da3633", "Q204 IGBT4", 0.0, 0.0),
+        "U201": (7.5, 9.2, "#1f6feb", "U201 TLE9201 #1", 0.0, 0.0),
+        "U202": (6.4, 9.7, "#388bfd", "U202 DRV8825", 0.0, 0.0),
+        "U203": (7.5, 7.2, "#1f6feb", "U203 TLE9201 #2", 0.0, -0.5),
+        "U302": (7.0, 7.0, "#8957e5", "U302 WBO1 F042", 0.0, 0.0),
+        "Q301": (6.6, 9.0, "#a371f7", "Q301 WBO1 HTR", 0.0, 0.0),
+        "U307": (5.0, 4.0, "#8957e5", "U307 CAN", 0.0, 0.0),
+        "U402": (7.0, 7.0, "#8957e5", "U402 WBO2 F042", 0.0, 0.0),
+        "Q401": (6.6, 9.0, "#a371f7", "Q401 WBO2 HTR", 0.0, 0.0),
+        "U407": (5.0, 4.0, "#8957e5", "U407 CAN", 0.0, 0.0),
+        "U1": (6.5, 5.0, "#d29922", "U1 5VP_1", 0.0, 0.0),
+        "U2": (6.5, 5.0, "#d29922", "U2 5VP_2", 0.0, 0.0),
+        "U3": (7.2, 5.0, "#d29922", "U3 LMR16020", 0.0, 0.0),
+        "U6": (6.2, 4.0, "#d29922", "U6 TLV75733", 0.0, 0.0),
+        "U41": (6.2, 4.0, "#d29922", "U41 MIC5205", 0.0, 0.0),
+        "U4": (5.5, 4.0, "#e3b341", "U4 CAN1", 0.0, 0.0),
+        "U5": (5.5, 4.0, "#e3b341", "U5 CAN2", 0.0, 0.0),
+        "U40": (11.0, 7.5, "#2ea043", "U40 BTS716G HS", 0.0, 0.0),
+        "U1001": (6.0, 4.5, "#2ea043", "U1001 INJ1/2", 0.0, 0.0),
+        "U1002": (6.0, 4.5, "#2ea043", "U1002 INJ3/4", 0.0, 0.0),
+        "U1101": (6.0, 4.5, "#2ea043", "U1101 LS5/6", 0.0, 0.0),
+        "U1102": (6.0, 4.5, "#2ea043", "U1102 LS7/8", 0.0, 0.0),
+        "U1201": (6.0, 4.5, "#2ea043", "U1201 LS9/10", 0.0, 0.0),
+        "U1202": (6.8, 4.5, "#2ea043", "U1202 MAIN_RLY", 0.0, 0.0),
     }
 
     # Minor footprints first
     for ref, cx, cy in fps:
-        if ref in ("J1", "J2") or ref in major_highlights or ref.startswith("LOGO"):
+        if ref in ("J1", "J2") or ref in major_highlights or ref in orphaned_removed_refs or ref.startswith("LOGO"):
             continue
         c_fill = "#6e7681" if ref.startswith(("R", "C")) else "#58a6ff"
         lines.append(f'<rect x="{tx(cx)-4.5:.1f}" y="{ty(cy)-4.5:.1f}" width="9" height="9" rx="2" ry="2" fill="{c_fill}" fill-opacity="0.7" stroke="#c9d1d9" stroke-width="0.6"/>')
@@ -235,17 +238,18 @@ def render_floorplan_diagram() -> None:
     # Major ICs on top
     for ref, cx, cy in fps:
         if ref in major_highlights:
-            w_mm, h_mm, color, label = major_highlights[ref]
-            rx = tx(cx - w_mm / 2)
-            ry = ty(cy - h_mm / 2)
+            w_mm, h_mm, color, label, dx_mm, dy_mm = major_highlights[ref]
+            mcx, mcy = cx + dx_mm, cy + dy_mm
+            rx = tx(mcx - w_mm / 2)
+            ry = ty(mcy - h_mm / 2)
             lines.append(f'<rect x="{rx:.1f}" y="{ry:.1f}" width="{w_mm*scale:.1f}" height="{h_mm*scale:.1f}" rx="4" ry="4" fill="{color}" fill-opacity="0.92" stroke="#ffffff" stroke-width="1.5"/>')
-            lines.append(f'<text class="comp" x="{tx(cx):.1f}" y="{ty(cy)+3:.1f}" text-anchor="middle">{html.escape(label)}</text>')
+            lines.append(f'<text class="comp" x="{tx(mcx):.1f}" y="{ty(mcy)+3:.1f}" text-anchor="middle">{html.escape(label)}</text>')
 
     # Zone header banners drawn ON TOP with solid pill backgrounds so text is never occluded
     for zx, zy, zw, zh, fill, stroke, zt, zs in zones:
         bx_px = tx(zx) + 6
         by_px = ty(zy) + 5
-        bw_px = min(zw * scale - 12, max(len(zt) * 8.2, len(zs) * 5.8) + 18)
+        bw_px = min(zw * scale - 12, max(len(zt) * 8.4, len(zs) * 6.35) + 20)
         lines.append(f'<rect x="{bx_px:.1f}" y="{by_px:.1f}" width="{bw_px:.1f}" height="34" rx="5" ry="5" fill="#0d1117" fill-opacity="0.88" stroke="{stroke}" stroke-width="1.2"/>')
         lines.append(f'<text class="ztitle" x="{bx_px+8:.1f}" y="{by_px+15:.1f}">{html.escape(zt)}</text>')
         lines.append(f'<text class="zsub" x="{bx_px+8:.1f}" y="{by_px+28:.1f}">{html.escape(zs)}</text>')
@@ -254,8 +258,8 @@ def render_floorplan_diagram() -> None:
     fy = ty(by0 + bh) + 42
     lines.append(f'<rect x="{pad_x}" y="{fy}" width="{bw*scale}" height="78" rx="8" ry="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>')
     lines.append(f'<text class="ztitle" x="{pad_x+16}" y="{fy+24}">4-Layer Impedance-Controlled Stackup (1.6 mm FR-4 TG170, 1 oz Outer / 1 oz Inner) &amp; Thermal Coupling</text>')
-    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+44}">• L1 (F.Cu): High-speed signals, 90Ω USB / 120Ω CAN diff pairs, SDMMC1, WBO Kelvin Nernst/Ip traces, high-current IGBT/Heater pours</text>')
-    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+62}">• L2 (In1.Cu): Unbroken solid GND plane + Star AGND split   • L3 (In2.Cu): +5V, +3.3V, +12V_MR, +3V3_WBO1/2 power islands   • L4 (B.Cu): Bottom GND + thermal pad coupling</text>')
+    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+44}">• L1 (F.Cu): High-speed signals, 90Ω USB / 120Ω CAN diff pairs, SDMMC1 (4GB SDNAND), SPI4 (WINC1500 Wi-Fi), WBO Kelvin Nernst/Ip traces, high-current IGBT/Heater pours</text>')
+    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+62}">• L2 (In1.Cu): Unbroken solid GND plane + Star AGND split   • L3 (In2.Cu): +5V, +3.3V, +12V_MR, +12V_RAW, +3V3_WBO1/2 power islands   • L4 (B.Cu): Bottom GND + thermal pad coupling</text>')
 
     lines.append('</svg>')
     svg_path = RENDERS / "fome-mc-floorplan-zones.svg"
@@ -279,8 +283,8 @@ def render_pinout_diagram() -> None:
             return "#d29922", "Ignition IGBT (400V 30A)"
         if "IGN" in sig:
             return "#9e6a03", "Ignition Logic (5V Push-Pull)"
-        if sig.startswith(("INJ", "AUX_LS", "HS", "DASH")):
-            return "#1f6feb", "Injector / Low-Side / High-Side"
+        if sig.startswith(("INJ", "AUX_LS", "MAIN_RLY", "HS", "DASH")) or "LowSide" in cls:
+            return "#1f6feb", "Injector / Aux & Main Rly LS"
         if sig.startswith(("ETB", "STEP")):
             return "#0969da", "Stepper (ISC) & H-Bridge (STVA)"
         if "WBO" in sig:
@@ -315,7 +319,7 @@ def render_pinout_diagram() -> None:
     categories = [
         ("#b62324", "Power / 5V / VBUS-DFU"),
         ("#30363d", "Ground (PGND / SGND)"),
-        ("#1f6feb", "Injector / Aux Low-Side / HS"),
+        ("#1f6feb", "Injector / Aux & Main Rly LS"),
         ("#d29922", "Ignition IGBT (400V 30A)"),
         ("#9e6a03", "Ignition Logic (5V)"),
         ("#0969da", "Stepper (ISC) & H-Bridge (STVA)"),

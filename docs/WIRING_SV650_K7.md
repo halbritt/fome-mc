@@ -24,23 +24,23 @@ flowchart LR
 
   subgraph EXT["Direct-Wired Sub-Harnesses"]
     direction TB
-    LSU1["Front Cyl #1 Bosch LSU 4.9\n6-Pin DTP06-6S"]
-    LSU2["Rear Cyl #2 Bosch LSU 4.9\n6-Pin DTP06-6S"]
-    BARO_EXT["Optional External 1-Bar Baro\nGM 12614970 / Delphi PS10150"]
-    SVC["Sealed Service / Tuning Plug\nUSB (VBUS/DFU, D+, D-) + CAN1"]
+    LSU1["Front Cyl #1 Bosch LSU 4.9\n6-Pin Bosch 1 928 404 669"]
+    LSU2["Rear Cyl #2 Bosch LSU 4.9\n6-Pin Bosch 1 928 404 669"]
+    BARO_EXT["Default External 1-Bar Baro (FOMEMC-1)\nGM 12614970 / Delphi PS10150 (10–105 kPa)"]
+    SVC["Sealed Service & Telemetry Pod Plug\nUSB (VBUS/DFU, D+, D-) + CAN1 (500 kbps)"]
   end
 
   subgraph ECU["fome-mc Integrated Motorcycle ECU (162 × 115 mm)"]
     direction TB
-    J1["J1: 35-Pin TE AMPSEAL (Black 776164-1)\nPower, Grounds, INJ1..4, IGBT1..4\nAUX_LS1..4, ETB1/2, STEP, WBO HTR, DFU"]
-    J2["J2: 35-Pin TE AMPSEAL (Grey 776164-2)\nCLT, IAT, TPS1/2, MAP1/2, Gear, Knock\nVR1/2, Hall/DIN, WBO1/2 Cells, IGN_LOG, CAN1, USB"]
-    H7["U26: STM32H753ZIT6 Main MCU\n+ U25 XTSD04G SDNAND + U24 LPS25HB"]
+    J1["J1: 35-Pin TE AMPSEAL (Black 776164-1)\nPower, Grounds, INJ1..4, IGBT1..4\nAUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR, DFU"]
+    J2["J2: 35-Pin TE AMPSEAL (Grey 776164-2)\nCLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock\nVR1/2, Hall/DIN, WBO1/2 Cells, IGN_LOG, CAN1, USB"]
+    H7["U26: STM32H753ZIT6 Main MCU\n+ U25 CSNP32GCR01-AOW 4GB SDNAND\n+ U29 ATWINC1500-MR210UB U.FL Wi-Fi + U24 LPS25HB (DNP)"]
     WBO["U302 & U402: Dual STM32F042K6T6\nOnboard Wideband Controllers (Internal CAN2)"]
     J1 --> H7
     J2 --> H7
     J1 --> WBO
     J2 --> WBO
-    WBO <-->|"Internal 500 kbps CAN2\n(PB12/PB13)"| H7
+    WBO <-->|"Internal 500 kbps CAN2 (PB12/PB13)\n+ PD4..PD7 NRST/BOOT0"| H7
   end
 
   BATT --> J1
@@ -56,6 +56,7 @@ flowchart LR
   LSU1 --> J2
   LSU2 --> J1
   LSU2 --> J2
+  BARO_EXT --> J1
   BARO_EXT --> J2
   SVC --> J1
   SVC --> J2
@@ -94,7 +95,7 @@ flowchart LR
 | `J1-11` | `AUX_LS2` | `PC7` | Cooling Fan Relay Coil `-` | `B/W` or `Y/G` (ECM Pin `V`) | 20 AWG |
 | `J1-12` | `AUX_LS3` | `PA15` | PAIR Air Injection Solenoid Valve `-` | `Br/B` (ECM Pin `e`) | 20 AWG |
 | `J1-13` | `AUX_LS4` | `PD3` | Tachometer Pulse Output (`0–12 V` w/ onboard 2.2 kΩ pull-up) | `Y/Bl` (ECM Pin `Z`) | 20 AWG |
-| `J1-14` | `HS1` | `PG4` | Spare 12 V 5 A High-Side Output | Plug with `770678-1` on stock K7 | — |
+| `J1-14` | `MAIN_RLY` | `PE0` | ECU Main Relay Low-Side Hold (`U1202.6` + `D209` `B340A-13-F`) | Main Relay Coil `-` (Adapter / Harness) | 20 AWG |
 | `J1-15` | `ETB1_OUT+` | `PD12/10/11` | `STVA` Secondary Throttle Stepper Phase A+ | `W/R` (ECM Pin `[`) | 20 AWG |
 | `J1-16` | `ETB1_OUT-` | `PD12/10/11` | `STVA` Secondary Throttle Stepper Phase A- | `R` (ECM Pin `f`) | 20 AWG |
 | `J1-17` | `ETB2_OUT+` | `PD13/9/8` | `STVA` Secondary Throttle Stepper Phase B+ | `P/W` (ECM Pin `Y`) | 20 AWG |
@@ -104,14 +105,14 @@ flowchart LR
 | `J1-21` | `STEP_2A` | `PB4/7/8` | `ISC` Idle Speed Control Stepper Phase B+ | `G/W` (ECM Pin `i`) | 20 AWG |
 | `J1-22` | `STEP_2B` | `PB4/7/8` | `ISC` Idle Speed Control Stepper Phase B- | `G/B` (ECM Pin `\`) | 20 AWG |
 | `J1-23` | `WBO1_HTR-` | `WBO1:PB0` | Front Cyl #1 Bosch LSU 4.9 Pin 3 (`Heater -`) | White (LSU 4.9 #1 Pin 3) | 18 AWG |
-| `J1-24` | `WBO_HTR+` | — | Bosch LSU 4.9 #1 & #2 Pin 4 (`Heater +12V`) | Grey (LSU 4.9 #1 & #2 Pin 4 splice) | 18 AWG |
+| `J1-24` | `WBO_HTR+` | `+12V_MR` | Bosch LSU 4.9 #1 & #2 Pin 4 (`Heater +12V`) | Grey (LSU 4.9 #1 & #2 Pin 4 splice) | 18 AWG |
 | `J1-25` | `WBO2_HTR-` | `WBO2:PB0` | Rear Cyl #2 Bosch LSU 4.9 Pin 3 (`Heater -`) | White (LSU 4.9 #2 Pin 3) | 18 AWG |
-| `J1-26` | `+12V_IGN_SW` | `PC5` (`ADC_15`) | Ignition / Kill Switch Run `+12V` Input | `O/W` (ECM Pin `D`) | 20 AWG |
-| `J1-27` | `+12V_MR` | `PF11` (`ADC_16`)| Main Relay Switched `+12V` Power Input | `R/Y` (ECM Pins `A` & `B`) | 16 AWG |
-| `J1-28` | `+12V_BATT_KEEPALIVE`| — | Unswitched Battery `+12V` Keep-Alive Backup | `O/G` (ECM Pin `H`) | 20 AWG |
-| `J1-29` | `5V_SENSOR_1` | `PF12` (`ADC_17`)| Regulated `+5.00V` Sensor Supply #1 | `R` (ECM Pin `C`: TPS, STPS, MAP1, GP) | 20 AWG |
-| `J1-30` | `5V_SENSOR_2` | `PF14` (`PG`) | Regulated `+5.00V` Sensor Supply #2 | Aux / External 1-Bar Baro `+5V` | 20 AWG |
-| `J1-31` | `SGND` | `VSSA` | Dedicated Analog & Sensor Ground Return | `Br/B` (ECM Pin `9`) | 20 AWG |
+| `J1-26` | `+12V_IGN_SW` | `PC5` (`ADC_15`) | Ignition / Kill Switch Run `+12V` Input (`D20` OR + `R96/R97` Sense) | `O/W` (ECM Pin `D`) | 20 AWG |
+| `J1-27` | `+12V_MR` | `PF11` (`ADC_16`)| Main Relay Switched `+12V` Power Input (`D21` OR -> `12V_RAW`) | `R/Y` (ECM Pins `A` & `B`) | 16 AWG |
+| `J1-28` | `+12V_BATT_KEEPALIVE`| — | Unswitched Battery `+12V` Keep-Alive (`U41` `MIC5205` -> `VBAT`) | `O/G` (ECM Pin `H`) | 20 AWG |
+| `J1-29` | `5V_SENSOR_1` | `PA6` (`ADC_17`) | Regulated `+5.00V` Sensor Supply #1 (`U1` `TLS115D0E`) | `R` (ECM Pin `C`: TPS, STPS, MAP1, Ext Baro, GP) | 20 AWG |
+| `J1-30` | `5V_SENSOR_2` | `PF14` (`PG`) | Regulated `+5.00V` Sensor Supply #2 (`U2` `TLS115D0E`) | Aux / Telemetry Pod `+5.00V` | 20 AWG |
+| `J1-31` | `SGND` | `VSSA` | Dedicated Analog & Sensor Ground Return | `Br/B` (ECM Pin `9` + Ext Baro GND) | 20 AWG |
 | `J1-32` | `PGND_IGN` | `GND` | Ignition IGBT Emitter Power Ground Return | `B/W` (ECM Pins `p` & `q`) | 16 AWG |
 | `J1-33` | `PGND_HEATER` | `GND` | Wideband Heater & H-Bridge Ground Return | Direct to Battery `-` / Frame Ground | 16 AWG |
 | `J1-34` | `CHASSIS_ECU_GND` | `VSS` | Main ECU Logic Ground Reference | `B/W` (ECM Pin `r`) | 18 AWG |
@@ -128,7 +129,7 @@ flowchart LR
 | `J2-3` | `TPS1` | `PA1` (`ADC_1`) | Primary Throttle Position Sensor (`TPS`) | `P/B` (ECM Pin `5`) | 20 AWG |
 | `J2-4` | `TPS2_STPS` | `PA3` (`ADC_3`) | Secondary Throttle Position Sensor (`STPS`) | `W` (ECM Pin `4`) | 20 AWG |
 | `J2-5` | `MAP1_FRONT` | `PA0` (`ADC_0`) | Front Cyl #1 Intake Air Pressure (`IAP1`) + Cam Sync | `G/B` (ECM Pin `3`) | 20 AWG |
-| `J2-6` | `MAP2_REAR` | `PA2` (`ADC_2`) | External 1-Bar Baro (`GM 12614970` / `Delphi PS10150`) or Rear IAP | External Baro Signal (or Rear IAP `G/W`) | 20 AWG |
+| `J2-6` | `AV3_BARO_MAP2` | `PA2` (`ADC_2`) | Default External 1-Bar Baro (`GM 12614970` / `Delphi PS10150`, `MT_GM_1_BAR`) | External Baro Signal (`10–105 kPa`, powered by `J1-29` & `J1-31`) | 20 AWG |
 | `J2-7` | `AV5_TIPOVER` | `PA4` (`ADC_4`) | Tip-Over Pendulum Sensor (`TO`) | `Br/W` (ECM Pin `J`) | 20 AWG |
 | `J2-8` | `AV6_GEAR` | `PA5` (`ADC_5`) | 6-Speed Gear Position Switch (`GP`, 1.5 kΩ pull-up) | `P` (ECM Pin `1`) | 20 AWG |
 | `J2-9` | `KNOCK1` | `PF4` (`ADC3_9`) | Front Cyl #1 Piezo Knock Sensor | Optional Knock 1 (`RG-174` / twisted) | 20 AWG |
@@ -150,8 +151,8 @@ flowchart LR
 | `J2-25` | `IGN3_LOG` | `PG10` | 5 V Push-Pull Smart Coil 3 Trigger | Optional Smart Coil 3 | 20 AWG |
 | `J2-26` | `IGN4_LOG` | `PG9` | 5 V Push-Pull Smart Coil 4 Trigger | Optional Smart Coil 4 | 20 AWG |
 | `J2-27` | `DASH_TECH` | `PB9` | SV650 K7 7800-Baud Dash Serial (2.2 kΩ `+12V_MR`) | `B/G` (ECM Pin `U`) | 20 AWG |
-| `J2-28` | `CAN1_H` | `PD0/PD1` | External `CAN1_H` (500 kbps, 120 Ω terminated) | Service / Dash Connector `CAN_H` | 20 AWG (Twisted) |
-| `J2-29` | `CAN1_L` | `PD0/PD1` | External `CAN1_L` (500 kbps, 120 Ω terminated) | Service / Dash Connector `CAN_L` | 20 AWG (Twisted) |
+| `J2-28` | `CAN1_H` | `PD0/PD1` | External `CAN1_H` (500 kbps, `120 Ω`, 50 Hz `0x200..0x207` TX + IMU RX + OpenBLT) | Telemetry Pod / Dash / Service `CAN_H` | 20 AWG (Twisted) |
+| `J2-29` | `CAN1_L` | `PD0/PD1` | External `CAN1_L` (500 kbps, `120 Ω`, 50 Hz `0x200..0x207` TX + IMU RX + OpenBLT) | Telemetry Pod / Dash / Service `CAN_L` | 20 AWG (Twisted) |
 | `J2-30` | `WBO2_VM` | `WBO2:PA2/6` | Rear Cyl #2 Bosch LSU 4.9 Pin 2 (`Vm`) | Yellow (LSU 4.9 #2 Pin 2) | 20 AWG |
 | `J2-31` | `WBO2_IP` | `WBO2:PA1/5` | Rear Cyl #2 Bosch LSU 4.9 Pin 1 (`Ip`) | Red (LSU 4.9 #2 Pin 1) | 20 AWG |
 | `J2-32` | `WBO2_RCAL` | — | Rear Cyl #2 Bosch LSU 4.9 Pin 5 (`Rcal`) | Green (LSU 4.9 #2 Pin 5) | 20 AWG |

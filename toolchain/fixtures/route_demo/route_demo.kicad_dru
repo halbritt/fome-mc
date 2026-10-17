@@ -1,0 +1,5 @@
+(version 1)
+# Fixture rule: Power nets keep 0.4 mm from everything that is not Power.
+(rule "power_to_signal_clearance"
+	(constraint clearance (min 0.4mm))
+	(condition "A.NetClass == 'Power' && B.NetClass != 'Power'"))

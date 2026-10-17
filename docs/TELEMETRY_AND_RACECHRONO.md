@@ -10,24 +10,24 @@ This guide defines the bidirectional **`CAN1` (`J2-28` / `J2-29`, 500 kbps)** mo
 
 ## 1. System Topology & Physical Bus Wiring
 
-`fome-mc` separates its two high-speed CAN transceivers (`TJA1051T/3`, `U27` and `U17`) by function:
+`fome-mc` separates its two high-speed CAN buses (`MCP2551-I-SN`, `U4` and `U5` on `sheets/psu.kicad_sch`) by function:
 
-- **`CAN1` (Bus 0, `PD0/PD1`, `U27`)** on **`J2-28` (`CAN1_H`)** and **`J2-29` (`CAN1_L`)**: Dedicated external **500 kbps** motorsport telemetry, dash, and OpenBLT (`0x667`) bus. Includes an onboard `120 Ω` termination resistor (`R102`) at the ECU end of the harness.
-- **`CAN2` (Bus 1, `PB12/PB13`, `U17`)** on **`J2-30` (`CAN2_H`)** and **`J2-31` (`CAN2_L`)**: Dedicated **500 kbps** bus for the two internal `STM32F042K6T6` LSU 4.9 wideband controllers (`WBO1` Front `0x190/0x191`, `WBO2` Rear `0x192/0x193`) and optional external CAN2 expansion.
+- **`CAN1` (Bus 0, `PD0/PD1`, `U4` `MCP2551-I-SN`)** on **`J2-28` (`CAN1_H`)** and **`J2-29` (`CAN1_L`)**: Dedicated external **500 kbps** motorsport telemetry, dash, and OpenBLT (`0x667`) bus. Protected by `D4` (`PESD1CAN-UX`) with an onboard `120 Ω` termination resistor (`R9`) at the ECU end of the harness.
+- **`CAN2` (Bus 1, `PB12/PB13`, `U5` `MCP2551-I-SN`)**: Dedicated **internal 500 kbps** PCB bus connecting `U26` (`STM32H753ZIT6`) to the two onboard `STM32F042K6T6` LSU 4.9 wideband controllers (`WBO1` Front `0x190/0x191` via `U307` `TJA1051T/3`, `WBO2` Rear `0x192/0x193` via `U407` `TJA1051T/3`) with single `120 Ω` termination (`R10`).
 
 ```mermaid
 flowchart LR
   subgraph ECU["fome-mc ECU (Flood-Potted CNC Enclosure)"]
-    H7["STM32H753ZIT6 (U26)<br/>CAN1: PD0/PD1 @ 500 kbps<br/>SDMMC1: 4 GB SDNAND (U25)<br/>SPI4: ATWINC1500 Wi-Fi (U29)"]
-    U27["TJA1051T/3 (U27)<br/>+ 120 Ω Term (R102)"]
-    H7 --- U27
+    H7["STM32H753ZIT6 (U26)<br/>CAN1: PD0/PD1 @ 500 kbps<br/>SDMMC1: 4 GB SDNAND (U25)<br/>SPI4: ATWINC1500-MR210UB Wi-Fi (U29)"]
+    U4["MCP2551-I-SN (U4)<br/>+ PESD1CAN (D4) + 120 Ω Term (R9)"]
+    H7 --- U4
   end
 
   subgraph POD["Tail-Cowl Telemetry Pod (ESP32-S3 / STM32G4 + MCP2562FD)"]
     MCU["Telemetry MCU<br/>+ BLE 5.0 Peripheral<br/>+ 120 Ω Far-End Term"]
     IMU["6-Axis IMU (LSM6DSO32 / BMI270)<br/>200 Hz Accel + Gyro + Lean"]
     GPS["25 Hz GNSS (u-blox SAM-M10Q / NEO-M9N)"]
-    SUSP["Front Fork (120 mm) & Rear Shock (65 mm)<br/>Linear Pots (12-bit ADC @ 250 Hz)"]
+    SUSP["Front Fork (120 mm) & Rear Shock (65 mm)<br/>Linear Pots (12-bit ADC @ 200 Hz)"]
     BRK["Front & Rear Brake Pressure<br/>0–100 bar 0.5–4.5 V (@ 100 Hz)"]
     IMU --> MCU
     GPS --> MCU
@@ -41,7 +41,7 @@ flowchart LR
     PHONE -. "Export .RCZ / .CSV / Overlay" .-> CAM
   end
 
-  U27 == "Twisted Pair CAN1_H (J2-28) / CAN1_L (J2-29)<br/>500 kbps (0x200..0x207 TX, 0x174..0x17C & 0x300..0x302 RX)" ==> MCU
+  U4 == "Twisted Pair CAN1_H (J2-28) / CAN1_L (J2-29)<br/>500 kbps (0x200..0x207 TX, 0x174..0x17C & 0x300..0x302 RX)" ==> MCU
   MCU -. "BLE GATT (RaceChrono DIY CAN + GPS)" .-> PHONE
   H7 -. "Wi-Fi HTTP :80 (.mlg / .zip) & TCP :29000 (TunerStudio)" .-> PHONE
 ```
@@ -50,12 +50,12 @@ flowchart LR
 
 | Signal | `fome-mc` Pin | Wire Color / Gauge | Destination / Notes |
 |---|---|---|---|
-| `CAN1_H` | `J2-28` | White / 22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_H` |
-| `CAN1_L` | `J2-29` | Blue / 22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_L` (`120 Ω` resistor at Pod end) |
-| `+5V_SENS` (Optional) | `J2-12` | Red / 20 AWG | Protected `+5V_EXT` (`U3` `TLS115D0EJ` tracker) for ratiometric brake pressure & suspension pots |
-| `SGND` | `J2-14` | Black / 20 AWG | Sensor return ground reference for analog transducers |
-| `+12V_IGN` | Switched 12V | Orange/White / 20 AWG | Fused (`2 A`) switched ignition power for Telemetry Pod & GNSS |
-| `PGND` | Chassis / Battery `-` | Black/White / 20 AWG | Telemetry Pod power ground |
+| `CAN1_H` | `J2-28` | White / 20–22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_H` |
+| `CAN1_L` | `J2-29` | Blue / 20–22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_L` (`120 Ω` resistor at Pod end) |
+| `5V_SENSOR_2` (Optional) | `J1-30` | Red / 20 AWG | Protected `+5.00 V` (`U2` `TLS115D0E` tracker) for ratiometric brake pressure & suspension pots (or regulated locally at Pod) |
+| `SGND` | `J1-31` | Black/Brown / 20 AWG | Sensor return ground reference when using `5V_SENSOR_2` |
+| `+12V_MR` / `+12V_IGN` | `J1-27` / Switched 12V | Red/Yellow or Orange/White / 20 AWG | Fused (`2 A`) switched power for Telemetry Pod & GNSS |
+| `PGND` | `J1-34` / Chassis `-` | Black/White / 20 AWG | Telemetry Pod power ground |
 
 ---
 
@@ -117,15 +117,13 @@ To ensure that **both** the ECU's internal `.mlg` SDNAND logs and **RaceChrono P
 
 ### 3.2 Chassis Suspension, Brake Pressure & Lean Angle Frames (`0x300..0x302`)
 
-Because `fome-mc` has 8 analog voltage inputs (`AV1..AV8` on `J2-3..J2-10`) located in the front/under-tank harness, wiring rear shock potentiometer, front fork potentiometer, and front/rear hydraulic brake pressure sensors to the tail-cowl CAN node keeps high-rate chassis analog wiring short and feeds both RaceChrono and the ECU over `CAN1`:
+Because `fome-mc`'s six 0–5 V analog inputs on `J2-3..J2-8` (`TPS1` `PA1`, `TPS2_STPS` `PA3`, `MAP1_FRONT` `PA0`, `AV3_BARO_MAP2` `PA2` external 1-bar barometer, `AV5_TIPOVER` `PA4`, and `AV6_GEAR` `PA5`) are dedicated to engine and SV650 chassis sensors, wiring the rear shock linear potentiometer, front fork linear potentiometer, and front/rear hydraulic brake pressure transducers to the tail-cowl `CAN1` telemetry pod keeps high-rate chassis analog wiring short and feeds both RaceChrono Pro and the ECU over `CAN1`:
 
 | CAN ID (Hex / Dec) | Rate | Bytes `0..1` (`int16_le`) | Bytes `2..3` (`int16_le`) | Bytes `4..5` (`int16_le`) | Bytes `6..7` (`int16_le`) |
 |---|---|---|---|---|---|
 | `0x300` (`768`) | `200 Hz` | **`FrontForkTravel`** (`0.01 mm/LSB`, `0..130.00 mm`) | **`RearShockTravel`** (`0.01 mm/LSB`, `0..70.00 mm`) | `FrontForkVel` (`1 mm/s/LSB`) | `RearShockVel` (`1 mm/s/LSB`) |
 | `0x301` (`769`) | `100 Hz` | **`FrontBrakePress`** (`0.01 bar/LSB`, `0..100.00 bar`) | **`RearBrakePress`** (`0.01 bar/LSB`, `0..100.00 bar`) | **`LeanAngle`** (`0.01 deg/LSB`, `-65..+65°`) | **`PitchAngle`** (`0.01 deg/LSB`, `-45..+45°`) |
 | `0x302` (`770`) | `25 Hz` | **`GpsSpeedKph`** (`0.01 km/h/LSB`) | `GpsHeadingDeg` (`0.01 deg/LSB`) | `GpsAltitudeM` (`0.1 m/LSB`) | `GpsSatsAndFix` (low byte sats, high byte fix) |
-
-> **Alternative Direct Analog Wiring (`J2-7..J2-10`)**: If a standalone tail-cowl CAN node is not installed, `AV5..AV8` on `J2-7..J2-10` (`PC4`, `PB0`, `PB1`, `PF11`) can directly sample Front Brake Pressure (`AuxLinear1` / `OilPressure`), Rear Brake Pressure (`AuxLinear2`), Front Fork Potentiometer (`AuxLinear3`), and Rear Shock Potentiometer (`AuxLinear4`) at the ECU!
 
 ### 3.3 FOME Lua Script for Ingesting `0x300..0x301` into ECU `.mlg` Logs
 
