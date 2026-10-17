@@ -78,13 +78,13 @@ flowchart TB
 | **Wideband O2 #1 & #2** | `2× STM32F042K6T6` (`U302`, `U402`) + `2× MCP6004` + `2× AD8628` + `2× REF3033` + `2× VND14NV04` (`Q301`, `Q401`) + `2× TJA1051T/3` (`U307`, `U407`) | `J1-23` (`WBO1_H-`), `J1-24` (`+12V_MR`), `J1-25` (`WBO2_H-`), `J2-19..22` (`WBO1`), `J2-30..33` (`WBO2`) | Internal `CAN2` (`PB12/PB13` @ 500 kbps via `U5` `MCP2551-I-SN` to `U307/U407` `TJA1051T/3`). Strapped addresses: `WBO1` = `0x190/0x191`, `WBO2` = `0x192/0x193`. H7 controls `NRST`/`BOOT0` via `PD4..PD7` |
 | **High-Current Ignition** | `4× FGD3040G2-F085` IGBTs (`Q201..Q204`, TO-252) driven by `MIC4427` (`U42..U45`) | `J1-6..9` (`PB3`, `PG15`, `PG14`, `PG13`) | `400 V` internal collector-gate SCIS clamp, `30 A`, `250 mJ`; `10 kΩ` MCU reset pull-downs prevent coil dwell during reset/DFU |
 | **5V Logic Ignition** | `4× MIC4427` (`U9, U10`) 1.5 A push-pull buffers + `100 Ω` series protection | `J2-23..26` (`PG12`, `PG11`, `PG10`, `PG9`) | Drives 3/4-wire smart coils or external igniters; `IGBT3/4` and `IGN3/4_LOG` support independent **Trailing Spark** |
-| **Fuel Injectors** | `2× VNLD5090TR-E` dual protected low-side (`U1001`, `U1002`) | `J1-1..4` (`PG5`, `PG6`, `PG7`, `PG8`) | 4 channels (`INJ1..4`), `42 V` active clamp + `B340A-13-F` (`D201..D204`) Schottky flyback diodes to `/12V_MR` |
-| **Aux Low-Side, Main Relay & High-Side** | `4× VNLD5090TR-E` (`U1101..U1202`) + `BTS716G` (`U40`, spare) | `J1-10..13` (`LS5..LS8`), `J1-14` (`MAIN_RLY` via `PE0` -> `U1202.6` + `D209` flyback), `J2-27` (`LS14` / `DASH_TECH`) | `MAIN_RLY` (`PE0`) drives external main relay coil on `J1-14` with `D209` (`B340A-13-F`) flyback to `/12V_MR`; `J2-27` includes `R212` `2.2 kΩ` pull-up to `/12V_MR` |
-| **Idle Stepper (`ISC`)** | `DRV8825PWPR` (`U202`, HTSSOP-28) bipolar microstepping driver | `J1-19..22` (`STEP_1A/1B/2A/2B`), `PB4` (`STEP`), `PB7` (`DIR`), `PB8` (`~EN`) | Regulated `0.75 A` chopper limit (`0.20 Ω` sense, `VREF = 0.38 V`) for SV650 4-wire `ISC` idle valve |
+| **Fuel Injectors (`FOMEMC-14`)** | `2× VNLD5090TR-E` dual protected low-side (`U1001`, `U1002`) + `74HCT125D` (`U1003`) `+5V` CMOS buffer | `J1-1..4` (`PG5`, `PG6`, `PG7`, `PG8`) | 4 channels (`INJ1..4`), `4.9 V` gate drive (`U1003`), `42 V` active clamp + `B340A-13-F` (`D201..D204`) Schottky flyback diodes to `/12V_MR` |
+| **Aux Low-Side, Main Relay & High-Side (`FOMEMC-14`)** | `4× VNLD5090TR-E` (`U1101..U1202`) + `2× 74HCT125D` (`U1103`, `U1203`) `+5V` CMOS buffers + `BTS716G` (`U40`, spare) | `J1-10..13` (`LS5..LS8`), `J1-14` (`MAIN_RLY` via `PE0` -> `U1203` -> `U1202.6` + `D209` flyback), `J2-27` (`LS14` / `DASH_TECH`) | `MAIN_RLY` (`PE0`) drives external main relay coil on `J1-14` with `D209` (`B340A-13-F`) flyback to `/12V_MR`; `J2-27` includes `R212` `2.2 kΩ` pull-up to `/12V_MR` |
+| **Idle Stepper (`ISC`)** | `DRV8825PWPR` (`U202`, HTSSOP-28) bipolar microstepping driver | `J1-19..22` (`STEP_1A/1B/2A/2B`), `PB4` (`STEP`), `PB7` (`DIR`), `PB8` (`~EN`) | Regulated `0.75 A` chopper limit (`0.33 Ω` sense, `VREF = 0.38 V`) for SV650 4-wire `ISC` idle valve |
 | **Secondary Throttle (`STVA`) / Dual ETB** | `2× TLE9201SG` (`U201`, `U203`, PG-DSO-12) 6 A H-bridges | `J1-15..18` (`ETB1_OUT+/-`, `ETB2_OUT+/-`), `PC6/PA8/PC7`, `PC9/PD14/PD13` | Drives SV650 4-wire `STVA` secondary throttle stepper or dual DC drive-by-wire throttles |
 | **Crank/Cam VR & Hall** | `2× MAX9924UAUB+` (`U13, U14`) differential adaptive VR conditioners + `SN74LVC2G17DB` (`U8, U9, U10`) +3V3 Hall buffers | `J2-11..14` (`VR1+`/`VR1-` -> `PE14`, `VR2+`/`VR2-` -> `PE15`), `J2-15..18` (`DIGITAL_1..4` -> `PG1, PG0, PE11, PE10`) | Mode A1 adaptive peak threshold (`50 mVpp` cranking to `100 Vpp` redline) |
-| **Analog, Baro (`FOMEMC-1`), Temp & Knock** | `MCP6004` buffers (`U7, U15, U17, U19, U21`) + `SRV05-4` TVS arrays (`U16, U18, U20, U22`) | `J2-1..8` (`PC4, PC5, PA7, PA3, PA0, PA2, PA4, PA5`), `J2-9..10` (`PF4, PF5` `ADC3`) | `2.7 kΩ 0.1%` bias on `AT1`/`AT2` (`CLT`/`IAT`); **`J2-6` (`PA2` / `EFI_ADC_2`) defaults to external `MT_GM_1_BAR` (`GM 12614970` / `Delphi PS10150` `10–105 kPa`) barometer** for single-pour flood potting (`U24` `LPS25HBTR` DNP); active bandpass knock filter (`U7`) on `/knock/FILTERED_1` (`PF4`) & `/knock/FILTERED_2` (`PF5`) |
-| **Power Supply & Keep-Alive** | `D20/D21` (`B340A-13-F`) diode-OR + `SMCJ24A` (`D1, D22`) unidirectional TVS + `AO4485` (`Q1`) P-MOSFET reverse block + `L1/C6` input filter (no boost) + `LMR16020PDDAR` (`U3`, 60 V 2 A buck) + `2× TLS115D0E` (`U1, U2`) + `TLV75733PDBVR` (`U6`, 3.3 V 1 A LDO) + `MIC5205-3.3YM5` (`U41` `VBAT`) + `EEHZC1H470P` hybrid polymer (`C1, C6`) & Murata `GCJ` soft-term 50 V X7R MLCCs | `J1-26` (`+12V_IGN_SW`), `J1-24/27` (`+12V_MR`), `J1-28` (`Perm_Live`), `J1-29..30` (`5V_SENSOR_1/2`), `J1-5, 31..34` (`GND`) | Boots on `J1-26` (`+12V_IGN_SW`, sensed by `R96/R97` into `U26.45` `12V_DIVIDED`) and latches `/12V_MR` (`J1-27`) via `PE0` -> `J1-14` (`MAIN_RLY`). Connector brownout floor is **`~4.0–4.2 V`** (set by `LMR16020` UVLO + `D20/D21` drop) |
+| **Analog, Baro (`FOMEMC-1`), Gear (`FOMEMC-15`), Temp & Knock** | `MCP6004` buffers (`U7, U15, U17, U19, U21`) + `SRV05-4` TVS arrays (`U16, U18, U20, U22`) | `J2-1..8` (`PC4, PC5, PA7, PA3, PA0, PA2, PA4, PA5`), `J2-9..10` (`PF4, PF5` `ADC3`) | `2.7 kΩ 0.1%` bias on `AT1`/`AT2` (`CLT`/`IAT`); **`R219 = 1.5 kΩ 1%` (`C22843`) pull-up to `/5V_SENSOR_1` on `AV6_GEAR` (`J2-8`, `PA5`)**; **`J2-6` (`PA2` / `EFI_ADC_2`) defaults to external `MT_GM_1_BAR` (`GM 12614970` / `Delphi PS10150` `10–105 kPa`) barometer** for single-pour flood potting (`U24` `LPS25HBTR` DNP); active bandpass knock filter (`U7`) on `/knock/FILTERED_1` (`PF4`) & `/knock/FILTERED_2` (`PF5`) |
+| **Power Supply & Keep-Alive (`FOMEMC-13`)** | `D20/D21` (`B340A-13-F`) diode-OR + `SMCJ24A` (`D1, D22`) unidirectional TVS + `AO4485` (`Q1`) P-MOSFET reverse block + `L1/C6` input filter (no boost) + `LMR16020PDDAR` (`U3`, 60 V 2 A buck) + `C12` (`GCM188R71C106KA64D` `10 µF 16 V X7R` `C3092605`) + `2× TLS115D0E` (`U1, U2`) + `TLV75733PDBVR` (`U6`, 3.3 V 1 A LDO) + `MIC5205-3.3YM5` (`U41` `VBAT`) + `EEHZC1H470P` hybrid polymer (`C1, C6`) & Murata `GCJ` soft-term 50 V X7R MLCCs | `J1-26` (`+12V_IGN_SW`), `J1-24/27` (`+12V_MR`), `J1-28` (`Perm_Live`), `J1-29..30` (`5V_SENSOR_1/2`), `J1-5, 31..34` (`GND`) | Boots on `J1-26` (`+12V_IGN_SW`, sensed by `R96/R97` into `U26.45` `12V_DIVIDED`) and latches `/12V_MR` (`J1-27`) via `PE0` -> `J1-14` (`MAIN_RLY`). Connector brownout floor is **`~4.0–4.2 V`** (set by `LMR16020` UVLO + `D20/D21` drop) |
 | **Post-Potting Recovery** | Dual-threshold `J1-35` (`RC2` / `USB_VBUS_DFU`) + `PD4..PD7` | `J1-35`, `J2-34` (`USB_D+`), `J2-35` (`USB_D-`), `J2-28..29` (`CAN1`) | `+5 V` on `J1-35` = normal USB/RusEFI/MSD; `+12 V` on `J1-35` biases `R209` override to assert `STM32H753 BOOT0 = 1` (`0483:df11` ROM DFU) through the sealed harness |
 
 ---
@@ -154,10 +154,10 @@ fome-mc/
 │   ├── ign4.kicad_sch               # 4x 5V logic-level push-pull coil drivers (MIC4427 + 100R)
 │   ├── stepper_etb.kicad_sch        # DRV8825PWPR stepper + dual TLE9201SG parent + D201..D209 low-side & MAIN_RLY clamps
 │   ├── etb-9201.kicad_sch           # TLE9201SG 6A H-bridge subsheet (instantiated twice: etb1, etb2)
-│   ├── lowside_quad.kicad_sch       # Dual VNLD5090 protected low-side driver subsheet (INJ1..4, LS5..8, MAIN_RLY, DASH_TECH)
+│   ├── lowside_quad.kicad_sch       # Dual VNLD5090 + 74HCT125D 5V CMOS buffer low-side subsheet (INJ1..4, LS5..8, MAIN_RLY, DASH_TECH)
 │   ├── highside_quad.kicad_sch      # BTS716G protected high-side driver
 │   ├── triggers.kicad_sch           # 2x MAX9924UAUB+ differential VR conditioners + 4x Hall/digital inputs
-│   ├── quad_analog.kicad_sch        # MCP6004 buffered 0-5V analog input conditioning + SRV05-4 ESD
+│   ├── quad_analog.kicad_sch        # MCP6004 buffered 0-5V analog input conditioning + R219 1.5k AV6_GEAR pull-up + SRV05-4 ESD
 │   ├── quad_analog_pullup.kicad_sch # Precision 2.7k 0.1% thermistor bias & 0-5V analog inputs
 │   └── knock.kicad_sch              # 2-channel active bandpass knock conditioning (PF4/PF5 ADC3)
 ├── libs/
@@ -172,8 +172,8 @@ fome-mc/
 │   ├── renders/                     # High-resolution PNG/SVG/PDF PCB layer, floorplan & pinout renders
 │   └── schematics/                  # All 21 schematic sheets in SVG + compiled fome-mc-schematics.pdf
 ├── export/
-│   ├── BOM-fome-mc.csv              # JLCPCB PCBA Bill of Materials (106 grouped lines, 475 schematic parts, LCSC part numbers)
-│   ├── CPL-fome-mc.csv              # JLCPCB PCBA Component Placement / Centroid file
+│   ├── BOM-fome-mc.csv              # JLCPCB PCBA Bill of Materials (111 grouped lines, 506 schematic parts, LCSC part numbers)
+│   ├── CPL-fome-mc.csv              # JLCPCB PCBA Component Placement / Centroid file (492 populated footprints)
 │   └── gerbers/                     # 4-layer Gerbers, Excellon drill files, job file & fome-mc-gerbers.zip
 ├── scripts/
 │   ├── verify_io_map.py             # Cross-checks io-map.csv against schematics, netlist, and FOME firmware
@@ -195,20 +195,19 @@ make doctor
 # 2. Verify 100% pinout parity across io-map.csv, schematics, netlist, and fome-fw
 python3 scripts/verify_io_map.py
 
-# 3. Run schematic ERC, netlist extraction, and manufacturing exports
-make erc
-make netlist
-make export
+# 3. Run schematic ERC, PCB DRC, netlist extraction, manufacturing exports, and analysis
+make check
 ```
 
 ### Current Verification Status
 
 | Gate | Result | Details |
 | :--- | :--- | :--- |
-| **`verify_io_map.py`** | **PASS** | `70 / 70` `J1`/`J2` pins + `22` internal buses + `475` netlist components verified across `io-map.csv`, `export/fome-mc.net`, and `fome-fw` |
-| **Schematic ERC (`make erc`)** | **PASS** | **`0` errors** and `2,115` warnings across all 21 hierarchical schematic sheets (remediated from `HEAD` `f5abd10` baseline of `60` errors / `2,580` warnings; historical `reports/toolchain/baseline/` snapshot had `35` errors / `1,446` warnings) |
-| **Netlist (`make netlist`)** | **PASS** | `475` components, `0` unannotated, `0` duplicate references; `/knock/FILTERED_1` (`U26.14`) and `/knock/FILTERED_2` (`U26.15`) isolated from `/12V_MR` and `/5V_SENSOR_1`; `/MAIN_RLY` (`PE0` -> `U1202.6` + `D209` -> `J1-14`), `D20/D21` diode-OR (`12V_IGN_SW` + `12V_MR` -> `12V_RAW`), and `SPI4` Wi-Fi (`U29` `ATWINC1500-MR210UB`) verified |
-| **Exports (`make export`)** | **PASS** | Regenerated `export/fome-mc.net`, `export/BOM-fome-mc.csv` (`106` grouped lines, `475` parts, 100% in-stock LCSC part numbers), schematic PDF/SVGs, and KiBot outputs |
+| **`verify_io_map.py`** | **PASS** | `70 / 70` `J1`/`J2` pins + `22` internal buses + `506` netlist components verified across `io-map.csv`, `export/fome-mc.net`, and `fome-fw` |
+| **Schematic ERC (`make erc`)** | **PASS** | **`0` errors** across all 21 hierarchical schematic sheets |
+| **PCB DRC (`make drc`)** | **PASS** | **`0` errors**, **`0` `unconnected_items`**, **`0` `schematic_parity`**, **`0` `starved_thermal`** (`min_resolved_spokes: 2`), `0` `track_dangling`, `0` `via_dangling` |
+| **Netlist & Analysis (`make netlist`, `make analyze`)** | **PASS** | `506` schematic components, `492` populated PCB footprints, `491` nets, `routing_complete: true` |
+| **Exports (`make export`)** | **PASS** | Regenerated `export/fome-mc.net`, `export/BOM-fome-mc.csv` (`111` grouped lines, `506` parts, 100% in-stock LCSC part numbers), `export/CPL-fome-mc.csv` (`492` footprints), schematic PDF/SVGs, and KiBot Gerbers/drills |
 
 
 

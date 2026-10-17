@@ -10,6 +10,127 @@
 		(rev "v1.0-atlas-h7")
 	)
 	(lib_symbols
+		(symbol "Device:R"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Connector_Generic:Conn_01x35"
 			(pin_names (offset 1.016) hide)
 			(exclude_from_sim no)
@@ -2631,12 +2752,6 @@
 		(color 0 0 0 0)
 		(uuid "35431843-170f-401f-88d7-da91172bed86")
 	)
-	(junction
-		(at 114.3 180.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "abf6e52d-9370-4ffc-b422-1d07808e9652")
-	)
 	(no_connect
 		(at 45.085 64.77)
 		(uuid "334c9c86-adf5-46bb-b399-75e311802102")
@@ -2664,16 +2779,6 @@
 			(type default)
 		)
 		(uuid "01cd5cd7-ac9c-43b0-996d-63c65ef41461")
-	)
-	(wire
-		(pts
-			(xy 194.31 102.87) (xy 195.58 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "09ab0b5c-3dee-42c8-b9e5-de0673874ccd")
 	)
 	(wire
 		(pts
@@ -2854,16 +2959,6 @@
 			(type default)
 		)
 		(uuid "444b2eaf-241d-42e5-8717-27a83d099c5b")
-	)
-	(wire
-		(pts
-			(xy 114.3 180.325) (xy 114.3 180.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "44e58aa1-a350-486a-9273-2c7c67593d04")
 	)
 	(wire
 		(pts
@@ -3514,16 +3609,6 @@
 			(type default)
 		)
 		(uuid "fead07ab-5a70-40db-ada8-c72dcc827bfc")
-	)
-	(wire
-		(pts
-			(xy 194.31 102.87) (xy 194.343 102.899)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ff1dd78f-49bf-4594-81a3-6c6cf87fa6e8")
 	)
 	(text "LEFT"
 		(exclude_from_sim no)
@@ -7935,27 +8020,6 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 87.63) (xy 119.38 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "04e9f721-67a1-504c-9460-e8594edefea5")
-	)
-	(label "ETB1_DIS"
-		(at 119.38 87.63 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8bfbba9e-9562-514a-b199-6ee114d66223")
-	)
-	(wire
-		(pts
 			(xy 114.3 91.44) (xy 119.38 91.44)
 		)
 		(stroke
@@ -8730,7 +8794,7 @@
 		)
 		(uuid "42c36937-17c9-5f2d-b0f6-df3ed486bb37")
 	)
-	(label "LS14"
+	(label "LS8"
 		(at 205.74 91.44 180)
 		(fields_autoplaced yes)
 		(effects
@@ -11404,5 +11468,80 @@
 	(no_connect
 		(at 137.795 128.27)
 		(uuid "24a3d37b-64c1-598f-8c2f-809cb801e1e1")
+	)
+	(wire
+		(pts
+			(xy 19.05 41.91) (xy 21.59 41.91)
+		)
+		(stroke (width 0) (type default))
+		(uuid "e2190001-0000-4000-8000-000000000219")
+	)
+	(label "5V_SENSOR_1"
+		(at 19.05 41.91 180)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "e2190002-0000-4000-8000-000000000219")
+	)
+	(wire
+		(pts
+			(xy 29.21 41.91) (xy 34.29 41.91)
+		)
+		(stroke (width 0) (type default))
+		(uuid "e2190003-0000-4000-8000-000000000219")
+	)
+	(label "AV6"
+		(at 34.29 41.91 0)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "e2190004-0000-4000-8000-000000000219")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 25.4 41.91 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e2190005-0000-4000-8000-000000000219")
+		(property "Reference" "R219"
+			(at 25.4 39.37 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "1.5k"
+			(at 25.4 44.45 0)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 25.4 41.91 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Datasheet" "~"
+			(at 25.4 41.91 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "Description" "1.5kOhm 1% 0603 Thick Film Resistor (Gear Position Pull-Up)"
+			(at 25.4 41.91 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "PN" "0603WAF1501T5E"
+			(at 25.4 41.91 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(property "LCSC" "C22843"
+			(at 25.4 41.91 0)
+			(effects (font (size 1.27 1.27)) (hide yes))
+		)
+		(pin "1" (uuid "e2190006-0000-4000-8000-000000000219"))
+		(pin "2" (uuid "e2190007-0000-4000-8000-000000000219"))
+		(instances
+			(project "fome-mc"
+				(path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4"
+					(reference "R219")
+					(unit 1)
+				)
+			)
+		)
 	)
 )
