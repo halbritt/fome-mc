@@ -15,7 +15,7 @@ PY      := /usr/bin/python3
 EDA     := $(PY) toolchain/eda.py
 RUN     := $(EDA) run --project $(PROJECT) --fill $(FILL) $(if $(REV),--rev $(REV)) --steps
 
-.PHONY: help bootstrap doctor erc drc netlist export analyze check simulate smoke baseline skills clean
+.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean
 
 help:
 	@sed -n '1,12p' Makefile
@@ -43,6 +43,12 @@ analyze:
 
 check:
 	$(RUN) erc,drc,netlist,export,analyze
+
+renders:
+	$(PY) scripts/render_docs.py
+
+verify-io:
+	$(PY) scripts/verify_io_map.py
 
 simulate:
 	@test -n "$(DECK)" || { echo "usage: make simulate DECK=path.cir [EXPECT=path.json]"; exit 2; }

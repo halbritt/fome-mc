@@ -1,195 +1,210 @@
-# `fome-mc` — Integrated FOME Motorcycle ECU
+# `fome-mc` — Integrated FOME-Native Motorcycle ECU
 
-`fome-mc` is a 4-layer, `162.0 mm × 115.0 mm` single-PCB motorcycle ECU running [FOME](https://github.com/halbritt/fome-fw/tree/fome-mc/firmware/config/boards/fome-mc) (`firmware/config/boards/fome-mc`). The first vehicle application is the **2007 Suzuki SV650 (K7, dual-plug 90° V-twin)**.
+**`fome-mc`** is a single-PCB, 4-layer (`162.0 mm × 115.0 mm`), pottable motorcycle engine control unit running [FOME (`fome-fw`)](https://github.com/halbritt/fome-fw) on an `STM32H753ZIT6` / `STM32H743ZIT6` paired with **two onboard `STM32F042K6T6` Bosch LSU 4.9 wideband controllers**, **four 400 V / 30 A ignition IGBTs**, **four 5 V logic ignition outputs**, **four high-Z injector drivers**, **dual 4-wire stepper drivers (`DRV8825` + `2× TLE9201SG`)**, **dual `MAX9924` adaptive VR conditioners**, **soldered industrial SLC SDNAND logging**, and **dual 35-pin TE Connectivity AMPSEAL (`776163-1` Black & `776163-2` Grey) sealed harness headers**.
+
+The primary reference application is the **2007 Suzuki SV650 (K7)** (`645 cc` 90° V-twin, odd-fire `270° / 450°`, dual spark plugs per cylinder = 4 plugs total, `24-2` crank VR trigger, camless `VVT_MAP_V_TWIN` intake-MAP phase sync, dual 4-wire steppers for `ISC` idle and `STVA` secondary throttle blades, and dual Bosch LSU 4.9 wideband O2 sensors).
+
+![fome-mc 4-Layer PCB Floorplan & Functional Zones](docs/renders/fome-mc-floorplan-zones.png)
 
 ---
 
-## 1. Hardware Specifications & Status
+## Documentation & Visual Index
 
-| Subsystem | Implementation |
+| Document / Artifact | Description |
 | :--- | :--- |
-| **Main MCU** | `U26`: `STM32H753ZIT6` / `STM32H743ZIT6` (LQFP-144, 480 MHz, 2 MB Flash, 1 MB RAM) |
-| **Wideband Controllers** | `U302`, `U402`: 2× onboard `STM32F042K6T6` + `MCP6004` + `AD8628` + `REF3033` + `VND14NV04` (`wideband_controller` Rev C) for two Bosch LSU 4.9 sensors on internal 500 kbps `CAN2` (`PB12/PB13`) |
-| **Harness Connectors** | Dual 35-pin TE Connectivity AMPSEAL right-angle headers (70 pins total):<br>• `J1`: `776163-1` (Key 1 Black, mates with `776164-1`) — Power, Grounds, Injectors, IGBTs, Steppers, LSU Heaters<br>• `J2`: `776163-2` (Key 2 Grey, mates with `776164-2`) — Analog/VR/Hall Sensors, LSU Cells, Logic Coils, `CAN1`, `USB` |
-| **Ignition Outputs** | • 4× High-Current IGBTs (`IGBT1..4` on `J1-6..9`): `FGD3040G2-F085C` (400 V, 30 A) driven by `MIC4427` (`PB3, PG15, PG14, PG13`)<br>• 4× 5 V Logic Outputs (`IGN1_LOG..4_LOG` on `J2-23..26`): `MIC4427` + 100 Ω series (`PG12, PG11, PG10, PG9`) |
-| **Low-Side & High-Side** | • 4× Injector Low-Side (`INJ1..4` on `J1-1..4`): `VNLD5090TR-E` + `SK310A` clamp (`PG5..PG8`)<br>• 4× Aux Low-Side (`AUX_LS1..4` on `J1-10..13`): `VNLD5090TR-E` (`PC6, PC7, PA15, PD3`; `J1-13` has 2.2 kΩ `+12V_MR` pull-up for Tach)<br>• 1× Dash Serial Low-Side (`DASH_TECH` on `J2-27`): `VNLD5090TR-E` (`PB9`) with 2.2 kΩ `+12V_MR` pull-up (SV650 7800-baud dash)<br>• 1× High-Side (`HS1` on `J1-14`): `VNQ7140AJ` (`PG4`) |
-| **Stepper & H-Bridges** | • Onboard `DRV8825PWPR` (`U202`) on `J1-19..22` (`STEP_1A/1B/2A/2B`, `PB4/PB7/PB8`, 0.75 A limit) for SV650 `ISC` 4-wire idle stepper<br>• 2× `TLE9201SG` 6 A H-Bridges (`U201`, `U203`) on `J1-15..18` (`ETB1_OUT+/-`, `ETB2_OUT+/-`) for SV650 `STVA` 4-wire secondary throttle stepper or dual DBW throttles |
-| **Trigger & Digital Inputs** | • 2× Differential VR Conditioners (`VR1+/-`, `VR2+/-` on `J2-11..14`): `MAX9924UAUB+` (`U3 -> PE14`, `U4 -> PE15`)<br>• 4× Protected Hall/Switch Inputs (`J2-15..18`): 4.7 kΩ pull-up to `5V_SENSOR_2` (`PG1, PG0, PE11, PE10`) |
-| **Analog & Knock Inputs** | • 2× Thermistor Inputs (`CLT`, `IAT` on `J2-1..2`): 2.7 kΩ 0.1% pull-up to `5V_SENSOR_2` (`PC1, PC2`)<br>• 6× Ratiometric 0–5 V Inputs (`J2-3..8`): 5.6 kΩ / 10 kΩ divider + `MCP6004` buffer (`PA0..PA5`; `J2-8` `AV6_GEAR` has 1.5 kΩ pull-up to `5V_SENSOR_1` for SV650 6-speed gear switch)<br>• 2× Piezo Knock Channels (`KNOCK1..2` on `J2-9..10`): Active bandpass into `PF4` (`ADC3_INP9`) & `PF5` (`ADC3_INP4`) |
-| **Barometric Sensor** | `U24`: `LPS25HBTR` (`I2C2` on `PB10/PB11`) at `(121.62, 100.61 mm)` inside an `ID 8.0 mm × OD 11.0 mm` potting keep-out dam for an ePTFE membrane enclosure vent (`Amphenol LTW VE80410` / `Gore PMF100321`) |
-| **Logging Storage** | `U25`: Soldered `XTSD04GLGEAG` (4 Gbit / 512 MB SLC SD NAND, `6 × 8 mm` LGA-8) on 4-bit `SDMMC1` (`PC8..PC12, PD2`), ~20.2 hr capacity at 50 Hz; optional DNP `J10` microSD footprint |
-| **Power Supply** | `SMBJ24CA` TVS + reverse-polarity PMOS -> `LM2733`/`LM3481` `VBOOST` pre-regulator -> `LMR14020` 5 V 2 A buck -> 2× `TLS115D0E` tracked 5 V sensor LDOs (`5V_SENSOR_1`, `5V_SENSOR_2`) + `BD3571` 3.3 V LDO |
-| **Current Design State** | Schematics (`0` ERC errors), 474-part PCB placement (`0` DRC violations), BOM/CPL exports, and `fome-mc` firmware (`16/16` unit tests passing) are complete. **`237` ratsnest connections across `168` nets remain to be routed in KiCad `pcbnew` before Gerber fabrication.** |
+| [**`docs/WIRING_SV650_K7.md`**](docs/WIRING_SV650_K7.md) | Complete 2007 Suzuki SV650 (K7) adapter harness build guide, mating TE AMPSEAL connector BOM, pin-by-pin `J1`/`J2` cross-reference, 2-coil vs. 4-coil Primary+Trailing ignition wiring, and dual Bosch LSU 4.9 pinouts |
+| [**`docs/POTTING_AND_ENCLOSURE.md`**](docs/POTTING_AND_ENCLOSURE.md) | CNC enclosure stackup, `13.4 W` thermal dissipation budget, thermal gap-pad coupling, single-pour flood potting (external GM/Delphi 1-bar baro, `FOMEMC-1`) vs. vented onboard baro, and post-potting DFU recovery |
+| [**`docs/DESIGN.md`**](docs/DESIGN.md) | Complete electrical architecture, circuit-block reuse/adaptation ledger, power tree, and STM32H753 resource mapping |
+| [**`docs/VALIDATION.md`**](docs/VALIDATION.md) | Automated ERC/DRC/Parity/Gerber/JLCPCB DFM verification ledger and 12-step pre-engine hardware bring-up checklist |
+| [**`docs/schematics/fome-mc-schematics.pdf`**](docs/schematics/fome-mc-schematics.pdf) | Full 21-sheet hierarchical schematic PDF (plus individual sheet SVGs in [`docs/schematics/`](docs/schematics/)) |
+| [**`docs/renders/fome-mc-pcb-layers.pdf`**](docs/renders/fome-mc-pcb-layers.pdf) | Multi-page PCB layer plot PDF (`F.Cu`, `In1.Cu`, `In2.Cu`, `B.Cu`, `F.Silkscreen`, `B.Silkscreen`, `F.Fab`, `Edge.Cuts`) |
+| [**`io-map.csv`**](io-map.csv) | Machine-verified 87-row master pinout CSV (`J1-1..35`, `J2-1..35`, and 17 internal MCU/WBO/SDNAND buses) |
+| [**`CHANGELOG.md`**](CHANGELOG.md) | Engineering decision history, schematic/PCB integration milestones, and upstream bug fixes |
 
 ---
 
-## 2. Connector Pinout (`J1` & `J2` TE AMPSEAL 35-Pin)
+## System Architecture
 
-### `J1` — 35-Pin AMPSEAL Black (`776163-1`, Power & High-Current Actuators)
+```mermaid
+flowchart TB
+    subgraph J1["J1 — TE AMPSEAL 35-Pin (Black 776163-1): Power & High-Current Outputs"]
+        J1_PWR["+12V_BATT (J1-23)<br/>+12V_IGN_SW (J1-24)<br/>+12V_MR_IN (J1-25..26)<br/>WBO_HTR+ (J1-27)"]
+        J1_INJ["INJ1..INJ4 (J1-1..4)<br/>4x High-Z Injector LS"]
+        J1_IGBT["IGBT1..IGBT4 (J1-6..9)<br/>4x 400V 30A Dumb Coil IGBTs"]
+        J1_AUX["AUX_LS1..4 (J1-10..13)<br/>Fuel Pump, Fan, PAIR, Tach<br/>HS1_OUT (J1-14)"]
+        J1_MOT["ETB1+/- & ETB2+/- (J1-15..18)<br/>STEP_1A/1B/2A/2B (J1-19..22)"]
+        J1_DFU["USB_VBUS / +12V DFU (J1-35)<br/>PGND (J1-30..34) • SGND (J1-29)"]
+    end
 
-| Pin | Signal | Net | MCU Pin | Rating / Driver | 2007 Suzuki SV650 (K7) Connection |
-| :---: | :--- | :--- | :---: | :--- | :--- |
-| `J1-1` | `INJ1` | `/LS1` | `PG5` | Low-Side 5 A (`U1001` `VNLD5090` + `D201`) | Front Cyl #1 Primary Injector `-` (`Gr/W`, ECM Pin `a`) |
-| `J1-2` | `INJ2` | `/LS2` | `PG6` | Low-Side 5 A (`U1001` `VNLD5090` + `D202`) | Rear Cyl #2 Primary Injector `-` (`Gr/B`, ECM Pin `b`) |
-| `J1-3` | `INJ3` | `/LS3` | `PG7` | Low-Side 5 A (`U1002` `VNLD5090` + `D203`) | Spare / Staged Front Injector 3 `-` |
-| `J1-4` | `INJ4` | `/LS4` | `PG8` | Low-Side 5 A (`U1002` `VNLD5090` + `D204`) | Spare / Staged Rear Injector 4 `-` |
-| `J1-5` | `PGND_INJ` | `GND` | `GND` | Power Ground Return (15 A) | Injector & Low-Side Solenoid Return (`B/W`, ECM `p/q`) |
-| `J1-6` | `IGBT1` | `/IGN1_COIL` | `PB3` | 400 V 30 A IGBT (`Q201` `FGD3040G2`) | Front Cyl #1 Primary Coil `-` (`W/Bl`, ECM Pin `l`) |
-| `J1-7` | `IGBT2` | `/IGN2_COIL` | `PG15` | 400 V 30 A IGBT (`Q202` `FGD3040G2`) | Rear Cyl #2 Primary Coil `-` (`B`, ECM Pin `c`) |
-| `J1-8` | `IGBT3` | `/IGN3_COIL` | `PG14` | 400 V 30 A IGBT (`Q203` `FGD3040G2`) | Front Cyl #1 Trailing Side Coil `-` (4-Coil Split Mode) |
-| `J1-9` | `IGBT4` | `/IGN4_COIL` | `PG13` | 400 V 30 A IGBT (`Q204` `FGD3040G2`) | Rear Cyl #2 Trailing Side Coil `-` (4-Coil Split Mode) |
-| `J1-10` | `AUX_LS1` | `/LS5` | `PC6` | Low-Side 5 A (`U1101` `VNLD5090` + `D205`) | Fuel Pump Relay Coil `-` (`Y/R`, ECM Pin `W`) |
-| `J1-11` | `AUX_LS2` | `/LS6` | `PC7` | Low-Side 5 A (`U1101` `VNLD5090` + `D206`) | Cooling Fan Relay Coil `-` (`B/W`, ECM Pin `V`) |
-| `J1-12` | `AUX_LS3` | `/LS7` | `PA15` | Low-Side 5 A (`U1102` `VNLD5090` + `D207`) | PAIR Solenoid Valve `-` (`Br/B`, ECM Pin `e`) |
-| `J1-13` | `AUX_LS4` | `/LS8` | `PD3` | Low-Side + 2.2 kΩ pull-up to `+12V_MR` (`R211`) | Tachometer Pulse Output 0–12 V (`Y/Bl`, ECM Pin `Z`) |
-| `J1-14` | `HS1` | `/HS1` | `PG4` | High-Side 12 V 5 A (`U40` `VNQ7140AJ`) | Configurable High-Side Output 1 |
-| `J1-15` | `ETB1_OUT+` | `/ETB1_OUT+` | `PD12/10/11` | 6 A H-Bridge 1 (`U201` `TLE9201SG` `OUT1`) | SV650 `STVA` Stepper Phase A+ (`W/R`, ECM Pin `[`) |
-| `J1-16` | `ETB1_OUT-` | `/ETB1_OUT-` | `PD12/10/11` | 6 A H-Bridge 1 (`U201` `TLE9201SG` `OUT2`) | SV650 `STVA` Stepper Phase A- (`R`, ECM Pin `f`) |
-| `J1-17` | `ETB2_OUT+` | `/ETB2_OUT+` | `PD13/9/8` | 6 A H-Bridge 2 (`U203` `TLE9201SG` `OUT1`) | SV650 `STVA` Stepper Phase B+ (`P/W`, ECM Pin `Y`) |
-| `J1-18` | `ETB2_OUT-` | `/ETB2_OUT-` | `PD13/9/8` | 6 A H-Bridge 2 (`U203` `TLE9201SG` `OUT2`) | SV650 `STVA` Stepper Phase B- (`P`, ECM Pin `d`) |
-| `J1-19` | `STEP_1A` | `/STEP_1A` | `PB4/7/8` | 0.75 A Chopper (`U202` `DRV8825` `AOUT1`) | SV650 `ISC` Idle Stepper Phase A+ (`Br/B`, ECM Pin `g`) |
-| `J1-20` | `STEP_1B` | `/STEP_1B` | `PB4/7/8` | 0.75 A Chopper (`U202` `DRV8825` `AOUT2`) | SV650 `ISC` Idle Stepper Phase A- (`Br/W`, ECM Pin `^`) |
-| `J1-21` | `STEP_2A` | `/STEP_2A` | `PB4/7/8` | 0.75 A Chopper (`U202` `DRV8825` `BOUT1`) | SV650 `ISC` Idle Stepper Phase B+ (`G/W`, ECM Pin `i`) |
-| `J1-22` | `STEP_2B` | `/STEP_2B` | `PB4/7/8` | 0.75 A Chopper (`U202` `DRV8825` `BOUT2`) | SV650 `ISC` Idle Stepper Phase B- (`G/B`, ECM Pin `\`) |
-| `J1-23` | `WBO1_HTR-` | `/WBO1_H-` | `WBO1:PB0` | Low-Side PWM 7.5 A (`Q301` `VND14NV04`) | Front Cyl #1 LSU 4.9 Pin 3 (`Heater -`, White) |
-| `J1-24` | `WBO_HTR+` | `/12V_MR` | — | Switched `+12V_MR` Heater Feed | LSU 4.9 #1 & #2 Pin 4 (`Heater +12V`, Grey) |
-| `J1-25` | `WBO2_HTR-` | `/WBO2_H-` | `WBO2:PB0` | Low-Side PWM 7.5 A (`Q401` `VND14NV04`) | Rear Cyl #2 LSU 4.9 Pin 3 (`Heater -`, White) |
-| `J1-26` | `+12V_IGN_SW` | `/12V_RAW` | `PC5` (`ADC_15`) | Ignition Switch Run +12 V + `VBatt` Sense | Ignition / Kill Switch Run +12 V (`O/W`, ECM Pin `D`) |
-| `J1-27` | `+12V_MR` | `/12V_MR` | `PF11` (`ADC_16`) | Main Relay Switched +12 V Input | Main Relay +12 V Supply (`R/Y`, ECM Pins `A & B`) |
-| `J1-28` | `+12V_BATT_KEEPALIVE`| `/Perm_Live` | — | Unswitched Battery +12 V Backup | Unswitched Battery +12 V (`O/G`, ECM Pin `H`) |
-| `J1-29` | `5V_SENSOR_1` | `/5V_SENSOR_1` | `PF12` (`ADC_17`) | Tracked 5.00 V 150 mA (`U1` `TLS115D0E`) | Primary Sensor +5 V (`R`, ECM Pin `C`: TPS, STPS, MAP, GP) |
-| `J1-30` | `5V_SENSOR_2` | `/5V_SENSOR_2` | `PF14` (`PG`) | Tracked 5.00 V 150 mA (`U2` `TLS115D0E`) | Secondary / Aux Sensor +5 V (Hall, VSS, Aux Pressure) |
-| `J1-31` | `SGND` | `GND` | `VSSA` | Analog & Sensor Return | Sensor Ground (`Br/B`, ECM Pin `9`) |
-| `J1-32` | `PGND_IGN` | `GND` | `GND` | Ignition IGBT Emitter Return (15 A) | Ignition Power Ground (`B/W`, ECM Pins `p & q`) |
-| `J1-33` | `PGND_HEATER` | `GND` | `GND` | Wideband Heater & H-Bridge Return | Battery Negative / Chassis Ground |
-| `J1-34` | `CHASSIS_ECU_GND` | `GND` | `VSS` | Main ECU Reference Ground | ECU Logic Ground (`B/W`, ECM Pin `r`) |
-| `J1-35` | `USB_VBUS_DFU` | `/RC2` | `PA9` + `BOOT0` | `+5 V` = USB VBUS; `+12 V` = Force ROM DFU | Service / Tuning Connector Pin 1 (`+5 V` normal, `+12 V` DFU) |
+    subgraph J2["J2 — TE AMPSEAL 35-Pin (Grey 776163-2): Sensors, Wideband Cells & Comms"]
+        J2_ANA["CLT, IAT, TPS1, TPS2_STPS,<br/>MAP1_FRONT, MAP2_REAR / BARO,<br/>AV5_TIPOVER, AV6_GEAR (J2-1..8)"]
+        J2_KNK["KNOCK1 & KNOCK2 (J2-9..10)"]
+        J2_TRG["VR1+/- & VR2+/- (J2-11..14)<br/>HALL1..3 & DIN1 (J2-15..18)"]
+        J2_WBO["WBO1 LSU 4.9 (J2-19..22)<br/>WBO2 LSU 4.9 (J2-29..32)"]
+        J2_IGN["IGN1_LOG..IGN4_LOG (J2-23..26)<br/>DASH_TECH 7800-Baud (J2-27)"]
+        J2_COM["CAN1_H/L (J2-33..34)<br/>USB_D+/D- (J2-28, J2-35)"]
+    end
 
-### `J2` — 35-Pin AMPSEAL Grey (`776163-2`, Sensors, Wideband Cells, Logic Coils, CAN & USB)
+    subgraph PCB["fome-mc 4-Layer Integrated Motorcycle ECU PCB (162.0 mm × 115.0 mm)"]
+        PSU["Power Supply (sheets/psu.kicad_sch)<br/>SM15T33CA TVS • Reverse PMOS • LM2733 Vboost<br/>LMR14020 +5V Buck • 2x TLS115D0E (5VP_1/2)<br/>AMS1117 / MIC5205 +3.3V • REF3333 VREF+"]
+        MCU["Main ECU Brain (sheets/mcu.kicad_sch)<br/>STM32H753ZIT6 (U26, 480 MHz Cortex-M7)<br/>XTSD04GLGEAG 4Gbit SLC SDNAND (U25, SDMMC1)<br/>LPS25HBTR Baro (U24, I2C2)"]
+        AFE["Analog, Knock & VR Front-End<br/>MCP6004 Buffers + 2.7k 0.1% Pull-Ups<br/>2x MAX9924UAUB+ VR Conditioners<br/>Active Bandpass Knock Filter (ADC3)"]
+        DRV["Power & Motion Drivers<br/>4x MIC4427 + 4x FGD3040G2-F085 IGBTs (Q201..Q204)<br/>6x VNLD5090 Dual Low-Side (U1001..U1202) + BTS716G HS (U40)<br/>2x TLE9201SG 6A H-Bridge (U201, U203) + DRV8825 Stepper (U202)"]
+        WBO["Dual Onboard LSU 4.9 Wideband Controllers<br/>WBO1 (U302 STM32F042, 0x190) & WBO2 (U402 STM32F042, 0x192)<br/>MCP6004 + AD8628 + REF3033 + VND14NV04 Heater FETs<br/>Internal 500 kbps CAN2 Bus (PB12/PB13) + H7 Reset/BOOT0 (PE2..PE5)"]
+    end
 
-| Pin | Signal | Net | MCU Pin | Conditioning / Pull-Up | 2007 Suzuki SV650 (K7) Connection |
-| :---: | :--- | :--- | :---: | :--- | :--- |
-| `J2-1` | `CLT` | `/AT1` | `PC1` (`ADC_11`) | 2.7 kΩ 0.1% pull-up to `5V_SENSOR_2` (`R39`) | Engine Coolant Temp (`B/L`, ECM Pin `6`) |
-| `J2-2` | `IAT` | `/AT2` | `PC2` (`ADC_12`) | 2.7 kΩ 0.1% pull-up to `5V_SENSOR_2` (`R40`) | Intake Air Temp (`Lg/B`, ECM Pin `7`) |
-| `J2-3` | `TPS1` | `/AV2` | `PA1` (`ADC_1`) | 0–5 V (`5.6k/10k` div + `MCP6004` buffer) | Primary TPS (`P/B`, ECM Pin `5`) |
-| `J2-4` | `TPS2_STPS` | `/AV4` | `PA3` (`ADC_3`) | 0–5 V (`5.6k/10k` div + `MCP6004` buffer) | Secondary TPS `STPS` (`W`, ECM Pin `4`) |
-| `J2-5` | `MAP1_FRONT` | `/AV1` | `PA0` (`ADC_0`) | 0–5 V (`5.6k/10k` div + `MCP6004` buffer) | Front Cyl #1 IAP / MAP & Cam Phase (`G/B`, ECM Pin `3`) |
-| `J2-6` | `MAP2_REAR` | `/AV3` | `PA2` (`ADC_2`) | 0–5 V (`5.6k/10k` div + `MCP6004` buffer) | Rear Cyl #2 IAP / MAP or External Analog Baro |
-| `J2-7` | `AV5_TIPOVER` | `/AV5` | `PA4` (`ADC_4`) | 0–5 V (`5.6k/10k` div + `MCP6004` buffer) | Tip-Over Sensor (`Br/W`, ECM Pin `J`) |
-| `J2-8` | `AV6_GEAR` | `/AV6` | `PA5` (`ADC_5`) | 1.5 kΩ 1% pull-up to `5V_SENSOR_1` (`R210`) | 6-Speed Gear Position Switch (`P`, ECM Pin `1`) |
-| `J2-9` | `KNOCK1` | `/KNOCK_1` | `PF4` (`ADC3_9`) | 3.3 nF (`C16`) + active bandpass (`U50`) | Cyl #1 Piezo Knock Sensor |
-| `J2-10` | `KNOCK2` | `/KNOCK_2` | `PF5` (`ADC3_4`) | 3.3 nF (`C17`) + active bandpass (`U50`) | Cyl #2 Piezo Knock Sensor |
-| `J2-11` | `VR1+` | `/VR1+` | `PE14` | `U3` `MAX9924UAUB+` #1 `IN+` (10 kΩ + 1 nF) | Crankshaft Position Sensor `CKP+` 24-2 (`G`, ECM Pin `R`) |
-| `J2-12` | `VR1-` | `GND` | — | `U3` `MAX9924UAUB+` #1 `IN-` return | Crankshaft Position Sensor `CKP-` (`Bl`, ECM Pin `8`) |
-| `J2-13` | `VR2+` | `/VR2+` | `PE15` | `U4` `MAX9924UAUB+` #2 `IN+` (10 kΩ + 1 nF) | Camshaft / Secondary VR+ (Spare on camless K7) |
-| `J2-14` | `VR2-` | `GND` | — | `U4` `MAX9924UAUB+` #2 `IN-` return | Camshaft / Secondary VR- (Spare on camless K7) |
-| `J2-15` | `HALL1_CAM` | `/DIGITAL_2` | `PG1` | 4.7 kΩ pull-up to `5V_SENSOR_2` (`R24`) | Hall Cam / Aux Digital Input 1 |
-| `J2-16` | `HALL2_VSS` | `/DIGITAL_1` | `PG0` | 4.7 kΩ pull-up to `5V_SENSOR_2` (`R23`) | Vehicle Speed Sensor Hall Input (`P`, ECM Pin `K`) |
-| `J2-17` | `DIN1_CLUTCH` | `/DIGITAL_4` | `PE11` | 4.7 kΩ pull-up to `5V_SENSOR_2` (`R26`) | Clutch Switch Active-Low (`Y/G`, ECM Pin `M`) |
-| `J2-18` | `DIN2_NEUTRAL` | `/DIGITAL_3` | `PE10` | 4.7 kΩ pull-up to `5V_SENSOR_2` (`R25`) | Neutral / Sidestand Switch Active-Low (`Bl`, ECM Pin `N`) |
-| `J2-19` | `WBO1_VM` | `/WBO1_VM` | `WBO1:PA2/6` | 1.65 V Virtual Ground (`U301` `MCP6004`) | Front Cyl #1 LSU 4.9 Pin 2 (`Vm`, Yellow) |
-| `J2-20` | `WBO1_IP` | `/WBO1_IP` | `WBO1:PA1/5` | Pump Current via 61.9 Ω 0.1% (`R310`) | Front Cyl #1 LSU 4.9 Pin 1 (`Ip`, Red) |
-| `J2-21` | `WBO1_RCAL` | `/WBO1_RTRIM` | — | Calibration Trim Node (`R310:1`) | Front Cyl #1 LSU 4.9 Pin 5 (`Rcal`, Green) |
-| `J2-22` | `WBO1_UN` | `/WBO1_UN` | `WBO1:PA3/7/9`| Nernst Sense + 4.9 kHz AC ESR (`U305` `AD8628`)| Front Cyl #1 LSU 4.9 Pin 6 (`Un / Vs`, Black) |
-| `J2-23` | `IGN1_LOG` | `/IGN5` | `PG12` | 5 V Push-Pull (`U44` `MIC4427` + 100 Ω `R112`)| Optional Smart Coil 1 Logic Trigger |
-| `J2-24` | `IGN2_LOG` | `/IGN6` | `PG11` | 5 V Push-Pull (`U44` `MIC4427` + 100 Ω `R113`)| Optional Smart Coil 2 Logic Trigger |
-| `J2-25` | `IGN3_LOG` | `/IGN7` | `PG10` | 5 V Push-Pull (`U45` `MIC4427` + 100 Ω `R114`)| Optional Smart Coil 3 Logic Trigger |
-| `J2-26` | `IGN4_LOG` | `/IGN8` | `PG9` | 5 V Push-Pull (`U45` `MIC4427` + 100 Ω `R115`)| Optional Smart Coil 4 Logic Trigger |
-| `J2-27` | `DASH_TECH` | `/LS14` | `PB9` | Low-Side + 2.2 kΩ pull-up to `+12V_MR` (`R212`)| SV650 K7 7800-Baud Dash Serial (`B/G`, ECM Pin `U`) |
-| `J2-28` | `CAN1_H` | `/CAN+` | `PD0/PD1` | 500 kbps ISO 11898 (`U4` `TJA1051T/3` + 120 Ω)| External `CAN1_H` (Dash / OBD / OpenBLT) |
-| `J2-29` | `CAN1_L` | `/CAN-` | `PD0/PD1` | 500 kbps ISO 11898 (`U4` `TJA1051T/3` + 120 Ω)| External `CAN1_L` (Dash / OBD / OpenBLT) |
-| `J2-30` | `WBO2_VM` | `/WBO2_VM` | `WBO2:PA2/6` | 1.65 V Virtual Ground (`U401` `MCP6004`) | Rear Cyl #2 LSU 4.9 Pin 2 (`Vm`, Yellow) |
-| `J2-31` | `WBO2_IP` | `/WBO2_IP` | `WBO2:PA1/5` | Pump Current via 61.9 Ω 0.1% (`R410`) | Rear Cyl #2 LSU 4.9 Pin 1 (`Ip`, Red) |
-| `J2-32` | `WBO2_RCAL` | `/WBO2_RTRIM` | — | Calibration Trim Node (`R410:1`) | Rear Cyl #2 LSU 4.9 Pin 5 (`Rcal`, Green) |
-| `J2-33` | `WBO2_UN` | `/WBO2_UN` | `WBO2:PA3/7/9`| Nernst Sense + 4.9 kHz AC ESR (`U405` `AD8628`)| Rear Cyl #2 LSU 4.9 Pin 6 (`Un / Vs`, Black) |
-| `J2-34` | `USB_D+` | `/USB_D+` | `PA12` | USB FS 90 Ω Diff + `U27` `USBLC6-2SC6` | Service / Tuning USB `D+` (TunerStudio / MSD / DFU) |
-| `J2-35` | `USB_D-` | `/USB_D-` | `PA11` | USB FS 90 Ω Diff + `U27` `USBLC6-2SC6` | Service / Tuning USB `D-` (TunerStudio / MSD / DFU) |
+    J1_PWR --> PSU
+    PSU --> MCU & AFE & DRV & WBO
+    J2_ANA & J2_KNK & J2_TRG --> AFE --> MCU
+    J2_WBO <--> WBO
+    J1_PWR --> WBO
+    WBO <==>|"Internal CAN2 (500 kbps)<br/>+ PE2..PE5 NRST/BOOT0"| MCU
+    MCU --> DRV
+    DRV --> J1_INJ & J1_IGBT & J1_AUX & J1_MOT & J2_IGN
+    J2_COM & J1_DFU <--> MCU
+```
 
 ---
 
-## 3. Internal Buses & Onboard Peripherals
+## Hardware Capabilities at a Glance
 
-| Function | `STM32H753` Pin(s) | Connected IC / Node | Notes |
+| Subsystem | Hardware Implementation | Connectors / MCU Pins | Key Ratings & Notes |
 | :--- | :--- | :--- | :--- |
-| **Internal `CAN2` (Wideband Bus)** | `PB12` (`RX`), `PB13` (`TX`) | `U5` (`TJA1051T/3` H7) <-> `U200` (`WBO1/2` CAN) | 500 kbps; carries `0xEF50000` (`VBatt` + `HeaterAllow`), WBO telemetry (`0x190..0x193`), and OpenBLT wideband updates |
-| **`WBO1` Address Strap & Recovery** | `PE2` (`NRST`), `PE3` (`BOOT0`) | `U302` (`STM32F042K6T6` #1) | Strapped `PB1 = GND`, `PA8 = Float` -> `CanIndexOffset = 0` (`0x190/0x191`) |
-| **`WBO2` Address Strap & Recovery** | `PE4` (`NRST`), `PE5` (`BOOT0`) | `U402` (`STM32F042K6T6` #2) | Strapped `PB1 = Float`, `PA8 = +3.3V` -> `CanIndexOffset = 1` (`0x192/0x193`) |
-| **4-Bit `SDMMC1` (Soldered SD NAND)** | `PC8..PC11` (`D0..D3`), `PC12` (`CK`), `PD2` (`CMD`) | `U25` (`XTSD04GLGEAG` LGA-8) + DNP `J10` | `SPI3` is disabled in `board_configuration.cpp` so `PC10..PC12` remain dedicated to `SDMMC1` |
-| **Onboard Barometer (`I2C2`)** | `PB10` (`SCL`), `PB11` (`SDA`) | `U24` (`LPS25HBTR`, `0x5D`) | Placed in unpotted chimney pocket (`121.62, 100.61 mm`) beneath ePTFE vent |
-| **Main Relay Self-Hold** | `PE0` (`mainRelayPin`) | `U1202` (`VNLD5090` `lowside_quad4/IN3`) | Holds main relay / keep-alive during shutdown log flush |
-| **Onboard Voltage Sense Dividers** | `PC5`, `PF11`, `PF12`, `PF13` | `EFI_ADC_15..18` | `PC5` = `VBatt` (9.2:1), `PF11` = `MainRelay` (9.2:1), `PF12` = `5V_SENSOR_1` (2.0:1), `PF13` = `VBoost` (9.2:1) |
+| **Main MCU** | `STM32H753ZIT6` (`U26`, LQFP-144) | 8 MHz HSE (`Y1`), 32.768 kHz LSE (`U28`), `REF3333` `3.30 V` `VREF+` (`U23`) | 480 MHz Cortex-M7, 2 MB Dual-Bank Flash, 1 MB RAM |
+| **Onboard Logging** | `XTSD04GLGEAG` (`U25`, `6×8 mm` LGA-8) | `SDMMC1` 4-bit bus (`PC8..PC12, PD2`) | 512 MB soldered industrial SLC SDNAND; 100% pottable and vibration-proof |
+| **Wideband O2 #1 & #2** | `2× STM32F042K6T6` (`U302`, `U402`) + `2× MCP6004` + `2× AD8628` + `2× REF3033` + `2× VND14NV04` (`Q301`, `Q401`) | `J1-5` (`WBO1_HTR-`), `J1-27` (`WBO_HTR+`), `J1-28` (`WBO2_HTR-`), `J2-19..22` (`WBO1`), `J2-29..32` (`WBO2`) | Internal `CAN2` (`PB12/PB13` @ 500 kbps). Hardware-strapped addresses: `WBO1` = `0x190/0x191`, `WBO2` = `0x192/0x193`. H7 controls `NRST`/`BOOT0` via `PE2..PE5` |
+| **High-Current Ignition** | `4× FGD3040G2-F085` IGBTs (`Q201..Q204`, TO-252) driven by `MIC4427` | `J1-6..9` (`PB3`, `PG15`, `PG14`, `PG13`) | `400 V` internal collector-gate SCIS clamp, `30 A`, `250 mJ`; `10 kΩ` MCU reset pull-downs prevent coil dwell during reset/DFU |
+| **5V Logic Ignition** | `4× MIC4427` 1.5 A push-pull buffers + `100 Ω` series protection | `J2-23..26` (`PG12`, `PG11`, `PG10`, `PG9`) | Drives 3/4-wire smart coils or external igniters; `IGBT3/4` and `IGN3/4_LOG` support independent **Trailing Spark** |
+| **Fuel Injectors** | `2× VNLD5090TR-E` dual protected low-side (`U1001`, `U1002`) | `J1-1..4` (`PG7`, `PG8`, `PD11`, `PD10`) | 4 channels (`INJ1..4`), `42 V` active clamp + `B340A` Schottky flyback diodes |
+| **Aux Low-Side & High-Side** | `4× VNLD5090TR-E` (`U1101..U1202`) + `BTS716G` / `VNQ7140AJ` (`U40`) | `J1-10..13` (`AUX_LS1..4`), `J1-14` (`HS1_OUT`), `J2-27` (`DASH_TECH`), internal `PE0` (`MAIN_RLY`) | `AUX_LS4` (`PD3`) and `DASH_TECH` (`PB9`) include `2.2 kΩ` pull-ups to `+12V_MR` for SV650 12 V tach and 7800-baud dash serial |
+| **Idle Stepper (`ISC`)** | `DRV8825PWPR` (`U202`, HTSSOP-28) bipolar microstepping driver | `J1-19..22` (`STEP_1A/1B/2A/2B`), `PB4` (`STEP`), `PB7` (`DIR`), `PB8` (`~EN`) | Regulated `0.75 A` chopper limit (`0.20 Ω` sense, `VREF = 0.38 V`) for SV650 4-wire `ISC` idle valve |
+| **Secondary Throttle (`STVA`) / Dual ETB** | `2× TLE9201SG` (`U201`, `U203`, PG-DSO-12) 6 A H-bridges | `J1-15..18` (`ETB1_OUT+/-`, `ETB2_OUT+/-`), `PC6/PA8/PC7`, `PC9/PD14/PD13` | Drives SV650 4-wire `STVA` secondary throttle stepper or dual DC drive-by-wire throttles |
+| **Crank/Cam VR & Hall** | `2× MAX9924UAUB+` differential adaptive VR conditioners + `SN74LVC2G17` Hall buffers | `J2-11..14` (`VR1+/-` -> `PE14`, `VR2+/-` -> `PE15`), `J2-15..18` (`HALL1..3`, `DIN1` -> `PG1, PG0, PE11, PE10`) | Mode A1 adaptive peak threshold (`50 mVpp` cranking to `100 Vpp` redline) |
+| **Analog, Temp & Knock** | `MCP6004` buffers (`U7, U15, U17, U19, U21`) + `SRV05-4` TVS arrays | `J2-1..8` (`PC4, PC5, PA7, PA3, PA0, PA1, PA4, PA5`), `J2-9..10` (`PF4, PF5` `ADC3`) | `2.7 kΩ 0.1%` bias on `CLT`/`IAT`; `1.5 kΩ 1%` bias on `AV6_GEAR` (`J2-8`) for SV650 6-speed resistor ladder; external GM/Delphi 1-bar Baro supported on `J2-6` (`PA1`, `FOMEMC-1`) |
+| **Power Supply** | `SM15T33CA` TVS + reverse PMOS + `LM2733` boost + `LMR14020` 5V buck + `2× TLS115D0E` (`U1, U2`) | `J1-23..26` (`+12V`), `J1-29..34` (`GND`), `J2-1..2` (`5V_SENSOR_1/2`) | Operates down to `3.5 V` battery cranking sag; dual independent tracked `5.00 V ± 0.2%` short-circuit-protected external sensor supplies |
+| **Post-Potting Recovery** | Dual-threshold `J1-35` (`USB_VBUS / BOOT0_OVR`) + `PE2..PE5` | `J1-35`, `J2-28` (`USB_D+`), `J2-35` (`USB_D-`), `J2-33..34` (`CAN1`) | `+5 V` on `J1-35` = normal USB/RusEFI/MSD; `+12 V` on `J1-35` biases `6.8 V` Zener override to assert `STM32H753 BOOT0 = 1` (`0483:df11` ROM DFU) through the sealed harness |
 
 ---
 
-## 4. Schematic Sheet & Reference Designator Map
+## Dual 35-Pin TE AMPSEAL Connector Pinout (`J1` & `J2`)
 
-| Schematic File | Ref Range | Subsystem |
-| :--- | :---: | :--- |
-| [`fome-mc.kicad_sch`](fome-mc.kicad_sch) | `J1`, `J2` | Root sheet, dual 35-pin AMPSEAL headers, and hierarchical interconnects |
-| [`mcu.kicad_sch`](mcu.kicad_sch) | `U23..U28`, `R209`, `D19` | `STM32H753ZIT6` (`U26`), `XTSD04GLGEAG` SD NAND (`U25`), `LPS25HBTR` baro (`U24`), `REF3033` (`U23`), `USBLC6` (`U27`), `J1-35` DFU override |
-| [`psu.kicad_sch`](psu.kicad_sch) | `U1..U5`, `U46`, `D1..D18` | `VBoost` (`U46`), `LMR14020` 5 V buck (`U3`), 2× `TLS115D0E` (`U1`, `U2`), `BD3571` 3.3 V LDO, `TJA1051T/3` `CAN1`/`CAN2` (`U4`, `U5`) |
-| [`ign_igbt.kicad_sch`](ign_igbt.kicad_sch) & [`ign4.kicad_sch`](ign4.kicad_sch) | `Q201..Q204`, `U42..U45`, `D201..D208` | 4× `FGD3040G2-F085C` IGBTs (`Q201..Q204`), 4× `MIC4427` gate/logic drivers (`U42..U45`), 8× `SK310A` low-side flyback diodes (`D201..D208`) |
-| [`stepper_etb.kicad_sch`](stepper_etb.kicad_sch) & [`etb-9201.kicad_sch`](etb-9201.kicad_sch) | `U201..U203` | 2× `TLE9201SG` 6 A H-bridges (`U201`, `U203`) + `DRV8825PWPR` bipolar stepper driver (`U202`) |
-| [`wbo1.kicad_sch`](wbo1.kicad_sch) | `301..399` | Wideband Controller #1 (`U302` `STM32F042K6T6`, `U301` `MCP6004`, `U305` `AD8628`, `U303` `REF3033`, `Q301` `VND14NV04`) |
-| [`wbo2.kicad_sch`](wbo2.kicad_sch) | `401..499` | Wideband Controller #2 (`U402` `STM32F042K6T6`, `U401` `MCP6004`, `U405` `AD8628`, `U403` `REF3033`, `Q401` `VND14NV04`) |
-| [`triggers.kicad_sch`](triggers.kicad_sch) | `U33`, `U34` | 2× `MAX9924UAUB+` adaptive VR conditioners + 4× Hall/Digital input filters |
-| [`quad_analog.kicad_sch`](quad_analog.kicad_sch) & [`quad_analog_pullup.kicad_sch`](quad_analog_pullup.kicad_sch) | `U15`, `U17`, `U19`, `U21` | `MCP6004` analog buffers, 5.6 kΩ / 10 kΩ dividers, 2.7 kΩ 0.1% thermistor pull-ups, 1.5 kΩ SV650 gear pull-up (`R210`) |
-| [`lowside_quad.kicad_sch`](lowside_quad.kicad_sch) & [`highside_quad.kicad_sch`](highside_quad.kicad_sch) | `U1001..U1202`, `U40` | 8× `VNLD5090TR-E` dual low-side switches + `VNQ7140AJ` high-side switch |
-| [`knock.kicad_sch`](knock.kicad_sch) | `U50`, `C16`, `C17` | 2-channel active bandpass knock filter into `PF4`/`PF5` |
+![fome-mc Dual 35-Pin TE AMPSEAL Connector Pinout & SV650 Harness Map](docs/renders/fome-mc-pinout-diagram.png)
+
+For full pin-by-pin wiring tables, wire gauges, crimp terminal part numbers, and 2007 Suzuki SV650 (K7) ECM (`34-pin` + `34-pin`) cross-references, see [**`docs/WIRING_SV650_K7.md`**](docs/WIRING_SV650_K7.md) and [**`io-map.csv`**](io-map.csv).
 
 ---
 
-## 5. Build, Verification & Firmware Workflows
+## PCB Layout & Layer Renderings
 
-### Prerequisites
-Expects the shared FOME KiCad libraries checked out as a sibling directory at `../kicad-libraries` (`https://github.com/FOME-Tech/kicad-libraries` @ `ab9c5f8a`) and the FOME firmware fork at `../fome-fw` (`https://github.com/halbritt/fome-fw`, branch `fome-mc`).
+````carousel
+![PCB Component Assembly & Courtyard Layout](docs/renders/fome-mc-pcb-assembly.png)
+<!-- slide -->
+![Top Copper, Silkscreen & Soldermask (L1 — F.Cu)](docs/renders/fome-mc-pcb-top.png)
+<!-- slide -->
+![Inner Layer 1 — Unbroken Ground & Star AGND Plane (L2 — In1.Cu)](docs/renders/fome-mc-pcb-in1-gnd.png)
+<!-- slide -->
+![Inner Layer 2 — Segmented Power Islands (L3 — In2.Cu)](docs/renders/fome-mc-pcb-in2-pwr.png)
+<!-- slide -->
+![Bottom Copper & Silkscreen (L4 — B.Cu)](docs/renders/fome-mc-pcb-bottom.png)
+````
 
-### Verify Hardware & Export Manufacturing Files
+---
+
+## Hierarchical Schematic Renderings
+
+All 21 schematic sheets are exported as vector SVGs in [`docs/schematics/`](docs/schematics/) and compiled into a single searchable PDF at [**`docs/schematics/fome-mc-schematics.pdf`**](docs/schematics/fome-mc-schematics.pdf).
+
+````carousel
+![Root Sheet — Dual 35-Pin AMPSEAL Harness & Subsystem Hierarchy](docs/renders/fome-mc-schematic-root.png)
+<!-- slide -->
+![MCU Core, 4-Bit SDMMC1 SDNAND & Baro (sheets/mcu.kicad_sch)](docs/renders/fome-mc-schematic-mcu.png)
+<!-- slide -->
+![Onboard LSU 4.9 Wideband Controller #1 (sheets/wbo1.kicad_sch)](docs/renders/fome-mc-schematic-wbo1.png)
+<!-- slide -->
+![4-Channel 400V 30A Ignition IGBTs (sheets/ign_igbt.kicad_sch)](docs/renders/fome-mc-schematic-ign-igbt.png)
+<!-- slide -->
+![Onboard DRV8825 ISC Stepper + Dual TLE9201SG H-Bridges (sheets/stepper_etb.kicad_sch)](docs/renders/fome-mc-schematic-stepper-etb.png)
+````
+
+---
+
+## Repository Structure
+
+```text
+fome-mc/
+├── fome-mc.kicad_pro                # KiCad 10 project configuration
+├── fome-mc.kicad_sch                # Root hierarchical schematic (J1/J2 AMPSEAL headers + 20 subsheet blocks)
+├── fome-mc.kicad_pcb                # 4-layer routed PCB layout (162.0 mm × 115.0 mm, 474 footprints, 0 DRC errors)
+├── sym-lib-table                    # Project symbol library table (-> libs/symbols/)
+├── fp-lib-table                     # Project footprint library table (-> libs/footprints/)
+├── io-map.csv                       # Authoritative 70-pin J1/J2 + 17 internal net cross-reference table
+├── Makefile                         # Reproducible verification & manufacturing export targets
+├── README.md                        # Project overview, architecture diagrams & visual gallery
+├── CHANGELOG.md                     # Detailed engineering changelog & bug-fix history
+├── sheets/                          # 15 hierarchical child schematic sheets
+│   ├── mcu.kicad_sch                # STM32H753ZIT6, 8 MHz HSE, REF3333, LPS25HB, XTSD04GLGEAG SDNAND
+│   ├── psu.kicad_sch                # TVS, Reverse-PMOS, LM2733 boost, LMR14020 5V buck, 2x TLS115D0E, CAN1/2
+│   ├── Keep_Alive.kicad_sch         # Main relay keep-alive power hold circuit
+│   ├── wbo1.kicad_sch               # Onboard Bosch LSU 4.9 Wideband Controller #1 (STM32F042 + VND14NV04)
+│   ├── wbo2.kicad_sch               # Onboard Bosch LSU 4.9 Wideband Controller #2 (STM32F042 + VND14NV04)
+│   ├── ign_igbt.kicad_sch           # 4x FGD3040G2-F085 400V 30A ignition IGBTs + MIC4427 gate drivers
+│   ├── ign4.kicad_sch               # 4x 5V logic-level push-pull coil drivers (MIC4427 + 100R)
+│   ├── stepper_etb.kicad_sch        # DRV8825PWPR 4-wire stepper driver + dual TLE9201SG H-bridge parent
+│   ├── etb-9201.kicad_sch           # TLE9201SG 6A H-bridge subsheet (instantiated twice: etb1, etb2)
+│   ├── lowside_quad.kicad_sch       # Dual VNLD5090 protected low-side driver subsheet (INJ1..4, AUX_LS1..8)
+│   ├── highside_quad.kicad_sch      # BTS716G / VNQ7140AJ protected high-side driver
+│   ├── triggers.kicad_sch           # 2x MAX9924UAUB+ differential VR conditioners + 4x Hall/digital inputs
+│   ├── quad_analog.kicad_sch        # MCP6004 buffered 0-5V analog input conditioning + SRV05-4 ESD
+│   ├── quad_analog_pullup.kicad_sch # Precision 2.7k 0.1% thermistor bias & 0-5V analog inputs
+│   └── knock.kicad_sch              # 2-channel active bandpass knock conditioning (PF4/PF5 ADC3)
+├── libs/
+│   ├── symbols/                     # Project-local KiCad symbol libraries (.lib, .dcm)
+│   └── footprints/                  # Project-local KiCad footprint libraries (.pretty)
+├── docs/
+│   ├── DESIGN.md                    # Complete electrical & firmware architecture specification
+│   ├── VALIDATION.md                # Verification ledger, DFM/stock audit & bench bring-up procedure
+│   ├── WIRING_SV650_K7.md           # 2007 Suzuki SV650 (K7) wiring harness & connector guide
+│   ├── POTTING_AND_ENCLOSURE.md     # Enclosure stackup, thermal gap pads & potting guide (incl. FOMEMC-1)
+│   ├── renders/                     # High-resolution PNG/SVG/PDF PCB layer, floorplan & pinout renders
+│   └── schematics/                  # All 21 schematic sheets in SVG + compiled fome-mc-schematics.pdf
+├── export/
+│   ├── BOM-fome-mc.csv              # JLCPCB PCBA Bill of Materials (102 grouped lines, LCSC part numbers)
+│   ├── CPL-fome-mc.csv              # JLCPCB PCBA Component Placement / Centroid file (474 parts)
+│   └── gerbers/                     # 4-layer Gerbers, Excellon drill files, job file & fome-mc-gerbers.zip
+├── scripts/
+│   ├── verify_io_map.py             # Cross-checks io-map.csv against schematics, PCB, and FOME firmware
+│   ├── render_docs.py               # Regenerates all schematic SVGs/PDF, PCB renders, floorplan & pinout diagrams
+│   └── integrate_fome_mc.py         # Schematic/PCB integration utility
+└── toolchain/                       # Automated KiCad 10 ERC, DRC, netlist parity, Gerber & DFM check suite
+```
+
+---
+
+## Reproducible Verification & Rendering Commands
+
+All hardware checks and documentation renders run locally using KiCad 10 CLI (`kicad-cli`), Python 3, and `rsvg-convert`:
+
 ```bash
-# 1. Verify pinned KiCad 10 / KiBot / Python toolchain and library mounts
+# 1. Verify local EDA toolchain (KiCad 10, kicad-cli, pcbnew, ngspice, freecad)
 make doctor
 
-# 2. Verify 1-to-1 parity across io-map.csv, exported netlist, PCB footprints, and firmware mapping.yaml
+# 2. Verify 100% pinout parity across io-map.csv, schematics, PCB, and fome-fw
 python3 scripts/verify_io_map.py
 
-# 3. Run hermetic KiCad 10 ERC, DRC, netlist, KiBot Gerber/drill/BOM/CPL/PDF export, and analysis
+# 3. Run full ERC, DRC, schematic-to-PCB netlist parity, Gerber/Excellon, and JLCPCB 4-layer DFM audit
 make check
-```
-Manufacturing outputs are written to [`export/BOM-fome-mc.csv`](export/BOM-fome-mc.csv), [`export/CPL-fome-mc.csv`](export/CPL-fome-mc.csv), and `build/runs/project/fome-mc/<timestamp>/export/`.
 
-### Build `fome-mc` Firmware & Run Unit Tests
-```bash
-# Compile OpenBLT bootloader + fome-mc firmware image + TunerStudio .ini
-cd ../fome-fw/firmware
-bash config/boards/fome-mc/compile_fome-mc.sh
-
-# Run host unit tests (including SV650 odd-fire trailing spark & overdwell tests)
-cd ../unit_tests
-make -j$(nproc)
-./build/fome_test --gtest_filter="*trailingSpark*:*BufferedWriter*:*OddFire*"
+# 4. Regenerate all schematic SVGs/PDF, PCB layer renders, floorplan diagram, and J1/J2 pinout diagram
+python3 scripts/render_docs.py
 ```
 
----
+### Current Verification Status (`make check`)
 
-## 6. Flashing, Log Retrieval & Post-Potting Recovery
-
-1. **Routine Tuning & Firmware Updates (`OpenBLT`)**:
-   - Connect USB (`J1-35` = `+5 V VBUS`, `J2-34` = `USB_D+`, `J2-35` = `USB_D-`) or `CAN1` (`J2-28/29`) and flash `deliver/fome_update.srec` from TunerStudio or OpenBLT `BootCommander`.
-2. **SD NAND Log Download (`Single-Owner FatFs -> USBMSD1 Handoff`)**:
-   - With the engine running (`RPM > 0`), `FatFs` owns `U25` (`SDCD1`) exclusively and syncs `.mlg` logs every 2 seconds.
-   - When USB is plugged in with the engine stopped (`RPM == 0`), the firmware flushes and unmounts `FatFs` and mounts `U25` as a standard USB Mass Storage drive (`USBMSD1`).
-3. **Unbricking the Main `STM32H753` After Potting (`ROM USB DFU`)**:
-   - Apply **`+12 V`** (through a 1 kΩ current-limiting resistor or bench supply) to **`J1-35` (`USB_VBUS_DFU`)** while powering `+12V_MR` (`J1-27`). This conducts `6.8 V` Zener `D19` to drive `U26` `BOOT0 = 3.1 V`, enumerating the STM32 mask-ROM bootloader (`0483:df11`) on `J2-34/35`:
-     ```bash
-     dfu-util -a 0 -d 0483:df11 -s 0x08000000:leave -D deliver/fome.bin
-     ```
-4. **Updating or Recovering Onboard Wideband MCUs (`WBO1` / `WBO2`)**:
-   - `STM32H753` pins `PE2` (`WBO1_NRST`), `PE3` (`WBO1_BOOT0`), `PE4` (`WBO2_NRST`), and `PE5` (`WBO2_BOOT0`) allow the H7 to hold one `STM32F042K6T6` in hardware reset while updating the other over internal `CAN2` via OpenBLT.
-
----
-
-## 7. Further Documentation
-
-- **[`DESIGN.md`](DESIGN.md)** — Architecture decisions, SV650 K7 factory wiring analysis, barometric vent pocket math, SD NAND endurance calculations, thermal dissipation budget, and 2-stage polyurethane potting specification.
-- **[`VALIDATION.md`](VALIDATION.md)** — Verification ledger and pre-/post-encapsulation bench test gates.
-- **[`CHANGELOG.md`](CHANGELOG.md)** — Chronological history of hardware and firmware changes from `Polygonus V1.6.1` -> `fome-mc` -> `fome-mc`.
+| Gate | Result | Details |
+| :--- | :--- | :--- |
+| **Toolchain (`make doctor`)** | **PASS** | KiCad `10.0.1`, `pcbnew`, `ngspice 45.2`, `FreeCAD 1.0.2` |
+| **`verify_io_map.py`** | **PASS** | `70 / 70` `J1`/`J2` pins + `17` internal buses verified across `io-map.csv`, `fome-mc.kicad_sch`, and `fome-fw` |
+| **Schematic ERC** | **PASS** | `0` errors across all 21 hierarchical schematic sheets |
+| **PCB DRC** | **PASS** | `0` errors, `0` unconnected items, `0` courtyard overlaps across all `474` placed footprints |
+| **Netlist Parity** | **PASS** | `0` missing footprints, `0` extra footprints, `0` pin-net mismatches between schematic and PCB |
+| **JLCPCB 4-Layer DFM** | **PASS** | `162.0 × 115.0 mm` outline, `0.1524 mm` min trace, `0.2997 mm` min via drill, `474` CPL rows, `102` BOM lines |
