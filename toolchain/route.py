@@ -1131,6 +1131,8 @@ def update():
     if errors:
         log("[update] errors:\n  " + "\n  ".join(errors))
         return 1
+    r = subprocess.run([sys.executable, str(TOOLCHAIN / "sync_skills.py")], capture_output=True, text=True)
+    log(f"[update] {r.stdout.strip() or r.stderr.strip()}")  # krt-* skills follow the installed KRT
     log("[update] re-running the routing integration checks")
     return smoke()
 

@@ -1,0 +1,39 @@
+{
+  "kind": "route-smoke",
+  "status": "PASS",
+  "pytest_exit_code": 0,
+  "time_utc": "2026-10-17T05:22:00.278773+00:00",
+  "versions": {
+    "krt": {
+      "version": "0.23.1",
+      "build": "v0.23.1",
+      "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+      "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+      "rust_router": "0.23.1"
+    },
+    "freerouting": {
+      "version": "v2.5.0",
+      "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+      "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+      "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+      "java_required": 25,
+      "source": "https://github.com/freerouting/freerouting"
+    },
+    "kicad-cli": "10.0.7"
+  },
+  "junit": "build/route-smoke/junit.xml",
+  "tests": [
+    "blocked_freerouting",
+    "blocked_krt",
+    "budget_krt",
+    "compare",
+    "doctor",
+    "freerouting_netclass_selection",
+    "freerouting_round_trip",
+    "krt_default",
+    "krt_net_selection",
+    "krt_round_trip",
+    "source_untouched",
+    "tampering"
+  ]
+}

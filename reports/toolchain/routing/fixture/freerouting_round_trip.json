@@ -1,0 +1,185 @@
+{
+  "backend": {
+    "name": "freerouting",
+    "version": "v2.5.0",
+    "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+    "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+    "java_required": 25,
+    "source": "https://github.com/freerouting/freerouting"
+  },
+  "settings": {
+    "backend": "freerouting",
+    "budget_s": 180,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": 100,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": 0.01,
+    "backend_args": [],
+    "backend_env": {},
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 6,
+    "nets_list": [
+      "/SIG_A",
+      "/SIG_A_OUT",
+      "/SIG_B",
+      "/SIG_B_OUT",
+      "/VIN",
+      "GND"
+    ]
+  },
+  "unsupported": [
+    "Freerouting never rips up pre-existing copper (KiCad exports it as fixed/protected); --protect locked behaves like --protect existing",
+    "Specctra carries per-class width/clearance/via only: custom .kicad_dru rules, diff pairs and length tuning are not exported; KiCad DRC grades them",
+    "rule areas export only their no-tracks/no-vias restrictions; zones export as plane outlines",
+    "route_demo.kicad_dru: net-class-to-net-class clearance rules are translated to Specctra class_class rules; any other custom rule is listed as untranslated below"
+  ],
+  "routing": {
+    "status": "COMPLETE",
+    "unconnected_in_scope": 0,
+    "unconnected_total": 0,
+    "baseline_unconnected_total": 6,
+    "unrouted_nets": [],
+    "stats": {
+      "new_tracks": 17,
+      "new_vias": 2,
+      "new_track_length_mm": 123.4,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 59.613,
+        "F.Cu": 63.787
+      },
+      "new_copper_nets": 5,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "exit_code": 0,
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "exit_code": 0,
+    "runtime_s": 5.313,
+    "backend_report": {
+      "final_state": "COMPLETED",
+      "exit_code": 0,
+      "output_written": true,
+      "incomplete_connections": 1,
+      "clearance_violations": 0,
+      "unrouted_log": "The following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):\n  Net '/SIG_B' (1 unrouted connection):\n    - via  ->  R2-1"
+    },
+    "bridge": {
+      "export": {
+        "ignored_classes": [],
+        "clearance_raised": [],
+        "dru_translated": [
+          {
+            "rule": "power_to_signal_clearance",
+            "classes": [
+              "Power",
+              "*other"
+            ],
+            "clearance_mm": 0.4,
+            "pairs": 1
+          }
+        ],
+        "dru_untranslated": [],
+        "clearance_margin": {
+          "um": 10.0,
+          "rules": 4
+        }
+      },
+      "import": {
+        "placement_dropped": true,
+        "session": "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/work/board.noplacement.ses"
+      }
+    },
+    "project_writeback": []
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo",
+        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 3.776
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo",
+        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.443
+      }
+    ],
+    "delivered_board_sha256": "35d5eff49cf660bfa5e62f5801ed9b7560164783c459dd091581de6ca6c5c43f",
+    "validated_board_sha256": "35d5eff49cf660bfa5e62f5801ed9b7560164783c459dd091581de6ca6c5c43f",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 0,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 0,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "run_dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z"
+}

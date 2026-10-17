@@ -1,0 +1,270 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "freerouting",
+    "version": "v2.5.0",
+    "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+    "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+    "java_required": 25,
+    "source": "https://github.com/freerouting/freerouting"
+  },
+  "input": {
+    "project": "route_demo",
+    "board": "route_demo.kicad_pcb",
+    "fingerprint": "bff09d380e79a08369fe0b2698edbf3649c2648888ef8a8d52a37eef0a1399e8",
+    "source_dir": "/tmp/pytest-of-halbritt/pytest-1176/blocked0/route_demo",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/bff09d380e79a08369fe0b2698edbf3649c2648888ef8a8d52a37eef0a1399e8/baseline-drc.json",
+      "cached": true,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "freerouting",
+    "budget_s": 180,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {},
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 6,
+    "nets_list": [
+      "/SIG_A",
+      "/SIG_A_OUT",
+      "/SIG_B",
+      "/SIG_B_OUT",
+      "/VIN",
+      "GND"
+    ]
+  },
+  "unsupported": [
+    "Freerouting never rips up pre-existing copper (KiCad exports it as fixed/protected); --protect locked behaves like --protect existing",
+    "Specctra carries per-class width/clearance/via only: custom .kicad_dru rules, diff pairs and length tuning are not exported; KiCad DRC grades them",
+    "rule areas export only their no-tracks/no-vias restrictions; zones export as plane outlines",
+    "route_demo.kicad_dru: net-class-to-net-class clearance rules are translated to Specctra class_class rules; any other custom rule is listed as untranslated below"
+  ],
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_specctra.py",
+          "export",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/input/route_demo/route_demo.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.dsn",
+          "--dru",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/input/route_demo/route_demo.kicad_dru"
+        ],
+        "cwd": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work",
+        "log": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/export-dsn.log",
+        "exit_code": 0,
+        "duration_s": 0.459
+      },
+      {
+        "argv": [
+          "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+          "-Djava.awt.headless=true",
+          "-jar",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/freerouting/current/freerouting-2.5.0.jar",
+          "-de",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.dsn",
+          "-do",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.ses",
+          "--gui.enabled=false",
+          "-da",
+          "--api_server.enabled=false",
+          "--user_data_path=/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/freerouting-userdata",
+          "--router.result_json=/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/freerouting-result.json",
+          "--router.automatic_neckdown=false",
+          "--router.job_timeout=00:03:00"
+        ],
+        "cwd": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work",
+        "log": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/freerouting.log",
+        "env": {
+          "HTTPS_PROXY": "http://127.0.0.1:9",
+          "HTTP_PROXY": "http://127.0.0.1:9",
+          "FREEROUTING__USAGE_AND_DIAGNOSTIC_DATA__DISABLE_ANALYTICS": "true"
+        },
+        "budget_s": 240,
+        "exit_code": 0,
+        "duration_s": 8.453,
+        "output_tail": "69df26ea46b489' was completed in 0.24 seconds with score 407.41 (4 unrouted and 0 violations), using 2.90 CPU seconds and the job allocated 1.53 GB of memory so far.\n2026-10-16 22:21:00.281 INFO   [2BEC96\\6176B7] Auto-routing pass #12 on board '79913659258783de14705074b8f8e705' was completed in 0.00 seconds with score 407.41 (4 unrouted and 0 violations), using 2.90 CPU seconds and the job allocated 1.53 GB of memory so far.\n2026-10-16 22:21:00.574 INFO   [2BEC96\\6176B7] Auto-routing pass #13 on board '79913659258783de14705074b8f8e705' was completed in 0.29 seconds with score 407.41 (4 unrouted and 0 violations), using 2.90 CPU seconds and the job allocated 1.53 GB of memory so far.\n2026-10-16 22:21:00.788 INFO   [2BEC96\\6176B7] Auto-routing pass #14 on board 'db8ce0f88575ab381c7ab80b1d43bd1d' was completed in 0.21 seconds with score 407.41 (4 unrouted and 0 violations), using 2.90 CPU seconds and the job allocated 1.53 GB of memory so far.\n2026-10-16 22:21:00.972 INFO   [2BEC96\\6176B7] Auto-routing pass #15 on board '0c2af1b2e2ebf044f1db30e158ab99dd' was completed in 0.18 seconds with score 407.41 (4 unrouted and 0 violations), using 3.70 CPU seconds and the job allocated 2.03 GB of memory so far.\n2026-10-16 22:21:01.222 INFO   [2BEC96\\6176B7] Auto-routing pass #16 on board '79913659258783de14705074b8f8e705' was completed in 0.00 seconds with score 407.41 (4 unrouted and 0 violations), using 3.70 CPU seconds and the job allocated 2.03 GB of memory so far.\n2026-10-16 22:21:01.468 INFO   [2BEC96\\6176B7] Auto-routing pass #17 on board '79913659258783de14705074b8f8e705' was completed in 0.24 seconds with score 407.41 (4 unrouted and 0 violations), using 3.70 CPU seconds and the job allocated 2.03 GB of memory so far.\n2026-10-16 22:21:01.681 INFO   [2BEC96\\6176B7] Auto-routing pass #18 on board 'db8ce0f88575ab381c7ab80b1d43bd1d' was completed in 0.21 seconds with score 407.41 (4 unrouted and 0 violations), using 3.70 CPU seconds and the job allocated 2.03 GB of memory so far.\n2026-10-16 22:21:01.686 INFO   [2BEC96\\6176B7] Last-mile rip-up removed 5 blocking trace(s) or via(s) around 4 remaining connection(s).\n2026-10-16 22:21:01.904 INFO   [2BEC96\\6176B7] Auto-routing pass #19 on board '317c9bf6d14191210ed5a72b7870824d' was completed in 0.21 seconds with score 407.41 (4 unrouted and 0 violations), using 4.54 CPU seconds and the job allocated 2.60 GB of memory so far.\n2026-10-16 22:21:01.907 INFO   [2BEC96\\6176B7] The router's best score (407.41) has not improved by more than 0.5 points since pass #9. Stopping the auto-router after 19 passes (4 items still unconnected).\nThe following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):\n  Net '/VIN' (1 unrouted connection):\n    - J2-1  ->  C1-1\n  Net '/SIG_A_OUT' (1 unrouted connection):\n    - R1-2  ->  J2-3\n  Net '/SIG_B_OUT' (1 unrouted connection):\n    - J2-4  ->  R2-2\n  Net '/SIG_B' (1 unrouted connection):\n    - via  ->  R2-1\n2026-10-16 22:21:01.918 INFO   [2BEC96\\6176B7] Auto-routing stage completed: started with 7 unrouted nets, completed in 4.99 seconds, final score: 407.41 (4 unrouted and 0 violations), using 4.54 total CPU seconds, 2.60 GB total allocated, and 605.5 MB peak heap usage.\n2026-10-16 22:21:01.940 INFO   [2BEC96\\6176B7] Skipping optimization stage: the board has 4 unrouted connection(s) (optimizer only runs on completely routed boards).\n2026-10-16 22:21:01.951 INFO   [2BEC96\\6176B7] Job '2BEC96\\6176B7' finished with state: COMPLETED (elapsed: 5.07 seconds, finished at UTC: 2026-10-17T05:21:01.947627016Z).\n2026-10-16 22:21:01.979 INFO   Saving output file '/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.ses' (SES)...\n2026-10-16 22:21:01.983 INFO   Successfully saved output file '/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.ses' (1783 bytes).\n"
+      },
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_specctra.py",
+          "import",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/input/route_demo/route_demo.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.ses",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/freerouting-out/route_demo.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work",
+        "log": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/import-ses.log",
+        "exit_code": 0,
+        "duration_s": 0.38
+      }
+    ],
+    "exit_code": 0,
+    "backend_report": {
+      "final_state": "COMPLETED",
+      "exit_code": 0,
+      "output_written": true,
+      "incomplete_connections": 4,
+      "clearance_violations": 0,
+      "unrouted_log": "The following connections could not be routed -- please review your design (e.g. check pad clearances, trace width rules, and available routing space):\n  Net '/VIN' (1 unrouted connection):\n    - J2-1  ->  C1-1\n  Net '/SIG_A_OUT' (1 unrouted connection):\n    - R1-2  ->  J2-3\n  Net '/SIG_B_OUT' (1 unrouted connection):\n    - J2-4  ->  R2-2\n  Net '/SIG_B' (1 unrouted connection):\n    - via  ->  R2-1"
+    },
+    "bridge": {
+      "export": {
+        "ignored_classes": [],
+        "clearance_raised": [],
+        "dru_translated": [
+          {
+            "rule": "power_to_signal_clearance",
+            "classes": [
+              "Power",
+              "*other"
+            ],
+            "clearance_mm": 0.4,
+            "pairs": 1
+          }
+        ],
+        "dru_untranslated": []
+      },
+      "import": {
+        "placement_dropped": true,
+        "session": "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/work/board.noplacement.ses"
+      }
+    },
+    "project_writeback": [],
+    "runtime_s": 9.685
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 4,
+    "unconnected_total": 4,
+    "baseline_unconnected_total": 7,
+    "unrouted_nets": [
+      "/SIG_A_OUT",
+      "/SIG_B_OUT",
+      "/VIN",
+      "GND"
+    ],
+    "stats": {
+      "new_tracks": 8,
+      "new_vias": 1,
+      "new_track_length_mm": 30.872,
+      "new_track_length_mm_by_layer": {
+        "F.Cu": 30.872
+      },
+      "new_copper_nets": 3,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo",
+        "log": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.138
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo",
+        "log": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.299
+      }
+    ],
+    "delivered_board_sha256": "25b9735d9ec667ce2f06b74af15984e18ef4811fb89b36b9d61055b0f31b9d5f",
+    "validated_board_sha256": "25b9735d9ec667ce2f06b74af15984e18ef4811fb89b36b9d61055b0f31b9d5f",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 0,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 0,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo",
+    "board": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z/candidate/route_demo/route_demo.kicad_pcb"
+  },
+  "run_dir": "build/runs/route/route_demo/smoke-blocked-freerouting/20261017T052052.683967Z",
+  "runtime_s": 15.093,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T05:21:08.348334+00:00",
+  "exit_code": 2
+}

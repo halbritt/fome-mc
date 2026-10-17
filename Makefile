@@ -4,8 +4,10 @@
 #   make bootstrap | doctor | erc | drc | netlist | export | analyze | check
 #   make simulate DECK=path.cir [EXPECT=path.expect.json]
 #   make smoke | baseline
+#   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']
+#   make route-validate RUN=dir | route-compare RUNS='dir dir' | route-update | route-smoke
 #
-# PROJECT=fome-mc|universal-112|fixture (see toolchain/versions.toml)
+# PROJECT=fome-mc|universal-112|fixture|route-fixture (see toolchain/versions.toml)
 # FILL=asis|refill  (asis: use the saved zone fill; refill: refill+save the snapshot first)
 # REV=<git rev>     snapshot a committed revision instead of the working tree
 
@@ -15,10 +17,14 @@ PY      := /usr/bin/python3
 EDA     := $(PY) toolchain/eda.py
 RUN     := $(EDA) run --project $(PROJECT) --fill $(FILL) $(if $(REV),--rev $(REV)) --steps
 
-.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean
+BUDGET  ?= 300
+ROUTE   := $(PY) toolchain/route.py
+
+.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean \
+        route-doctor route route-validate route-compare route-update route-smoke
 
 help:
-	@sed -n '1,12p' Makefile
+	@sed -n '1,15p' Makefile
 
 bootstrap:
 	toolchain/bootstrap.sh
@@ -62,6 +68,28 @@ baseline:
 
 skills:
 	$(PY) toolchain/sync_skills.py
+
+# Routing (toolchain/ROUTING.md). Attempts run on copies under build/runs/route/.
+route-doctor:
+	$(ROUTE) doctor
+
+route:
+	@test -n "$(BACKEND)" || { echo "usage: make route BACKEND=krt|freerouting [PROJECT=..] [BUDGET=s] [ARGS='...']"; exit 2; }
+	$(ROUTE) run --backend $(BACKEND) --project $(PROJECT) --budget $(BUDGET) $(if $(REV),--rev $(REV)) $(ARGS)
+
+route-validate:
+	@test -n "$(RUN)" || { echo "usage: make route-validate RUN=build/runs/route/<project>/<label>/<stamp>"; exit 2; }
+	$(ROUTE) validate $(RUN)
+
+route-compare:
+	@test -n "$(RUNS)" || { echo "usage: make route-compare RUNS='run_dir run_dir ...'"; exit 2; }
+	$(ROUTE) compare $(RUNS)
+
+route-update:
+	$(ROUTE) update
+
+route-smoke:
+	$(ROUTE) smoke
 
 clean:
 	rm -rf build/runs build/smoke build/doctor

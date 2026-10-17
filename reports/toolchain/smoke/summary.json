@@ -2,7 +2,7 @@
   "kind": "smoke",
   "status": "PASS",
   "pytest_exit_code": 0,
-  "time_utc": "2026-10-17T00:46:13.442543+00:00",
+  "time_utc": "2026-10-17T05:27:55.581136+00:00",
   "tool_versions": {
     "kicad-cli": "10.0.7",
     "ngspice": "42",
@@ -20,6 +20,11 @@
           "description_chars": 178,
           "claude_link": true
         },
+        "fome-pcb-routing": {
+          "name": "fome-pcb-routing",
+          "description_chars": 217,
+          "claude_link": true
+        },
         "kicad-happy-datasheets": {
           "name": "kicad-happy-datasheets",
           "description_chars": 174,
@@ -33,6 +38,16 @@
         "kicad-happy-spice": {
           "name": "kicad-happy-spice",
           "description_chars": 160,
+          "claude_link": true
+        },
+        "krt-diagnose-routing-failures": {
+          "name": "krt-diagnose-routing-failures",
+          "description_chars": 199,
+          "claude_link": true
+        },
+        "krt-review-routed-board": {
+          "name": "krt-review-routed-board",
+          "description_chars": 187,
           "claude_link": true
         }
       },
@@ -99,9 +114,9 @@
             "fc_error_pct": 0.23
           },
           "status": "pass",
-          "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fixture/20261017T004526.659425Z/analyze/spice_work/rc-filter_R1_C1.cir",
-          "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fixture/20261017T004526.659425Z/analyze/spice_work/rc-filter_R1_C1.log",
-          "elapsed_s": 0.005,
+          "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fixture/20261017T052710.621990Z/analyze/spice_work/rc-filter_R1_C1.cir",
+          "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fixture/20261017T052710.621990Z/analyze/spice_work/rc-filter_R1_C1.log",
+          "elapsed_s": 0.01,
           "reference": "R1/C1"
         }
       ]
@@ -154,29 +169,29 @@
       },
       "schematic_pdf_refs_found": "3/3",
       "outputs": [
-        "build/runs/project/fixture/20261017T004526.659425Z/export/native/rc_filter-schematic.pdf",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/native/schematic-svg/rc_filter.svg",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/native/rc_filter-layers.pdf",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/native/rc_filter-bom.csv",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/assembly/rc_filter-bottom_pos.csv",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/assembly/rc_filter-top_pos.csv",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/bom/rc_filter-bom.csv",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/bom/rc_filter-bom.html",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-B_Cu.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-B_Mask.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-B_Paste.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-B_Silkscreen.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-Edge_Cuts.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-F_Cu.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-F_Mask.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-F_Paste.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-F_Silkscreen.gbr",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-drill.drl",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-drill_map.pdf",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-drill_report.txt",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/gerbers/rc_filter-job.gbrjob",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/pcb/rc_filter-assembly.pdf",
-        "build/runs/project/fixture/20261017T004526.659425Z/export/kibot/schematic/rc_filter-schematic.pdf"
+        "build/runs/project/fixture/20261017T052710.621990Z/export/native/rc_filter-schematic.pdf",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/native/schematic-svg/rc_filter.svg",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/native/rc_filter-layers.pdf",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/native/rc_filter-bom.csv",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/assembly/rc_filter-bottom_pos.csv",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/assembly/rc_filter-top_pos.csv",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/bom/rc_filter-bom.csv",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/bom/rc_filter-bom.html",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-B_Cu.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-B_Mask.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-B_Paste.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-B_Silkscreen.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-Edge_Cuts.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-F_Cu.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-F_Mask.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-F_Paste.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-F_Silkscreen.gbr",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-drill.drl",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-drill_map.pdf",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-drill_report.txt",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/gerbers/rc_filter-job.gbrjob",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/pcb/rc_filter-assembly.pdf",
+        "build/runs/project/fixture/20261017T052710.621990Z/export/kibot/schematic/rc_filter-schematic.pdf"
       ]
     },
     "fixture_pipeline": {
@@ -185,9 +200,9 @@
       "label": "fixture",
       "description": "RC low-pass toolchain fixture (not the ECU design)",
       "status": "PASS",
-      "started_utc": "2026-10-17T00:45:26.659621+00:00",
-      "finished_utc": "2026-10-17T00:45:37.890800+00:00",
-      "run_dir": "build/runs/project/fixture/20261017T004526.659425Z",
+      "started_utc": "2026-10-17T05:27:10.623921+00:00",
+      "finished_utc": "2026-10-17T05:27:22.449881+00:00",
+      "run_dir": "build/runs/project/fixture/20261017T052710.621990Z",
       "fill_mode": "asis",
       "tool_versions": {
         "kicad-cli": "10.0.7",
@@ -201,7 +216,7 @@
         "project": "fixture",
         "source_dir": "/home/halbritt/git/fome-mc/toolchain/fixtures/rc_filter",
         "source": "working tree",
-        "source_git_head": "17be018d47f229b43a134dfdc8c5fceea89f4933",
+        "source_git_head": "e763e31eada62574871f0290775738c33ff529c5",
         "source_dirty_files": [],
         "schematic": "rc_filter.kicad_sch",
         "pcb": "rc_filter.kicad_pcb",
@@ -386,9 +401,9 @@
       "label": "fixture-missing-sheet",
       "description": "disposable fixture copy: missing-sheet",
       "status": "FAIL",
-      "started_utc": "2026-10-17T00:46:06.110387+00:00",
-      "finished_utc": "2026-10-17T00:46:08.112584+00:00",
-      "run_dir": "build/runs/project/fixture-missing-sheet/20261017T004606.110285Z",
+      "started_utc": "2026-10-17T05:27:48.508320+00:00",
+      "finished_utc": "2026-10-17T05:27:50.810832+00:00",
+      "run_dir": "build/runs/project/fixture-missing-sheet/20261017T052748.507659Z",
       "fill_mode": "asis",
       "tool_versions": {
         "kicad-cli": "10.0.7",
@@ -400,7 +415,7 @@
       },
       "snapshot": {
         "project": "fixture-missing-sheet",
-        "source_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_missing_sheet_is_a_failur0/missing-sheet",
+        "source_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_missing_sheet_is_a_failur0/missing-sheet",
         "source": "working tree",
         "source_git_head": null,
         "source_dirty_files": [],
@@ -472,11 +487,11 @@
             "--format",
             "kicadsexpr",
             "-o",
-            "/home/halbritt/git/fome-mc/build/runs/project/fixture-coverage/20261017T004613.052504Z/netlist/rc_filter.net",
-            "/tmp/pytest-of-halbritt/pytest-1173/test_netlist_coverage_detects_0/coverage/rc_filter.kicad_sch"
+            "/home/halbritt/git/fome-mc/build/runs/project/fixture-coverage/20261017T052755.180279Z/netlist/rc_filter.net",
+            "/tmp/pytest-of-halbritt/pytest-1177/test_netlist_coverage_detects_0/coverage/rc_filter.kicad_sch"
           ],
-          "cwd": "/tmp/pytest-of-halbritt/pytest-1173/test_netlist_coverage_detects_0/coverage",
-          "log": "build/runs/project/fixture-coverage/20261017T004613.052504Z/netlist/kicad-cli-netlist.log",
+          "cwd": "/tmp/pytest-of-halbritt/pytest-1177/test_netlist_coverage_detects_0/coverage",
+          "log": "build/runs/project/fixture-coverage/20261017T052755.180279Z/netlist/kicad-cli-netlist.log",
           "exit_code": 0,
           "duration_s": 0.301
         }
@@ -485,11 +500,11 @@
         "rc_filter.kicad_sch": "ecc56a68a96b9297d8751ae7686a9c8818e9cac84faefafa364b06a0af8a342b"
       },
       "outputs": {
-        "build/runs/project/fixture-coverage/20261017T004613.052504Z/netlist/rc_filter.net": {
-          "sha256": "2d92d96b6e4728d0de288fd33e2362cae17d783a54421eadf46217bfc4aaca4a",
+        "build/runs/project/fixture-coverage/20261017T052755.180279Z/netlist/rc_filter.net": {
+          "sha256": "35fca6161e4de9d635258ef6540726487b80ccd4d19cd1f006a54eeabe503a6c",
           "bytes": 6533
         },
-        "build/runs/project/fixture-coverage/20261017T004613.052504Z/netlist/connectivity.json": {
+        "build/runs/project/fixture-coverage/20261017T052755.180279Z/netlist/connectivity.json": {
           "sha256": "53bf123711fd0bf2722ccc1dc48822345a83b0245d5118b714086c077adae847",
           "bytes": 256
         }
@@ -525,21 +540,21 @@
             "--units",
             "mm",
             "-o",
-            "/home/halbritt/git/fome-mc/build/runs/project/fixture-no-schematic/20261017T004545.852974Z/drc/drc.json",
-            "/tmp/pytest-of-halbritt/pytest-1173/test_skipped_parity_is_a_failu0/no-schematic/rc_filter.kicad_pcb"
+            "/home/halbritt/git/fome-mc/build/runs/project/fixture-no-schematic/20261017T052729.382039Z/drc/drc.json",
+            "/tmp/pytest-of-halbritt/pytest-1177/test_skipped_parity_is_a_failu0/no-schematic/rc_filter.kicad_pcb"
           ],
-          "cwd": "/tmp/pytest-of-halbritt/pytest-1173/test_skipped_parity_is_a_failu0/no-schematic",
-          "log": "build/runs/project/fixture-no-schematic/20261017T004545.852974Z/drc/kicad-cli-drc.log",
+          "cwd": "/tmp/pytest-of-halbritt/pytest-1177/test_skipped_parity_is_a_failu0/no-schematic",
+          "log": "build/runs/project/fixture-no-schematic/20261017T052729.382039Z/drc/kicad-cli-drc.log",
           "exit_code": 0,
-          "duration_s": 2.253
+          "duration_s": 2.443
         }
       ],
       "inputs": {
         "rc_filter.kicad_pcb": "f8264d95e52dc3c3d48358696c87294c6bbe7ff83102ecc9e0c4c3c27c7e72de"
       },
       "outputs": {
-        "build/runs/project/fixture-no-schematic/20261017T004545.852974Z/drc/drc.json": {
-          "sha256": "8aa807bbf2327ed32814a1f2276cc29fefa46ebb6fd9a6e21be12a2602583cd5",
+        "build/runs/project/fixture-no-schematic/20261017T052729.382039Z/drc/drc.json": {
+          "sha256": "f0af0f988ae821e820aa482bda28456ab1a2645d96ab5b0430a3e310dec316f6",
           "bytes": 1087
         }
       },
@@ -561,9 +576,9 @@
       "label": "fixture-case-sheet",
       "description": "disposable fixture copy: case-sheet",
       "status": "PASS",
-      "started_utc": "2026-10-17T00:46:08.700215+00:00",
-      "finished_utc": "2026-10-17T00:46:12.556577+00:00",
-      "run_dir": "build/runs/project/fixture-case-sheet/20261017T004608.700102Z",
+      "started_utc": "2026-10-17T05:27:51.567508+00:00",
+      "finished_utc": "2026-10-17T05:27:54.551164+00:00",
+      "run_dir": "build/runs/project/fixture-case-sheet/20261017T052751.567376Z",
       "fill_mode": "asis",
       "tool_versions": {
         "kicad-cli": "10.0.7",
@@ -575,7 +590,7 @@
       },
       "snapshot": {
         "project": "fixture-case-sheet",
-        "source_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_case_mismatched_sheet_is_0/case-sheet",
+        "source_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_case_mismatched_sheet_is_0/case-sheet",
         "source": "working tree",
         "source_git_head": null,
         "source_dirty_files": [],
@@ -641,30 +656,30 @@
               "-n",
               "-b",
               "-o",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate/control.sp"
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log",
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate/control.sp"
             ],
-            "cwd": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/sim",
-            "log": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate/ngspice-console.log",
+            "cwd": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/sim",
+            "log": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate/ngspice-console.log",
             "exit_code": 0,
-            "duration_s": 0.036
+            "duration_s": 0.019
           }
         ],
         "inputs": {
           "deck.cir": "9a28fb9534f530bdfa3383a0635ce19ebd1c81e35771c5fcefe65548e283292f"
         },
         "outputs": {
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate/result.raw": {
-            "sha256": "35f70b1acbc495ec9ac901b735c8a294522a197e157389ad2f57bcc7b188e43a",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate/result.raw": {
+            "sha256": "ee36532482bd712d54e4ef7d4f2104c3da769fa394ab557dfde557e1848b2c7d",
             "bytes": 192982
           },
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log": {
-            "sha256": "83b261f386f18f11c09a44e55d2cbc4d9839a1b426d2e929d1d457269ffd70b1",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate/ngspice.log": {
+            "sha256": "c70843b28585cdf57875aff04346555e9748435dc0ca5ce90f577a3cc418ae13",
             "bytes": 892
           }
         },
         "findings": {},
-        "run_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_simulates_kicad_e0/out/simulate",
+        "run_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_simulates_kicad_e0/out/simulate",
         "method": "ngspice -n -b -o <log> <control.sp>; control: set ngbehavior=kicad, source, run, write",
         "measurements": {
           "v_at_tau": 0.6321204,
@@ -702,30 +717,30 @@
               "-n",
               "-b",
               "-o",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate/ngspice.log",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate/control.sp"
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate/ngspice.log",
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate/control.sp"
             ],
-            "cwd": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0",
-            "log": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate/ngspice-console.log",
+            "cwd": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0",
+            "log": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate/ngspice-console.log",
             "exit_code": 0,
-            "duration_s": 0.036
+            "duration_s": 0.019
           }
         ],
         "inputs": {
           "bad_meas.cir": "af8bbbe95f6066d863f389e894ad12a27025325d7315fc9544b1607ae58a372b"
         },
         "outputs": {
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate/result.raw": {
-            "sha256": "52275b6a2d0e16ed347af8366dcfae7e6280d5dda71b375682e85910ae751b27",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate/result.raw": {
+            "sha256": "7a15c85992f043802dd8f2364eaa3bf9b583c1931e2228d37699941efcbc30cc",
             "bytes": 192986
           },
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate/ngspice.log": {
-            "sha256": "704e351c53b4271f55c2cb9018848d81a5b0c7532bc2f83e7099ec9febd8e7c5",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate/ngspice.log": {
+            "sha256": "34c104e7714f27fc85f8094364d7d6ae44f942653b38961ee2907a76d6fbe1ed",
             "bytes": 1028
           }
         },
         "findings": {},
-        "run_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/bad/simulate",
+        "run_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/bad/simulate",
         "method": "ngspice -n -b -o <log> <control.sp>; control: set ngbehavior=kicad, source, run, write",
         "measurements": {
           "v_at_tau": 0.6321204,
@@ -755,7 +770,7 @@
         },
         "outputs": {},
         "findings": {},
-        "run_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/ctl/simulate"
+        "run_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/ctl/simulate"
       },
       "wrong_expectation": {
         "step": "simulate",
@@ -770,13 +785,13 @@
               "-n",
               "-b",
               "-o",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate/ngspice.log",
-              "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate/control.sp"
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate/ngspice.log",
+              "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate/control.sp"
             ],
             "cwd": "toolchain/fixtures/rc_filter/sim",
-            "log": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate/ngspice-console.log",
+            "log": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate/ngspice-console.log",
             "exit_code": 0,
-            "duration_s": 0.022
+            "duration_s": 0.019
           }
         ],
         "inputs": {
@@ -784,17 +799,17 @@
           "wrong.expect.json": "b9b6357f204509ae1e08682fd555bc5b8a338d86580e29110f663de8cf35708b"
         },
         "outputs": {
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate/result.raw": {
-            "sha256": "52275b6a2d0e16ed347af8366dcfae7e6280d5dda71b375682e85910ae751b27",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate/result.raw": {
+            "sha256": "7a15c85992f043802dd8f2364eaa3bf9b583c1931e2228d37699941efcbc30cc",
             "bytes": 192986
           },
-          "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate/ngspice.log": {
-            "sha256": "c76afce92fdb0750eeb8c9cd72c17558d889165180a0d59c710bcbc6925ccb35",
+          "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate/ngspice.log": {
+            "sha256": "467ab528f1e80a514dcaa12934e93a7a2526b6ca5a45a4e56f0b230a10032e53",
             "bytes": 936
           }
         },
         "findings": {},
-        "run_dir": "/tmp/pytest-of-halbritt/pytest-1173/test_ngspice_failures_are_not_0/wrong/simulate",
+        "run_dir": "/tmp/pytest-of-halbritt/pytest-1177/test_ngspice_failures_are_not_0/wrong/simulate",
         "method": "ngspice -n -b -o <log> <control.sp>; control: set ngbehavior=kicad, source, run, write",
         "measurements": {
           "v_at_tau": 0.6321204,
@@ -832,13 +847,13 @@
               "-n",
               "-b",
               "-o",
-              "/home/halbritt/git/fome-mc/build/runs/sim/rc_step/20261017T004605.423270Z/simulate/ngspice.log",
-              "/home/halbritt/git/fome-mc/build/runs/sim/rc_step/20261017T004605.423270Z/simulate/control.sp"
+              "/home/halbritt/git/fome-mc/build/runs/sim/rc_step/20261017T052747.913111Z/simulate/ngspice.log",
+              "/home/halbritt/git/fome-mc/build/runs/sim/rc_step/20261017T052747.913111Z/simulate/control.sp"
             ],
             "cwd": "toolchain/fixtures/rc_filter/sim",
-            "log": "build/runs/sim/rc_step/20261017T004605.423270Z/simulate/ngspice-console.log",
+            "log": "build/runs/sim/rc_step/20261017T052747.913111Z/simulate/ngspice-console.log",
             "exit_code": 0,
-            "duration_s": 0.025
+            "duration_s": 0.037
           }
         ],
         "inputs": {
@@ -846,17 +861,17 @@
           "rc_step.expect.json": "050db68da4f89191490d67989c7c1cf4287d3f14e6af54ce3392ec46f330a5ca"
         },
         "outputs": {
-          "build/runs/sim/rc_step/20261017T004605.423270Z/simulate/result.raw": {
-            "sha256": "52275b6a2d0e16ed347af8366dcfae7e6280d5dda71b375682e85910ae751b27",
+          "build/runs/sim/rc_step/20261017T052747.913111Z/simulate/result.raw": {
+            "sha256": "03b16ced57af729f4817080f8c53305380d0d18233cbb59105070da738c4cc9f",
             "bytes": 192986
           },
-          "build/runs/sim/rc_step/20261017T004605.423270Z/simulate/ngspice.log": {
-            "sha256": "1bbbc6676d426085229ec6bc7625024cf0391a22f49a865fe80e66ae208cfff1",
+          "build/runs/sim/rc_step/20261017T052747.913111Z/simulate/ngspice.log": {
+            "sha256": "5d79e04c245318667db0790eacdfa9f9f79e98a73654357ea8f7b4c4eb5c8417",
             "bytes": 936
           }
         },
         "findings": {},
-        "run_dir": "build/runs/sim/rc_step/20261017T004605.423270Z/simulate",
+        "run_dir": "build/runs/sim/rc_step/20261017T052747.913111Z/simulate",
         "method": "ngspice -n -b -o <log> <control.sp>; control: set ngbehavior=kicad, source, run, write",
         "measurements": {
           "v_at_tau": 0.6321204,

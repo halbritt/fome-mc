@@ -1,0 +1,119 @@
+{
+  "exit_code": 3,
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "candidate project files differed from the input and were restored before grading: route_demo.kicad_pro",
+      "2 new DRC violations: track_dangling 2",
+      "preservation project_files: rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input; restored before grading: route_demo.kicad_pro",
+      "preservation footprints: 5 footprints: library id, position, orientation, side, lock state and pad geometry",
+      "preservation protected_copper: 5 tracks and 2 vias designated (all pre-existing copper); max deviation 0 nm; 1 lock flags dropped",
+      "preservation new_copper_netclass_geometry: 16 new tracks and 1 new vias checked against their net class width / via diameter / drill"
+    ],
+    "dir": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z",
+    "restored_project_files": [
+      "route_demo.kicad_pro"
+    ],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-refill.json",
+          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo",
+        "log": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.832
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-drc.json",
+          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
+        ],
+        "cwd": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo",
+        "log": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.219
+      }
+    ],
+    "delivered_board_sha256": "2dbe918283895ad6c77e1465076c2a9da6d08e8bc0bc8aaab97482f209fa8cbe",
+    "validated_board_sha256": "2dbe918283895ad6c77e1465076c2a9da6d08e8bc0bc8aaab97482f209fa8cbe",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 2,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 2,
+        "by_type": {
+          "track_dangling": 2
+        },
+        "by_severity": {
+          "warning": 2
+        }
+      },
+      "preexisting_violations": 0,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "FAIL",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "FAIL",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "FAIL",
+      "new_copper_netclass_geometry": "FAIL",
+      "routing_scope": "PASS"
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 1,
+    "unconnected_total": 1,
+    "baseline_unconnected_total": 6,
+    "unrouted_nets": [
+      "/SIG_B"
+    ],
+    "stats": {
+      "new_tracks": 16,
+      "new_vias": 1,
+      "new_track_length_mm": 117.987,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 0.028,
+        "F.Cu": 117.959
+      },
+      "new_copper_nets": 5,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 1
+    }
+  }
+}

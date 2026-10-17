@@ -86,4 +86,4 @@ Output directories must be fresh. Example: `toolchain/fixtures/rc_filter/sim/`.
   `pdftoppm -png -r 150 -f N -l N file.pdf out` to render a page you can view,
   `pdfinfo` for page counts, `mutool draw -F txt` as a fallback.
 - Related skills: `kicad-happy-kicad`, `kicad-happy-spice`, `kicad-happy-datasheets`
-  (pinned upstream, with a project header).
+  (pinned upstream, with a project header); `fome-pcb-routing` for trace routing.

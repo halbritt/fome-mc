@@ -1,0 +1,65 @@
+{
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "v0.23.1",
+    "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+    "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "rust_router": "0.23.1"
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 15,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {},
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 6,
+    "nets_list": [
+      "/SIG_A",
+      "/SIG_A_OUT",
+      "/SIG_B",
+      "/SIG_B_OUT",
+      "/VIN",
+      "GND"
+    ]
+  },
+  "unsupported": [
+    "KRT reads only a subset of .kicad_dru custom rules; every rule is still graded by KiCad DRC",
+    "KRT moves copper gr_text and net-less copper graphics to silkscreen (not switchable on the CLI); the copper_graphics preservation check reports it",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class",
+    "backend reported: .kicad_dru: rule 'power_to_signal_clearance': clearance 0.4mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it"
+  ],
+  "routing": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "exit_code": 1,
+  "process": {
+    "status": "FAIL",
+    "reasons": [
+      "KRT exceeded the 15 s budget, did not stop at the stop file, and was killed (last output: 'No route found after 2010000 iterations (both directions)'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0"
+    ],
+    "exit_code": -15,
+    "runtime_s": 45.017,
+    "backend_report": null,
+    "bridge": null,
+    "project_writeback": []
+  },
+  "validation": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "run_dir": "build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z"
+}
