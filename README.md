@@ -166,10 +166,11 @@ fome-mc/
 │   ├── VALIDATION.md                # Verification ledger, DFM/stock audit & bench bring-up procedure
 │   ├── WIRING_SV650_K7.md           # 2007 Suzuki SV650 (K7) wiring harness & connector guide
 │   ├── POTTING_AND_ENCLOSURE.md     # Enclosure stackup, thermal gap pads & potting guide (incl. FOMEMC-1)
+│   ├── TELEMETRY_AND_RACECHRONO.md  # CAN1 motorsport telemetry pod, RaceChrono Pro & camera integration (FOMEMC-4)
 │   ├── renders/                     # High-resolution PNG/SVG/PDF PCB layer, floorplan & pinout renders
 │   └── schematics/                  # All 21 schematic sheets in SVG + compiled fome-mc-schematics.pdf
 ├── export/
-│   ├── BOM-fome-mc.csv              # JLCPCB PCBA Bill of Materials (108 grouped lines, 472 schematic parts, LCSC part numbers)
+│   ├── BOM-fome-mc.csv              # JLCPCB PCBA Bill of Materials (109 grouped lines, 475 schematic parts, LCSC part numbers)
 │   ├── CPL-fome-mc.csv              # JLCPCB PCBA Component Placement / Centroid file
 │   └── gerbers/                     # 4-layer Gerbers, Excellon drill files, job file & fome-mc-gerbers.zip
 ├── scripts/
@@ -202,8 +203,9 @@ make export
 
 | Gate | Result | Details |
 | :--- | :--- | :--- |
-| **`verify_io_map.py`** | **PASS** | `70 / 70` `J1`/`J2` pins + `16` internal buses + `472` netlist components verified across `io-map.csv`, `export/fome-mc.net`, and `fome-fw` |
+| **`verify_io_map.py`** | **PASS** | `70 / 70` `J1`/`J2` pins + `22` internal buses + `475` netlist components verified across `io-map.csv`, `export/fome-mc.net`, and `fome-fw` |
 | **Schematic ERC (`make erc`)** | **PASS** | **`0` errors** and `2,115` warnings across all 21 hierarchical schematic sheets (remediated from `HEAD` `f5abd10` baseline of `60` errors / `2,580` warnings; historical `reports/toolchain/baseline/` snapshot had `35` errors / `1,446` warnings) |
-| **Netlist (`make netlist`)** | **PASS** | `472` components, `473` nets, `0` unannotated, `0` duplicate references; `/knock/FILTERED_1` (`U26.14`) and `/knock/FILTERED_2` (`U26.15`) isolated from `/12V_MR` and `/5V_SENSOR_1`; `/MAIN_RLY` (`PE0` -> `U1202.6` + `D209` -> `J1-14`) and `D20/D21` diode-OR (`12V_IGN_SW` + `12V_MR` -> `12V_RAW`) verified |
-| **Exports (`make export`)** | **PASS** | Regenerated `export/fome-mc.net`, `export/BOM-fome-mc.csv` (`108` grouped lines, `472` parts, 100% in-stock LCSC part numbers), schematic PDF/SVGs, and KiBot outputs |
+| **Netlist (`make netlist`)** | **PASS** | `475` components, `0` unannotated, `0` duplicate references; `/knock/FILTERED_1` (`U26.14`) and `/knock/FILTERED_2` (`U26.15`) isolated from `/12V_MR` and `/5V_SENSOR_1`; `/MAIN_RLY` (`PE0` -> `U1202.6` + `D209` -> `J1-14`), `D20/D21` diode-OR (`12V_IGN_SW` + `12V_MR` -> `12V_RAW`), and `SPI4` Wi-Fi (`U29` `ATWINC1500-MR210UB`) verified |
+| **Exports (`make export`)** | **PASS** | Regenerated `export/fome-mc.net`, `export/BOM-fome-mc.csv` (`109` grouped lines, `475` parts, 100% in-stock LCSC part numbers), schematic PDF/SVGs, and KiBot outputs |
+
 
