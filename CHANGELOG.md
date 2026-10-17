@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-17 — Generator direction
+
+Owner decisions for the AI-driven PCB generator (agent-ee, kicad-route, fome-mc), as
+they bear on this repository:
+
+1. Generation is a repair campaign from an empty candidate; fome-mc is the target product and the last benchmark rung (rung 4: 15 sheets, 4 layers, 492 footprints). Rung 2 is one fome-mc sheet (PSU or one wideband channel).
+2. Boards are composed from verified reference blocks, then adapted. fome-mc's sheets, built from Polygonus, Universal-112 and wideband Rev C, are the reference library; capture plan in `docs/BLOCK_LIBRARY.md`.
+3. Stages are requirements, parts, schematic, placement, routing, verification and fab package. Routing already uses kicad-route (`toolchain/ROUTING.md`, KRT default).
+4. Placement is a new agent-ee stage; it does not change this repository.
+5. Every stage keeps the evidence model: hashed inputs, recorded tool versions, sandboxed runs, independent review. FOMEMC-1..20 findings seed agent-ee's benchmark (`docs/SEEDED_DEFECT_BENCHMARK.md`).
+6. Tools stay upstream with versions and hashes recorded per run. The Gerbers that README.md places in `export/gerbers/` are not committed; only BOM and CPL are tracked, so the rung-4 fab package must be regenerated from a pinned commit and hashed (FOMEMC-21).
+
 ## 2026-10-16 (Rev 2) — Power Remediation & Plane Milestones `FOMEMC-1` .. `FOMEMC-4`
 
 Completed the 6-step power/ERC remediation and all four follow-on architecture & firmware enhancements (`FOMEMC-1`, `FOMEMC-2`, `FOMEMC-3`, `FOMEMC-4`):
