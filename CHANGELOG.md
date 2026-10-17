@@ -9,10 +9,10 @@ Completed the 6-step power/ERC remediation and all four follow-on architecture &
   - Added `D20` and `D21` (`B340A-13-F` 40 V 3 A Schottky, LCSC `C8598`) diode-OR combining `+12V_IGN_SW` (`J1-26`) and `+12V_MR` (`J1-27`) onto `12V_RAW`.
   - Connected `12V_SENSE` (`R96 = 82 kΩ / R97 = 10 kΩ` -> `U26.45` `PC5` `12V_DIVIDED`) upstream of `D20` on `/12V_IGN_SW` so key-off is immediately detected while `/12V_MR` keeps `12V_RAW` alive.
   - Routed `PE0` (`U26.141` `MAIN_RLY`) through `RN9/RN10` into `U1202` (`VNLD5090` channel 2, `U1202.6`) with `D209` (`B340A-13-F`) flyback clamp to `/12V_MR` on `J1-14` (`MAIN_RLY`), enabling deterministic post-key-off `.mlg` `f_sync()` flush and stepper parking before main relay release.
-  - Retained `Perm_Live` (`J1-28`) -> `D16` (`B340A-13-F`) -> `U41` (`MIC5205-3.3YM5` 3.3 V backup LDO, LCSC `C5370979`) -> `D17`/`D15` into `U26.6` (`VBAT`).
+  - Retained `Perm_Live` (`J1-28`) -> `D16` (`B5819W`) -> `U41` (`MIC5205-3.3YM5` 3.3 V backup LDO, LCSC `C5370979`) -> `D17`/`D15` into `U26.6` (`VBAT`).
 - **Load-Dump, Reverse-Battery & Regulator Hardening (`sheets/psu.kicad_sch`)**:
   - Removed the orphaned `U46` (`LM2733XMFX` boost on an LDO symbol) + `L3, D18, C107`, orphaned `BD3571` regulators, and `U28` (`S3225SMD32.768KOSC` 32.768 kHz oscillator).
-  - Upgraded `D1` to a unidirectional **`SMCJ33A`** (`C224049`, `33 V` standoff / `53.3 V` max clamping sacrificial crowbar TVS) ahead of **`Q1` (`AO4485` P-MOSFET reverse-polarity block, `C51499`)** + `D19` (`BZT52C12` `C43491` 12 V gate Zener) + `R124` (`47 kΩ` `C25819`), eliminating the `~0.45 V` / `0.7 W` series Schottky (`D2` `SS34`) drop.
+  - Upgraded `D1` (`12V_RAW`) and added `D22` (`12V_MR`) as unidirectional **`SMCJ24A`** (`C224045`, `24 V` standoff / `38.9 V` max clamping sacrificial crowbar TVS diodes) ahead of **`Q1` (`AO4485` P-MOSFET reverse-polarity block, `C51499`)** + `D19` (`BZT52C12` `C43491` 12 V gate Zener) + `R124` (`47 kΩ` `C25819`), eliminating the `~0.45 V` / `0.7 W` series Schottky (`D2` `SS34`) drop.
   - Routed `12V_PROT` through the `L1` (`2.2 µH`) + `C6` (`47 µF` Panasonic `EEHZC1H470P` hybrid polymer, `C454346`) LC filter into **`U3` (`LMR16020PDDAR` 60 V 2 A step-down buck, `C190006`)**, **`U1, U2` (`2× TLS115D0E` tracked 5 V sensor LDOs, `C3747428`)**, and **`U6` (`TLV75733PDBVR` 3.3 V 1 A low-dropout LDO, `C485517`, `0.25 V` typ dropout)**, achieving a **`~4.0–4.2 V` connector cranking brownout floor**.
   - Upgraded 12 V rail MLCCs (`C2, C4, C5, C7, C8, C10, C108, C1201`) to Murata `GCJ` soft-terminated 50 V X7R parts and resolved all 60 schematic ERC errors down to **`0` ERC errors** across all 21 sheets (including isolating `/knock/FILTERED_1` `U26.14` and `/knock/FILTERED_2` `U26.15`, separating `VDDA_WBO1` / `VDDA_WBO2`, and fixing `U4/U5` `MCP2551-I-SN` Pin 5 `Vref`).
 
@@ -100,7 +100,7 @@ Initial adaptation of [FOME-Tech/Polygonus](https://github.com/FOME-Tech/Polygon
 | `5V_SENSE_DIVIDED` (`Sensor5vVoltage`) | — | `PF12` (Pin 50, `EFI_ADC_17`) |
 | `VBOOST_DIVIDED` (`VboostVoltage`) | — | `PF13` (Pin 53, `EFI_ADC_18`) |
 | `DIGITAL1..DIGITAL6` | `PC6, PE11..PE15` | `PG0, PG1, PE10..PE13` (Pins 56, 57, 63–66) |
-| `VR_1, VR_2` (`MAX9924` `U3, U4`) | `PE7, PE8` | `PE14, PE15` (Pins 67, 68) |
+| `VR_1, VR_2` (`MAX9924UAUB+` `U13, U14`) | `PE7, PE8` | `PE14, PE15` (Pins 67, 68) |
 | `LED1..LED4` (`D10..D13`) | `PE3, PE4, PE5, PE6` | `PF0, PF2, PD14, PF1` (Pins 10, 12, 85, 11) |
 
 3. **`VBoost` Pre-Regulator (`psu.kicad_sch`)**: Added `U46` (`LM2733XMFX/NOPB`, `C80169`), `L3` (`10 µH`, `C408412`), `D18` (`C8678`), `C107` (`4.7 µF`, `C19666`), and `R122/R123` (`68 kΩ / 10 kΩ`) setting a `9.59 V` pre-regulator floor during starter cranking sags.
