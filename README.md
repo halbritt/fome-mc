@@ -18,7 +18,7 @@ The primary reference application is the **2007 Suzuki SV650 (K7)** (`645 cc` 90
 | [**`docs/VALIDATION.md`**](docs/VALIDATION.md) | Automated ERC/DRC/Parity/Gerber/JLCPCB DFM verification ledger and 12-step pre-engine hardware bring-up checklist |
 | [**`docs/schematics/fome-mc-schematics.pdf`**](docs/schematics/fome-mc-schematics.pdf) | Full 21-sheet hierarchical schematic PDF (plus individual sheet SVGs in [`docs/schematics/`](docs/schematics/)) |
 | [**`docs/renders/fome-mc-pcb-layers.pdf`**](docs/renders/fome-mc-pcb-layers.pdf) | Multi-page PCB layer plot PDF (`F.Cu`, `In1.Cu`, `In2.Cu`, `B.Cu`, `F.Silkscreen`, `B.Silkscreen`, `F.Fab`, `Edge.Cuts`) |
-| [**`io-map.csv`**](io-map.csv) | Machine-verified 87-row master pinout CSV (`J1-1..35`, `J2-1..35`, and 17 internal MCU/WBO/SDNAND buses) |
+| [**`io-map.csv`**](io-map.csv) | Machine-verified 92-row master pinout CSV (`J1-1..35`, `J2-1..35`, and 22 internal MCU/WBO/SDNAND/Wi-Fi buses) |
 | [**`CHANGELOG.md`**](CHANGELOG.md) | Engineering decision history, schematic/PCB integration milestones, and upstream bug fixes |
 
 ---
@@ -47,10 +47,10 @@ flowchart TB
 
     subgraph PCB["fome-mc 4-Layer Integrated Motorcycle ECU PCB (162.0 mm × 115.0 mm)"]
         PSU["Power Supply & Keep-Alive (psu.kicad_sch + Keep_Alive.kicad_sch)<br/>D20/D21 B340A Diode-OR (12V_IGN_SW + 12V_MR -> 12V_RAW)<br/>SMCJ33A Unidirectional TVS • AO4485 Reverse PMOS + BZT52C12<br/>L1/C6 Input Filter -> LMR16020PDDAR 60V 5V Buck • 2x TLS115D0E<br/>TLV75733PDBVR 3.3V LDO • 2x MCP2551-I-SN (U4 CAN1, U5 CAN2)"]
-        MCU["Main ECU Brain (sheets/mcu.kicad_sch)<br/>STM32H753ZIT6 (U26, 480 MHz Cortex-M7)<br/>CSNP32GCR01-AOW 32Gbit (4GB) SDNAND (U25, SDMMC1)<br/>LPS25HBTR Baro (U24 DNP, I2C2) • REF3333 Fixed 3.30V VREF+ (U23)"]
+        MCU["Main ECU Brain (sheets/mcu.kicad_sch)<br/>STM32H753ZIT6 (U26, 480 MHz Cortex-M7)<br/>CSNP32GCR01-AOW 32Gbit (4GB) SDNAND (U25, SDMMC1)<br/>ATWINC1500-MR210UB U.FL Wi-Fi (U29, SPI4 PE2..PE6 + PC13)<br/>LPS25HBTR Baro (U24 DNP, I2C2) • REF3333 Fixed 3.30V VREF+ (U23)"]
         AFE["Analog, Knock & VR Front-End<br/>MCP6004 Buffers + 2.7k 0.1% Pull-Ups<br/>2x MAX9924UAUB+ VR Conditioners<br/>Active Bandpass Knock Filter (PF4/PF5 ADC3)"]
         DRV["Power & Motion Drivers<br/>4x MIC4427 + 4x FGD3040G2-F085 IGBTs (Q201..Q204)<br/>6x VNLD5090 Dual Low-Side (U1001..U1202) + BTS716G HS (U40)<br/>2x TLE9201SG 6A H-Bridge (U201, U203) + DRV8825 Stepper (U202)"]
-        WBO["Dual Onboard LSU 4.9 Wideband Controllers<br/>WBO1 (U302 STM32F042, 0x190) & WBO2 (U402 STM32F042, 0x192)<br/>MCP6004 + AD8628 + REF3033 + VND14NV04 + TJA1051T/3 (U307/U407)<br/>Internal 500 kbps CAN2 Bus (PB12/PB13) + H7 Reset/BOOT0 (PE2..PE5)"]
+        WBO["Dual Onboard LSU 4.9 Wideband Controllers<br/>WBO1 (U302 STM32F042, 0x190) & WBO2 (U402 STM32F042, 0x192)<br/>MCP6004 + AD8628 + REF3033 + VND14NV04 + TJA1051T/3 (U307/U407)<br/>Internal 500 kbps CAN2 Bus (PB12/PB13) + H7 Reset/BOOT0 (PD4..PD7)"]
     end
 
     J1_PWR --> PSU
@@ -58,7 +58,7 @@ flowchart TB
     J2_ANA & J2_KNK & J2_TRG --> AFE --> MCU
     J2_WBO <--> WBO
     J1_PWR --> WBO
-    WBO <==>|"Internal CAN2 (500 kbps)<br/>+ PE2..PE5 NRST/BOOT0"| MCU
+    WBO <==>|"Internal CAN2 (500 kbps)<br/>+ PD4..PD7 NRST/BOOT0"| MCU
     MCU --> DRV
     DRV --> J1_INJ & J1_IGBT & J1_AUX & J1_MOT & J2_IGN
     J2_COM & J1_DFU <--> MCU
@@ -72,7 +72,8 @@ flowchart TB
 | :--- | :--- | :--- | :--- |
 | **Main MCU** | `STM32H753ZIT6` (`U26`, LQFP-144) | 8 MHz HSE (`Y1`), `REF3333` (`REF3033`-class) fixed `3.30 V` `VREF+` (`U23`) | 480 MHz Cortex-M7, 2 MB Dual-Bank Flash, 1 MB RAM. Fixed `3.30 V` `VREF+` means ADC inputs are not ratiometric to `5V_SENSOR_x`; scale by `5V_SENSE_DIVIDED` (`U26.50` / `PA6`) during cranking sag |
 | **Onboard Logging** | `CSNP32GCR01-AOW` (`U25`, `6×8 mm` LGA-8, `C2841139`) | `SDMMC1` 4-bit bus (`PC8..PC12, PD2`) | 4 GB (32 Gbit) soldered pottable SD NAND (`~161 hrs` @ 50 Hz / `~80 hrs` @ 100 Hz) with automatic oldest-`.mlg` ring-buffer pruning; pin-compatible with `MKDV32GCL-STH` (`C5199868`) / `XTSD32GLGEAG` |
-| **Wideband O2 #1 & #2** | `2× STM32F042K6T6` (`U302`, `U402`) + `2× MCP6004` + `2× AD8628` + `2× REF3033` + `2× VND14NV04` (`Q301`, `Q401`) + `2× TJA1051T/3` (`U307`, `U407`) | `J1-23` (`WBO1_H-`), `J1-24` (`+12V_MR`), `J1-25` (`WBO2_H-`), `J2-19..22` (`WBO1`), `J2-30..33` (`WBO2`) | Internal `CAN2` (`PB12/PB13` @ 500 kbps via `U5` `MCP2551-I-SN` to `U307/U407` `TJA1051T/3`). Strapped addresses: `WBO1` = `0x190/0x191`, `WBO2` = `0x192/0x193`. H7 controls `NRST`/`BOOT0` via `PE2..PE5` |
+| **Onboard Wi-Fi (`U.FL`)** | `ATWINC1500-MR210UB` (`U29`, `C1558703`, 2.4 GHz 802.11b/g/n with U.FL external antenna) | `SPI4` (`PE2=SCK`, `PE5=MISO`, `PE6=MOSI`, `PE4=CS`, `PE3=IRQ`, `PC13=RST`) | Enables wireless TunerStudio TCP server (`port 29000`) and built-in HTTP port `80` web server for browsing/downloading `.mlg` logs & streaming `.zip` archives; U.FL pigtail exits aluminum enclosure |
+| **Wideband O2 #1 & #2** | `2× STM32F042K6T6` (`U302`, `U402`) + `2× MCP6004` + `2× AD8628` + `2× REF3033` + `2× VND14NV04` (`Q301`, `Q401`) + `2× TJA1051T/3` (`U307`, `U407`) | `J1-23` (`WBO1_H-`), `J1-24` (`+12V_MR`), `J1-25` (`WBO2_H-`), `J2-19..22` (`WBO1`), `J2-30..33` (`WBO2`) | Internal `CAN2` (`PB12/PB13` @ 500 kbps via `U5` `MCP2551-I-SN` to `U307/U407` `TJA1051T/3`). Strapped addresses: `WBO1` = `0x190/0x191`, `WBO2` = `0x192/0x193`. H7 controls `NRST`/`BOOT0` via `PD4..PD7` |
 | **High-Current Ignition** | `4× FGD3040G2-F085` IGBTs (`Q201..Q204`, TO-252) driven by `MIC4427` | `J1-6..9` (`PB3`, `PG15`, `PG14`, `PG13`) | `400 V` internal collector-gate SCIS clamp, `30 A`, `250 mJ`; `10 kΩ` MCU reset pull-downs prevent coil dwell during reset/DFU |
 | **5V Logic Ignition** | `4× MIC4427` 1.5 A push-pull buffers + `100 Ω` series protection | `J2-23..26` (`PG12`, `PG11`, `PG10`, `PG9`) | Drives 3/4-wire smart coils or external igniters; `IGBT3/4` and `IGN3/4_LOG` support independent **Trailing Spark** |
 | **Fuel Injectors** | `2× VNLD5090TR-E` dual protected low-side (`U1001`, `U1002`) | `J1-1..4` (`PG5`, `PG6`, `PG7`, `PG8`) | 4 channels (`INJ1..4`), `42 V` active clamp + `B340A-13-F` (`D201..D204`) Schottky flyback diodes to `/12V_MR` |
@@ -82,7 +83,7 @@ flowchart TB
 | **Crank/Cam VR & Hall** | `2× MAX9924UAUB+` differential adaptive VR conditioners + `SN74LVC2G17` Hall buffers | `J2-11..14` (`VR1+`/`GND` -> `PE14`, `VR2+`/`GND` -> `PE15`), `J2-15..18` (`DIGITAL_1..4` -> `PG1, PG0, PE11, PE10`) | Mode A1 adaptive peak threshold (`50 mVpp` cranking to `100 Vpp` redline) |
 | **Analog, Temp & Knock** | `MCP6004` buffers (`U7, U15, U17, U19, U21`) + `SRV05-4` TVS arrays | `J2-1..8` (`PC4, PC5, PA7, PA3, PA0, PA1, PA4, PA5`), `J2-9..10` (`PF4, PF5` `ADC3`) | `2.7 kΩ 0.1%` bias on `AT1`/`AT2` (`CLT`/`IAT`); active bandpass knock filter (`U7`) isolated on `/knock/FILTERED_1` (`U26.14` `PF4`) and `/knock/FILTERED_2` (`U26.15` `PF5`) |
 | **Power Supply & Keep-Alive** | `D20/D21` (`B340A-13-F`) diode-OR + `SMCJ33A` (`D1`) unidirectional TVS + `AO4485` (`Q1`) P-MOSFET reverse block + `L1/C6` input filter (no boost) + `LMR16020PDDAR` (`U3`, 60 V 2 A buck) + `2× TLS115D0E` (`U1, U2`) + `TLV75733PDBVR` (`U6`, 3.3 V 1 A LDO) + `EEHZC1H470P` hybrid polymer (`C1, C6`) & Murata `GCJ` soft-term 50 V X7R MLCCs | `J1-26` (`+12V_IGN_SW`), `J1-24/27` (`+12V_MR`), `J1-28` (`Perm_Live`), `J1-29..30` (`5V_SENSOR_1/2`), `J1-5, 31..34` (`GND`) | Boots on `J1-26` (`+12V_IGN_SW`, sensed by `R96/R97` into `U26.45` `12V_DIVIDED`) and latches `/12V_MR` (`J1-27`) via `PE0` -> `J1-14` (`MAIN_RLY`). Connector brownout floor is **`~4.0–4.2 V`** (set by `LMR16020` UVLO + `D20/D21` drop) |
-| **Post-Potting Recovery** | Dual-threshold `J1-35` (`RC2` / `USB_VBUS_DFU`) + `PE2..PE5` | `J1-35`, `J2-34` (`USB_D+`), `J2-35` (`USB_D-`), `J2-28..29` (`CAN1`) | `+5 V` on `J1-35` = normal USB/RusEFI/MSD; `+12 V` on `J1-35` biases `R209` override to assert `STM32H753 BOOT0 = 1` (`0483:df11` ROM DFU) through the sealed harness |
+| **Post-Potting Recovery** | Dual-threshold `J1-35` (`RC2` / `USB_VBUS_DFU`) + `PD4..PD7` | `J1-35`, `J2-34` (`USB_D+`), `J2-35` (`USB_D-`), `J2-28..29` (`CAN1`) | `+5 V` on `J1-35` = normal USB/RusEFI/MSD; `+12 V` on `J1-35` biases `R209` override to assert `STM32H753 BOOT0 = 1` (`0483:df11` ROM DFU) through the sealed harness |
 
 ---
 

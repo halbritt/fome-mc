@@ -97,10 +97,10 @@ EXPECTED_PIN_NETS = {
 EXPECTED_INTERNAL_NODES = {
     "INTERNAL-CAN2_RX":       ("/mcu/CAN2_RX",     "U26:73",  "U5:4"),
     "INTERNAL-CAN2_TX":       ("/mcu/CAN2_TX",     "U26:74",  "U5:1"),
-    "INTERNAL-WBO1_NRST":     ("/WBO1_NRST",       "U26:1",   "U302:4"),
-    "INTERNAL-WBO1_BOOT0":    ("/WBO1_BOOT0",      "U26:2",   "U302:31"),
-    "INTERNAL-WBO2_NRST":     ("/WBO2_NRST",       "U26:3",   "U402:4"),
-    "INTERNAL-WBO2_BOOT0":    ("/WBO2_BOOT0",      "U26:4",   "U402:31"),
+    "INTERNAL-WBO1_NRST":     ("/WBO1_NRST",       "U26:118", "U302:4"),
+    "INTERNAL-WBO1_BOOT0":    ("/WBO1_BOOT0",      "U26:119", "U302:31"),
+    "INTERNAL-WBO2_NRST":     ("/WBO2_NRST",       "U26:122", "U402:4"),
+    "INTERNAL-WBO2_BOOT0":    ("/WBO2_BOOT0",      "U26:123", "U402:31"),
     "INTERNAL-WBO1_SEL":      ("GND",              "U302:15"),
     "INTERNAL-WBO2_SEL":      ("+3V3_WBO2",        "U402:18", "U409:2"),
     "INTERNAL-SDMMC_D0":      ("/mcu/SD_D0",       "U26:98",  "U25:7"),
@@ -111,6 +111,12 @@ EXPECTED_INTERNAL_NODES = {
     "INTERNAL-SDMMC_CMD":     ("/mcu/SD_CMD",      "U26:116", "U25:3"),
     "INTERNAL-BARO_I2C":      ("/mcu/BARO_SCL",    "U26:69",  "U24:2"),
     "INTERNAL-PWR_KEEPALIVE": ("/lowside_quad4/IN3","U26:141", "RN9:6"),
+    "INTERNAL-WIFI_SCK":      ("/mcu/WIFI_SCK",    "U26:1",   "U29:18"),
+    "INTERNAL-WIFI_IRQ":      ("/mcu/WIFI_IRQ",    "U26:2",   "U29:13"),
+    "INTERNAL-WIFI_CS":       ("/mcu/WIFI_CS",     "U26:3",   "U29:16"),
+    "INTERNAL-WIFI_MISO":     ("/mcu/WIFI_MISO",   "U26:4",   "U29:17"),
+    "INTERNAL-WIFI_MOSI":     ("/mcu/WIFI_MOSI",   "U26:5",   "U29:15"),
+    "INTERNAL-WIFI_RST":      ("/mcu/WIFI_RST",    "U26:7",   "U29:4"),
 }
 
 
@@ -119,7 +125,7 @@ def main() -> int:
     rows = list(csv.DictReader(IO_MAP_CSV.open()))
     pin_rows = {r["Connector_Pin"]: r for r in rows}
 
-    # 1. Verify all 70 J1/J2 pins + 16 INTERNAL rows exist in io-map.csv
+    # 1. Verify all 70 J1/J2 pins + 22 INTERNAL rows exist in io-map.csv
     for j in ("J1", "J2"):
         for n in range(1, 36):
             key = f"{j}-{n}"
@@ -206,10 +212,18 @@ def main() -> int:
         "engineConfiguration->lps25BaroSensorSda = Gpio::Unassigned;",
         "engineConfiguration->baroSensor.hwChannel = EFI_ADC_2;",
         "engineConfiguration->baroSensor.type = MT_GM_1_BAR;",
-        'efiSetPadMode("WBO1_NRST", Gpio::E2',
-        'efiSetPadMode("WBO1_BOOT0", Gpio::E3',
-        'efiSetPadMode("WBO2_NRST", Gpio::E4',
-        'efiSetPadMode("WBO2_BOOT0", Gpio::E5',
+        "engineConfiguration->is_enabled_spi_4 = true;",
+        "engineConfiguration->spi4sckPin = Gpio::E2;",
+        "engineConfiguration->spi4misoPin = Gpio::E5;",
+        "engineConfiguration->spi4mosiPin = Gpio::E6;",
+        "spi_device_e getWifiSpiDevice()",
+        "Gpio getWifiCsPin()",
+        "Gpio getWifiResetPin()",
+        "Gpio getWifiIsrPin()",
+        'efiSetPadMode("WBO1_NRST", Gpio::D4',
+        'efiSetPadMode("WBO1_BOOT0", Gpio::D5',
+        'efiSetPadMode("WBO2_NRST", Gpio::D6',
+        'efiSetPadMode("WBO2_BOOT0", Gpio::D7',
     ]
     for snip in required_fw_snippets:
         if snip not in bcfg:
