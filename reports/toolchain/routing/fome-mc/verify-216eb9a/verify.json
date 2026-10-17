@@ -1,0 +1,410 @@
+{
+  "old": {
+    "rev": "6af7bf4",
+    "git_head": "6af7bf410d6fe9b47eca1df40a95d0ac795dca70",
+    "drc_info": {
+      "parity_performed": true,
+      "parity_skip_message": null,
+      "reasons": []
+    },
+    "violations": 484,
+    "unconnected": 322,
+    "parity": 0,
+    "by_type": {
+      "lib_footprint_mismatch": 199,
+      "silk_overlap": 165,
+      "silk_over_copper": 91,
+      "starved_thermal": 27,
+      "track_dangling": 2
+    },
+    "by_severity": {
+      "warning": 484
+    },
+    "excluded": 0,
+    "parity_by_type": {},
+    "tracks": 2729
+  },
+  "new": {
+    "rev": "216eb9a",
+    "git_head": "216eb9ab301340148268aab6d306323eab22e80e",
+    "drc_info": {
+      "parity_performed": true,
+      "parity_skip_message": null,
+      "reasons": []
+    },
+    "violations": 471,
+    "unconnected": 0,
+    "parity": 0,
+    "by_type": {
+      "lib_footprint_mismatch": 199,
+      "silk_overlap": 174,
+      "silk_over_copper": 98
+    },
+    "by_severity": {
+      "warning": 471
+    },
+    "excluded": 0,
+    "parity_by_type": {},
+    "tracks": 8555
+  },
+  "preservation": [
+    {
+      "check": "project_files",
+      "status": "FAIL",
+      "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+      "n_diff": 1,
+      "sample": [
+        {
+          "key": "fome-mc.kicad_pro",
+          "reference": "731839c7d78c21a30734dd536695e35caafa79ee091b34ed31dd7e981da9f562",
+          "candidate": "4e40c0346a91df10beecf8e642164f844a7de18f014131b1964443197caceff4"
+        }
+      ]
+    },
+    {
+      "check": "board_outline",
+      "status": "PASS",
+      "detail": "4 Edge.Cuts shapes",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "layers",
+      "status": "PASS",
+      "detail": "4 copper layers",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "stackup",
+      "status": "PASS",
+      "detail": "no explicit stackup in the input (KiCad default)",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "board_setup",
+      "status": "PASS",
+      "detail": "board-file (setup) settings other than the stackup",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "nets_and_netclasses",
+      "status": "PASS",
+      "detail": "479 nets with their effective net classes",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "pad_connectivity",
+      "status": "PASS",
+      "detail": "1776 pad-to-net assignments",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "footprints",
+      "status": "FAIL",
+      "detail": "499 footprints: library id, position, orientation, side, lock state and pad geometry",
+      "n_diff": 15,
+      "sample": [
+        {
+          "footprint": "C203",
+          "reference": {
+            "position": [
+              34000000,
+              57000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          },
+          "candidate": {
+            "position": [
+              51000000,
+              114500000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          }
+        },
+        {
+          "footprint": "C204",
+          "reference": {
+            "position": [
+              39000000,
+              57000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          },
+          "candidate": {
+            "position": [
+              55500000,
+              114500000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          }
+        },
+        {
+          "footprint": "C205",
+          "reference": {
+            "position": [
+              44000000,
+              57000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          },
+          "candidate": {
+            "position": [
+              51000000,
+              112000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          }
+        },
+        {
+          "footprint": "C206",
+          "reference": {
+            "position": [
+              49000000,
+              57000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          },
+          "candidate": {
+            "position": [
+              55500000,
+              112000000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          }
+        },
+        {
+          "footprint": "R127",
+          "reference": {
+            "position": [
+              158000000,
+              91500000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          },
+          "candidate": {
+            "position": [
+              61000000,
+              128500000
+            ],
+            "orientation": 0.0,
+            "layer": "F.Cu"
+          }
+        }
+      ]
+    },
+    {
+      "check": "zones",
+      "status": "FAIL",
+      "detail": "6 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+      "n_diff": 1,
+      "sample": [
+        {
+          "reference": 6,
+          "candidate": 6
+        }
+      ]
+    },
+    {
+      "check": "keepouts",
+      "status": "FAIL",
+      "detail": "0 rule areas",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "copper_graphics",
+      "status": "PASS",
+      "detail": "0 non-track copper graphics",
+      "n_diff": 0,
+      "sample": []
+    },
+    {
+      "check": "protected_copper",
+      "status": "FAIL",
+      "detail": "2729 tracks and 857 vias designated (all pre-existing copper); max deviation 775 nm; 1104 missing or altered",
+      "n_diff": 20,
+      "sample": [
+        {
+          "end": [
+            64874325,
+            102119630
+          ],
+          "kind": "segment",
+          "layer": "F.Cu",
+          "net": "GND",
+          "start": [
+            64874325,
+            99963902
+          ],
+          "width": 254000
+        },
+        {
+          "end": [
+            64767309,
+            91292779
+          ],
+          "kind": "segment",
+          "layer": "F.Cu",
+          "net": "GND",
+          "start": [
+            64767309,
+            91288078
+          ],
+          "width": 254000
+        },
+        {
+          "end": [
+            65113636,
+            98790013
+          ],
+          "kind": "segment",
+          "layer": "F.Cu",
+          "net": "GND",
+          "start": [
+            65113636,
+            96163958
+          ],
+          "width": 254000
+        },
+        {
+          "end": [
+            65580925,
+            99257302
+          ],
+          "kind": "segment",
+          "layer": "F.Cu",
+          "net": "GND",
+          "start": [
+            65113636,
+            98790013
+          ],
+          "width": 254000
+        },
+        {
+          "end": [
+            64767309,
+            91288078
+          ],
+          "kind": "segment",
+          "layer": "F.Cu",
+          "net": "GND",
+          "start": [
+            64767309,
+            91274345
+          ],
+          "width": 254000
+        }
+      ]
+    },
+    {
+      "check": "new_copper_netclass_geometry",
+      "status": "FAIL",
+      "detail": "6842 new tracks and 820 new vias checked against their net class width / via diameter / drill (1 um quantisation tolerance); 1729 below",
+      "n_diff": 20,
+      "sample": [
+        {
+          "item": "track",
+          "net": "GND",
+          "netclass": "Default",
+          "layer": "F.Cu",
+          "width_mm": 0.127,
+          "required_mm": 0.254,
+          "start_mm": [
+            103.95,
+            107.72
+          ]
+        },
+        {
+          "item": "track",
+          "net": "GND",
+          "netclass": "Default",
+          "layer": "F.Cu",
+          "width_mm": 0.127,
+          "required_mm": 0.254,
+          "start_mm": [
+            116.854082,
+            106.60433
+          ]
+        },
+        {
+          "item": "track",
+          "net": "GND",
+          "netclass": "Default",
+          "layer": "F.Cu",
+          "width_mm": 0.127,
+          "required_mm": 0.254,
+          "start_mm": [
+            119.535,
+            119.338
+          ]
+        },
+        {
+          "item": "track",
+          "net": "GND",
+          "netclass": "Default",
+          "layer": "F.Cu",
+          "width_mm": 0.127,
+          "required_mm": 0.254,
+          "start_mm": [
+            92.383596,
+            117.6565
+          ]
+        },
+        {
+          "item": "track",
+          "net": "GND",
+          "netclass": "Default",
+          "layer": "F.Cu",
+          "width_mm": 0.127,
+          "required_mm": 0.254,
+          "start_mm": [
+            102.52,
+            124.5
+          ]
+        }
+      ]
+    },
+    {
+      "check": "routing_scope",
+      "status": "PASS",
+      "detail": "new copper only on the 479 in-scope nets",
+      "n_diff": 0,
+      "sample": []
+    }
+  ],
+  "stats": {
+    "new_tracks": 6842,
+    "new_vias": 820,
+    "new_track_length_mm": 13280.218,
+    "new_track_length_mm_by_layer": {
+      "B.Cu": 2810.003,
+      "F.Cu": 3860.114,
+      "In1.Cu": 3774.243,
+      "In2.Cu": 2835.858
+    },
+    "new_copper_nets": 273,
+    "removed_existing_tracks": 1016,
+    "removed_existing_vias": 88
+  },
+  "new_vs_old": {
+    "new_violations": {
+      "silk_overlap": 51,
+      "silk_over_copper": 8
+    },
+    "resolved": 72
+  }
+}
