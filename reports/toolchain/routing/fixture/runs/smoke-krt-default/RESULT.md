@@ -1,13 +1,13 @@
 # Routing attempt: krt on route-fixture
 
 - Backend: krt 0.23.1 (v0.23.1)
-- Input: `route_demo.kicad_pcb` from working tree @ 232daec873b20b80760bf487ec2c0efbd8382e26 (fingerprint ba2f343c49e2f971)
+- Input: `route_demo.kicad_pcb` from working tree @ 351339cf91ab375f7a1747185ba37c836dc6ab72 (fingerprint ba2f343c49e2f971)
 - Scope: all, 6 nets; protect: existing; budget 180 s
-- Candidate: `build/runs/route/route-fixture/smoke-krt-default/20261017T051921.913352Z/candidate/route_demo/route_demo.kicad_pcb`
+- Candidate: `build/runs/route/route-fixture/smoke-krt-default/20261017T062629.198081Z/candidate/route_demo/route_demo.kicad_pcb`
 
 | Result | Status | Detail |
 |---|---|---|
-| process | PASS | exit 0, 4.455 s |
+| process | PASS | exit 0, 4.535 s |
 | routing | COMPLETE | 0 unconnected in scope, 0 total (input: 6) |
 | validation | FAIL | 1 new DRC violations: clearance 1 |
 

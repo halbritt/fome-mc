@@ -13,6 +13,7 @@ make route BACKEND=freerouting PROJECT=route-fixture ARGS='--clearance-margin 0.
 make route BACKEND=krt REV=HEAD ARGS='--nets "/CAN*" --budget 600'
 make route-validate RUN=build/runs/route/<project>/<label>/<stamp>
 make route-compare RUNS='<run_dir> <run_dir>'
+make route-publish RUN=<run_dir>                     # evidence -> reports/toolchain/routing/
 make route-update                                    # newest upstream releases + route-smoke
 make route-smoke                                     # integration tests on the fixture
 ```
@@ -31,7 +32,7 @@ All of these are thin wrappers over `toolchain/route.py` (`route.py --help`).
 | Net-name scope | `--nets` passed through | DSN rewrite: out-of-scope nets move to `<class>__skip` copies (same rules), ignored with `--router.autorouter.ignore_net_classes` |
 | Net-class scope | wrapper expands classes to names | same DSN mechanism |
 | Budget | wall clock: `KICAD_STOP_FILE` at the budget, kill after a grace period; `--max-iterations` | `--router.job_timeout`, kill after budget + 60 s; `--passes` → `--router.autorouter.max_passes` |
-| Existing copper | locked copper never touched; with `--protect existing` (default) unlocked copper is kept too | all pre-existing copper is frozen by Freerouting |
+| Existing copper | locked copper never touched; with `--protect existing` (default) the wrapper locks all input copper for the run (`route_locks.py`) and restores the flags | all pre-existing copper is frozen by Freerouting; the bridge locks it for the round trip and restores the flags |
 | Custom `.kicad_dru` rules | reads only a subset (track-to-track class rules, layer clearances); logs the rest as skipped — surfaced in `unsupported` | not in Specctra; the bridge translates net-class-to-net-class `clearance` rules to `class_class` rules; others listed as untranslated |
 
 MCP was not used: both backends have working local CLIs, and the existing agents
@@ -45,7 +46,12 @@ KRT relaxes by default. The adapter (`KRT_FLAGS` / `KRT_ENV` in `route.py`) pass
 --no-fix-drc-settings`, plus `--keep-input-copper --no-stub-layer-swap` for
 `--protect existing`, and sets `KICAD_INRUN_FLOOR_SYNC=0 KICAD_TERMINAL_ESCALATION=0
 KICAD_IMPEDANCE_NECKDOWN=0 KICAD_RESCUE_CAP_MOVE=0 KICAD_DYNAMIC_ITERATIONS=0`
-(and `KICAD_RIP_PREEXISTING=0 KICAD_FINALIZE_RIP=0` for `--protect existing`). Without
+(and `KICAD_RIP_PREEXISTING=0 KICAD_FINALIZE_RIP=0` for `--protect existing`). Those
+flags were not enough on the real board: KRT's net rescue still moved 138 existing
+segments and vias ("STUB-SWAP RESCUE: GND stub B.Cu -> In1.Cu") and reworked copper on
+nets it failed. KRT never touches locked copper, so for `--protect existing` the wrapper
+locks every input track and via in the work copy before routing and restores the
+original lock flags on KRT's output by exact geometry (`route_locks.py`). Without
 these, KRT steps down fab tiers, necks wide nets into pads, moves passives to rescue a
 net, and writes lowered DRC minimums into its output `.kicad_pro` (seen on the fixture:
 `min_hole_clearance` 0.25 → 0.2 with a "FAB FLOOR RELAXED" warning). Two behaviours
@@ -55,11 +61,20 @@ cleanup pass that may neck new wide segments near foreign pads
 (`copper_graphics`).
 
 Freerouting is run with `-da` (analytics off), `--api_server.enabled=false`,
-`--router.automatic_neckdown=false` (no narrowing into pins), a per-run
+`--router.automatic_neckdown=false` (no narrowing into pins),
+`--router.fanout.enabled=false` (the fanout stage inserts a "micro-neckdown" at 3/4,
+3/5 or 1/2 of the class width whether or not neckdown is enabled —
+`FoundConnectionInserter.insertFanoutMicroNeckdown`; on the FOME-MC trial it delivered
+0.1904 mm tracks on 0.254 mm nets), a per-run
 `--user_data_path`, and `HTTPS_PROXY/HTTP_PROXY=http://127.0.0.1:9`: Freerouting checks
 GitHub for a newer version on every start and has no switch for it; the dead proxy
 keeps attempts offline. The SES `(placement ...)` section is removed before import, so
-a session can never move footprints.
+a session can never move footprints. Pre-existing copper is locked during the round
+trip and its lock flags restored afterwards (see Protected copper below).
+
+Without fanout Freerouting may leave SMD-to-plane or pad-escape connections open;
+`--backend-arg=--router.fanout.enabled=true` re-enables it for a retry, and the grader
+still checks every new conductor against its net class.
 
 ## Attempts, candidates and results
 
@@ -134,8 +149,13 @@ Protected copper across formats: KiCad exports locked tracks/vias as Specctra
 `(type fix)` and unlocked ones as `(type route)`; Freerouting freezes both (it reads
 `fix` as system-fixed and never writes it back; `route` becomes user-fixed and returns as
 `protect`). KiCad's SES import removes every unlocked track and via, keeps locked ones
-untouched, and rebuilds the rest from the session — so unlocked copper comes back with
-new UUIDs and quantised coordinates, which is why copper is matched by geometry.
+untouched, and rebuilds the rest from the session. On the FOME-MC trial that rebuild
+altered 7 pre-existing segments (a 0.5 µm segment collapsed, short diagonals at
+junctions re-normalised — upstream #958/#960/#987). The bridge therefore locks every
+pre-existing track and via for export and import and then restores the original lock
+flags, so input copper never passes through the session. Copper is still matched by
+geometry with a 1 µm tolerance, and new copper sizes allow the same 1 µm for Specctra
+quantisation (KiCad reads a 0.29972 mm via drill back as 0.299 mm).
 
 ### Tightening controls
 
@@ -240,7 +260,7 @@ they are not install requirements.
 a keepout across the direct J1→J2 path, a GND zone on B.Cu, and a locked, pre-routed
 `/SIG_B` (5 tracks, 2 vias). The input is ERC/DRC/parity clean with 6 unconnected items.
 
-`make route-smoke` (11 tests, `toolchain/tests/test_routing.py`) publishes its evidence
+`make route-smoke` (13 tests, `toolchain/tests/test_routing.py`) publishes its evidence
 to `reports/toolchain/routing/fixture/`: per-test records, junit, and for each attempt
 `result.json`, `RESULT.md`, `preservation.json`, `new-findings.json`,
 `candidate-drc.json`. It proves:
@@ -251,6 +271,8 @@ to `reports/toolchain/routing/fixture/`: per-test records, junit, and for each a
   exit code (3), with the skipped rule named under `unsupported`;
 - net-name (`--nets '/SIG_A*'`) and net-class (`--netclass Power`) scopes, with no
   copper outside scope;
+- unlocked pre-existing copper (a variant with `/SIG_B` unlocked) comes back from both
+  backends bit-identical (0 nm deviation) and still unlocked;
 - an unroutable variant (keepout wall) comes back INCOMPLETE from both backends, and a
   budget overrun is a process failure (exit 1);
 - a tampered candidate (footprint moved 0.5 mm, a locked via deleted, a Power track
@@ -259,4 +281,38 @@ to `reports/toolchain/routing/fixture/`: per-test records, junit, and for each a
 - `compare` refuses to call different inputs comparable;
 - the source fixture is byte-identical after the whole run.
 
-Real-board trials are in `reports/toolchain/routing/fome-mc/` (see below).
+## FOME-MC real-board trials (2026-10-17)
+
+Bounded trials on an isolated copy of the committed board (`--rev HEAD` at `e763e31` and
+`351339c`; every trial has the same input fingerprint `e1bfff18…`, the board last
+changed in `f3b0f47`): 475 footprints, 4 copper layers, placed and partly routed
+(2899 tracks, 879 vias, none locked). The untouched input already has 228 DRC violations,
+235 unconnected items and 382 parity issues (graded the same way: refill, then DRC);
+they are counted as pre-existing. All nets in scope, `--protect existing`. Evidence in
+`reports/toolchain/routing/fome-mc/<label>/`; candidates under `build/runs/route/fome-mc/`.
+
+| Attempt | Result | What it showed |
+|---|---|---|
+| `trial-krt-initial` (1200 s) | process FAIL, exit 1 | KRT routed in minutes, then its in-run plane finalize on `+3V3`/`+5V`/`GND` ran past the budget and ignored the stop file; killed, no candidate |
+| `trial-freerouting-initial` (1200 s) | INCOMPLETE 199, validation FAIL | led to two adapter fixes: the SES rebuild altered 7 existing segments (bridge now locks existing copper), and fanout micro-neckdown delivered 0.1904 mm tracks on 0.254 mm nets (fanout now off) |
+| `trial-krt-nofinalize-before-locking` (`KICAD_PLANE_FINALIZE=0`) | INCOMPLETE 14, validation FAIL | KRT's rescue reworked 138 existing items despite its keep-copper flags (wrapper now locks them) |
+| `trial-freerouting` (1200 s, fixed bridge) | INCOMPLETE 188 (from 235), validation FAIL | every preservation check PASS (3778 existing items locked and restored); 3 new findings: a `/LS7` track shorting a GND pad of U1102, two `/CAN2+` clearance misses (0.148 and 0.113 mm vs 0.1524); one autorouting pass in 20 min; Freerouting's own model starts with 700 clearance violations |
+| `trial-krt-nofinalize` (1500 s budget, 767 s used) | INCOMPLETE 26 (from 235) on 17 nets, validation FAIL | every preservation check PASS, no existing copper removed, no conductor below its class; 18 new warnings: 14 `starved_thermal`, 2 `track_dangling`, 2 `via_dangling` |
+
+Neither real-board candidate is adoptable as delivered; both verdicts come from KiCad
+against the board's own rules. Next actions, without weakening any requirement:
+
+- KRT is the productive backend here (6386 new tracks, 415 vias). Continue from its
+  candidate with a second attempt scoped to the 17 open nets
+  (`--dir <run>/candidate/fome-mc --nets …`), and inspect the starved thermals and
+  dangling items with `krt-review-routed-board`; they are new-route geometry, not
+  pre-existing copper.
+- The plane nets need a plan: KRT's plane finalize is the step that ran away. Try it
+  alone on the KRT candidate with a longer budget, or route `GND`/`+3V3`/`+5V` taps by
+  hand.
+- The input itself carries 228 violations and 382 parity issues (footprint/library
+  mismatches, shorting items, clearance); fixing those in the design is outside routing
+  but limits every backend.
+- Freerouting is not competitive on this partly routed board within 20 minutes; revisit
+  after the parity and clearance findings in the input are resolved, or for a fresh
+  layout.

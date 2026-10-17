@@ -1,0 +1,438 @@
+[
+  {
+    "check": "project_files",
+    "status": "PASS",
+    "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+    "differences": []
+  },
+  {
+    "check": "board_outline",
+    "status": "PASS",
+    "detail": "4 Edge.Cuts shapes",
+    "differences": []
+  },
+  {
+    "check": "layers",
+    "status": "PASS",
+    "detail": "4 copper layers",
+    "differences": []
+  },
+  {
+    "check": "stackup",
+    "status": "PASS",
+    "detail": "no explicit stackup in the input (KiCad default)",
+    "differences": []
+  },
+  {
+    "check": "board_setup",
+    "status": "PASS",
+    "detail": "board-file (setup) settings other than the stackup",
+    "differences": []
+  },
+  {
+    "check": "nets_and_netclasses",
+    "status": "PASS",
+    "detail": "448 nets with their effective net classes",
+    "differences": []
+  },
+  {
+    "check": "pad_connectivity",
+    "status": "PASS",
+    "detail": "1719 pad-to-net assignments",
+    "differences": []
+  },
+  {
+    "check": "footprints",
+    "status": "PASS",
+    "detail": "475 footprints: library id, position, orientation, side, lock state and pad geometry",
+    "differences": []
+  },
+  {
+    "check": "zones",
+    "status": "PASS",
+    "detail": "6 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+    "differences": []
+  },
+  {
+    "check": "keepouts",
+    "status": "PASS",
+    "detail": "0 rule areas",
+    "differences": []
+  },
+  {
+    "check": "copper_graphics",
+    "status": "PASS",
+    "detail": "0 non-track copper graphics",
+    "differences": []
+  },
+  {
+    "check": "protected_copper",
+    "status": "FAIL",
+    "detail": "2899 tracks and 879 vias designated (all pre-existing copper); max deviation 500 nm",
+    "differences": [
+      {
+        "end": [
+          118397153,
+          108565153
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "+3V3",
+        "start": [
+          118396614,
+          108565153
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          141859719,
+          103325719
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "Net-(RN4-R1.2)",
+        "start": [
+          141351719,
+          102817719
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          141351719,
+          102817719
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "Net-(RN4-R1.2)",
+        "start": [
+          141052000,
+          102518000
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          137811875,
+          99362007
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/mcu/AT2",
+        "start": [
+          137811875,
+          99182775
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          137811875,
+          99785875
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/mcu/AT2",
+        "start": [
+          137811875,
+          99362007
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          175528000,
+          106534000
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "Net-(U405-+)",
+        "start": [
+          175344000,
+          106350000
+        ],
+        "width": 250000
+      },
+      {
+        "end": [
+          175650000,
+          106656000
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "Net-(U405-+)",
+        "start": [
+          175528000,
+          106534000
+        ],
+        "width": 250000
+      }
+    ]
+  },
+  {
+    "check": "new_copper_netclass_geometry",
+    "status": "FAIL",
+    "detail": "435 new tracks and 10 new vias checked against their net class width / via diameter / drill",
+    "differences": [
+      {
+        "item": "track",
+        "net": "/AV10",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          150.7026,
+          105.6165
+        ]
+      },
+      {
+        "item": "track",
+        "net": "Net-(U13-IO1)",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          135.271,
+          63.2494
+        ]
+      },
+      {
+        "item": "track",
+        "net": "+3.3V",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          54.2296,
+          124.9796
+        ]
+      },
+      {
+        "item": "track",
+        "net": "+3.3V",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          54.4878,
+          125.4046
+        ]
+      },
+      {
+        "item": "track",
+        "net": "+3.3V",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          51.6,
+          124.9796
+        ]
+      },
+      {
+        "item": "track",
+        "net": "+3.3V",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          56.4757,
+          125.575
+        ]
+      },
+      {
+        "item": "track",
+        "net": "+3.3V",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          56.3053,
+          125.4046
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/ETB1_OUT-",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          40.8,
+          119.175
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/ETB1_OUT-",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          42.4897,
+          118.4846
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/ETB1_OUT-",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          41.7993,
+          119.175
+        ]
+      },
+      {
+        "item": "track",
+        "net": "Net-(U405-+)",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          175.344,
+          106.35
+        ]
+      },
+      {
+        "item": "track",
+        "net": "Net-(U301-+",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          171.25,
+          80.0046
+        ]
+      },
+      {
+        "item": "track",
+        "net": "Net-(U301-+",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          171.4954,
+          80.25
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/LS3",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          60.8396,
+          71.3554
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/LS3",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          63.0103,
+          71.3554
+        ]
+      },
+      {
+        "item": "track",
+        "net": "/LS3",
+        "netclass": "Default",
+        "layer": "F.Cu",
+        "width_mm": 0.1904,
+        "required_mm": 0.254,
+        "start_mm": [
+          63.7007,
+          70.665
+        ]
+      },
+      {
+        "item": "via",
+        "net": "/WBO1_NRST",
+        "netclass": "Default",
+        "diameter_mm": 0.5994,
+        "drill_mm": 0.299,
+        "required_mm": [
+          0.59944,
+          0.29972
+        ],
+        "position_mm": [
+          107.7626,
+          128.9751
+        ]
+      },
+      {
+        "item": "via",
+        "net": "/mcu/LED4",
+        "netclass": "Default",
+        "diameter_mm": 0.5994,
+        "drill_mm": 0.299,
+        "required_mm": [
+          0.59944,
+          0.29972
+        ],
+        "position_mm": [
+          118.1737,
+          134.8769
+        ]
+      },
+      {
+        "item": "via",
+        "net": "/mcu/AT3",
+        "netclass": "Default",
+        "diameter_mm": 0.5994,
+        "drill_mm": 0.299,
+        "required_mm": [
+          0.59944,
+          0.29972
+        ],
+        "position_mm": [
+          116.3008,
+          118.2426
+        ]
+      },
+      {
+        "item": "via",
+        "net": "/ign1/IN3",
+        "netclass": "Default",
+        "diameter_mm": 0.5994,
+        "drill_mm": 0.299,
+        "required_mm": [
+          0.59944,
+          0.29972
+        ],
+        "position_mm": [
+          98.709,
+          125.1001
+        ]
+      }
+    ]
+  },
+  {
+    "check": "routing_scope",
+    "status": "PASS",
+    "detail": "new copper only on the 448 in-scope nets",
+    "differences": []
+  }
+]

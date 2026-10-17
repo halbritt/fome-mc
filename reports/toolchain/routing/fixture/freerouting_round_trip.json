@@ -16,7 +16,9 @@
     "passes": 100,
     "default_clearance_mm": null,
     "clearance_margin_mm": 0.01,
-    "backend_args": [],
+    "backend_args": [
+      "--router.fanout.enabled=true"
+    ],
     "backend_env": {},
     "mode": "all"
   },
@@ -62,7 +64,7 @@
     "status": "PASS",
     "reasons": [],
     "exit_code": 0,
-    "runtime_s": 5.313,
+    "runtime_s": 4.746,
     "backend_report": {
       "final_state": "COMPLETED",
       "exit_code": 0,
@@ -75,6 +77,7 @@
       "export": {
         "ignored_classes": [],
         "clearance_raised": [],
+        "existing_copper_locked_for_export": 0,
         "dru_translated": [
           {
             "rule": "power_to_signal_clearance",
@@ -94,7 +97,9 @@
       },
       "import": {
         "placement_dropped": true,
-        "session": "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/work/board.noplacement.ses"
+        "session": "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/work/board.noplacement.ses",
+        "existing_copper_locked": 0,
+        "lock_flags_restored": 0
       }
     },
     "project_writeback": []
@@ -102,7 +107,7 @@
   "validation": {
     "status": "PASS",
     "reasons": [],
-    "dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate",
+    "dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/validate",
     "restored_project_files": [],
     "drc_commands": [
       {
@@ -115,13 +120,13 @@
           "--format",
           "json",
           "-o",
-          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-refill.json",
-          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo/route_demo.kicad_pcb"
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/candidate/route_demo/route_demo.kicad_pcb"
         ],
-        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo",
-        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-refill.log",
+        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/candidate/route_demo",
+        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/validate/candidate-refill.log",
         "exit_code": 0,
-        "duration_s": 3.776
+        "duration_s": 2.409
       },
       {
         "argv": [
@@ -135,17 +140,17 @@
           "--units",
           "mm",
           "-o",
-          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-drc.json",
-          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo/route_demo.kicad_pcb"
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/candidate/route_demo/route_demo.kicad_pcb"
         ],
-        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/candidate/route_demo",
-        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z/validate/candidate-drc.log",
+        "cwd": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/candidate/route_demo",
+        "log": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z/validate/candidate-drc.log",
         "exit_code": 0,
-        "duration_s": 2.443
+        "duration_s": 2.013
       }
     ],
-    "delivered_board_sha256": "35d5eff49cf660bfa5e62f5801ed9b7560164783c459dd091581de6ca6c5c43f",
-    "validated_board_sha256": "35d5eff49cf660bfa5e62f5801ed9b7560164783c459dd091581de6ca6c5c43f",
+    "delivered_board_sha256": "e42afdf515d075c098ddce5e30a9960596c94bc1854a466c9aae0b7c3d3c65df",
+    "validated_board_sha256": "e42afdf515d075c098ddce5e30a9960596c94bc1854a466c9aae0b7c3d3c65df",
     "parity_performed": true,
     "drc": {
       "violations_total": 0,
@@ -181,5 +186,5 @@
       "routing_scope": "PASS"
     }
   },
-  "run_dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T051944.597991Z"
+  "run_dir": "build/runs/route/route-fixture/smoke-freerouting/20261017T062649.974884Z"
 }

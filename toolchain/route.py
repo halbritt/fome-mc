@@ -9,6 +9,7 @@ input constraints.
                  [--protect locked|existing] [--label L] [--backend-arg ARG ...]
     route.py validate RUN_DIR             re-grade a candidate against its reference
     route.py compare RUN_DIR RUN_DIR ...  compare candidates routed from the same input
+    route.py publish RUN_DIR              copy a run's structured evidence into reports/toolchain/routing/
     route.py update                       update both backends through their upstream channels
     route.py smoke                        integration tests on the routing fixture
 
@@ -413,7 +414,8 @@ def preservation(ref, cand, ref_dir, cand_dir, board_name, protect, scope, resto
           f"{out['tracks']['protected']} tracks and {out['vias']['protected']} vias designated "
           f"({'locked items' if protect == 'locked' else 'all pre-existing copper'}); max deviation "
           f"{max(out['tracks']['protected_max_deviation_nm'], out['vias']['protected_max_deviation_nm'])} nm"
-          + (f"; {lost_locks} lock flags dropped" if lost_locks else ""), missing[:20])
+          + (f"; {lost_locks} lock flags dropped" if lost_locks else "")
+          + (f"; {len(missing)} missing or altered" if missing else ""), missing[:20])
     if protect == "locked":
         check("existing_unlocked_copper", True,
               f"{out['tracks']['unprotected_removed_or_changed']} of {out['tracks']['unprotected_existing']} "
@@ -424,9 +426,10 @@ def preservation(ref, cand, ref_dir, cand_dir, board_name, protect, scope, resto
     # New copper must meet the net class of its net and stay inside the routing scope.
     under, outside = [], []
     nets = cand["nets"]
+    tol = GEOMETRY_TOLERANCE_NM  # Specctra/KiCad quantisation, e.g. a 0.29972 mm drill read back as 0.299
     for t in out["tracks"]["new"]:
         nc = nets.get(t["net"], {})
-        if nc.get("track_width") and t["width"] < nc["track_width"]:
+        if nc.get("track_width") and t["width"] < nc["track_width"] - tol:
             under.append({"item": "track", "net": t["net"], "netclass": nc["netclass"], "layer": t["layer"],
                           "width_mm": t["width"] / NM, "required_mm": nc["track_width"] / NM,
                           "start_mm": [c / NM for c in t["start"]]})
@@ -434,8 +437,8 @@ def preservation(ref, cand, ref_dir, cand_dir, board_name, protect, scope, resto
             outside.append({"item": "track", "net": t["net"]})
     for v in out["vias"]["new"]:
         nc = nets.get(v["net"], {})
-        if (nc.get("via_diameter") and v["diameter"] < nc["via_diameter"]) or \
-                (nc.get("via_drill") and v["drill"] < nc["via_drill"]):
+        if (nc.get("via_diameter") and v["diameter"] < nc["via_diameter"] - tol) or \
+                (nc.get("via_drill") and v["drill"] < nc["via_drill"] - tol):
             under.append({"item": "via", "net": v["net"], "netclass": nc["netclass"],
                           "diameter_mm": v["diameter"] / NM, "drill_mm": v["drill"] / NM,
                           "required_mm": [nc.get("via_diameter", 0) / NM, nc.get("via_drill", 0) / NM],
@@ -444,7 +447,8 @@ def preservation(ref, cand, ref_dir, cand_dir, board_name, protect, scope, resto
             outside.append({"item": "via", "net": v["net"]})
     check("new_copper_netclass_geometry", not under,
           f"{len(out['tracks']['new'])} new tracks and {len(out['vias']['new'])} new vias checked against "
-          "their net class width / via diameter / drill", under[:20])
+          f"their net class width / via diameter / drill (1 um quantisation tolerance)"
+          + (f"; {len(under)} below" if under else ""), under[:20])
     outside_nets = sorted({o["net"] for o in outside})
     check("routing_scope", not outside, f"new copper only on the {len(scope)} in-scope nets"
           + (f"; outside scope: {', '.join(outside_nets[:10])}" if outside else ""), outside[:20])
@@ -830,6 +834,16 @@ def krt_route(work, board, scope, facts, settings):
         argv += ["--nets", *scope]
     argv += settings["backend_args"]
     env.update(settings.get("backend_env") or {})
+    locks = None
+    if settings["protect"] == "existing":
+        # KRT never touches locked copper, but its rescue path reworks unlocked input
+        # copper despite --keep-input-copper: lock it for the run, restore flags after.
+        lr = eda.run_cmd([pcbnew_python(), TOOLCHAIN / "route_locks.py", "lock", board, work / "locks.json"],
+                         work, work / "lock-existing.log", timeout=600)
+        locks = {"lock": tagged_json(lr["output"], "LOCKS_JSON"), "lock_exit": lr["exit_code"]}
+        if lr["exit_code"] != 0:
+            return {"status": FAIL, "reasons": [f"could not lock existing copper (see {lr['log']})"],
+                    "commands": [eda.public(lr)], "exit_code": None, "output_board": None}
     rec = run_budgeted(argv, work, work / "krt.log", settings["budget_s"], env, stop_file=stop)
     text = Path(work / "krt.log").read_text(errors="replace")
     report = load_json(summary) or tagged_json(text, "JSON_SUMMARY")
@@ -863,6 +877,14 @@ def krt_route(work, board, scope, facts, settings):
         proc["reasons"].append("budget reached: KRT stopped early and wrote the board as it stood")
     if proc["status"] == PASS and not output.exists():
         proc.update(status=FAIL, reasons=proc["reasons"] + ["KRT wrote no output board"])
+    if locks is not None and proc["status"] == PASS:
+        rr = eda.run_cmd([pcbnew_python(), TOOLCHAIN / "route_locks.py", "restore", output, work / "locks.json"],
+                         work, work / "restore-locks.log", timeout=600)
+        proc["commands"].append(eda.public(rr))
+        locks["restore"] = tagged_json(rr["output"], "LOCKS_JSON")
+        if rr["exit_code"] != 0:
+            proc.update(status=FAIL, reasons=proc["reasons"] + [f"could not restore lock flags (see {rr['log']})"])
+    proc["existing_copper_locks"] = locks
     # What KRT wrote beside its output is recorded, never used.
     writeback = []
     for sib in sorted(out_dir.glob("*")):
@@ -986,8 +1008,10 @@ def freerouting_route(work, board, scope, facts, settings):
     argv = [java[0], "-Djava.awt.headless=true", "-jar", rel["jar"], "-de", dsn, "-do", ses,
             "--gui.enabled=false", "-da", "--api_server.enabled=false",
             f"--user_data_path={work / 'freerouting-userdata'}", f"--router.result_json={res}",
-            # no narrowing of traces into pins: deliver the net class width or nothing
-            "--router.automatic_neckdown=false",
+            # no narrowing of traces into pins: deliver the net class width or nothing.
+            # The fanout stage necks down to 3/4, 3/5 or 1/2 of the class width
+            # regardless of automatic_neckdown (FoundConnectionInserter), so it is off too.
+            "--router.automatic_neckdown=false", "--router.fanout.enabled=false",
             f"--router.job_timeout={budget // 3600:02d}:{budget % 3600 // 60:02d}:{budget % 60:02d}"]
     if settings.get("passes"):
         argv.append(f"--router.autorouter.max_passes={settings['passes']}")
@@ -1214,7 +1238,8 @@ def doctor():
                                        "plus KICAD_* knobs (see route.py KRT_FLAGS/KRT_ENV)",
                 "project_writeback": "disabled (--no-fix-drc-settings, KICAD_INRUN_FLOOR_SYNC=0); "
                                      "originals restored anyway",
-                "existing_copper": "locked copper never touched; unlocked kept with --protect existing"},
+                "existing_copper": "locked copper never touched; with --protect existing the wrapper locks all "
+                                           "input copper for the run and restores the flags afterwards"},
         "freerouting": {"interface": "executable jar, headless (-de/-do), via KiCad pcbnew Specctra bridge",
                         "net_selection": "by DSN class: out-of-scope nets moved to ignored copies of their class",
                         "budget": "--router.job_timeout + kill; --router.autorouter.max_passes",
@@ -1374,6 +1399,8 @@ def main(argv=None):
     vp.add_argument("run_dir")
     cp = sub.add_parser("compare", help="compare candidates routed from the same input")
     cp.add_argument("run_dirs", nargs="+")
+    pp = sub.add_parser("publish", help="copy a run's structured evidence to reports/toolchain/routing/")
+    pp.add_argument("run_dir")
     sub.add_parser("update", help="update both backends through their upstream channels, then smoke")
     sub.add_parser("smoke", help="routing integration tests on the fixture")
     a = ap.parse_args(argv)
@@ -1386,6 +1413,16 @@ def main(argv=None):
         return run_attempt(a)["exit_code"]
     if a.cmd == "validate":
         return cmd_validate(a)
+    if a.cmd == "publish":
+        run_dir = Path(a.run_dir).resolve()
+        r = load_json(run_dir / "result.json")
+        if r is None:
+            sys.exit(f"{run_dir}: no result.json")
+        dest = REPORTS / r["input"]["project"] / run_dir.parent.name
+        shutil.rmtree(dest, ignore_errors=True)
+        publish_run(run_dir, dest)
+        log(f"[publish] {eda.rel(dest)} (candidate stays in {r['run_dir']})")
+        return 0
     return {"doctor": lambda: doctor(), "compare": lambda: compare(a.run_dirs),
             "update": lambda: update(), "smoke": lambda: smoke()}[a.cmd]()
 

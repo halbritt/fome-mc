@@ -5,7 +5,8 @@
 #   make simulate DECK=path.cir [EXPECT=path.expect.json]
 #   make smoke | baseline
 #   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']
-#   make route-validate RUN=dir | route-compare RUNS='dir dir' | route-update | route-smoke
+#   make route-validate RUN=dir | route-compare RUNS='dir dir' | route-publish RUN=dir
+#   make route-update | route-smoke
 #
 # PROJECT=fome-mc|universal-112|fixture|route-fixture (see toolchain/versions.toml)
 # FILL=asis|refill  (asis: use the saved zone fill; refill: refill+save the snapshot first)
@@ -21,10 +22,10 @@ BUDGET  ?= 300
 ROUTE   := $(PY) toolchain/route.py
 
 .PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean \
-        route-doctor route route-validate route-compare route-update route-smoke
+        route-doctor route route-validate route-compare route-publish route-update route-smoke
 
 help:
-	@sed -n '1,15p' Makefile
+	@sed -n '1,16p' Makefile
 
 bootstrap:
 	toolchain/bootstrap.sh
@@ -84,6 +85,10 @@ route-validate:
 route-compare:
 	@test -n "$(RUNS)" || { echo "usage: make route-compare RUNS='run_dir run_dir ...'"; exit 2; }
 	$(ROUTE) compare $(RUNS)
+
+route-publish:
+	@test -n "$(RUN)" || { echo "usage: make route-publish RUN=build/runs/route/<project>/<label>/<stamp>"; exit 2; }
+	$(ROUTE) publish $(RUN)
 
 route-update:
 	$(ROUTE) update

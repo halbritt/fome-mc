@@ -33,11 +33,16 @@ DSN (board rule, class rules, translated class_class rules). Freerouting
 approximates pad shapes, so it can land a few micrometres inside a clearance
 that KiCad then grades exactly; a margin trades routing room for that.
 
+Pre-existing copper is locked for the round trip. KiCad exports locked items
+as (type fix), which Freerouting freezes and never writes back, and its SES
+import leaves locked items untouched. Unlocked items would instead be deleted
+and rebuilt from the session, where Freerouting may have collapsed short
+segments or re-normalised junctions (upstream #958, #960, #987). After import
+the original lock flags are restored, so input copper comes back bit-identical.
+
 import: the session's (placement ...) section is dropped before KiCad reads
-it, so a session can never move footprints. KiCad then replaces every
-unlocked track and via with the session's wires and keeps locked copper as
-it was in the board. Zones are not refilled here; the caller grades with a
-refill.
+it, so a session can never move footprints. Zones are not refilled here; the
+caller grades with a refill.
 """
 import json
 import re
@@ -242,12 +247,20 @@ def drop_placement(ses):
 def main(argv):
     import pcbnew
 
+    def lock_existing(board):
+        unlocked = [t for t in board.GetTracks() if not t.IsLocked()]
+        for t in unlocked:
+            t.SetLocked(True)
+        return unlocked
+
     if len(argv) >= 3 and argv[0] == "export":
         board = pcbnew.LoadBoard(argv[1])
+        temporarily_locked = len(lock_existing(board))
         out = Path(argv[2])
         if not pcbnew.ExportSpecctraDSN(board, str(out)):
             sys.exit("ExportSpecctraDSN failed")
-        info = {"dsn": str(out), "ignored_classes": [], "clearance_raised": []}
+        info = {"dsn": str(out), "ignored_classes": [], "clearance_raised": [],
+                "existing_copper_locked_for_export": temporarily_locked}
         opts = dict(zip(argv[3::2], argv[4::2]))
         text = out.read_text()
         if "--skip-nets" in opts:
@@ -270,10 +283,18 @@ def main(argv):
         text, dropped = drop_placement(ses_path.read_text())
         clean = ses_path.with_suffix(".noplacement.ses")
         clean.write_text(text)
+        unlocked = {t.m_Uuid.AsString() for t in lock_existing(board)}
         if not pcbnew.ImportSpecctraSES(board, str(clean)):
             sys.exit("ImportSpecctraSES failed")
+        restored = 0
+        for t in board.GetTracks():
+            if t.m_Uuid.AsString() in unlocked:
+                t.SetLocked(False)
+                restored += 1
         board.Save(argv[3])
-        print("BRIDGE_JSON: " + json.dumps({"placement_dropped": dropped, "session": str(clean)}))
+        print("BRIDGE_JSON: " + json.dumps({"placement_dropped": dropped, "session": str(clean),
+                                            "existing_copper_locked": len(unlocked),
+                                            "lock_flags_restored": restored}))
         return 0
     sys.exit(__doc__)
 

@@ -11,13 +11,13 @@
   "input": {
     "project": "route_demo",
     "board": "route_demo.kicad_pcb",
-    "fingerprint": "bff09d380e79a08369fe0b2698edbf3649c2648888ef8a8d52a37eef0a1399e8",
-    "source_dir": "/tmp/pytest-of-halbritt/pytest-1176/blocked0/route_demo",
+    "fingerprint": "1f6c709d7d5cbe5a049fbeeb2817def7b040475061fc45732b105cd67f52841d",
+    "source_dir": "/tmp/pytest-of-halbritt/pytest-1179/blocked0/route_demo",
     "source": "working tree",
     "source_git_head": null,
     "source_dirty_files": [],
     "baseline": {
-      "report": "../../../../../route-cache/baseline/bff09d380e79a08369fe0b2698edbf3649c2648888ef8a8d52a37eef0a1399e8/baseline-drc.json",
+      "report": "../../../../../route-cache/baseline/1f6c709d7d5cbe5a049fbeeb2817def7b040475061fc45732b105cd67f52841d/baseline-drc.json",
       "cached": true,
       "reasons": []
     }
@@ -55,7 +55,7 @@
   "process": {
     "status": "FAIL",
     "reasons": [
-      "KRT exceeded the 15 s budget, did not stop at the stop file, and was killed (last output: 'No route found after 2010000 iterations (both directions)'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0"
+      "KRT exceeded the 15 s budget, did not stop at the stop file, and was killed (last output: 'No route found after 1000000 iterations (forward), trying backward...'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0"
     ],
     "exit_code": -15,
     "commands": [
@@ -63,9 +63,9 @@
         "argv": [
           "/home/halbritt/git/fome-mc/toolchain/.venv-route/bin/python",
           "/home/halbritt/git/fome-mc/toolchain/vendor/krt/py_router/route.py",
-          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work/input/route_demo/route_demo.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work/input/route_demo/route_demo.kicad_pcb",
           "--output",
-          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work/krt-out/route_demo.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work/krt-out/route_demo.kicad_pcb",
           "--escalation",
           "off",
           "--fab-tier",
@@ -74,14 +74,14 @@
           "--no-power-tap-neckdown",
           "--no-fix-drc-settings",
           "--json-out",
-          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work/krt-out/summary.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work/krt-out/summary.json",
           "--keep-input-copper",
           "--no-stub-layer-swap",
           "--nets",
           "*"
         ],
-        "cwd": "build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work",
-        "log": "build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work/krt.log",
+        "cwd": "build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work",
+        "log": "build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work/krt.log",
         "env": {
           "KICAD_INRUN_FLOOR_SYNC": "0",
           "KICAD_TERMINAL_ESCALATION": "0",
@@ -89,7 +89,7 @@
           "KICAD_RESCUE_CAP_MOVE": "0",
           "KICAD_DYNAMIC_ITERATIONS": "0",
           "KICAD_CLI": "/usr/bin/kicad-cli",
-          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z/work/STOP",
+          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z/work/STOP",
           "KICAD_RIP_PREEXISTING": "0",
           "KICAD_FINALIZE_RIP": "0"
         },
@@ -98,13 +98,19 @@
         "stop_requested": true,
         "killed": true,
         "exit_code": -15,
-        "duration_s": 45.016,
-        "output_tail": "293784 iterations, length=5.88mm (stubs=0.00mm) (0.74s)\n\nSync pcb_data: 16 -> 5 (kept stubs) -> 16 (after adding 11)\n\n============================================================\nMulti-point Phase 3: Routing 2 tap connections\n============================================================\n\nGND (net 2):\n  POUR-LAUNCH v3: +10 region-laddered target(s) across 2 component(s) (phase 3)\n  Multi-point net Phase 3: routing 1 remaining MST edges (longest first)\n    [1/2] Routing MST edge: pad 1 -> pad 2 (length=39.59mm) target=(146.00, 108.54)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 312436 iterations (0.74s)\n    Fallback: attempting orphaned pad 2 directly from connected copper\n    [2/2] (1 failed) Routing MST edge: pad 1 -> pad 2 (length=39.59mm) target=(146.00, 108.54)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 312436 iterations (0.68s)\n  Warning: 1 pad(s) not connected (1 MST edge(s) failed)\n  Phase 3 routing complete: 0 edges, 2 total segments, 1 total vias\n  NOT CONNECTED (so far): GND - J2 pad 2 at (146.00, 108.54) - may still be recovered; final verdict in the end-of-run summary\n  Net total time: 1.46s, 909455 iterations\n\n/VIN (net 1):\n  Multi-point net Phase 3: routing 1 remaining MST edges (longest first)\n    [2/2] (1 failed) Routing MST edge: pad 1 -> pad 2 (length=38.95mm) target=(146.00, 106.00)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 292734 iterations (0.83s)\n    Fallback: attempting orphaned pad 2 directly from connected copper\n    [3/2] (2 failed) Routing MST edge: pad 1 -> pad 2 (length=38.95mm) target=(146.00, 106.00)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 292734 iterations (0.68s)\n  Warning: 1 pad(s) not connected (1 MST edge(s) failed)\n  Phase 3 routing complete: 0 edges, 3 total segments, 0 total vias\n  NOT CONNECTED (so far): /VIN - J2 pad 1 at (146.00, 106.00) - may still be recovered; final verdict in the end-of-run summary\n  Net total time: 1.52s, 879252 iterations\n\nPer-net fine-parameter rescue (#331/#371): 4 candidate net(s)\n  Rescuing /SIG_A_OUT (failed, 2 disconnected parts)\n    bare-ball escape: R1.2 dogbone (0 seg(s), 1 via(s)) (#666)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 1968839 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 1968839 iterations (both directions)\n    improved (2 -> 2 parts, 2.2s)\n  Rescuing /SIG_B_OUT (failed, 2 disconnected parts)\n    bare-ball escape: R2.2 dogbone (0 seg(s), 1 via(s)) (#666)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 2010000 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 2010000 iterations (both directions)\n    improved (2 -> 2 parts, 3.7s)\n  Rescuing /VIN (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 2010000 iterations (both directions)\n"
+        "duration_s": 45.02,
+        "output_tail": "784 iterations, 3 segments\n  SUCCESS: 3 segments, 0 vias, 293784 iterations, length=5.88mm (stubs=0.00mm) (0.53s)\n\nSync pcb_data: 16 -> 5 (kept stubs) -> 16 (after adding 11)\n\n============================================================\nMulti-point Phase 3: Routing 2 tap connections\n============================================================\n\nGND (net 2):\n  POUR-LAUNCH v3: +10 region-laddered target(s) across 2 component(s) (phase 3)\n  Multi-point net Phase 3: routing 1 remaining MST edges (longest first)\n    [1/2] Routing MST edge: pad 1 -> pad 2 (length=39.59mm) target=(146.00, 108.54)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 312436 iterations (0.60s)\n    Fallback: attempting orphaned pad 2 directly from connected copper\n    [2/2] (1 failed) Routing MST edge: pad 1 -> pad 2 (length=39.59mm) target=(146.00, 108.54)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 312436 iterations (0.86s)\n  Warning: 1 pad(s) not connected (1 MST edge(s) failed)\n  Phase 3 routing complete: 0 edges, 2 total segments, 1 total vias\n  NOT CONNECTED (so far): GND - J2 pad 2 at (146.00, 108.54) - may still be recovered; final verdict in the end-of-run summary\n  Net total time: 1.50s, 909455 iterations\n\n/VIN (net 1):\n  Multi-point net Phase 3: routing 1 remaining MST edges (longest first)\n    [2/2] (1 failed) Routing MST edge: pad 1 -> pad 2 (length=38.95mm) target=(146.00, 106.00)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 292734 iterations (0.99s)\n    Fallback: attempting orphaned pad 2 directly from connected copper\n    [3/2] (2 failed) Routing MST edge: pad 1 -> pad 2 (length=38.95mm) target=(146.00, 106.00)\n      Probe: forward=5000, backward=5000 iters, trying forward with full iterations...\n      No route found after 200000 iterations (forward), trying backward...\n      Failed to route MST edge after 292734 iterations (0.72s)\n  Warning: 1 pad(s) not connected (1 MST edge(s) failed)\n  Phase 3 routing complete: 0 edges, 3 total segments, 0 total vias\n  NOT CONNECTED (so far): /VIN - J2 pad 1 at (146.00, 106.00) - may still be recovered; final verdict in the end-of-run summary\n  Net total time: 1.72s, 879252 iterations\n\nPer-net fine-parameter rescue (#331/#371): 4 candidate net(s)\n  Rescuing /SIG_A_OUT (failed, 2 disconnected parts)\n    bare-ball escape: R1.2 dogbone (0 seg(s), 1 via(s)) (#666)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 1968839 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 1968839 iterations (both directions)\n    improved (2 -> 2 parts, 1.6s)\n  Rescuing /SIG_B_OUT (failed, 2 disconnected parts)\n    bare-ball escape: R2.2 dogbone (0 seg(s), 1 via(s)) (#666)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 2010000 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\nNo route found after 2010000 iterations (both directions)\n    improved (2 -> 2 parts, 2.9s)\n  Rescuing /VIN (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 1000000 iterations (forward), trying backward...\n"
       }
     ],
     "backend_report": null,
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 0
+      },
+      "lock_exit": 0
+    },
     "project_writeback": [],
-    "runtime_s": 45.017
+    "runtime_s": 45.445
   },
   "routing": {
     "status": "NOT_RUN",
@@ -119,11 +125,11 @@
     ]
   },
   "candidate": null,
-  "run_dir": "build/runs/route/route_demo/smoke-budget-krt/20261017T052108.422806Z",
-  "runtime_s": 45.328,
+  "run_dir": "build/runs/route/route_demo/smoke-budget-krt/20261017T062823.699228Z",
+  "runtime_s": 45.881,
   "tool_versions": {
     "kicad-cli": "10.0.7"
   },
-  "finished_utc": "2026-10-17T05:21:54.488787+00:00",
+  "finished_utc": "2026-10-17T06:29:10.058321+00:00",
   "exit_code": 1
 }

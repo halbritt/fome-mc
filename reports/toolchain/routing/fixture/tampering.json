@@ -7,10 +7,10 @@
       "2 new DRC violations: track_dangling 2",
       "preservation project_files: rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input; restored before grading: route_demo.kicad_pro",
       "preservation footprints: 5 footprints: library id, position, orientation, side, lock state and pad geometry",
-      "preservation protected_copper: 5 tracks and 2 vias designated (all pre-existing copper); max deviation 0 nm; 1 lock flags dropped",
-      "preservation new_copper_netclass_geometry: 16 new tracks and 1 new vias checked against their net class width / via diameter / drill"
+      "preservation protected_copper: 5 tracks and 2 vias designated (all pre-existing copper); max deviation 0 nm; 1 lock flags dropped; 1 missing or altered",
+      "preservation new_copper_netclass_geometry: 16 new tracks and 1 new vias checked against their net class width / via diameter / drill (1 um quantisation tolerance); 1 below"
     ],
-    "dir": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z",
+    "dir": "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/revalidate/20261017T062910.148010Z",
     "restored_project_files": [
       "route_demo.kicad_pro"
     ],
@@ -25,13 +25,13 @@
           "--format",
           "json",
           "-o",
-          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-refill.json",
-          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
+          "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/revalidate/20261017T062910.148010Z/candidate-refill.json",
+          "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
         ],
-        "cwd": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo",
-        "log": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-refill.log",
+        "cwd": "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/candidate/route_demo",
+        "log": "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/revalidate/20261017T062910.148010Z/candidate-refill.log",
         "exit_code": 0,
-        "duration_s": 2.832
+        "duration_s": 1.977
       },
       {
         "argv": [
@@ -45,17 +45,17 @@
           "--units",
           "mm",
           "-o",
-          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-drc.json",
-          "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
+          "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/revalidate/20261017T062910.148010Z/candidate-drc.json",
+          "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/candidate/route_demo/route_demo.kicad_pcb"
         ],
-        "cwd": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/candidate/route_demo",
-        "log": "/tmp/pytest-of-halbritt/pytest-1176/test_validation_detects_tamper0/run/revalidate/20261017T052154.661929Z/candidate-drc.log",
+        "cwd": "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/candidate/route_demo",
+        "log": "/tmp/pytest-of-halbritt/pytest-1179/test_validation_detects_tamper0/run/revalidate/20261017T062910.148010Z/candidate-drc.log",
         "exit_code": 0,
-        "duration_s": 2.219
+        "duration_s": 2.816
       }
     ],
-    "delivered_board_sha256": "2dbe918283895ad6c77e1465076c2a9da6d08e8bc0bc8aaab97482f209fa8cbe",
-    "validated_board_sha256": "2dbe918283895ad6c77e1465076c2a9da6d08e8bc0bc8aaab97482f209fa8cbe",
+    "delivered_board_sha256": "8caec34ad552f70a80cffbb602c04b44832fc9a22e88fde6d905f4272dd211ac",
+    "validated_board_sha256": "8caec34ad552f70a80cffbb602c04b44832fc9a22e88fde6d905f4272dd211ac",
     "parity_performed": true,
     "drc": {
       "violations_total": 2,

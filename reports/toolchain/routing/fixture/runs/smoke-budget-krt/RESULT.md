@@ -1,13 +1,13 @@
 # Routing attempt: krt on route_demo
 
 - Backend: krt 0.23.1 (v0.23.1)
-- Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint bff09d380e79a083)
+- Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint 1f6c709d7d5cbe5a)
 - Scope: all, 6 nets; protect: existing; budget 15 s
 - Candidate: none
 
 | Result | Status | Detail |
 |---|---|---|
-| process | FAIL | exit -15, 45.017 s; KRT exceeded the 15 s budget, did not stop at the stop file, and was killed (last output: 'No route found after 2010000 iterations (both directions)'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0 |
+| process | FAIL | exit -15, 45.445 s; KRT exceeded the 15 s budget, did not stop at the stop file, and was killed (last output: 'No route found after 1000000 iterations (forward), trying backward...'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0 |
 | routing | NOT_RUN | - unconnected in scope, - total (input: -) |
 | validation | NOT_RUN | backend produced no candidate |
 

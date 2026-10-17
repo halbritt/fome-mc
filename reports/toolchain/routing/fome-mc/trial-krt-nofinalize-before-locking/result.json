@@ -1,0 +1,878 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "v0.23.1",
+    "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+    "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "rust_router": "0.23.1"
+  },
+  "input": {
+    "project": "fome-mc",
+    "board": "fome-mc.kicad_pcb",
+    "fingerprint": "e1bfff18bc32e4b768cea36b98dbdc572bf07f34724b6cbc41835e790c98352c",
+    "source_dir": "/home/halbritt/git/fome-mc",
+    "source": "git revision HEAD (351339cf91ab375f7a1747185ba37c836dc6ab72)",
+    "source_git_head": "351339cf91ab375f7a1747185ba37c836dc6ab72",
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/e1bfff18bc32e4b768cea36b98dbdc572bf07f34724b6cbc41835e790c98352c/baseline-drc.json",
+      "cached": true,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 1500,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_PLANE_FINALIZE": "0"
+    },
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 448,
+    "nets_list": null
+  },
+  "unsupported": [
+    "KRT moves copper gr_text and net-less copper graphics to silkscreen (not switchable on the CLI); the copper_graphics preservation check reports it",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class"
+  ],
+  "process": {
+    "status": "PASS",
+    "reasons": [
+      "KRT --strict-sizes: it reports delivering geometry below a requirement (candidate kept for grading)"
+    ],
+    "exit_code": 3,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv-route/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/krt/py_router/route.py",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "--output",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work/krt-out/fome-mc.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "*"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_PLANE_FINALIZE": "0"
+        },
+        "budget_s": 1500,
+        "exit_code": 3,
+        "duration_s": 1377.376,
+        "output_tail": ", /mcu/5V_SENSOR_1_PG, /mcu/5V_SENSOR_2_PG, /mcu/AT1, /mcu/AT2, /mcu/AT3, /mcu/AT4, /mcu/AV1, /mcu/AV10, /mcu/AV11, /mcu/AV2, /mcu/AV3, /mcu/AV4, /mcu/AV5, /mcu/AV6, /mcu/AV7, /mcu/AV8, /mcu/AV9, /mcu/DIGITAL1, /mcu/DIGITAL2, /mcu/DIGITAL3, /mcu/DIGITAL4, /mcu/DIGITAL5, /mcu/DIGITAL6, /mcu/LED1, /mcu/LED4, /mcu/MR_DIVIDED, /mcu/SD_CLK, /mcu/SD_CMD, /mcu/SD_D0, /mcu/SD_D1, /mcu/SD_D2, /mcu/SD_D3, /mcu/VR_1, /mcu/VR_2, /wbo1/CAN_RX, /wbo1/CAN_TX, /wbo2/+3V3, /wbo2/CAN_RX, /wbo2/CAN_TX, Net-(D18-A), Net-(Q201-G), Net-(Q202-G), Net-(Q203-G), Net-(Q204-G), Net-(U301-+, Net-(U301--, Net-(U401-+, Net-(U401--, Net-(U46-IN), VDDA\n  disconnected pads: 264 -> 9 over 351 multi-pad net(s)\n  shipped (the run connected at least as many nets as it broke)\nJSON_IMPROVEMENT_GATE: {\"lost\": [\"Net-(D7-K)\"], \"gained\": [\"+3.3V\", \"+3V3\", \"+3V3_WBO1\", \"+3V3_WBO2\", \"+5V\", \"/12V_MR\", \"/12V_RAW\", \"/5V_SENSOR_1\", \"/5V_SENSOR_2\", \"/AT1\", \"/AT2\", \"/AV1\", \"/AV2\", \"/AV3\", \"/AV4\", \"/AV5\", \"/AV6\", \"/BOOT0_NET\", \"/CAN+\", \"/CAN-\", \"/CAN2+\", \"/CAN2-\", \"/DIGITAL_1\", \"/DIGITAL_2\", \"/DIGITAL_3\", \"/DIGITAL_4\", \"/ETB1_DIR\", \"/ETB1_DIS\", \"/ETB1_OUT+\", \"/ETB1_OUT-\", \"/ETB1_PWM\", \"/ETB2_DIR\", \"/ETB2_DIS\", \"/ETB2_OUT+\", \"/ETB2_OUT-\", \"/ETB2_PWM\", \"/HS1\", \"/IGN1\", \"/IGN1_COIL\", \"/IGN2\", \"/IGN2_COIL\", \"/IGN3\", \"/IGN3_COIL\", \"/IGN4\", \"/IGN4_COIL\", \"/IGN5\", \"/IGN6\", \"/IGN7\", \"/IGN8\", \"/KNOCK_1\", \"/KNOCK_2\", \"/LS1\", \"/LS12\", \"/LS14\", \"/LS2\", \"/LS3\", \"/LS4\", \"/LS5\", \"/LS6\", \"/LS7\", \"/LS8\", \"/LS9\", \"/PB8_STEP_EN\", \"/Perm_Live\", \"/RC2\", \"/STEP_1A\", \"/STEP_1B\", \"/STEP_2A\", \"/STEP_2B\", \"/USB_D+\", \"/USB_D-\", \"/VBOOST\", \"/VR1+\", \"/VR2+\", \"/WBO1_BOOT0\", \"/WBO1_H-\", \"/WBO1_IP\", \"/WBO1_NRST\", \"/WBO1_RTRIM\", \"/WBO1_UN\", \"/WBO1_VM\", \"/WBO2_BOOT0\", \"/WBO2_H-\", \"/WBO2_IP\", \"/WBO2_RTRIM\", \"/WBO2_UN\", \"/WBO2_VM\", \"/highside_quad/IN1\", \"/highside_quad/IN2\", \"/highside_quad/IN3\", \"/ign1/IN1\", \"/ign1/IN2\", \"/ign1/IN3\", \"/ign1/IN4\", \"/ign2/IN1\", \"/ign2/IN2\", \"/ign2/IN4\", \"/lowside_quad1/IN1\", \"/lowside_quad1/IN2\", \"/lowside_quad1/IN3\", \"/lowside_quad1/IN4\", \"/lowside_quad2/IN1\", \"/lowside_quad2/IN2\", \"/lowside_quad2/IN3\", \"/lowside_quad2/IN4\", \"/lowside_quad4/IN2\", \"/lowside_quad4/IN3\", \"/lowside_quad4/IN4\", \"/mcu/12V_DIVIDED\", \"/mcu/5V_SENSE_DIVIDED\", \"/mcu/5V_SENSOR_1_PG\", \"/mcu/5V_SENSOR_2_PG\", \"/mcu/AT1\", \"/mcu/AT2\", \"/mcu/AT3\", \"/mcu/AT4\", \"/mcu/AV1\", \"/mcu/AV10\", \"/mcu/AV11\", \"/mcu/AV2\", \"/mcu/AV3\", \"/mcu/AV4\", \"/mcu/AV5\", \"/mcu/AV6\", \"/mcu/AV7\", \"/mcu/AV8\", \"/mcu/AV9\", \"/mcu/DIGITAL1\", \"/mcu/DIGITAL2\", \"/mcu/DIGITAL3\", \"/mcu/DIGITAL4\", \"/mcu/DIGITAL5\", \"/mcu/DIGITAL6\", \"/mcu/LED1\", \"/mcu/LED4\", \"/mcu/MR_DIVIDED\", \"/mcu/SD_CLK\", \"/mcu/SD_CMD\", \"/mcu/SD_D0\", \"/mcu/SD_D1\", \"/mcu/SD_D2\", \"/mcu/SD_D3\", \"/mcu/VR_1\", \"/mcu/VR_2\", \"/wbo1/CAN_RX\", \"/wbo1/CAN_TX\", \"/wbo2/+3V3\", \"/wbo2/CAN_RX\", \"/wbo2/CAN_TX\", \"Net-(D18-A)\", \"Net-(Q201-G)\", \"Net-(Q202-G)\", \"Net-(Q203-G)\", \"Net-(Q204-G)\", \"Net-(U301-+\", \"Net-(U301--\", \"Net-(U401-+\", \"Net-(U401--\", \"Net-(U46-IN)\", \"VDDA\"], \"worsened\": [], \"disconnected_pads_before\": 264, \"disconnected_pads_after\": 9, \"nets_compared\": 351, \"verdict\": \"accept\"}\n  Design rules [--escalation off, --fab-tier standard]: 45 feature(s) on 7 net(s) delivered below the requested size (smallest via diameter 0.599 mm). Details: JSON_SUMMARY design_rules.\nJSON_SUMMARY_MIN: {\"escalations\": 45, \"failed\": 8, \"failed_single\": [\"/WBO2_NRST\", \"/highside_quad/IN4\", \"/ign2/IN3\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/VBOOST_DIVIDED\"], \"main_loop_time_s\": 102.24, \"min_clearance_used\": 0.1524, \"multipoint_deficit\": 3, \"open_single\": [], \"pad_pairs_open\": {\"count\": 8, \"nets\": [\"/WBO2_NRST\", \"/highside_quad/IN4\", \"/ign2/IN3\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/VBOOST_DIVIDED\", \"GND\", \"Net-(D7-K)\"]}, \"regraded_nets\": 172, \"routed\": 160, \"scope\": \"merged\", \"terminal_restores_broken\": [], \"vias\": 438}\n  --strict-sizes: Design rules [--escalation off, --fab-tier standard]: 45 feature(s) on 7 net(s) delivered below the requested size (smallest via diameter 0.599 mm). Details: JSON_SUMMARY design_rules.\nEXIT=3\n"
+      }
+    ],
+    "backend_report": {
+      "successful": 160,
+      "failed": 8,
+      "failed_single": [
+        "/WBO2_NRST",
+        "/highside_quad/IN4",
+        "/ign2/IN3",
+        "/mcu/LED2",
+        "/mcu/LED3",
+        "/mcu/VBOOST_DIVIDED"
+      ],
+      "open_single": [],
+      "failed_multipoint": [
+        {
+          "net_name": "GND",
+          "failed_pads": [
+            {
+              "x": 99.864,
+              "y": 104.51,
+              "component_ref": "C66",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "Net-(D7-K)",
+          "failed_pads": [
+            {
+              "x": 125.686,
+              "y": 117.25,
+              "component_ref": "D7",
+              "pad_number": "?"
+            },
+            {
+              "x": 111.04,
+              "y": 131.815,
+              "component_ref": "C80",
+              "pad_number": "?"
+            }
+          ]
+        }
+      ],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 839,
+      "pad_pairs_total": 848,
+      "total_vias": 438,
+      "total_iterations": 65455055,
+      "total_time": 102.24,
+      "protected_skipped": null,
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          }
+        ],
+        "fab_tier_escalations": 0,
+        "min_delivered": {
+          "via_diameter": 0.599
+        },
+        "unsupported_rules": []
+      },
+      "improvement_gate": {
+        "lost": [
+          "Net-(D7-K)"
+        ],
+        "gained": [
+          "+3.3V",
+          "+3V3",
+          "+3V3_WBO1",
+          "+3V3_WBO2",
+          "+5V",
+          "/12V_MR",
+          "/12V_RAW",
+          "/5V_SENSOR_1",
+          "/5V_SENSOR_2",
+          "/AT1",
+          "/AT2",
+          "/AV1",
+          "/AV2",
+          "/AV3",
+          "/AV4",
+          "/AV5",
+          "/AV6",
+          "/BOOT0_NET",
+          "/CAN+",
+          "/CAN-",
+          "/CAN2+",
+          "/CAN2-",
+          "/DIGITAL_1",
+          "/DIGITAL_2",
+          "/DIGITAL_3",
+          "/DIGITAL_4",
+          "/ETB1_DIR",
+          "/ETB1_DIS",
+          "/ETB1_OUT+",
+          "/ETB1_OUT-",
+          "/ETB1_PWM",
+          "/ETB2_DIR",
+          "/ETB2_DIS",
+          "/ETB2_OUT+",
+          "/ETB2_OUT-",
+          "/ETB2_PWM",
+          "/HS1",
+          "/IGN1",
+          "/IGN1_COIL",
+          "/IGN2",
+          "/IGN2_COIL",
+          "/IGN3",
+          "/IGN3_COIL",
+          "/IGN4",
+          "/IGN4_COIL",
+          "/IGN5",
+          "/IGN6",
+          "/IGN7",
+          "/IGN8",
+          "/KNOCK_1",
+          "/KNOCK_2",
+          "/LS1",
+          "/LS12",
+          "/LS14",
+          "/LS2",
+          "/LS3",
+          "/LS4",
+          "/LS5",
+          "/LS6",
+          "/LS7",
+          "/LS8",
+          "/LS9",
+          "/PB8_STEP_EN",
+          "/Perm_Live",
+          "/RC2",
+          "/STEP_1A",
+          "/STEP_1B",
+          "/STEP_2A",
+          "/STEP_2B",
+          "/USB_D+",
+          "/USB_D-",
+          "/VBOOST",
+          "/VR1+",
+          "/VR2+",
+          "/WBO1_BOOT0",
+          "/WBO1_H-",
+          "/WBO1_IP",
+          "/WBO1_NRST",
+          "/WBO1_RTRIM",
+          "/WBO1_UN",
+          "/WBO1_VM",
+          "/WBO2_BOOT0",
+          "/WBO2_H-",
+          "/WBO2_IP",
+          "/WBO2_RTRIM",
+          "/WBO2_UN",
+          "/WBO2_VM",
+          "/highside_quad/IN1",
+          "/highside_quad/IN2",
+          "/highside_quad/IN3",
+          "/ign1/IN1",
+          "/ign1/IN2",
+          "/ign1/IN3",
+          "/ign1/IN4",
+          "/ign2/IN1",
+          "/ign2/IN2",
+          "/ign2/IN4",
+          "/lowside_quad1/IN1",
+          "/lowside_quad1/IN2",
+          "/lowside_quad1/IN3",
+          "/lowside_quad1/IN4",
+          "/lowside_quad2/IN1",
+          "/lowside_quad2/IN2",
+          "/lowside_quad2/IN3",
+          "/lowside_quad2/IN4",
+          "/lowside_quad4/IN2",
+          "/lowside_quad4/IN3",
+          "/lowside_quad4/IN4",
+          "/mcu/12V_DIVIDED",
+          "/mcu/5V_SENSE_DIVIDED",
+          "/mcu/5V_SENSOR_1_PG",
+          "/mcu/5V_SENSOR_2_PG",
+          "/mcu/AT1",
+          "/mcu/AT2",
+          "/mcu/AT3",
+          "/mcu/AT4",
+          "/mcu/AV1",
+          "/mcu/AV10",
+          "/mcu/AV11",
+          "/mcu/AV2",
+          "/mcu/AV3",
+          "/mcu/AV4",
+          "/mcu/AV5",
+          "/mcu/AV6",
+          "/mcu/AV7",
+          "/mcu/AV8",
+          "/mcu/AV9",
+          "/mcu/DIGITAL1",
+          "/mcu/DIGITAL2",
+          "/mcu/DIGITAL3",
+          "/mcu/DIGITAL4",
+          "/mcu/DIGITAL5",
+          "/mcu/DIGITAL6",
+          "/mcu/LED1",
+          "/mcu/LED4",
+          "/mcu/MR_DIVIDED",
+          "/mcu/SD_CLK",
+          "/mcu/SD_CMD",
+          "/mcu/SD_D0",
+          "/mcu/SD_D1",
+          "/mcu/SD_D2",
+          "/mcu/SD_D3",
+          "/mcu/VR_1",
+          "/mcu/VR_2",
+          "/wbo1/CAN_RX",
+          "/wbo1/CAN_TX",
+          "/wbo2/+3V3",
+          "/wbo2/CAN_RX",
+          "/wbo2/CAN_TX",
+          "Net-(D18-A)",
+          "Net-(Q201-G)",
+          "Net-(Q202-G)",
+          "Net-(Q203-G)",
+          "Net-(Q204-G)",
+          "Net-(U301-+",
+          "Net-(U301--",
+          "Net-(U401-+",
+          "Net-(U401--",
+          "Net-(U46-IN)",
+          "VDDA"
+        ],
+        "worsened": [],
+        "disconnected_pads_before": 264,
+        "disconnected_pads_after": 9,
+        "nets_compared": 351,
+        "verdict": "accept"
+      },
+      "project_writes": null
+    },
+    "project_writeback": [
+      {
+        "file": "fome-mc.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 1377.381
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 14,
+    "unconnected_total": 14,
+    "baseline_unconnected_total": 235,
+    "unrouted_nets": [
+      "+3V3",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/ign2/IN3",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/VBOOST_DIVIDED",
+      "GND",
+      "Net-(D7-K)"
+    ],
+    "stats": {
+      "new_tracks": 2934,
+      "new_vias": 426,
+      "new_track_length_mm": 9355.682,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 1633.387,
+        "F.Cu": 2603.747,
+        "In1.Cu": 2999.354,
+        "In2.Cu": 2119.194
+      },
+      "new_copper_nets": 167,
+      "removed_existing_tracks": 121,
+      "removed_existing_vias": 17
+    }
+  },
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "19 new DRC violations: starved_thermal 16, track_dangling 2, via_dangling 1",
+      "preservation protected_copper: 2899 tracks and 879 vias designated (all pre-existing copper); max deviation 0 nm; 138 missing or altered",
+      "preservation new_copper_netclass_geometry: 2934 new tracks and 426 new vias checked against their net class width / via diameter / drill (1 um quantisation tolerance); 12 below"
+    ],
+    "dir": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 18.784
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 14.141
+      }
+    ],
+    "delivered_board_sha256": "48b7b1ff052a48894f627935532616454466ad76ddd2050168fb2b6581a8608e",
+    "validated_board_sha256": "48b7b1ff052a48894f627935532616454466ad76ddd2050168fb2b6581a8608e",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 240,
+      "parity_total": 382,
+      "new_violations": {
+        "count": 19,
+        "by_type": {
+          "starved_thermal": 16,
+          "track_dangling": 2,
+          "via_dangling": 1
+        },
+        "by_severity": {
+          "warning": 19
+        }
+      },
+      "preexisting_violations": 221,
+      "resolved_violations": 11,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "FAIL",
+      "new_copper_netclass_geometry": "FAIL",
+      "routing_scope": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc",
+    "board": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z/candidate/fome-mc/fome-mc.kicad_pcb"
+  },
+  "run_dir": "build/runs/route/fome-mc/trial-krt-nofinalize/20261017T054730.240303Z",
+  "runtime_s": 1413.173,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T06:11:03.918588+00:00",
+  "exit_code": 3
+}

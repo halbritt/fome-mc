@@ -1,13 +1,13 @@
 # Routing attempt: freerouting on route-fixture
 
 - Backend: freerouting v2.5.0 (freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76)
-- Input: `route_demo.kicad_pcb` from working tree @ 232daec873b20b80760bf487ec2c0efbd8382e26 (fingerprint ba2f343c49e2f971)
+- Input: `route_demo.kicad_pcb` from working tree @ 351339cf91ab375f7a1747185ba37c836dc6ab72 (fingerprint ba2f343c49e2f971)
 - Scope: selected, 2 nets; protect: existing; budget 180 s
-- Candidate: `build/runs/route/route-fixture/smoke-freerouting-netclass/20261017T052008.186769Z/candidate/route_demo/route_demo.kicad_pcb`
+- Candidate: `build/runs/route/route-fixture/smoke-freerouting-netclass/20261017T062708.037730Z/candidate/route_demo/route_demo.kicad_pcb`
 
 | Result | Status | Detail |
 |---|---|---|
-| process | PASS | exit 0, 5.583 s |
+| process | PASS | exit 0, 4.274 s |
 | routing | COMPLETE | 0 unconnected in scope, 3 total (input: 6) |
 | validation | PASS | no new findings |
 

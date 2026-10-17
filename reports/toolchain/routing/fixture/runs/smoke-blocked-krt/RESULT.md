@@ -1,13 +1,13 @@
 # Routing attempt: krt on route_demo
 
 - Backend: krt 0.23.1 (v0.23.1)
-- Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint bff09d380e79a083)
+- Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint 1f6c709d7d5cbe5a)
 - Scope: all, 6 nets; protect: existing; budget 180 s
-- Candidate: `build/runs/route/route_demo/smoke-blocked-krt/20261017T052021.313033Z/candidate/route_demo/route_demo.kicad_pcb`
+- Candidate: `build/runs/route/route_demo/smoke-blocked-krt/20261017T062718.246775Z/candidate/route_demo/route_demo.kicad_pcb`
 
 | Result | Status | Detail |
 |---|---|---|
-| process | PASS | exit 0, 17.14 s |
+| process | PASS | exit 0, 17.042 s |
 | routing | INCOMPLETE | 4 unconnected in scope, 4 total (input: 7) |
 | validation | FAIL | 1 new DRC violations: clearance 1 |
 

@@ -1,0 +1,512 @@
+[
+  {
+    "check": "project_files",
+    "status": "PASS",
+    "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+    "differences": []
+  },
+  {
+    "check": "board_outline",
+    "status": "PASS",
+    "detail": "4 Edge.Cuts shapes",
+    "differences": []
+  },
+  {
+    "check": "layers",
+    "status": "PASS",
+    "detail": "4 copper layers",
+    "differences": []
+  },
+  {
+    "check": "stackup",
+    "status": "PASS",
+    "detail": "no explicit stackup in the input (KiCad default)",
+    "differences": []
+  },
+  {
+    "check": "board_setup",
+    "status": "PASS",
+    "detail": "board-file (setup) settings other than the stackup",
+    "differences": []
+  },
+  {
+    "check": "nets_and_netclasses",
+    "status": "PASS",
+    "detail": "448 nets with their effective net classes",
+    "differences": []
+  },
+  {
+    "check": "pad_connectivity",
+    "status": "PASS",
+    "detail": "1719 pad-to-net assignments",
+    "differences": []
+  },
+  {
+    "check": "footprints",
+    "status": "PASS",
+    "detail": "475 footprints: library id, position, orientation, side, lock state and pad geometry",
+    "differences": []
+  },
+  {
+    "check": "zones",
+    "status": "PASS",
+    "detail": "6 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+    "differences": []
+  },
+  {
+    "check": "keepouts",
+    "status": "PASS",
+    "detail": "0 rule areas",
+    "differences": []
+  },
+  {
+    "check": "copper_graphics",
+    "status": "PASS",
+    "detail": "0 non-track copper graphics",
+    "differences": []
+  },
+  {
+    "check": "protected_copper",
+    "status": "FAIL",
+    "detail": "2899 tracks and 879 vias designated (all pre-existing copper); max deviation 0 nm; 138 missing or altered",
+    "differences": [
+      {
+        "end": [
+          146748672,
+          88904527
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "GND",
+        "start": [
+          146121153,
+          89532046
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          148951892,
+          88904527
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "GND",
+        "start": [
+          146748672,
+          88904527
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          149579411,
+          89532046
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "GND",
+        "start": [
+          148951892,
+          88904527
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          103724080,
+          108262470
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          103509558,
+          108262470
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          96026175,
+          77253732
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          96026175,
+          76210580
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          96026175,
+          76210580
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          95994085,
+          76178490
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          103724080,
+          107917954
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          91769089,
+          95962963
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          95994085,
+          76234425
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          91769089,
+          80459421
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          91769089,
+          95962963
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          91769089,
+          80459421
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          103724080,
+          108262470
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          103724080,
+          107917954
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          95994085,
+          76234425
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN4",
+        "start": [
+          95994085,
+          76178490
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          95226175,
+          77253732
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          95226175,
+          76224934
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          95226175,
+          76224934
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          95205721,
+          76204480
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          101973911,
+          108141037
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          101971037,
+          108141037
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          103235992,
+          108833684
+        ],
+        "kind": "segment",
+        "layer": "F.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          103235992,
+          108696012
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          100749089,
+          106863215
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          100749089,
+          105517021
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          102719558,
+          108833684
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          100749089,
+          106863215
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          91281139,
+          96049071
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          91281139,
+          80164807
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          103235992,
+          108833684
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          102719558,
+          108833684
+        ],
+        "width": 254000
+      },
+      {
+        "end": [
+          100749089,
+          105517021
+        ],
+        "kind": "segment",
+        "layer": "B.Cu",
+        "net": "/highside_quad/IN3",
+        "start": [
+          91281139,
+          96049071
+        ],
+        "width": 254000
+      }
+    ]
+  },
+  {
+    "check": "new_copper_netclass_geometry",
+    "status": "FAIL",
+    "detail": "2934 new tracks and 426 new vias checked against their net class width / via diameter / drill (1 um quantisation tolerance); 12 below",
+    "differences": [
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          161.8652,
+          75.1088
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          167.4278,
+          78.995
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          164.7354,
+          77.6996
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          161.8652,
+          76.2772
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          161.8652,
+          74.55
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          161.8652,
+          74.55
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          164.5576,
+          77.5218
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          166.1324,
+          77.6996
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          167.758,
+          78.995
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          170.425,
+          81.662
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          163.1098,
+          77.5218
+        ]
+      },
+      {
+        "item": "track",
+        "net": "VDDA",
+        "netclass": "Default",
+        "layer": "In1.Cu",
+        "width_mm": 0.25,
+        "required_mm": 0.254,
+        "start_mm": [
+          163.7448,
+          68.8096
+        ]
+      }
+    ]
+  },
+  {
+    "check": "routing_scope",
+    "status": "PASS",
+    "detail": "new copper only on the 448 in-scope nets",
+    "differences": []
+  }
+]

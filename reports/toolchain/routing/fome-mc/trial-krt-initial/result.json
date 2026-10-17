@@ -1,0 +1,559 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "v0.23.1",
+    "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+    "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "rust_router": "0.23.1"
+  },
+  "input": {
+    "project": "fome-mc",
+    "board": "fome-mc.kicad_pcb",
+    "fingerprint": "e1bfff18bc32e4b768cea36b98dbdc572bf07f34724b6cbc41835e790c98352c",
+    "source_dir": "/home/halbritt/git/fome-mc",
+    "source": "git revision HEAD (e763e31eada62574871f0290775738c33ff529c5)",
+    "source_git_head": "e763e31eada62574871f0290775738c33ff529c5",
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/e1bfff18bc32e4b768cea36b98dbdc572bf07f34724b6cbc41835e790c98352c/baseline-drc.json",
+      "cached": false,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 1200,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {},
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 448,
+    "nets_list": null
+  },
+  "unsupported": [
+    "KRT moves copper gr_text and net-less copper graphics to silkscreen (not switchable on the CLI); the copper_graphics preservation check reports it",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class"
+  ],
+  "process": {
+    "status": "FAIL",
+    "reasons": [
+      "KRT exceeded the 1200 s budget, did not stop at the stop file, and was killed (last output: 'GND: (26.50,25.50) coincident link -- skipping the raw retry (zero-length bridge, #648)'); retry with a larger --budget or --backend-env KICAD_NET_RESCUE=0"
+    ],
+    "exit_code": -15,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv-route/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/krt/py_router/route.py",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "--output",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/krt-out/fome-mc.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "*"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0"
+        },
+        "budget_s": 1200,
+        "budget_reached": true,
+        "stop_requested": true,
+        "killed": true,
+        "exit_code": -15,
+        "duration_s": 1440.065,
+        "output_tail": "d but still floating (reached an island, not the plane) -- forcing a via:\n    Pad U26.31 (F.Cu)... STILL FLOATING\n    Pad C1201.1 (F.Cu)... STILL FLOATING\n  Graze nudge: re-bent grazing tap jog(s) on 2 net(s)\n  Graze/sweep passes removed 8 input-board segment(s); forwarded to the strip channel\n\n============================================================\nSUMMARY\n============================================================\n  Zones processed: 6\n  Total routes added: 13\n  Total vias added: 24\n  Pad repair: 19/26 unconnected pad(s) reconnected\n  7 reported-unconnected pad(s) are CONNECTED per KiCad's exact fill (model quantization): U26.17 (+3V3), D15.5 (+3V3), R99.2 (+3V3), R100.2 (+3V3), U5.5 (+3V3), U26.31 (GND), C1201.1 (GND)\n  Pads still unconnected: none (all model-only; confirmed connected by the oracle)\n\nWriting output to /home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/krt-out/fome-mc.kicad_pcb...\n  Stripped 8 in-memory-removed input segment(s) from the output\nOutput written to /home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z/work/krt-out/fome-mc.kicad_pcb\nNote: Open in KiCad and press 'B' to refill zones\n  [finalize timing] engine leg: 136.1s\nPlane Closed 6 stub gap(s) to same-net copper\nCopper-to-hole 0.25mm for NPTH holes (from the board's own min_hole_clearance, above the 0.2mm fab floor); plated holes and vias: copper clearance\nPlane Merged 187 collinear joint(s) on 3 net(s): -187 redundant segment(s) (#811)\n  [finalize timing] cleanup leg: 5.1s\n  Plane finalize cleanup: closed 6 stub gap(s), trimmed 297 dead-end segment(s)\n  KiCad-oracle recheck: deterministic exact-fill link source (pcbnew refill)\n  KiCad-oracle recheck: source union -- 0 exact link(s) dropped (KiCad does not demand them), 6 kicad-cli link(s) added (unseen by the exact source)\n  KiCad-oracle recheck round 1: KiCad reports 11 missing link(s) on processed nets\n  KiCad-oracle recheck round 1: collapsed 4 duplicate link(s) onto 9 distinct endpoint pair(s)\n  KiCad-oracle recheck: fetching exact fill islands (pcbnew refill)...\n    exact fill: 179 island(s) across 6 zone-layer(s)\n    GND: cluster mode: true gap (76.21,107.07)[F.Cu] <-> (75.79,107.39)[F.Cu]\n    GND: (76.21,107.07)<->(75.79,107.39)  OK 15 seg(s), 2 via(s), w=0.80mm\n    GND: cluster mode: true gap (121.67,121.37)[F.Cu] <-> (123.26,122.34)[F.Cu]\nRoute found in 5951 iterations, path length: 143\n    GND: weld escalation REJECTED (emitted copper outside the link corridor -- #570 false-claim guard)\n    GND: (121.67,121.37)<->(123.26,122.34)  FAILED (cluster-mode gap unroutable)\n    GND: (76.21,107.07)<->(75.79,107.39)  OK 2 seg(s), 0 via(s), w=0.25mm\nRoute found in 5951 iterations, path length: 143\n    GND: weld escalation REJECTED (emitted copper outside the link corridor -- #570 false-claim guard)\n    GND: exact-fill tier: strapping nearest approach (123.75,122.16)<->(123.79,122.24) [In1.Cu]\n    GND: (121.67,121.37)<->(123.26,122.34)  OK 4 seg(s), 0 via(s), w=0.25mm\n    GND: (135.82,76.49)<->(135.24,75.84)  OK 3 seg(s), 0 via(s), w=0.40mm\n    endpoint cell blocked for U13.2 -- seeded 28 free on-pad cell(s)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nRoute found in 224770 iterations, path length: 21\n    GND: weld escalation REJECTED (copper reaches neither/only one gap endpoint -- unrelated fragment join, #648)\n    GND: exact-fill tier: strapping nearest approach (187.46,25.52)<->(187.46,25.52) [B.Cu]\n    GND: (135.82,76.49)<->(187.50,139.50)  OK 0 seg(s), 1 via(s), w=0.25mm\n    GND: (138.45,85.67)<->(187.50,139.50)  OK 81 seg(s), 4 via(s), w=0.40mm\n    GND: (152.32,116.93)<->(151.97,117.35)  OK 2 seg(s), 0 via(s), w=0.25mm\n    GND: (152.34,106.59)<->(151.99,107.01)  OK 3 seg(s), 0 via(s), w=0.25mm\n    GND: (187.50,139.50) coincident link -- skipping the raw retry (zero-length bridge, #648)\n    GND: (26.50,25.50) coincident link -- skipping the raw retry (zero-length bridge, #648)\n"
+      }
+    ],
+    "backend_report": {
+      "successful": 0,
+      "failed": 1,
+      "failed_single": [
+        "GND"
+      ],
+      "open_single": [],
+      "failed_multipoint": [],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 337,
+      "pad_pairs_total": 339,
+      "total_vias": 0,
+      "total_iterations": 0,
+      "total_time": 0.0,
+      "protected_skipped": null,
+      "scope": "reconciliation-subset",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 27,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 319,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 266,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 373,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          }
+        ],
+        "fab_tier_escalations": 0,
+        "min_delivered": {
+          "via_diameter": 0.599
+        },
+        "unsupported_rules": []
+      },
+      "improvement_gate": null,
+      "project_writes": null
+    },
+    "project_writeback": [
+      {
+        "file": "fome-mc.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 1440.079
+  },
+  "routing": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "validation": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "candidate": null,
+  "run_dir": "build/runs/route/fome-mc/trial-krt/20261017T052231.896916Z",
+  "runtime_s": 1474.091,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T05:47:06.543753+00:00",
+  "exit_code": 1
+}

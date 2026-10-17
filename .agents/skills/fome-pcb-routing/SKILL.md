@@ -30,6 +30,7 @@ update notes, and the decision record: `toolchain/ROUTING.md`.
 | `make route BACKEND=krt\|freerouting [PROJECT=…] [BUDGET=300] [ARGS='…']` | One attempt; prints the run directory |
 | `make route-validate RUN=<run_dir>` | Re-grade a candidate (e.g. after hand edits) into `<run_dir>/revalidate/<stamp>/` |
 | `make route-compare RUNS='<run_dir> <run_dir> …'` | Side-by-side table; refuses to call different inputs comparable |
+| `make route-publish RUN=<run_dir>` | Copy the attempt's structured evidence (not the board) to `reports/toolchain/routing/<project>/<label>/` for committing |
 | `make route-update` | Move both backends to their latest upstream release, then `route-smoke` |
 | `make route-smoke` | Integration tests on the `route-fixture` project |
 
@@ -82,6 +83,7 @@ Exit code: 0 complete and valid, 1 process failure (no candidate), 2 valid but i
 | new `clearance` violations naming a `.kicad_dru` rule, rule listed in `unsupported` | `--default-clearance <rule value>`; for Freerouting class-to-class rules are already translated, add `--clearance-margin 0.01` for micrometre misses |
 | `routing INCOMPLETE`, `unrouted_nets` few | larger `--budget`; Freerouting `--passes 100`; route the hard nets first with `--nets`, then continue from that candidate with `--dir <run>/candidate/<project>` |
 | `process FAIL` "exceeded the … budget" (KRT) | larger `--budget`, or `--backend-env KICAD_NET_RESCUE=0` to skip the long rescue search |
+| Freerouting INCOMPLETE at SMD pads or plane connections | `--backend-arg=--router.fanout.enabled=true` (fanout is off by default because it can neck traces to 3/4–1/2 width; `new_copper_netclass_geometry` catches that if it happens) |
 | `via_dangling` / `track_dangling` new | Freerouting left fanout stubs on a net it could not finish: treat as incomplete routing; retry as above or with the other backend |
 | `protected_copper` / `footprints` / `zones` FAIL | backend or bridge defect: report it (with the run directory); do not adopt the candidate |
 | `new_copper_netclass_geometry` FAIL | backend narrowed a conductor below its net class: do not adopt; report the KRT/Freerouting version |

@@ -149,12 +149,17 @@ def test_krt_round_trip():
 
 
 def test_freerouting_round_trip():
+    # fanout (off by default: it can neck traces down) is re-enabled as the retry
+    # playbook says; new_copper_netclass_geometry still grades every new conductor
     r, run_dir, result = run("run", "--backend", "freerouting", "--budget", "180", "--clearance-margin", "0.01",
-                             "--passes", "100", "--label", "smoke-freerouting")
+                             "--passes", "100", "--backend-arg=--router.fanout.enabled=true",
+                             "--label", "smoke-freerouting")
     record("freerouting_round_trip", summary(result))
     assert_clean_candidate(result, run_dir)
     bridge = result["process"]["bridge"]
     assert bridge["import"]["placement_dropped"] is True
+    argv = result["process"]["commands"][1]["argv"]
+    assert "--router.automatic_neckdown=false" in argv and "-da" in argv
     assert [t["rule"] for t in bridge["export"]["dru_translated"]] == ["power_to_signal_clearance"]
     assert "Power" in (run_dir / "work" / "board.dsn").read_text().split("(class_class", 1)[1][:80]
 
@@ -172,7 +177,8 @@ def test_net_name_selection():
 
 def test_net_class_selection():
     r, run_dir, result = run("run", "--backend", "freerouting", "--budget", "180", "--netclass", "Power",
-                             "--clearance-margin", "0.01", "--label", "smoke-freerouting-netclass")
+                             "--clearance-margin", "0.01", "--backend-arg=--router.fanout.enabled=true",
+                             "--label", "smoke-freerouting-netclass")
     record("freerouting_netclass_selection", summary(result))
     assert result["scope"]["nets_list"] == ["/VIN", "GND"]
     assert "kicad_default__skip" in result["process"]["bridge"]["export"]["ignored_classes"]
@@ -196,6 +202,38 @@ def test_unroutable_board_fails(backend, blocked_dir):
     assert result["routing"]["status"] == route.INCOMPLETE
     assert result["routing"]["unconnected_in_scope"] > 0
     assert result["validation"]["preservation"]["keepouts"] == route.PASS
+
+
+@pytest.fixture(scope="session")
+def unlocked_dir(tmp_path_factory):
+    """The fixture with the pre-routed /SIG_B left UNLOCKED: ordinary existing copper."""
+    import pcbnew
+    d = tmp_path_factory.mktemp("unlocked") / "route_demo"
+    shutil.copytree(FIXTURE, d, ignore=shutil.ignore_patterns("generate.py", "__pycache__"))
+    board = pcbnew.LoadBoard(str(d / "route_demo.kicad_pcb"))
+    for t in board.GetTracks():
+        t.SetLocked(False)
+    board.Save(str(d / "route_demo.kicad_pcb"))
+    return d
+
+
+@pytest.mark.parametrize("backend", ["krt", "freerouting"])
+def test_unlocked_existing_copper_survives(backend, unlocked_dir):
+    """--protect existing (default): unlocked input copper comes back bit-identical and
+    still unlocked; the backends only see it locked for the duration of the run."""
+    extra = (["--default-clearance", "0.4"] if backend == "krt" else
+             ["--clearance-margin", "0.01", "--passes", "100", "--backend-arg=--router.fanout.enabled=true"])
+    r, run_dir, result = run("run", "--backend", backend, "--budget", "180", "--dir", str(unlocked_dir),
+                             *extra, "--label", f"smoke-unlocked-{backend}")
+    record(f"unlocked_{backend}", summary(result))
+    assert result["validation"]["preservation"]["protected_copper"] == route.PASS
+    facts = json.loads((run_dir / "validate" / "candidate-facts.json").read_text())
+    sig_b = [t for t in facts["tracks"] + facts["vias"] if t["net"] == "/SIG_B"]
+    assert len(sig_b) == PROTECTED["tracks"] + PROTECTED["vias"]
+    assert not any(t["locked"] for t in sig_b)
+    detail = next(c for c in json.loads((run_dir / "validate" / "preservation.json").read_text())
+                  if c["check"] == "protected_copper")["detail"]
+    assert "max deviation 0 nm" in detail
 
 
 def test_budget_overrun_is_a_process_failure(blocked_dir):
