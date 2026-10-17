@@ -47,7 +47,7 @@ flowchart TB
 
     subgraph PCB["fome-mc 4-Layer Integrated Motorcycle ECU PCB (162.0 mm × 115.0 mm)"]
         PSU["Power Supply & Keep-Alive (psu.kicad_sch + Keep_Alive.kicad_sch)<br/>D20/D21 B340A Diode-OR (12V_IGN_SW + 12V_MR -> 12V_RAW)<br/>SMCJ33A Unidirectional TVS • AO4485 Reverse PMOS + BZT52C12<br/>L1/C6 Input Filter -> LMR16020PDDAR 60V 5V Buck • 2x TLS115D0E<br/>TLV75733PDBVR 3.3V LDO • 2x MCP2551-I-SN (U4 CAN1, U5 CAN2)"]
-        MCU["Main ECU Brain (sheets/mcu.kicad_sch)<br/>STM32H753ZIT6 (U26, 480 MHz Cortex-M7)<br/>XTSD04GLGEAG 4Gbit SLC SDNAND (U25, SDMMC1)<br/>LPS25HBTR Baro (U24, I2C2) • REF3333 Fixed 3.30V VREF+ (U23)"]
+        MCU["Main ECU Brain (sheets/mcu.kicad_sch)<br/>STM32H753ZIT6 (U26, 480 MHz Cortex-M7)<br/>CSNP32GCR01-AOW 32Gbit (4GB) SDNAND (U25, SDMMC1)<br/>LPS25HBTR Baro (U24 DNP, I2C2) • REF3333 Fixed 3.30V VREF+ (U23)"]
         AFE["Analog, Knock & VR Front-End<br/>MCP6004 Buffers + 2.7k 0.1% Pull-Ups<br/>2x MAX9924UAUB+ VR Conditioners<br/>Active Bandpass Knock Filter (PF4/PF5 ADC3)"]
         DRV["Power & Motion Drivers<br/>4x MIC4427 + 4x FGD3040G2-F085 IGBTs (Q201..Q204)<br/>6x VNLD5090 Dual Low-Side (U1001..U1202) + BTS716G HS (U40)<br/>2x TLE9201SG 6A H-Bridge (U201, U203) + DRV8825 Stepper (U202)"]
         WBO["Dual Onboard LSU 4.9 Wideband Controllers<br/>WBO1 (U302 STM32F042, 0x190) & WBO2 (U402 STM32F042, 0x192)<br/>MCP6004 + AD8628 + REF3033 + VND14NV04 + TJA1051T/3 (U307/U407)<br/>Internal 500 kbps CAN2 Bus (PB12/PB13) + H7 Reset/BOOT0 (PE2..PE5)"]
@@ -71,7 +71,7 @@ flowchart TB
 | Subsystem | Hardware Implementation | Connectors / MCU Pins | Key Ratings & Notes |
 | :--- | :--- | :--- | :--- |
 | **Main MCU** | `STM32H753ZIT6` (`U26`, LQFP-144) | 8 MHz HSE (`Y1`), `REF3333` (`REF3033`-class) fixed `3.30 V` `VREF+` (`U23`) | 480 MHz Cortex-M7, 2 MB Dual-Bank Flash, 1 MB RAM. Fixed `3.30 V` `VREF+` means ADC inputs are not ratiometric to `5V_SENSOR_x`; scale by `5V_SENSE_DIVIDED` (`U26.50` / `PA6`) during cranking sag |
-| **Onboard Logging** | `XTSD04GLGEAG` (`U25`, `6×8 mm` LGA-8) | `SDMMC1` 4-bit bus (`PC8..PC12, PD2`) | 512 MB soldered industrial SLC SDNAND; 100% pottable and vibration-proof |
+| **Onboard Logging** | `CSNP32GCR01-AOW` (`U25`, `6×8 mm` LGA-8, `C2841139`) | `SDMMC1` 4-bit bus (`PC8..PC12, PD2`) | 4 GB (32 Gbit) soldered pottable SD NAND (`~161 hrs` @ 50 Hz / `~80 hrs` @ 100 Hz) with automatic oldest-`.mlg` ring-buffer pruning; pin-compatible with `MKDV32GCL-STH` (`C5199868`) / `XTSD32GLGEAG` |
 | **Wideband O2 #1 & #2** | `2× STM32F042K6T6` (`U302`, `U402`) + `2× MCP6004` + `2× AD8628` + `2× REF3033` + `2× VND14NV04` (`Q301`, `Q401`) + `2× TJA1051T/3` (`U307`, `U407`) | `J1-23` (`WBO1_H-`), `J1-24` (`+12V_MR`), `J1-25` (`WBO2_H-`), `J2-19..22` (`WBO1`), `J2-30..33` (`WBO2`) | Internal `CAN2` (`PB12/PB13` @ 500 kbps via `U5` `MCP2551-I-SN` to `U307/U407` `TJA1051T/3`). Strapped addresses: `WBO1` = `0x190/0x191`, `WBO2` = `0x192/0x193`. H7 controls `NRST`/`BOOT0` via `PE2..PE5` |
 | **High-Current Ignition** | `4× FGD3040G2-F085` IGBTs (`Q201..Q204`, TO-252) driven by `MIC4427` | `J1-6..9` (`PB3`, `PG15`, `PG14`, `PG13`) | `400 V` internal collector-gate SCIS clamp, `30 A`, `250 mJ`; `10 kΩ` MCU reset pull-downs prevent coil dwell during reset/DFU |
 | **5V Logic Ignition** | `4× MIC4427` 1.5 A push-pull buffers + `100 Ω` series protection | `J2-23..26` (`PG12`, `PG11`, `PG10`, `PG9`) | Drives 3/4-wire smart coils or external igniters; `IGBT3/4` and `IGN3/4_LOG` support independent **Trailing Spark** |
@@ -134,7 +134,7 @@ All 21 schematic sheets are exported as vector SVGs in [`docs/schematics/`](docs
 fome-mc/
 ├── fome-mc.kicad_pro                # KiCad 10 project configuration
 ├── fome-mc.kicad_sch                # Root hierarchical schematic (J1/J2 AMPSEAL headers + 20 subsheet blocks)
-├── fome-mc.kicad_pcb                # 4-layer PCB layout (162.0 mm × 115.0 mm, unedited during schematic/PSU remediation)
+├── fome-mc.kicad_pcb                # 4-layer PCB layout (162.0 mm × 115.0 mm)
 ├── sym-lib-table                    # Project symbol library table (-> libs/symbols/)
 ├── fp-lib-table                     # Project footprint library table (-> libs/footprints/)
 ├── io-map.csv                       # Authoritative 70-pin J1/J2 + 16 internal net cross-reference table
@@ -142,7 +142,7 @@ fome-mc/
 ├── README.md                        # Project overview, architecture diagrams & visual gallery
 ├── CHANGELOG.md                     # Detailed engineering changelog & bug-fix history
 ├── sheets/                          # 15 hierarchical child schematic sheets
-│   ├── mcu.kicad_sch                # STM32H753ZIT6, 8 MHz HSE, REF3333, LPS25HB, XTSD04GLGEAG SDNAND
+│   ├── mcu.kicad_sch                # STM32H753ZIT6, 8 MHz HSE, REF3333, LPS25HB (DNP), CSNP32GCR01-AOW 4GB SDNAND
 │   ├── psu.kicad_sch                # SMCJ33A TVS, AO4485 PMOS, L1/C6 filter, LMR16020 5V buck, 2x TLS115D0E, TLV75733, 2x MCP2551
 │   ├── Keep_Alive.kicad_sch         # D20/D21 (B340A-13-F) 12V_IGN_SW + 12V_MR diode-OR + MIC5205 RTC VBAT backup
 │   ├── wbo1.kicad_sch               # Onboard Bosch LSU 4.9 Wideband Controller #1 (STM32F042 + VND14NV04 + TJA1051T/3)
