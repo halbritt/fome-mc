@@ -38,7 +38,7 @@
   "kicad_version": "8.0",
   "file_version": "20231120",
   "title_block": {
-    "title": "Atlas-clone",
+    "title": "fome-mc",
     "date": "2024-11-14",
     "rev": "v1.0-atlas-h7"
   },
@@ -76,11 +76,11 @@
         "voltage": 5.0
       },
       {
-        "name": "/Atlas-clone/+3V3",
+        "name": "/fome-mc/+3V3",
         "voltage": 3.3
       },
       {
-        "name": "/Atlas-clone/+5V",
+        "name": "/fome-mc/+5V",
         "voltage": 5.0
       },
       {
@@ -6418,18 +6418,18 @@
       "confidence": "deterministic",
       "evidence_source": "topology",
       "category": "connectivity",
-      "summary": "Single-pin net: /Atlas-clone/+3V3 only connects to J6.2 (Pin_2) (passive)",
-      "description": "Net '/Atlas-clone/+3V3' has exactly one pin: J6.2 (Pin_2), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
+      "summary": "Single-pin net: /fome-mc/+3V3 only connects to J6.2 (Pin_2) (passive)",
+      "description": "Net '/fome-mc/+3V3' has exactly one pin: J6.2 (Pin_2), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
       "components": [
         "J6"
       ],
       "nets": [
-        "/Atlas-clone/+3V3"
+        "/fome-mc/+3V3"
       ],
       "pins": [
         "J6.2"
       ],
-      "net_display_name": "/Atlas-clone/+3V3",
+      "net_display_name": "/fome-mc/+3V3",
       "pin_type": "passive",
       "pin_name": "Pin_2",
       "recommendation": "Check the schematic at the referenced pin \u2014 add the missing wire or place a no-connect marker if the pin is intentionally floating.",
@@ -6450,18 +6450,18 @@
       "confidence": "deterministic",
       "evidence_source": "topology",
       "category": "connectivity",
-      "summary": "Single-pin net: /Atlas-clone/+5V only connects to J6.1 (Pin_1) (passive)",
-      "description": "Net '/Atlas-clone/+5V' has exactly one pin: J6.1 (Pin_1), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
+      "summary": "Single-pin net: /fome-mc/+5V only connects to J6.1 (Pin_1) (passive)",
+      "description": "Net '/fome-mc/+5V' has exactly one pin: J6.1 (Pin_1), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
       "components": [
         "J6"
       ],
       "nets": [
-        "/Atlas-clone/+5V"
+        "/fome-mc/+5V"
       ],
       "pins": [
         "J6.1"
       ],
-      "net_display_name": "/Atlas-clone/+5V",
+      "net_display_name": "/fome-mc/+5V",
       "pin_type": "passive",
       "pin_name": "Pin_1",
       "recommendation": "Check the schematic at the referenced pin \u2014 add the missing wire or place a no-connect marker if the pin is intentionally floating.",
@@ -12661,11 +12661,11 @@
       "confidence": "deterministic",
       "evidence_source": "topology",
       "category": "power",
-      "summary": "/Atlas-clone/+3V3 has no declared source",
-      "description": "Net /Atlas-clone/+3V3 carries power_in pins but has no power_out pin, no PWR_FLAG, no regulator output mapping, and no bridged solder jumper path to a sourced net.",
+      "summary": "/fome-mc/+3V3 has no declared source",
+      "description": "Net /fome-mc/+3V3 carries power_in pins but has no power_out pin, no PWR_FLAG, no regulator output mapping, and no bridged solder jumper path to a sourced net.",
       "components": [],
       "nets": [
-        "/Atlas-clone/+3V3"
+        "/fome-mc/+3V3"
       ],
       "pins": [],
       "source_path": "none",
@@ -12686,7 +12686,7 @@
       "stages": [
         "schematic"
       ],
-      "finding_id": "schematic:RS-001:/atlas-clone/+3v3"
+      "finding_id": "schematic:RS-001:/fome-mc/+3v3"
     },
     {
       "detector": "audit_rail_sources",
@@ -12695,11 +12695,11 @@
       "confidence": "deterministic",
       "evidence_source": "topology",
       "category": "power",
-      "summary": "/Atlas-clone/+5V has no declared source",
-      "description": "Net /Atlas-clone/+5V carries power_in pins but has no power_out pin, no PWR_FLAG, no regulator output mapping, and no bridged solder jumper path to a sourced net.",
+      "summary": "/fome-mc/+5V has no declared source",
+      "description": "Net /fome-mc/+5V carries power_in pins but has no power_out pin, no PWR_FLAG, no regulator output mapping, and no bridged solder jumper path to a sourced net.",
       "components": [],
       "nets": [
-        "/Atlas-clone/+5V"
+        "/fome-mc/+5V"
       ],
       "pins": [],
       "source_path": "none",
@@ -12720,7 +12720,7 @@
       "stages": [
         "schematic"
       ],
-      "finding_id": "schematic:RS-001:/atlas-clone/+5v"
+      "finding_id": "schematic:RS-001:/fome-mc/+5v"
     },
     {
       "detector": "audit_rail_sources",
@@ -17583,8 +17583,8 @@
         "9": "GND",
         "11": "GND",
         "12": "GND",
-        "1": "/Atlas-clone/+5V",
-        "2": "/Atlas-clone/+3V3",
+        "1": "/fome-mc/+5V",
+        "2": "/fome-mc/+3V3",
         "10": "/00000000-0000-0000-0000-00005da72eff/12V_RAW",
         "13": "/00000000-0000-0000-0000-00005da72eff/CANH",
         "14": "/00000000-0000-0000-0000-00005da72eff/CANL",
@@ -35536,8 +35536,8 @@
       "has_pwr_flag": true,
       "labels": []
     },
-    "/Atlas-clone/+5V": {
-      "name": "/Atlas-clone/+5V",
+    "/fome-mc/+5V": {
+      "name": "/fome-mc/+5V",
       "pins": [
         {
           "component": "J6",
@@ -36118,8 +36118,8 @@
       "has_pwr_flag": false,
       "labels": []
     },
-    "/Atlas-clone/+3V3": {
-      "name": "/Atlas-clone/+3V3",
+    "/fome-mc/+3V3": {
+      "name": "/fome-mc/+3V3",
       "pins": [
         {
           "component": "J6",
@@ -77158,14 +77158,14 @@
           "pin_number": "1",
           "pin_name": "Pin_1",
           "pin_type": "passive",
-          "net": "/Atlas-clone/+5V",
+          "net": "/fome-mc/+5V",
           "connected_to": []
         },
         {
           "pin_number": "2",
           "pin_name": "Pin_2",
           "pin_type": "passive",
-          "net": "/Atlas-clone/+3V3",
+          "net": "/fome-mc/+3V3",
           "connected_to": []
         },
         {
@@ -88019,7 +88019,7 @@
           "pin_number": "1",
           "pin_name": "Pin_1",
           "pin_type": "passive",
-          "net": "/Atlas-clone/+5V",
+          "net": "/fome-mc/+5V",
           "connected_to": []
         },
         {
@@ -88171,7 +88171,7 @@
           "pin_number": "2",
           "pin_name": "Pin_2",
           "pin_type": "passive",
-          "net": "/Atlas-clone/+3V3",
+          "net": "/fome-mc/+3V3",
           "connected_to": []
         },
         {
@@ -409677,9 +409677,9 @@
       "/00000000-0000-0000-0000-00005da72eff/12v_PROT": "power",
       "__unnamed_1": "signal",
       "+5V": "power",
-      "/Atlas-clone/+5V": "power",
+      "/fome-mc/+5V": "power",
       "+3V3": "power",
-      "/Atlas-clone/+3V3": "power",
+      "/fome-mc/+3V3": "power",
       "/00000000-0000-0000-0000-00005d99e6ee/KNOCK_1": "signal",
       "/00000000-0000-0000-0000-00005d99f107/OUT3": "signal",
       "/00000000-0000-0000-0000-00005d99f107/OUT4": "signal",
@@ -411204,7 +411204,7 @@
     "unconnected_pins": [],
     "single_pin_nets": [
       {
-        "net": "/Atlas-clone/+5V",
+        "net": "/fome-mc/+5V",
         "pin": {
           "component": "J6",
           "pin_number": "1",
@@ -411213,7 +411213,7 @@
         }
       },
       {
-        "net": "/Atlas-clone/+3V3",
+        "net": "/fome-mc/+3V3",
         "pin": {
           "component": "J6",
           "pin_number": "2",
@@ -411311,18 +411311,18 @@
         "confidence": "deterministic",
         "evidence_source": "topology",
         "category": "connectivity",
-        "summary": "Single-pin net: /Atlas-clone/+5V only connects to J6.1 (Pin_1) (passive)",
-        "description": "Net '/Atlas-clone/+5V' has exactly one pin: J6.1 (Pin_1), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
+        "summary": "Single-pin net: /fome-mc/+5V only connects to J6.1 (Pin_1) (passive)",
+        "description": "Net '/fome-mc/+5V' has exactly one pin: J6.1 (Pin_1), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
         "components": [
           "J6"
         ],
         "nets": [
-          "/Atlas-clone/+5V"
+          "/fome-mc/+5V"
         ],
         "pins": [
           "J6.1"
         ],
-        "net_display_name": "/Atlas-clone/+5V",
+        "net_display_name": "/fome-mc/+5V",
         "pin_type": "passive",
         "pin_name": "Pin_1",
         "recommendation": "Check the schematic at the referenced pin \u2014 add the missing wire or place a no-connect marker if the pin is intentionally floating.",
@@ -411343,18 +411343,18 @@
         "confidence": "deterministic",
         "evidence_source": "topology",
         "category": "connectivity",
-        "summary": "Single-pin net: /Atlas-clone/+3V3 only connects to J6.2 (Pin_2) (passive)",
-        "description": "Net '/Atlas-clone/+3V3' has exactly one pin: J6.2 (Pin_2), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
+        "summary": "Single-pin net: /fome-mc/+3V3 only connects to J6.2 (Pin_2) (passive)",
+        "description": "Net '/fome-mc/+3V3' has exactly one pin: J6.2 (Pin_2), pin_type='passive'. Verify the intended target \u2014 if this pin should connect somewhere, the wire/label is missing.",
         "components": [
           "J6"
         ],
         "nets": [
-          "/Atlas-clone/+3V3"
+          "/fome-mc/+3V3"
         ],
         "pins": [
           "J6.2"
         ],
-        "net_display_name": "/Atlas-clone/+3V3",
+        "net_display_name": "/fome-mc/+3V3",
         "pin_type": "passive",
         "pin_name": "Pin_2",
         "recommendation": "Check the schematic at the referenced pin \u2014 add the missing wire or place a no-connect marker if the pin is intentionally floating.",
@@ -422694,8 +422694,8 @@
     "__unnamed_174": 3.3,
     "GND": 0,
     "12v_PROT": 12.0,
-    "/Atlas-clone/+5V": 5.0,
-    "/Atlas-clone/+3V3": 3.3,
+    "/fome-mc/+5V": 5.0,
+    "/fome-mc/+3V3": 3.3,
     "5V_SENSOR_2": 5.0,
     "12V_RAW": 12.0,
     "12V_DIVIDED": 12.0,
@@ -427861,11 +427861,11 @@
         "category": "power_rail"
       },
       {
-        "net": "/Atlas-clone/+5V",
+        "net": "/fome-mc/+5V",
         "category": "power_rail"
       },
       {
-        "net": "/Atlas-clone/+3V3",
+        "net": "/fome-mc/+3V3",
         "category": "power_rail"
       },
       {
@@ -428357,22 +428357,22 @@
     "total_issues": 8
   },
   "sheets": [
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/ign4.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/lowside_quad.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/ign4.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/mcu.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/lowside_quad.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/lowside_quad.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/quad_analog.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/quad_analog.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/quad_analog.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/psu.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/quad_analog_pullup.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/highside_quad.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/triggers.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/knock.kicad_sch",
-    "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Keep_Alive.kicad_sch"
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/ign4.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/lowside_quad.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/ign4.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/mcu.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/lowside_quad.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/lowside_quad.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/quad_analog.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/quad_analog.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/quad_analog.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/psu.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/quad_analog_pullup.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/highside_quad.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/triggers.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/knock.kicad_sch",
+    "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/Keep_Alive.kicad_sch"
   ],
   "project_settings": {
     "symbol_libs": [
@@ -428790,10 +428790,10 @@
   },
   "inputs": {
     "source_files": [
-      "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch"
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_sch"
     ],
     "source_hashes": {
-      "/home/halbritt/git/Atlas-clone/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/Atlas-clone/Atlas-clone.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c"
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c"
     },
     "run_id": "20261016T214908Z-57e94f",
     "config_hash": null,
@@ -429747,14 +429747,14 @@
         {
           "rule_id": "RS-001",
           "severity": "warning",
-          "summary": "/Atlas-clone/+3V3 has no declared source",
+          "summary": "/fome-mc/+3V3 has no declared source",
           "recommendation": "Add a PWR_FLAG to declare the rail as externally powered (e.g. from a connector) or trace the rail back to a regulator output. If the source lives on another sheet, promote the net name to a global label.",
           "category": "power"
         },
         {
           "rule_id": "RS-001",
           "severity": "warning",
-          "summary": "/Atlas-clone/+5V has no declared source",
+          "summary": "/fome-mc/+5V has no declared source",
           "recommendation": "Add a PWR_FLAG to declare the rail as externally powered (e.g. from a connector) or trace the rail back to a regulator output. If the source lives on another sheet, promote the net name to a global label.",
           "category": "power"
         },

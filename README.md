@@ -192,4 +192,4 @@ make -j$(nproc)
 
 - **[`DESIGN.md`](DESIGN.md)** — Architecture decisions, SV650 K7 factory wiring analysis, barometric vent pocket math, SD NAND endurance calculations, thermal dissipation budget, and 2-stage polyurethane potting specification.
 - **[`VALIDATION.md`](VALIDATION.md)** — Verification ledger and pre-/post-encapsulation bench test gates.
-- **[`CHANGELOG.md`](CHANGELOG.md)** — Chronological history of hardware and firmware changes from `Polygonus V1.6.1` -> `Atlas-clone` -> `fome-mc`.
+- **[`CHANGELOG.md`](CHANGELOG.md)** — Chronological history of hardware and firmware changes from `Polygonus V1.6.1` -> `fome-mc` -> `fome-mc`.

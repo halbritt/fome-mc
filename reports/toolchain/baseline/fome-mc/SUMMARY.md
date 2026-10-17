@@ -1,8 +1,8 @@
 # fome-mc: toolchain run PASS
 
-- Description: FOME-MC brain module (Atlas-clone, STM32H7)
+- Description: FOME-MC brain module (fome-mc, STM32H7)
 - Run: `build/runs/project/fome-mc/20261016T214759.589014Z` (2026-10-16T21:47:59.589147+00:00 → 2026-10-16T21:51:03.419803+00:00)
-- Source: `/home/halbritt/git/Atlas-clone` — git revision HEAD (c43ad7bafc9a8e3be337f1342ae0cb259918882a) @ `c43ad7bafc9a8e3be337f1342ae0cb259918882a` (0 uncommitted file(s) in snapshot)
+- Source: `/home/halbritt/git/fome-mc` — git revision HEAD (c43ad7bafc9a8e3be337f1342ae0cb259918882a) @ `c43ad7bafc9a8e3be337f1342ae0cb259918882a` (0 uncommitted file(s) in snapshot)
 - Fill mode: `asis`
 - Tools: kicad-cli 10.0.7, ngspice 42, kibot 1.9.1, kicad-happy 06840467ad0f5d76af45f64449b1f5ecb10f052f, fome-kicad-libraries ab9c5f8a1517a04b9cada6880d67d190bfd48c05, python 3.12.3
 

@@ -5,12 +5,12 @@
   "commands": [
     {
       "argv": [
-        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
-        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_sch",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_sch",
         "-o",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json"
       ],
       "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
       "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-schematic.log",
@@ -19,15 +19,15 @@
     },
     {
       "argv": [
-        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
-        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_pcb",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/snapshot/Polygonus-Universal-112/Polygonus-Universal-Base.kicad_pcb",
         "--full",
         "--schematic",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
         "-o",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json"
       ],
       "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
       "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-pcb.log",
@@ -36,15 +36,15 @@
     },
     {
       "argv": [
-        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
-        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
         "-s",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
         "-p",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/pcb.json",
         "-o",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/cross.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/cross.json"
       ],
       "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
       "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-cross_analysis.log",
@@ -53,16 +53,16 @@
     },
     {
       "argv": [
-        "/home/halbritt/git/Atlas-clone/toolchain/.venv/bin/python",
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
-        "/home/halbritt/git/Atlas-clone/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/schematic.json",
         "--simulator",
         "ngspice",
         "-w",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice_work",
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice_work",
         "-o",
-        "/home/halbritt/git/Atlas-clone/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/universal-112/20261016T215103.802539Z/analyze/spice.json"
       ],
       "cwd": "build/runs/project/universal-112/20261016T215103.802539Z/analyze",
       "log": "build/runs/project/universal-112/20261016T215103.802539Z/analyze/kicad-happy-spice.log",

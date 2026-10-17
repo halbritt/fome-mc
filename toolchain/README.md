@@ -1,7 +1,7 @@
 # fome-mc EDA toolchain
 
 CLI-first, pinned tooling for the FOME-MC motorcycle ECU (this repo; `~/git/fome-mc`
-is a symlink to `~/git/Atlas-clone`). The Polygonus Universal 112 dual-WBO board
+is a symlink to `~/git/fome-mc`). The Polygonus Universal 112 dual-WBO board
 (`~/git/Polygonus-Universal-112`) is the electrical baseline and is checked read-only
 alongside it.
 

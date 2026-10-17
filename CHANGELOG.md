@@ -2,7 +2,7 @@
 
 ## 2026-10-16 — `fome-mc`: Integrated Single-PCB Motorcycle ECU (`master` / `fome-mc`)
 
-Integrated the `Atlas-clone` STM32H7 processor core, `Polygonus-Universal-112` carrier circuitry, and two `wideband_controller` Rev C channels onto a single `162.0 mm × 115.0 mm` 4-layer PCB (`fome-mc.kicad_sch` / `fome-mc.kicad_pcb`) targeting the 2007 Suzuki SV650 (K7 dual-plug V-twin).
+Integrated the `fome-mc` STM32H7 processor core, `Polygonus-Universal-112` carrier circuitry, and two `wideband_controller` Rev C channels onto a single `162.0 mm × 115.0 mm` 4-layer PCB (`fome-mc.kicad_sch` / `fome-mc.kicad_pcb`) targeting the 2007 Suzuki SV650 (K7 dual-plug V-twin).
 
 ### Hardware Changes (`halbritt/fome-mc`)
 - **Form Factor & Sealed Harness Connectors**:
@@ -39,16 +39,16 @@ Integrated the `Atlas-clone` STM32H7 processor core, `Polygonus-Universal-112` c
 
 ---
 
-## 2026-10-16 — `Atlas-clone`: STM32H7 Brain Module Checkpoint (branch `atlas-brain-module-checkpoint`, commit `c43ad7b`)
+## 2026-10-16 — `fome-mc`: STM32H7 Brain Module Checkpoint (branch `atlas-brain-module-checkpoint`, commit `c43ad7b`)
 
 Initial adaptation of [FOME-Tech/Polygonus](https://github.com/FOME-Tech/Polygonus) V1.6.1 (`b3176cb1de7d0f5b9380ecebc1d007e2f365a6de`) to run the `ARCH_STM32H7` (`atlas`) pinout while resolving JLCPCB component shortages.
 
 ### Hardware Changes vs. Polygonus V1.6.1
 1. **MCU (`U26`)**: Upgraded from `STM32F767ZIT6` (`C90235`) to `STM32H753ZIT6` (`C730207`) / `STM32H743ZIT6` (`C114408`) in LQFP-144.
-2. **4-Bit `SDMMC1` & MCU Pin Remap (`Polygonus` -> `Atlas-clone` / `fome-mc`)**:
+2. **4-Bit `SDMMC1` & MCU Pin Remap (`Polygonus` -> `fome-mc` / `fome-mc`)**:
    - On Polygonus (`proteus_f7`), `PC8` and `PC9` drove `IGN4` and `IGN3`, while the SD card used 1-bit `SPI3` (`PC10..PC12`). To free `PC8..PC12` + `PD2` for hardware 4-bit `SDMMC1` (`SD_D0..D3, SD_CLK, SD_CMD`) and align with the FOME `atlas` H7 peripheral map, the `U26` I/O banks were remapped:
 
-| Function | Polygonus V1.6.1 (`proteus_f7`) | `Atlas-clone` & `fome-mc` (`STM32H753`) |
+| Function | Polygonus V1.6.1 (`proteus_f7`) | `fome-mc` & `fome-mc` (`STM32H753`) |
 | :--- | :--- | :--- |
 | `LS1..LS4` (`VNLD5090` `U1001, U1002`) | `PD7, PG9, PG10, PG11` | `PG5, PG6, PG7, PG8` (Pins 90–93) |
 | `LS5..LS8` (`VNLD5090` `U1101, U1102`) | `PG12, PG13, PG14, PB4` | `PC6, PC7, PA15, PD3` (Pins 96, 97, 110, 117) |
