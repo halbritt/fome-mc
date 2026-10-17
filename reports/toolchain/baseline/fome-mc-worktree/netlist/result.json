@@ -1,0 +1,45 @@
+{
+  "step": "netlist",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "netlist",
+        "--format",
+        "kicadsexpr",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/netlist/fome-mc.net",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/netlist/kicad-cli-netlist.log",
+      "exit_code": 0,
+      "duration_s": 0.538
+    }
+  ],
+  "inputs": {
+    "fome-mc.kicad_sch": "4b819663679098b35df827309197df4144fc7419255d25727335b6856ca040dc"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/netlist/fome-mc.net": {
+      "sha256": "60e668660034c7bb70343c22c60a85b1d750cbf7e1adf3ba4907b53afdb986fc",
+      "bytes": 804841
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/netlist/connectivity.json": {
+      "sha256": "277fb73f879007f8492714c8e610ec9541e06a420000fadfdca1df8ea550fb57",
+      "bytes": 48544
+    }
+  },
+  "findings": {
+    "components": 474,
+    "nets": 456
+  },
+  "coverage": {
+    "schematic_references": 355,
+    "missing_from_netlist": []
+  }
+}

@@ -15,46 +15,40 @@
         "--units",
         "mm",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/drc/drc.json",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_pcb"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/drc/drc.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc/fome-mc.kicad_pcb"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/drc/kicad-cli-drc.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/drc/kicad-cli-drc.log",
       "exit_code": 0,
-      "duration_s": 10.383
+      "duration_s": 7.929
     }
   ],
   "inputs": {
-    "fome-mc.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+    "fome-mc.kicad_pcb": "4189e489114dc054ee70d05dce6d8269b89ade5a6bff86c82a2dbfdaa10a0f0a"
   },
   "outputs": {
-    "build/runs/project/fome-mc/20261016T214759.589014Z/drc/drc.json": {
-      "sha256": "fb5b0bd8815e8cde0b9d1a21174138320279b349dcf174ca7520d56aaf1cf017",
-      "bytes": 595848
+    "build/runs/project/fome-mc/20261017T003200.338471Z/drc/drc.json": {
+      "sha256": "0c89dba3d5414f61c88810391e4622eadd5d718d6adb2f4f0036604879dfaf1f",
+      "bytes": 455630
     }
   },
   "findings": {
-    "violations": 540,
-    "unconnected_items": 99,
-    "schematic_parity": 259,
+    "violations": 228,
+    "unconnected_items": 237,
+    "schematic_parity": 251,
     "by_severity": {
-      "warning": 566,
-      "error": 332
+      "warning": 479,
+      "error": 237
     },
     "by_type": {
+      "unconnected_items": 237,
       "lib_footprint_mismatch": 199,
       "footprint_symbol_field_mismatch": 199,
-      "shorting_items": 149,
-      "unconnected_items": 99,
-      "clearance": 50,
-      "starved_thermal": 42,
-      "net_conflict": 39,
-      "silk_over_copper": 36,
-      "courtyards_overlap": 28,
-      "silk_overlap": 25,
-      "footprint_symbol_mismatch": 21,
-      "hole_clearance": 6,
-      "lib_footprint_issues": 5
+      "net_conflict": 34,
+      "starved_thermal": 28,
+      "footprint_symbol_mismatch": 18,
+      "track_dangling": 1
     },
     "ignored_checks": [
       "missing_courtyard",
@@ -67,6 +61,6 @@
     ]
   },
   "fill_mode": "asis",
-  "board_sha256_checked": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85",
+  "board_sha256_checked": "4189e489114dc054ee70d05dce6d8269b89ade5a6bff86c82a2dbfdaa10a0f0a",
   "design_clean": false
 }

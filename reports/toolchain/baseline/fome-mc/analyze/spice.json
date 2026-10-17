@@ -2,16 +2,16 @@
   "analyzer_type": "spice",
   "schema_version": "1.4.0",
   "summary": {
-    "total": 98,
-    "total_findings": 4,
-    "pass": 78,
-    "warn": 4,
+    "total": 149,
+    "total_findings": 8,
+    "pass": 120,
+    "warn": 8,
     "fail": 0,
-    "skip": 16,
+    "skip": 21,
     "by_severity": {
       "error": 0,
-      "warning": 4,
-      "info": 94
+      "warning": 8,
+      "info": 141
     }
   },
   "findings": [
@@ -48,6 +48,150 @@
       },
       "delta": {
         "f_error_pct": 0.01
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U301 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U301) converged with warnings. Expected: gain=-2.7, gain_dB=8.6. Simulated: gain_dB=-19.86, gain_linear=0.102, bandwidth_hz=7163820.0, gain_low_dB=-19.86, gain_high_dB=-19.86, gain_spread_dB=0.0. Delta: gain_error_dB: +28.46%.",
+      "components": [
+        "U301"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -2.7,
+        "gain_dB": 8.6
+      },
+      "simulated": {
+        "gain_dB": -19.86,
+        "gain_linear": 0.102,
+        "bandwidth_hz": 7163820.0,
+        "gain_low_dB": -19.86,
+        "gain_high_dB": -19.86,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 28.46
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U301 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U301) converged with warnings. Expected: gain=-0.147, gain_dB=-16.7. Simulated: gain_dB=-23.89, gain_linear=0.064, bandwidth_hz=1492.3, gain_low_dB=-16.83, gain_high_dB=-43.0, gain_spread_dB=26.16. Delta: gain_error_dB: +7.19%.",
+      "components": [
+        "U301"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -0.147,
+        "gain_dB": -16.7
+      },
+      "simulated": {
+        "gain_dB": -23.89,
+        "gain_linear": 0.064,
+        "bandwidth_hz": 1492.3,
+        "gain_low_dB": -16.83,
+        "gain_high_dB": -43.0,
+        "gain_spread_dB": 26.16
+      },
+      "delta": {
+        "gain_error_dB": 7.19
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U401 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U401) converged with warnings. Expected: gain=-2.7, gain_dB=8.6. Simulated: gain_dB=-19.86, gain_linear=0.102, bandwidth_hz=7163820.0, gain_low_dB=-19.86, gain_high_dB=-19.86, gain_spread_dB=0.0. Delta: gain_error_dB: +28.46%.",
+      "components": [
+        "U401"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -2.7,
+        "gain_dB": 8.6
+      },
+      "simulated": {
+        "gain_dB": -19.86,
+        "gain_linear": 0.102,
+        "bandwidth_hz": 7163820.0,
+        "gain_low_dB": -19.86,
+        "gain_high_dB": -19.86,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 28.46
+      }
+    },
+    {
+      "detector": "simulate_subcircuits",
+      "rule_id": "SP-WARN",
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "heuristic_rule",
+      "category": "simulation",
+      "summary": "opamp_circuit U401 \u2014 SPICE converged with warnings",
+      "description": "SPICE simulation of opamp_circuit (U401) converged with warnings. Expected: gain=-0.147, gain_dB=-16.7. Simulated: gain_dB=-23.89, gain_linear=0.064, bandwidth_hz=1492.3, gain_low_dB=-16.83, gain_high_dB=-43.0, gain_spread_dB=26.16. Delta: gain_error_dB: +7.19%.",
+      "components": [
+        "U401"
+      ],
+      "nets": [],
+      "pins": [],
+      "recommendation": "Review the expected vs simulated values; confirm component values match the datasheet reference design, and that parasitics are modelled where they affect the result.",
+      "report_context": {
+        "section": "SPICE Simulation",
+        "impact": "Simulation results warrant review",
+        "standard_ref": ""
+      },
+      "expected": {
+        "gain": -0.147,
+        "gain_dB": -16.7
+      },
+      "simulated": {
+        "gain_dB": -23.89,
+        "gain_linear": 0.064,
+        "bandwidth_hz": 1492.3,
+        "gain_low_dB": -16.83,
+        "gain_high_dB": -43.0,
+        "gain_spread_dB": 26.16
+      },
+      "delta": {
+        "gain_error_dB": 7.19
       }
     },
     {
@@ -175,8 +319,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R113_C100.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R113_C100.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R113_C100.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R113_C100.log",
       "elapsed_s": 0.006,
       "reference": "R113/C100"
     },
@@ -199,8 +343,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R114_C101.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R114_C101.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R114_C101.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R114_C101.log",
       "elapsed_s": 0.005,
       "reference": "R114/C101"
     },
@@ -223,8 +367,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R115_C102.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R115_C102.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R115_C102.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R115_C102.log",
       "elapsed_s": 0.005,
       "reference": "R115/C102"
     },
@@ -247,8 +391,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R17_C18.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R17_C18.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R17_C18.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R17_C18.log",
       "elapsed_s": 0.005,
       "reference": "R17/C18"
     },
@@ -271,9 +415,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R19_C18.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R19_C18.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R19_C18.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R19_C18.log",
+      "elapsed_s": 0.005,
       "reference": "R19/C18"
     },
     {
@@ -295,8 +439,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R18_C19.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R18_C19.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R18_C19.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R18_C19.log",
       "elapsed_s": 0.006,
       "reference": "R18/C19"
     },
@@ -319,8 +463,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R20_C19.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R20_C19.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R20_C19.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R20_C19.log",
       "elapsed_s": 0.006,
       "reference": "R20/C19"
     },
@@ -343,8 +487,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R21_C20.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R21_C20.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R21_C20.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R21_C20.log",
       "elapsed_s": 0.005,
       "reference": "R21/C20"
     },
@@ -367,9 +511,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R22_C21.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R22_C21.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R22_C21.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R22_C21.log",
+      "elapsed_s": 0.005,
       "reference": "R22/C21"
     },
     {
@@ -391,9 +535,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R23_C24.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R23_C24.log",
-      "elapsed_s": 0.008,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R23_C24.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R23_C24.log",
+      "elapsed_s": 0.005,
       "reference": "R23/C24"
     },
     {
@@ -415,9 +559,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C24.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C24.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R29_C24.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R29_C24.log",
+      "elapsed_s": 0.005,
       "reference": "R29/C24"
     },
     {
@@ -439,8 +583,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R24_C25.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R24_C25.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R24_C25.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R24_C25.log",
       "elapsed_s": 0.005,
       "reference": "R24/C25"
     },
@@ -463,8 +607,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C25.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C25.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R30_C25.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R30_C25.log",
       "elapsed_s": 0.005,
       "reference": "R30/C25"
     },
@@ -487,9 +631,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R25_C26.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R25_C26.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R25_C26.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R25_C26.log",
+      "elapsed_s": 0.005,
       "reference": "R25/C26"
     },
     {
@@ -511,8 +655,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C26.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C26.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R31_C26.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R31_C26.log",
       "elapsed_s": 0.005,
       "reference": "R31/C26"
     },
@@ -535,9 +679,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R26_C27.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R26_C27.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R26_C27.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R26_C27.log",
+      "elapsed_s": 0.004,
       "reference": "R26/C27"
     },
     {
@@ -559,9 +703,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C27.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C27.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R32_C27.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R32_C27.log",
+      "elapsed_s": 0.004,
       "reference": "R32/C27"
     },
     {
@@ -583,9 +727,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R27_C28.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R27_C28.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R27_C28.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R27_C28.log",
+      "elapsed_s": 0.004,
       "reference": "R27/C28"
     },
     {
@@ -607,8 +751,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C28.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C28.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R33_C28.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R33_C28.log",
       "elapsed_s": 0.005,
       "reference": "R33/C28"
     },
@@ -631,9 +775,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R28_C29.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R28_C29.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R28_C29.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R28_C29.log",
+      "elapsed_s": 0.004,
       "reference": "R28/C29"
     },
     {
@@ -655,8 +799,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C29.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C29.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R34_C29.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R34_C29.log",
       "elapsed_s": 0.005,
       "reference": "R34/C29"
     },
@@ -679,10 +823,130 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C30.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R29_C30.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R29_C30.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R29_C30.log",
       "elapsed_s": 0.005,
       "reference": "R29/C30"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R306",
+        "C302"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 72.34,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 72.1716,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.23
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R306_C302.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R306_C302.log",
+      "elapsed_s": 0.004,
+      "reference": "R306/C302"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R314",
+        "C302"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 25.67,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 25.6093,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R314_C302.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R314_C302.log",
+      "elapsed_s": 0.004,
+      "reference": "R314/C302"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R316",
+        "C302"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 234.05,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 233.496,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R316_C302.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R316_C302.log",
+      "elapsed_s": 0.004,
+      "reference": "R316/C302"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R319",
+        "C302"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 33.86,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 33.7824,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.23
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R319_C302.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R319_C302.log",
+      "elapsed_s": 0.004,
+      "reference": "R319/C302"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R309",
+        "C304"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 15915.49,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 15877.7,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R309_C304.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R309_C304.log",
+      "elapsed_s": 0.004,
+      "reference": "R309/C304"
     },
     {
       "subcircuit_type": "rc_filter",
@@ -703,10 +967,34 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C31.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R30_C31.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R30_C31.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R30_C31.log",
       "elapsed_s": 0.005,
       "reference": "R30/C31"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R324",
+        "C311"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 482.29,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 481.144,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R324_C311.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R324_C311.log",
+      "elapsed_s": 0.004,
+      "reference": "R324/C311"
     },
     {
       "subcircuit_type": "rc_filter",
@@ -727,9 +1015,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C32.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R31_C32.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R31_C32.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R31_C32.log",
+      "elapsed_s": 0.004,
       "reference": "R31/C32"
     },
     {
@@ -751,9 +1039,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C33.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R32_C33.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R32_C33.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R32_C33.log",
+      "elapsed_s": 0.004,
       "reference": "R32/C33"
     },
     {
@@ -775,8 +1063,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C34.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R33_C34.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R33_C34.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R33_C34.log",
       "elapsed_s": 0.005,
       "reference": "R33/C34"
     },
@@ -799,9 +1087,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C35.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R34_C35.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R34_C35.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R34_C35.log",
+      "elapsed_s": 0.004,
       "reference": "R34/C35"
     },
     {
@@ -823,9 +1111,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R35_C36.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R35_C36.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R35_C36.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R35_C36.log",
+      "elapsed_s": 0.004,
       "reference": "R35/C36"
     },
     {
@@ -847,9 +1135,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C36.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C36.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R37_C36.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R37_C36.log",
+      "elapsed_s": 0.004,
       "reference": "R37/C36"
     },
     {
@@ -871,8 +1159,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R36_C37.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R36_C37.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R36_C37.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R36_C37.log",
       "elapsed_s": 0.005,
       "reference": "R36/C37"
     },
@@ -895,9 +1183,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C37.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C37.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R38_C37.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R38_C37.log",
+      "elapsed_s": 0.004,
       "reference": "R38/C37"
     },
     {
@@ -919,9 +1207,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C38.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R37_C38.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R37_C38.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R37_C38.log",
+      "elapsed_s": 0.004,
       "reference": "R37/C38"
     },
     {
@@ -943,10 +1231,154 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C39.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R38_C39.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R38_C39.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R38_C39.log",
+      "elapsed_s": 0.004,
       "reference": "R38/C39"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R406",
+        "C402"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 72.34,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 72.1716,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.23
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R406_C402.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R406_C402.log",
+      "elapsed_s": 0.004,
+      "reference": "R406/C402"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R414",
+        "C402"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 25.67,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 25.6093,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R414_C402.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R414_C402.log",
+      "elapsed_s": 0.004,
+      "reference": "R414/C402"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R416",
+        "C402"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 234.05,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 233.496,
+        "phase_at_fc_deg": -0.784198
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R416_C402.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R416_C402.log",
+      "elapsed_s": 0.004,
+      "reference": "R416/C402"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R419",
+        "C402"
+      ],
+      "filter_type": "RC-network",
+      "expected": {
+        "cutoff_hz": 33.86,
+        "type": "RC-network"
+      },
+      "simulated": {
+        "cutoff_hz": 33.7824,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.23
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R419_C402.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R419_C402.log",
+      "elapsed_s": 0.005,
+      "reference": "R419/C402"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R409",
+        "C404"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 15915.49,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 15877.7,
+        "phase_at_fc_deg": -0.784197
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R409_C404.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R409_C404.log",
+      "elapsed_s": 0.005,
+      "reference": "R409/C404"
+    },
+    {
+      "subcircuit_type": "rc_filter",
+      "components": [
+        "R424",
+        "C411"
+      ],
+      "filter_type": "low-pass",
+      "expected": {
+        "cutoff_hz": 482.29,
+        "type": "low-pass"
+      },
+      "simulated": {
+        "cutoff_hz": 481.144,
+        "phase_at_fc_deg": -0.784199
+      },
+      "delta": {
+        "fc_error_pct": 0.24
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R424_C411.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R424_C411.log",
+      "elapsed_s": 0.004,
+      "reference": "R424/C411"
     },
     {
       "subcircuit_type": "rc_filter",
@@ -967,9 +1399,9 @@
         "fc_error_pct": 0.23
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R89_C79.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R89_C79.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R89_C79.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R89_C79.log",
+      "elapsed_s": 0.004,
       "reference": "R89/C79"
     },
     {
@@ -991,9 +1423,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R107_C89.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R107_C89.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R107_C89.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R107_C89.log",
+      "elapsed_s": 0.004,
       "reference": "R107/C89"
     },
     {
@@ -1015,9 +1447,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R108_C93.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R108_C93.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R108_C93.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R108_C93.log",
+      "elapsed_s": 0.004,
       "reference": "R108/C93"
     },
     {
@@ -1039,9 +1471,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R109_C94.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R109_C94.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R109_C94.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R109_C94.log",
+      "elapsed_s": 0.004,
       "reference": "R109/C94"
     },
     {
@@ -1063,8 +1495,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R110_C95.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R110_C95.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R110_C95.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R110_C95.log",
       "elapsed_s": 0.005,
       "reference": "R110/C95"
     },
@@ -1087,8 +1519,8 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R111_C96.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R111_C96.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R111_C96.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R111_C96.log",
       "elapsed_s": 0.005,
       "reference": "R111/C96"
     },
@@ -1111,9 +1543,9 @@
         "fc_error_pct": 0.24
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R112_C99.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/rc-filter_R112_C99.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R112_C99.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/rc-filter_R112_C99.log",
+      "elapsed_s": 0.004,
       "reference": "R112/C99"
     },
     {
@@ -1139,9 +1571,9 @@
       "warnings": [
         "High Q factor (115.6) \u2014 underdamped, risk of oscillation or ringing in power path"
       ],
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/lc-filter_L1_C7.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/lc-filter_L1_C7.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/lc-filter_L1_C7.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/lc-filter_L1_C7.log",
+      "elapsed_s": 0.005,
       "reference": "L1/C7"
     },
     {
@@ -1161,9 +1593,9 @@
         "vout_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R11_R12.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R11_R12.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R11_R12.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R11_R12.log",
+      "elapsed_s": 0.004,
       "reference": "R11/R12"
     },
     {
@@ -1183,9 +1615,9 @@
         "vout_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R116_R117.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R116_R117.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R116_R117.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R116_R117.log",
+      "elapsed_s": 0.004,
       "reference": "R116/R117"
     },
     {
@@ -1205,9 +1637,9 @@
         "vout_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R118_R119.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R118_R119.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R118_R119.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R118_R119.log",
+      "elapsed_s": 0.004,
       "reference": "R118/R119"
     },
     {
@@ -1227,10 +1659,337 @@
         "vout_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R120_R121.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R120_R121.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R120_R121.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R120_R121.log",
       "elapsed_s": 0.005,
       "reference": "R120/R121"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R201",
+        "R205"
+      ],
+      "expected": {
+        "ratio": 0.998502,
+        "vout_V": 3.2950565999999997
+      },
+      "simulated": {
+        "vout_V": 3.29506
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R201_R205.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R201_R205.log",
+      "elapsed_s": 0.005,
+      "reference": "R201/R205"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R202",
+        "R206"
+      ],
+      "expected": {
+        "ratio": 0.998502,
+        "vout_V": 3.2950565999999997
+      },
+      "simulated": {
+        "vout_V": 3.29506
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R202_R206.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R202_R206.log",
+      "elapsed_s": 0.004,
+      "reference": "R202/R206"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R203",
+        "R207"
+      ],
+      "expected": {
+        "ratio": 0.998502,
+        "vout_V": 3.2950565999999997
+      },
+      "simulated": {
+        "vout_V": 3.29506
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R203_R207.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R203_R207.log",
+      "elapsed_s": 0.004,
+      "reference": "R203/R207"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R204",
+        "R208"
+      ],
+      "expected": {
+        "ratio": 0.998502,
+        "vout_V": 3.2950565999999997
+      },
+      "simulated": {
+        "vout_V": 3.29506
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R204_R208.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R204_R208.log",
+      "elapsed_s": 0.005,
+      "reference": "R204/R208"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R209",
+        "R90"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {},
+      "delta": {},
+      "status": "skip",
+      "note": "ngspice operating point failed",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R209_R90.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R209_R90.log",
+      "elapsed_s": 0.004,
+      "reference": "R209/R90"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R301",
+        "R302"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R301_R302.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R301_R302.log",
+      "elapsed_s": 0.004,
+      "reference": "R301/R302"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R304",
+        "R305"
+      ],
+      "expected": {
+        "ratio": 0.72973,
+        "vout_V": 2.408109
+      },
+      "simulated": {
+        "vout_V": 2.40811
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R304_R305.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R304_R305.log",
+      "elapsed_s": 0.004,
+      "reference": "R304/R305"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R320",
+        "R321"
+      ],
+      "expected": {
+        "ratio": 0.090909,
+        "vout_V": 0.2999997
+      },
+      "simulated": {
+        "vout_V": 0.3
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R320_R321.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R320_R321.log",
+      "elapsed_s": 0.005,
+      "reference": "R320/R321"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R325",
+        "R326"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R325_R326.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R325_R326.log",
+      "elapsed_s": 0.004,
+      "reference": "R325/R326"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R327",
+        "R326"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R327_R326.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R327_R326.log",
+      "elapsed_s": 0.004,
+      "reference": "R327/R326"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R401",
+        "R402"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R401_R402.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R401_R402.log",
+      "elapsed_s": 0.004,
+      "reference": "R401/R402"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R404",
+        "R405"
+      ],
+      "expected": {
+        "ratio": 0.72973,
+        "vout_V": 2.408109
+      },
+      "simulated": {
+        "vout_V": 2.40811
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R404_R405.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R404_R405.log",
+      "elapsed_s": 0.004,
+      "reference": "R404/R405"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R420",
+        "R421"
+      ],
+      "expected": {
+        "ratio": 0.090909,
+        "vout_V": 0.2999997
+      },
+      "simulated": {
+        "vout_V": 0.3
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R420_R421.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R420_R421.log",
+      "elapsed_s": 0.004,
+      "reference": "R420/R421"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R425",
+        "R426"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R425_R426.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R425_R426.log",
+      "elapsed_s": 0.004,
+      "reference": "R425/R426"
+    },
+    {
+      "subcircuit_type": "voltage_divider",
+      "components": [
+        "R427",
+        "R426"
+      ],
+      "expected": {
+        "ratio": 0.5,
+        "vout_V": 1.65
+      },
+      "simulated": {
+        "vout_V": 1.65
+      },
+      "delta": {
+        "vout_error_pct": 0.0
+      },
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R427_R426.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R427_R426.log",
+      "elapsed_s": 0.005,
+      "reference": "R427/R426"
     },
     {
       "subcircuit_type": "voltage_divider",
@@ -1246,8 +2005,8 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R43_R47.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R43_R47.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R43_R47.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R43_R47.log",
       "elapsed_s": 0.005,
       "reference": "R43/R47"
     },
@@ -1265,9 +2024,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R44_R48.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R44_R48.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R44_R48.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R44_R48.log",
+      "elapsed_s": 0.004,
       "reference": "R44/R48"
     },
     {
@@ -1284,8 +2043,8 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R45_R49.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R45_R49.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R45_R49.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R45_R49.log",
       "elapsed_s": 0.004,
       "reference": "R45/R49"
     },
@@ -1303,9 +2062,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R46_R50.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R46_R50.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R46_R50.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R46_R50.log",
+      "elapsed_s": 0.004,
       "reference": "R46/R50"
     },
     {
@@ -1325,9 +2084,9 @@
         "vout_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R6_R5.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R6_R5.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R6_R5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R6_R5.log",
+      "elapsed_s": 0.004,
       "reference": "R6/R5"
     },
     {
@@ -1344,9 +2103,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R55_R59.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R55_R59.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R55_R59.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R55_R59.log",
+      "elapsed_s": 0.004,
       "reference": "R55/R59"
     },
     {
@@ -1363,9 +2122,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R56_R60.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R56_R60.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R56_R60.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R56_R60.log",
+      "elapsed_s": 0.004,
       "reference": "R56/R60"
     },
     {
@@ -1382,9 +2141,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R57_R61.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R57_R61.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R57_R61.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R57_R61.log",
+      "elapsed_s": 0.004,
       "reference": "R57/R61"
     },
     {
@@ -1401,9 +2160,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R58_R62.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R58_R62.log",
-      "elapsed_s": 0.008,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R58_R62.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R58_R62.log",
+      "elapsed_s": 0.004,
       "reference": "R58/R62"
     },
     {
@@ -1420,9 +2179,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R67_R71.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R67_R71.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R67_R71.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R67_R71.log",
+      "elapsed_s": 0.004,
       "reference": "R67/R71"
     },
     {
@@ -1439,8 +2198,8 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R68_R72.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R68_R72.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R68_R72.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R68_R72.log",
       "elapsed_s": 0.005,
       "reference": "R68/R72"
     },
@@ -1458,8 +2217,8 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R69_R73.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R69_R73.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R69_R73.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R69_R73.log",
       "elapsed_s": 0.005,
       "reference": "R69/R73"
     },
@@ -1477,9 +2236,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R70_R74.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R70_R74.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R70_R74.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R70_R74.log",
+      "elapsed_s": 0.004,
       "reference": "R70/R74"
     },
     {
@@ -1496,9 +2255,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R79_R83.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R79_R83.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R79_R83.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R79_R83.log",
+      "elapsed_s": 0.004,
       "reference": "R79/R83"
     },
     {
@@ -1515,9 +2274,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R80_R84.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R80_R84.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R80_R84.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R80_R84.log",
+      "elapsed_s": 0.004,
       "reference": "R80/R84"
     },
     {
@@ -1534,9 +2293,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R81_R85.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R81_R85.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R81_R85.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R81_R85.log",
+      "elapsed_s": 0.004,
       "reference": "R81/R85"
     },
     {
@@ -1553,9 +2312,9 @@
       "delta": {},
       "status": "skip",
       "note": "ngspice operating point failed",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R82_R86.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/voltage-divider_R82_R86.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R82_R86.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/voltage-divider_R82_R86.log",
+      "elapsed_s": 0.004,
       "reference": "R82/R86"
     },
     {
@@ -1581,8 +2340,36 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R43.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R43.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R43.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R43.log",
+      "elapsed_s": 0.007,
+      "reference": "U15"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U15"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R44.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R44.log",
       "elapsed_s": 0.006,
       "reference": "U15"
     },
@@ -1609,8 +2396,8 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R44.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R44.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R45.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R45.log",
       "elapsed_s": 0.006,
       "reference": "U15"
     },
@@ -1637,36 +2424,8 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R45.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R45.log",
-      "elapsed_s": 0.006,
-      "reference": "U15"
-    },
-    {
-      "subcircuit_type": "opamp_circuit",
-      "components": [
-        "U15"
-      ],
-      "configuration": "buffer",
-      "expected": {
-        "gain": 1.0,
-        "gain_dB": 0.0
-      },
-      "simulated": {
-        "gain_dB": -0.0,
-        "gain_linear": 1.0,
-        "bandwidth_hz": 997643.0,
-        "gain_low_dB": -0.0,
-        "gain_high_dB": -0.0,
-        "gain_spread_dB": 0.0
-      },
-      "delta": {
-        "gain_error_dB": 0.0
-      },
-      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
-      "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R46.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U15_R46.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R46.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U15_R46.log",
       "elapsed_s": 0.006,
       "reference": "U15"
     },
@@ -1693,9 +2452,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R55.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R55.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R55.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R55.log",
+      "elapsed_s": 0.006,
       "reference": "U17"
     },
     {
@@ -1721,9 +2480,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R56.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R56.log",
-      "elapsed_s": 0.009,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R56.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R56.log",
+      "elapsed_s": 0.006,
       "reference": "U17"
     },
     {
@@ -1749,9 +2508,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R57.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R57.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R57.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R57.log",
+      "elapsed_s": 0.006,
       "reference": "U17"
     },
     {
@@ -1777,9 +2536,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R58.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U17_R58.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R58.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U17_R58.log",
+      "elapsed_s": 0.006,
       "reference": "U17"
     },
     {
@@ -1805,9 +2564,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R67.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R67.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R67.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R67.log",
+      "elapsed_s": 0.006,
       "reference": "U19"
     },
     {
@@ -1833,9 +2592,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R68.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R68.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R68.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R68.log",
+      "elapsed_s": 0.006,
       "reference": "U19"
     },
     {
@@ -1861,9 +2620,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R69.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R69.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R69.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R69.log",
+      "elapsed_s": 0.006,
       "reference": "U19"
     },
     {
@@ -1889,9 +2648,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R70.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U19_R70.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R70.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U19_R70.log",
+      "elapsed_s": 0.005,
       "reference": "U19"
     },
     {
@@ -1917,9 +2676,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R79.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R79.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R79.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R79.log",
+      "elapsed_s": 0.005,
       "reference": "U21"
     },
     {
@@ -1945,36 +2704,8 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R80.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R80.log",
-      "elapsed_s": 0.007,
-      "reference": "U21"
-    },
-    {
-      "subcircuit_type": "opamp_circuit",
-      "components": [
-        "U21"
-      ],
-      "configuration": "buffer",
-      "expected": {
-        "gain": 1.0,
-        "gain_dB": 0.0
-      },
-      "simulated": {
-        "gain_dB": -0.0,
-        "gain_linear": 1.0,
-        "bandwidth_hz": 997643.0,
-        "gain_low_dB": -0.0,
-        "gain_high_dB": -0.0,
-        "gain_spread_dB": 0.0
-      },
-      "delta": {
-        "gain_error_dB": 0.0
-      },
-      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
-      "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R81.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R81.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R80.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R80.log",
       "elapsed_s": 0.006,
       "reference": "U21"
     },
@@ -2001,10 +2732,322 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R82.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U21_R82.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R81.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R81.log",
       "elapsed_s": 0.006,
       "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U21"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R82.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U21_R82.log",
+      "elapsed_s": 0.006,
+      "reference": "U21"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U301"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R304.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R304.log",
+      "elapsed_s": 0.005,
+      "reference": "U301"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U301"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R315.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R315.log",
+      "elapsed_s": 0.005,
+      "reference": "U301"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U301"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -2.7,
+        "gain_dB": 8.6
+      },
+      "simulated": {
+        "gain_dB": -19.86,
+        "gain_linear": 0.102,
+        "bandwidth_hz": 7163820.0,
+        "gain_low_dB": -19.86,
+        "gain_high_dB": -19.86,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 28.46
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 28.5 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R307_R303.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R307_R303.log",
+      "elapsed_s": 0.006,
+      "reference": "U301"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U301"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -0.147,
+        "gain_dB": -16.7
+      },
+      "simulated": {
+        "gain_dB": -23.89,
+        "gain_linear": 0.064,
+        "bandwidth_hz": 1492.3,
+        "gain_low_dB": -16.83,
+        "gain_high_dB": -43.0,
+        "gain_spread_dB": 26.16
+      },
+      "delta": {
+        "gain_error_dB": 7.19
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 7.2 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation) Gain varies 26.2 dB across frequency \u2014 frequency-dependent response.",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R333_R331.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U301_R333_R331.log",
+      "elapsed_s": 0.005,
+      "reference": "U301"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U305"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -10.0,
+        "gain_dB": 20.0
+      },
+      "simulated": {
+        "gain_dB": 20.0,
+        "gain_linear": 10.0,
+        "bandwidth_hz": 906945.0,
+        "gain_low_dB": 20.0,
+        "gain_high_dB": 20.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "ideal opamp (Aol=1e6, GBW~10MHz) \u2014 real part may limit bandwidth",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U305_R317_R311.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U305_R317_R311.log",
+      "elapsed_s": 0.005,
+      "reference": "U305"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U401"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R404.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R404.log",
+      "elapsed_s": 0.005,
+      "reference": "U401"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U401"
+      ],
+      "configuration": "buffer",
+      "expected": {
+        "gain": 1.0,
+        "gain_dB": 0.0
+      },
+      "simulated": {
+        "gain_dB": -0.0,
+        "gain_linear": 1.0,
+        "bandwidth_hz": 997643.0,
+        "gain_low_dB": -0.0,
+        "gain_high_dB": -0.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R415.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R415.log",
+      "elapsed_s": 0.005,
+      "reference": "U401"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U401"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -2.7,
+        "gain_dB": 8.6
+      },
+      "simulated": {
+        "gain_dB": -19.86,
+        "gain_linear": 0.102,
+        "bandwidth_hz": 7163820.0,
+        "gain_low_dB": -19.86,
+        "gain_high_dB": -19.86,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 28.46
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 28.5 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R407_R403.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R407_R403.log",
+      "elapsed_s": 0.006,
+      "reference": "U401"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U401"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -0.147,
+        "gain_dB": -16.7
+      },
+      "simulated": {
+        "gain_dB": -23.89,
+        "gain_linear": 0.064,
+        "bandwidth_hz": 1492.3,
+        "gain_low_dB": -16.83,
+        "gain_high_dB": -43.0,
+        "gain_spread_dB": 26.16
+      },
+      "delta": {
+        "gain_error_dB": 7.19
+      },
+      "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
+      "status": "warn",
+      "note": "Gain differs by 7.2 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation) Gain varies 26.2 dB across frequency \u2014 frequency-dependent response.",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R433_R431.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U401_R433_R431.log",
+      "elapsed_s": 0.006,
+      "reference": "U401"
+    },
+    {
+      "subcircuit_type": "opamp_circuit",
+      "components": [
+        "U405"
+      ],
+      "configuration": "inverting",
+      "expected": {
+        "gain": -10.0,
+        "gain_dB": 20.0
+      },
+      "simulated": {
+        "gain_dB": 20.0,
+        "gain_linear": 10.0,
+        "bandwidth_hz": 906945.0,
+        "gain_low_dB": 20.0,
+        "gain_high_dB": 20.0,
+        "gain_spread_dB": 0.0
+      },
+      "delta": {
+        "gain_error_dB": 0.0
+      },
+      "model_note": "ideal opamp (Aol=1e6, GBW~10MHz) \u2014 real part may limit bandwidth",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U405_R417_R411.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U405_R417_R411.log",
+      "elapsed_s": 0.006,
+      "reference": "U405"
     },
     {
       "subcircuit_type": "opamp_circuit",
@@ -2029,9 +3072,9 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R116.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R116.log",
-      "elapsed_s": 0.006,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7.log",
+      "elapsed_s": 0.005,
       "reference": "U7"
     },
     {
@@ -2057,8 +3100,8 @@
       },
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R39.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R39.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7.log",
       "elapsed_s": 0.006,
       "reference": "U7"
     },
@@ -2086,8 +3129,8 @@
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "warn",
       "note": "Gain differs by 35.7 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R15_R13.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R15_R13.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7_R15_R13.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7_R15_R13.log",
       "elapsed_s": 0.006,
       "reference": "U7"
     },
@@ -2115,8 +3158,8 @@
       "model_note": "MCP6004 behavioral (cache:MCP6004, GBW=1.0MHz)",
       "status": "warn",
       "note": "Gain differs by 35.7 dB from expected (behavioral model \u2014 may reflect testbench topology sensitivity or real GBW limitation)",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R16_R14.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/opamp-circuit_U7_R16_R14.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7_R16_R14.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/opamp-circuit_U7_R16_R14.log",
       "elapsed_s": 0.006,
       "reference": "U7"
     },
@@ -2139,10 +3182,122 @@
       "model_note": "generic crystal equivalent circuit \u2014 actual Rm may differ",
       "status": "warn",
       "note": "Load caps present: C74, C75 Series resonance 0.000 MHz deviates 100.0% from nominal.",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/crystal-circuit_Y1.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/crystal-circuit_Y1.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/crystal-circuit_Y1.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/crystal-circuit_Y1.log",
       "elapsed_s": 0.005,
       "reference": "Y1"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q201"
+      ],
+      "transistor_type": "bjt",
+      "value": "FGD3040G2-F085",
+      "expected": {},
+      "simulated": {},
+      "delta": {},
+      "model_note": "generic NPN model \u2014 real threshold depends on part",
+      "status": "skip",
+      "note": "ngspice DC sweep measurement failed",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q201.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q201.log",
+      "elapsed_s": 0.004,
+      "reference": "Q201"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q202"
+      ],
+      "transistor_type": "bjt",
+      "value": "FGD3040G2-F085",
+      "expected": {},
+      "simulated": {},
+      "delta": {},
+      "model_note": "generic NPN model \u2014 real threshold depends on part",
+      "status": "skip",
+      "note": "ngspice DC sweep measurement failed",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q202.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q202.log",
+      "elapsed_s": 0.004,
+      "reference": "Q202"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q203"
+      ],
+      "transistor_type": "bjt",
+      "value": "FGD3040G2-F085",
+      "expected": {},
+      "simulated": {},
+      "delta": {},
+      "model_note": "generic NPN model \u2014 real threshold depends on part",
+      "status": "skip",
+      "note": "ngspice DC sweep measurement failed",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q203.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q203.log",
+      "elapsed_s": 0.004,
+      "reference": "Q203"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q204"
+      ],
+      "transistor_type": "bjt",
+      "value": "FGD3040G2-F085",
+      "expected": {},
+      "simulated": {},
+      "delta": {},
+      "model_note": "generic NPN model \u2014 real threshold depends on part",
+      "status": "skip",
+      "note": "ngspice DC sweep measurement failed",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q204.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q204.log",
+      "elapsed_s": 0.004,
+      "reference": "Q204"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q301"
+      ],
+      "transistor_type": "mosfet",
+      "value": "VND14NV04",
+      "expected": {},
+      "simulated": {
+        "vth_V": 1.542,
+        "i_on_mA": 3.3
+      },
+      "delta": {},
+      "model_note": "generic NMOS model \u2014 real threshold depends on part",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q301.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q301.log",
+      "elapsed_s": 0.005,
+      "reference": "Q301"
+    },
+    {
+      "subcircuit_type": "transistor_circuit",
+      "components": [
+        "Q401"
+      ],
+      "transistor_type": "mosfet",
+      "value": "VND14NV04",
+      "expected": {},
+      "simulated": {
+        "vth_V": 1.542,
+        "i_on_mA": 3.3
+      },
+      "delta": {},
+      "model_note": "generic NMOS model \u2014 real threshold depends on part",
+      "status": "pass",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q401.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/transistor-circuit_Q401.log",
+      "elapsed_s": 0.005,
+      "reference": "Q401"
     },
     {
       "subcircuit_type": "protection_device",
@@ -2158,10 +3313,33 @@
       "model_note": "generic diode model \u2014 real TVS has specific clamping characteristics",
       "status": "pass",
       "note": "Protection diode present \u2014 clamping voltage requires manufacturer model for accurate measurement",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/protection-device_idx0.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/protection-device_idx0.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/protection-device_idx0.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/protection-device_idx0.log",
       "elapsed_s": 0.005,
       "reference": "D1"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C1",
+        "C1201"
+      ],
+      "rail": "/00000000-0000-0000-0000-00005d99e6ee/12V_MR",
+      "cap_count": 2,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0089,
+        "z_at_1MHz_ohms": 0.0124,
+        "z_at_100kHz_ohms": 0.0761
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.012\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C1_C1201.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C1_C1201.log",
+      "elapsed_s": 0.006,
+      "reference": "C1/C1201"
     },
     {
       "subcircuit_type": "decoupling",
@@ -2180,8 +3358,8 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=1.618\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C104.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C104.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C104.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C104.log",
       "elapsed_s": 0.006,
       "reference": "C104"
     },
@@ -2195,20 +3373,19 @@
         "C46"
       ],
       "rail": "+5V",
-      "cap_count": 10,
+      "cap_count": 14,
       "expected": {},
       "simulated": {
-        "z_min_ohms": 0.0047,
-        "f_at_zmin_hz": 1496240.0,
-        "z_at_1MHz_ohms": 0.0064,
-        "z_at_100kHz_ohms": 0.0763
+        "z_min_ohms": 0.0045,
+        "z_at_1MHz_ohms": 0.0061,
+        "z_at_100kHz_ohms": 0.0692
       },
       "delta": {},
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.006\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C92_C91_C98_C97_C46.log",
       "elapsed_s": 0.008,
       "reference": "C92/C91/C98/C97/C46"
     },
@@ -2233,9 +3410,9 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.010\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.log",
-      "elapsed_s": 0.009,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C67_C68_C69_C71_C72.log",
+      "elapsed_s": 0.008,
       "reference": "C67/C68/C69/C71/C72"
     },
     {
@@ -2257,10 +3434,113 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.092\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C2_C5.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C2_C5.log",
-      "elapsed_s": 0.007,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C2_C5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C2_C5.log",
+      "elapsed_s": 0.006,
       "reference": "C2/C5"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C3",
+        "C41"
+      ],
+      "rail": "/00000000-0000-0000-0000-00005d99e6ee/5V_SENSOR_1",
+      "cap_count": 2,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0815,
+        "z_at_1MHz_ohms": 0.1665,
+        "z_at_100kHz_ohms": 1.4492
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.166\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C3_C41.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C3_C41.log",
+      "elapsed_s": 0.006,
+      "reference": "C3/C41"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C310",
+        "C305",
+        "C313",
+        "C312",
+        "C314"
+      ],
+      "rail": "+3V3_WBO1",
+      "cap_count": 5,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0401,
+        "f_at_zmin_hz": 3054840.0,
+        "z_at_1MHz_ohms": 0.0494,
+        "z_at_100kHz_ohms": 0.3145
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.049\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C310_C305_C313_C312_C314.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C310_C305_C313_C312_C314.log",
+      "elapsed_s": 0.006,
+      "reference": "C310/C305/C313/C312/C314"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C307",
+        "C309",
+        "C407",
+        "C409"
+      ],
+      "rail": "VDDA",
+      "cap_count": 4,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.1147,
+        "f_at_zmin_hz": 10344300.0,
+        "z_at_1MHz_ohms": 0.1458,
+        "z_at_100kHz_ohms": 0.7355
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.146\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C307_C309_C407_C409.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C307_C309_C407_C409.log",
+      "elapsed_s": 0.006,
+      "reference": "C307/C309/C407/C409"
+    },
+    {
+      "subcircuit_type": "decoupling",
+      "components": [
+        "C410",
+        "C405",
+        "C413",
+        "C412",
+        "C414"
+      ],
+      "rail": "+3V3_WBO2",
+      "cap_count": 5,
+      "expected": {},
+      "simulated": {
+        "z_min_ohms": 0.0401,
+        "f_at_zmin_hz": 3054840.0,
+        "z_at_1MHz_ohms": 0.0494,
+        "z_at_100kHz_ohms": 0.3145
+      },
+      "delta": {},
+      "model_note": "generic ESR + parasitic L from self-resonant frequency",
+      "status": "pass",
+      "note": "Z=0.049\u03a9 at 1MHz",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C410_C405_C413_C412_C414.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C410_C405_C413_C412_C414.log",
+      "elapsed_s": 0.006,
+      "reference": "C410/C405/C413/C412/C414"
     },
     {
       "subcircuit_type": "decoupling",
@@ -2268,7 +3548,7 @@
         "C82",
         "C81"
       ],
-      "rail": "VDDA",
+      "rail": "/mcu/VDDA",
       "cap_count": 2,
       "expected": {},
       "simulated": {
@@ -2280,8 +3560,8 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.053\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C82_C81.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C82_C81.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C82_C81.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C82_C81.log",
       "elapsed_s": 0.006,
       "reference": "C82/C81"
     },
@@ -2302,8 +3582,8 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.184\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C84.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C84.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C84.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C84.log",
       "elapsed_s": 0.006,
       "reference": "C84"
     },
@@ -2324,8 +3604,8 @@
       "model_note": "generic ESR + parasitic L from self-resonant frequency",
       "status": "pass",
       "note": "Z=0.184\u03a9 at 1MHz",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C9.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/decoupling_C9.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C9.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/decoupling_C9.log",
       "elapsed_s": 0.006,
       "reference": "C9"
     },
@@ -2348,9 +3628,9 @@
         "vfb_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U1_R6_R5.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U1_R6_R5.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U1_R6_R5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U1_R6_R5.log",
+      "elapsed_s": 0.004,
       "reference": "R6/R5"
     },
     {
@@ -2372,9 +3652,9 @@
         "vfb_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U2_R6_R5.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U2_R6_R5.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U2_R6_R5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U2_R6_R5.log",
+      "elapsed_s": 0.004,
       "reference": "R6/R5"
     },
     {
@@ -2397,10 +3677,34 @@
         "vfb_error_pct": 0.0
       },
       "status": "pass",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U3_R6_R5.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/regulator-feedback_U3_R6_R5.log",
-      "elapsed_s": 0.005,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U3_R6_R5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/regulator-feedback_U3_R6_R5.log",
+      "elapsed_s": 0.004,
       "reference": "R6/R5"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C3",
+        "C41"
+      ],
+      "regulator": "U1",
+      "expected": {
+        "v_target_V": 5.0,
+        "estimated_inrush_A": 0.011
+      },
+      "simulated": {
+        "v_settled_V": 5.0
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx0.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx0.log",
+      "elapsed_s": 0.007,
+      "reference": "C3/C41"
     },
     {
       "subcircuit_type": "inrush",
@@ -2420,9 +3724,9 @@
       },
       "status": "pass",
       "note": "Transient simulated",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx0.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx0.log",
-      "elapsed_s": 0.008,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx1.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx1.log",
+      "elapsed_s": 0.01,
       "reference": "C9"
     },
     {
@@ -2437,7 +3741,7 @@
       "regulator": "U3",
       "expected": {
         "v_target_V": 4.0,
-        "estimated_inrush_A": 0.083
+        "estimated_inrush_A": 0.092
       },
       "simulated": {
         "v_settled_V": 4.0
@@ -2447,8 +3751,8 @@
       },
       "status": "pass",
       "note": "Transient simulated",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx1.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx1.log",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx2.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx2.log",
       "elapsed_s": 0.008,
       "reference": "C92/C91/C98/C97/C46"
     },
@@ -2474,9 +3778,9 @@
       },
       "status": "pass",
       "note": "Transient simulated",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx2.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx2.log",
-      "elapsed_s": 0.01,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx3.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx3.log",
+      "elapsed_s": 0.007,
       "reference": "C67/C68/C69/C71/C72"
     },
     {
@@ -2497,24 +3801,78 @@
       },
       "status": "pass",
       "note": "Transient simulated",
-      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx3.cir",
-      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work/inrush_idx3.log",
-      "elapsed_s": 0.008,
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx4.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx4.log",
+      "elapsed_s": 0.007,
       "reference": "C90"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C310",
+        "C305",
+        "C313",
+        "C312",
+        "C314"
+      ],
+      "regulator": "U309",
+      "expected": {
+        "v_target_V": 3.3,
+        "estimated_inrush_A": 0.034
+      },
+      "simulated": {
+        "v_settled_V": 3.3
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx5.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx5.log",
+      "elapsed_s": 0.007,
+      "reference": "C310/C305/C313/C312/C314"
+    },
+    {
+      "subcircuit_type": "inrush",
+      "components": [
+        "C410",
+        "C405",
+        "C413",
+        "C412",
+        "C414"
+      ],
+      "regulator": "U409",
+      "expected": {
+        "v_target_V": 3.3,
+        "estimated_inrush_A": 0.034
+      },
+      "simulated": {
+        "v_settled_V": 3.3
+      },
+      "delta": {
+        "v_settle_error_pct": 0.0
+      },
+      "status": "pass",
+      "note": "Transient simulated",
+      "cir_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx6.cir",
+      "log_file": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work/inrush_idx6.log",
+      "elapsed_s": 0.008,
+      "reference": "C410/C405/C413/C412/C414"
     }
   ],
   "trust_summary": {
-    "total_findings": 4,
+    "total_findings": 8,
     "trust_level": "high",
     "by_confidence": {
-      "deterministic": 4,
+      "deterministic": 8,
       "heuristic": 0,
       "datasheet_backed": 0
     },
     "by_evidence_source": {
       "datasheet": 0,
       "topology": 0,
-      "heuristic_rule": 4,
+      "heuristic_rule": 8,
       "symbol_footprint": 0,
       "bom": 0,
       "geometry": 0,
@@ -2522,8 +3880,8 @@
     },
     "provenance_coverage_pct": 0.0
   },
-  "workdir": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work",
-  "total_elapsed_s": 0.567,
+  "workdir": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work",
+  "total_elapsed_s": 0.752,
   "simulator": "/usr/bin/ngspice",
   "ngspice": "/usr/bin/ngspice"
 }

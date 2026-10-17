@@ -1,0 +1,327 @@
+{
+  "step": "export",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "pdf",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-schematic.pdf",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kicad-cli-schematic-pdf.log",
+      "exit_code": 0,
+      "duration_s": 1.123
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "svg",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kicad-cli-schematic-svg.log",
+      "exit_code": 0,
+      "duration_s": 0.709
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "export",
+        "pdf",
+        "--mode-multipage",
+        "-l",
+        "F.Cu,B.Cu,F.SilkS,B.SilkS,F.Fab,B.Fab",
+        "--cl",
+        "Edge.Cuts",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-layers.pdf",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kicad-cli-pcb-pdf.log",
+      "exit_code": 0,
+      "duration_s": 1.299
+    },
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "export",
+        "bom",
+        "--fields",
+        "Reference,Value,Footprint,${QUANTITY},${DNP}",
+        "--labels",
+        "Refs,Value,Footprint,Qty,DNP",
+        "--group-by",
+        "Value,Footprint",
+        "--ref-range-delimiter",
+        "",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-bom.csv",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kicad-cli-bom-csv.log",
+      "exit_code": 0,
+      "duration_s": 0.616
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/kibot",
+        "-A",
+        "-c",
+        "/home/halbritt/git/fome-mc/toolchain/kibot/export.kibot.yaml",
+        "-e",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch",
+        "-b",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_pcb",
+        "-d",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot.log",
+      "exit_code": 0,
+      "duration_s": 83.685
+    }
+  ],
+  "inputs": {
+    "fome-mc.kicad_sch": "4b819663679098b35df827309197df4144fc7419255d25727335b6856ca040dc",
+    "fome-mc.kicad_pcb": "6fae5b56e0f41815f9fdc7b6decc204d9d85109525a0a30ab57ecd33f52050cd"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-schematic.pdf": {
+      "sha256": "797b094679ec90242a0276e151e6975a85fb273b84f05394c7a05f7c126d80f4",
+      "bytes": 1453765
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-Keep_Alive.svg": {
+      "sha256": "cec9f9e2ebd72051c7b5d74026697c1890c96f3f752d996755d8cd01547a4cb3",
+      "bytes": 212058
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-etb1.svg": {
+      "sha256": "72c804d3d4bebe393b1aa9667ad99c7c68edc06b49a5a6dafa5c8f0093bb85a4",
+      "bytes": 279486
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-highside_quad.svg": {
+      "sha256": "003f0233d50c2a4384e19dd2653c1b58b8392455330ba38ea2ee905ce4e6c86b",
+      "bytes": 360623
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-ign1.svg": {
+      "sha256": "fd0d3a56236f6d85908e3aa357ac1cefb7cc1ca5e883b667ae0bb642435829ac",
+      "bytes": 333666
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-ign2.svg": {
+      "sha256": "5511bec24b6bd8f34b1bce5fa93a0d8fbd10f7824baf0e0dabb21786bb3f5dd4",
+      "bytes": 334886
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-ign_igbt.svg": {
+      "sha256": "9022c923b046cd8e9ce93ed2442e5bb06ed43780222779ac3913a24aa9a3d0e6",
+      "bytes": 330853
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-knock.svg": {
+      "sha256": "c702fe73670060a3d689c170e2966aa41c23eba5e1ee931a19c191cb0bd7d4a3",
+      "bytes": 366514
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-lowside_quad1.svg": {
+      "sha256": "89adb5dcc697d2894280f8833d77f0300924e772a418cc01c8a31badf198c151",
+      "bytes": 293367
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-lowside_quad2.svg": {
+      "sha256": "200bf9492247c6bfc11c8d60443c11f8d4cf44398661464c2c73c51dc622f78b",
+      "bytes": 289079
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-lowside_quad4.svg": {
+      "sha256": "a85d83a51d90f88865502f6122ecb1fce4f3b0f0707660bd35e9fcf73cfe888d",
+      "bytes": 291669
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-mcu.svg": {
+      "sha256": "696a7b3c7b87043b2d0327349c6e6e131fbbdbe1f61a353287bba8bc9a6f4109",
+      "bytes": 3079433
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-psu.svg": {
+      "sha256": "7f4ea2c5b0fbef34d83e348a100176e6b7dca5c0deff914531d4bae46a157290",
+      "bytes": 986972
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-quad_analog1.svg": {
+      "sha256": "d8de77f2078f652270037c7fb28281221fefda398cda3c3c354b5186f57fc4b2",
+      "bytes": 477992
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-quad_analog2.svg": {
+      "sha256": "15af26a462c6c9e6794e9130a34bb5e3c005ace4c342ff57fc392ab68a5af8dc",
+      "bytes": 481362
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-quad_analog3.svg": {
+      "sha256": "11ffc8bc1a1698eea94bfc587728dd8635f52f86320343c19181e9402c9101e9",
+      "bytes": 490426
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-quad_analog_temp.svg": {
+      "sha256": "166fa28d2d3e94ae097c58a35496ec90659fac4cce3e1716287ec3d42ca6d796",
+      "bytes": 471062
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-stepper_etb.svg": {
+      "sha256": "8a2fd654fead9b3e0bf22a7a26b1efc73b94fe38f7eadeea636efdec9f6232c4",
+      "bytes": 513823
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-triggers.svg": {
+      "sha256": "b5d38bfce33452d3810a3a8db91ada8dfee1bfd43270be94fbf773b07315bc7f",
+      "bytes": 838991
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-wbo1.svg": {
+      "sha256": "665487ba6f010dedb5c5d8d7c968d823af27c826d5dc21b4258a13f5938a31a0",
+      "bytes": 1612798
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc-wbo2.svg": {
+      "sha256": "20be75fb76b061a6a80af08b69559dcb8f00bb4ca8c531acd788c44b24c2786b",
+      "bytes": 1564230
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/schematic-svg/fome-mc.svg": {
+      "sha256": "0ca6affe52de1e39bd2472309c82d352265902fbaf6e54bbc6892e0534b0e37d",
+      "bytes": 2160279
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-layers.pdf": {
+      "sha256": "4c67e88f925a091e198469b7db9565d18ec868f3942cc8a0056a09a66c8ec8d8",
+      "bytes": 2571038
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/native/fome-mc-bom.csv": {
+      "sha256": "7583858abb5cd2a50b31a6cf93875c8e03f61ca7280688ef4cdcb9361db73a17",
+      "bytes": 7534
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/assembly/fome-mc-bottom_pos.csv": {
+      "sha256": "7565b037b9375e5a5070ba77a93488768c56409db7c519ace55cc83bb2f74819",
+      "bytes": 35
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/assembly/fome-mc-top_pos.csv": {
+      "sha256": "9919d05a050b07ff984c6cd3043dc3f2a7dd7333daad58fcf982bc00768625d9",
+      "bytes": 29494
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/bom/fome-mc-bom.csv": {
+      "sha256": "9f9648fb628c0e1d0b8c6e517d18e05bbb0e2184dc0633ba84e74590f6bc3f5d",
+      "bytes": 11744
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/bom/fome-mc-bom.html": {
+      "sha256": "946a1914d5fb8fc71f473225dbc045e86025325b8c6d23823d550fe0c214d785",
+      "bytes": 225591
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-B_Cu.gbr": {
+      "sha256": "45b13015fa8d96cc5ceb5bcb650540d30350d99d326206af5439a0d18df165ea",
+      "bytes": 559476
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-B_Mask.gbr": {
+      "sha256": "80c3389aaefda72ca4d85dd4728e10076df709bd09275fce43ac20b0527111b3",
+      "bytes": 126564
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-B_Paste.gbr": {
+      "sha256": "18036a240d5d292c0243bc3cecfdf0374ef2f754dc2bab74da4ed1793090ac30",
+      "bytes": 1181
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-B_Silkscreen.gbr": {
+      "sha256": "7f4e32d47779edeac814ce4f55b64ce829b617883e09c34ca0cd39550de782aa",
+      "bytes": 1912
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-Edge_Cuts.gbr": {
+      "sha256": "80e002f62f87f1792b44d96d30f42f1f4de4a2a75340ba2c5950d463734c0fd1",
+      "bytes": 724
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-F_Cu.gbr": {
+      "sha256": "8a2831eb0d022b23341f65d96cb5f15f24e972470ef9c3bce9b4a7268aef3475",
+      "bytes": 1671968
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-F_Mask.gbr": {
+      "sha256": "3cf66b6b81d950c829e6390fa8a223bbaf3b2668a293c593033c3c2ecff46e63",
+      "bytes": 1352492
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-F_Paste.gbr": {
+      "sha256": "782edf93e81b2106f101b09ebb29522feee63777fad8dc359f6d120576372171",
+      "bytes": 59357
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-F_Silkscreen.gbr": {
+      "sha256": "c66d07776ca77d413b97007b2fdb959c53ae7bc52c30b97ea2f96cebca6aad87",
+      "bytes": 49517
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-In1_Cu.gbr": {
+      "sha256": "75fb6c0a08eca1ff12fb56d561d804878394cb7ec2c8da62ff1d7a143a0628a2",
+      "bytes": 571701
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-In2_Cu.gbr": {
+      "sha256": "d2e672d3da8b405cdb87e9738f74b689ffaf3a793947bce8508990d60fd7b653",
+      "bytes": 1122960
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-drill.drl": {
+      "sha256": "993eedbf47ec91cccd90cad9b1395cc49c92ec1eac270e40c2e3ecc1c4d1d7ae",
+      "bytes": 16511
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-drill_map.pdf": {
+      "sha256": "fbaf7ef9f423e5d12e4ef5da6fd514dfbfcf824cd9b829b7cc92372f24164479",
+      "bytes": 52532
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-drill_report.txt": {
+      "sha256": "07bf2390b9a3d1e8d0873c3ff54285cfdddfec1defe1d2092265b6c17895bcb3",
+      "bytes": 1116
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/gerbers/fome-mc-job.gbrjob": {
+      "sha256": "7d857cd7013fce6907f32e021e738af27fe04c546b072606bf56a2753f4642a4",
+      "bytes": 3715
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/pcb/fome-mc-assembly.pdf": {
+      "sha256": "1b7ab00869b2e904114c0a175f12b1928ec435471a3eb4744fbe410ca9852af5",
+      "bytes": 1047881
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/export/kibot/schematic/fome-mc-schematic.pdf": {
+      "sha256": "c8037e83444f5e71ef709bdcb1398076d9f510e9cffc471ad05bd8c04cca0d91",
+      "bytes": 1452920
+    }
+  },
+  "findings": {
+    "artifacts": {
+      "schematic PDF": 21,
+      "schematic SVG": 21,
+      "PCB PDF": 6,
+      "BOM CSV": 7534,
+      "kibot gerber F.Cu": 1,
+      "kibot gerber B.Cu": 1,
+      "kibot gerber Edge.Cuts": 1,
+      "kibot gerber job file": 1,
+      "kibot excellon drill": 1,
+      "kibot drill report": 1,
+      "kibot position files": 2,
+      "kibot BOM CSV": 1,
+      "kibot BOM HTML": 1,
+      "kibot schematic PDF": 1,
+      "kibot PCB print PDF": 1
+    }
+  },
+  "board_sha256": "6fae5b56e0f41815f9fdc7b6decc204d9d85109525a0a30ab57ecd33f52050cd",
+  "schematic_pdf_refs_found": "462/474",
+  "bom": {
+    "lines": 101,
+    "references": 474,
+    "netlist_refs_not_in_bom": [],
+    "bom_refs_not_in_netlist": []
+  },
+  "kibot_diagnostics": {
+    "errors": 1,
+    "known_non_critical": [
+      "Unable to expand `REFERENCE` in `${REFERENCE}` (kibot - config.py:130)"
+    ],
+    "warnings_by_code": {
+      "W135": 308,
+      "W013": 16,
+      "W004": 6,
+      "W187": 3,
+      "W188": 3,
+      "W182": 2,
+      "W181": 1,
+      "W010": 1
+    }
+  }
+}

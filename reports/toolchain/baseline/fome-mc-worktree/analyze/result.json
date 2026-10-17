@@ -1,0 +1,137 @@
+{
+  "step": "analyze",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/schematic.json"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/kicad-happy-schematic.log",
+      "exit_code": 0,
+      "duration_s": 1.69
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_pcb",
+        "--full",
+        "--schematic",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/schematic.json",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/pcb.json"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/kicad-happy-pcb.log",
+      "exit_code": 0,
+      "duration_s": 166.092
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
+        "-s",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/schematic.json",
+        "-p",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/pcb.json",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/cross.json"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/kicad-happy-cross_analysis.log",
+      "exit_code": 0,
+      "duration_s": 0.318
+    },
+    {
+      "argv": [
+        "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+        "-I",
+        "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/schematic.json",
+        "--simulator",
+        "ngspice",
+        "-w",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/spice_work",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/spice.json"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/kicad-happy-spice.log",
+      "exit_code": 0,
+      "duration_s": 2.103
+    }
+  ],
+  "inputs": {
+    "fome-mc.kicad_sch": "4b819663679098b35df827309197df4144fc7419255d25727335b6856ca040dc",
+    "fome-mc.kicad_pcb": "6fae5b56e0f41815f9fdc7b6decc204d9d85109525a0a30ab57ecd33f52050cd"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/schematic.json": {
+      "sha256": "423e3f37b00f7604528858ed75e7f34d5a59c725f7b8693a71086346ec308a05",
+      "bytes": 17554689
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/pcb.json": {
+      "sha256": "28e1784841a13142451bc9604c8abbc29d10b872a4f7841eb55e159e24a30258",
+      "bytes": 2857253
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/cross.json": {
+      "sha256": "3bcb5343ac969c04f9ae106117911793d99cb1ff5e0f28ce5c994dabfe6b9a39",
+      "bytes": 26777
+    },
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/analyze/spice.json": {
+      "sha256": "caa4a14b14cb5bac78e006bd63c0469bdbc88dbc9b081009c8353e1d1f847eef",
+      "bytes": 130593
+    }
+  },
+  "findings": {
+    "schematic": {
+      "components": 474,
+      "nets": 457,
+      "findings": {
+        "error": 31,
+        "warning": 32,
+        "info": 349
+      },
+      "native_netlist_components": 474
+    },
+    "pcb": {
+      "footprints": 474,
+      "nets": 450,
+      "routing_complete": false,
+      "cross_reference_input": "schematic.json",
+      "power_net_resolution_source": "schematic",
+      "findings": {
+        "error": 53,
+        "warning": 16,
+        "info": 163
+      }
+    },
+    "cross_analysis": {
+      "checks_run": 10,
+      "findings": {
+        "error": 0,
+        "warning": 9,
+        "info": 0
+      }
+    },
+    "spice": {
+      "simulator": "/usr/bin/ngspice",
+      "summary": {
+        "total": 149,
+        "pass": 120,
+        "warn": 8,
+        "fail": 0,
+        "skip": 21
+      }
+    }
+  }
+}

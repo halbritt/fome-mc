@@ -1,0 +1,66 @@
+{
+  "step": "drc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "drc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--schematic-parity",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/drc/drc.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/drc/kicad-cli-drc.log",
+      "exit_code": 0,
+      "duration_s": 12.642
+    }
+  ],
+  "inputs": {
+    "fome-mc.kicad_pcb": "6fae5b56e0f41815f9fdc7b6decc204d9d85109525a0a30ab57ecd33f52050cd"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/drc/drc.json": {
+      "sha256": "2e589a2c30576e45ca0d1b4ed41194bd2805326b7fc8626c3b6b5526cec96a0f",
+      "bytes": 455552
+    }
+  },
+  "findings": {
+    "violations": 228,
+    "unconnected_items": 237,
+    "schematic_parity": 251,
+    "by_severity": {
+      "warning": 479,
+      "error": 237
+    },
+    "by_type": {
+      "unconnected_items": 237,
+      "lib_footprint_mismatch": 199,
+      "footprint_symbol_field_mismatch": 199,
+      "net_conflict": 34,
+      "starved_thermal": 28,
+      "footprint_symbol_mismatch": 18,
+      "track_dangling": 1
+    },
+    "ignored_checks": [
+      "missing_courtyard",
+      "solder_mask_bridge",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries",
+      "footprint_filters_mismatch",
+      "pth_inside_courtyard",
+      "npth_inside_courtyard"
+    ]
+  },
+  "fill_mode": "asis",
+  "board_sha256_checked": "6fae5b56e0f41815f9fdc7b6decc204d9d85109525a0a30ab57ecd33f52050cd",
+  "design_clean": false
+}

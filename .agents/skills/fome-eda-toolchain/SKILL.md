@@ -5,8 +5,8 @@ description: "Use for any fome-mc KiCad, ngspice, KiBot or kicad-happy task: mak
 
 # fome-mc EDA toolchain
 
-Project-specific entry points for the FOME-MC motorcycle ECU (repo `~/git/fome-mc`,
-which is `~/git/Atlas-clone`). Full documentation: `toolchain/README.md`.
+Project-specific entry points for the FOME-MC motorcycle ECU (repo `~/git/fome-mc`).
+Full documentation: `toolchain/README.md`.
 
 ## Ground rules
 

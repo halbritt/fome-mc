@@ -1,0 +1,68 @@
+{
+  "step": "erc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "erc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--units",
+        "mm",
+        "-o",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/erc/erc.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc/fome-mc.kicad_sch"
+      ],
+      "cwd": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/erc/kicad-cli-erc.log",
+      "exit_code": 0,
+      "duration_s": 6.185
+    }
+  ],
+  "inputs": {
+    "fome-mc.kicad_sch": "4b819663679098b35df827309197df4144fc7419255d25727335b6856ca040dc"
+  },
+  "outputs": {
+    "build/runs/project/fome-mc-worktree/20261017T003917.386554Z/erc/erc.json": {
+      "sha256": "babe834271a0d74d752113a0f45e503a6bbb704b868c757275b0ec1ee02fbfbf",
+      "bytes": 1408776
+    }
+  },
+  "findings": {
+    "sheets_checked": 21,
+    "violations": 2190,
+    "by_severity": {
+      "warning": 2130,
+      "error": 60
+    },
+    "by_type": {
+      "endpoint_off_grid": 1644,
+      "lib_symbol_mismatch": 330,
+      "similar_labels": 45,
+      "lib_symbol_issues": 30,
+      "isolated_pin_label": 29,
+      "pin_not_connected": 22,
+      "unconnected_wire_endpoint": 21,
+      "multiple_net_names": 17,
+      "label_dangling": 16,
+      "pin_to_pin": 12,
+      "power_pin_not_driven": 9,
+      "footprint_link_issues": 5,
+      "pin_not_driven": 4,
+      "same_local_global_label": 3,
+      "no_connect_dangling": 2,
+      "label_multiple_wires": 1
+    },
+    "ignored_checks": [
+      "single_global_label",
+      "four_way_junction",
+      "simulation_model_issue",
+      "footprint_filter"
+    ]
+  },
+  "design_clean": false
+}

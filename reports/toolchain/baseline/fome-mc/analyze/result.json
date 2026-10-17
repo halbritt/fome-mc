@@ -8,31 +8,31 @@
         "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
         "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_schematic.py",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_sch",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc/fome-mc.kicad_sch",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-schematic.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/kicad-happy-schematic.log",
       "exit_code": 0,
-      "duration_s": 0.796
+      "duration_s": 1.004
     },
     {
       "argv": [
         "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
         "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/analyze_pcb.py",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_pcb",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc/fome-mc.kicad_pcb",
         "--full",
         "--schematic",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-pcb.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/kicad-happy-pcb.log",
       "exit_code": 0,
-      "duration_s": 112.982
+      "duration_s": 113.753
     },
     {
       "argv": [
@@ -40,97 +40,97 @@
         "-I",
         "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/kicad/scripts/cross_analysis.py",
         "-s",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json",
         "-p",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/cross.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/cross.json"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-cross_analysis.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/kicad-happy-cross_analysis.log",
       "exit_code": 0,
-      "duration_s": 0.205
+      "duration_s": 0.266
     },
     {
       "argv": [
         "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
         "-I",
         "/home/halbritt/git/fome-mc/toolchain/vendor/kicad-happy/skills/spice/scripts/simulate_subcircuits.py",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json",
         "--simulator",
         "ngspice",
         "-w",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice_work",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice_work",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice.json"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice.json"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/kicad-happy-spice.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/kicad-happy-spice.log",
       "exit_code": 0,
-      "duration_s": 0.694
+      "duration_s": 1.414
     }
   ],
   "inputs": {
-    "fome-mc.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c",
-    "fome-mc.kicad_pcb": "19727c5e7e3f9f6c3b90bf734be427aa17fd1fb6a616b6fd8e6a0f0924f27f85"
+    "fome-mc.kicad_sch": "3000ba6ea14292df93b78e572db615080ff4e01213df67f895502ded439b934d",
+    "fome-mc.kicad_pcb": "4189e489114dc054ee70d05dce6d8269b89ade5a6bff86c82a2dbfdaa10a0f0a"
   },
   "outputs": {
-    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json": {
-      "sha256": "bf4c17c7ee7dbd6d24c8bebef1b23bf32ca566ce0e1a00b1e9d793d169ff53dc",
-      "bytes": 11047627
+    "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json": {
+      "sha256": "e1b0169a7c641c19395062c0f73f9af8a103b4034c209b0f44dfe5191f36a7b1",
+      "bytes": 17554225
     },
-    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json": {
-      "sha256": "94f2186351890cdbb981e476eb2a02682fbc6e88c0925bd34447257ae5e57efd",
-      "bytes": 2398927
+    "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json": {
+      "sha256": "063f7dd200ca46b619b60b713a6114adb29c5a091c955d734a7892c54750b67e",
+      "bytes": 2854607
     },
-    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/cross.json": {
-      "sha256": "64bb612af7d78650629ce39a52009a5c737ac89bce5af9d924227d149928de19",
-      "bytes": 16241
+    "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/cross.json": {
+      "sha256": "20a0327bfaad72c51adc80078e77727e470a22b69294502e1cfdccb15596880a",
+      "bytes": 26723
     },
-    "build/runs/project/fome-mc/20261016T214759.589014Z/analyze/spice.json": {
-      "sha256": "bf89b13c5491a4a7efc2726b66a400b8b82b2566d37f8c2ebccfa9408e911bdb",
-      "bytes": 82800
+    "build/runs/project/fome-mc/20261017T003200.338471Z/analyze/spice.json": {
+      "sha256": "e9ac0664e9c32fef8eb56e25e4192696d54cfabb954bdc947a39ab8cb0f41343",
+      "bytes": 127912
     }
   },
   "findings": {
     "schematic": {
-      "components": 336,
-      "nets": 349,
+      "components": 474,
+      "nets": 457,
       "findings": {
-        "error": 19,
-        "warning": 26,
-        "info": 242
+        "error": 31,
+        "warning": 32,
+        "info": 349
       },
-      "native_netlist_components": 336
+      "native_netlist_components": 474
     },
     "pcb": {
-      "footprints": 336,
-      "nets": 349,
+      "footprints": 474,
+      "nets": 450,
       "routing_complete": false,
       "cross_reference_input": "schematic.json",
       "power_net_resolution_source": "schematic",
       "findings": {
-        "error": 33,
-        "warning": 27,
-        "info": 120
+        "error": 53,
+        "warning": 16,
+        "info": 163
       }
     },
     "cross_analysis": {
       "checks_run": 10,
       "findings": {
         "error": 0,
-        "warning": 5,
+        "warning": 9,
         "info": 0
       }
     },
     "spice": {
       "simulator": "/usr/bin/ngspice",
       "summary": {
-        "total": 98,
-        "pass": 78,
-        "warn": 4,
+        "total": 149,
+        "pass": 120,
+        "warn": 8,
         "fail": 0,
-        "skip": 16
+        "skip": 21
       }
     }
   }

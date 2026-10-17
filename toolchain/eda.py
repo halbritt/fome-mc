@@ -197,16 +197,21 @@ def project_config(name):
     return cfg
 
 
-def resolve_sheet(project_dir, name):
+def resolve_sheet(project_dir, name, by=None):
     """Exact sheet file, or a unique case-insensitive match (what KiCad sees on
     the case-insensitive filesystems it is often authored on)."""
-    if (project_dir / name).exists():
-        return name, None
-    parent = (project_dir / name).parent
-    if parent.is_dir():
-        hits = [p.name for p in parent.iterdir() if p.name.lower() == Path(name).name.lower()]
-        if len(hits) == 1:
-            return str(Path(name).parent / hits[0]) if Path(name).parent != Path(".") else hits[0], hits[0]
+    candidates = [Path(name)]
+    if by and Path(by).parent != Path("."):
+        candidates.insert(0, Path(by).parent / name)
+    for cand in candidates:
+        if (project_dir / cand).exists():
+            return str(cand), None
+        parent = (project_dir / cand).parent
+        if parent.is_dir():
+            hits = [p.name for p in parent.iterdir() if p.name.lower() == cand.name.lower()]
+            if len(hits) == 1:
+                rel_hit = str(cand.parent / hits[0]) if cand.parent != Path(".") else hits[0]
+                return rel_hit, hits[0]
     return None, None
 
 
@@ -223,7 +228,7 @@ def sheet_files(project_dir, root):
             seen[path] = SHEETFILE_RE.findall((project_dir / path).read_text(errors="replace"))
         for child in seen[path]:
             instances += multiplicity
-            actual, case_match = resolve_sheet(project_dir, child)
+            actual, case_match = resolve_sheet(project_dir, child, by=path)
             if actual is None:
                 problems.append({"referenced": child, "by": path, "resolved": None})
                 continue
@@ -1200,7 +1205,8 @@ def publish_report(src, dst, light=False):
     if dst.exists():
         shutil.rmtree(dst)
     for p in sorted(src.rglob("*")):
-        if p.is_file() and not p.is_symlink() and "snapshot" not in p.relative_to(src).parts[:1] \
+        # snapshot/ and source/ (the git-archive input of --rev runs) are inputs, not results
+        if p.is_file() and not p.is_symlink() and p.relative_to(src).parts[0] not in ("snapshot", "source") \
                 and REPORT_KEEP.search(p.name) and "spice_work" not in p.parts \
                 and not (p.suffix == ".pdf" and "kibot" in p.parts) \
                 and not (light and LIGHT_SKIP.search(p.name)):  # kibot PDFs duplicate the native ones

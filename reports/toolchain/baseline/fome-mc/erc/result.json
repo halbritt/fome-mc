@@ -14,46 +14,48 @@
         "--units",
         "mm",
         "-o",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/erc/erc.json",
-        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc/fome-mc.kicad_sch"
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/erc/erc.json",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc/fome-mc.kicad_sch"
       ],
-      "cwd": "build/runs/project/fome-mc/20261016T214759.589014Z/snapshot/fome-mc",
-      "log": "build/runs/project/fome-mc/20261016T214759.589014Z/erc/kicad-cli-erc.log",
+      "cwd": "build/runs/project/fome-mc/20261017T003200.338471Z/snapshot/fome-mc",
+      "log": "build/runs/project/fome-mc/20261017T003200.338471Z/erc/kicad-cli-erc.log",
       "exit_code": 0,
-      "duration_s": 2.63
+      "duration_s": 2.815
     }
   ],
   "inputs": {
-    "fome-mc.kicad_sch": "06178ade6cf9d50ee9343fafd6fff41a4db5a352f2eeb3977c9afdc3bac60b5c"
+    "fome-mc.kicad_sch": "3000ba6ea14292df93b78e572db615080ff4e01213df67f895502ded439b934d"
   },
   "outputs": {
-    "build/runs/project/fome-mc/20261016T214759.589014Z/erc/erc.json": {
-      "sha256": "20bc1139ac0b735fce4dce30879138dd4f3deb0553102be1ac0e31392dfdd330",
-      "bytes": 939321
+    "build/runs/project/fome-mc/20261017T003200.338471Z/erc/erc.json": {
+      "sha256": "6709a07de2caadab6face1baa4041b45fb0918bf7d08c1885e35ee93e9c83a44",
+      "bytes": 1408777
     }
   },
   "findings": {
-    "sheets_checked": 16,
-    "violations": 1481,
+    "sheets_checked": 21,
+    "violations": 2190,
     "by_severity": {
-      "warning": 1446,
-      "error": 35
+      "warning": 2130,
+      "error": 60
     },
     "by_type": {
-      "endpoint_off_grid": 1118,
-      "lib_symbol_mismatch": 295,
-      "pin_not_connected": 14,
-      "isolated_pin_label": 9,
-      "pin_to_pin": 9,
-      "lib_symbol_issues": 8,
-      "footprint_link_issues": 6,
-      "power_pin_not_driven": 6,
-      "pin_not_driven": 6,
-      "label_dangling": 3,
+      "endpoint_off_grid": 1644,
+      "lib_symbol_mismatch": 330,
+      "similar_labels": 45,
+      "lib_symbol_issues": 30,
+      "isolated_pin_label": 29,
+      "pin_not_connected": 22,
+      "unconnected_wire_endpoint": 21,
+      "multiple_net_names": 17,
+      "label_dangling": 16,
+      "pin_to_pin": 12,
+      "power_pin_not_driven": 9,
+      "footprint_link_issues": 5,
+      "pin_not_driven": 4,
       "same_local_global_label": 3,
-      "similar_labels": 2,
-      "unconnected_wire_endpoint": 1,
-      "multiple_net_names": 1
+      "no_connect_dangling": 2,
+      "label_multiple_wires": 1
     },
     "ignored_checks": [
       "single_global_label",

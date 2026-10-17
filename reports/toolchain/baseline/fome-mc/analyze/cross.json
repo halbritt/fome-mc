@@ -3,27 +3,27 @@
   "schema_version": "1.4.0",
   "inputs": {
     "source_files": [
-      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
-      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json"
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json",
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json"
     ],
     "source_hashes": {
-      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json": "bf4c17c7ee7dbd6d24c8bebef1b23bf32ca566ce0e1a00b1e9d793d169ff53dc",
-      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json": "94f2186351890cdbb981e476eb2a02682fbc6e88c0925bd34447257ae5e57efd"
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json": "e1b0169a7c641c19395062c0f73f9af8a103b4034c209b0f44dfe5191f36a7b1",
+      "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json": "063f7dd200ca46b619b60b713a6114adb29c5a091c955d734a7892c54750b67e"
     },
-    "run_id": "20261016T214908Z-57e94f",
+    "run_id": "20261017T003312Z-2e706b",
     "config_hash": null,
     "upstream_artifacts": {
       "schematic": {
-        "path": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/schematic.json",
-        "sha256": "bf4c17c7ee7dbd6d24c8bebef1b23bf32ca566ce0e1a00b1e9d793d169ff53dc",
+        "path": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/schematic.json",
+        "sha256": "e1b0169a7c641c19395062c0f73f9af8a103b4034c209b0f44dfe5191f36a7b1",
         "schema_version": "1.4.0",
-        "run_id": "20261016T214908Z-57e94f"
+        "run_id": "20261017T003312Z-2e706b"
       },
       "pcb": {
-        "path": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261016T214759.589014Z/analyze/pcb.json",
-        "sha256": "94f2186351890cdbb981e476eb2a02682fbc6e88c0925bd34447257ae5e57efd",
+        "path": "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/20261017T003200.338471Z/analyze/pcb.json",
+        "sha256": "063f7dd200ca46b619b60b713a6114adb29c5a091c955d734a7892c54750b67e",
         "schema_version": "1.4.0",
-        "run_id": "20261016T214908Z-57e94f"
+        "run_id": "20261017T003312Z-2e706b"
       }
     }
   },
@@ -32,12 +32,12 @@
     "deprecated_fields": [],
     "experimental_fields": []
   },
-  "elapsed_s": 0.133,
+  "elapsed_s": 0.195,
   "summary": {
-    "total_findings": 5,
+    "total_findings": 9,
     "by_severity": {
       "error": 0,
-      "warning": 5,
+      "warning": 9,
       "info": 0
     }
   },
@@ -46,24 +46,24 @@
       "detector": "check_return_path_enhanced",
       "rule_id": "RP-002",
       "category": "return_path",
-      "summary": "spi net /mcu/AUX_SPI_MOSI crosses GND plane gap",
-      "description": "spi signal /mcu/AUX_SPI_MOSI crosses a gap in GND plane on layer F.Cu.",
+      "summary": "spi net /mcu/AUX_SPI_CS crosses +3V3 plane gap",
+      "description": "spi signal /mcu/AUX_SPI_CS crosses a gap in +3V3 plane on layer F.Cu.",
       "components": [],
       "nets": [
-        "/mcu/AUX_SPI_MOSI",
-        "GND"
+        "/mcu/AUX_SPI_CS",
+        "+3V3"
       ],
       "pins": [],
       "severity": "warning",
       "confidence": "deterministic",
       "evidence_source": "topology",
-      "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the GND plane gap, or bridge with a stitching capacitor.",
+      "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
       "report_context": {
         "section": "Return Path",
         "impact": "Increased EMI from enlarged return path loop",
         "standard_ref": ""
       },
-      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_mosi",
+      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_cs",
       "stages": [
         "layout"
       ]
@@ -72,44 +72,18 @@
       "detector": "check_return_path_enhanced",
       "rule_id": "RP-002",
       "category": "return_path",
-      "summary": "spi net /mcu/AUX_SPI_MISO crosses GND plane gap",
-      "description": "spi signal /mcu/AUX_SPI_MISO crosses a gap in GND plane on layer F.Cu.",
-      "components": [],
-      "nets": [
-        "/mcu/AUX_SPI_MISO",
-        "GND"
-      ],
-      "pins": [],
-      "severity": "warning",
-      "confidence": "deterministic",
-      "evidence_source": "topology",
-      "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the GND plane gap, or bridge with a stitching capacitor.",
-      "report_context": {
-        "section": "Return Path",
-        "impact": "Increased EMI from enlarged return path loop",
-        "standard_ref": ""
-      },
-      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_miso",
-      "stages": [
-        "layout"
-      ]
-    },
-    {
-      "detector": "check_return_path_enhanced",
-      "rule_id": "RP-002",
-      "category": "return_path",
-      "summary": "spi net /mcu/AUX_SPI_SCK crosses GND plane gap",
-      "description": "spi signal /mcu/AUX_SPI_SCK crosses a gap in GND plane on layer F.Cu.",
+      "summary": "spi net /mcu/AUX_SPI_SCK crosses +3V3 plane gap",
+      "description": "spi signal /mcu/AUX_SPI_SCK crosses a gap in +3V3 plane on layer F.Cu.",
       "components": [],
       "nets": [
         "/mcu/AUX_SPI_SCK",
-        "GND"
+        "+3V3"
       ],
       "pins": [],
       "severity": "warning",
       "confidence": "deterministic",
       "evidence_source": "topology",
-      "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the GND plane gap, or bridge with a stitching capacitor.",
+      "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
       "report_context": {
         "section": "Return Path",
         "impact": "Increased EMI from enlarged return path loop",
@@ -124,24 +98,50 @@
       "detector": "check_return_path_enhanced",
       "rule_id": "RP-002",
       "category": "return_path",
-      "summary": "spi net /mcu/AUX_SPI_CS crosses GND plane gap",
-      "description": "spi signal /mcu/AUX_SPI_CS crosses a gap in GND plane on layer F.Cu.",
+      "summary": "spi net /mcu/AUX_SPI_MISO crosses +3V3 plane gap",
+      "description": "spi signal /mcu/AUX_SPI_MISO crosses a gap in +3V3 plane on layer F.Cu.",
       "components": [],
       "nets": [
-        "/mcu/AUX_SPI_CS",
-        "GND"
+        "/mcu/AUX_SPI_MISO",
+        "+3V3"
       ],
       "pins": [],
       "severity": "warning",
       "confidence": "deterministic",
       "evidence_source": "topology",
-      "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the GND plane gap, or bridge with a stitching capacitor.",
+      "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
       "report_context": {
         "section": "Return Path",
         "impact": "Increased EMI from enlarged return path loop",
         "standard_ref": ""
       },
-      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_cs",
+      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_miso",
+      "stages": [
+        "layout"
+      ]
+    },
+    {
+      "detector": "check_return_path_enhanced",
+      "rule_id": "RP-002",
+      "category": "return_path",
+      "summary": "spi net /mcu/AUX_SPI_MOSI crosses +3V3 plane gap",
+      "description": "spi signal /mcu/AUX_SPI_MOSI crosses a gap in +3V3 plane on layer F.Cu.",
+      "components": [],
+      "nets": [
+        "/mcu/AUX_SPI_MOSI",
+        "+3V3"
+      ],
+      "pins": [],
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
+      "report_context": {
+        "section": "Return Path",
+        "impact": "Increased EMI from enlarged return path loop",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_mosi",
       "stages": [
         "layout"
       ]
@@ -150,16 +150,15 @@
       "detector": "check_plane_splits",
       "rule_id": "PS-002",
       "category": "plane_integrity",
-      "summary": "GND plane split: 4 islands, 5 signals crossing",
-      "description": "GND plane has 4 disconnected islands. Signals crossing: /mcu/AV1, /mcu/AUX_SPI_MOSI, /mcu/AUX_SPI_MISO, /mcu/AUX_SPI_SCK, /mcu/AUX_SPI_CS.",
+      "summary": "+3V3 plane split: 3 islands, 4 signals crossing",
+      "description": "+3V3 plane has 3 disconnected islands. Signals crossing: /mcu/AUX_SPI_CS, /mcu/AUX_SPI_SCK, /mcu/AUX_SPI_MISO, /mcu/AUX_SPI_MOSI.",
       "components": [],
       "nets": [
-        "GND",
-        "/mcu/AV1",
-        "/mcu/AUX_SPI_MOSI",
-        "/mcu/AUX_SPI_MISO",
+        "+3V3",
+        "/mcu/AUX_SPI_CS",
         "/mcu/AUX_SPI_SCK",
-        "/mcu/AUX_SPI_CS"
+        "/mcu/AUX_SPI_MISO",
+        "/mcu/AUX_SPI_MOSI"
       ],
       "pins": [],
       "severity": "warning",
@@ -171,7 +170,112 @@
         "impact": "Return path discontinuity increases EMI",
         "standard_ref": ""
       },
-      "finding_id": "cross_analysis:PS-002:gnd",
+      "finding_id": "cross_analysis:PS-002:+3v3",
+      "stages": [
+        "layout"
+      ]
+    },
+    {
+      "detector": "check_plane_splits",
+      "rule_id": "PS-002",
+      "category": "plane_integrity",
+      "summary": "+5V plane split: 5 islands, 2 signals crossing",
+      "description": "+5V plane has 5 disconnected islands. Signals crossing: Net-(U401-+, Net-(U301-+.",
+      "components": [],
+      "nets": [
+        "+5V",
+        "Net-(U401-+",
+        "Net-(U301-+"
+      ],
+      "pins": [],
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+      "report_context": {
+        "section": "Plane Integrity",
+        "impact": "Return path discontinuity increases EMI",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:PS-002:+5v",
+      "stages": [
+        "layout"
+      ]
+    },
+    {
+      "detector": "check_plane_splits",
+      "rule_id": "PS-002",
+      "category": "plane_integrity",
+      "summary": "+3V3_WBO2 plane split: 7 islands, 1 signals crossing",
+      "description": "+3V3_WBO2 plane has 7 disconnected islands. Signals crossing: Net-(U401-+.",
+      "components": [],
+      "nets": [
+        "+3V3_WBO2",
+        "Net-(U401-+"
+      ],
+      "pins": [],
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+      "report_context": {
+        "section": "Plane Integrity",
+        "impact": "Return path discontinuity increases EMI",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:PS-002:+3v3_wbo2",
+      "stages": [
+        "layout"
+      ]
+    },
+    {
+      "detector": "check_plane_splits",
+      "rule_id": "PS-002",
+      "category": "plane_integrity",
+      "summary": "VDDA plane split: 2 islands, 1 signals crossing",
+      "description": "VDDA plane has 2 disconnected islands. Signals crossing: Net-(U301-+.",
+      "components": [],
+      "nets": [
+        "VDDA",
+        "Net-(U301-+"
+      ],
+      "pins": [],
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+      "report_context": {
+        "section": "Plane Integrity",
+        "impact": "Return path discontinuity increases EMI",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:PS-002:vdda",
+      "stages": [
+        "layout"
+      ]
+    },
+    {
+      "detector": "check_plane_splits",
+      "rule_id": "PS-002",
+      "category": "plane_integrity",
+      "summary": "+3V3_WBO1 plane split: 7 islands, 1 signals crossing",
+      "description": "+3V3_WBO1 plane has 7 disconnected islands. Signals crossing: Net-(U301-+.",
+      "components": [],
+      "nets": [
+        "+3V3_WBO1",
+        "Net-(U301-+"
+      ],
+      "pins": [],
+      "severity": "warning",
+      "confidence": "deterministic",
+      "evidence_source": "topology",
+      "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+      "report_context": {
+        "section": "Plane Integrity",
+        "impact": "Return path discontinuity increases EMI",
+        "standard_ref": ""
+      },
+      "finding_id": "cross_analysis:PS-002:+3v3_wbo1",
       "stages": [
         "layout"
       ]
@@ -183,14 +287,14 @@
       "check": "CC-001",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 13,
+      "items_examined": 11,
       "findings": 0
     },
     {
       "check": "EG-001",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 13,
+      "items_examined": 11,
       "findings": 0
     },
     {
@@ -204,21 +308,21 @@
       "check": "XV-001..003",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 336,
+      "items_examined": 474,
       "findings": 0
     },
     {
       "check": "NR-001",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 2888,
+      "items_examined": 2899,
       "findings": 0
     },
     {
       "check": "RP-002",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 2888,
+      "items_examined": 2899,
       "findings": 4
     },
     {
@@ -232,14 +336,14 @@
       "check": "PS-002",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 335,
-      "findings": 1
+      "items_examined": 450,
+      "findings": 5
     },
     {
       "check": "VS-002",
       "ran": true,
       "reason_skipped": null,
-      "items_examined": 887,
+      "items_examined": 879,
       "findings": 0
     },
     {
@@ -251,16 +355,16 @@
     }
   ],
   "trust_summary": {
-    "total_findings": 5,
+    "total_findings": 9,
     "trust_level": "high",
     "by_confidence": {
-      "deterministic": 5,
+      "deterministic": 9,
       "heuristic": 0,
       "datasheet_backed": 0
     },
     "by_evidence_source": {
       "datasheet": 0,
-      "topology": 5,
+      "topology": 9,
       "heuristic_rule": 0,
       "symbol_footprint": 0,
       "bom": 0,
@@ -271,39 +375,39 @@
   },
   "audience_summary": {
     "designer": {
-      "total_findings": 5,
+      "total_findings": 9,
       "by_severity": {
         "error": 0,
-        "warning": 5,
+        "warning": 9,
         "info": 0
       },
       "by_category": {
         "return_path": 4,
-        "plane_integrity": 1
+        "plane_integrity": 5
       },
       "top_issues": [
         {
           "detector": "check_return_path_enhanced",
           "rule_id": "RP-002",
           "category": "return_path",
-          "summary": "spi net /mcu/AUX_SPI_MOSI crosses GND plane gap",
-          "description": "spi signal /mcu/AUX_SPI_MOSI crosses a gap in GND plane on layer F.Cu.",
+          "summary": "spi net /mcu/AUX_SPI_CS crosses +3V3 plane gap",
+          "description": "spi signal /mcu/AUX_SPI_CS crosses a gap in +3V3 plane on layer F.Cu.",
           "components": [],
           "nets": [
-            "/mcu/AUX_SPI_MOSI",
-            "GND"
+            "/mcu/AUX_SPI_CS",
+            "+3V3"
           ],
           "pins": [],
           "severity": "warning",
           "confidence": "deterministic",
           "evidence_source": "topology",
-          "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "report_context": {
             "section": "Return Path",
             "impact": "Increased EMI from enlarged return path loop",
             "standard_ref": ""
           },
-          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_mosi",
+          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_cs",
           "stages": [
             "layout"
           ]
@@ -312,44 +416,18 @@
           "detector": "check_return_path_enhanced",
           "rule_id": "RP-002",
           "category": "return_path",
-          "summary": "spi net /mcu/AUX_SPI_MISO crosses GND plane gap",
-          "description": "spi signal /mcu/AUX_SPI_MISO crosses a gap in GND plane on layer F.Cu.",
-          "components": [],
-          "nets": [
-            "/mcu/AUX_SPI_MISO",
-            "GND"
-          ],
-          "pins": [],
-          "severity": "warning",
-          "confidence": "deterministic",
-          "evidence_source": "topology",
-          "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the GND plane gap, or bridge with a stitching capacitor.",
-          "report_context": {
-            "section": "Return Path",
-            "impact": "Increased EMI from enlarged return path loop",
-            "standard_ref": ""
-          },
-          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_miso",
-          "stages": [
-            "layout"
-          ]
-        },
-        {
-          "detector": "check_return_path_enhanced",
-          "rule_id": "RP-002",
-          "category": "return_path",
-          "summary": "spi net /mcu/AUX_SPI_SCK crosses GND plane gap",
-          "description": "spi signal /mcu/AUX_SPI_SCK crosses a gap in GND plane on layer F.Cu.",
+          "summary": "spi net /mcu/AUX_SPI_SCK crosses +3V3 plane gap",
+          "description": "spi signal /mcu/AUX_SPI_SCK crosses a gap in +3V3 plane on layer F.Cu.",
           "components": [],
           "nets": [
             "/mcu/AUX_SPI_SCK",
-            "GND"
+            "+3V3"
           ],
           "pins": [],
           "severity": "warning",
           "confidence": "deterministic",
           "evidence_source": "topology",
-          "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "report_context": {
             "section": "Return Path",
             "impact": "Increased EMI from enlarged return path loop",
@@ -364,24 +442,50 @@
           "detector": "check_return_path_enhanced",
           "rule_id": "RP-002",
           "category": "return_path",
-          "summary": "spi net /mcu/AUX_SPI_CS crosses GND plane gap",
-          "description": "spi signal /mcu/AUX_SPI_CS crosses a gap in GND plane on layer F.Cu.",
+          "summary": "spi net /mcu/AUX_SPI_MISO crosses +3V3 plane gap",
+          "description": "spi signal /mcu/AUX_SPI_MISO crosses a gap in +3V3 plane on layer F.Cu.",
           "components": [],
           "nets": [
-            "/mcu/AUX_SPI_CS",
-            "GND"
+            "/mcu/AUX_SPI_MISO",
+            "+3V3"
           ],
           "pins": [],
           "severity": "warning",
           "confidence": "deterministic",
           "evidence_source": "topology",
-          "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "report_context": {
             "section": "Return Path",
             "impact": "Increased EMI from enlarged return path loop",
             "standard_ref": ""
           },
-          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_cs",
+          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_miso",
+          "stages": [
+            "layout"
+          ]
+        },
+        {
+          "detector": "check_return_path_enhanced",
+          "rule_id": "RP-002",
+          "category": "return_path",
+          "summary": "spi net /mcu/AUX_SPI_MOSI crosses +3V3 plane gap",
+          "description": "spi signal /mcu/AUX_SPI_MOSI crosses a gap in +3V3 plane on layer F.Cu.",
+          "components": [],
+          "nets": [
+            "/mcu/AUX_SPI_MOSI",
+            "+3V3"
+          ],
+          "pins": [],
+          "severity": "warning",
+          "confidence": "deterministic",
+          "evidence_source": "topology",
+          "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
+          "report_context": {
+            "section": "Return Path",
+            "impact": "Increased EMI from enlarged return path loop",
+            "standard_ref": ""
+          },
+          "finding_id": "cross_analysis:RP-002:/mcu/aux_spi_mosi",
           "stages": [
             "layout"
           ]
@@ -390,16 +494,15 @@
           "detector": "check_plane_splits",
           "rule_id": "PS-002",
           "category": "plane_integrity",
-          "summary": "GND plane split: 4 islands, 5 signals crossing",
-          "description": "GND plane has 4 disconnected islands. Signals crossing: /mcu/AV1, /mcu/AUX_SPI_MOSI, /mcu/AUX_SPI_MISO, /mcu/AUX_SPI_SCK, /mcu/AUX_SPI_CS.",
+          "summary": "+3V3 plane split: 3 islands, 4 signals crossing",
+          "description": "+3V3 plane has 3 disconnected islands. Signals crossing: /mcu/AUX_SPI_CS, /mcu/AUX_SPI_SCK, /mcu/AUX_SPI_MISO, /mcu/AUX_SPI_MOSI.",
           "components": [],
           "nets": [
-            "GND",
-            "/mcu/AV1",
-            "/mcu/AUX_SPI_MOSI",
-            "/mcu/AUX_SPI_MISO",
+            "+3V3",
+            "/mcu/AUX_SPI_CS",
             "/mcu/AUX_SPI_SCK",
-            "/mcu/AUX_SPI_CS"
+            "/mcu/AUX_SPI_MISO",
+            "/mcu/AUX_SPI_MOSI"
           ],
           "pins": [],
           "severity": "warning",
@@ -411,7 +514,112 @@
             "impact": "Return path discontinuity increases EMI",
             "standard_ref": ""
           },
-          "finding_id": "cross_analysis:PS-002:gnd",
+          "finding_id": "cross_analysis:PS-002:+3v3",
+          "stages": [
+            "layout"
+          ]
+        },
+        {
+          "detector": "check_plane_splits",
+          "rule_id": "PS-002",
+          "category": "plane_integrity",
+          "summary": "+5V plane split: 5 islands, 2 signals crossing",
+          "description": "+5V plane has 5 disconnected islands. Signals crossing: Net-(U401-+, Net-(U301-+.",
+          "components": [],
+          "nets": [
+            "+5V",
+            "Net-(U401-+",
+            "Net-(U301-+"
+          ],
+          "pins": [],
+          "severity": "warning",
+          "confidence": "deterministic",
+          "evidence_source": "topology",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "report_context": {
+            "section": "Plane Integrity",
+            "impact": "Return path discontinuity increases EMI",
+            "standard_ref": ""
+          },
+          "finding_id": "cross_analysis:PS-002:+5v",
+          "stages": [
+            "layout"
+          ]
+        },
+        {
+          "detector": "check_plane_splits",
+          "rule_id": "PS-002",
+          "category": "plane_integrity",
+          "summary": "+3V3_WBO2 plane split: 7 islands, 1 signals crossing",
+          "description": "+3V3_WBO2 plane has 7 disconnected islands. Signals crossing: Net-(U401-+.",
+          "components": [],
+          "nets": [
+            "+3V3_WBO2",
+            "Net-(U401-+"
+          ],
+          "pins": [],
+          "severity": "warning",
+          "confidence": "deterministic",
+          "evidence_source": "topology",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "report_context": {
+            "section": "Plane Integrity",
+            "impact": "Return path discontinuity increases EMI",
+            "standard_ref": ""
+          },
+          "finding_id": "cross_analysis:PS-002:+3v3_wbo2",
+          "stages": [
+            "layout"
+          ]
+        },
+        {
+          "detector": "check_plane_splits",
+          "rule_id": "PS-002",
+          "category": "plane_integrity",
+          "summary": "VDDA plane split: 2 islands, 1 signals crossing",
+          "description": "VDDA plane has 2 disconnected islands. Signals crossing: Net-(U301-+.",
+          "components": [],
+          "nets": [
+            "VDDA",
+            "Net-(U301-+"
+          ],
+          "pins": [],
+          "severity": "warning",
+          "confidence": "deterministic",
+          "evidence_source": "topology",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "report_context": {
+            "section": "Plane Integrity",
+            "impact": "Return path discontinuity increases EMI",
+            "standard_ref": ""
+          },
+          "finding_id": "cross_analysis:PS-002:vdda",
+          "stages": [
+            "layout"
+          ]
+        },
+        {
+          "detector": "check_plane_splits",
+          "rule_id": "PS-002",
+          "category": "plane_integrity",
+          "summary": "+3V3_WBO1 plane split: 7 islands, 1 signals crossing",
+          "description": "+3V3_WBO1 plane has 7 disconnected islands. Signals crossing: Net-(U301-+.",
+          "components": [],
+          "nets": [
+            "+3V3_WBO1",
+            "Net-(U301-+"
+          ],
+          "pins": [],
+          "severity": "warning",
+          "confidence": "deterministic",
+          "evidence_source": "topology",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "report_context": {
+            "section": "Plane Integrity",
+            "impact": "Return path discontinuity increases EMI",
+            "standard_ref": ""
+          },
+          "finding_id": "cross_analysis:PS-002:+3v3_wbo1",
           "stages": [
             "layout"
           ]
@@ -419,44 +627,72 @@
       ]
     },
     "reviewer": {
-      "total_findings": 5,
+      "total_findings": 9,
       "by_category": {
         "return_path": 4,
-        "plane_integrity": 1
+        "plane_integrity": 5
       },
       "top_issues": [
         {
           "rule_id": "RP-002",
           "severity": "warning",
-          "summary": "spi net /mcu/AUX_SPI_MOSI crosses GND plane gap",
-          "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "summary": "spi net /mcu/AUX_SPI_CS crosses +3V3 plane gap",
+          "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "category": "return_path"
         },
         {
           "rule_id": "RP-002",
           "severity": "warning",
-          "summary": "spi net /mcu/AUX_SPI_MISO crosses GND plane gap",
-          "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "summary": "spi net /mcu/AUX_SPI_SCK crosses +3V3 plane gap",
+          "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "category": "return_path"
         },
         {
           "rule_id": "RP-002",
           "severity": "warning",
-          "summary": "spi net /mcu/AUX_SPI_SCK crosses GND plane gap",
-          "recommendation": "Re-route /mcu/AUX_SPI_SCK to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "summary": "spi net /mcu/AUX_SPI_MISO crosses +3V3 plane gap",
+          "recommendation": "Re-route /mcu/AUX_SPI_MISO to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "category": "return_path"
         },
         {
           "rule_id": "RP-002",
           "severity": "warning",
-          "summary": "spi net /mcu/AUX_SPI_CS crosses GND plane gap",
-          "recommendation": "Re-route /mcu/AUX_SPI_CS to avoid the GND plane gap, or bridge with a stitching capacitor.",
+          "summary": "spi net /mcu/AUX_SPI_MOSI crosses +3V3 plane gap",
+          "recommendation": "Re-route /mcu/AUX_SPI_MOSI to avoid the +3V3 plane gap, or bridge with a stitching capacitor.",
           "category": "return_path"
         },
         {
           "rule_id": "PS-002",
           "severity": "warning",
-          "summary": "GND plane split: 4 islands, 5 signals crossing",
+          "summary": "+3V3 plane split: 3 islands, 4 signals crossing",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "category": "plane_integrity"
+        },
+        {
+          "rule_id": "PS-002",
+          "severity": "warning",
+          "summary": "+5V plane split: 5 islands, 2 signals crossing",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "category": "plane_integrity"
+        },
+        {
+          "rule_id": "PS-002",
+          "severity": "warning",
+          "summary": "+3V3_WBO2 plane split: 7 islands, 1 signals crossing",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "category": "plane_integrity"
+        },
+        {
+          "rule_id": "PS-002",
+          "severity": "warning",
+          "summary": "VDDA plane split: 2 islands, 1 signals crossing",
+          "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
+          "category": "plane_integrity"
+        },
+        {
+          "rule_id": "PS-002",
+          "severity": "warning",
+          "summary": "+3V3_WBO1 plane split: 7 islands, 1 signals crossing",
           "recommendation": "Bridge the plane gap with copper pour or stitching vias. If zones were modified after the last fill, run KiCad Edit \u2192 Fill All Zones (B) and re-run the analyzer first \u2014 stale zone fills are a common cause of apparent plane splits.",
           "category": "plane_integrity"
         }
@@ -465,18 +701,18 @@
     "manager": {
       "risk_level": "low",
       "blocker_count": 0,
-      "warning_count": 5,
+      "warning_count": 9,
       "stage_readiness": {
         "schematic": "pass",
         "layout": "needs_review",
         "pre_fab": "pass",
         "bring_up": "pass"
       },
-      "one_liner": "5 warnings across 2 categories."
+      "one_liner": "9 warnings across 2 categories."
     }
   },
   "capability_mode_ref": {
     "source": "analysis/capability_mode.json",
-    "run_id": "20261016T214908Z-57e94f"
+    "run_id": "20261017T003312Z-2e706b"
   }
 }
