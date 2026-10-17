@@ -32,6 +32,11 @@ Completed the 6-step power/ERC remediation and all four follow-on architecture &
 ### 5. `FOMEMC-4` — `CAN1` Motorsport Telemetry Pod, RaceChrono Pro & Action Camera Integration (`232daec`)
 - Configured `CAN1` (`J2-28` `CAN1_H` / `J2-29` `CAN1_L`, 500 kbps via `U4` `MCP2551-I-SN`) in `board_configuration.cpp` to broadcast `FOME_CAN_verbose.dbc` (`0x200..0x207`: RPM, TPS1, STPS, Gear, MAP, CLT, IAT, VBatt, InjPW, Knock, WBO1/2 Lambda) at **50 Hz (`20 ms`)** and decode incoming Bosch Motorsport MM5.10 6-axis IMU frames (`0x174`, `0x178`, `0x17C`: `YawRate`, `AccelLat`, `RollRate`, `AccelLon`, `PitchRate`, `AccelVert`) by default (`imuType = IMU_MM5_10`), with `can_imu_test.cpp` unit test coverage and full integration documentation in [`docs/TELEMETRY_AND_RACECHRONO.md`](docs/TELEMETRY_AND_RACECHRONO.md).
 
+### 6. `FOMEMC-5` .. `FOMEMC-10` — Adversarial Hardware Remediation, 100% PCB Parity, Full Copper Routing & DRC Closure
+- **`FOMEMC-5` .. `FOMEMC-8`**: Remediated all adversarial hardware review findings across power/keep-alive (`U41` `MIC5205-3.3YM5` `EN` strap, `C6` `47 µF` hybrid polymer bulk capacitor, `D1/D22` `SMCJ24A` crowbar TVS, `Q1` `AO4485` reverse-battery PMOS), analog/ADC (`U23` `REF3333AIDBZR` fixed `3.30 V` `VREF+` reference with `5V_SENSE_DIVIDED` ratiometric sensor compensation, `C82..C85` `10 nF` C0G knock filters), ignition/low-side/H-bridge (`R213/R214` `0.33 Ω` `0805` 0.5 W stepper sense resistors), and CAN/USB/Wi-Fi (`U4/U5` `MCP2551` `RS` slope control, `U29` `ATWINC1500-MR210UB` `CHIP_EN` / `RESETN` / `WAKE` biasing).
+- **`FOMEMC-9` (`6af7bf4`)**: Synchronized all `499` footprints and `479` nets between `fome-mc.kicad_sch` and `fome-mc.kicad_pcb` (`0` schematic parity errors) and added `Package_SO:MSOP-10_3x3mm_P0.5mm_Pad0.15mm` for `U5` and `U17` (`MAX9924UAUB+`).
+- **`FOMEMC-10`**: Completed 100% 4-layer copper trace routing, power/ground plane fill, and thermal/via stitching in `fome-mc.kicad_pcb` (`0` `unconnected_items` down from `290`, `0` DRC errors, `0` `track_dangling`, `0` `via_dangling`, `routing_complete: true` in `make analyze`, and `PASS` across `make erc`, `make drc`, `make netlist`, `make export`, and `make analyze`).
+
 ---
 
 ## 2026-10-16 (Rev 1) — `fome-mc`: Initial Single-PCB Motorcycle ECU Integration (`f5abd10`)
