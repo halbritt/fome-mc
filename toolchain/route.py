@@ -1333,6 +1333,13 @@ def publish_run(run_dir, dest):
         src = run_dir / name
         if src.exists():
             (dest / Path(name).name).write_bytes(src.read_bytes())
+    # the latest grading of a --dir chain against its origin (validate --against)
+    origin = sorted((run_dir / "revalidate-origin").glob("2*"))
+    if origin:
+        (dest / "against-origin").mkdir(exist_ok=True)
+        for name in ("result.json", "new-findings.json", "preservation.json"):
+            if (origin[-1] / name).exists():
+                (dest / "against-origin" / name).write_bytes((origin[-1] / name).read_bytes())
 
 
 def smoke():

@@ -1,0 +1,755 @@
+{
+  "kind": "route",
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "v0.23.1",
+    "commit": "295f9ee197517e8323726853361eb137cc08ba9e",
+    "source": "https://github.com/drandyhaas/KiCadRoutingTools",
+    "rust_router": "0.23.1"
+  },
+  "input": {
+    "project": "fome-mc",
+    "board": "fome-mc.kicad_pcb",
+    "fingerprint": "95850c271aab55760a44621bc8fd5ed765625938a0d1798aac3d447b486ca7f8",
+    "source_dir": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst/20261017T084502.572918Z/candidate/fome-mc",
+    "source": "working tree",
+    "source_git_head": "2864afbc90bd2bbfda7fb82b699cfc5e350794c0",
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../../../../route-cache/baseline/95850c271aab55760a44621bc8fd5ed765625938a0d1798aac3d447b486ca7f8/baseline-drc.json",
+      "cached": false,
+      "reasons": []
+    }
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 1500,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_PLANE_FINALIZE": "0"
+    },
+    "mode": "all"
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 448,
+    "nets_list": null
+  },
+  "unsupported": [
+    "KRT moves copper gr_text and net-less copper graphics to silkscreen (not switchable on the CLI); the copper_graphics preservation check reports it",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class"
+  ],
+  "process": {
+    "status": "PASS",
+    "reasons": [
+      "KRT --strict-sizes: it reports delivering geometry below a requirement (candidate kept for grading)"
+    ],
+    "exit_code": 3,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv-route/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/vendor/krt/py_router/route.py",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/input/fome-mc/fome-mc.kicad_pcb",
+          "--output",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/krt-out/fome-mc.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "*"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_PLANE_FINALIZE": "0"
+        },
+        "budget_s": 1500,
+        "exit_code": 3,
+        "duration_s": 1082.351,
+        "output_tail": "_number\": \"?\"}]}, {\"net_name\": \"GND\", \"failed_pads\": [{\"x\": 120.2349, \"y\": 120.0381, \"component_ref\": \"U26\", \"pad_number\": \"?\"}]}], \"multipoint_pads_total\": 871, \"multipoint_pads_connected\": 869, \"successful\": 143, \"failed\": 13, \"unowned_broken\": [], \"recovered\": [\"+3V3\", \"/mcu/SD_D0\"], \"broken_by_run\": []}\n\n============================================================\nRun complete -- whole run, re-graded on the written board (157 net(s), 6.5s)\n============================================================\n  Single-ended:  143/156 routed (11 FAILED)\n  Multi-point:   869/871 pads connected (2 FAILED)\n  Recovered after a summary reported them failing: 2\n  Ships broken: 13 net(s) -- the `failed` count, over every net the run owns\n  route summary written to /home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/krt-out/summary.json\nJSON_IMPROVEMENT_GATE: {\"lost\": [], \"gained\": [\"+3.3V\", \"+3V3\", \"+3V3_WBO1\", \"+3V3_WBO2\", \"+5V\", \"/12V_MR\", \"/12V_RAW\", \"/5V_SENSOR_1\", \"/5V_SENSOR_2\", \"/AT1\", \"/AT2\", \"/AV1\", \"/AV2\", \"/AV3\", \"/AV4\", \"/AV5\", \"/AV6\", \"/BOOT0_NET\", \"/CAN+\", \"/CAN-\", \"/CAN2+\", \"/CAN2-\", \"/DIGITAL_1\", \"/DIGITAL_2\", \"/DIGITAL_3\", \"/DIGITAL_4\", \"/ETB1_DIR\", \"/ETB1_DIS\", \"/ETB1_OUT+\", \"/ETB1_OUT-\", \"/ETB1_PWM\", \"/ETB2_DIR\", \"/ETB2_DIS\", \"/ETB2_OUT+\", \"/ETB2_OUT-\", \"/ETB2_PWM\", \"/HS1\", \"/IGN1\", \"/IGN1_COIL\", \"/IGN2\", \"/IGN2_COIL\", \"/IGN3\", \"/IGN3_COIL\", \"/IGN4\", \"/IGN4_COIL\", \"/IGN5\", \"/IGN6\", \"/IGN7\", \"/IGN8\", \"/KNOCK_1\", \"/KNOCK_2\", \"/LS1\", \"/LS12\", \"/LS14\", \"/LS2\", \"/LS3\", \"/LS4\", \"/LS5\", \"/LS6\", \"/LS7\", \"/LS8\", \"/LS9\", \"/PB8_STEP_EN\", \"/Perm_Live\", \"/RC2\", \"/STEP_1A\", \"/STEP_1B\", \"/STEP_2A\", \"/STEP_2B\", \"/USB_D+\", \"/USB_D-\", \"/VBOOST\", \"/VR1+\", \"/VR2+\", \"/WBO1_H-\", \"/WBO1_IP\", \"/WBO1_NRST\", \"/WBO1_RTRIM\", \"/WBO1_UN\", \"/WBO1_VM\", \"/WBO2_H-\", \"/WBO2_IP\", \"/WBO2_RTRIM\", \"/WBO2_UN\", \"/WBO2_VM\", \"/highside_quad/IN1\", \"/highside_quad/IN2\", \"/highside_quad/IN3\", \"/ign1/IN1\", \"/ign1/IN2\", \"/ign1/IN3\", \"/ign1/IN4\", \"/ign2/IN1\", \"/ign2/IN2\", \"/lowside_quad1/IN1\", \"/lowside_quad1/IN4\", \"/lowside_quad2/IN1\", \"/lowside_quad2/IN4\", \"/lowside_quad4/IN2\", \"/lowside_quad4/IN3\", \"/lowside_quad4/IN4\", \"/mcu/12V_DIVIDED\", \"/mcu/5V_SENSOR_2_PG\", \"/mcu/AT1\", \"/mcu/AT2\", \"/mcu/AT4\", \"/mcu/AV10\", \"/mcu/AV11\", \"/mcu/AV2\", \"/mcu/AV3\", \"/mcu/AV4\", \"/mcu/AV5\", \"/mcu/AV6\", \"/mcu/AV7\", \"/mcu/AV8\", \"/mcu/AV9\", \"/mcu/DIGITAL2\", \"/mcu/DIGITAL4\", \"/mcu/DIGITAL5\", \"/mcu/DIGITAL6\", \"/mcu/LED1\", \"/mcu/LED4\", \"/mcu/SD_CLK\", \"/mcu/SD_D0\", \"/mcu/SD_D1\", \"/mcu/SD_D2\", \"/mcu/VR_2\", \"/wbo1/CAN_RX\", \"/wbo1/CAN_TX\", \"/wbo2/+3V3\", \"/wbo2/CAN_RX\", \"/wbo2/CAN_TX\", \"Net-(D18-A)\", \"Net-(Q201-G)\", \"Net-(Q202-G)\", \"Net-(Q203-G)\", \"Net-(Q204-G)\", \"Net-(U301-+\", \"Net-(U301--\", \"Net-(U401-+\", \"Net-(U401--\", \"Net-(U46-IN)\", \"VDDA\"], \"worsened\": [], \"disconnected_pads_before\": 247, \"disconnected_pads_after\": 13, \"nets_compared\": 351, \"verdict\": \"accept\"}\n  Design rules [--escalation off, --fab-tier standard]: 18 feature(s) on 3 net(s) delivered below the requested size (smallest via diameter 0.599 mm). Details: JSON_SUMMARY design_rules.\nJSON_SUMMARY_MIN: {\"escalations\": 18, \"failed\": 13, \"failed_single\": [\"/WBO1_BOOT0\", \"/WBO2_NRST\", \"/highside_quad/IN4\", \"/lowside_quad1/IN2\", \"/lowside_quad2/IN3\", \"/mcu/AT3\", \"/mcu/AV1\", \"/mcu/DIGITAL3\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/MR_DIVIDED\"], \"main_loop_time_s\": 66.58, \"min_clearance_used\": 0.1524, \"multipoint_deficit\": 2, \"open_single\": [], \"pad_pairs_open\": {\"count\": 13, \"nets\": [\"/WBO1_BOOT0\", \"/WBO2_NRST\", \"/highside_quad/IN4\", \"/lowside_quad1/IN2\", \"/lowside_quad2/IN3\", \"/mcu/AT3\", \"/mcu/AV1\", \"/mcu/DIGITAL1\", \"/mcu/DIGITAL3\", \"/mcu/LED2\", \"/mcu/LED3\", \"/mcu/MR_DIVIDED\", \"GND\"]}, \"regraded_nets\": 157, \"routed\": 143, \"scope\": \"merged\", \"terminal_restores_broken\": [], \"vias\": 383}\n  --strict-sizes: Design rules [--escalation off, --fab-tier standard]: 18 feature(s) on 3 net(s) delivered below the requested size (smallest via diameter 0.599 mm). Details: JSON_SUMMARY design_rules.\nEXIT=3\n"
+      },
+      {
+        "argv": [
+          "/home/halbritt/git/fome-mc/toolchain/.venv/bin/python",
+          "/home/halbritt/git/fome-mc/toolchain/route_locks.py",
+          "restore",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/krt-out/fome-mc.kicad_pcb",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/locks.json"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work",
+        "log": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/work/restore-locks.log",
+        "exit_code": 0,
+        "duration_s": 2.265
+      }
+    ],
+    "backend_report": {
+      "successful": 143,
+      "failed": 13,
+      "failed_single": [
+        "/WBO1_BOOT0",
+        "/WBO2_NRST",
+        "/highside_quad/IN4",
+        "/lowside_quad1/IN2",
+        "/lowside_quad2/IN3",
+        "/mcu/AT3",
+        "/mcu/AV1",
+        "/mcu/DIGITAL3",
+        "/mcu/LED2",
+        "/mcu/LED3",
+        "/mcu/MR_DIVIDED"
+      ],
+      "open_single": [],
+      "failed_multipoint": [
+        {
+          "net_name": "/mcu/DIGITAL1",
+          "failed_pads": [
+            {
+              "x": 130.8429,
+              "y": 97.5902,
+              "component_ref": "U10",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "GND",
+          "failed_pads": [
+            {
+              "x": 120.2349,
+              "y": 120.0381,
+              "component_ref": "U26",
+              "pad_number": "?"
+            }
+          ]
+        }
+      ],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 814,
+      "pad_pairs_total": 827,
+      "total_vias": 383,
+      "total_iterations": 34211862,
+      "total_time": 66.58,
+      "protected_skipped": {
+        "SE rip ladder": {
+          "+3V3": "locked",
+          "/mcu/AV2": "locked",
+          "/mcu/AV3": "locked",
+          "/lowside_quad4/IN3": "locked",
+          "/ign1/IN3": "locked",
+          "/ign1/IN1": "locked",
+          "/mcu/DIGITAL2": "locked",
+          "/lowside_quad4/IN4": "locked",
+          "/PB8_STEP_EN": "locked",
+          "/mcu/LED4": "locked",
+          "/USB_D-": "locked",
+          "/USB_D+": "locked",
+          "/DIGITAL_3": "locked",
+          "/mcu/AV6": "locked",
+          "/mcu/DIGITAL4": "locked",
+          "/mcu/DIGITAL5": "locked",
+          "/mcu/AT4": "locked",
+          "/mcu/AV7": "locked",
+          "/mcu/AV8": "locked",
+          "/mcu/AV4": "locked",
+          "/mcu/AV9": "locked",
+          "/KNOCK_1": "locked",
+          "/lowside_quad1/IN1": "locked",
+          "/highside_quad/IN3": "locked",
+          "/BOOT0_NET": "locked",
+          "/highside_quad/IN1": "locked",
+          "/IGN6": "locked",
+          "/wbo2/+3V3": "locked",
+          "Net-(U301-+": "locked",
+          "/WBO1_UN": "locked",
+          "Net-(U301--": "locked",
+          "/ign1/IN2": "locked",
+          "/mcu/AT2": "locked",
+          "/CAN-": "locked",
+          "/CAN+": "locked",
+          "/lowside_quad1/IN4": "locked",
+          "/HS1": "locked",
+          "/highside_quad/IN2": "locked",
+          "/WBO2_UN": "locked",
+          "/Perm_Live": "locked",
+          "/5V_SENSOR_2": "locked",
+          "/IGN8": "locked",
+          "/mcu/AV11": "locked",
+          "/CAN2-": "locked",
+          "/DIGITAL_1": "locked",
+          "/AT1": "locked",
+          "/DIGITAL_2": "locked",
+          "Net-(U401--": "locked",
+          "/wbo2/CAN_RX": "locked",
+          "/WBO2_RTRIM": "locked",
+          "/wbo1/CAN_RX": "locked",
+          "/WBO1_RTRIM": "locked",
+          "/IGN7": "locked",
+          "/mcu/LED1": "locked",
+          "/12V_RAW": "locked",
+          "/IGN1": "locked",
+          "/5V_SENSOR_1": "locked",
+          "+3V3_WBO1": "locked",
+          "/lowside_quad2/IN4": "locked",
+          "+5V": "locked",
+          "/IGN4": "locked",
+          "/WBO1_H-": "locked",
+          "/12V_MR": "locked",
+          "GND": "locked"
+        },
+        "via-in-pad decline blame": {
+          "/mcu/AV2": "locked"
+        },
+        "phase3 tap cascade": {
+          "/mcu/DIGITAL2": "locked",
+          "/mcu/DIGITAL1": "locked",
+          "+5V": "locked",
+          "/CAN2-": "locked",
+          "/CAN+": "locked",
+          "/mcu/DIGITAL5": "locked",
+          "/5V_SENSOR_2": "locked",
+          "/12V_RAW": "locked",
+          "/CAN-": "locked",
+          "+3V3": "locked",
+          "/mcu/12V_DIVIDED": "locked",
+          "/5V_SENSOR_1": "locked",
+          "/IGN1": "locked",
+          "/IGN3": "locked",
+          "/IGN4": "locked",
+          "+3V3_WBO2": "locked",
+          "/KNOCK_1": "locked",
+          "/AT1": "locked",
+          "/WBO2_RTRIM": "locked",
+          "/wbo2/CAN_RX": "locked",
+          "/wbo2/+3V3": "locked",
+          "/DIGITAL_3": "locked",
+          "+3V3_WBO1": "locked",
+          "/wbo1/CAN_RX": "locked",
+          "/DIGITAL_2": "locked",
+          "/12V_MR": "locked",
+          "/lowside_quad1/IN4": "locked",
+          "/USB_D+": "locked",
+          "/USB_D-": "locked",
+          "/highside_quad/IN1": "locked",
+          "/mcu/LED4": "locked",
+          "/mcu/LED1": "locked",
+          "/highside_quad/IN2": "locked",
+          "/lowside_quad1/IN1": "locked",
+          "/mcu/DIGITAL4": "locked",
+          "/mcu/AV7": "locked",
+          "/DIGITAL_1": "locked",
+          "/lowside_quad2/IN4": "locked",
+          "/IGN6": "locked"
+        }
+      },
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [
+          {
+            "net": 6,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 265,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          },
+          {
+            "net": 267,
+            "net_name": null,
+            "kind": "via_diameter",
+            "requested": 0.5994,
+            "delivered": 0.599,
+            "site": "last-resort via-in-pad",
+            "count": 1
+          }
+        ],
+        "fab_tier_escalations": 0,
+        "min_delivered": {
+          "via_diameter": 0.599
+        },
+        "unsupported_rules": []
+      },
+      "improvement_gate": {
+        "lost": [],
+        "gained": [
+          "+3.3V",
+          "+3V3",
+          "+3V3_WBO1",
+          "+3V3_WBO2",
+          "+5V",
+          "/12V_MR",
+          "/12V_RAW",
+          "/5V_SENSOR_1",
+          "/5V_SENSOR_2",
+          "/AT1",
+          "/AT2",
+          "/AV1",
+          "/AV2",
+          "/AV3",
+          "/AV4",
+          "/AV5",
+          "/AV6",
+          "/BOOT0_NET",
+          "/CAN+",
+          "/CAN-",
+          "/CAN2+",
+          "/CAN2-",
+          "/DIGITAL_1",
+          "/DIGITAL_2",
+          "/DIGITAL_3",
+          "/DIGITAL_4",
+          "/ETB1_DIR",
+          "/ETB1_DIS",
+          "/ETB1_OUT+",
+          "/ETB1_OUT-",
+          "/ETB1_PWM",
+          "/ETB2_DIR",
+          "/ETB2_DIS",
+          "/ETB2_OUT+",
+          "/ETB2_OUT-",
+          "/ETB2_PWM",
+          "/HS1",
+          "/IGN1",
+          "/IGN1_COIL",
+          "/IGN2",
+          "/IGN2_COIL",
+          "/IGN3",
+          "/IGN3_COIL",
+          "/IGN4",
+          "/IGN4_COIL",
+          "/IGN5",
+          "/IGN6",
+          "/IGN7",
+          "/IGN8",
+          "/KNOCK_1",
+          "/KNOCK_2",
+          "/LS1",
+          "/LS12",
+          "/LS14",
+          "/LS2",
+          "/LS3",
+          "/LS4",
+          "/LS5",
+          "/LS6",
+          "/LS7",
+          "/LS8",
+          "/LS9",
+          "/PB8_STEP_EN",
+          "/Perm_Live",
+          "/RC2",
+          "/STEP_1A",
+          "/STEP_1B",
+          "/STEP_2A",
+          "/STEP_2B",
+          "/USB_D+",
+          "/USB_D-",
+          "/VBOOST",
+          "/VR1+",
+          "/VR2+",
+          "/WBO1_H-",
+          "/WBO1_IP",
+          "/WBO1_NRST",
+          "/WBO1_RTRIM",
+          "/WBO1_UN",
+          "/WBO1_VM",
+          "/WBO2_H-",
+          "/WBO2_IP",
+          "/WBO2_RTRIM",
+          "/WBO2_UN",
+          "/WBO2_VM",
+          "/highside_quad/IN1",
+          "/highside_quad/IN2",
+          "/highside_quad/IN3",
+          "/ign1/IN1",
+          "/ign1/IN2",
+          "/ign1/IN3",
+          "/ign1/IN4",
+          "/ign2/IN1",
+          "/ign2/IN2",
+          "/lowside_quad1/IN1",
+          "/lowside_quad1/IN4",
+          "/lowside_quad2/IN1",
+          "/lowside_quad2/IN4",
+          "/lowside_quad4/IN2",
+          "/lowside_quad4/IN3",
+          "/lowside_quad4/IN4",
+          "/mcu/12V_DIVIDED",
+          "/mcu/5V_SENSOR_2_PG",
+          "/mcu/AT1",
+          "/mcu/AT2",
+          "/mcu/AT4",
+          "/mcu/AV10",
+          "/mcu/AV11",
+          "/mcu/AV2",
+          "/mcu/AV3",
+          "/mcu/AV4",
+          "/mcu/AV5",
+          "/mcu/AV6",
+          "/mcu/AV7",
+          "/mcu/AV8",
+          "/mcu/AV9",
+          "/mcu/DIGITAL2",
+          "/mcu/DIGITAL4",
+          "/mcu/DIGITAL5",
+          "/mcu/DIGITAL6",
+          "/mcu/LED1",
+          "/mcu/LED4",
+          "/mcu/SD_CLK",
+          "/mcu/SD_D0",
+          "/mcu/SD_D1",
+          "/mcu/SD_D2",
+          "/mcu/VR_2",
+          "/wbo1/CAN_RX",
+          "/wbo1/CAN_TX",
+          "/wbo2/+3V3",
+          "/wbo2/CAN_RX",
+          "/wbo2/CAN_TX",
+          "Net-(D18-A)",
+          "Net-(Q201-G)",
+          "Net-(Q202-G)",
+          "Net-(Q203-G)",
+          "Net-(Q204-G)",
+          "Net-(U301-+",
+          "Net-(U301--",
+          "Net-(U401-+",
+          "Net-(U401--",
+          "Net-(U46-IN)",
+          "VDDA"
+        ],
+        "worsened": [],
+        "disconnected_pads_before": 247,
+        "disconnected_pads_after": 13,
+        "nets_compared": 351,
+        "verdict": "accept"
+      },
+      "project_writes": null
+    },
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 4165
+      },
+      "lock_exit": 0,
+      "restore": {
+        "restored": 4165,
+        "not_found": 0
+      }
+    },
+    "project_writeback": [
+      {
+        "file": "fome-mc.kicad_prl",
+        "identical_to_input": true
+      },
+      {
+        "file": "fome-mc.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 1086.469
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 20,
+    "unconnected_total": 20,
+    "baseline_unconnected_total": 219,
+    "unrouted_nets": [
+      "+3V3",
+      "/WBO1_BOOT0",
+      "/WBO2_NRST",
+      "/highside_quad/IN4",
+      "/lowside_quad1/IN2",
+      "/lowside_quad2/IN3",
+      "/mcu/AT3",
+      "/mcu/AV1",
+      "/mcu/DIGITAL1",
+      "/mcu/DIGITAL3",
+      "/mcu/LED2",
+      "/mcu/LED3",
+      "/mcu/MR_DIVIDED",
+      "GND"
+    ],
+    "stats": {
+      "new_tracks": 6260,
+      "new_vias": 383,
+      "new_track_length_mm": 8750.087,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 1739.186,
+        "F.Cu": 2212.828,
+        "In1.Cu": 2640.367,
+        "In2.Cu": 2157.705
+      },
+      "new_copper_nets": 147,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "9 new DRC violations: starved_thermal 8, track_dangling 1"
+    ],
+    "dir": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/validate",
+    "restored_project_files": [],
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/validate/candidate-refill.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 37.511
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/validate/candidate-drc.json",
+          "/home/halbritt/git/fome-mc/build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc/fome-mc.kicad_pcb"
+        ],
+        "cwd": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc",
+        "log": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 24.981
+      }
+    ],
+    "delivered_board_sha256": "87ecae3dfcc6ea9156cef2f69993cde69f9f757eace2a9f913f0bd0c4b7e5480",
+    "validated_board_sha256": "87ecae3dfcc6ea9156cef2f69993cde69f9f757eace2a9f913f0bd0c4b7e5480",
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 232,
+      "parity_total": 382,
+      "new_violations": {
+        "count": 9,
+        "by_type": {
+          "starved_thermal": 8,
+          "track_dangling": 1
+        },
+        "by_severity": {
+          "warning": 9
+        }
+      },
+      "preexisting_violations": 223,
+      "resolved_violations": 11,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc",
+    "board": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z/candidate/fome-mc/fome-mc.kicad_pcb"
+  },
+  "run_dir": "build/runs/route/fome-mc/trial-krt-hardfirst-rest/20261017T084836.861780Z",
+  "runtime_s": 1190.545,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "finished_utc": "2026-10-17T09:08:28.101968+00:00",
+  "exit_code": 3
+}
