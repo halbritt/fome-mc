@@ -38,3 +38,23 @@ clearance, width, hole or short rule fails. The claim holds in that sense.
 - **Existing copper:** 1016 tracks and 88 vias of the parent removed or rerouted (none
   were locked), 6842 tracks and 820 vias added (13.3 m).
 - Nets, net classes, pad-to-net assignments, outline, layers and board setup unchanged.
+
+## The 24 starved thermals (graded with the parent's 2-spoke rule)
+
+`thermal_pads.py` (output `thermal-pads.json`) walks each pad's GND copper other than the
+F.Cu pour: tracks starting on the pad, vias in or reached from it, other GND pads reached.
+GND pours: F.Cu, B.Cu and In1.Cu (relief gap 0.2286 mm, spoke 0.254 mm).
+
+- Every one has exactly **1 spoke**, and all 24 are new in 216eb9a; the parent's 27
+  starved pads (C24-C50, C93-C95, U15/U16/U18-U22/U24/U29, ...) were all resolved, and
+  these appeared where the new routing passes the pads.
+- **22 of 24 have no other ground path**: no GND track, no via; the single 0.254 mm spoke
+  into the F.Cu pour is the whole ground connection. Only R71.1 (via in pad) and U13.9
+  (track to a via) have a second path.
+- What they are: MCU ground pins U26 (STM32H753) 48, 51, 120 (3 of its 11 GND pins);
+  DRV8825 U202.14; MAX9924 U13.8/U13.9/U14.8; SN74LVC2G17 U9.2; decoupling and filter
+  capacitors C7, C40, C67, C68, C96, C99, C100, C103, C108, C109; resistors R48, R63, R94,
+  R1603, R1604 (R71 has a via).
+- Cause: a signal track or via of another net within about 0.1-0.35 mm of the pad on
+  F.Cu (for example `/ETB1_DIR` at C67, `/mcu/VBOOST_DIVIDED` at C40, `/WBO1_BOOT0` and
+  `+3V3` at U26.120, `/mcu/VR_1` at U13.8) cuts off the other spokes.
