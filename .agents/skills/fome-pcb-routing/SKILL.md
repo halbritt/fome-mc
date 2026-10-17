@@ -18,25 +18,38 @@ If `make route-doctor` reports that kicad-route is missing:
 | Command | What it does |
 |---|---|
 | `make route-doctor` | Readiness and versions of both backends |
-| `make route BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ARGS='…']` | One attempt on a copy of `fome-mc.kicad_pcb`; prints the run directory |
-| `make route-validate RUN=<run> [AGAINST=<first run>]` | Re-grade a candidate, or the end of a `--dir` chain against its first input |
+| `make route BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ARGS='…']` | One attempt on a copy of the board; prints the run directory |
+| `make route-campaign BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ROUNDS=2] [RACE=0] [TOTAL_BUDGET=s] [ARGS='…']` | Hard-nets-first campaign (`BUDGET` per run); best chain graded against the original input |
+| `make route-validate RUN=<run> [AGAINST=<first run>] [ARGS='…']` | Re-grade a candidate, or the end of a `--dir` chain against its first input |
 | `make route-compare RUNS='<run> <run> …'` | Compare attempts from the same input |
+| `make route-blocked RUN=<run> [TOP=10]` | What blocks the connections an incomplete run left open |
+| `make route-spokes RUN=<run>` / `BOARD=<file> [PER_PAD=n]` | Which new copper starved which thermal pad / plan spoke corridors for a board file |
 | `make route-publish RUN=<run>` | Evidence (not the board) to `reports/toolchain/routing/fome-mc/<label>/` for committing |
 | `make route-audit OLD=<rev> [NEW=HEAD]` | Grade a committed board change, made by hand or by another agent, against its parent |
+| `make route-floor [SINCE=<rev>] [WRITE=1]` | Rule high-water mark of the board's history against its declared floor |
+| `make route-canary [BACKEND=all]` | Awkward-net-name round trip through each backend (kicad-route fixture) |
+| `make route-corpus-list` / `-check [NAME=…]` / `-add BACKEND=… [NAME=…]` | kicad-route's real-board regression corpus |
 | `make route-update` / `make route-smoke` | Update the backends / run kicad-route's integration tests |
 
-`ARGS` are `kicad-route run` options: `--nets`, `--netclass`, `--protect`,
-`--default-clearance`, `--clearance-margin`, `--passes`, `--max-iterations`,
-`--backend-arg`, `--backend-env`, `--label`.
+`ARGS` are `kicad-route run` options (`campaign` takes the same, `corpus add` a subset):
+`--nets`, `--netclass`, `--protect`, `--default-clearance`, `--clearance-margin`,
+`--passes`, `--max-iterations`, `--backend-arg`, `--backend-env`, `--reserve-spokes`,
+`--stall`, `--label`. `PROJECT=universal-112|fixture` routes another board from
+`toolchain/versions.toml` (default `fome-mc`).
 
 - **`REV=HEAD`:** use it while other agents edit the tree, so the attempt routes the
   committed board.
 - **Run location:** runs go to `build/route/runs/fome-mc/<label>/<stamp>/`. The
   candidate is `candidate/fome-mc/fome-mc.kicad_pcb`.
-- **Continuing a chain:** `make route` always routes `--dir .`. To continue from a
-  candidate, call kicad-route directly:
+- **Hard nets first:** `make route-campaign BACKEND=krt REV=HEAD ARGS='--backend-env KICAD_PLANE_FINALIZE=0'`
+  automates the hardfirst sequence the trials below did by hand.
+- **Continuing a chain:** `make route` always routes the project directory. To continue
+  from a candidate, call kicad-route directly:
   `kicad-route --out build/route run --backend krt --dir build/route/runs/fome-mc/<label>/<stamp>/candidate/fome-mc …`.
   Then grade the end of the chain with `make route-validate RUN=<last> AGAINST=<first>`.
+- **Incomplete or starved results:** `make route-blocked RUN=<run>` names the obstacles
+  across the open connections; `make route-spokes RUN=<run>` attributes `starved_thermal`
+  pads to new copper.
 
 ## Rules here
 

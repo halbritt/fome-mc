@@ -22,19 +22,32 @@ make route-doctor
 | Command | What it does |
 |---|---|
 | `make route-doctor` | readiness, versions, capabilities of both backends |
-| `make route BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ARGS='…']` | one attempt on a copy of `fome-mc.kicad_pcb` (`REV=HEAD` routes the committed state, recommended while others edit the tree) |
-| `make route-validate RUN=<run> [AGAINST=<first run>]` | re-grade a candidate, or the end of a `--dir` chain against its first input |
+| `make route BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ARGS='…']` | one attempt on a copy of the board (`REV=HEAD` routes the committed state, recommended while others edit the tree) |
+| `make route-campaign BACKEND=krt\|freerouting [BUDGET=300] [REV=HEAD] [ROUNDS=2] [RACE=0] [TOTAL_BUDGET=s] [ARGS='…']` | hard-nets-first campaign: several runs (`BUDGET` is per run), the best chain graded against the original input |
+| `make route-validate RUN=<run> [AGAINST=<first run>] [ARGS='…']` | re-grade a candidate, or the end of a `--dir` chain against its first input (`ARGS`: `--pour-area-loss PCT`, `--pour-min-spokes N`) |
 | `make route-compare RUNS='<run> <run>'` | side-by-side table of attempts from the same input |
-| `make route-publish RUN=<run>` | copy an attempt's structured evidence to `reports/toolchain/routing/fome-mc/<label>/` |
+| `make route-blocked RUN=<run> [TOP=10]` | which obstacles lie across the connections an incomplete run left open |
+| `make route-spokes RUN=<run> [VALIDATION=<dir>]` | which new copper starved which thermal pad (writes `<run>/spokes.json`) |
+| `make route-spokes BOARD=<file> [PER_PAD=n]` | plan thermal-spoke corridors for a board file (read, not saved; point it at a run's `reference/` copy) |
+| `make route-publish RUN=<run>` | copy an attempt's structured evidence to `reports/toolchain/routing/<project>/<label>/` |
 | `make route-audit OLD=<rev> [NEW=HEAD]` | grade a committed board change against its parent (DRC, parity, rule changes and what they hide, design edits) |
+| `make route-floor [SINCE=<rev>] [WRITE=1] [NETCLASS_SIZES=1]` | rule high-water mark of the board's history against its declared floor; `WRITE=1` drafts a `rules-floor.json` under `build/route` for review |
+| `make route-canary [BACKEND=all\|krt\|freerouting]` | awkward net names through each backend's round trip (on kicad-route's fixture) |
+| `make route-corpus-list` / `route-corpus-check [NAME=<entry>]` | list kicad-route's real-board regression corpus / re-run it against the baselines |
+| `make route-corpus-add BACKEND=krt\|freerouting [NAME=<project>] [BUDGET=300] [REV=HEAD] [ARGS='…']` | snapshot the board into that corpus with one baseline attempt |
 | `make route-update` | update both backends and kicad-route's generated skills, then its integration tests |
 | `make route-smoke` | kicad-route's integration tests on its fixture board |
 
-`ARGS` are `kicad-route run` options (`kicad-route run --help`): `--nets`, `--netclass`,
-`--protect`, `--default-clearance`, `--clearance-margin`, `--passes`, `--max-iterations`,
-`--backend-arg`, `--backend-env`, `--label`. Runs land in
-`build/route/runs/fome-mc/<label>/<stamp>/` (ignored); the candidate is
-`candidate/fome-mc/fome-mc.kicad_pcb` and the verdict `result.json`.
+The targets route `PROJECT` (default `fome-mc`; also `universal-112`, `fixture`). Its
+directory, board, schematic and `library_dirs` come from `toolchain/versions.toml`, and
+the project name names the run directory. `ARGS` are `kicad-route run` options
+(`kicad-route run --help`; `campaign` takes the same ones, `corpus add` a subset): `--nets`,
+`--netclass`, `--protect`, `--default-clearance`, `--clearance-margin`, `--passes`,
+`--max-iterations`, `--backend-arg`, `--backend-env`, `--reserve-spokes`, `--stall`,
+`--label`. Runs land in `build/route/runs/<project>/<label>/<stamp>/` (ignored); for
+fome-mc the candidate is `candidate/fome-mc/fome-mc.kicad_pcb` and the verdict
+`result.json`. The corpus lives in kicad-route's state (`STATE/corpus` or
+`$KICAD_ROUTE_CORPUS`), not in this repo; `make route-update` re-checks it.
 
 Project rules for routing: never route the design in place, never relax rules,
 severities, widths or clearances to make an attempt pass (see `AGENTS.md`), and adopt a
