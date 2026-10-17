@@ -3,11 +3,11 @@
 - Backend: krt 0.23.1 (v0.23.1)
 - Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint 43770af332b1f69d)
 - Scope: all, 6 nets; protect: existing; budget 180 s
-- Candidate: `build/runs/route/route_demo/smoke-unlocked-krt/20261017T062759.126566Z/candidate/route_demo/route_demo.kicad_pcb`
+- Candidate: `build/runs/route/route_demo/smoke-unlocked-krt/20261017T093718.152302Z/candidate/route_demo/route_demo.kicad_pcb`
 
 | Result | Status | Detail |
 |---|---|---|
-| process | PASS | exit 0, 4.817 s |
+| process | PASS | exit 0, 4.573 s |
 | routing | COMPLETE | 0 unconnected in scope, 0 total (input: 6) |
 | validation | PASS | no new findings |
 

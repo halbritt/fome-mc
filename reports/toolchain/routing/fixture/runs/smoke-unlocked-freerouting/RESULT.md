@@ -3,11 +3,11 @@
 - Backend: freerouting v2.5.0 (freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76)
 - Input: `route_demo.kicad_pcb` from working tree @ None (fingerprint 43770af332b1f69d)
 - Scope: all, 6 nets; protect: existing; budget 180 s
-- Candidate: `build/runs/route/route_demo/smoke-unlocked-freerouting/20261017T062810.859268Z/candidate/route_demo/route_demo.kicad_pcb`
+- Candidate: `build/runs/route/route_demo/smoke-unlocked-freerouting/20261017T093728.147816Z/candidate/route_demo/route_demo.kicad_pcb`
 
 | Result | Status | Detail |
 |---|---|---|
-| process | PASS | exit 0, 6.12 s |
+| process | PASS | exit 0, 5.281 s |
 | routing | COMPLETE | 0 unconnected in scope, 0 total (input: 6) |
 | validation | PASS | no new findings |
 
