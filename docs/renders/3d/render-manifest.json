@@ -1,0 +1,608 @@
+{
+  "schema": "fome-mc.3d-renders/1",
+  "generated_at": "2026-10-17T18:47:13.334018+00:00",
+  "renderer": {
+    "executable": "kicad-cli",
+    "version": "10.0.7",
+    "command": "pcb render",
+    "engine": "native ray tracer",
+    "quality": "high",
+    "requested_width_px": 4096,
+    "requested_height_px": 3072,
+    "background": "opaque",
+    "floor_shadows": true,
+    "model_environment_variables": [
+      "KICAD6_3DMODEL_DIR",
+      "KICAD10_3DMODEL_DIR",
+      "KISYS3DMOD"
+    ],
+    "notes": [
+      "KiCad 10.0.7 emitted 4064x3056 images for the requested4096x3072 size; recorded dimensions come from PNG IHDR.",
+      "Isometric rotation315,0,45 is equivalent to -45,0,45; positive rotation avoids this CLI build treating a leading negative vector as an option.",
+      "No AI generation, image resizing, geometry edits, or source board refill/resave was performed."
+    ]
+  },
+  "source": {
+    "board": "fome-mc.kicad_pcb",
+    "board_sha256": "76662be8ed797558793bba0612de0c9d5ed135fbd5ff141357d40ea2a95b340b",
+    "project_sha256": "120b1609b003e0a04301cb56fa72f695405f2fab816e39d259e695738d0bd389",
+    "revision_at_capture": "da527563b95ca8d59f75a37b65959a285dfb2998",
+    "snapshot": "build/runs/project/fome-mc/3d-renders-20261017T183511Z/snapshot/fome-mc.kicad_pcb",
+    "zone_fill": "as saved",
+    "native_design_files_changed_during_render": [
+      "fome-mc.kicad_pro",
+      "fome-mc.kicad_sch",
+      "sheets/mcu.kicad_sch",
+      "sheets/wbo2.kicad_sch",
+      "sheets/wbo1.kicad_sch"
+    ],
+    "matches_agent_ee_viewer_export": true
+  },
+  "images": [
+    {
+      "view": "top",
+      "file": "fome-mc-3d-top.png",
+      "width_px": 4064,
+      "height_px": 3056,
+      "sha256": "8617bd3602c839bfe7452980b9553597aabfaa47ff978b7951d9d6b64e6965a6",
+      "bytes": 2510932,
+      "camera": {
+        "side": "top",
+        "rotation_degrees": [
+          0,
+          0,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/top/fome-mc-3d-top.png",
+        "--width",
+        "4096",
+        "--height",
+        "3072",
+        "--side",
+        "top",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--use-board-stackup-colors",
+        "--define-var",
+        "KIPRJMOD=/home/halbritt/git/fome-mc",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/top/snapshot/fome-mc.kicad_pcb"
+      ],
+      "elapsed_seconds": 540.903,
+      "native_render_seconds": 526.719,
+      "native_exit_code": 0,
+      "native_stderr": "",
+      "visually_inspected": true
+    },
+    {
+      "view": "bottom",
+      "file": "fome-mc-3d-bottom.png",
+      "width_px": 4064,
+      "height_px": 3056,
+      "sha256": "d3550fdf4711c107efaee8ded543706f8ce1c140d5fad631643c90eb33b933f0",
+      "bytes": 1113960,
+      "camera": {
+        "side": "bottom",
+        "rotation_degrees": [
+          0,
+          0,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/bottom/fome-mc-3d-bottom.png",
+        "--width",
+        "4096",
+        "--height",
+        "3072",
+        "--side",
+        "bottom",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--use-board-stackup-colors",
+        "--define-var",
+        "KIPRJMOD=/home/halbritt/git/fome-mc",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/bottom/snapshot/fome-mc.kicad_pcb"
+      ],
+      "elapsed_seconds": 406.828,
+      "native_render_seconds": 393.549,
+      "native_exit_code": 0,
+      "native_stderr": "",
+      "visually_inspected": true
+    },
+    {
+      "view": "isometric",
+      "file": "fome-mc-3d-isometric.png",
+      "width_px": 4064,
+      "height_px": 3056,
+      "sha256": "76f44fdfa7f48f6c99909ff96ff8fdf5966386f53b1152ac6ec8f3624cb7eae6",
+      "bytes": 5026577,
+      "camera": {
+        "side": "top",
+        "rotation_degrees": [
+          315,
+          0,
+          45
+        ],
+        "projection": "orthographic"
+      },
+      "command": [
+        "kicad-cli",
+        "pcb",
+        "render",
+        "--output",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/isometric/fome-mc-3d-isometric.png",
+        "--width",
+        "4096",
+        "--height",
+        "3072",
+        "--side",
+        "top",
+        "--quality",
+        "high",
+        "--background",
+        "opaque",
+        "--floor",
+        "--use-board-stackup-colors",
+        "--define-var",
+        "KIPRJMOD=/home/halbritt/git/fome-mc",
+        "--rotate",
+        "315,0,45",
+        "/home/halbritt/git/fome-mc/build/runs/project/fome-mc/3d-renders-20261017T183511Z/isometric/snapshot/fome-mc.kicad_pcb"
+      ],
+      "elapsed_seconds": 552.665,
+      "native_render_seconds": 538.088,
+      "native_exit_code": 0,
+      "native_stderr": "",
+      "visually_inspected": true
+    }
+  ],
+  "model_coverage": {
+    "footprints": 506,
+    "footprints_with_model_references": 464,
+    "footprints_without_model_references": [
+      "J13",
+      "L2",
+      "JP1",
+      "JP2",
+      "J9",
+      "D207",
+      "U201",
+      "C201",
+      "R207",
+      "U29",
+      "R122",
+      "C106",
+      "D202",
+      "R203",
+      "U202",
+      "R209",
+      "R202",
+      "U25",
+      "D206",
+      "D208",
+      "U307",
+      "Q204",
+      "R206",
+      "Q201",
+      "J2",
+      "C202",
+      "U407",
+      "R208",
+      "D204",
+      "R212",
+      "Q203",
+      "U203",
+      "D201",
+      "R204",
+      "C1201",
+      "D205",
+      "D203",
+      "Q202",
+      "R201",
+      "R205",
+      "R210",
+      "J1"
+    ],
+    "unresolved_model_references": [
+      {
+        "reference": "U1",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/Infineon_PG-DSO-8-43.wrl"
+      },
+      {
+        "reference": "U2",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/Infineon_PG-DSO-8-43.wrl"
+      },
+      {
+        "reference": "Y1",
+        "model": "${KICAD6_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_5032-2Pin_5.0x3.2mm.wrl"
+      },
+      {
+        "reference": "U3",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm.wrl"
+      },
+      {
+        "reference": "J14",
+        "model": "${KICAD6_3DMODEL_DIR}/Connector_USB.3dshapes/USB_B_TE_5787834_Vertical.wrl"
+      },
+      {
+        "reference": "SW1",
+        "model": "${KICAD6_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_EVQQ2.wrl"
+      },
+      {
+        "reference": "SW2",
+        "model": "${KICAD6_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_EVQQ2.wrl"
+      },
+      {
+        "reference": "U42",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-8_3.9x4.9mm_P1.27mm.wrl"
+      },
+      {
+        "reference": "U40",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/Infineon_PG-DSO-20-32.wrl"
+      },
+      {
+        "reference": "U44",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-8_3.9x4.9mm_P1.27mm.wrl"
+      },
+      {
+        "reference": "U45",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-8_3.9x4.9mm_P1.27mm.wrl"
+      },
+      {
+        "reference": "U43",
+        "model": "${KICAD6_3DMODEL_DIR}/Package_SO.3dshapes/SO-8_3.9x4.9mm_P1.27mm.wrl"
+      }
+    ],
+    "disabled_models": [],
+    "stock_model_assets": [
+      {
+        "path": "Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.step",
+        "sha256": "221c5c6510ed7e6fa3bd621ccee0bb883d86eb1e0e34ab2e2a32fb4d4ae7548d",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.step"
+      },
+      {
+        "path": "Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.wrl",
+        "sha256": "d772325d2fe53fad240370927748a7fac0fce1ff785bfca6f22f1eb93faacafa",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Battery.3dshapes/BatteryHolder_Keystone_1060_1x2032.wrl"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0402_1005Metric.step",
+        "sha256": "03e44c4b2b727b8d4b6b1fd598cbd12dd5e614f1dfeefa96a92a07e3a3b312a2",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0402_1005Metric.step"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0402_1005Metric.wrl",
+        "sha256": "edd1de5a07b3b6d903024aab93512280b5ae5ecc564adc079876b8d80168afc0",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0402_1005Metric.wrl"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0603_1608Metric.step",
+        "sha256": "4857b3dc717675bf1fb22edda622ac3b3ae03cf44d81eefaf3fa3ba3a86d84c1",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0603_1608Metric.wrl",
+        "sha256": "d8b095ab562bf44b3a6bcb4059c87775c51b7c5672480f3b2fdc796f165c8505",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0603_1608Metric.wrl"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0805_2012Metric.step",
+        "sha256": "9a669c1a2f1ea25b88b401acef6efeaa80a067bd7da9db6993de719a7fbe155c",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0805_2012Metric.step"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_0805_2012Metric.wrl",
+        "sha256": "840481a5fd6d54a48d7a634404a9848de662816075c4569d2484b192c3fb2801",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_0805_2012Metric.wrl"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_1206_3216Metric.step",
+        "sha256": "11e948c72c90e2b6322436b72745f40ff4e8ba0da64fb2a0df943dfa61e89c1a",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_1206_3216Metric.step"
+      },
+      {
+        "path": "Capacitor_SMD.3dshapes/C_1206_3216Metric.wrl",
+        "sha256": "c8ce7903eeaceb189976a04f0f67070ad0fe21a7bbcd6605fe60786704368afd",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_SMD.3dshapes/C_1206_3216Metric.wrl"
+      },
+      {
+        "path": "Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.step",
+        "sha256": "abedfe603cd28231e16fb158d7b3f8875be74514f602e356364f48f073d0ef8e",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.step"
+      },
+      {
+        "path": "Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.wrl",
+        "sha256": "41bd18fc2d31f92cdcaeaae49dc04b3837f60cc94ccf6774c2b70b2dffda1fcc",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Capacitor_THT.3dshapes/CP_Radial_D8.0mm_P3.50mm.wrl"
+      },
+      {
+        "path": "Connector_PinHeader_1.27mm.3dshapes/PinHeader_2x05_P1.27mm_Vertical_SMD.step",
+        "sha256": "d287b971aeda48cb67beb9ed000c622650132162ad000815a77524fb92021e0a",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_1.27mm.3dshapes/PinHeader_2x05_P1.27mm_Vertical_SMD.step"
+      },
+      {
+        "path": "Connector_PinHeader_1.27mm.3dshapes/PinHeader_2x05_P1.27mm_Vertical_SMD.wrl",
+        "sha256": "c1551e061befaba45946e7c0d1adecd3e1731d165e5e996739e239c564b5d8c7",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_1.27mm.3dshapes/PinHeader_2x05_P1.27mm_Vertical_SMD.wrl"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.step",
+        "sha256": "e8c49ca8dadec0cccdda815f693b649b4eecfea22429e8c3bce881ac3ce235b9",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.step"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl",
+        "sha256": "0e398d33e97ef0e16fd54fb5f0f53c7217b28ccc899feba2634165e68de88fe5",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x01_P2.54mm_Vertical.wrl"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step",
+        "sha256": "ea4d0799007ebdd3945072bf255d673d2fe87eb05fda85fd8d7993ad9397da41",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.step"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.wrl",
+        "sha256": "68eadd056ad8e757ea548dec4cd1c4077d97ba964a22b3ffb4005f859e4ae988",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical.wrl"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.step",
+        "sha256": "d6113af109a14a67c50dcefd1cfc7b43b59b59afa85d808b2319e2452da91318",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.step"
+      },
+      {
+        "path": "Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.wrl",
+        "sha256": "5991e49d5b3fdf2a5f9af5679340b2c6489f3d29a40318262c9a9331df69777e",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.wrl"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SMA.step",
+        "sha256": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SMA.step"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SMA.wrl",
+        "sha256": "4849d3fbd602476ed88a0edada41a1eb3acf69a785ee9624d1d76873134011d2",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SMA.wrl"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SMC.step",
+        "sha256": "30dab4c2e22239b7e3694a4d45304e04255c6b70a79d28e9c34c6072ba647991",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SMC.step"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SMC.wrl",
+        "sha256": "f8182e661f631e074178949d237e3b7d0fac0e85ff1aee6b527d5c9b99e254ba",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SMC.wrl"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SOD-123.step",
+        "sha256": "4413b86c5a559a63b29f1f53fd235ffe38dd235d3c16750a8a78e855c9a802ef",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SOD-123.step"
+      },
+      {
+        "path": "Diode_SMD.3dshapes/D_SOD-123.wrl",
+        "sha256": "5fd4e8488bd75b6b0fad9ad82e75257cf19dc83750caac25b29b758def07b636",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Diode_SMD.3dshapes/D_SOD-123.wrl"
+      },
+      {
+        "path": "Inductor_SMD.3dshapes/L_0805_2012Metric.step",
+        "sha256": "751a8ae26d20698bfe8303aa2fc7ec986a8b9a7154699b94bf2a13d4ad401425",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Inductor_SMD.3dshapes/L_0805_2012Metric.step"
+      },
+      {
+        "path": "Inductor_SMD.3dshapes/L_0805_2012Metric.wrl",
+        "sha256": "3597c1b3958738898394e779a0a2c873ad585a6484366d81ae2c279df56c1531",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Inductor_SMD.3dshapes/L_0805_2012Metric.wrl"
+      },
+      {
+        "path": "Inductor_SMD.3dshapes/L_1210_3225Metric.step",
+        "sha256": "f73399f912d5bdb736d1e834d65517d3bfe017b7e95bfaf2a526961758a8983e",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Inductor_SMD.3dshapes/L_1210_3225Metric.step"
+      },
+      {
+        "path": "Inductor_SMD.3dshapes/L_1210_3225Metric.wrl",
+        "sha256": "24c88e5e30bc938bca0d2b33f5539c8ad8f4d2639a30150f049a390da1ab13fa",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Inductor_SMD.3dshapes/L_1210_3225Metric.wrl"
+      },
+      {
+        "path": "LED_SMD.3dshapes/LED_0603_1608Metric.step",
+        "sha256": "98343205ec260ec165026ba2d44329a23096779ac36c553ea84aa7b370242e6d",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/LED_SMD.3dshapes/LED_0603_1608Metric.step"
+      },
+      {
+        "path": "LED_SMD.3dshapes/LED_0603_1608Metric.wrl",
+        "sha256": "2ae6364ec5c5c4c39cb54e3edac681674f0bf0ce1d6c8b0b7e659ae0066c1ee8",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/LED_SMD.3dshapes/LED_0603_1608Metric.wrl"
+      },
+      {
+        "path": "Package_LGA.3dshapes/ST_HLGA-10_2.5x2.5mm_P0.6mm_LayoutBorder3x2y.step",
+        "sha256": "d80d12ef2520939eae68a4d6d1c4fd6e6e9f2f430196453268223dadd0e067ed",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_LGA.3dshapes/ST_HLGA-10_2.5x2.5mm_P0.6mm_LayoutBorder3x2y.step"
+      },
+      {
+        "path": "Package_LGA.3dshapes/ST_HLGA-10_2.5x2.5mm_P0.6mm_LayoutBorder3x2y.wrl",
+        "sha256": "57b9ed3ed31422e0149666d0694cb052b76b9ac625c953c9a96ce75bf13d2cd7",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_LGA.3dshapes/ST_HLGA-10_2.5x2.5mm_P0.6mm_LayoutBorder3x2y.wrl"
+      },
+      {
+        "path": "Package_QFP.3dshapes/LQFP-144_20x20mm_P0.5mm.step",
+        "sha256": "9de32431b419fa05aa2234aa0a50040bf22032360221ce28f95ce7539a78188f",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_QFP.3dshapes/LQFP-144_20x20mm_P0.5mm.step"
+      },
+      {
+        "path": "Package_QFP.3dshapes/LQFP-144_20x20mm_P0.5mm.wrl",
+        "sha256": "fc032176795d4b7865c7b6bb6d81950585edcb844bb55e6e2554ab211619c3f5",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_QFP.3dshapes/LQFP-144_20x20mm_P0.5mm.wrl"
+      },
+      {
+        "path": "Package_QFP.3dshapes/LQFP-32_7x7mm_P0.8mm.step",
+        "sha256": "a363c10b57ae32387d6e6a0ab2586408377b70dc18ae9769e57193d2e86b17a4",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_QFP.3dshapes/LQFP-32_7x7mm_P0.8mm.step"
+      },
+      {
+        "path": "Package_QFP.3dshapes/LQFP-32_7x7mm_P0.8mm.wrl",
+        "sha256": "27cfe3164736d0893fb48afa7af9069afbb5967841854dd744c3cd4096d7949a",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_QFP.3dshapes/LQFP-32_7x7mm_P0.8mm.wrl"
+      },
+      {
+        "path": "Package_SO.3dshapes/MSOP-10_3x3mm_P0.5mm.step",
+        "sha256": "04cd1b024ea547d1988505510f57a28cea7708cb1a89243842764e7f8d280098",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/MSOP-10_3x3mm_P0.5mm.step"
+      },
+      {
+        "path": "Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step",
+        "sha256": "8294d4531cded9c47ead7815690b9a9c1c084d404c3689406c807f7d1b45b600",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/SOIC-14_3.9x8.7mm_P1.27mm.step"
+      },
+      {
+        "path": "Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step",
+        "sha256": "d9b46f6dd6cf8c5e2028838eed38e2a6a7f26235856078511e5a71a594ca809e",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.step"
+      },
+      {
+        "path": "Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.wrl",
+        "sha256": "2b84645ac35f878381da69ebf467feab9e5f054922c809c1b28a1586dd4e462d",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/SOIC-8_3.9x4.9mm_P1.27mm.wrl"
+      },
+      {
+        "path": "Package_SO.3dshapes/TSSOP-14_4.4x5mm_P0.65mm.step",
+        "sha256": "cdbbd80db416d25e6b4037b6fc28fa83f9e25106ab768cc4e14afdfb20b7c8e8",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/TSSOP-14_4.4x5mm_P0.65mm.step"
+      },
+      {
+        "path": "Package_SO.3dshapes/TSSOP-14_4.4x5mm_P0.65mm.wrl",
+        "sha256": "10828dc5c1777ad78a85732b57800e2cd989760b2142653c413dadb517b7cf1c",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_SO.3dshapes/TSSOP-14_4.4x5mm_P0.65mm.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23-5.step",
+        "sha256": "3b70f1b6dd947543fda90b947f91f2e2804766c39b78e56c87f1448dfd575ed8",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23-5.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23-5.wrl",
+        "sha256": "948f0fac31be6678900268969b124c7b1083633da2cd0068604780e562484a86",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23-5.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23-6.step",
+        "sha256": "9491de18305b16fe125ee3d603109a29edd837d50d22305b6f929886492ce755",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23-6.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23-6.wrl",
+        "sha256": "01fe842f8ca8534456b365e2a38b77b8c61a07e4133d79187d0df9d46037051b",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23-6.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23.step",
+        "sha256": "9fe9af3cc6cf3d3bc3bd3da71731af2037c67f690245102a20e1e39a33e9ade4",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-23.wrl",
+        "sha256": "4a113d4d6a5f3b22024559dc16d03361e7d8154db3dc74fcd7d6736091a0bda7",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-23.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-323_SC-70.step",
+        "sha256": "3ccf342a062c38df7477ec028593896c8f99ccef44da2697cd1e135bdd1226df",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-323_SC-70.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/SOT-323_SC-70.wrl",
+        "sha256": "3b514f453357a27095160ee5091143e66cadd4be1a3659ce70f6162a115f5ade",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/SOT-323_SC-70.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/TO-252-2.step",
+        "sha256": "6eb71ab27eeaa2ff8fdfbb1354593560b9b9ae0cb5789a360f275c6db395f65e",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/TO-252-2.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/TO-252-2.wrl",
+        "sha256": "04821973f51dac010fcb49a43f0160cfd9642025bea023b272506433b791c1ca",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/TO-252-2.wrl"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/TSOT-23-5.step",
+        "sha256": "2843b60918f591b3d14b77d152bf64ebc28d072409d17711b39f26b608b44e03",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/TSOT-23-5.step"
+      },
+      {
+        "path": "Package_TO_SOT_SMD.3dshapes/TSOT-23-5.wrl",
+        "sha256": "795ac371adc60cf75af6b3b943d3462f165044735b236991bb4f6629f289163d",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Package_TO_SOT_SMD.3dshapes/TSOT-23-5.wrl"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0402_1005Metric.step",
+        "sha256": "91507e5af4251cb4ef38e04889c9b98da29904432bd83786bba13ae9b605eacb",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0402_1005Metric.wrl",
+        "sha256": "ce89655575a3858f28f001c08aed3f4e4a4b85833d9d3366e0902e44e8d0ebd8",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0402_1005Metric.wrl"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0603_1608Metric.step",
+        "sha256": "1875571c326d0d9e96f36b4efeb8094068ef7619f0a449c781caf0b49c2e5861",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0603_1608Metric.step"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0603_1608Metric.wrl",
+        "sha256": "eadfec9e71c67b1dd3910c72b45d811a06f0ab5397d0609354b10e9a3a4c1fdd",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0603_1608Metric.wrl"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0805_2012Metric.step",
+        "sha256": "ded342cdb394fb45395227beaaa75cc390613cf2581b29cd6d22c12abd6103b2",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0805_2012Metric.step"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_0805_2012Metric.wrl",
+        "sha256": "8ba82403df18104f827f786ef794d9852912dc437e77b62258dc3e6ffe33c5f6",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_0805_2012Metric.wrl"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_1206_3216Metric.step",
+        "sha256": "f5d1ea5c47935091292bd1c6c698e0df88d3d4bbf92bf66b4c97e49df5be9ebc",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_1206_3216Metric.step"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_Array_Convex_4x0603.step",
+        "sha256": "bec072c4d44e4c5ff693e18ede4078c7e66e7a670d53b00a20edd2c0aecdf3c2",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_Array_Convex_4x0603.step"
+      },
+      {
+        "path": "Resistor_SMD.3dshapes/R_Array_Convex_4x0603.wrl",
+        "sha256": "7874054f23c954c42d4c02cb23ec19ab1f754e6ffd89bb0e93ee21a0074801aa",
+        "source_url": "https://raw.githubusercontent.com/KiCad/kicad-packages3D/master/Resistor_SMD.3dshapes/R_Array_Convex_4x0603.wrl"
+      }
+    ]
+  },
+  "limitations": [
+    "Component assembly models are incomplete:42 footprints have no 3D model reference and12 referenced model files were unavailable.",
+    "J1/J2 connector housings are among the footprints without a model reference; no replacement bodies were invented.",
+    "Stock library shapes are visualization assets, not qualified mechanical-clearance or electrical acceptance evidence."
+  ]
+}

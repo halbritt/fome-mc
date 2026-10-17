@@ -19,6 +19,7 @@ The primary reference application is the **2007 Suzuki SV650 (K7)** (`645 cc` 90
 | [**`docs/VALIDATION.md`**](docs/VALIDATION.md) | Automated ERC/DRC/Parity/Gerber/JLCPCB DFM verification ledger and pre-engine hardware bring-up checklist |
 | [**`docs/schematics/fome-mc-schematics.pdf`**](docs/schematics/fome-mc-schematics.pdf) | Full 21-sheet hierarchical schematic PDF (plus individual sheet SVGs in [`docs/schematics/`](docs/schematics/)) |
 | [**`docs/renders/fome-mc-pcb-layers.pdf`**](docs/renders/fome-mc-pcb-layers.pdf) | Multi-page PCB layer plot PDF (`F.Cu`, `In1.Cu`, `In2.Cu`, `B.Cu`, `F.Silkscreen`, `B.Silkscreen`, `F.Fab`, `Edge.Cuts`) |
+| [**3D board renderings**](docs/renders/3d/fome-mc-3d-isometric.png) | High-resolution [top](docs/renders/3d/fome-mc-3d-top.png), [bottom](docs/renders/3d/fome-mc-3d-bottom.png) and [isometric](docs/renders/3d/fome-mc-3d-isometric.png) views, with [source and model provenance](docs/renders/3d/render-manifest.json) |
 | [**`io-map.csv`**](io-map.csv) | Machine-verified 92-row master pinout CSV (`J1-1..35`, `J2-1..35`, and 22 internal MCU/WBO/SDNAND/Wi-Fi/power buses) |
 | [**`CHANGELOG.md`**](CHANGELOG.md) | Engineering decision history, schematic/PCB integration milestones, and upstream bug fixes |
 
@@ -110,6 +111,22 @@ For full pin-by-pin wiring tables, wire gauges, crimp terminal part numbers, and
 <!-- slide -->
 ![Bottom Copper & Silkscreen (L4 — B.Cu)](docs/renders/fome-mc-pcb-bottom.png)
 ````
+
+### 3D Board Views
+
+[Top](docs/renders/3d/fome-mc-3d-top.png) · [Bottom](docs/renders/3d/fome-mc-3d-bottom.png) · [Isometric](docs/renders/3d/fome-mc-3d-isometric.png)
+
+![Isometric 3D board rendering](docs/renders/3d/fome-mc-3d-isometric.png)
+
+These 4064 × 3056 PNGs use KiCad 10.0.7's high-quality ray tracer, orthographic
+views, native materials and saved copper fill. They were rendered from a
+snapshot without refilling or saving the source design.
+
+The 3D assembly is incomplete: 42 footprints have no model reference, including
+the J1/J2 connector housings, and 12 referenced model files are unavailable.
+The [render manifest](docs/renders/3d/render-manifest.json) records the board hash,
+camera settings, commands, image hashes and model coverage. These images document
+appearance; they do not establish mechanical clearance or electrical acceptance.
 
 ---
 
