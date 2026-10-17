@@ -4218,8 +4218,8 @@
 		)
 		(uuid "f240e733-157e-4a15-812f-78f42d8a8322")
 	)
-	(label "VR1+"
-		(at 34.29 153.67 180)
+	(label "VR1-"
+		(at 34.29 156.21 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4227,7 +4227,18 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "f7758f2a-e5c9-405c-960a-353b36eaf72d")
+		(uuid "4941cff7-fbcb-5522-9eb1-cf5c67da6955")
+	)
+	(label "VR2-"
+		(at 34.29 161.29 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9151ae57-3620-5f69-aa3c-b83cf4627965")
 	)
 	(label "5V_SENSOR_1"
 		(at 22.86 88.265 0)
@@ -6972,6 +6983,26 @@
 				(justify left)
 			)
 			(uuid "4688ff87-8262-46f4-ad96-b5f4e529cfa9")
+		)
+		(pin "VR1-" input
+			(at 34.29 156.21 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "3a8033c6-20bd-522f-824c-d95e3b2eec81")
+		)
+		(pin "VR2-" input
+			(at 34.29 161.29 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "7075545d-6662-5a70-88e1-467afcf6ea5c")
 		)
 		(pin "VR1_OUT" output
 			(at 62.23 153.67 0)
@@ -10693,24 +10724,16 @@
 		)
 		(uuid "155136db-b988-5a38-a9f3-6aadda717d15")
 	)
-	(symbol
-		(lib_id "power:GND")
-		(at 353.06 53.34 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "84a6c6f6-28fd-5772-97e1-8e35dfbd89ef")
-		(property "Reference" "#PWR07212" (at 353.06 55.88 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Value" "GND" (at 353.06 55.88 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 353.06 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Datasheet" "" (at 353.06 53.34 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "df4ca16c-d680-5735-85e9-e5a100e1cfc5"))
-		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4" (reference "#PWR07212") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4" (reference "#PWR07212") (unit 1)))
+	(label "VR1-"
+		(at 353.06 53.34 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
 		)
+		(uuid "6150107f-ad33-5a9d-831f-d66ba85b578f")
 	)
 	(wire
 		(pts
@@ -10743,24 +10766,16 @@
 		)
 		(uuid "fd92e4cb-8371-51bf-892d-0deac5ba3485")
 	)
-	(symbol
-		(lib_id "power:GND")
-		(at 353.06 58.42 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "926d87a2-cc1c-520c-8ac0-fea190e60ffc")
-		(property "Reference" "#PWR07214" (at 353.06 60.96 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Value" "GND" (at 353.06 60.96 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 353.06 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Datasheet" "" (at 353.06 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "9ce8e905-a293-50b2-a2ba-36afabaa4923"))
-		(instances
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4" (reference "#PWR07214") (unit 1)))
-			(project "fome-mc" (path "/3b9c5ffd-e59b-402d-8c5e-052f7ca643a4" (reference "#PWR07214") (unit 1)))
+	(label "VR2-"
+		(at 353.06 58.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
 		)
+		(uuid "5ba4265c-1b70-5f0d-aec8-9fb35abcf5af")
 	)
 	(wire
 		(pts
