@@ -65,7 +65,7 @@ revision via `git archive` instead of the working tree; the run is labelled
 | `renders` | `python3 scripts/render_docs.py` (regenerate 16 schematic SVGs/PDFs + 14 PCB SVGs/PDFs + composite renders) |
 | `verify-io` | `python3 scripts/verify_io_map.py` (audit 70 connector pins, 22 internal buses, netlist, firmware YAML, and 15 `contracts/*.interface.json`) |
 | `fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py` (normalize Gerbers/drills, verify BOM/CPL parity, emit `reports/toolchain/fab-manifest.json`) |
-| `verify-fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --verify-only` (verify `fab-manifest.json` SHA-256 parity and zero-diff reproducibility) |
+| `verify-fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --verify` (verify `fab-manifest.json` SHA-256 parity and zero-diff reproducibility) |
 | `simulate DECK=… [EXPECT=…]` | ngspice via a generated control script (below) |
 | `smoke` | `pytest toolchain/tests` |
 | `baseline` | `check` on the committed HEAD of fome-mc and universal-112, plus fome-mc's working tree (`fome-mc-worktree`); publishes reports |
