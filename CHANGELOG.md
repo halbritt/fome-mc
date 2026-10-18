@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-18 — Telemetry pod project
+
+The tail-cowl CAN1 telemetry pod gets its own KiCad project in this repository
+(`FOMEMC-28`; agent-ee epic `AGENTEE-157`, item pod-42). Its requirements are the owner's
+"Telemetry pod requirements" (2026-10-17, @Heath; captured markdown sha256
+`c5128ef9391e2114e7a399b352a957472ad26b93ca76e3179cc04b2b51194572`), which take their
+fome-mc facts from commit `c582b29`. Only the skeleton is added; agent-ee generates the
+design into it later, and open owner gates (e.g. `FOMEMC-31`, the 12 V tap and travel
+ranges) are not decided here.
+
+- `telemetry-pod/`: empty KiCad 10 placeholders `telemetry-pod.kicad_{pro,sch,pcb}`, an
+  empty `sym-lib-table`, an `fp-lib-table` with `ampseal` →
+  `${KIPRJMOD}/../libs/footprints/ampseal.pretty`, and empty `sheets/`, `contracts/`,
+  `export/`.
+- `toolchain/versions.toml`: `[projects.telemetry-pod]`, so `make doctor` checks its files
+  and `make erc|drc|check PROJECT=telemetry-pod` run on its snapshots.
+- `.gitignore`: `telemetry-pod/export/*.net`, `BOM-telemetry-pod.csv` and
+  `CPL-telemetry-pod.csv` are tracked like fome-mc's `export/` files.
+
 ## 2026-10-17 — Generator direction
 
 Owner decisions for the AI-driven PCB generator (agent-ee, kicad-route, fome-mc), as
