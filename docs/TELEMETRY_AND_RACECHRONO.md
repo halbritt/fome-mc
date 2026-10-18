@@ -3,7 +3,7 @@
 This guide defines the bidirectional **`CAN1` (`J2-28` / `J2-29`, 500 kbps)** motorsport telemetry architecture for **`fome-mc`** on a 2007 Suzuki SV650 (K7), linking:
 
 1. **`fome-mc` ECU (`CAN1` Bus 0)** — broadcasts `FOME_CAN_verbose.dbc` (`0x200..0x207`) at **50 Hz (`20 ms`)** and records full-rate **100–500 Hz** `.mlg` logs to the onboard 4 GB soldered SDNAND (`U25`).
-2. **Tail-Cowl Chassis Telemetry Pod (`CAN1` Node)** — samples a 6-axis MEMS IMU (`AccelLat`, `AccelLon`, `AccelVert`, `YawRate`, `RollRate`, `LeanAngle`), a **25 Hz** multi-constellation GNSS receiver (u-blox M9N / M10S), **200–500 Hz** front fork & rear shock linear potentiometers, and **100 Hz** front & rear hydraulic brake pressure transducers (`0–100 bar`), publishing them onto `CAN1` for both the ECU (`.mlg` SD logging) and **RaceChrono Pro** (via BLE CAN-Bus + BLE GPS).
+2. **Tail-Cowl Chassis Telemetry Pod (`CAN1` Node)** — samples a 6-axis MEMS IMU (`AccelLat`, `AccelLon`, `AccelVert`, `YawRate`, `RollRate`, `LeanAngle`), a **25 Hz** multi-constellation GNSS receiver (u-blox M9N / M10S), **200–500 Hz** front fork (`130 mm`) & rear shock (`70 mm`) linear potentiometers, and **100 Hz** front & rear hydraulic brake pressure transducers (`0–100 bar`), publishing them onto `CAN1` for both the ECU (`.mlg` SD logging) and **RaceChrono Pro** (via BLE CAN-Bus + BLE GPS).
 3. **RaceChrono Pro & Action Cameras (GoPro / Insta360)** — synchronizes 25 Hz GPS lap timing, 50–100 Hz ECU + chassis CAN channels, and high-frame-rate onboard video overlays.
 
 ---
@@ -23,11 +23,11 @@ flowchart LR
     H7 --- U4
   end
 
-  subgraph POD["Tail-Cowl Telemetry Pod (ESP32-S3 / STM32G4 + MCP2562FD)"]
+  subgraph POD["Tail-Cowl Telemetry Pod (ESP32-S3 / STM32G4 + TJA1051T/3)"]
     MCU["Telemetry MCU<br/>+ BLE 5.0 Peripheral<br/>+ 120 Ω Far-End Term"]
     IMU["6-Axis IMU (LSM6DSO32 / BMI270)<br/>200 Hz Accel + Gyro + Lean"]
-    GPS["25 Hz GNSS (u-blox SAM-M10Q / NEO-M9N)"]
-    SUSP["Front Fork (120 mm) & Rear Shock (65 mm)<br/>Linear Pots (12-bit ADC @ 200 Hz)"]
+    GPS["25 Hz GNSS (u-blox NEO-M9N)"]
+    SUSP["Front Fork (130 mm) & Rear Shock (70 mm)<br/>Linear Pots (12-bit ADC @ 200 Hz)"]
     BRK["Front & Rear Brake Pressure<br/>0–100 bar 0.5–4.5 V (@ 100 Hz)"]
     IMU --> MCU
     GPS --> MCU
@@ -48,14 +48,15 @@ flowchart LR
 
 ### Harness Pinout for the Tail-Cowl Telemetry Pod
 
-| Signal | `fome-mc` Pin | Wire Color / Gauge | Destination / Notes |
+| Signal | `fome-mc` Reference / Harness Tap | Wire Color / Gauge | Destination / Notes |
 |---|---|---|---|
 | `CAN1_H` | `J2-28` | White / 20–22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_H` |
 | `CAN1_L` | `J2-29` | Blue / 20–22 AWG | Twisted pair (`30–40 twists/m`) to Telemetry Pod `CAN_L` (`120 Ω` resistor at Pod end) |
-| `5V_SENSOR_2` (Optional) | `J1-30` | Red / 20 AWG | Protected `+5.00 V` (`U2` `TLS115D0E` tracker) for ratiometric brake pressure & suspension pots (or regulated locally at Pod) |
-| `SGND` | `J1-31` | Black/Brown / 20 AWG | Sensor return ground reference when using `5V_SENSOR_2` |
-| `+12V_MR` / `+12V_IGN` | `J1-27` / Switched 12V | Red/Yellow or Orange/White / 20 AWG | Fused (`2 A`) switched power for Telemetry Pod & GNSS |
-| `PGND` | `J1-34` / Chassis `-` | Black/White / 20 AWG | Telemetry Pod power ground |
+| `+12V_MR` (Switched 12 V Relay Splice) | Harness splice on `R/Y` main relay circuit (circuit that also feeds `J1-27` ECU input; **never draw from ECU**) | Red/Yellow / 20 AWG | **"Harness splice on the relay circuit, own 2 A fuse"** (owner decision, 2026-10-18): switched `+12 V` supply for Telemetry Pod & GNSS (`J1-27` is an ECU input into `D21` OR `12V_RAW`) |
+| `CHASSIS_ECU_GND` | Chassis ground shared with `J1-34` (`CHASSIS_ECU_GND`) | Black/White / 20 AWG | Telemetry Pod power & logic ground returned to chassis ground with the ECU (`J1-34` is `CHASSIS_ECU_GND`) |
+| `5V_SENSOR_2` / `SGND` (Not Used by Pod) | `J1-30` / `J1-31` (Unused by Telemetry Pod) | — | **Not connected to Telemetry Pod**: the pod never draws from the ECU and regulates its own local `5.00 V ± 1%` (`200 mA`) ratiometric sensor supply and return for the `130 mm` front fork pot, `70 mm` rear shock pot, and front/rear brake pressure transducers |
+
+> **Owner Decision (2026-10-18, `FOMEMC-31` / `pod-45`)**: Power source: **"Harness splice on the relay circuit, own 2 A fuse"**; travel ranges: **"130 and 70 mm"** (**"Harness splice on the relay circuit, own 2 A fuse; 130 and 70 mm"**). Because `J1-27` (`+12V_MR`) is an ECU power input (`D21` `B340A-13-F` Schottky OR into `12V_RAW`), the telemetry pod taps the switched 12 V main relay output (`R/Y` circuit that also feeds `J1-27`) on the harness side through its own `2 A` fuse and grounds to chassis with the ECU (`CHASSIS_ECU_GND`, `J1-34`); the pod never draws from the ECU (`J1-27` or `J1-30` `5V_SENSOR_2`). Suspension potentiometer travel ranges are **130 mm** front fork and **70 mm** rear shock (`0x300`).
 
 ---
 
@@ -127,19 +128,23 @@ Because `fome-mc`'s six 0–5 V analog inputs on `J2-3..J2-8` (`TPS1` `PA1`, `TP
 
 ### 3.3 FOME Lua Script for Ingesting `0x300..0x301` into ECU `.mlg` Logs
 
-Paste the following script into TunerStudio (**Scripting -> Lua Scripting**) to log Front/Rear Brake Pressure (`AuxLinear1`, `AuxLinear2`), Front Fork / Rear Shock Travel (`AuxLinear3`, `AuxLinear4`), and Lean Angle inside the ECU's `.mlg` SDNAND logs alongside engine RPM, TPS, Lambda, and Knock:
+Paste the following script into TunerStudio (**Scripting -> Lua Scripting**) to log Front/Rear Brake Pressure (`AuxLinear1`, `AuxLinear2`), Front Fork (`0..130.00 mm`) / Rear Shock (`0..70.00 mm`) Travel (`AuxLinear3`, `AuxLinear4`), and Lean / Pitch Angle (`LuaGauge1`, `LuaGauge2`) inside the ECU's `.mlg` SDNAND logs alongside engine RPM, TPS, Lambda, and Knock:
 
 ```lua
--- FOME-MC CAN1 Telemetry Pod Receiver (0x300 Suspension Travel, 0x301 Brake Pressure & Lean Angle)
-local sForkTravel  = Sensor.new("AuxLinear3") -- mm (Front Fork Travel)
-local sShockTravel = Sensor.new("AuxLinear4") -- mm (Rear Shock Travel)
-local sFrontBrake  = Sensor.new("AuxLinear1") -- bar (Front Brake Pressure)
-local sRearBrake   = Sensor.new("AuxLinear2") -- bar (Rear Brake Pressure)
+-- FOME-MC CAN1 Telemetry Pod Receiver (0x300 Suspension Travel [130 and 70 mm], 0x301 Brake Pressure & Lean/Pitch Angle)
+local sForkTravel  = Sensor.new("AuxLinear3") -- mm (Front Fork Travel, 0..130.00 mm)
+local sShockTravel = Sensor.new("AuxLinear4") -- mm (Rear Shock Travel, 0..70.00 mm)
+local sFrontBrake  = Sensor.new("AuxLinear1") -- bar (Front Brake Pressure, 0..100.00 bar)
+local sRearBrake   = Sensor.new("AuxLinear2") -- bar (Rear Brake Pressure, 0..100.00 bar)
+local sLeanAngle   = Sensor.new("LuaGauge1")  -- deg (Lean Angle, -65..+65 deg)
+local sPitchAngle  = Sensor.new("LuaGauge2")  -- deg (Pitch Angle, -45..+45 deg)
 
 sForkTravel:setTimeout(250)
 sShockTravel:setTimeout(250)
 sFrontBrake:setTimeout(250)
 sRearBrake:setTimeout(250)
+sLeanAngle:setTimeout(250)
+sPitchAngle:setTimeout(250)
 
 local function getInt16Le(data, offset)
   local v = data[offset] + (data[offset + 1] * 256)
@@ -159,6 +164,12 @@ function onCanBrakesAndLean(bus, id, dlc, data)
     sFrontBrake:set(getInt16Le(data, 1) * 0.01)
     sRearBrake:set(getInt16Le(data, 3) * 0.01)
   end
+  if dlc >= 6 then
+    sLeanAngle:set(getInt16Le(data, 5) * 0.01)
+  end
+  if dlc >= 8 then
+    sPitchAngle:set(getInt16Le(data, 7) * 0.01)
+  end
 end
 
 canRxAdd(1, 0x300, onCanSuspension)
@@ -166,6 +177,8 @@ canRxAdd(1, 0x301, onCanBrakesAndLean)
 
 function onTick() end
 ```
+
+> **Bench Verification Obligation (Pod Acceptance Criterion 8 / `POD-AC-8`, `FOMEMC-31`)**: `fome-fw` already registers `SensorType::LuaGauge1..8` unconditionally in `firmware/init/sensor/init_aux.cpp` (`luaGauges[]`) and writes them to `engine->outputChannels.luaGauges[0..7]` in `firmware/console/status_loop.cpp` for `.mlg` SDNAND logging, so **no C++ firmware modification is required**. To satisfy bench Acceptance Criterion 8 (*"On a bench CAN bus with the ECU, the frames 0x174, 0x178, 0x17C, 0x300, 0x301 and 0x302 appear at their stated rates within 5 %, and the ECU logs lean angle, brake pressure and suspension travel in its .mlg file"*), the bench test procedure must load the updated TunerStudio Lua script above (including the `sLeanAngle = Sensor.new("LuaGauge1")` decode of `0x301` bytes `4..5` at 1-based Lua offset `5` and `sPitchAngle = Sensor.new("LuaGauge2")` at offset `7`, added in `FOMEMC-31`) so `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (`FrontBrakePress`, `RearBrakePress`), and `AuxLinear3..4` (`130 mm` `FrontForkTravel`, `70 mm` `RearShockTravel`) are recorded in the `.mlg` file alongside the native `IMU_MM5_10` channels (`0x174`, `0x178`, `0x17C`).
 
 ---
 

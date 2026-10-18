@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-10-18 — Telemetry Pod Document Reconciliation & 12 V Power Source Decision (`FOMEMC-31`)
+
+Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification (*"Telemetry pod requirements"*, 2026-10-17, @Heath, sha256 `c5128ef9391e2114e7a399b352a957472ad26b93ca76e3179cc04b2b51194572`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):
+
+- **Owner Decision (`2026-10-18`, verbatim)**:
+  - Power source: **"Harness splice on the relay circuit, own 2 A fuse"**
+  - Travel ranges: **"130 and 70 mm"**
+  - Combined owner choice: **"Harness splice on the relay circuit, own 2 A fuse; 130 and 70 mm"** (`2026-10-18`).
+- **Discrepancy 3 — Pod `+12 V` Tap & Zero Draw from the ECU**:
+  - `J1-27` (`+12V_MR`) is an ECU power input (`D21` `B340A-13-F` Schottky OR into `12V_RAW`), not an ECU output. Both `docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md` now specify that the telemetry pod taps the switched `+12 V` main relay output (`R/Y` circuit that also feeds `J1-27`) on the harness side via its own `2 A` fuse, never draws power from the ECU (`J1-27` or `J1-30` `5V_SENSOR_2`), and regulates its own local `5.00 V ± 1%` (`200 mA`) ratiometric sensor supply (`J1-30` `5V_SENSOR_2` and `J1-31` `SGND` are not connected to the pod).
+- **Discrepancy 5 — Suspension Travel Ranges (`130 mm` Fork / `70 mm` Shock) & `CHASSIS_ECU_GND` (`J1-34`)**:
+  - Corrected the `docs/TELEMETRY_AND_RACECHRONO.md` Section 1 topology diagram (`SUSP` node) and prose from `120 mm` / `65 mm` to **`130 mm` front fork** and **`70 mm` rear shock** (**"130 and 70 mm"**), matching the `0x300` CAN frame table (`0..130.00 mm` and `0..70.00 mm`) and `docs/WIRING_SV650_K7.md` Section 6 with one value per quantity across both documents.
+  - Replaced `PGND` on `J1-34` in `docs/TELEMETRY_AND_RACECHRONO.md` with **`CHASSIS_ECU_GND`** (matching `docs/WIRING_SV650_K7.md` and `io-map.csv`), documenting that the pod grounds to the chassis ground point (`B/W` circuit) shared with the ECU's `CHASSIS_ECU_GND` (`J1-34`).
+- **Discrepancy 4 & Criterion 8 (`POD-AC-8`) Bench Obligation — Lua Ingest of `LeanAngle` (`0x301`)**:
+  - Updated the TunerStudio Lua ingest script in `docs/TELEMETRY_AND_RACECHRONO.md` Section 3.3 (`onCanBrakesAndLean`) to decode `LeanAngle` (`0x301` bytes `4..5`, 1-based Lua offset `5`, `0.01 deg/LSB`, `-65..+65°`) into `Sensor.new("LuaGauge1")` and `PitchAngle` (`0x301` bytes `6..7`, offset `7`, `0.01 deg/LSB`, `-45..+45°`) into `Sensor.new("LuaGauge2")`.
+  - Recorded the bench obligation for Pod Acceptance Criterion 8 (`POD-AC-8`): because `fome-fw` already registers `SensorType::LuaGauge1..8` in `firmware/init/sensor/init_aux.cpp` and writes `engine->outputChannels.luaGauges[0..7]` to `.mlg` in `firmware/console/status_loop.cpp`, **no C++ firmware change is required**; bench verification of Criterion 8 requires loading this updated TunerStudio Lua script so `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (front/rear brake pressure), and `AuxLinear3..4` (`130 mm` fork / `70 mm` shock travel) are logged in the ECU's `.mlg` file.
+- **Pinned Planning Document Identities (`2026-10-18` Decision)**:
+  - `docs/TELEMETRY_AND_RACECHRONO.md`: git blob `3c8de44bd42ab8a116ad651593ef63e44debb08f`, sha256 `fc78e1f3b88f77bd7abe2220642a0c9b513e95a8dbe42483f9ebe70088fc1125`.
+  - `docs/WIRING_SV650_K7.md`: git blob `83d1f60f9e77c2f38649bb2009336f2c23e77b0c`, sha256 `6f273c46c755af967af1ddd97a1f59fd7638c3a2e24a03bcecbf5559e3d3d690`.
+  - Downstream `agent-ee` pod `spec-record.json` / requirement-map (`pod-01`, `pod-02`, `pod-44`) cite the `FOMEMC-31` commit and these blob identities.
+
 ## 2026-10-17 — Generator direction
 
 Owner decisions for the AI-driven PCB generator (agent-ee, kicad-route, fome-mc), as
