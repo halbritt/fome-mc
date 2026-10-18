@@ -66,10 +66,30 @@ def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
+DESIGN_INPUT_PATHS = [
+    "fome-mc.kicad_pcb",
+    "fome-mc.kicad_pro",
+    "fome-mc.kicad_sch",
+    "sheets",
+    "libs",
+    "fp-lib-table",
+    "sym-lib-table",
+    "export/BOM-fome-mc.csv",
+    "export/CPL-fome-mc.csv",
+    "export/fome-mc.net",
+]
+
+
 def git_commit_info(rev: str) -> tuple[str, str, str]:
     commit = subprocess.check_output(
-        ["git", "rev-parse", rev], cwd=REPO, text=True
+        ["git", "log", "-n", "1", "--format=%H", rev, "--", *DESIGN_INPUT_PATHS],
+        cwd=REPO,
+        text=True,
     ).strip()
+    if not commit:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", rev], cwd=REPO, text=True
+        ).strip()
     ts_str = subprocess.check_output(
         ["git", "show", "-s", "--format=%ct", commit], cwd=REPO, text=True
     ).strip()
@@ -88,10 +108,21 @@ def normalize_fab_text(text: str, iso_dt: str, space_dt: str) -> str:
         f'"CreationDate": "{iso_dt}"',
         text,
     )
+    # Normalize volatile snapshot path and export date in kicadsexpr netlists
+    text = re.sub(
+        r'\(source\s+"[^"]*fome-mc\.kicad_sch"\)',
+        '(source "fome-mc.kicad_sch")',
+        text,
+    )
+    text = re.sub(
+        r'\(date\s+"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}[^"]*"\)',
+        f'(date "{iso_dt[:19]}")',
+        text,
+    )
     return text
 
 
-def run_export(rev: str | None, fill: str) -> Path:
+def run_export(rev: str | None, fill: str, steps: str = "drc,netlist,export") -> Path:
     cmd = [
         sys.executable,
         str(REPO / "toolchain" / "eda.py"),
@@ -101,7 +132,7 @@ def run_export(rev: str | None, fill: str) -> Path:
         "--fill",
         fill,
         "--steps",
-        "drc,netlist,export",
+        steps,
     ]
     if rev:
         cmd.extend(["--rev", rev])
@@ -109,6 +140,127 @@ def run_export(rev: str | None, fill: str) -> Path:
     label = f"fome-mc@{rev}" if rev else "fome-mc"
     latest = REPO / "build" / "runs" / "project" / label / "latest"
     return latest.resolve()
+
+
+def run_fast_verify_export(rev: str | None, fill: str) -> Path:
+    """Create a fresh snapshot via toolchain/eda.py and re-export all fabrication artifacts."""
+    sys.path.insert(0, str(REPO / "toolchain"))
+    import eda  # type: ignore
+
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    label = f"fome-mc@{rev}" if rev else "fome-mc"
+    run_dir = REPO / "build" / "runs" / "fab-verify" / label / ts
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    cfg = eda.project_config("fome-mc")
+    if rev:
+        cfg["rev"] = rev
+    snap, manifest = eda.make_snapshot(cfg, run_dir)
+    sch = snap / cfg["schematic"]
+    pcb = snap / cfg["pcb"]
+    env = eda.tool_env()
+
+    if fill == "refill":
+        subprocess.run(
+            [
+                "kicad-cli",
+                "pcb",
+                "drc",
+                "--refill-zones",
+                "--save-board",
+                "--format",
+                "json",
+                "-o",
+                str(run_dir / "drc-refill.json"),
+                str(pcb),
+            ],
+            cwd=snap,
+            env=env,
+            check=True,
+        )
+
+    netlist_dir = run_dir / "netlist"
+    netlist_dir.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            "kicad-cli",
+            "sch",
+            "export",
+            "netlist",
+            "--format",
+            "kicadsexpr",
+            "-o",
+            str(netlist_dir / "fome-mc.net"),
+            str(sch),
+        ],
+        cwd=snap,
+        env=env,
+        check=True,
+    )
+
+    native_dir = run_dir / "export" / "native"
+    native_dir.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            "kicad-cli",
+            "sch",
+            "export",
+            "bom",
+            "--fields",
+            "Reference,Value,Footprint,${QUANTITY},${DNP}",
+            "--labels",
+            "Refs,Value,Footprint,Qty,DNP",
+            "--group-by",
+            "Value,Footprint",
+            "--ref-range-delimiter",
+            "",
+            "-o",
+            str(native_dir / "fome-mc-bom.csv"),
+            str(sch),
+        ],
+        cwd=snap,
+        env=env,
+        check=True,
+    )
+
+    kibot_dir = run_dir / "export" / "kibot"
+    kibot_dir.mkdir(parents=True, exist_ok=True)
+    subprocess.run(
+        [
+            str(eda.VENV / "bin" / "kibot"),
+            "-c",
+            str(eda.KIBOT_CONFIG),
+            "-e",
+            str(sch),
+            "-b",
+            str(pcb),
+            "-d",
+            str(kibot_dir),
+            "gerbers",
+            "drill",
+            "position",
+            "bom_csv",
+        ],
+        cwd=snap,
+        env=env,
+        check=True,
+    )
+
+    board_hash = sha256_file(pcb)
+    (run_dir / "export" / "result.json").write_text(
+        json.dumps({"board_sha256": board_hash}, indent=2) + "\n"
+    )
+    (run_dir / "summary.json").write_text(
+        json.dumps(
+            {
+                "tool_versions": eda.tool_versions(),
+                "steps": {},
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    return run_dir
 
 
 def build_manifest(run_dir: Path, rev: str, fill: str, update_gerbers: bool = True) -> dict:
@@ -161,12 +313,13 @@ def build_manifest(run_dir: Path, rev: str, fill: str, update_gerbers: bool = Tr
     ]
     for category, path in extra_Run_files:
         if path.exists():
-            data = path.read_bytes()
+            raw_text = path.read_text(encoding="utf-8", errors="replace")
+            norm_bytes = normalize_fab_text(raw_text, iso_dt, space_dt).encode("utf-8")
             rel_name = path.relative_to(run_dir).as_posix()
             files_manifest[rel_name] = {
                 "category": category,
-                "sha256": sha256_bytes(data),
-                "bytes": len(data),
+                "sha256": sha256_bytes(norm_bytes),
+                "bytes": len(norm_bytes),
             }
 
     # 3. Canonical tracked JLCPCB BOM, CPL, and netlist in export/
@@ -187,10 +340,15 @@ def build_manifest(run_dir: Path, rev: str, fill: str, update_gerbers: bool = Tr
     # Collect schematic and board sha256 from snapshot
     file_hashes = snap_meta.get("files", {})
     sch_hashes = {
-        k: v["sha256"]
+        k: (v["sha256"] if isinstance(v, dict) else v)
         for k, v in sorted(file_hashes.items())
         if k.endswith(".kicad_sch")
     }
+    board_hash = export_res.get("board_sha256") or (
+        file_hashes.get("fome-mc.kicad_pcb", {}).get("sha256")
+        if isinstance(file_hashes.get("fome-mc.kicad_pcb"), dict)
+        else file_hashes.get("fome-mc.kicad_pcb")
+    )
 
     manifest = {
         "schema": "fome-mc.fab-manifest/1",
@@ -199,8 +357,8 @@ def build_manifest(run_dir: Path, rev: str, fill: str, update_gerbers: bool = Tr
         "source_commit_timestamp_utc": iso_dt,
         "source_dirty_files": snap_meta.get("source_dirty_files", []),
         "fill_mode": fill,
-        "board_sha256": export_res.get("board_sha256"),
-        "root_schematic_sha256": export_res.get("inputs", {}).get("fome-mc.kicad_sch"),
+        "board_sha256": board_hash,
+        "root_schematic_sha256": sch_hashes.get("fome-mc.kicad_sch"),
         "schematic_files_sha256": sch_hashes,
         "tool_versions": summary.get("tool_versions", {}),
         "drc_status": summary.get("steps", {}).get("drc", {}).get("status"),
@@ -215,11 +373,17 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--rev", help="Git revision to snapshot and export (default: working tree, records HEAD)")
     ap.add_argument("--fill", default="asis", choices=["asis", "refill"])
+    ap.add_argument("--run-dir", type=Path, help="Existing run directory to consume instead of running eda.py")
     ap.add_argument("--verify", action="store_true", help="Verify existing manifest matches fresh export")
     args = ap.parse_args()
 
-    run_dir = run_export(args.rev, args.fill)
     rev_for_meta = args.rev or "HEAD"
+    if args.run_dir:
+        run_dir = args.run_dir.resolve()
+    elif args.verify:
+        run_dir = run_fast_verify_export(args.rev, args.fill)
+    else:
+        run_dir = run_export(args.rev, args.fill, steps="drc,netlist,export")
 
     if args.verify:
         if not MANIFEST_PATH.exists():
@@ -228,14 +392,34 @@ def main() -> int:
         recorded = json.loads(MANIFEST_PATH.read_text())
         fresh = build_manifest(run_dir, rev_for_meta, args.fill, update_gerbers=False)
         mismatches = []
-        for key in ("fill_mode", "board_sha256", "root_schematic_sha256", "tool_versions", "drc_design_clean"):
+        for key in (
+            "source_commit",
+            "source_commit_timestamp_utc",
+            "fill_mode",
+            "board_sha256",
+            "root_schematic_sha256",
+            "schematic_files_sha256",
+            "tool_versions",
+        ):
             if recorded.get(key) != fresh.get(key):
                 mismatches.append(f"{key}: recorded={recorded.get(key)!r} != fresh={fresh.get(key)!r}")
+        if fresh.get("drc_design_clean") is not None and recorded.get("drc_design_clean") != fresh.get("drc_design_clean"):
+            mismatches.append(
+                f"drc_design_clean: recorded={recorded.get('drc_design_clean')!r} != fresh={fresh.get('drc_design_clean')!r}"
+            )
         rec_art = recorded.get("artifacts", {})
         fresh_art = fresh.get("artifacts", {})
         for k in sorted(set(rec_art) | set(fresh_art)):
             if rec_art.get(k) != fresh_art.get(k):
                 mismatches.append(f"artifact {k}: recorded={rec_art.get(k)} != fresh={fresh_art.get(k)}")
+            elif k.startswith("export/gerbers/"):
+                disk_path = REPO / k
+                if not disk_path.exists():
+                    mismatches.append(f"tracked gerber {k} is missing on disk")
+                elif sha256_file(disk_path) != rec_art[k]["sha256"]:
+                    mismatches.append(
+                        f"tracked gerber {k} on disk sha256={sha256_file(disk_path)} != manifest={rec_art[k]['sha256']}"
+                    )
         if mismatches:
             print("FAIL: fab-manifest verification mismatches:", file=sys.stderr)
             for m in mismatches:
