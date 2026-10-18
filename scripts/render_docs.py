@@ -135,14 +135,14 @@ def render_floorplan_diagram() -> None:
     # Exact functional zones matching native KiCad PCB coordinates (X=26..188, Y=25..140)
     zones = [
         # (x_mm, y_mm, w_mm, h_mm, fill, stroke, title, subtitle)
-        (32.0, 27.5, 72.0, 28.0, "#1c2430", "#58a6ff", "J1: TE AMPSEAL 35-PIN (BLACK 776163-1)", "Power, Grounds, INJ1..4 (42V Clamp), IGBT1..4, AUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR, DFU"),
-        (110.0, 27.5, 74.0, 28.0, "#24292f", "#a5d6ff", "J2: TE AMPSEAL 35-PIN (GREY 776163-2)", "CLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock, VR1/2, Hall, WBO1/2, CAN1, USB"),
+        (32.0, 27.5, 72.0, 28.0, "#1c2430", "#58a6ff", "J1: TE AMPSEAL 35-PIN (BLACK 776163-1)", "Power, Grounds, INJ1..4 (42V Clamp), IGBT1..4, AUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR (>=1.5mm), DFU"),
+        (110.0, 27.5, 74.0, 28.0, "#24292f", "#a5d6ff", "J2: TE AMPSEAL 35-PIN (GREY 776163-2)", "CLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock, VR1/2 (Mode A2), Hall, WBO1/2, CAN1, USB"),
         (28.0, 58.0, 22.0, 49.0, "#3b1d2e", "#f85149", "4x IGNITION IGBTs (HV_IGN 0.50mm)", "Q201-Q204 FGD3040G2 (400V, 1.2mm)"),
         (28.0, 108.5, 33.5, 29.5, "#1f2d3d", "#58a6ff", "STEPPER, H-BRIDGES, 4GB SDNAND & WI-FI", "U201/U203 TLE9201 • U202 DRV8825 • U25 4GB (C113/114) • U29 Wi-Fi (C111/112)"),
         (62.5, 58.0, 91.5, 46.5, "#2b2318", "#d29922", "POWER SUPPLY, KEEP-ALIVE, LDOs, CAN, IGN & LOW/HIGH-SIDE DRIVERS", "D20/D21 OR • D1/D22 SMCJ24A • Q1 AO4485 • C4 50V 1210 • U3 LMR16020 5V • U1/U2 TLS115D0E • U6 TLV75733 • U4/U5 CAN1/2"),
-        (62.5, 106.0, 91.5, 32.0, "#162b24", "#3fb950", "STM32H753 BRAIN, PRECISION REF & ANALOG FRONT-END", "U26 STM32H753ZIT6 • U23 REF3333 • U24 LPS25HB (DNP) • U1201/U1202 VNLD5090 (MAIN_RLY) • U7/U15..U21 MCP6004"),
-        (155.5, 58.0, 30.5, 34.5, "#271d3b", "#bc8cff", "WIDEBAND #1 (LSU 4.9)", "U302 F042 (0x190) • Q301 HTR • U301/U305/U307"),
-        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 (LSU 4.9)", "U402 F042 (0x192) • Q401 HTR • U401/U405/U407"),
+        (62.5, 106.0, 91.5, 32.0, "#162b24", "#3fb950", "STM32H753 BRAIN, PRECISION REF, VR (MODE A2) & ANALOG FRONT-END", "U26 STM32H753ZIT6 • U23 REF3333 • U13/U14 MAX9924 (A2) • U1201/U1202 VNLD5090 (MAIN_RLY) • U7/U15..U21 MCP6004"),
+        (155.5, 58.0, 30.5, 34.5, "#271d3b", "#bc8cff", "WIDEBAND #1 (LSU 4.9)", "U302 F042 (0x190) • Q301 HTR (>=1.5mm) • U301/U305/U307"),
+        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 (LSU 4.9)", "U402 F042 (0x192) • Q401 HTR (>=1.5mm) • U401/U405/U407"),
     ]
 
     lines = [
@@ -161,7 +161,7 @@ def render_floorplan_diagram() -> None:
         '</defs>',
         f'<rect class="bg" x="0" y="0" width="{img_w}" height="{img_h}"/>',
         f'<text class="title" x="{pad_x}" y="48">fome-mc — 4-Layer Integrated Motorcycle ECU Floorplan &amp; Functional Zones</text>',
-        f'<text class="subtitle" x="{pad_x}" y="74">Board Dimensions: 162.0 mm × 115.0 mm (Edge.Cuts X=26..188, Y=25..140) • 510 Schematic Components (505 Populated on Board) • Dual 35-Pin TE AMPSEAL Headers</text>',
+        f'<text class="subtitle" x="{pad_x}" y="74">Board Dimensions: 162.0 mm × 115.0 mm (Edge.Cuts X=26..188, Y=25..140 • 4× M4 Holes H1..H4) • 510 Schematic Components (494 Populated + 16 DNP + 4× M4 = 514 Footprints) • Dual 35-Pin TE AMPSEAL</text>',
         f'<rect class="pcb" x="{tx(bx0)}" y="{ty(by0)}" width="{bw*scale}" height="{bh*scale}" rx="15" ry="15"/>',
     ]
 
@@ -188,12 +188,12 @@ def render_floorplan_diagram() -> None:
                 lines.append(f'<circle cx="{tx(px):.1f}" cy="{ty(py):.1f}" r="9" fill="#d29922" stroke="#ffffff" stroke-width="1.5"/>')
                 lines.append(f'<circle cx="{tx(px):.1f}" cy="{ty(py):.1f}" r="4.5" fill="#0d1117"/>')
 
-    # 4x M4 Corner Mounting Holes (4.0 mm from board corners: X=30/184, Y=29/136)
+    # 4x M4 Corner Mounting Holes H1..H4 (4.0 mm from board corners: X=30/184, Y=29/136)
     for mx, my in [(30.0, 29.0), (184.0, 29.0), (30.0, 136.0), (184.0, 136.0)]:
         lines.append(f'<circle cx="{tx(mx)}" cy="{ty(my)}" r="33" fill="#161b22" stroke="#d29922" stroke-width="2.5" stroke-dasharray="4,2"/>')
         lines.append(f'<circle cx="{tx(mx)}" cy="{ty(my)}" r="21" fill="#0d1117" stroke="#f0f6fc" stroke-width="2"/>')
 
-    orphaned_removed_refs = {"U46", "U28", "L3", "D18", "C107", "D2", "D201", "D202", "D203", "D204"}
+    orphaned_removed_refs = {"U46", "U28", "L3", "D18", "C107", "D2", "D201", "D202", "D203", "D204", "H1", "H2", "H3", "H4"}
     major_highlights = {
         "U26": (20.0, 20.0, "#238636", "U26 STM32H753ZIT6", 0.0, 0.0),
         "U25": (8.5, 5.2, "#1f6feb", "U25 4GB SDNAND", 0.0, 0.3),
@@ -258,7 +258,7 @@ def render_floorplan_diagram() -> None:
     fy = ty(by0 + bh) + 42
     lines.append(f'<rect x="{pad_x}" y="{fy}" width="{bw*scale}" height="78" rx="8" ry="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>')
     lines.append(f'<text class="ztitle" x="{pad_x+16}" y="{fy+24}">4-Layer Impedance-Controlled Stackup (1.6 mm FR-4 TG170, 1 oz Outer / 1 oz Inner) &amp; Thermal Coupling</text>')
-    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+44}">• L1 (F.Cu): High-speed signals, 90Ω USB / 120Ω CAN diff pairs, SDMMC1 (4GB SDNAND), SPI4 (WINC1500 Wi-Fi), WBO Kelvin Nernst/Ip traces, HV_IGN (0.50mm clearance / 1.2mm)</text>')
+    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+44}">• L1 (F.Cu): High-speed signals, 90Ω USB / 120Ω CAN diff pairs, SDMMC1 (4GB SDNAND), SPI4 (WINC1500 Wi-Fi), WBO1/2_H- (&gt;=1.50mm, &lt;0.05Ω), HV_IGN (0.50mm clearance / 1.2mm)</text>')
     lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+62}">• L2 (In1.Cu): Unbroken solid GND plane + Star AGND split   • L3 (In2.Cu): +5V, +3.3V, +12V_MR, +12V_RAW, +3V3_WBO1/2 power islands   • L4 (B.Cu): Bottom GND + thermal pad coupling</text>')
 
     lines.append('</svg>')

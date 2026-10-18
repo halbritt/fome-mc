@@ -1,0 +1,498 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "Q201": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "Q201"
+        }
+      ],
+      "symbols": [
+        "Device:Q_NIGBT_GCE"
+      ]
+    },
+    "R201": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R201"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "Q202": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "Q202"
+        }
+      ],
+      "symbols": [
+        "Device:Q_NIGBT_GCE"
+      ]
+    },
+    "R202": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R202"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "Q203": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "Q203"
+        }
+      ],
+      "symbols": [
+        "Device:Q_NIGBT_GCE"
+      ]
+    },
+    "R203": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R203"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "Q204": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "Q204"
+        }
+      ],
+      "symbols": [
+        "Device:Q_NIGBT_GCE"
+      ]
+    },
+    "R204": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R204"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R205": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R205"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R206": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R206"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R207": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R207"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R208": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000001/",
+          "reference": "R208"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    }
+  },
+  "terminals": {
+    "ign_igbt:IGN1_COIL": {
+      "component": "Q201",
+      "pin": "2"
+    },
+    "ign_igbt:IGN1_IN": {
+      "component": "R201",
+      "pin": "1"
+    },
+    "ign_igbt:IGN2_COIL": {
+      "component": "Q202",
+      "pin": "2"
+    },
+    "ign_igbt:IGN2_IN": {
+      "component": "R202",
+      "pin": "1"
+    },
+    "ign_igbt:IGN3_COIL": {
+      "component": "Q203",
+      "pin": "2"
+    },
+    "ign_igbt:IGN3_IN": {
+      "component": "R203",
+      "pin": "1"
+    },
+    "ign_igbt:IGN4_COIL": {
+      "component": "Q204",
+      "pin": "2"
+    },
+    "ign_igbt:IGN4_IN": {
+      "component": "R204",
+      "pin": "1"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:ign_igbt:IGN1_COIL",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN1_COIL",
+      "names": [
+        "/IGN1_COIL"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN1_IN",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN1_IN",
+      "names": [
+        "/IGN1"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN2_COIL",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN2_COIL",
+      "names": [
+        "/IGN2_COIL"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN2_IN",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN2_IN",
+      "names": [
+        "/IGN2"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN3_COIL",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN3_COIL",
+      "names": [
+        "/IGN3_COIL"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN3_IN",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN3_IN",
+      "names": [
+        "/IGN3"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN4_COIL",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN4_COIL",
+      "names": [
+        "/IGN4_COIL"
+      ]
+    },
+    {
+      "id": "pin:ign_igbt:IGN4_IN",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "ign_igbt:IGN4_IN",
+      "names": [
+        "/IGN4"
+      ]
+    },
+    {
+      "id": "comp:Q201",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Q201",
+      "populated": true
+    },
+    {
+      "id": "comp:Q202",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Q202",
+      "populated": true
+    },
+    {
+      "id": "comp:Q203",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Q203",
+      "populated": true
+    },
+    {
+      "id": "comp:Q204",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Q204",
+      "populated": true
+    },
+    {
+      "id": "comp:R201",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R201",
+      "populated": true
+    },
+    {
+      "id": "comp:R202",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R202",
+      "populated": true
+    },
+    {
+      "id": "comp:R203",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R203",
+      "populated": true
+    },
+    {
+      "id": "comp:R204",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R204",
+      "populated": true
+    },
+    {
+      "id": "comp:R205",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R205",
+      "populated": true
+    },
+    {
+      "id": "comp:R206",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R206",
+      "populated": true
+    },
+    {
+      "id": "comp:R207",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R207",
+      "populated": true
+    },
+    {
+      "id": "comp:R208",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R208",
+      "populated": true
+    },
+    {
+      "id": "val:Q201",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Q201",
+      "equals": "FGD3040G2-F085"
+    },
+    {
+      "id": "val:Q202",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Q202",
+      "equals": "FGD3040G2-F085"
+    },
+    {
+      "id": "val:Q203",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Q203",
+      "equals": "FGD3040G2-F085"
+    },
+    {
+      "id": "val:Q204",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Q204",
+      "equals": "FGD3040G2-F085"
+    },
+    {
+      "id": "val:R201",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R201",
+      "equals": "15R"
+    },
+    {
+      "id": "val:R202",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R202",
+      "equals": "15R"
+    },
+    {
+      "id": "val:R203",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R203",
+      "equals": "15R"
+    },
+    {
+      "id": "val:R204",
+      "requirement": "FOMEMC-22-ign_igbt",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:ign_igbt.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R204",
+      "equals": "15R"
+    }
+  ]
+}

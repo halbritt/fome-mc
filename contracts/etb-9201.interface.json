@@ -1,0 +1,255 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "C1201": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000003/",
+          "reference": "C1201"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "U201": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000003/",
+          "reference": "U201"
+        }
+      ],
+      "symbols": [
+        "tle9201_2:TLE9201SG"
+      ]
+    },
+    "R210": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000003/",
+          "reference": "R210"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "C201": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000003/",
+          "reference": "C201"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    },
+    "C202": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000003/",
+          "reference": "C202"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    }
+  },
+  "terminals": {
+    "etb1:12V_SUPPLY": {
+      "component": "C1201",
+      "pin": "2"
+    },
+    "etb1:DIR": {
+      "component": "U201",
+      "pin": "1"
+    },
+    "etb1:DIS": {
+      "component": "R210",
+      "pin": "1"
+    },
+    "etb1:OUT+": {
+      "component": "C201",
+      "pin": "2"
+    },
+    "etb1:OUT-": {
+      "component": "C202",
+      "pin": "1"
+    },
+    "etb1:PWM": {
+      "component": "U201",
+      "pin": "12"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:etb1:12V_SUPPLY",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:12V_SUPPLY",
+      "names": [
+        "/12V_MR"
+      ]
+    },
+    {
+      "id": "pin:etb1:DIR",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:DIR",
+      "names": [
+        "/ETB1_DIR"
+      ]
+    },
+    {
+      "id": "pin:etb1:DIS",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:DIS",
+      "names": [
+        "/ETB1_DIS"
+      ]
+    },
+    {
+      "id": "pin:etb1:OUT+",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:OUT+",
+      "names": [
+        "/ETB1_OUT+"
+      ]
+    },
+    {
+      "id": "pin:etb1:OUT-",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:OUT-",
+      "names": [
+        "/ETB1_OUT-"
+      ]
+    },
+    {
+      "id": "pin:etb1:PWM",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "etb1:PWM",
+      "names": [
+        "/ETB1_PWM"
+      ]
+    },
+    {
+      "id": "comp:C1201",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C1201",
+      "populated": true
+    },
+    {
+      "id": "comp:C201",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C201",
+      "populated": true
+    },
+    {
+      "id": "comp:C202",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C202",
+      "populated": true
+    },
+    {
+      "id": "comp:R210",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R210",
+      "populated": true
+    },
+    {
+      "id": "comp:U201",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U201",
+      "populated": true
+    },
+    {
+      "id": "val:U201",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U201",
+      "equals": "TLE9201SG"
+    },
+    {
+      "id": "val:C1201",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "value",
+      "component": "C1201",
+      "equals": "2.2u"
+    },
+    {
+      "id": "val:R210",
+      "requirement": "FOMEMC-22-etb-9201",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:etb-9201.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R210",
+      "equals": "10k"
+    }
+  ]
+}

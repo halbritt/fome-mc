@@ -1,0 +1,254 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "C20": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "C20"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "C21": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "C21"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "C16": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "C16"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "C17": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "C17"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "R15": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "R15"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R16": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005e814213/",
+          "reference": "R16"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    }
+  },
+  "terminals": {
+    "knock:FILTERED_1": {
+      "component": "C20",
+      "pin": "2"
+    },
+    "knock:FILTERED_2": {
+      "component": "C21",
+      "pin": "2"
+    },
+    "knock:INPUT_1": {
+      "component": "C16",
+      "pin": "2"
+    },
+    "knock:INPUT_2": {
+      "component": "C17",
+      "pin": "2"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:knock:FILTERED_1",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "knock:FILTERED_1",
+      "names": [
+        "/knock/FILTERED_1"
+      ]
+    },
+    {
+      "id": "pin:knock:FILTERED_2",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "knock:FILTERED_2",
+      "names": [
+        "/knock/FILTERED_2"
+      ]
+    },
+    {
+      "id": "pin:knock:INPUT_1",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "knock:INPUT_1",
+      "names": [
+        "/KNOCK_1"
+      ]
+    },
+    {
+      "id": "pin:knock:INPUT_2",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "knock:INPUT_2",
+      "names": [
+        "/KNOCK_2"
+      ]
+    },
+    {
+      "id": "comp:C16",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C16",
+      "populated": true
+    },
+    {
+      "id": "comp:C17",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C17",
+      "populated": true
+    },
+    {
+      "id": "comp:C20",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C20",
+      "populated": true
+    },
+    {
+      "id": "comp:C21",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C21",
+      "populated": true
+    },
+    {
+      "id": "comp:R15",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R15",
+      "populated": true
+    },
+    {
+      "id": "comp:R16",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R16",
+      "populated": true
+    },
+    {
+      "id": "val:C16",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "value",
+      "component": "C16",
+      "equals": "3.3n"
+    },
+    {
+      "id": "val:C17",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "value",
+      "component": "C17",
+      "equals": "3.3n"
+    },
+    {
+      "id": "val:C20",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "value",
+      "component": "C20",
+      "equals": "330p"
+    },
+    {
+      "id": "val:C21",
+      "requirement": "FOMEMC-22-knock",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:knock.kicad_sch"
+      },
+      "kind": "value",
+      "component": "C21",
+      "equals": "330p"
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "U40": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "U40"
+        }
+      ],
+      "symbols": [
+        "Power_Management:BTS716G"
+      ]
+    },
+    "RN11": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "RN11"
+        }
+      ],
+      "symbols": [
+        "Device:R_Pack04"
+      ]
+    },
+    "C85": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "C85"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    },
+    "C86": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "C86"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    },
+    "C87": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "C87"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    },
+    "C88": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dd5b2e0/",
+          "reference": "C88"
+        }
+      ],
+      "symbols": [
+        "Device:C_Small"
+      ]
+    }
+  },
+  "terminals": {
+    "highside_quad:12V": {
+      "component": "U40",
+      "pin": "1"
+    },
+    "highside_quad:IN1": {
+      "component": "RN11",
+      "pin": "4"
+    },
+    "highside_quad:IN2": {
+      "component": "RN11",
+      "pin": "3"
+    },
+    "highside_quad:IN3": {
+      "component": "RN11",
+      "pin": "2"
+    },
+    "highside_quad:IN4": {
+      "component": "RN11",
+      "pin": "1"
+    },
+    "highside_quad:OUT1": {
+      "component": "C85",
+      "pin": "1"
+    },
+    "highside_quad:OUT2": {
+      "component": "C86",
+      "pin": "1"
+    },
+    "highside_quad:OUT3": {
+      "component": "C87",
+      "pin": "1"
+    },
+    "highside_quad:OUT4": {
+      "component": "C88",
+      "pin": "1"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:highside_quad:12V",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:12V",
+      "names": [
+        "/12V_MR"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:IN1",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:IN1",
+      "names": [
+        "/highside_quad/IN1"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:IN2",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:IN2",
+      "names": [
+        "/highside_quad/IN2"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:IN3",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:IN3",
+      "names": [
+        "/highside_quad/IN3"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:IN4",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:IN4",
+      "names": [
+        "/highside_quad/IN4"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:OUT1",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:OUT1",
+      "names": [
+        "/highside_quad/OUT1"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:OUT2",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:OUT2",
+      "names": [
+        "/highside_quad/OUT2"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:OUT3",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:OUT3",
+      "names": [
+        "/highside_quad/OUT3"
+      ]
+    },
+    {
+      "id": "pin:highside_quad:OUT4",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "highside_quad:OUT4",
+      "names": [
+        "/highside_quad/OUT4"
+      ]
+    },
+    {
+      "id": "comp:C85",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C85",
+      "populated": true
+    },
+    {
+      "id": "comp:C86",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C86",
+      "populated": true
+    },
+    {
+      "id": "comp:C87",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C87",
+      "populated": true
+    },
+    {
+      "id": "comp:C88",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C88",
+      "populated": true
+    },
+    {
+      "id": "comp:RN11",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "RN11",
+      "populated": true
+    },
+    {
+      "id": "comp:U40",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U40",
+      "populated": true
+    },
+    {
+      "id": "val:U40",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U40",
+      "equals": "BTS716G"
+    },
+    {
+      "id": "val:RN11",
+      "requirement": "FOMEMC-22-highside_quad",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:highside_quad.kicad_sch"
+      },
+      "kind": "value",
+      "component": "RN11",
+      "equals": "10k"
+    }
+  ]
+}

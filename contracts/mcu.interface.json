@@ -1,0 +1,2225 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "R116": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R116"
+        }
+      ],
+      "symbols": [
+        "Device:R_Small"
+      ]
+    },
+    "R96": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R96"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R118": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R118"
+        }
+      ],
+      "symbols": [
+        "Device:R_Small"
+      ]
+    },
+    "U26": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U26"
+        }
+      ],
+      "symbols": [
+        "MCU_ST_STM32F7:STM32F767ZITx"
+      ]
+    },
+    "R90": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R90"
+        }
+      ],
+      "symbols": [
+        "Device:R_Small"
+      ]
+    },
+    "D6": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "D6"
+        }
+      ],
+      "symbols": [
+        "Device:D_Schottky_Small"
+      ]
+    },
+    "C83": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "C83"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "R120": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R120"
+        }
+      ],
+      "symbols": [
+        "Device:R_Small"
+      ]
+    },
+    "Y1": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "Y1"
+        }
+      ],
+      "symbols": [
+        "Device:Crystal"
+      ]
+    },
+    "U23": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U23"
+        }
+      ],
+      "symbols": [
+        "Reference_Voltage:REF3033"
+      ]
+    },
+    "U24": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U24"
+        }
+      ],
+      "symbols": [
+        "Sensor_Pressure:LPS25HB"
+      ]
+    },
+    "U25": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U25"
+        }
+      ],
+      "symbols": [
+        "Connector:Micro_SD_Card"
+      ]
+    },
+    "U27": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U27"
+        }
+      ],
+      "symbols": [
+        "Power_Protection:USBLC6-2SC6"
+      ]
+    },
+    "U29": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "U29"
+        }
+      ],
+      "symbols": [
+        "RF_WiFi:ATWINC1500-MR210UB"
+      ]
+    },
+    "R127": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R127"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R128": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R128"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R129": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R129"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R130": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R130"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R131": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R131"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R132": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005d99e6ee/",
+          "reference": "R132"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    }
+  },
+  "terminals": {
+    "mcu:12V_MR": {
+      "component": "R116",
+      "pin": "1"
+    },
+    "mcu:12V_SENSE": {
+      "component": "R96",
+      "pin": "1"
+    },
+    "mcu:5V_SENSOR_1": {
+      "component": "R118",
+      "pin": "1"
+    },
+    "mcu:5V_SENSOR_1_PG": {
+      "component": "U26",
+      "pin": "55"
+    },
+    "mcu:5V_SENSOR_2_PG": {
+      "component": "U26",
+      "pin": "54"
+    },
+    "mcu:AT1": {
+      "component": "U26",
+      "pin": "27"
+    },
+    "mcu:AT2": {
+      "component": "U26",
+      "pin": "28"
+    },
+    "mcu:AT3": {
+      "component": "U26",
+      "pin": "29"
+    },
+    "mcu:AT4": {
+      "component": "U26",
+      "pin": "44"
+    },
+    "mcu:AV1": {
+      "component": "U26",
+      "pin": "34"
+    },
+    "mcu:AV10": {
+      "component": "U26",
+      "pin": "47"
+    },
+    "mcu:AV11": {
+      "component": "U26",
+      "pin": "26"
+    },
+    "mcu:AV2": {
+      "component": "U26",
+      "pin": "35"
+    },
+    "mcu:AV3": {
+      "component": "U26",
+      "pin": "36"
+    },
+    "mcu:AV4": {
+      "component": "U26",
+      "pin": "37"
+    },
+    "mcu:AV5": {
+      "component": "U26",
+      "pin": "40"
+    },
+    "mcu:AV6": {
+      "component": "U26",
+      "pin": "41"
+    },
+    "mcu:AV7": {
+      "component": "U26",
+      "pin": "42"
+    },
+    "mcu:AV8": {
+      "component": "U26",
+      "pin": "43"
+    },
+    "mcu:AV9": {
+      "component": "U26",
+      "pin": "46"
+    },
+    "mcu:BOOT0": {
+      "component": "R90",
+      "pin": "1"
+    },
+    "mcu:CAN2_RX": {
+      "component": "U26",
+      "pin": "73"
+    },
+    "mcu:CAN2_TX": {
+      "component": "U26",
+      "pin": "74"
+    },
+    "mcu:CAN_RX": {
+      "component": "U26",
+      "pin": "114"
+    },
+    "mcu:CAN_TX": {
+      "component": "U26",
+      "pin": "115"
+    },
+    "mcu:DIGITAL1": {
+      "component": "U26",
+      "pin": "56"
+    },
+    "mcu:DIGITAL2": {
+      "component": "U26",
+      "pin": "57"
+    },
+    "mcu:DIGITAL3": {
+      "component": "U26",
+      "pin": "63"
+    },
+    "mcu:DIGITAL4": {
+      "component": "U26",
+      "pin": "64"
+    },
+    "mcu:DIGITAL5": {
+      "component": "U26",
+      "pin": "65"
+    },
+    "mcu:DIGITAL6": {
+      "component": "U26",
+      "pin": "66"
+    },
+    "mcu:ETB1_DIR": {
+      "component": "U26",
+      "pin": "79"
+    },
+    "mcu:ETB1_DIS": {
+      "component": "U26",
+      "pin": "80"
+    },
+    "mcu:ETB1_PWM": {
+      "component": "U26",
+      "pin": "81"
+    },
+    "mcu:ETB2_DIR": {
+      "component": "U26",
+      "pin": "78"
+    },
+    "mcu:ETB2_DIS": {
+      "component": "U26",
+      "pin": "77"
+    },
+    "mcu:ETB2_PWM": {
+      "component": "U26",
+      "pin": "82"
+    },
+    "mcu:HS1": {
+      "component": "U26",
+      "pin": "89"
+    },
+    "mcu:HS2": {
+      "component": "U26",
+      "pin": "88"
+    },
+    "mcu:HS3": {
+      "component": "U26",
+      "pin": "87"
+    },
+    "mcu:HS4": {
+      "component": "U26",
+      "pin": "86"
+    },
+    "mcu:IGN1": {
+      "component": "U26",
+      "pin": "133"
+    },
+    "mcu:IGN2": {
+      "component": "U26",
+      "pin": "132"
+    },
+    "mcu:IGN3": {
+      "component": "U26",
+      "pin": "129"
+    },
+    "mcu:IGN4": {
+      "component": "U26",
+      "pin": "128"
+    },
+    "mcu:IGN5": {
+      "component": "U26",
+      "pin": "127"
+    },
+    "mcu:IGN6": {
+      "component": "U26",
+      "pin": "126"
+    },
+    "mcu:IGN7": {
+      "component": "U26",
+      "pin": "125"
+    },
+    "mcu:IGN8": {
+      "component": "U26",
+      "pin": "124"
+    },
+    "mcu:KNOCK_1": {
+      "component": "U26",
+      "pin": "14"
+    },
+    "mcu:KNOCK_2": {
+      "component": "U26",
+      "pin": "15"
+    },
+    "mcu:Keep_Alive": {
+      "component": "D6",
+      "pin": "1"
+    },
+    "mcu:LS1": {
+      "component": "U26",
+      "pin": "90"
+    },
+    "mcu:LS12": {
+      "component": "U26",
+      "pin": "137"
+    },
+    "mcu:LS13": {
+      "component": "U26",
+      "pin": "139"
+    },
+    "mcu:LS14": {
+      "component": "U26",
+      "pin": "140"
+    },
+    "mcu:LS15": {
+      "component": "U26",
+      "pin": "141"
+    },
+    "mcu:LS16": {
+      "component": "U26",
+      "pin": "142"
+    },
+    "mcu:LS2": {
+      "component": "U26",
+      "pin": "91"
+    },
+    "mcu:LS3": {
+      "component": "U26",
+      "pin": "92"
+    },
+    "mcu:LS4": {
+      "component": "U26",
+      "pin": "93"
+    },
+    "mcu:LS5": {
+      "component": "U26",
+      "pin": "96"
+    },
+    "mcu:LS6": {
+      "component": "U26",
+      "pin": "97"
+    },
+    "mcu:LS7": {
+      "component": "U26",
+      "pin": "110"
+    },
+    "mcu:LS8": {
+      "component": "U26",
+      "pin": "117"
+    },
+    "mcu:LS9": {
+      "component": "U26",
+      "pin": "134"
+    },
+    "mcu:RC2": {
+      "component": "U26",
+      "pin": "101"
+    },
+    "mcu:USB_D+": {
+      "component": "U26",
+      "pin": "104"
+    },
+    "mcu:USB_D-": {
+      "component": "U26",
+      "pin": "103"
+    },
+    "mcu:USB_SHIELD": {
+      "component": "C83",
+      "pin": "1"
+    },
+    "mcu:VBOOST": {
+      "component": "R120",
+      "pin": "1"
+    },
+    "mcu:VR_1": {
+      "component": "U26",
+      "pin": "67"
+    },
+    "mcu:VR_2": {
+      "component": "U26",
+      "pin": "68"
+    },
+    "mcu:WBO1_BOOT0": {
+      "component": "U26",
+      "pin": "119"
+    },
+    "mcu:WBO1_NRST": {
+      "component": "U26",
+      "pin": "118"
+    },
+    "mcu:WBO2_BOOT0": {
+      "component": "U26",
+      "pin": "123"
+    },
+    "mcu:WBO2_NRST": {
+      "component": "U26",
+      "pin": "122"
+    },
+    "internal:wifi_sck": {
+      "component": "U26",
+      "pin": "1"
+    },
+    "internal:wifi_irq": {
+      "component": "U26",
+      "pin": "2"
+    },
+    "internal:wifi_cs": {
+      "component": "U26",
+      "pin": "3"
+    },
+    "internal:wifi_miso": {
+      "component": "U26",
+      "pin": "4"
+    },
+    "internal:wifi_mosi": {
+      "component": "U26",
+      "pin": "5"
+    },
+    "internal:wifi_rst": {
+      "component": "U26",
+      "pin": "7"
+    },
+    "internal:sd_d0": {
+      "component": "U26",
+      "pin": "98"
+    },
+    "internal:sd_d1": {
+      "component": "U26",
+      "pin": "99"
+    },
+    "internal:sd_d2": {
+      "component": "U26",
+      "pin": "111"
+    },
+    "internal:sd_d3": {
+      "component": "U26",
+      "pin": "112"
+    },
+    "internal:sd_clk": {
+      "component": "U26",
+      "pin": "113"
+    },
+    "internal:sd_cmd": {
+      "component": "U26",
+      "pin": "116"
+    },
+    "internal:baro_scl": {
+      "component": "U26",
+      "pin": "69"
+    },
+    "internal:baro_sda": {
+      "component": "U26",
+      "pin": "70"
+    },
+    "R127:2": {
+      "component": "R127",
+      "pin": "2"
+    },
+    "R128:2": {
+      "component": "R128",
+      "pin": "2"
+    },
+    "R129:2": {
+      "component": "R129",
+      "pin": "2"
+    },
+    "R130:2": {
+      "component": "R130",
+      "pin": "2"
+    },
+    "R131:2": {
+      "component": "R131",
+      "pin": "2"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:mcu:12V_MR",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:12V_MR",
+      "names": [
+        "/12V_MR"
+      ]
+    },
+    {
+      "id": "pin:mcu:12V_SENSE",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:12V_SENSE",
+      "names": [
+        "/12V_IGN_SW"
+      ]
+    },
+    {
+      "id": "pin:mcu:5V_SENSOR_1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:5V_SENSOR_1",
+      "names": [
+        "/5V_SENSOR_1"
+      ]
+    },
+    {
+      "id": "pin:mcu:5V_SENSOR_1_PG",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:5V_SENSOR_1_PG",
+      "names": [
+        "/mcu/5V_SENSOR_1_PG"
+      ]
+    },
+    {
+      "id": "pin:mcu:5V_SENSOR_2_PG",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:5V_SENSOR_2_PG",
+      "names": [
+        "/mcu/5V_SENSOR_2_PG"
+      ]
+    },
+    {
+      "id": "pin:mcu:AT1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AT1",
+      "names": [
+        "/mcu/AT1"
+      ]
+    },
+    {
+      "id": "pin:mcu:AT2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AT2",
+      "names": [
+        "/mcu/AT2"
+      ]
+    },
+    {
+      "id": "pin:mcu:AT3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AT3",
+      "names": [
+        "/mcu/AT3"
+      ]
+    },
+    {
+      "id": "pin:mcu:AT4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AT4",
+      "names": [
+        "/mcu/AT4"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV1",
+      "names": [
+        "/mcu/AV1"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV10",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV10",
+      "names": [
+        "/mcu/AV10"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV11",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV11",
+      "names": [
+        "/mcu/AV11"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV2",
+      "names": [
+        "/mcu/AV2"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV3",
+      "names": [
+        "/mcu/AV3"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV4",
+      "names": [
+        "/mcu/AV4"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV5",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV5",
+      "names": [
+        "/mcu/AV5"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV6",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV6",
+      "names": [
+        "/mcu/AV6"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV7",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV7",
+      "names": [
+        "/mcu/AV7"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV8",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV8",
+      "names": [
+        "/mcu/AV8"
+      ]
+    },
+    {
+      "id": "pin:mcu:AV9",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:AV9",
+      "names": [
+        "/mcu/AV9"
+      ]
+    },
+    {
+      "id": "pin:mcu:BOOT0",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:BOOT0",
+      "names": [
+        "/BOOT0_NET"
+      ]
+    },
+    {
+      "id": "pin:mcu:CAN2_RX",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:CAN2_RX",
+      "names": [
+        "/mcu/CAN2_RX"
+      ]
+    },
+    {
+      "id": "pin:mcu:CAN2_TX",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:CAN2_TX",
+      "names": [
+        "/mcu/CAN2_TX"
+      ]
+    },
+    {
+      "id": "pin:mcu:CAN_RX",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:CAN_RX",
+      "names": [
+        "/mcu/CAN_RX"
+      ]
+    },
+    {
+      "id": "pin:mcu:CAN_TX",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:CAN_TX",
+      "names": [
+        "/mcu/CAN_TX"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL1",
+      "names": [
+        "/mcu/DIGITAL1"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL2",
+      "names": [
+        "/mcu/DIGITAL2"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL3",
+      "names": [
+        "/mcu/DIGITAL3"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL4",
+      "names": [
+        "/mcu/DIGITAL4"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL5",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL5",
+      "names": [
+        "/mcu/DIGITAL5"
+      ]
+    },
+    {
+      "id": "pin:mcu:DIGITAL6",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:DIGITAL6",
+      "names": [
+        "/mcu/DIGITAL6"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB1_DIR",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB1_DIR",
+      "names": [
+        "/ETB1_DIR"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB1_DIS",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB1_DIS",
+      "names": [
+        "/ETB1_DIS"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB1_PWM",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB1_PWM",
+      "names": [
+        "/ETB1_PWM"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB2_DIR",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB2_DIR",
+      "names": [
+        "/ETB2_DIR"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB2_DIS",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB2_DIS",
+      "names": [
+        "/ETB2_DIS"
+      ]
+    },
+    {
+      "id": "pin:mcu:ETB2_PWM",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:ETB2_PWM",
+      "names": [
+        "/ETB2_PWM"
+      ]
+    },
+    {
+      "id": "pin:mcu:HS1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:HS1",
+      "names": [
+        "/highside_quad/IN1"
+      ]
+    },
+    {
+      "id": "pin:mcu:HS2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:HS2",
+      "names": [
+        "/highside_quad/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:HS3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:HS3",
+      "names": [
+        "/highside_quad/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:HS4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:HS4",
+      "names": [
+        "/highside_quad/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN1",
+      "names": [
+        "/ign1/IN1"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN2",
+      "names": [
+        "/ign1/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN3",
+      "names": [
+        "/ign1/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN4",
+      "names": [
+        "/ign1/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN5",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN5",
+      "names": [
+        "/ign2/IN1"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN6",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN6",
+      "names": [
+        "/ign2/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN7",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN7",
+      "names": [
+        "/ign2/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:IGN8",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:IGN8",
+      "names": [
+        "/ign2/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:KNOCK_1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:KNOCK_1",
+      "names": [
+        "/knock/FILTERED_1"
+      ]
+    },
+    {
+      "id": "pin:mcu:KNOCK_2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:KNOCK_2",
+      "names": [
+        "/knock/FILTERED_2"
+      ]
+    },
+    {
+      "id": "pin:mcu:Keep_Alive",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:Keep_Alive",
+      "names": [
+        "/Keep_Alive/Keep_Alive"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS1",
+      "names": [
+        "/lowside_quad1/IN1"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS12",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS12",
+      "names": [
+        "/LS12"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS13",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS13",
+      "names": [
+        "/PB8_STEP_EN"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS14",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS14",
+      "names": [
+        "/lowside_quad4/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS15",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS15",
+      "names": [
+        "/lowside_quad4/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS16",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS16",
+      "names": [
+        "/lowside_quad4/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS2",
+      "names": [
+        "/lowside_quad1/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS3",
+      "names": [
+        "/lowside_quad1/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS4",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS4",
+      "names": [
+        "/lowside_quad1/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS5",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS5",
+      "names": [
+        "/lowside_quad2/IN1"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS6",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS6",
+      "names": [
+        "/lowside_quad2/IN2"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS7",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS7",
+      "names": [
+        "/lowside_quad2/IN3"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS8",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS8",
+      "names": [
+        "/lowside_quad2/IN4"
+      ]
+    },
+    {
+      "id": "pin:mcu:LS9",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:LS9",
+      "names": [
+        "/LS9"
+      ]
+    },
+    {
+      "id": "pin:mcu:RC2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:RC2",
+      "names": [
+        "/RC2"
+      ]
+    },
+    {
+      "id": "pin:mcu:USB_D+",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:USB_D+",
+      "names": [
+        "/USB_D+"
+      ]
+    },
+    {
+      "id": "pin:mcu:USB_D-",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:USB_D-",
+      "names": [
+        "/USB_D-"
+      ]
+    },
+    {
+      "id": "pin:mcu:USB_SHIELD",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:USB_SHIELD",
+      "names": [
+        "/mcu/USB_SHIELD"
+      ]
+    },
+    {
+      "id": "pin:mcu:VBOOST",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:VBOOST",
+      "names": [
+        "/VBOOST"
+      ]
+    },
+    {
+      "id": "pin:mcu:VR_1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:VR_1",
+      "names": [
+        "/mcu/VR_1"
+      ]
+    },
+    {
+      "id": "pin:mcu:VR_2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:VR_2",
+      "names": [
+        "/mcu/VR_2"
+      ]
+    },
+    {
+      "id": "pin:mcu:WBO1_BOOT0",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:WBO1_BOOT0",
+      "names": [
+        "/WBO1_BOOT0"
+      ]
+    },
+    {
+      "id": "pin:mcu:WBO1_NRST",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:WBO1_NRST",
+      "names": [
+        "/WBO1_NRST"
+      ]
+    },
+    {
+      "id": "pin:mcu:WBO2_BOOT0",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:WBO2_BOOT0",
+      "names": [
+        "/WBO2_BOOT0"
+      ]
+    },
+    {
+      "id": "pin:mcu:WBO2_NRST",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "mcu:WBO2_NRST",
+      "names": [
+        "/WBO2_NRST"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_sck",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_sck",
+      "names": [
+        "/mcu/WIFI_SCK"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_irq",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_irq",
+      "names": [
+        "/mcu/WIFI_IRQ"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_cs",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_cs",
+      "names": [
+        "/mcu/WIFI_CS"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_miso",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_miso",
+      "names": [
+        "/mcu/WIFI_MISO"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_mosi",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_mosi",
+      "names": [
+        "/mcu/WIFI_MOSI"
+      ]
+    },
+    {
+      "id": "bus:mcu:wifi_rst",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:wifi_rst",
+      "names": [
+        "/mcu/WIFI_RST"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_d0",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_d0",
+      "names": [
+        "/mcu/SD_D0"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_d1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_d1",
+      "names": [
+        "/mcu/SD_D1"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_d2",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_d2",
+      "names": [
+        "/mcu/SD_D2"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_d3",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_d3",
+      "names": [
+        "/mcu/SD_D3"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_clk",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_clk",
+      "names": [
+        "/mcu/SD_CLK"
+      ]
+    },
+    {
+      "id": "bus:mcu:sd_cmd",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:sd_cmd",
+      "names": [
+        "/mcu/SD_CMD"
+      ]
+    },
+    {
+      "id": "bus:mcu:baro_scl",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:baro_scl",
+      "names": [
+        "/mcu/BARO_SCL"
+      ]
+    },
+    {
+      "id": "bus:mcu:baro_sda",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "internal:baro_sda",
+      "names": [
+        "/mcu/BARO_SDA"
+      ]
+    },
+    {
+      "id": "rel:R127-sd_d0-pullup",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "same_net",
+      "terminals": [
+        "R127:2",
+        "internal:sd_d0"
+      ]
+    },
+    {
+      "id": "rel:R128-sd_d1-pullup",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "same_net",
+      "terminals": [
+        "R128:2",
+        "internal:sd_d1"
+      ]
+    },
+    {
+      "id": "rel:R129-sd_d2-pullup",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "same_net",
+      "terminals": [
+        "R129:2",
+        "internal:sd_d2"
+      ]
+    },
+    {
+      "id": "rel:R130-sd_d3-pullup",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "same_net",
+      "terminals": [
+        "R130:2",
+        "internal:sd_d3"
+      ]
+    },
+    {
+      "id": "rel:R131-sd_cmd-pullup",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "same_net",
+      "terminals": [
+        "R131:2",
+        "internal:sd_cmd"
+      ]
+    },
+    {
+      "id": "comp:C83",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C83",
+      "populated": true
+    },
+    {
+      "id": "comp:D6",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D6",
+      "populated": true
+    },
+    {
+      "id": "comp:R116",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R116",
+      "populated": true
+    },
+    {
+      "id": "comp:R118",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R118",
+      "populated": true
+    },
+    {
+      "id": "comp:R120",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R120",
+      "populated": true
+    },
+    {
+      "id": "comp:R127",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R127",
+      "populated": true
+    },
+    {
+      "id": "comp:R128",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R128",
+      "populated": true
+    },
+    {
+      "id": "comp:R129",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R129",
+      "populated": true
+    },
+    {
+      "id": "comp:R130",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R130",
+      "populated": true
+    },
+    {
+      "id": "comp:R131",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R131",
+      "populated": true
+    },
+    {
+      "id": "comp:R132",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R132",
+      "populated": true
+    },
+    {
+      "id": "comp:R90",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R90",
+      "populated": true
+    },
+    {
+      "id": "comp:R96",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R96",
+      "populated": true
+    },
+    {
+      "id": "comp:U23",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U23",
+      "populated": true
+    },
+    {
+      "id": "comp:U24",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U24",
+      "populated": false
+    },
+    {
+      "id": "comp:U25",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U25",
+      "populated": true
+    },
+    {
+      "id": "comp:U26",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U26",
+      "populated": true
+    },
+    {
+      "id": "comp:U27",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U27",
+      "populated": true
+    },
+    {
+      "id": "comp:U29",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U29",
+      "populated": true
+    },
+    {
+      "id": "comp:Y1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Y1",
+      "populated": true
+    },
+    {
+      "id": "val:U26",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U26",
+      "equals": "STM32H753ZIT6"
+    },
+    {
+      "id": "val:Y1",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Y1",
+      "equals": "8MHz"
+    },
+    {
+      "id": "val:U23",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U23",
+      "equals": "REF3333"
+    },
+    {
+      "id": "val:U25",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U25",
+      "equals": "CSNP32GCR01-AOW"
+    },
+    {
+      "id": "val:U27",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U27",
+      "equals": "USBLC6-2SC6"
+    },
+    {
+      "id": "val:U29",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U29",
+      "equals": "ATWINC1500-MR210UB"
+    },
+    {
+      "id": "val:R127",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R127",
+      "equals": "47k"
+    },
+    {
+      "id": "val:R128",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R128",
+      "equals": "47k"
+    },
+    {
+      "id": "val:R129",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R129",
+      "equals": "47k"
+    },
+    {
+      "id": "val:R130",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R130",
+      "equals": "47k"
+    },
+    {
+      "id": "val:R131",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R131",
+      "equals": "47k"
+    },
+    {
+      "id": "val:R132",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R132",
+      "equals": "22"
+    },
+    {
+      "id": "val:R90",
+      "requirement": "FOMEMC-22-mcu",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:mcu.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R90",
+      "equals": "10k"
+    }
+  ]
+}

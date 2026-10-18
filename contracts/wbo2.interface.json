@@ -1,0 +1,593 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "R420": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "R420"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "U407": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "U407"
+        }
+      ],
+      "symbols": [
+        "Interface_CAN_LIN:TJA1051T-3"
+      ]
+    },
+    "Q401": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "Q401"
+        }
+      ],
+      "symbols": [
+        "Device:Q_NMOS_GDS"
+      ]
+    },
+    "R410": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "R410"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R408": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "R408"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "C402": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "C402"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "C404": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "C404"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "R429": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "R429"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "C416": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "C416"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "U402": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "U402"
+        }
+      ],
+      "symbols": [
+        "MCU_ST_STM32F0:STM32F042K6Tx"
+      ]
+    },
+    "U403": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "U403"
+        }
+      ],
+      "symbols": [
+        "Reference_Voltage:REF3033"
+      ]
+    },
+    "U405": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "U405"
+        }
+      ],
+      "symbols": [
+        "Amplifier_Operational:AD8603"
+      ]
+    },
+    "U409": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "U409"
+        }
+      ],
+      "symbols": [
+        "Regulator_Linear:XC6206PxxxMR"
+      ]
+    },
+    "R414": {
+      "locations": [
+        {
+          "sheet": "/a1000000-0000-4000-8000-000000000005/",
+          "reference": "R414"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    }
+  },
+  "terminals": {
+    "wbo2:12V_SENSE": {
+      "component": "R420",
+      "pin": "1"
+    },
+    "wbo2:CANH2": {
+      "component": "U407",
+      "pin": "7"
+    },
+    "wbo2:CANL2": {
+      "component": "U407",
+      "pin": "6"
+    },
+    "wbo2:LSU_H-": {
+      "component": "Q401",
+      "pin": "2"
+    },
+    "wbo2:LSU_IP": {
+      "component": "R410",
+      "pin": "2"
+    },
+    "wbo2:LSU_RTRIM": {
+      "component": "R408",
+      "pin": "1"
+    },
+    "wbo2:LSU_UN": {
+      "component": "C402",
+      "pin": "1"
+    },
+    "wbo2:LSU_VM": {
+      "component": "C404",
+      "pin": "1"
+    },
+    "wbo2:WBO_BOOT0": {
+      "component": "R429",
+      "pin": "2"
+    },
+    "wbo2:WBO_NRST": {
+      "component": "C416",
+      "pin": "1"
+    },
+    "U402:18": {
+      "component": "U402",
+      "pin": "18"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:wbo2:12V_SENSE",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:12V_SENSE",
+      "names": [
+        "/12V_MR"
+      ]
+    },
+    {
+      "id": "pin:wbo2:CANH2",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:CANH2",
+      "names": [
+        "/CAN2+"
+      ]
+    },
+    {
+      "id": "pin:wbo2:CANL2",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:CANL2",
+      "names": [
+        "/CAN2-"
+      ]
+    },
+    {
+      "id": "pin:wbo2:LSU_H-",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:LSU_H-",
+      "names": [
+        "/WBO2_H-"
+      ]
+    },
+    {
+      "id": "pin:wbo2:LSU_IP",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:LSU_IP",
+      "names": [
+        "/WBO2_IP"
+      ]
+    },
+    {
+      "id": "pin:wbo2:LSU_RTRIM",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:LSU_RTRIM",
+      "names": [
+        "/WBO2_RTRIM"
+      ]
+    },
+    {
+      "id": "pin:wbo2:LSU_UN",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:LSU_UN",
+      "names": [
+        "/WBO2_UN"
+      ]
+    },
+    {
+      "id": "pin:wbo2:LSU_VM",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:LSU_VM",
+      "names": [
+        "/WBO2_VM"
+      ]
+    },
+    {
+      "id": "pin:wbo2:WBO_BOOT0",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:WBO_BOOT0",
+      "names": [
+        "/WBO2_BOOT0"
+      ]
+    },
+    {
+      "id": "pin:wbo2:WBO_NRST",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "wbo2:WBO_NRST",
+      "names": [
+        "/WBO2_NRST"
+      ]
+    },
+    {
+      "id": "strap:wbo2:PA8-3V3",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "U402:18",
+      "names": [
+        "+3V3_WBO2"
+      ]
+    },
+    {
+      "id": "comp:C402",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C402",
+      "populated": true
+    },
+    {
+      "id": "comp:C404",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C404",
+      "populated": true
+    },
+    {
+      "id": "comp:C416",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C416",
+      "populated": true
+    },
+    {
+      "id": "comp:Q401",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "Q401",
+      "populated": true
+    },
+    {
+      "id": "comp:R408",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R408",
+      "populated": true
+    },
+    {
+      "id": "comp:R410",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R410",
+      "populated": true
+    },
+    {
+      "id": "comp:R414",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R414",
+      "populated": true
+    },
+    {
+      "id": "comp:R420",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R420",
+      "populated": true
+    },
+    {
+      "id": "comp:R429",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R429",
+      "populated": true
+    },
+    {
+      "id": "comp:U402",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U402",
+      "populated": true
+    },
+    {
+      "id": "comp:U403",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U403",
+      "populated": true
+    },
+    {
+      "id": "comp:U405",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U405",
+      "populated": true
+    },
+    {
+      "id": "comp:U407",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U407",
+      "populated": true
+    },
+    {
+      "id": "comp:U409",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U409",
+      "populated": true
+    },
+    {
+      "id": "val:U402",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U402",
+      "equals": "STM32F042K6Tx"
+    },
+    {
+      "id": "val:U403",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U403",
+      "equals": "REF3033"
+    },
+    {
+      "id": "val:U405",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U405",
+      "equals": "AD8628"
+    },
+    {
+      "id": "val:U407",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U407",
+      "equals": "TJA1051T-3"
+    },
+    {
+      "id": "val:U409",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U409",
+      "equals": "XC6206P332MR"
+    },
+    {
+      "id": "val:Q401",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "Q401",
+      "equals": "VND14NV04"
+    },
+    {
+      "id": "val:R410",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R410",
+      "equals": "61.9"
+    },
+    {
+      "id": "val:R414",
+      "requirement": "FOMEMC-22-wbo2",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:wbo2.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R414",
+      "equals": "62k"
+    }
+  ]
+}

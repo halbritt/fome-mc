@@ -43,7 +43,7 @@ ROUTE_PROJ = $(eval ROUTE_PROJ := $(shell $(PY) -c "$(ROUTE_PROJ_PY)" '$(PROJECT
 ROUTE_PROJ_OK = $(if $(ROUTE_PROJ),@true,@echo "no routable board for PROJECT=$(PROJECT)" >&2; exit 2)
 RUNS_DIR = build/route/runs/$(PROJECT)
 
-.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io simulate smoke baseline skills clean \
+.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io fab-package verify-fab-package simulate smoke baseline skills clean \
         route-doctor route route-campaign route-validate route-compare route-publish route-blocked route-spokes \
         route-audit route-floor route-canary route-corpus-list route-corpus-check route-corpus-add \
         route-update route-smoke
@@ -80,6 +80,12 @@ renders:
 
 verify-io:
 	$(PY) scripts/verify_io_map.py
+
+fab-package:
+	$(PY) scripts/generate_fab_package.py --fill $(FILL) $(if $(REV),--rev $(REV))
+
+verify-fab-package:
+	$(PY) scripts/generate_fab_package.py --fill $(FILL) $(if $(REV),--rev $(REV)) --verify
 
 simulate:
 	@test -n "$(DECK)" || { echo "usage: make simulate DECK=path.cir [EXPECT=path.json]"; exit 2; }

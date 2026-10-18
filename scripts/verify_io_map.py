@@ -3,19 +3,35 @@
 verify_io_map.py — End-to-end hardware/firmware pin & netlist consistency verifier for fome-mc.
 
 Checks 1-to-1 agreement across:
-  1. /home/halbritt/git/fome-mc/io-map.csv (all 70 J1/J2 pins + 15 INTERNAL-* rows)
+  1. /home/halbritt/git/fome-mc/io-map.csv (all 70 J1/J2 pins + 22 INTERNAL-* rows)
   2. /home/halbritt/git/fome-mc/export/fome-mc.net (exported from fome-mc.kicad_sch)
   3. /home/halbritt/git/fome-fw/firmware/config/boards/fome-mc/board_configuration.cpp & connectors/*.yaml
+  4. /home/halbritt/git/fome-mc/docs/SHEET_CONTRACTS.md & /home/halbritt/git/fome-mc/contracts/*.interface.json
+     (verified against fome-mc.kicad_sch, sheets/*.kicad_sch, and a freshly exported KiCad XML netlist)
 """
 import csv
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
+
+AGENT_EE_SRC = Path("/home/halbritt/git/agent-ee/src")
+if AGENT_EE_SRC.exists() and str(AGENT_EE_SRC) not in sys.path:
+    sys.path.insert(0, str(AGENT_EE_SRC))
+
+from agent_ee.hardware_interface import evaluate, load_contract, read_inventory  # noqa: E402
+from agent_ee.symbol_library import children, field, parse_sexpr  # noqa: E402
 
 REPO = Path("/home/halbritt/git/fome-mc")
 IO_MAP_CSV = REPO / "io-map.csv"
 NETLIST = REPO / "export/fome-mc.net"
+ROOT_SCH = REPO / "fome-mc.kicad_sch"
+SHEETS_DIR = REPO / "sheets"
+CONTRACTS_DIR = REPO / "contracts"
+SHEET_CONTRACTS_MD = REPO / "docs/SHEET_CONTRACTS.md"
 FW_DIR = Path("/home/halbritt/git/fome-fw/firmware/config/boards/fome-mc")
 BOARD_CFG = FW_DIR / "board_configuration.cpp"
 CONN_DIR = FW_DIR / "connectors"
@@ -237,8 +253,11 @@ def main() -> int:
             if m.group(1) not in pin_rows:
                 errors.append(f"{yfile.name} references {m.group(1)} not in io-map.csv")
 
+    # 7. Verify docs/SHEET_CONTRACTS.md and contracts/*.interface.json against schematic hierarchy & fresh XML netlist
+    sheet_stats = verify_sheet_contracts(errors)
+
     if errors:
-        print("FAILED io-map / netlist / firmware verification:")
+        print("FAILED io-map / netlist / firmware / sheet-contract verification:")
         for e in errors:
             print("  [ERROR]", e)
         return 1
@@ -246,8 +265,133 @@ def main() -> int:
     print(f"PASS: Verified {len(EXPECTED_PIN_NETS)} external connector pins (J1-1..35, J2-1..35),")
     print(f"      {len(EXPECTED_INTERNAL_NODES)} internal MCU/WBO/SDNAND/Baro buses,")
     print(f"      {len(comps)} netlist components (0 unannotated, 0 duplicates),")
-    print(f"      and {len(yaml_pins)} TunerStudio YAML connector definitions + board_configuration.cpp.")
+    print(f"      {len(yaml_pins)} TunerStudio YAML connector definitions + board_configuration.cpp,")
+    print(
+        f"      and {sheet_stats['contracts']} contracts/*.interface.json files "
+        f"({sheet_stats['instances']} sheet instances, {sheet_stats['unique_hlabels']} hierarchical labels, "
+        f"{sheet_stats['pin_bindings']} instance-pin bindings, {sheet_stats['invariants']} invariants evaluated)."
+    )
     return 0
+
+
+def _find_kicad_cli() -> str:
+    pinned = Path("/home/halbritt/.local/opt/kicad-10.0.7/bin/kicad-cli")
+    if pinned.exists():
+        return str(pinned)
+    found = shutil.which("kicad-cli")
+    if found:
+        return found
+    raise FileNotFoundError("kicad-cli not found in /home/halbritt/.local/opt/kicad-10.0.7/bin or PATH")
+
+
+def verify_sheet_contracts(errors: list[str]) -> dict[str, int]:
+    stats = {
+        "contracts": 0,
+        "instances": 0,
+        "unique_hlabels": 0,
+        "pin_bindings": 0,
+        "invariants": 0,
+    }
+    if not SHEET_CONTRACTS_MD.exists():
+        errors.append(f"Missing {SHEET_CONTRACTS_MD}")
+        return stats
+    md_text = SHEET_CONTRACTS_MD.read_text()
+
+    # Parse child sheet instances from fome-mc.kicad_sch
+    root_tree = parse_sexpr(ROOT_SCH.read_bytes())
+    file_to_instances: dict[str, list[dict[str, object]]] = {}
+    for s in children(root_tree, "sheet"):
+        sname = None
+        sfile = None
+        for p in children(s, "property"):
+            if len(p) >= 3 and p[1] == "Sheetname":
+                sname = p[2]
+            elif len(p) >= 3 and p[1] == "Sheetfile":
+                sfile = p[2]
+        pins = {}
+        for pin in children(s, "pin"):
+            if len(pin) >= 3 and isinstance(pin[1], str):
+                pins[pin[1]] = str(pin[2])
+        if sname and sfile:
+            file_to_instances.setdefault(sfile, []).append({"name": sname, "pins": pins})
+            stats["instances"] += 1
+            if f"`/{sname}/`" not in md_text:
+                errors.append(f"docs/SHEET_CONTRACTS.md missing sheet instance path `/{sname}/`")
+
+    # Export a fresh KiCad XML netlist into a temporary directory (never touching the repo tree)
+    kicad_cli = _find_kicad_cli()
+    with tempfile.TemporaryDirectory(prefix="fome-mc-verify-contracts-") as tmpdir:
+        xml_path = Path(tmpdir) / "design.xml"
+        proc = subprocess.run(
+            [kicad_cli, "sch", "export", "netlist", "--format", "kicadxml", "--output", str(xml_path), str(ROOT_SCH)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if proc.returncode != 0 or not xml_path.exists():
+            errors.append(f"kicad-cli sch export netlist failed (rc={proc.returncode}): {proc.stderr.strip()}")
+            return stats
+        inventory = read_inventory(xml_path)
+
+    for sch_path in sorted(SHEETS_DIR.glob("*.kicad_sch")):
+        rel_file = f"sheets/{sch_path.name}"
+        stem = sch_path.stem
+        contract_path = CONTRACTS_DIR / f"{stem}.interface.json"
+        if not contract_path.exists():
+            errors.append(f"Missing contract file {contract_path} for {rel_file}")
+            continue
+
+        # Parse unique hierarchical_label names in child sheet
+        stree = parse_sexpr(sch_path.read_bytes())
+        hlabels: dict[str, str] = {}
+        for hl in children(stree, "hierarchical_label"):
+            if len(hl) >= 2 and isinstance(hl[1], str):
+                shape = field(hl, "shape", 1)[0] if children(hl, "shape") else "passive"
+                if hl[1] not in hlabels:
+                    hlabels[hl[1]] = str(shape)
+        stats["unique_hlabels"] += len(hlabels)
+
+        # Verify every hierarchical_label appears in docs/SHEET_CONTRACTS.md and on every parent sheet symbol
+        instances = file_to_instances.get(rel_file, [])
+        if not instances:
+            errors.append(f"Child sheet {rel_file} has no sheet instances in fome-mc.kicad_sch")
+        for hname in sorted(hlabels):
+            if f"| `{hname}` |" not in md_text:
+                errors.append(f"docs/SHEET_CONTRACTS.md missing hierarchical_label `{hname}` from {rel_file}")
+            for inst in instances:
+                inst_pins = inst["pins"]
+                if hname not in inst_pins:
+                    errors.append(f"Root sheet instance /{inst['name']}/ missing sheet pin for hierarchical_label `{hname}`")
+
+        # Validate contract schema and evaluate against fresh XML netlist
+        try:
+            contract = load_contract(REPO, f"contracts/{stem}.interface.json")
+        except Exception as exc:
+            errors.append(f"Invalid contract {contract_path.name}: {exc}")
+            continue
+
+        stats["contracts"] += 1
+        records = evaluate(contract, inventory)
+        stats["invariants"] += len(records)
+        unsat = [r["id"] for r in records if r["status"] != "satisfied"]
+        if unsat:
+            errors.append(
+                f"Contract {contract_path.name} failed evaluation against fresh netlist: {unsat}"
+            )
+
+        # Verify every (instance, hierarchical_label) binding has a pin:<inst>:<hname> named_net invariant
+        inv_by_id = {inv["id"]: inv for inv in contract.get("invariants", [])}
+        for inst in instances:
+            iname = inst["name"]
+            for hname in sorted(hlabels):
+                stats["pin_bindings"] += 1
+                expected_id = f"pin:{iname}:{hname}"
+                if expected_id not in inv_by_id:
+                    errors.append(f"{contract_path.name} missing invariant id '{expected_id}'")
+                elif inv_by_id[expected_id].get("kind") != "named_net":
+                    errors.append(f"{contract_path.name} invariant '{expected_id}' must have kind 'named_net'")
+
+    return stats
 
 
 if __name__ == "__main__":

@@ -1,0 +1,438 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "C41": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "C41"
+        }
+      ],
+      "symbols": [
+        "Device:C"
+      ]
+    },
+    "R39": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R39"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R40": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R40"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R41": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R41"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R42": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R42"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R43": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R43"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R44": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R44"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R45": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R45"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "R46": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "R46"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "U16": {
+      "locations": [
+        {
+          "sheet": "/00000000-0000-0000-0000-00005dcc02d0/",
+          "reference": "U16"
+        }
+      ],
+      "symbols": [
+        "Power_Protection:SRV05-4"
+      ]
+    }
+  },
+  "terminals": {
+    "quad_analog_temp:5V_PULLUP_SUPPLY": {
+      "component": "C41",
+      "pin": "2"
+    },
+    "quad_analog_temp:IN1": {
+      "component": "R39",
+      "pin": "2"
+    },
+    "quad_analog_temp:IN2": {
+      "component": "R40",
+      "pin": "2"
+    },
+    "quad_analog_temp:IN3": {
+      "component": "R41",
+      "pin": "2"
+    },
+    "quad_analog_temp:IN4": {
+      "component": "R42",
+      "pin": "2"
+    },
+    "quad_analog_temp:OUT1": {
+      "component": "R43",
+      "pin": "1"
+    },
+    "quad_analog_temp:OUT2": {
+      "component": "R44",
+      "pin": "1"
+    },
+    "quad_analog_temp:OUT3": {
+      "component": "R45",
+      "pin": "1"
+    },
+    "quad_analog_temp:OUT4": {
+      "component": "R46",
+      "pin": "1"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:quad_analog_temp:5V_PULLUP_SUPPLY",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:5V_PULLUP_SUPPLY",
+      "names": [
+        "/5V_SENSOR_1"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:IN1",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:IN1",
+      "names": [
+        "/AT1"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:IN2",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:IN2",
+      "names": [
+        "/AT2"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:IN3",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:IN3",
+      "names": [
+        "/quad_analog_temp/IN3"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:IN4",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:IN4",
+      "names": [
+        "/quad_analog_temp/IN4"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:OUT1",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:OUT1",
+      "names": [
+        "/mcu/AT1"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:OUT2",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:OUT2",
+      "names": [
+        "/mcu/AT2"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:OUT3",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:OUT3",
+      "names": [
+        "/mcu/AT3"
+      ]
+    },
+    {
+      "id": "pin:quad_analog_temp:OUT4",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "quad_analog_temp:OUT4",
+      "names": [
+        "/mcu/AT4"
+      ]
+    },
+    {
+      "id": "comp:C41",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "C41",
+      "populated": true
+    },
+    {
+      "id": "comp:R39",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R39",
+      "populated": true
+    },
+    {
+      "id": "comp:R40",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R40",
+      "populated": true
+    },
+    {
+      "id": "comp:R41",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R41",
+      "populated": true
+    },
+    {
+      "id": "comp:R42",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R42",
+      "populated": true
+    },
+    {
+      "id": "comp:R43",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R43",
+      "populated": true
+    },
+    {
+      "id": "comp:R44",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R44",
+      "populated": true
+    },
+    {
+      "id": "comp:R45",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R45",
+      "populated": true
+    },
+    {
+      "id": "comp:R46",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "R46",
+      "populated": true
+    },
+    {
+      "id": "comp:U16",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U16",
+      "populated": true
+    },
+    {
+      "id": "val:U16",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U16",
+      "equals": "SRV05-4"
+    },
+    {
+      "id": "val:R39",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R39",
+      "equals": "2.7k"
+    },
+    {
+      "id": "val:R40",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R40",
+      "equals": "2.7k"
+    },
+    {
+      "id": "val:R41",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R41",
+      "equals": "2.7k"
+    },
+    {
+      "id": "val:R42",
+      "requirement": "FOMEMC-22-quad_analog_pullup",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:quad_analog_pullup.kicad_sch"
+      },
+      "kind": "value",
+      "component": "R42",
+      "equals": "2.7k"
+    }
+  ]
+}

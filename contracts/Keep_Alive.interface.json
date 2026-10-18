@@ -1,0 +1,304 @@
+{
+  "schema": "agent-ee.interface/1",
+  "components": {
+    "D20": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "D20"
+        }
+      ],
+      "symbols": [
+        "Device:D_Schottky"
+      ]
+    },
+    "D21": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "D21"
+        }
+      ],
+      "symbols": [
+        "Device:D_Schottky"
+      ]
+    },
+    "D17": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "D17"
+        }
+      ],
+      "symbols": [
+        "Diode:1N4148WS"
+      ]
+    },
+    "D16": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "D16"
+        }
+      ],
+      "symbols": [
+        "Diode:1N4148WS"
+      ]
+    },
+    "D22": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "D22"
+        }
+      ],
+      "symbols": [
+        "Device:D_Zener"
+      ]
+    },
+    "U41": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "U41"
+        }
+      ],
+      "symbols": [
+        "Regulator_Linear:MIC5205-3.3YM5"
+      ]
+    },
+    "IC1": {
+      "locations": [
+        {
+          "sheet": "/46495fed-359e-4c30-808a-9217af090de7/",
+          "reference": "IC1"
+        }
+      ],
+      "symbols": [
+        "SamacSys_Parts:PSM712-LF-T7"
+      ]
+    }
+  },
+  "terminals": {
+    "Keep_Alive:12V_IGN_SW": {
+      "component": "D20",
+      "pin": "2"
+    },
+    "Keep_Alive:12V_MR": {
+      "component": "D21",
+      "pin": "2"
+    },
+    "Keep_Alive:12V_RAW": {
+      "component": "D20",
+      "pin": "1"
+    },
+    "Keep_Alive:Keep_Alive": {
+      "component": "D17",
+      "pin": "1"
+    },
+    "Keep_Alive:Perm_Live": {
+      "component": "D16",
+      "pin": "2"
+    }
+  },
+  "allowed_edits": [],
+  "invariants": [
+    {
+      "id": "pin:Keep_Alive:12V_IGN_SW",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "Keep_Alive:12V_IGN_SW",
+      "names": [
+        "/12V_IGN_SW"
+      ]
+    },
+    {
+      "id": "pin:Keep_Alive:12V_MR",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "Keep_Alive:12V_MR",
+      "names": [
+        "/12V_MR"
+      ]
+    },
+    {
+      "id": "pin:Keep_Alive:12V_RAW",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "Keep_Alive:12V_RAW",
+      "names": [
+        "/12V_RAW"
+      ]
+    },
+    {
+      "id": "pin:Keep_Alive:Keep_Alive",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "Keep_Alive:Keep_Alive",
+      "names": [
+        "/Keep_Alive/Keep_Alive"
+      ]
+    },
+    {
+      "id": "pin:Keep_Alive:Perm_Live",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "named_net",
+      "terminal": "Keep_Alive:Perm_Live",
+      "names": [
+        "/Perm_Live"
+      ]
+    },
+    {
+      "id": "comp:D16",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D16",
+      "populated": true
+    },
+    {
+      "id": "comp:D17",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D17",
+      "populated": true
+    },
+    {
+      "id": "comp:D20",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D20",
+      "populated": true
+    },
+    {
+      "id": "comp:D21",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D21",
+      "populated": true
+    },
+    {
+      "id": "comp:D22",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "D22",
+      "populated": true
+    },
+    {
+      "id": "comp:IC1",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "IC1",
+      "populated": true
+    },
+    {
+      "id": "comp:U41",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "component",
+      "component": "U41",
+      "populated": true
+    },
+    {
+      "id": "val:D20",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "value",
+      "component": "D20",
+      "equals": "B340A-13-F"
+    },
+    {
+      "id": "val:D21",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "value",
+      "component": "D21",
+      "equals": "B340A-13-F"
+    },
+    {
+      "id": "val:D22",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "value",
+      "component": "D22",
+      "equals": "SMCJ24A"
+    },
+    {
+      "id": "val:U41",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "value",
+      "component": "U41",
+      "equals": "MIC5205-3.3YM5"
+    },
+    {
+      "id": "val:IC1",
+      "requirement": "FOMEMC-22-Keep_Alive",
+      "source": {
+        "path": "docs/SHEET_CONTRACTS.md",
+        "locator": "sheet:Keep_Alive.kicad_sch"
+      },
+      "kind": "value",
+      "component": "IC1",
+      "equals": "PSM712-LF-T7"
+    }
+  ]
+}

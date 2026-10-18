@@ -1,0 +1,81 @@
+(footprint "D_SMA"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "")
+	(tags "")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "d6f98334-fa0b-469a-b945-8745cc6ae97e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "D_SMA"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cc466447-ac9c-43a5-af9b-34d2503ffa72")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd exclude_from_bom dnp)
+	(fp_line
+			(start -3 -1.5)
+			(end 3 -1.5)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.Fab")
+		)
+	(fp_line
+			(start -3 1.5)
+			(end -3 -1.5)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.Fab")
+		)
+	(fp_line
+			(start 3 -1.5)
+			(end 3 1.5)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.Fab")
+		)
+	(fp_line
+			(start 3 1.5)
+			(end -3 1.5)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.Fab")
+		)
+	(pad "1" smd rect
+			(at -2 0)
+			(size 1.5 1.7)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+		)
+	(pad "2" smd rect
+			(at 2 0)
+			(size 1.5 1.7)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+		)
+
+	(embedded_fonts no)
+)
