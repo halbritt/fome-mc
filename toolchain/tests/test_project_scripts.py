@@ -1,5 +1,6 @@
 """Project selection and fail-closed I/O checks; runnable with unittest offline."""
 import contextlib
+import csv
 import importlib.util
 import io
 import json
@@ -28,9 +29,20 @@ verify = load_script('verify_io_map')
 
 class ProjectScripts(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory()
+        run_root = REPO / 'build/runs'
+        run_root.mkdir(parents=True, exist_ok=True)
+        self.temp = tempfile.TemporaryDirectory(dir=run_root)
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+
+    def write_map(self, path, pins):
+        with path.open('w', newline='') as stream:
+            writer = csv.DictWriter(stream, fieldnames=verify.PROJECT_MAP_COLUMNS)
+            writer.writeheader()
+            for identity, net in pins:
+                row = dict.fromkeys(verify.PROJECT_MAP_COLUMNS, 'N/A')
+                row.update(Connector_Pin=identity, Net=net)
+                writer.writerow(row)
 
     def test_fab_project_paths_and_unknown_project(self):
         pod = fab.project_config('telemetry-pod')
@@ -96,23 +108,58 @@ class ProjectScripts(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'no io-map for project pod'):
             verify.verify_project_io(cfg)
         path = self.root / 'io-map.csv'
-        path.write_text('Connector_Pin,Net_Name\n')
+        self.write_map(path, [])
         with self.assertRaisesRegex(ValueError, 'no connector pins'):
             verify.verify_project_io(cfg)
-        path.write_text('Connector_Pin,Net_Name\nJ1-1,GND\nJ1-1,GND\n')
+        self.write_map(path, [('J1-1', 'GND'), ('J1-1', 'GND')])
         with self.assertRaisesRegex(ValueError, 'duplicate'):
             verify.verify_project_io(cfg)
-        path.write_text('Connector_Pin,Net_Name\nJ1-1,GND\n')
+        self.write_map(path, [('J1-1', 'GND')])
         with self.assertRaisesRegex(ValueError, 'no interface contracts'):
             verify.verify_project_io(cfg)
+
+    def test_project_map_requires_exact_header(self):
+        path = self.root / 'io-map.csv'
+        good = ','.join(verify.PROJECT_MAP_COLUMNS)
+        for header in ('Connector_Pin,Net_Name', good.replace(',Net,', ',Net_Name,'),
+                       good + ',Extra', ','.join(reversed(verify.PROJECT_MAP_COLUMNS))):
+            with self.subTest(header=header):
+                path.write_text(header + '\n')
+                with self.assertRaisesRegex(ValueError, 'header must be exactly'):
+                    verify.read_project_map(path)
+        self.write_map(path, [('J1-1', 'GND')])
+        with path.open('a') as stream:
+            stream.write('J1-2,GND\n')
+        with self.assertRaisesRegex(ValueError, 'invalid io-map row'):
+            verify.read_project_map(path)
+
+    def test_landed_pod_map_reads_before_missing_root_contract(self):
+        source = REPO / 'telemetry-pod/io-map.csv'
+        pins = verify.read_project_map(source)
+        self.assertEqual(len(pins), 29)
+        self.assertEqual(pins['AMPSEAL-1'], 'POD_CAN_H')
+        self.assertEqual(pins['BLE-RADIO'], 'N/A')
+        project = self.root / 'telemetry-pod'
+        project.mkdir()
+        shutil.copyfile(source, project / 'io-map.csv')
+        (project / 'contracts').mkdir()
+        (project / 'contracts/telemetry-pod.interface.json').write_text('{}')
+        (self.root / 'contracts').mkdir()
+        (self.root / 'contracts/ecu.interface.json').write_text('{}')
+        with patch.object(verify, 'REPO', self.root):
+            with self.assertRaisesRegex(ValueError, f'missing interface contract: {self.root}/contracts/telemetry-pod.interface.json'):
+                verify.verify_project_io({'name': 'telemetry-pod', 'path': project})
 
     def test_native_fixture_map_and_contract_detect_mutations(self):
         fixture = REPO / 'toolchain/fixtures/rc_filter'
         project = self.root / 'fixture'
         shutil.copytree(fixture, project)
-        cfg = {'name': 'fixture-script-test', 'path': project,
+        cfg = {'name': 'telemetry-pod', 'path': project,
                'schematic': 'rc_filter.kicad_sch', 'pcb': 'rc_filter.kicad_pcb'}
+        (self.root / 'contracts').mkdir()
+        (self.root / 'contracts/unrelated.interface.json').write_text('{}')
         (project / 'contracts').mkdir()
+        (project / 'contracts/wrong-location.interface.json').write_text('{}')
         contract = {
             'schema': 'agent-ee.interface/1',
             'components': {'connector': {'locations': [{'sheet': '/', 'reference': 'J1'}],
@@ -125,16 +172,16 @@ class ProjectScripts(unittest.TestCase):
                 'kind': 'named_net', 'terminal': f'p{n}', 'names': [net],
             } for n, net in ((1, '/IN'), (2, '/OUT'), (3, 'GND'))],
         }
-        contract_path = project / 'contracts/fixture.interface.json'
+        contract_path = self.root / 'contracts/telemetry-pod.interface.json'
         contract_path.write_text(json.dumps(contract))
         map_path = project / 'io-map.csv'
-        map_text = 'Connector_Pin,Net_Name\nJ1-1,/IN\nJ1-2,/OUT\nJ1-3,GND\n'
-        map_path.write_text(map_text)
+        self.write_map(map_path, [('J1-1', '/IN'), ('J1-2', '/OUT'), ('J1-3', 'GND')])
+        map_text = map_path.read_text()
         with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(verify.verify_project_io(cfg), 0)
             map_path.write_text(map_text.replace('/IN', 'WRONG'))
             self.assertEqual(verify.verify_project_io(cfg), 1)
-            map_path.write_text(map_text.replace('J1-3,GND\n', ''))
+            self.write_map(map_path, [('J1-1', '/IN'), ('J1-2', '/OUT')])
             with self.assertRaisesRegex(ValueError, 'coverage'):
                 verify.verify_project_io(cfg)
             map_path.write_text(map_text)

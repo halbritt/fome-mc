@@ -77,22 +77,38 @@ Direct use: `python3 toolchain/eda.py --help`.
 
 `make verify-io PROJECT=fome-mc` keeps the ECU audit, including its pin expectations,
 firmware configuration in `~/git/fome-fw`, YAML connectors and sheet contracts.
-`make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv` and
-`telemetry-pod/contracts/*.interface.json`. Until the map exists it exits nonzero
-with `no io-map for project telemetry-pod`; an empty map or missing contracts also
-fails. This command does not generate design content.
+`make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv`, then
+requires exactly `contracts/telemetry-pod.interface.json` at the repository root.
+Until AGENTEE-188 generates that contract, it exits nonzero with
+`missing interface contract: <repo>/contracts/telemetry-pod.interface.json`.
+It does not accept the CSV alone or substitute the ECU's sheet contracts.
 
-For projects other than `fome-mc`, the CSV must contain `Connector_Pin` and `Net_Name`
-columns. `Connector_Pin` is a native connector reference and pin joined with `-`
-(for example `J1-1`); `Net_Name` is the exact KiCad net name, including any leading
-`/`. Every pin of every `J<number>` connector in the native netlist must appear
-exactly once. Additional columns are allowed. Even unused cavities need their
-native net names; blank nets do not pass. Each mapped pin must also be declared
-as a terminal in at least one project-local `agent-ee.interface/1` contract. All
-contract invariants are evaluated against a fresh native XML netlist, exported
-from a snapshot under `build/runs/verify-io/<project>/`. This verifier uses the
-existing `agent-ee.hardware_interface` evaluator, not the planned generic `io_map`
-capability. Its existing checkout is expected at `~/git/agent-ee`.
+For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
+including column order:
+
+```text
+Connector_Pin,Signal_Name,Net,Direction_Class,Voltage_Current_Domain,MCU_Ref,MCU_Pin,External_Destination,Notes
+```
+
+Empty maps, duplicate `Connector_Pin` values, ragged rows and blank cells fail.
+The reader preserves logical identifiers such as `AMPSEAL-1`, `BLE-RADIO` and
+`DEBUG-UART-TX`. Reading those rows does not establish native pin bindings.
+The landed pod map contains proposed net names, `N/C` cavities and an integrated
+radio with `Net=N/A`; reconciling these with the generated design remains an
+AGENTEE-188 obligation. See [the pod input notes](../telemetry-pod/IO_MAP.md).
+
+The current native audit requires every pin of every `J<number>` connector to
+appear exactly once as `<reference>-<pin>`, with its exact KiCad net name
+(including any leading `/`) and a terminal declaration in a loaded
+`agent-ee.interface/1` contract. It fails closed on unresolved logical identifiers;
+it cannot yet bind the pod's logical rows to generated references or interpret
+`N/C` and `N/A` as physical connectivity. Other projects load
+`<project>/contracts/*.interface.json`; the pod loads only the root contract named
+above. All contract invariants are evaluated against a fresh native XML netlist,
+exported from a snapshot under `build/runs/verify-io/<project>/`. This verifier uses
+the existing `agent-ee.hardware_interface` evaluator, not the planned generic
+`io_map` capability. Its existing checkout is expected at `~/git/agent-ee`.
+This command does not generate design content.
 
 `make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
 project directories and native filenames from `toolchain/versions.toml`. Packaging

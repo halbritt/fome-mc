@@ -3,8 +3,8 @@
 
 The default fome-mc audit also checks its ECU-specific pin expectations, firmware
 board configuration, connector YAML and sheet-contract documentation. Other
-projects use Connector_Pin and Net_Name columns plus contracts/*.interface.json;
-see toolchain/README.md for the input contract.
+projects use the FOMEMC-30 CSV header with a Net column; see toolchain/README.md
+for the input contract and contract locations.
 """
 import argparse
 import csv
@@ -139,6 +139,12 @@ EXPECTED_INTERNAL_NODES = {
 }
 
 
+PROJECT_MAP_COLUMNS = [
+    "Connector_Pin", "Signal_Name", "Net", "Direction_Class",
+    "Voltage_Current_Domain", "MCU_Ref", "MCU_Pin", "External_Destination", "Notes",
+]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--project", default="fome-mc", help="Project from toolchain/versions.toml")
@@ -147,7 +153,7 @@ def main() -> int:
     if args.project != "fome-mc":
         try:
             return verify_project_io(cfg)
-        except (OSError, ValueError) as exc:
+        except (OSError, ValueError, csv.Error) as exc:
             print(f"FAIL: project {args.project}: {exc}", file=sys.stderr)
             return 1
     return verify_fome_mc()
@@ -320,22 +326,20 @@ def fresh_inventory(cfg: dict) -> dict:
     return read_inventory(xml_path)
 
 
-def read_project_map(path: Path) -> dict[tuple[str, str], str]:
+def read_project_map(path: Path) -> dict[str, str]:
     with path.open(newline="") as stream:
-        reader = csv.DictReader(stream)
-        if not {"Connector_Pin", "Net_Name"} <= set(reader.fieldnames or []):
-            raise ValueError("io-map.csv requires Connector_Pin and Net_Name columns")
+        reader = csv.DictReader(stream, strict=True)
+        if reader.fieldnames != PROJECT_MAP_COLUMNS:
+            raise ValueError("io-map.csv header must be exactly " + ",".join(PROJECT_MAP_COLUMNS))
         pins = {}
         for row in reader:
-            identity = (row["Connector_Pin"] or "").strip()
-            net = (row["Net_Name"] or "").strip()
-            match = re.fullmatch(r"(J[0-9]+)-([^-]+)", identity)
-            if not match or not net:
+            if None in row or any(value is None or not value.strip() for value in row.values()):
                 raise ValueError(f"invalid io-map row: {row!r}")
-            key = match.groups()
-            if key in pins:
+            identity = row["Connector_Pin"].strip()
+            net = row["Net"].strip()
+            if identity in pins:
                 raise ValueError(f"duplicate io-map connector pin {identity}")
-            pins[key] = net
+            pins[identity] = net
     if not pins:
         raise ValueError("io-map.csv contains no connector pins")
     return pins
@@ -347,24 +351,32 @@ def verify_project_io(cfg: dict) -> int:
     if not map_path.is_file():
         raise ValueError(f"no io-map for project {cfg['name']}: {map_path}")
     pins = read_project_map(map_path)
-    contract_paths = sorted((project_dir / "contracts").glob("*.interface.json"))
-    if not contract_paths:
-        raise ValueError(f"no interface contracts for project {cfg['name']}")
-    contracts = [load_contract(project_dir, p.relative_to(project_dir).as_posix()) for p in contract_paths]
+    if cfg["name"] == "telemetry-pod":
+        contract_root = REPO
+        contract_path = REPO / "contracts/telemetry-pod.interface.json"
+        if not contract_path.is_file():
+            raise ValueError(f"missing interface contract: {contract_path}")
+        contract_paths = [contract_path]
+    else:
+        contract_root = project_dir
+        contract_paths = sorted((project_dir / "contracts").glob("*.interface.json"))
+        if not contract_paths:
+            raise ValueError(f"no interface contracts for project {cfg['name']}")
+    contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
     inventory = fresh_inventory(cfg)
-    native_pins = {(comp["reference"], pin)
+    native_pins = {f"{comp['reference']}-{pin}": (comp["reference"], pin)
                    for comp in inventory["components"].values()
                    if re.fullmatch(r"J[0-9]+", comp["reference"])
                    for pin in comp["pins"]}
-    if set(pins) != native_pins:
-        raise ValueError(f"io-map connector coverage: missing={sorted(native_pins - set(pins))}, "
-                         f"extra={sorted(set(pins) - native_pins)}")
+    if set(pins) != set(native_pins):
+        raise ValueError(f"io-map connector coverage: missing={sorted(set(native_pins) - set(pins))}, "
+                         f"extra={sorted(set(pins) - set(native_pins))}")
     errors = []
-    for (ref, pin), expected in pins.items():
-        code = inventory["memberships"].get((ref, pin))
+    for identity, expected in pins.items():
+        code = inventory["memberships"].get(native_pins[identity])
         actual = inventory["nets"].get(code)
         if actual != expected:
-            errors.append(f"{ref}-{pin}: expected net {expected!r}, got {actual!r}")
+            errors.append(f"{identity}: expected net {expected!r}, got {actual!r}")
     declared_pins = set()
     invariants = 0
     for path, contract in zip(contract_paths, contracts):
@@ -374,7 +386,7 @@ def verify_project_io(cfg: dict) -> int:
                       for r in records if r["status"] != "satisfied")
         for terminal in contract["terminals"].values():
             component = contract["components"][terminal["component"]]
-            declared_pins.update((loc["reference"], terminal["pin"]) for loc in component["locations"])
+            declared_pins.update(f"{loc['reference']}-{terminal['pin']}" for loc in component["locations"])
     if not set(pins) <= declared_pins:
         errors.append(f"io-map pins absent from contracts: {sorted(set(pins) - declared_pins)}")
     if errors:
