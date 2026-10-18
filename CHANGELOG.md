@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-10-18 — Telemetry Pod Document Reconciliation & 12 V Power Source Decision (`FOMEMC-31`)
+
+Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification ([`telemetry-pod/REQUIREMENTS.md`](telemetry-pod/REQUIREMENTS.md), revision 2, 2026-10-18, sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):
+
+- **Owner Decision (`2026-10-18`, verbatim)**:
+  - Power source: **"Harness splice on the relay circuit, own 2 A fuse"**
+  - Travel ranges: **"130 and 70 mm"**
+  - Combined owner choice: **"Harness splice on the relay circuit, own 2 A fuse; 130 and 70 mm"** (`2026-10-18`).
+- **Discrepancy 3 — Pod `+12 V` Tap & Zero Draw from the ECU**:
+  - `J1-27` (`+12V_MR`) is an ECU power input (`D21` `B340A-13-F` Schottky OR into `12V_RAW`), not an ECU output. Both `docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md` now specify that the telemetry pod taps the switched `+12 V` main relay output (`R/Y` circuit that also feeds `J1-27`) on the harness side via its own `2 A` fuse, never draws power from the ECU (`J1-27` or `J1-30` `5V_SENSOR_2`), and regulates its own local `5.00 V ± 1%` (`200 mA`) ratiometric sensor supply (`J1-30` `5V_SENSOR_2` and `J1-31` `SGND` are not connected to the pod).
+- **Discrepancy 5 — Suspension Travel Ranges (`130 mm` Fork / `70 mm` Shock) & `CHASSIS_ECU_GND` (`J1-34`)**:
+  - Corrected the `docs/TELEMETRY_AND_RACECHRONO.md` Section 1 topology diagram (`SUSP` node) and prose from `120 mm` / `65 mm` to **`130 mm` front fork** and **`70 mm` rear shock** (**"130 and 70 mm"**), matching the `0x300` CAN frame table (`0..130.00 mm` and `0..70.00 mm`) and `docs/WIRING_SV650_K7.md` Section 7 with one value per quantity across both documents.
+  - Replaced `PGND` on `J1-34` in `docs/TELEMETRY_AND_RACECHRONO.md` with **`CHASSIS_ECU_GND`** (matching `docs/WIRING_SV650_K7.md` and `io-map.csv`), documenting that the pod grounds to the chassis ground point (`B/W` circuit) shared with the ECU's `CHASSIS_ECU_GND` (`J1-34`).
+- **Discrepancy 4 & Criterion 8 (`POD-AC-8`) Bench Obligation — Lua Ingest of `LeanAngle` (`0x301`)**:
+  - Updated the TunerStudio Lua ingest script in `docs/TELEMETRY_AND_RACECHRONO.md` Section 3.3 (`onCanBrakesAndLean`) to decode `LeanAngle` (`0x301` bytes `4..5`, 1-based Lua offset `5`, `0.01 deg/LSB`, `-65..+65°`) into `Sensor.new("LuaGauge1")` and `PitchAngle` (`0x301` bytes `6..7`, offset `7`, `0.01 deg/LSB`, `-45..+45°`) into `Sensor.new("LuaGauge2")`.
+  - Recorded the bench obligation for Pod Acceptance Criterion 8 (`POD-AC-8`): load the updated TunerStudio Lua script and verify that the deployed ECU firmware supports the Lua sensors and logs `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (front/rear brake pressure), and `AuxLinear3..4` (`130 mm` fork / `70 mm` shock travel) in `.mlg`. No C++ firmware change is included here; built-board acceptance and firmware compatibility remain bench obligations.
+  - Aligned the topology and overview with revision 2's fixed ESP32-S3-WROOM-1, LSM6DSO32, NEO-M9N, 200 Hz travel and 100 Hz IMU CAN rates.
+- **Pinned Planning Document Identities (`2026-10-18` Decision)**:
+  - `docs/TELEMETRY_AND_RACECHRONO.md`: git blob `3dafed620a10f8fba209c2707b8f832eec6f6303`, sha256 `acaeab4504761c5ae1776eff185d1481d52a2637b501c7c29381a57547a41624`.
+  - `docs/WIRING_SV650_K7.md`: git blob `bb0ff8c1a32faef6e7cc8fe1e67538829544b106`, sha256 `52920d87d8bc396aa702f4dd8d7ea96751cfcec7a9ed013575857104c96c03bf` (after merging the 2026-10-18 documentation audit 643245f; the pod section is Section 7).
+  - Downstream `agent-ee` pod `spec-record.json` / requirement-map (`pod-01`, `pod-02`, `pod-44`) must cite the final corrected `FOMEMC-31` commit and these blob identities. Updating that external record remains with the coordinator; it is not verified here.
+
 ## 2026-10-18 — Telemetry pod project
 
 The tail-cowl CAN1 telemetry pod gets its own KiCad project in this repository

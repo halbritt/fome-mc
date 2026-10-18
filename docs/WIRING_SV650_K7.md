@@ -108,14 +108,14 @@ flowchart LR
 | `J1-24` | `WBO_HTR+` | `+12V_MR` | Bosch LSU 4.9 #1 & #2 Pin 4 (`Heater +12V`) | Grey (LSU 4.9 #1 & #2 Pin 4 splice) | 18 AWG |
 | `J1-25` | `WBO2_HTR-` | `WBO2:PB0` | Rear Cyl #2 Bosch LSU 4.9 Pin 3 (`Heater -`) | White (LSU 4.9 #2 Pin 3) | 18 AWG |
 | `J1-26` | `+12V_IGN_SW` | `PC5` (`ADC_15`) | Ignition / Kill Switch Run `+12V` Input (`D20` OR + `R96/R97` Sense) | `O/W` (ECM Pin `D`) | 20 AWG |
-| `J1-27` | `+12V_MR` | `PF11` (`ADC_16`)| Main Relay Switched `+12V` Power Input (`D21` OR -> `12V_RAW`) | `R/Y` (ECM Pins `A` & `B`) | 16 AWG |
+| `J1-27` | `+12V_MR` | `PF11` (`ADC_16`)| Main Relay Switched `+12V` Power Input (`D21` OR -> `12V_RAW`; ECU input — Telemetry Pod splices `R/Y` in harness with own `2 A` fuse) | `R/Y` (ECM Pins `A` & `B`) | 16 AWG |
 | `J1-28` | `+12V_BATT_KEEPALIVE`| — | Unswitched Battery `+12V` Keep-Alive (`U41` `MIC5205` -> `VBAT`) | `O/G` (ECM Pin `H`) | 20 AWG |
 | `J1-29` | `5V_SENSOR_1` | `PF12` (`ADC_17`) + `PF15` (`PG`) | Regulated `+5.00V` Sensor Supply #1 (`U1` `TLS115D0E`) | `R` (ECM Pin `C`: TPS, STPS, MAP1, Ext Baro, GP) | 20 AWG |
-| `J1-30` | `5V_SENSOR_2` | `PF14` (`PG`) | Regulated `+5.00V` Sensor Supply #2 (`U2` `TLS115D0E`) | Aux / Telemetry Pod `+5.00V` | 20 AWG |
+| `J1-30` | `5V_SENSOR_2` | `PF14` (`PG`) | Regulated `+5.00V` Sensor Supply #2 (`U2` `TLS115D0E`) | Aux Harness `+5.00V` Supply (not used by Telemetry Pod; pod regulates its own `5.00V` sensor rail) | 20 AWG |
 | `J1-31` | `SGND` | `VSSA` | Dedicated Analog & Sensor Ground Return | `Br/B` (ECM Pin `9` + Ext Baro GND) | 20 AWG |
 | `J1-32` | `PGND_IGN` | `GND` | Ignition IGBT Emitter Power Ground Return | `B/W` (ECM Pins `p` & `q`) | 16 AWG |
 | `J1-33` | `PGND_HEATER` | `GND` | Wideband Heater & H-Bridge Ground Return | Direct to Battery `-` / Frame Ground | 16 AWG |
-| `J1-34` | `CHASSIS_ECU_GND` | `VSS` | Main ECU Logic Ground Reference | `B/W` (ECM Pin `r`) | 18 AWG |
+| `J1-34` | `CHASSIS_ECU_GND` | `VSS` | Main ECU Logic Ground Reference (shared chassis ground reference with Telemetry Pod) | `B/W` (ECM Pin `r`) | 18 AWG |
 | `J1-35` | `USB_VBUS_DFU` | `PA9` + `BOOT0` | Service USB `VBUS` (`+5V`) / Force DFU (`+12V`) | Service USB Connector Pin 1 (`VBUS`) | 20 AWG |
 
 ---
@@ -207,4 +207,19 @@ Each Bosch LSU 4.9 sensor (`0 258 017 025`) uses a 6-pin connector that mates wi
 2. **Suzuki SV650 K7 Stock 2×34-Pin ECM Connector Notation (`99500-36140-01E`)**:
    - Single-character designations (`1`–`9`, `A`–`Z`, `[`, `\`, `^`, `a`–`r`) in Tables 3.1 and 3.2 follow the factory Suzuki SV650 K7/K8 Service Manual (`99500-36140-01E`) wiring diagram index for the two 34-pin Denso/Sumitomo stock ECM plugs (Connector #1 Gray `1`–`Z`/`[`/`\`/`^`; Connector #2 Black `a`–`r`).
    - **Stock Main Relay vs. `J1-14` (`MAIN_RLY`)**: On a factory SV650 K7 harness, the ignition switch + engine stop switch feed `+12 V` (`O/W`) directly to coils/injectors and ECM Pin `D`. In a plug-and-play adapter harness, tie `J1-26` (`+12V_IGN_SW`) and `J1-27` (`+12V_MR`) together to the switched `O/W` (`+12 V`) bus (leaving `J1-14` `MAIN_RLY` unused), or wire an external 30 A automotive relay whose coil `-` is held by `J1-14` (`MAIN_RLY`, `PE0` + `D209` `B340A-13-F`) and whose switched `+12 V` contact feeds `J1-24` and `J1-27`.
+
+---
+
+## 7. Tail-Cowl `CAN1` Telemetry Pod Harness Tap & Sensor Ranges (`FOMEMC-31`)
+
+Source: [telemetry-pod/REQUIREMENTS.md](../telemetry-pod/REQUIREMENTS.md), revision 2 (2026-10-18), sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`.
+
+Per the **2026-10-18 owner decision** (`FOMEMC-31` / `pod-45`: power source **"Harness splice on the relay circuit, own 2 A fuse"**; travel ranges **"130 and 70 mm"**; combined choice **"Harness splice on the relay circuit, own 2 A fuse; 130 and 70 mm"**), the tail-cowl telemetry pod connects to the vehicle harness as follows and **never draws power from the ECU** (`J1-27` or `J1-30`):
+
+| Telemetry Pod Function | `fome-mc` / Harness Connection | Wire Color & Gauge | Specification & Notes |
+| :--- | :--- | :--- | :--- |
+| **`CAN1_H` / `CAN1_L`** | `J2-28` (`CAN1_H`), `J2-29` (`CAN1_L`) | White / Blue (`20–22 AWG` twisted pair, `30–40 twists/m`) | `500 kbps` ISO 11898-2; `120 Ω` far-end termination on the pod (`R9 = 120 Ω` on `fome-mc` at the ECU end) |
+| **Switched `+12 V` Power In** | **"Harness splice on the relay circuit, own 2 A fuse"** (splices `R/Y` main relay circuit that also feeds `J1-27` `+12V_MR`) | Red/Yellow (`20 AWG`) via dedicated `2 A` inline fuse | `J1-27` is an ECU power input (`D21` `B340A-13-F` OR into `12V_RAW`); the pod taps the harness `R/Y` relay output directly and never draws from the ECU |
+| **Power & Logic Ground** | Chassis ground point shared with `J1-34` (`CHASSIS_ECU_GND`) | Black/White (`20 AWG`) | Grounds to chassis with the ECU (`J1-34` is `CHASSIS_ECU_GND`) |
+| **Pod Sensor Supply (`+5.00 V`)** | Local pod `5.00 V ± 1%` (`200 mA`) regulator (`J1-30` `5V_SENSOR_2` & `J1-31` `SGND` **not used**) | Pod-local sensor sub-harness | Ratiometric `5.00 V` supply & return for the 4 external analog sensors: **130 mm** front fork pot (`0–130 mm`), **70 mm** rear shock pot (`0–70 mm`), and `0–100 bar` (`0.5–4.5 V`) front/rear brake pressure transducers |
 
