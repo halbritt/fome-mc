@@ -1,0 +1,42 @@
+spec_sha256: 09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493
+spec_record_sha256: 58f07c5ab3206aad70fc31561d873200d18ff9145b97cc0b1570c465a84fd250 (agent-ee ffa8c85)
+io_map_sha256: da0b40e76ea1f584c41480cc41d8353978931802b64a0b84923d87f9306cd98c
+POD-IF-CAN1: AMPSEAL-1, AMPSEAL-2
+POD-IF-BLUETOOTH-LE: BLE-RADIO
+POD-IF-POWER-IN: AMPSEAL-3, AMPSEAL-4
+POD-IF-SENSOR-SUPPLY: AMPSEAL-5, AMPSEAL-7, AMPSEAL-8, AMPSEAL-10, AMPSEAL-11, AMPSEAL-13, AMPSEAL-14, AMPSEAL-16
+POD-IF-ANALOG-INPUTS: AMPSEAL-6, AMPSEAL-9, AMPSEAL-12, AMPSEAL-15
+POD-IF-GNSS-ANTENNA: GNSS-SMA-CENTER, GNSS-SMA-SHIELD
+POD-IF-PROGRAMMING-AND-DEBUG: BLE-RADIO, DEBUG-UART-TX, DEBUG-UART-RX, DEBUG-UART-RETURN
+POD-IF-HARNESS-CONNECTOR: AMPSEAL-1, AMPSEAL-2, AMPSEAL-3, AMPSEAL-4, AMPSEAL-5, AMPSEAL-6, AMPSEAL-7, AMPSEAL-8, AMPSEAL-9, AMPSEAL-10, AMPSEAL-11, AMPSEAL-12, AMPSEAL-13, AMPSEAL-14, AMPSEAL-15, AMPSEAL-16, AMPSEAL-17, AMPSEAL-18, AMPSEAL-19, AMPSEAL-20, AMPSEAL-21, AMPSEAL-22, AMPSEAL-23
+TBD: AMPSEAL-1 / MCU_Ref: TBD
+TBD: AMPSEAL-1 / MCU_Pin: TBD
+TBD: AMPSEAL-1 / Notes: POD-IF-CAN1; ISO 11898-2 classic CAN 2.0B at 500 kbit/s; pod far-end 120 ohm termination and ESD protection; TJA1051T/3 VCC 5 V and VIO 3.3 V; TWAI RX/TX GPIOs TBD; TX 0x174/0x178/0x17C at 100 Hz; 0x300 at 200 Hz; 0x301 at 100 Hz; 0x302 at 25 Hz; RX 0x200..0x207; frame layouts: docs/TELEMETRY_AND_RACECHRONO.md blob 3dafed620a10f8fba209c2707b8f832eec6f6303 sections 2-3; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: AMPSEAL-2 / MCU_Ref: TBD
+TBD: AMPSEAL-2 / MCU_Pin: TBD
+TBD: AMPSEAL-2 / Notes: POD-IF-CAN1; ISO 11898-2 classic CAN 2.0B at 500 kbit/s; pod far-end 120 ohm termination and ESD protection; TJA1051T/3 VCC 5 V and VIO 3.3 V; TWAI RX/TX GPIOs TBD; TX 0x174/0x178/0x17C at 100 Hz; 0x300 at 200 Hz; 0x301 at 100 Hz; 0x302 at 25 Hz; RX 0x200..0x207; frame layouts: docs/TELEMETRY_AND_RACECHRONO.md blob 3dafed620a10f8fba209c2707b8f832eec6f6303 sections 2-3; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: AMPSEAL-6 / MCU_Ref: TBD
+TBD: AMPSEAL-6 / MCU_Pin: TBD
+TBD: AMPSEAL-6 / Notes: POD-IF-ANALOG-INPUTS; POD-FN-FRONT-FORK-TRAVEL; MCP3204 SPI ADC on 3.3 V; input divided by two and reference divided by two from POD_5V_SENSOR at connector; ratiometric; ADC channel and MCU SPI pins TBD; publication rate per REQUIREMENTS.md Function table; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: AMPSEAL-9 / MCU_Ref: TBD
+TBD: AMPSEAL-9 / MCU_Pin: TBD
+TBD: AMPSEAL-9 / Notes: POD-IF-ANALOG-INPUTS; POD-FN-REAR-SHOCK-TRAVEL; MCP3204 SPI ADC on 3.3 V; input divided by two and reference divided by two from POD_5V_SENSOR at connector; ratiometric; ADC channel and MCU SPI pins TBD; publication rate per REQUIREMENTS.md Function table; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: AMPSEAL-12 / MCU_Ref: TBD
+TBD: AMPSEAL-12 / MCU_Pin: TBD
+TBD: AMPSEAL-12 / Notes: POD-IF-ANALOG-INPUTS; POD-FN-FRONT-AND-REAR-BRAKE-PRESSURE; MCP3204 SPI ADC on 3.3 V; input divided by two and reference divided by two from POD_5V_SENSOR at connector; ratiometric; ADC channel and MCU SPI pins TBD; publication rate per REQUIREMENTS.md Function table; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: AMPSEAL-15 / MCU_Ref: TBD
+TBD: AMPSEAL-15 / MCU_Pin: TBD
+TBD: AMPSEAL-15 / Notes: POD-IF-ANALOG-INPUTS; POD-FN-FRONT-AND-REAR-BRAKE-PRESSURE; MCP3204 SPI ADC on 3.3 V; input divided by two and reference divided by two from POD_5V_SENSOR at connector; ratiometric; ADC channel and MCU SPI pins TBD; publication rate per REQUIREMENTS.md Function table; POD-IF-HARNESS-CONNECTOR; TE 776228-1; proposed cavity allocation; reconcile with generated schematic
+TBD: BLE-RADIO / MCU_Ref: TBD
+TBD: GNSS-SMA-CENTER / Voltage_Current_Domain: GNSS RF with active-antenna DC bias TBD
+TBD: GNSS-SMA-CENTER / Notes: POD-IF-GNSS-ANTENNA; POD-CD-GNSS; NEO-M9N receiver; SMA fixed by component decision; connector reference and bias implementation TBD; not connected to MCU GPIO
+TBD: GNSS-SMA-SHIELD / Notes: POD-IF-GNSS-ANTENNA; SMA shield return; connector reference TBD
+TBD: DEBUG-UART-TX / MCU_Ref: TBD
+TBD: DEBUG-UART-TX / MCU_Pin: TBD
+TBD: DEBUG-UART-TX / Notes: POD-IF-PROGRAMMING-AND-DEBUG; direction relative to pod; firmware load and serial console before sealing; pad reference and MCU pin TBD; no external USB; boot-entry implementation left to generator
+TBD: DEBUG-UART-RX / MCU_Ref: TBD
+TBD: DEBUG-UART-RX / MCU_Pin: TBD
+TBD: DEBUG-UART-RX / Notes: POD-IF-PROGRAMMING-AND-DEBUG; direction relative to pod; firmware load and serial console before sealing; pad reference and MCU pin TBD; no external USB; boot-entry implementation left to generator
+TBD: DEBUG-UART-RETURN / Notes: POD-IF-PROGRAMMING-AND-DEBUG; factory access before sealing; pad reference TBD
+PASS: 29 regular CSV rows; 23 cavities (16 used / 7 no-connect); 8/8 interface IDs mapped
+NOT_EVALUATED: generated schematic/netlist agreement and AGENTEE-188 io_map compilation
