@@ -200,6 +200,8 @@ Each Bosch LSU 4.9 sensor (`0 258 017 025`) uses a 6-pin connector that mates wi
 
 ## 6. Tail-Cowl `CAN1` Telemetry Pod Harness Tap & Sensor Ranges (`FOMEMC-31`)
 
+Source: [telemetry-pod/REQUIREMENTS.md](../telemetry-pod/REQUIREMENTS.md), revision 2 (2026-10-18), sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`.
+
 Per the **2026-10-18 owner decision** (`FOMEMC-31` / `pod-45`: power source **"Harness splice on the relay circuit, own 2 A fuse"**; travel ranges **"130 and 70 mm"**; combined choice **"Harness splice on the relay circuit, own 2 A fuse; 130 and 70 mm"**), the tail-cowl telemetry pod connects to the vehicle harness as follows and **never draws power from the ECU** (`J1-27` or `J1-30`):
 
 | Telemetry Pod Function | `fome-mc` / Harness Connection | Wire Color & Gauge | Specification & Notes |

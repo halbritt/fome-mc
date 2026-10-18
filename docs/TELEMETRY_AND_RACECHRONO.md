@@ -1,9 +1,11 @@
 # CAN1 Motorsport Telemetry Pod, RaceChrono Pro & Action Camera Integration (`fome-mc`)
 
+The pod requirements are fixed by [telemetry-pod/REQUIREMENTS.md](../telemetry-pod/REQUIREMENTS.md), revision 2 (2026-10-18), sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`.
+
 This guide defines the bidirectional **`CAN1` (`J2-28` / `J2-29`, 500 kbps)** motorsport telemetry architecture for **`fome-mc`** on a 2007 Suzuki SV650 (K7), linking:
 
 1. **`fome-mc` ECU (`CAN1` Bus 0)** — broadcasts `FOME_CAN_verbose.dbc` (`0x200..0x207`) at **50 Hz (`20 ms`)** and records full-rate **100–500 Hz** `.mlg` logs to the onboard 4 GB soldered SDNAND (`U25`).
-2. **Tail-Cowl Chassis Telemetry Pod (`CAN1` Node)** — samples a 6-axis MEMS IMU (`AccelLat`, `AccelLon`, `AccelVert`, `YawRate`, `RollRate`, `LeanAngle`), a **25 Hz** multi-constellation GNSS receiver (u-blox M9N / M10S), **200–500 Hz** front fork (`130 mm`) & rear shock (`70 mm`) linear potentiometers, and **100 Hz** front & rear hydraulic brake pressure transducers (`0–100 bar`), publishing them onto `CAN1` for both the ECU (`.mlg` SD logging) and **RaceChrono Pro** (via BLE CAN-Bus + BLE GPS).
+2. **Tail-Cowl Chassis Telemetry Pod (`CAN1` Node)** — samples a 6-axis MEMS IMU (`AccelLat`, `AccelLon`, `AccelVert`, `YawRate`, `RollRate`, `LeanAngle`), a **25 Hz** multi-constellation GNSS receiver (u-blox NEO-M9N), **200 Hz** front fork (`130 mm`) & rear shock (`70 mm`) linear potentiometers, and **100 Hz** front & rear hydraulic brake pressure transducers (`0–100 bar`), publishing them onto `CAN1` for both the ECU (`.mlg` SD logging) and **RaceChrono Pro** (via BLE CAN-Bus + BLE GPS).
 3. **RaceChrono Pro & Action Cameras (GoPro / Insta360)** — synchronizes 25 Hz GPS lap timing, 50–100 Hz ECU + chassis CAN channels, and high-frame-rate onboard video overlays.
 
 ---
@@ -23,9 +25,9 @@ flowchart LR
     H7 --- U4
   end
 
-  subgraph POD["Tail-Cowl Telemetry Pod (ESP32-S3 / STM32G4 + TJA1051T/3)"]
+  subgraph POD["Tail-Cowl Telemetry Pod (ESP32-S3-WROOM-1 + TJA1051T/3)"]
     MCU["Telemetry MCU<br/>+ BLE 5.0 Peripheral<br/>+ 120 Ω Far-End Term"]
-    IMU["6-Axis IMU (LSM6DSO32 / BMI270)<br/>200 Hz Accel + Gyro + Lean"]
+    IMU["6-Axis IMU (LSM6DSO32)<br/>100 Hz CAN Accel + Gyro + Lean"]
     GPS["25 Hz GNSS (u-blox NEO-M9N)"]
     SUSP["Front Fork (130 mm) & Rear Shock (70 mm)<br/>Linear Pots (12-bit ADC @ 200 Hz)"]
     BRK["Front & Rear Brake Pressure<br/>0–100 bar 0.5–4.5 V (@ 100 Hz)"]
@@ -178,7 +180,7 @@ canRxAdd(1, 0x301, onCanBrakesAndLean)
 function onTick() end
 ```
 
-> **Bench Verification Obligation (Pod Acceptance Criterion 8 / `POD-AC-8`, `FOMEMC-31`)**: `fome-fw` already registers `SensorType::LuaGauge1..8` unconditionally in `firmware/init/sensor/init_aux.cpp` (`luaGauges[]`) and writes them to `engine->outputChannels.luaGauges[0..7]` in `firmware/console/status_loop.cpp` for `.mlg` SDNAND logging, so **no C++ firmware modification is required**. To satisfy bench Acceptance Criterion 8 (*"On a bench CAN bus with the ECU, the frames 0x174, 0x178, 0x17C, 0x300, 0x301 and 0x302 appear at their stated rates within 5 %, and the ECU logs lean angle, brake pressure and suspension travel in its .mlg file"*), the bench test procedure must load the updated TunerStudio Lua script above (including the `sLeanAngle = Sensor.new("LuaGauge1")` decode of `0x301` bytes `4..5` at 1-based Lua offset `5` and `sPitchAngle = Sensor.new("LuaGauge2")` at offset `7`, added in `FOMEMC-31`) so `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (`FrontBrakePress`, `RearBrakePress`), and `AuxLinear3..4` (`130 mm` `FrontForkTravel`, `70 mm` `RearShockTravel`) are recorded in the `.mlg` file alongside the native `IMU_MM5_10` channels (`0x174`, `0x178`, `0x17C`).
+> **Bench verification obligation (pod acceptance criterion 8 / `POD-AC-8`, `FOMEMC-31`)**: Load the updated Lua script above on the bench ECU. The `FOMEMC-31` Lua change decodes `0x301` bytes `4..5` into `LuaGauge1` (`LeanAngle`, 1-based offset `5`) and bytes `6..7` into `LuaGauge2` (`PitchAngle`, offset `7`). No C++ firmware change is included in this repository. Verify that the deployed firmware supports these Lua sensors and records lean angle, brake pressure (`AuxLinear1..2`) and suspension travel (`AuxLinear3..4`, 130 mm fork / 70 mm shock) in the ECU's `.mlg` file. Also measure all six required CAN frame rates within 5% of the rates in [revision 2, acceptance criterion 8](../telemetry-pod/REQUIREMENTS.md#acceptance-criteria). This document change does not satisfy the built-board bench criterion.
 
 ---
 

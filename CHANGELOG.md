@@ -2,7 +2,7 @@
 
 ## 2026-10-18 — Telemetry Pod Document Reconciliation & 12 V Power Source Decision (`FOMEMC-31`)
 
-Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification (*"Telemetry pod requirements"*, 2026-10-17, @Heath, sha256 `c5128ef9391e2114e7a399b352a957472ad26b93ca76e3179cc04b2b51194572`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):
+Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification ([`telemetry-pod/REQUIREMENTS.md`](telemetry-pod/REQUIREMENTS.md), revision 2, 2026-10-18, sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):
 
 - **Owner Decision (`2026-10-18`, verbatim)**:
   - Power source: **"Harness splice on the relay circuit, own 2 A fuse"**
@@ -15,11 +15,12 @@ Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEME
   - Replaced `PGND` on `J1-34` in `docs/TELEMETRY_AND_RACECHRONO.md` with **`CHASSIS_ECU_GND`** (matching `docs/WIRING_SV650_K7.md` and `io-map.csv`), documenting that the pod grounds to the chassis ground point (`B/W` circuit) shared with the ECU's `CHASSIS_ECU_GND` (`J1-34`).
 - **Discrepancy 4 & Criterion 8 (`POD-AC-8`) Bench Obligation — Lua Ingest of `LeanAngle` (`0x301`)**:
   - Updated the TunerStudio Lua ingest script in `docs/TELEMETRY_AND_RACECHRONO.md` Section 3.3 (`onCanBrakesAndLean`) to decode `LeanAngle` (`0x301` bytes `4..5`, 1-based Lua offset `5`, `0.01 deg/LSB`, `-65..+65°`) into `Sensor.new("LuaGauge1")` and `PitchAngle` (`0x301` bytes `6..7`, offset `7`, `0.01 deg/LSB`, `-45..+45°`) into `Sensor.new("LuaGauge2")`.
-  - Recorded the bench obligation for Pod Acceptance Criterion 8 (`POD-AC-8`): because `fome-fw` already registers `SensorType::LuaGauge1..8` in `firmware/init/sensor/init_aux.cpp` and writes `engine->outputChannels.luaGauges[0..7]` to `.mlg` in `firmware/console/status_loop.cpp`, **no C++ firmware change is required**; bench verification of Criterion 8 requires loading this updated TunerStudio Lua script so `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (front/rear brake pressure), and `AuxLinear3..4` (`130 mm` fork / `70 mm` shock travel) are logged in the ECU's `.mlg` file.
+  - Recorded the bench obligation for Pod Acceptance Criterion 8 (`POD-AC-8`): load the updated TunerStudio Lua script and verify that the deployed ECU firmware supports the Lua sensors and logs `LuaGauge1` (`LeanAngle`), `AuxLinear1..2` (front/rear brake pressure), and `AuxLinear3..4` (`130 mm` fork / `70 mm` shock travel) in `.mlg`. No C++ firmware change is included here; built-board acceptance and firmware compatibility remain bench obligations.
+  - Aligned the topology and overview with revision 2's fixed ESP32-S3-WROOM-1, LSM6DSO32, NEO-M9N, 200 Hz travel and 100 Hz IMU CAN rates.
 - **Pinned Planning Document Identities (`2026-10-18` Decision)**:
-  - `docs/TELEMETRY_AND_RACECHRONO.md`: git blob `3c8de44bd42ab8a116ad651593ef63e44debb08f`, sha256 `fc78e1f3b88f77bd7abe2220642a0c9b513e95a8dbe42483f9ebe70088fc1125`.
-  - `docs/WIRING_SV650_K7.md`: git blob `83d1f60f9e77c2f38649bb2009336f2c23e77b0c`, sha256 `6f273c46c755af967af1ddd97a1f59fd7638c3a2e24a03bcecbf5559e3d3d690`.
-  - Downstream `agent-ee` pod `spec-record.json` / requirement-map (`pod-01`, `pod-02`, `pod-44`) cite the `FOMEMC-31` commit and these blob identities.
+  - `docs/TELEMETRY_AND_RACECHRONO.md`: git blob `3dafed620a10f8fba209c2707b8f832eec6f6303`, sha256 `acaeab4504761c5ae1776eff185d1481d52a2637b501c7c29381a57547a41624`.
+  - `docs/WIRING_SV650_K7.md`: git blob `83663dad4e22feb6340731f570f403f2ae8e3a71`, sha256 `961dca081c020d6b30c6f75c0088b8dca849e99ac7b171a7c05b0df7a7b7c600`.
+  - Downstream `agent-ee` pod `spec-record.json` / requirement-map (`pod-01`, `pod-02`, `pod-44`) must cite the final corrected `FOMEMC-31` commit and these blob identities. Updating that external record remains with the coordinator; it is not verified here.
 
 ## 2026-10-18 — Telemetry pod project
 
