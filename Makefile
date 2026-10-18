@@ -12,7 +12,7 @@
 #   make route-canary [BACKEND=all] | route-corpus-list | route-corpus-check [NAME=entry]
 #   make route-corpus-add BACKEND=krt|freerouting [NAME=<PROJECT>] [BUDGET=300] [ARGS='...'] | route-update | route-smoke
 #
-# PROJECT=fome-mc|universal-112|fixture (see toolchain/versions.toml; route targets take
+# PROJECT=fome-mc|telemetry-pod|universal-112|fixture (see toolchain/versions.toml; route targets take
 #         its dir, board, schematic and library_dirs from there)
 # FILL=asis|refill  (asis: use the saved zone fill; refill: refill+save the snapshot first)
 # REV=<git rev>     snapshot a committed revision instead of the working tree

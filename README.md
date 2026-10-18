@@ -201,6 +201,7 @@ fome-mc/
 │   ├── render_docs.py               # Regenerates all schematic SVGs/PDF, PCB renders, floorplan & pinout diagrams
 │   ├── export_bom_cpl.py            # Generates and validates export/BOM-fome-mc.csv and export/CPL-fome-mc.csv (FOMEMC-24)
 │   └── generate_fab_package.py      # Generates and verifies export/gerbers/ and reports/toolchain/fab-manifest.json (FOMEMC-21)
+├── telemetry-pod/                   # CAN1 telemetry pod KiCad project skeleton (placeholders until agent-ee generates it; FOMEMC-28)
 └── toolchain/                       # Automated KiCad 10 ERC, DRC, netlist parity, Gerber & DFM check suite
 ```
 
