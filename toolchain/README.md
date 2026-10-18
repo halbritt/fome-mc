@@ -62,6 +62,10 @@ revision via `git archive` instead of the working tree; the run is labelled
 | `export` | DRC first, then `kicad-cli sch export pdf/svg/bom`, `kicad-cli pcb export pdf`, and `kibot -A -c toolchain/kibot/export.kibot.yaml` (Gerbers + job file, Excellon + report + map, positions, BOM CSV/HTML, schematic PDF, PCB print PDF) |
 | `analyze` | kicad-happy `analyze_schematic.py` → `analyze_pcb.py --full --schematic schematic.json` → `cross_analysis.py` → `simulate_subcircuits.py --simulator ngspice` |
 | `check` | all five steps on one snapshot |
+| `renders` | `python3 scripts/render_docs.py` (regenerate 16 schematic SVGs/PDFs + 14 PCB SVGs/PDFs + composite renders) |
+| `verify-io` | `python3 scripts/verify_io_map.py` (audit 70 connector pins, 22 internal buses, netlist, firmware YAML, and 15 `contracts/*.interface.json`) |
+| `fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py` (normalize Gerbers/drills, verify BOM/CPL parity, emit `reports/toolchain/fab-manifest.json`) |
+| `verify-fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --verify-only` (verify `fab-manifest.json` SHA-256 parity and zero-diff reproducibility) |
 | `simulate DECK=… [EXPECT=…]` | ngspice via a generated control script (below) |
 | `smoke` | `pytest toolchain/tests` |
 | `baseline` | `check` on the committed HEAD of fome-mc and universal-112, plus fome-mc's working tree (`fome-mc-worktree`); publishes reports |
@@ -211,7 +215,7 @@ the upstream MIT `LICENSE` and `UPSTREAM.json` provenance. Scripts and reference
 Upstream's `emc`, `bom` and distributor/sourcing skills are deliberately not exposed.
 
 Verified 2026-10-16 from the repo root: `opencode debug skill`, `codex debug
-prompt-input`, `agy -p` and `claude -p` each list all four skills.
+prompt-input`, `agy -p` and `claude -p` each list all five repo skills.
 
 To move kicad-happy: change `[upstream.kicad-happy]` in `versions.toml`, run
 `make bootstrap` (checks out the commit and regenerates the skills), review the diff of
@@ -219,9 +223,10 @@ To move kicad-happy: change `[upstream.kicad-happy]` in `versions.toml`, run
 
 ## Known limitations
 
-- The real designs are KiCad 7/8 (fome-mc) and KiCad 9 (universal-112) files checked
-  with KiCad 10.0.7. Only snapshots are touched; `FILL=refill` saves the snapshot board
-  in KiCad 10 format, never the source.
+- `fome-mc` schematics are KiCad 7/8 (`20211123`/`20230121`) and `fome-mc.kicad_pcb` is
+  KiCad 10 (`20260206`); `universal-112` is KiCad 9, all checked with KiCad 10.0.7. Only
+  snapshots are touched; `FILL=refill` saves the snapshot board in KiCad 10 format, never
+  the source.
 - KiBot logs `ERROR: Unable to expand REFERENCE in ${REFERENCE}` on boards whose stock
   footprints carry `${REFERENCE}` fab text (KiBot's `non_critical_error`; KiCad expands
   it when plotting). It is listed under `kibot_diagnostics.known_non_critical` and does

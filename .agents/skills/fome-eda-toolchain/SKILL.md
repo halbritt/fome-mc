@@ -34,6 +34,10 @@ Full documentation: `toolchain/README.md`.
 | `make export` | DRC, then schematic PDF/SVG, PCB PDF, BOM CSV and the KiBot bundle from the same board |
 | `make analyze` | kicad-happy schematic → PCB (`--schematic` cross-reference) → cross-analysis → SPICE |
 | `make check` | All of the above in one snapshot |
+| `make renders` | Regenerate 2D schematic/PCB SVGs, PDFs and composite renders (`scripts/render_docs.py`) |
+| `make verify-io` | Verify `io-map.csv`, netlist, firmware pins/YAML, `SHEET_CONTRACTS.md` and `contracts/*.interface.json` (`scripts/verify_io_map.py`) |
+| `make fab-package [REV=HEAD]` | Normalize Gerbers/drills, verify BOM/CPL parity, write `reports/toolchain/fab-manifest.json` (`scripts/generate_fab_package.py`) |
+| `make verify-fab-package [REV=HEAD]` | Verify `reports/toolchain/fab-manifest.json` SHA-256 parity and zero-diff reproducibility |
 | `make simulate DECK=path.cir [EXPECT=path.json]` | ngspice run with `.meas` validation |
 | `make smoke` | Toolchain integration tests on the RC fixture |
 | `make baseline` | Read-only run on committed fome-mc and Universal-112 (+ fome-mc working tree); publishes `reports/toolchain/baseline/` |

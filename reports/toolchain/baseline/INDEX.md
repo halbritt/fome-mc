@@ -11,3 +11,4 @@ findings are listed separately and are baseline facts, not setup failures.
 
 Working-tree runs are published without analyzer JSON and PDFs; the full run
 stays under `build/runs/project/<label>/`. Re-run with `make baseline`.
+*(Note: The `36db604471` snapshot above preserves the historical pre-`FOMEMC-1..27` baseline before routing and schematic/PCB remediation; for the current `HEAD` release verification see `docs/VALIDATION.md`, `reports/toolchain/fab-manifest.json`, and `reports/toolchain/bom-cpl-parity.json`.)*

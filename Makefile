@@ -2,6 +2,7 @@
 # see toolchain/README.md. Every check runs on a snapshot under build/runs/.
 #
 #   make bootstrap | doctor | erc | drc | netlist | export | analyze | check
+#   make renders | verify-io | fab-package [REV=HEAD] | verify-fab-package [REV=HEAD]
 #   make simulate DECK=path.cir [EXPECT=path.expect.json]
 #   make smoke | baseline
 #   make route-doctor | route BACKEND=krt|freerouting [BUDGET=300] [ARGS='...']   (kicad-route)

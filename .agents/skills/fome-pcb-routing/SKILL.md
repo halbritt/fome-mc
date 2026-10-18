@@ -72,6 +72,6 @@ The full table is in `toolchain/ROUTING.md`.
 - **New F.Cu tracks starve GND thermal spokes.** That's a design call (stitching vias);
   never lower `min_resolved_spokes`.
 - **Freerouting was not competitive within 20 minutes on this board.**
-- **Open follow-ups from the FOMEMC-10 audit:** FOMEMC-11 (24 single-spoke GND
-  thermals; restore `min_resolved_spokes` 2) and FOMEMC-12 (teardrops, 0.127 mm
-  tracks, 0.45/0.2 mm vias).
+- **Resolved follow-ups (`FOMEMC-11`, `FOMEMC-12`, `FOMEMC-16..27`):** All 24 single-spoke
+  GND thermals (`min_resolved_spokes: 2`), teardrops/track widths/via sizes, and DRC/parity
+  findings are now resolved on `HEAD` (`0` DRC errors, `0` warnings, `0` unconnected).

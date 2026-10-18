@@ -78,9 +78,8 @@ they are counted as pre-existing. All nets in scope unless noted, `--protect exi
 | `trial-krt-hardfirst` (the 16 nets first, on the original input) | 11 of 16 routed in 160 s; 2 new `starved_thermal` | routing order matters: the nets that fail last route when the board is still open |
 | `trial-krt-hardfirst-rest` (`--dir` that candidate, all nets, 1086 s) | **INCOMPLETE 20 on 14 nets** (`+3V3` and `GND` among them); graded against the original input with `validate --against`: 10 new warnings (9 `starved_thermal` on GND pads of small passives on F.Cu, 1 `track_dangling` of 0.026 mm on `+3V3_WBO1`), 10 input violations resolved, every preservation check PASS | best result so far. KRT reports 18 vias at 0.599 mm where the class asks 0.5994 mm ("last-resort via-in-pad", 0.4 µm under); KiCad DRC raises nothing and `new_copper_netclass_geometry` accepts it inside its 1 µm quantisation tolerance |
 
-No real-board candidate is adoptable as delivered; every verdict comes from KiCad
-against the board's own rules. Best: `trial-krt-hardfirst-rest`. Next actions, without
-weakening any requirement:
+No real-board candidate from the 2026-10-17 autorouter trials was adopted directly; every verdict comes from KiCad
+against the board's own rules. Best autorouter trial: `trial-krt-hardfirst-rest`. Lessons from those trials:
 
 - Open nets: continuing from `trial-krt-hardfirst-rest` with only its 12 open signal
   nets would fail the same way `trial-krt-continue` did. Route them first instead (the
@@ -91,9 +90,14 @@ weakening any requirement:
 - The plane nets need a plan: KRT's plane finalize is the step that ran away. Try it
   alone on the KRT candidate with a longer budget, or route `GND`/`+3V3`/`+5V` taps by
   hand.
-- The input itself carries 228 violations and 382 parity issues (footprint/library
-  mismatches, shorting items, clearance); fixing those in the design is outside routing
-  but limits every backend.
+- The 2026-10-17 trial input (`e763e31`) carried 228 violations and 382 parity issues
+  (footprint/library mismatches, shorting items, clearance); fixing those in the design is
+  outside routing but limits every backend.
 - Freerouting is not competitive on this partly routed board within 20 minutes; revisit
   after the parity and clearance findings in the input are resolved, or for a fresh
   layout.
+- **Current `HEAD` Status (`FOMEMC-10..27`)**: All 235 open nets, 24 single-spoke thermals
+  (`FOMEMC-11`), teardrop/track/via geometry (`FOMEMC-12`), and footprint/silkscreen/parity
+  findings (`FOMEMC-16..27`) were subsequently resolved in `fome-mc.kicad_pcb` (`514`
+  footprints, `0` ERC violations, `0` DRC errors, `0` DRC warnings, `0` unconnected nets,
+  `0` schematic-parity mismatches with unrelaxed `fome-mc.kicad_pro` rules).

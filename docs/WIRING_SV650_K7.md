@@ -110,7 +110,7 @@ flowchart LR
 | `J1-26` | `+12V_IGN_SW` | `PC5` (`ADC_15`) | Ignition / Kill Switch Run `+12V` Input (`D20` OR + `R96/R97` Sense) | `O/W` (ECM Pin `D`) | 20 AWG |
 | `J1-27` | `+12V_MR` | `PF11` (`ADC_16`)| Main Relay Switched `+12V` Power Input (`D21` OR -> `12V_RAW`) | `R/Y` (ECM Pins `A` & `B`) | 16 AWG |
 | `J1-28` | `+12V_BATT_KEEPALIVE`| — | Unswitched Battery `+12V` Keep-Alive (`U41` `MIC5205` -> `VBAT`) | `O/G` (ECM Pin `H`) | 20 AWG |
-| `J1-29` | `5V_SENSOR_1` | `PA6` (`ADC_17`) | Regulated `+5.00V` Sensor Supply #1 (`U1` `TLS115D0E`) | `R` (ECM Pin `C`: TPS, STPS, MAP1, Ext Baro, GP) | 20 AWG |
+| `J1-29` | `5V_SENSOR_1` | `PF12` (`ADC_17`) + `PF15` (`PG`) | Regulated `+5.00V` Sensor Supply #1 (`U1` `TLS115D0E`) | `R` (ECM Pin `C`: TPS, STPS, MAP1, Ext Baro, GP) | 20 AWG |
 | `J1-30` | `5V_SENSOR_2` | `PF14` (`PG`) | Regulated `+5.00V` Sensor Supply #2 (`U2` `TLS115D0E`) | Aux / Telemetry Pod `+5.00V` | 20 AWG |
 | `J1-31` | `SGND` | `VSSA` | Dedicated Analog & Sensor Ground Return | `Br/B` (ECM Pin `9` + Ext Baro GND) | 20 AWG |
 | `J1-32` | `PGND_IGN` | `GND` | Ignition IGBT Emitter Power Ground Return | `B/W` (ECM Pins `p` & `q`) | 16 AWG |
@@ -138,7 +138,7 @@ flowchart LR
 | `J2-12` | `VR1-` | — | Crankshaft Position Sensor `CKP-` Return | `Bl` (ECM Pin `8`) | 20 AWG (Twisted) |
 | `J2-13` | `VR2+` | `PE15` | Secondary / Cam VR+ (Unused on camless K7) | Plug with `770678-1` on stock K7 | — |
 | `J2-14` | `VR2-` | — | Secondary / Cam VR- (Unused on camless K7) | Plug with `770678-1` on stock K7 | — |
-| `J2-15` | `HALL1_CAM` | `PG1` | Aux Hall Input 1 (4.7 kΩ pull-up) | Plug with `770678-1` on stock K7 | — |
+| `J2-15` | `HALL1_CAM` | `PG1` | Aux Hall Input 1 (2.7 kΩ pull-up `R24`) | Plug with `770678-1` on stock K7 | — |
 | `J2-16` | `HALL2_VSS` | `PG0` | Vehicle Speed Sensor (`VSS` 3-Wire Hall) | `P` (ECM Pin `K`) | 20 AWG |
 | `J2-17` | `DIN1_CLUTCH` | `PE11` | Clutch Lever Switch (Active-Low to GND) | `Y/G` (ECM Pin `M`) | 20 AWG |
 | `J2-18` | `DIN2_NEUTRAL` | `PE10` | Neutral / Sidestand Switch (Active-Low to GND) | `Bl` (ECM Pin `N`) | 20 AWG |
@@ -150,7 +150,7 @@ flowchart LR
 | `J2-24` | `IGN2_LOG` | `PG11` | 5 V Push-Pull Smart Coil 2 Trigger | Optional Smart Coil 2 | 20 AWG |
 | `J2-25` | `IGN3_LOG` | `PG10` | 5 V Push-Pull Smart Coil 3 Trigger | Optional Smart Coil 3 | 20 AWG |
 | `J2-26` | `IGN4_LOG` | `PG9` | 5 V Push-Pull Smart Coil 4 Trigger | Optional Smart Coil 4 | 20 AWG |
-| `J2-27` | `DASH_TECH` | `PB9` | SV650 K7 7800-Baud Dash Serial (2.2 kΩ `+12V_MR`) | `B/G` (ECM Pin `U`) | 20 AWG |
+| `J2-27` | `DASH_TECH` | `PB9` | SV650 K7 7800-Baud Dash Serial (Open-drain low-side; pulled up in K7 cluster) | `B/G` (ECM Pin `U`) | 20 AWG |
 | `J2-28` | `CAN1_H` | `PD0/PD1` | External `CAN1_H` (500 kbps, `120 Ω`, 50 Hz `0x200..0x207` TX + IMU RX + OpenBLT) | Telemetry Pod / Dash / Service `CAN_H` | 20 AWG (Twisted) |
 | `J2-29` | `CAN1_L` | `PD0/PD1` | External `CAN1_L` (500 kbps, `120 Ω`, 50 Hz `0x200..0x207` TX + IMU RX + OpenBLT) | Telemetry Pod / Dash / Service `CAN_L` | 20 AWG (Twisted) |
 | `J2-30` | `WBO2_VM` | `WBO2:PA2/6` | Rear Cyl #2 Bosch LSU 4.9 Pin 2 (`Vm`) | Yellow (LSU 4.9 #2 Pin 2) | 20 AWG |
@@ -195,3 +195,16 @@ Each Bosch LSU 4.9 sensor (`0 258 017 025`) uses a 6-pin connector that mates wi
 | **Pin 4** | `H+` (Heater `+12V` Supply) | Grey | `J1-24` (`WBO_HTR+` / Switched `+12V_MR`) | `J1-24` (`WBO_HTR+` / Switched `+12V_MR`) |
 | **Pin 5** | `Rcal` (Calibration Resistor) | Green | `J2-21` (`WBO1_RCAL`) | `J2-32` (`WBO2_RCAL`) |
 | **Pin 6** | `Un / Vs` (Nernst Cell) | Black | `J2-22` (`WBO1_UN`) | `J2-33` (`WBO2_UN`) |
+
+---
+
+## 6. External 1-Bar Barometer (`GM 12614970` / `Delphi PS10150`) & Stock K7 ECM Pin Key
+
+1. **External GM 1-Bar Barometric Pressure Sensor (`12614970` / `PS10150`, Metri-Pack 150 3-Pin)**:
+   - **Pin A (`GND`)**: Wire to `J1-31` (`SGND` sensor ground return).
+   - **Pin B (`Signal`, `0.25–4.85 V` for `10–105 kPa`, `MT_GM_1_BAR`)**: Wire to `J2-6` (`AV3_BARO_MAP2` / `PA2` `EFI_ADC_2`).
+   - **Pin C (`+5 V`)**: Wire to `J1-29` (`5V_SENSOR_1` regulated `+5.00 V`).
+2. **Suzuki SV650 K7 Stock 2×34-Pin ECM Connector Notation (`99500-36140-01E`)**:
+   - Single-character designations (`1`–`9`, `A`–`Z`, `[`, `\`, `^`, `a`–`r`) in Tables 3.1 and 3.2 follow the factory Suzuki SV650 K7/K8 Service Manual (`99500-36140-01E`) wiring diagram index for the two 34-pin Denso/Sumitomo stock ECM plugs (Connector #1 Gray `1`–`Z`/`[`/`\`/`^`; Connector #2 Black `a`–`r`).
+   - **Stock Main Relay vs. `J1-14` (`MAIN_RLY`)**: On a factory SV650 K7 harness, the ignition switch + engine stop switch feed `+12 V` (`O/W`) directly to coils/injectors and ECM Pin `D`. In a plug-and-play adapter harness, tie `J1-26` (`+12V_IGN_SW`) and `J1-27` (`+12V_MR`) together to the switched `O/W` (`+12 V`) bus (leaving `J1-14` `MAIN_RLY` unused), or wire an external 30 A automotive relay whose coil `-` is held by `J1-14` (`MAIN_RLY`, `PE0` + `D209` `B340A-13-F`) and whose switched `+12 V` contact feeds `J1-24` and `J1-27`.
+
