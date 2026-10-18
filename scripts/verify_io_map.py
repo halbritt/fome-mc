@@ -1,38 +1,41 @@
 #!/usr/bin/env python3
-"""
-verify_io_map.py — End-to-end hardware/firmware pin & netlist consistency verifier for fome-mc.
+"""Verify a project's I/O map and hardware interface contracts.
 
-Checks 1-to-1 agreement across:
-  1. /home/halbritt/git/fome-mc/io-map.csv (all 70 J1/J2 pins + 22 INTERNAL-* rows)
-  2. /home/halbritt/git/fome-mc/export/fome-mc.net (exported from fome-mc.kicad_sch)
-  3. /home/halbritt/git/fome-fw/firmware/config/boards/fome-mc/board_configuration.cpp & connectors/*.yaml
-  4. /home/halbritt/git/fome-mc/docs/SHEET_CONTRACTS.md & /home/halbritt/git/fome-mc/contracts/*.interface.json
-     (verified against fome-mc.kicad_sch, sheets/*.kicad_sch, and a freshly exported KiCad XML netlist)
+The default fome-mc audit also checks its ECU-specific pin expectations, firmware
+board configuration, connector YAML and sheet-contract documentation. Other
+projects use the FOMEMC-30 CSV header with a Net column; see toolchain/README.md
+for the input contract and contract locations.
 """
+import argparse
 import csv
 import re
 import shutil
 import subprocess
 import sys
-import tempfile
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
-AGENT_EE_SRC = Path("/home/halbritt/git/agent-ee/src")
+AGENT_EE_SRC = Path.home() / "git/agent-ee/src"
 if AGENT_EE_SRC.exists() and str(AGENT_EE_SRC) not in sys.path:
     sys.path.insert(0, str(AGENT_EE_SRC))
 
 from agent_ee.hardware_interface import evaluate, load_contract, read_inventory  # noqa: E402
 from agent_ee.symbol_library import children, field, parse_sexpr  # noqa: E402
 
-REPO = Path("/home/halbritt/git/fome-mc")
+REPO = Path(subprocess.check_output(
+    ["git", "rev-parse", "--show-toplevel"], cwd=Path(__file__).resolve().parent, text=True
+).strip())
+sys.path.insert(0, str(REPO / "toolchain"))
+import eda  # noqa: E402
+
 IO_MAP_CSV = REPO / "io-map.csv"
 NETLIST = REPO / "export/fome-mc.net"
 ROOT_SCH = REPO / "fome-mc.kicad_sch"
 SHEETS_DIR = REPO / "sheets"
 CONTRACTS_DIR = REPO / "contracts"
 SHEET_CONTRACTS_MD = REPO / "docs/SHEET_CONTRACTS.md"
-FW_DIR = Path("/home/halbritt/git/fome-fw/firmware/config/boards/fome-mc")
+FW_DIR = Path.home() / "git/fome-fw/firmware/config/boards/fome-mc"
 BOARD_CFG = FW_DIR / "board_configuration.cpp"
 CONN_DIR = FW_DIR / "connectors"
 
@@ -136,7 +139,27 @@ EXPECTED_INTERNAL_NODES = {
 }
 
 
+PROJECT_MAP_COLUMNS = [
+    "Connector_Pin", "Signal_Name", "Net", "Direction_Class",
+    "Voltage_Current_Domain", "MCU_Ref", "MCU_Pin", "External_Destination", "Notes",
+]
+
+
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--project", default="fome-mc", help="Project from toolchain/versions.toml")
+    args = ap.parse_args()
+    cfg = eda.project_config(args.project)
+    if args.project != "fome-mc":
+        try:
+            return verify_project_io(cfg)
+        except (OSError, ValueError, csv.Error) as exc:
+            print(f"FAIL: project {args.project}: {exc}", file=sys.stderr)
+            return 1
+    return verify_fome_mc()
+
+
+def verify_fome_mc() -> int:
     errors = []
     rows = list(csv.DictReader(IO_MAP_CSV.open()))
     pin_rows = {r["Connector_Pin"]: r for r in rows}
@@ -275,13 +298,105 @@ def main() -> int:
 
 
 def _find_kicad_cli() -> str:
-    pinned = Path("/home/halbritt/.local/opt/kicad-10.0.7/bin/kicad-cli")
+    pinned = Path.home() / ".local/opt/kicad-10.0.7/bin/kicad-cli"
     if pinned.exists():
         return str(pinned)
     found = shutil.which("kicad-cli")
     if found:
         return found
-    raise FileNotFoundError("kicad-cli not found in /home/halbritt/.local/opt/kicad-10.0.7/bin or PATH")
+    raise FileNotFoundError("kicad-cli not found in ~/.local/opt/kicad-10.0.7/bin or PATH")
+
+
+def fresh_inventory(cfg: dict) -> dict:
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    run_dir = REPO / "build/runs/verify-io" / cfg["name"] / stamp
+    run_dir.mkdir(parents=True)
+    snap, metadata = eda.make_snapshot(cfg, run_dir)
+    if metadata["missing_sheets"] or metadata["sheet_case_aliases"]:
+        raise ValueError(f"invalid schematic hierarchy; see {run_dir / 'snapshot.json'}")
+    xml_path = run_dir / "design.xml"
+    proc = subprocess.run(
+        [_find_kicad_cli(), "sch", "export", "netlist", "--format", "kicadxml",
+         "--output", str(xml_path), str(snap / cfg["schematic"])],
+        cwd=snap, env=eda.tool_env(), capture_output=True, text=True, check=False,
+    )
+    (run_dir / "netlist.log").write_text(proc.stdout + proc.stderr)
+    if proc.returncode != 0 or not xml_path.exists():
+        raise ValueError(f"kicad-cli sch export netlist failed (rc={proc.returncode}); see {run_dir / 'netlist.log'}")
+    return read_inventory(xml_path)
+
+
+def read_project_map(path: Path) -> dict[str, str]:
+    with path.open(newline="") as stream:
+        reader = csv.DictReader(stream, strict=True)
+        if reader.fieldnames != PROJECT_MAP_COLUMNS:
+            raise ValueError("io-map.csv header must be exactly " + ",".join(PROJECT_MAP_COLUMNS))
+        pins = {}
+        for row in reader:
+            if None in row or any(value is None or not value.strip() for value in row.values()):
+                raise ValueError(f"invalid io-map row: {row!r}")
+            identity = row["Connector_Pin"].strip()
+            net = row["Net"].strip()
+            if identity in pins:
+                raise ValueError(f"duplicate io-map connector pin {identity}")
+            pins[identity] = net
+    if not pins:
+        raise ValueError("io-map.csv contains no connector pins")
+    return pins
+
+
+def verify_project_io(cfg: dict) -> int:
+    project_dir = cfg["path"]
+    map_path = project_dir / "io-map.csv"
+    if not map_path.is_file():
+        raise ValueError(f"no io-map for project {cfg['name']}: {map_path}")
+    pins = read_project_map(map_path)
+    if cfg["name"] == "telemetry-pod":
+        contract_root = REPO
+        contract_path = REPO / "contracts/telemetry-pod.interface.json"
+        if not contract_path.is_file():
+            raise ValueError(f"missing interface contract: {contract_path}")
+        contract_paths = [contract_path]
+    else:
+        contract_root = project_dir
+        contract_paths = sorted((project_dir / "contracts").glob("*.interface.json"))
+        if not contract_paths:
+            raise ValueError(f"no interface contracts for project {cfg['name']}")
+    contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
+    inventory = fresh_inventory(cfg)
+    native_pins = {f"{comp['reference']}-{pin}": (comp["reference"], pin)
+                   for comp in inventory["components"].values()
+                   if re.fullmatch(r"J[0-9]+", comp["reference"])
+                   for pin in comp["pins"]}
+    if set(pins) != set(native_pins):
+        raise ValueError(f"io-map connector coverage: missing={sorted(set(native_pins) - set(pins))}, "
+                         f"extra={sorted(set(pins) - set(native_pins))}")
+    errors = []
+    for identity, expected in pins.items():
+        code = inventory["memberships"].get(native_pins[identity])
+        actual = inventory["nets"].get(code)
+        if actual != expected:
+            errors.append(f"{identity}: expected net {expected!r}, got {actual!r}")
+    declared_pins = set()
+    invariants = 0
+    for path, contract in zip(contract_paths, contracts):
+        records = evaluate(contract, inventory)
+        invariants += len(records)
+        errors.extend(f"{path.name}: invariant {r['id']} is {r['status']}"
+                      for r in records if r["status"] != "satisfied")
+        for terminal in contract["terminals"].values():
+            component = contract["components"][terminal["component"]]
+            declared_pins.update(f"{loc['reference']}-{terminal['pin']}" for loc in component["locations"])
+    if not set(pins) <= declared_pins:
+        errors.append(f"io-map pins absent from contracts: {sorted(set(pins) - declared_pins)}")
+    if errors:
+        print(f"FAIL: project {cfg['name']} io-map / contract verification:")
+        for error in errors:
+            print(f"  [ERROR] {error}")
+        return 1
+    print(f"PASS: project {cfg['name']}: verified {len(pins)} connector pins, "
+          f"{len(contracts)} interface contracts, {invariants} invariants against fresh netlist")
+    return 0
 
 
 def verify_sheet_contracts(errors: list[str]) -> dict[str, int]:
@@ -318,20 +433,7 @@ def verify_sheet_contracts(errors: list[str]) -> dict[str, int]:
             if f"`/{sname}/`" not in md_text:
                 errors.append(f"docs/SHEET_CONTRACTS.md missing sheet instance path `/{sname}/`")
 
-    # Export a fresh KiCad XML netlist into a temporary directory (never touching the repo tree)
-    kicad_cli = _find_kicad_cli()
-    with tempfile.TemporaryDirectory(prefix="fome-mc-verify-contracts-") as tmpdir:
-        xml_path = Path(tmpdir) / "design.xml"
-        proc = subprocess.run(
-            [kicad_cli, "sch", "export", "netlist", "--format", "kicadxml", "--output", str(xml_path), str(ROOT_SCH)],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        if proc.returncode != 0 or not xml_path.exists():
-            errors.append(f"kicad-cli sch export netlist failed (rc={proc.returncode}): {proc.stderr.strip()}")
-            return stats
-        inventory = read_inventory(xml_path)
+    inventory = fresh_inventory(eda.project_config("fome-mc"))
 
     for sch_path in sorted(SHEETS_DIR.glob("*.kicad_sch")):
         rel_file = f"sheets/{sch_path.name}"

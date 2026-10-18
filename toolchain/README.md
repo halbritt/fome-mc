@@ -63,15 +63,66 @@ revision via `git archive` instead of the working tree; the run is labelled
 | `analyze` | kicad-happy `analyze_schematic.py` → `analyze_pcb.py --full --schematic schematic.json` → `cross_analysis.py` → `simulate_subcircuits.py --simulator ngspice` |
 | `check` | all five steps on one snapshot |
 | `renders` | `python3 scripts/render_docs.py` (regenerate 16 schematic SVGs/PDFs + 14 PCB SVGs/PDFs + composite renders) |
-| `verify-io` | `python3 scripts/verify_io_map.py` (audit 70 connector pins, 22 internal buses, netlist, firmware YAML, and 15 `contracts/*.interface.json`) |
-| `fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py` (normalize Gerbers/drills, verify BOM/CPL parity, emit `reports/toolchain/fab-manifest.json`) |
-| `verify-fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --verify` (verify `fab-manifest.json` SHA-256 parity and zero-diff reproducibility) |
+| `verify-io` | `python3 scripts/verify_io_map.py --project <PROJECT>` (default ECU audit or project-local I/O map and contracts; see below) |
+| `fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --project <PROJECT>` (normalize Gerbers/drills and emit the project's `reports/toolchain/fab-manifest.json`) |
+| `verify-fab-package [REV=HEAD]` | `python3 scripts/generate_fab_package.py --project <PROJECT> --verify` (verify `fab-manifest.json` SHA-256 parity and zero-diff reproducibility) |
 | `simulate DECK=… [EXPECT=…]` | ngspice via a generated control script (below) |
 | `smoke` | `pytest toolchain/tests` |
 | `baseline` | `check` on the committed HEAD of fome-mc and universal-112, plus fome-mc's working tree (`fome-mc-worktree`); publishes reports |
 | `doctor`, `bootstrap`, `skills` | environment check / install / regenerate agent skills |
 
 Direct use: `python3 toolchain/eda.py --help`.
+
+## Project I/O maps and fabrication packages
+
+`make verify-io PROJECT=fome-mc` keeps the ECU audit, including its pin expectations,
+firmware configuration in `~/git/fome-fw`, YAML connectors and sheet contracts.
+`make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv`, then
+requires exactly `contracts/telemetry-pod.interface.json` at the repository root.
+Until AGENTEE-188 generates that contract, it exits nonzero with
+`missing interface contract: <repo>/contracts/telemetry-pod.interface.json`.
+It does not accept the CSV alone or substitute the ECU's sheet contracts.
+
+For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
+including column order:
+
+```text
+Connector_Pin,Signal_Name,Net,Direction_Class,Voltage_Current_Domain,MCU_Ref,MCU_Pin,External_Destination,Notes
+```
+
+Empty maps, duplicate `Connector_Pin` values, ragged rows and blank cells fail.
+The reader preserves logical identifiers such as `AMPSEAL-1`, `BLE-RADIO` and
+`DEBUG-UART-TX`. Reading those rows does not establish native pin bindings.
+The landed pod map contains proposed net names, `N/C` cavities and an integrated
+radio with `Net=N/A`; reconciling these with the generated design remains an
+AGENTEE-188 obligation. See [the pod input notes](../telemetry-pod/IO_MAP.md).
+
+The current native audit requires every pin of every `J<number>` connector to
+appear exactly once as `<reference>-<pin>`, with its exact KiCad net name
+(including any leading `/`) and a terminal declaration in a loaded
+`agent-ee.interface/1` contract. It fails closed on unresolved logical identifiers;
+it cannot yet bind the pod's logical rows to generated references or interpret
+`N/C` and `N/A` as physical connectivity. Other projects load
+`<project>/contracts/*.interface.json`; the pod loads only the root contract named
+above. All contract invariants are evaluated against a fresh native XML netlist,
+exported from a snapshot under `build/runs/verify-io/<project>/`. This verifier uses
+the existing `agent-ee.hardware_interface` evaluator, not the planned generic
+`io_map` capability. Its existing checkout is expected at `~/git/agent-ee`.
+This command does not generate design content.
+
+`make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
+project directories and native filenames from `toolchain/versions.toml`. Packaging
+is restricted to projects inside this repository. Outputs are isolated in that
+project's `export/gerbers/` and `reports/toolchain/fab-manifest.json`; `fome-mc`
+continues to use the repository-root paths and existing manifest schema. Schematic
+exports use the schematic stem; positions use the PCB stem. Optional tracked BOM, CPL and netlist inputs
+are `export/BOM-<stem>.csv`, `export/CPL-<stem>.csv` and `export/<stem>.net` within
+the project. The script records their hashes; it does not perform a BOM/CPL parity
+audit. An existing `--run-dir` must belong to the selected project.
+
+The project-script regression tests can run without the toolchain venv:
+`python3 -m unittest discover -s toolchain/tests -p test_project_scripts.py -v`.
+They still require the existing agent-ee checkout and native KiCad CLI.
 
 ## Results
 

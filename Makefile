@@ -80,13 +80,13 @@ renders:
 	$(PY) scripts/render_docs.py
 
 verify-io:
-	$(PY) scripts/verify_io_map.py
+	$(PY) scripts/verify_io_map.py$(if $(filter-out fome-mc,$(PROJECT)), --project $(PROJECT))
 
 fab-package:
-	$(PY) scripts/generate_fab_package.py --fill $(FILL) $(if $(REV),--rev $(REV))
+	$(PY) scripts/generate_fab_package.py --project $(PROJECT) --fill $(FILL) $(if $(REV),--rev $(REV))
 
 verify-fab-package:
-	$(PY) scripts/generate_fab_package.py --fill $(FILL) $(if $(REV),--rev $(REV)) --verify
+	$(PY) scripts/generate_fab_package.py --project $(PROJECT) --fill $(FILL) $(if $(REV),--rev $(REV)) --verify
 
 simulate:
 	@test -n "$(DECK)" || { echo "usage: make simulate DECK=path.cir [EXPECT=path.json]"; exit 2; }
