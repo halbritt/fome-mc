@@ -49,7 +49,7 @@ not installed; STEP/3D renders are out of scope (`doctor` reports `UNSUPPORTED`)
 
 ## Commands
 
-All targets take `PROJECT=fome-mc|universal-112|fixture` (default `fome-mc`),
+All targets take `PROJECT=fome-mc|telemetry-pod|universal-112|fixture` (default `fome-mc`),
 `FILL=asis|refill` (default `asis`) and `REV=<git revision>` (snapshot a committed
 revision via `git archive` instead of the working tree; the run is labelled
 `<project>@<rev>`).

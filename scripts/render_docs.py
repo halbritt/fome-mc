@@ -138,11 +138,11 @@ def render_floorplan_diagram() -> None:
         (32.0, 27.5, 72.0, 28.0, "#1c2430", "#58a6ff", "J1: TE AMPSEAL 35-PIN (BLACK 776163-1)", "Power, Grounds, INJ1..4 (42V Clamp), IGBT1..4, AUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR (>=1.5mm), DFU"),
         (110.0, 27.5, 74.0, 28.0, "#24292f", "#a5d6ff", "J2: TE AMPSEAL 35-PIN (GREY 776163-2)", "CLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock, VR1/2 (Mode A2), Hall, WBO1/2, CAN1, USB"),
         (28.0, 58.0, 22.0, 49.0, "#3b1d2e", "#f85149", "4x IGNITION IGBTs (HV_IGN 0.50mm)", "Q201-Q204 FGD3040G2 (400V, 1.2mm)"),
-        (28.0, 108.5, 33.5, 29.5, "#1f2d3d", "#58a6ff", "STEPPER, H-BRIDGES, 4GB SDNAND & WI-FI", "U201/U203 TLE9201 • U202 DRV8825 • U25 4GB (C113/114) • U29 Wi-Fi (C111/112)"),
+        (28.0, 108.5, 33.5, 29.5, "#1f2d3d", "#58a6ff", "STEPPER, H-BRIDGES & 4GB SDNAND", "U201/U203 TLE9201 • U202 DRV8825 • U25 4GB SDNAND (C113/114)"),
         (62.5, 58.0, 91.5, 46.5, "#2b2318", "#d29922", "POWER SUPPLY, KEEP-ALIVE, LDOs, CAN, IGN & LOW/HIGH-SIDE DRIVERS", "D20/D21 OR • D1/D22 SMCJ24A • Q1 AO4485 • C4 50V 1210 • U3 LMR16020 5V • U1/U2 TLS115D0E • U6 TLV75733 • U4/U5 CAN1/2"),
         (62.5, 106.0, 91.5, 32.0, "#162b24", "#3fb950", "STM32H753 BRAIN, PRECISION REF, VR (MODE A2) & ANALOG FRONT-END", "U26 STM32H753ZIT6 • U23 REF3333 • U13/U14 MAX9924 (A2) • U1201/U1202 VNLD5090 (MAIN_RLY) • U7/U15..U21 MCP6004"),
         (155.5, 58.0, 30.5, 34.5, "#271d3b", "#bc8cff", "WIDEBAND #1 (LSU 4.9)", "U302 F042 (0x190) • Q301 HTR (>=1.5mm) • U301/U305/U307"),
-        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 (LSU 4.9)", "U402 F042 (0x192) • Q401 HTR (>=1.5mm) • U401/U405/U407"),
+        (155.5, 94.0, 30.5, 44.0, "#271d3b", "#d2a8ff", "WIDEBAND #2 (LSU 4.9) & WI-FI", "U402 F042 (0x192) • Q401 HTR (>=1.5mm) • U29 Wi-Fi (C111/112)"),
     ]
 
     lines = [
@@ -197,7 +197,7 @@ def render_floorplan_diagram() -> None:
     major_highlights = {
         "U26": (20.0, 20.0, "#238636", "U26 STM32H753ZIT6", 0.0, 0.0),
         "U25": (8.5, 5.2, "#1f6feb", "U25 4GB SDNAND", 0.0, 0.3),
-        "U29": (14.7, 10.5, "#0969da", "U29 WINC1500 Wi-Fi", 2.0, 0.6),
+        "U29": (14.7, 11.2, "#0969da", "U29 WINC1500 Wi-Fi", 2.5, -0.7),
         "U24": (6.5, 4.2, "#6e7681", "U24 BARO (DNP)", 0.0, 0.0),
         "Q201": (9.0, 6.6, "#da3633", "Q201 IGBT1", 0.0, 0.0),
         "Q202": (9.0, 6.6, "#da3633", "Q202 IGBT2", 0.0, 0.0),
@@ -257,9 +257,9 @@ def render_floorplan_diagram() -> None:
     # Footer
     fy = ty(by0 + bh) + 42
     lines.append(f'<rect x="{pad_x}" y="{fy}" width="{bw*scale}" height="78" rx="8" ry="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>')
-    lines.append(f'<text class="ztitle" x="{pad_x+16}" y="{fy+24}">4-Layer Impedance-Controlled Stackup (1.6 mm FR-4 TG170, 1 oz Outer / 1 oz Inner) &amp; Thermal Coupling</text>')
+    lines.append(f'<text class="ztitle" x="{pad_x+16}" y="{fy+24}">4-Layer Impedance-Controlled Stackup (1.6 mm FR-4 TG170, 1 oz Outer / 0.5 oz Inner, JLC04161H-7628) &amp; Thermal Coupling</text>')
     lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+44}">• L1 (F.Cu): High-speed signals, 90Ω USB / 120Ω CAN diff pairs, SDMMC1 (4GB SDNAND), SPI4 (WINC1500 Wi-Fi), WBO1/2_H- (&gt;=1.50mm, &lt;0.05Ω), HV_IGN (0.50mm clearance / 1.2mm)</text>')
-    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+62}">• L2 (In1.Cu): Unbroken solid GND plane + Star AGND split   • L3 (In2.Cu): +5V, +3.3V, +12V_MR, +12V_RAW, +3V3_WBO1/2 power islands   • L4 (B.Cu): Bottom GND + thermal pad coupling</text>')
+    lines.append(f'<text class="zsub" x="{pad_x+16}" y="{fy+62}">• L2 (In1.Cu): Unbroken solid GND plane (unified PGND / AGND / VSSA return)   • L3 (In2.Cu): +5V, +3.3V, +12V_MR, +12V_RAW, +3V3_WBO1/2 power islands   • L4 (B.Cu): Bottom GND + thermal pad coupling</text>')
 
     lines.append('</svg>')
     svg_path = RENDERS / "fome-mc-floorplan-zones.svg"

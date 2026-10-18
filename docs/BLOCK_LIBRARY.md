@@ -50,7 +50,7 @@ The root sheet instantiates 15 files as 21 sheet instances (root included, `510`
 | `/` | `fome-mc.kicad_sch` | 4 | J1, J2 (AMPSEAL), C1 bulk, R219 |
 | `/psu/` | `psu.kicad_sch` | 39 | power plus both CAN transceivers |
 | `/Keep_Alive/` | `Keep_Alive.kicad_sch` | 10 | diode-OR, VBAT LDO |
-| `/mcu/` | `mcu.kicad_sch` | 86 | 81 hierarchical pins + C111..C114 local decoupling |
+| `/mcu/` | `mcu.kicad_sch` | 86 | 77 hierarchical pins + C111..C114 local decoupling |
 | `/wbo1/`, `/wbo2/` | `wbo1.kicad_sch`, `wbo2.kicad_sch` | 58 each | two files, not two instances of one file |
 | `/ign_igbt/` | `ign_igbt.kicad_sch` | 12 | IGBTs only |
 | `/ign1/`, `/ign2/` | `ign4.kicad_sch` | 16 each | ign1 drives the IGBT gates, ign2 the logic outputs |
@@ -112,8 +112,8 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 
 - Boundary in: `/12V_RAW` (from Keep_Alive). Out: `+5V`, `+3V3`, `/5V_SENSOR_1`
   (J1-29), `/5V_SENSOR_2` (J1-30), `/VBOOST` (to the MCU divider),
-  `5V_SENSOR_1_PG`, `5V_SENSOR_2_PG` (to U26). Hierarchical label `12v_PROT` exists
-  but is not used at the root.
+  `5V_SENSOR_1_PG`, `5V_SENSOR_2_PG` (to U26). Hierarchical label `12V_PROT` exists
+  (connected on the root sheet to a local `12V_PROT` label and `PWR_FLAG`).
 - Key parts: D1 SMCJ24A `C224045`; Q1 AO4485 `C51499` with D19 BZT52C12 `C43491`
   and R124 47k `C25819` (reverse block); C4 4.7 µF 50 V X7R 1210 `C417122` via R2
   1 Ω `C25086`; L1 2.2 µH `C75646` and C6 47 µF hybrid polymer `C454346` (input
@@ -127,7 +127,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   5.5 V input; `5V_SENSOR_1/2` = 5.00 V ± 1 %; +3V3 = 3.30 V ± 1 %; regulation down
   to the connector brownout floor (`V_BATT ≈ 4.8 V` steady-state guaranteed floor at
   U3's `4.30 V` minimum operating `VIN`, FOMEMC-17).
-- Evidence today: board-level ERC/DRC + `contracts/psu.yaml` (`FOMEMC-22`). Real
+- Evidence today: board-level ERC/DRC + `contracts/psu.interface.json` (`FOMEMC-22`). Real
   findings resolved on this block: TVS clamp above downstream limits (FOMEMC-7), C12
   value/part mismatch (FOMEMC-15), C4/C2/C5/C7/C8/C10 50 V X7R upgrades and brownout
   margin (FOMEMC-17).
@@ -151,19 +151,19 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   VALIDATION.md §3.
 - Missing: requirements/review after capture. The main-relay hold also depends on
   `lowside_quad4` (U1202) and the MCU (PE0), so its behavioural requirement spans
-  three blocks; `contracts/Keep_Alive.yaml` records the sheet boundary (`FOMEMC-22`).
+  three blocks; `contracts/Keep_Alive.interface.json` records the sheet boundary (`FOMEMC-22`).
 - Adaptation: whether a main relay exists, battery-backup need.
 
 ### MCU core (`mcu.kicad_sch`)
 
-- Boundary: 81 hierarchical pins (`contracts/mcu.yaml`). Rails in: `+3V3`, `+5V` (VREF
+- Boundary: 77 unique hierarchical pins (`contracts/mcu.interface.json`). Rails in: `+3V3`, `+5V` (VREF
   source), `/5V_SENSOR_1` (`5V_SENSE_DIVIDED` divider `R118/R119`), `/12V_MR`,
   `/12V_IGN_SW` (sense), `/VBOOST`. External: `/USB_D+` (J2-34), `/USB_D-` (J2-35).
   Everything else is internal to the board: AV1..AV11, AT1..AT4, DIGITAL1..6, VR_1/2,
   LS1..LS16, IGN1..8, HS1..4, ETB1/2, CAN, WBO1/2 NRST/BOOT0, knock FILTERED_1/2.
 - Key parts: U26 STM32H753ZIT6 `C730207` (`PC14/PC15` `no_connect`, `FOMEMC-25`); Y1
   8 MHz `C115962`; U23 REF3333 `C130016`; U25 CSNP32GCR01-AOW `C2841139` with
-  R127..R131 47k, R132 22 Ω, C113 4.7 µF `C19666`, and C114 100 nF `C161115`
+  R127..R131 47k, R132 22 Ω `C23345`, C113 4.7 µF `C19666`, and C114 100 nF `C161115`
   (`FOMEMC-19`); U29 ATWINC1500-MR210UB `C1558703` with C111 10 µF `C96446` and C112
   10 nF `C344025` on Pin 24 (`FOMEMC-18`); U27 USBLC6-2SC6 `C111212`; U24 LPS25HB
   `C87898` (DNP). DNP bench parts excluded from BOM/CPL: BT1, J8, J9, J11..J16, JP1,
@@ -172,7 +172,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   ADC scaled by `5V_SENSE_DIVIDED` on `PF12`), SDMMC1 bus termination, DFU entry via
   BOOT0.
 - Evidence today: FOMEMC-8 (SDMMC pull-ups), FOMEMC-18/19 (U29 land pattern, U29 and
-  U25 decoupling), FOMEMC-22 (`contracts/mcu.yaml`), and FOMEMC-25 (`VBAT` `4 KB BKPSRAM`
+  U25 decoupling), FOMEMC-22 (`contracts/mcu.interface.json`), and FOMEMC-25 (`VBAT` `4 KB BKPSRAM`
   keep-alive).
 - Missing: datasheet pin contracts (AGENTEE-59), automated land-pattern check
   (AGENTEE-31).
@@ -193,11 +193,11 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 
 ### Wideband channel (`wbo1.kicad_sch`, `wbo2.kicad_sch`)
 
-- Boundary (10 hierarchical pins per channel, `contracts/wbo1.yaml`,
-  `contracts/wbo2.yaml`): in `+5V`, `/12V_MR` (as `12V_SENSE`), `/WBOn_NRST`,
+- Boundary (10 hierarchical pins per channel, `contracts/wbo1.interface.json`,
+  `contracts/wbo2.interface.json`): in `+5V`, `/12V_MR` (as `12V_SENSE`), `/WBOn_NRST`,
   `/WBOn_BOOT0` (from U26 PD4..PD7); bus `/CAN2+`, `/CAN2-`; sensor `/WBOn_VM`,
   `/WBOn_IP`, `/WBOn_RTRIM`, `/WBOn_UN` (J2-19..22 for WBO1, J2-30..33 for WBO2);
-  heater low side `/WBOn_H-` (J1-23 / J1-25, routed on wide `>= 1.50 mm` `< 0.05 Ω`
+  heater low side `/WBOn_H-` (J1-23 / J1-25, routed on wide `1.50–2.50 mm` `<= 0.05 Ω`
   copper buses, `FOMEMC-26`). Heater supply comes in on J1-24 (`/12V_MR`). Local
   rails `+3V3_WBOn` (U309) and `VDDA_WBOn` (U303) are power symbols with per-channel
   names.
@@ -207,10 +207,10 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   R310 61.9 Ω `C23092` (pump-current shunt).
 - Requirements (DESIGN.md §3 row 3 and §5): 1.65 V virtual ground, Nernst ESR
   injection, 500 kbps CAN at 0x190/0x191 (WBO1) and 0x192/0x193 (WBO2) set by the
-  PB1/PA8 straps, heater PWM under CAN control with `< 0.05 Ω` `/WBOn_H-` copper
+  PB1/PA8 straps, heater PWM under CAN control with `<= 0.05 Ω` `/WBOn_H-` copper
   bus (`FOMEMC-26`), separate VDDA per channel.
 - Evidence today: the upstream Rev C design is an independent oracle, and
-  `contracts/wbo1.yaml` / `contracts/wbo2.yaml` verify both channels (`FOMEMC-22`).
+  `contracts/wbo1.interface.json` / `contracts/wbo2.interface.json` verify both channels (`FOMEMC-22`).
   The two channels are a ready-made adaptation pair: after mapping U3xx to U4xx, the
   only connectivity differences are the straps (WBO1: U302 pin 15 PB1 to GND, pin 18
   PA8 open; WBO2: U402 pin 18 PA8 to `+3V3_WBO2`, pin 15 open) and the channel suffix
@@ -226,30 +226,33 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 - Boundary in: `/IGN1..4` from `/ign1/` (MIC4427 outputs). Out: `/IGN1_COIL` ..
   `/IGN4_COIL` (J1-6..9). The gate drivers U42, U43 are in the `/ign1/` instance of
   `ign4.kicad_sch`, so the IGBT block is two instances: `/ign1/` (U42, U43, with
-  inputs `/ign1/IN1..4` from U26) plus `/ign_igbt/` (`contracts/ign_igbt.yaml`,
-  `contracts/ign4.yaml`).
+  inputs `/ign1/IN1..4` from U26) plus `/ign_igbt/` (`contracts/ign_igbt.interface.json`,
+  `contracts/ign4.interface.json`).
 - Key parts: Q201..Q204 FGD3040G2-F085 `C606124`; R201..R204 15 Ω `C22938` gate;
-  R205..R208 10k `C25744` gate-emitter; U42, U43 MIC4427 `C171845`.
+  R205..R208 10k `C25744` gate-emitter; U42, U43 MIC4427 `C171845`; R1501..R1504
+  1 kΩ `C11702` input pull-downs.
 - Requirements: 0 V gate during MCU reset; 400 V clamp on coil turn-off; `HV_IGN`
-  `0.50 mm` clearance netclass and `1.20 mm` coil traces across all 4 copper layers
+  `0.50 mm` clearance netclass and `1.20 mm` nominal coil traces across all 4 copper layers
   (`FOMEMC-16`, `FOMEMC-19`).
 - Adaptation: channel count, IGBT part, clearance class.
 
 ### Logic ignition (`/ign2/`, `ign4.kicad_sch`)
 
 - Boundary in: `/ign2/IN1..4` from U26, `+5V`. Out: `/IGN5..8` (J2-23..26).
-- Key parts: U44, U45 MIC4427 `C171845`; R112..R115 100 Ω `C17408` series.
+- Key parts: U44, U45 MIC4427 `C171845`; R112..R115 100 Ω `C17408` series;
+  R1601..R1604 1 kΩ `C11702` input pull-downs.
 - Reconciled in `README.md` and `docs/DESIGN.md` (`FOMEMC-23`): `U44, U45` in `/ign2/`
   drive `/IGN5..8` (`U8..U10` are `SN74LVC2G17DB` Hall buffers in `triggers.kicad_sch`).
 
 ### Low-side quad (`lowside_quad.kicad_sch`, three instances)
 
-- Boundary in: `INn` from U26, `+5V` (`contracts/lowside_quad.yaml`). Out: `/LS1..4`
+- Boundary in: `INn` from U26, `+5V` (`contracts/lowside_quad.interface.json`). Out: `/LS1..4`
   (J1-1..4, injectors), `/LS5..8` (J1-10..13), `/LS14` (J2-27 DASH_TECH), `/MAIN_RLY`
   (J1-14). `/LS13` and `/LS16` go nowhere.
 - Key parts per instance: two VNLD5090 `C222209`, one 74HCT125D `C5947`, RN 10k
-  pull-down array `C29718`, RN 1k series array `C29684`, 100 nF `C161115`.
-- Cross-block nets named in `contracts/lowside_quad.yaml` (`FOMEMC-22`): the flyback
+  pull-down array `C29718` (`RN5, RN7, RN9`), RN 1k series array `C20197` (`RN6, RN8, RN10`),
+  100 nF `C161115`.
+- Cross-block nets named in `contracts/lowside_quad.interface.json` (`FOMEMC-22`): the flyback
   diodes D201..D209 (`D201..D204` DNP, `D205..D209` populated `B340A-13-F` `C64982`)
   and the R212 `2.2 kΩ` `C22976` pull-up for `/LS8` live in `stepper_etb.kicad_sch`.
 - Requirements: 5 V gate drive (FOMEMC-13), 42 V active clamp on injector channels
@@ -259,7 +262,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 ### High-side quad (`highside_quad.kicad_sch`)
 
 - Boundary in: `/highside_quad/IN1..4` (HS1..4 from U26), `/12V_MR`, `+3V3`
-  (`contracts/highside_quad.yaml`). Outputs OUT1..4 are not connected to the
+  (`contracts/highside_quad.interface.json`). Outputs OUT1..4 are not connected to the
   connectors: README calls U40 a spare.
 - Key parts: U40 BTS716G `C85135`.
 - A block with no connector-facing output is a poor library entry until a
@@ -268,25 +271,26 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 ### Quad analog (`quad_analog.kicad_sch`, three instances) and pull-up variant (`quad_analog_pullup.kicad_sch`)
 
 - Boundary in: `/AVn` from J2 (J2-3..8 on instances 1 and 2), `+5V`
-  (`contracts/quad_analog.yaml`, `contracts/quad_analog_pullup.yaml`). Out:
+  (`contracts/quad_analog.interface.json`, `contracts/quad_analog_pullup.interface.json`). Out:
   `/mcu/AVn`. The pull-up variant adds `5V_PULLUP_SUPPLY` (`/5V_SENSOR_1`) and
   serves J2-1, J2-2 (CLT, IAT).
-- Key parts per instance: MCP6004 `C50282`, SRV05-4 `C85364`, 470k/5.6k/10k
-  networks, 100 nF `C161115`; pull-up variant uses 2.7 kΩ `C13167`. R219 1.5 kΩ
-  `C22843` (gear input pull-up, FOMEMC-14) sits on the root sheet.
-- Requirements: 0 to 5 V input range scaled to the 3.30 V ADC, ESD on every input,
-  gear-ladder voltages (DESIGN.md §4.4).
+- Key parts per instance: MCP6004 `C50282` (`+5V` unity buffer ahead of the output divider),
+  SRV05-4 `C85364`, 470k/10k/5.6k/10k networks, 100 nF `C161115`, 10 nF `C344025`;
+  pull-up variant uses 2.7 kΩ `C13167`. R219 1.5 kΩ `C22843` (gear input pull-up,
+  FOMEMC-14) sits on the root sheet.
+- Requirements: 0 to 5 V input range buffered by `+5V` `MCP6004` and scaled by `5.6 kΩ / 10 kΩ` (`1.56:1`) to the 3.30 V ADC, ESD on every input,
+  gear-ladder voltages (`0.87..3.19 V` at `PA5`, DESIGN.md §4.4).
 - Evidence: `rc_transient` already fits the input filters (ideal passives).
 - Adaptation: divider ratio, pull-up value, filter corner.
 
 ### Triggers (`triggers.kicad_sch`)
 
 - Boundary in: `/VR1+`, `/VR1-`, `/VR2+`, `/VR2-` (J2-11..14), `/DIGITAL_1..4`
-  (J2-15..18), `/5V_SENSOR_1`, `+5V`, `+3V3` (`contracts/triggers.yaml`). Out:
+  (J2-15..18), `/5V_SENSOR_1`, `+5V`, `+3V3` (`contracts/triggers.interface.json`). Out:
   `/mcu/VR_1`, `/mcu/VR_2`, `/mcu/DIGITAL1..6`.
 - Key parts: U13, U14 MAX9924UAUB+ `C143633` with C38, C39, C109, C110 100 nF
-  `C161115`; U8..U10 SN74LVC2G17DB `C10429`; U11, U12 SRV05-4 `C85364`; R29..R34
-  4.7 kΩ `C23162` pull-ups to `/5V_SENSOR_1`.
+  `C161115`; U8..U10 SN74LVC2G17DB `C10429`; U11, U12 SRV05-4 `C85364`; R23..R28
+  2.7 kΩ `C13167` pull-ups to `/5V_SENSOR_1` and R29..R34 2.7 kΩ `C13167` series resistors.
 - Requirements: **Mode A2** adaptive peak threshold + internal `2.5 V` bias reference
   + `85 ms` zero-crossing watchdog (`Pin 6 ZERO_EN = GND`, `Pin 9 INT_THRS = GND`,
   `Pin 4 BIAS = GND`, `Pin 8 EXT = NC`, `FOMEMC-25`), 50 mVpp to 100 Vpp differential
@@ -294,7 +298,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 
 ### Knock (`knock.kicad_sch`)
 
-- Boundary in: `/KNOCK_1`, `/KNOCK_2` (J2-9, J2-10), `+3V3` (`contracts/knock.yaml`).
+- Boundary in: `/KNOCK_1`, `/KNOCK_2` (J2-9, J2-10), `+3V3` (`contracts/knock.interface.json`).
   Out: `/knock/FILTERED_1`, `/knock/FILTERED_2`.
 - Key parts: U7 MCP6004 `C50282`; C16, C17 3.3 nF `C472819`; band-pass resistor
   network.
@@ -303,7 +307,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 
 ### Stepper/ETB (`stepper_etb.kicad_sch`)
 
-- Boundary: 26 hierarchical pins (`contracts/stepper_etb.yaml`). DRV8825 (U202
+- Boundary: 26 hierarchical pins (`contracts/stepper_etb.interface.json`). DRV8825 (U202
   `C50506`) with STEP on `/LS9`, DIR on `/LS12`, nENBL on `/PB8_STEP_EN`, outputs
   `/STEP_1A..2B` (J1-19..22); the second TLE9201SG (U203 `C112633`) with `/ETB2_*`
   (J1-17, J1-18); flyback diodes D201..D204 (DNP) and D205..D209 (`B340A-13-F`
@@ -321,8 +325,8 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 ### H-bridge (`etb-9201.kicad_sch`)
 
 - Boundary in: `12V_SUPPLY` (`/12V_MR`), `PWM`, `DIR`, `DIS` (`/ETB1_*` from U26),
-  `+3V3` (`contracts/etb-9201.yaml`). Out: `/ETB1_OUT+`, `/ETB1_OUT-` (J1-15, J1-16).
-- Key parts: U201 TLE9201SG `C112633`, C1201 2.2 µF `C90787`.
+  `+3V3` (`contracts/etb-9201.interface.json`). Out: `/ETB1_OUT+`, `/ETB1_OUT-` (J1-15, J1-16).
+- Key parts: U201 TLE9201SG `C112633`, C1201 2.2 µF `C90787`, R210 10k `C25744` DIS pull-up to `+3V3`.
 - The only multi-use candidate in the TLE9201 family: U203 repeats the circuit
   inline in `stepper_etb`. A second instance of this file would replace it.
 
@@ -373,7 +377,7 @@ Rung 2 is one fome-mc sheet run end to end. Two blocks qualify:
    proof needs firmware and active models; static checks (ERC, contract, parts,
    land patterns, layout geometry) do not.
 
-Not rung 2: the MCU core (81 pins, LQFP-144, whole-board context), `stepper_etb`
+Not rung 2: the MCU core (77 pins, LQFP-144, whole-board context), `stepper_etb`
 (four functions), `highside_quad` (no connector-facing output).
 
 agent-ee's seeded benchmark harness (AGENTEE-21) refuses hierarchical designs. A

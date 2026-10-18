@@ -3,7 +3,7 @@
 Status: plan, 2026-10-17. Nothing here has been run. This is input to agent-ee's
 seeded-defect benchmark (AGENTEE-21), not a second benchmark. Plane: AGENTEE-108.
 
-fome-mc's review history (FOMEMC-1..20) is a record of defects that a generator or a
+fome-mc's review history (`FOMEMC-1..27`) is a record of defects that a generator or a
 repair writer actually produced on a real board, and that a review actually caught.
 This document turns those findings into defect classes that can be seeded into a
 copy of fome-mc, names the agent-ee check that should detect each one, and says
@@ -47,10 +47,7 @@ What fome-mc adds that the five public boards do not:
 
 ## Preconditions
 
-- **Control commit.** At `c582b29` several findings are still present (FOMEMC-17..20
-  are in flight), so `c582b29` is not a clean control for those classes. Use the
-  first commit after FOMEMC-17..20 land as the control, and keep `c582b29` as a
-  real-defect fixture for AGENTEE-68 (its open findings are real, not seeded).
+- **Control commit.** At historical snapshot `c582b29` several findings were still present (`FOMEMC-17..27`), so `c582b29` is not a clean control for those classes. Use current `main` (after `FOMEMC-17..27` landed) as the clean control (`0` ERC violations, `0` DRC violations, `100%` BOM/CPL parity), and keep `c582b29` as a real-defect fixture for AGENTEE-68 (its pre-remediation findings at `c582b29` were real, not seeded).
 - **Hierarchy.** Either extend the harness to address a symbol by sheet-instance
   path (agent-ee's `hardware_interface` already does), or seed standalone block
   copies produced by the rung-2 capture (`docs/BLOCK_LIBRARY.md`, AGENTEE-106 and
@@ -117,7 +114,7 @@ planned checks; a seed whose only detector is planned is preregistered as
 | F24 | FOMEMC-17 (injector-clamp) | External freewheel diode defeats the driver's fast active clamp | D201..D204 | `hardware_interface` `component` (`populated: false`); AGENTEE-67 | `set_assembly_state` populate D201 | `component` fails | No |
 | F25 | FOMEMC-17 (brownout-margin) | Operating range claimed from a typical threshold instead of the guaranteed minimum | DESIGN.md §6.3.3, U3 | AGENTEE-18 datasheet fact plus AGENTEE-61 | requirement text cites 3.6 V typical UVLO as the floor | assertion fails against 4.3 V minimum VIN | No |
 | F26 | FOMEMC-18 (physical-001) | Land pattern does not match the datasheet drawing | U29 footprint | AGENTEE-31, AGENTEE-38 | `replace_embedded_physical_footprint` U29 with a wrong-pitch pattern | land-pattern IoU below threshold | No, unless the library copy differs |
-| F27 | FOMEMC-18 (physical-002) | Required bypass capacitors missing on a module supply pin | U29 pin 24 | AGENTEE-59 (decoupling presence) | `remove_component` of the pin-24 capacitor once FOMEMC-18 adds it | AGENTEE-59 missing decoupling | No |
+| F27 | FOMEMC-18 (physical-002) | Required bypass capacitors missing on a module supply pin | U29 pin 24 | AGENTEE-59 (decoupling presence) | `remove_component` of the pin-24 capacitor (`C111`/`C112`) | AGENTEE-59 missing decoupling | No |
 | F28 | FOMEMC-19 (physical-004) | Decoupling placed too far from the supply pin | U25 pin 4 | AGENTEE-53 (decoupling distance) | `pcb_move_footprint` the U25 bypass capacitor by 10 mm | distance > 2 mm | No |
 | F29 | FOMEMC-20 | Label and wiring hygiene: isolated pin label, dangling wire, two names on one net | any sheet | `erc` | `delete_exact_schematic_wire` leaving a label isolated | ERC `isolated_pin_label` (warning) | Yes, as warning |
 | F30 | FOMEMC-11 | Single-spoke thermal on a ground pad | GND pads | `drc` with the unrelaxed rule | delete the stitching via next to one pad | `starved_thermal` (warning) | Yes, if the rule is not relaxed |
@@ -126,19 +123,13 @@ planned checks; a seed whose only detector is planned is preregistered as
 FOMEMC-1, -3 and -4 are feature changes, not defects, and give no seed. FOMEMC-2's
 pin remap gives F09.
 
-## Real defects at `c582b29` (not seeds)
+## Real defects at historical snapshot `c582b29` (not seeds; resolved in `FOMEMC-24`)
 
-Found while preparing this plan, from the committed BOM, CPL and regenerated
-netlist. They belong in the AGENTEE-68 real-defect fixture with these expected
-findings, and in FOMEMC-24 for repair:
+Found while preparing this plan against historical commit `c582b29` (before `FOMEMC-24` landed). They belong in the AGENTEE-68 real-defect fixture at `c582b29` with these expected findings, and were repaired on `main` in `FOMEMC-24`:
 
-- One LCSC number, `C22787`, is bound to two values: R7, R8 (10 Ω) and R9, R10,
-  R101, R102 (120 Ω). At most one binding is right. Detector: AGENTEE-29 with
-  AGENTEE-27.
-- The BOM lists C1 and C6 (47 µF, `C454346`) but the CPL has no rows for them, so
-  JLCPCB would not place them. Detector: AGENTEE-73.
-- Nine BOM lines have no LCSC number (BT1, J8, J9, J11..J16, JP1, JP2) and are not
-  marked DNP. Detector: AGENTEE-29 (assembly intent).
+- At `c582b29`, one LCSC number (`C22787`) was bound to two values: R7, R8 (10 Ω, now `C22859`) and R9, R10, R101, R102 (120 Ω, `C22787`). Detector: AGENTEE-29 with AGENTEE-27.
+- At `c582b29`, the BOM listed C1 and C6 (47 µF, `C454346`) but the CPL had no rows for them (now included in `export/CPL-fome-mc.csv`). Detector: AGENTEE-73.
+- At `c582b29`, nine BOM lines had no LCSC number (`BT1, J8, J9, J11..J16, JP1, JP2`) and were not marked DNP (now marked DNP in schematic/PCB and excluded from `export/BOM-fome-mc.csv` and `export/CPL-fome-mc.csv`). Detector: AGENTEE-29 (assembly intent).
 
 ## Count and coverage
 
