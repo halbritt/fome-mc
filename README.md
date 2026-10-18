@@ -233,7 +233,17 @@ make verify-fab-package REV=HEAD
 
 # 5. Regenerate all 2D schematic SVGs/PDF, PCB layer plots, floorplan, and J1/J2 pinout diagrams
 make renders
+
+# 6. Render native 3D views using a populated model cache (see toolchain guide)
+make render-3d
+# Inspect the images and model coverage, then publish that exact run:
+# make render-3d-publish RUN=build/runs/project/fome-mc/3d-renders-<stamp>
 ```
+
+The [3D render toolchain guide](toolchain/README.md#3d-board-renders) documents
+persistent model caches, explicit model downloads, render settings and publication
+checks. Missing model references and unavailable custom models leave the 3D
+assembly incomplete.
 
 ### Current Verification Status
 

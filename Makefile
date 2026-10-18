@@ -12,6 +12,7 @@
 #   make route-audit OLD=rev [NEW=HEAD] | route-floor [SINCE=rev] [WRITE=1] [NETCLASS_SIZES=1]
 #   make route-canary [BACKEND=all] | route-corpus-list | route-corpus-check [NAME=entry]
 #   make route-corpus-add BACKEND=krt|freerouting [NAME=<PROJECT>] [BUDGET=300] [ARGS='...'] | route-update | route-smoke
+#   make render-3d [MODELS=cache] [FETCH_MODELS=1] | render-3d-publish RUN=dir
 #
 # PROJECT=fome-mc|telemetry-pod|universal-112|fixture (see toolchain/versions.toml; route targets take
 #         its dir, board, schematic and library_dirs from there)
@@ -44,7 +45,16 @@ ROUTE_PROJ = $(eval ROUTE_PROJ := $(shell $(PY) -c "$(ROUTE_PROJ_PY)" '$(PROJECT
 ROUTE_PROJ_OK = $(if $(ROUTE_PROJ),@true,@echo "no routable board for PROJECT=$(PROJECT)" >&2; exit 2)
 RUNS_DIR = build/route/runs/$(PROJECT)
 
-.PHONY: help bootstrap doctor erc drc netlist export analyze check renders verify-io fab-package verify-fab-package simulate smoke baseline skills clean \
+AGENT_EE ?= agent-ee
+MODELS ?= $(HOME)/.cache/agent-ee/models
+FETCH_MODELS ?= 0
+RENDER_WIDTH ?= 4096
+RENDER_HEIGHT ?= 3072
+RENDER_QUALITY ?= high
+RENDER_JOBS ?= 3
+RENDER_TIMEOUT ?= 1200
+
+.PHONY: help bootstrap doctor erc drc netlist export analyze check renders render-3d render-3d-publish verify-io fab-package verify-fab-package simulate smoke baseline skills clean \
         route-doctor route route-campaign route-validate route-compare route-publish route-blocked route-spokes \
         route-audit route-floor route-canary route-corpus-list route-corpus-check route-corpus-add \
         route-update route-smoke
@@ -78,6 +88,15 @@ check:
 
 renders:
 	$(PY) scripts/render_docs.py
+
+render-3d:
+	$(PY) scripts/render_3d.py render --agent-ee "$(AGENT_EE)" --models "$(MODELS)" \
+	  --width $(RENDER_WIDTH) --height $(RENDER_HEIGHT) --quality $(RENDER_QUALITY) \
+	  --jobs $(RENDER_JOBS) --timeout $(RENDER_TIMEOUT) $(if $(filter 1,$(FETCH_MODELS)),--fetch-models)
+
+render-3d-publish:
+	@test -d "$(RUN)" || { echo "usage: make render-3d-publish RUN=build/runs/project/fome-mc/3d-renders-<stamp>"; exit 2; }
+	$(PY) scripts/render_3d.py publish "$(RUN)"
 
 verify-io:
 	$(PY) scripts/verify_io_map.py$(if $(filter-out fome-mc,$(PROJECT)), --project $(PROJECT))

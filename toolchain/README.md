@@ -44,12 +44,54 @@ system: `pcbnew.py`, `_pcbnew.so` and `wx` (through `.venv/kicad-shim` and a `.p
 file). KiBot needs KiCad's own bindings and the wxPython they were built against;
 nothing else from system site-packages leaks in, and system Python is not modified.
 
-KiBot runs with `-A` (no dependency auto-download). 3D models (`kicad-packages3d`) are
-not installed; STEP/3D renders are out of scope (`doctor` reports `UNSUPPORTED`).
+KiBot runs with `-A` (no dependency auto-download). The stock 3D model library is
+optional; `doctor` reports `UNSUPPORTED` when it is absent. The separate
+[3D render workflow](#3d-board-renders) can use a persistent model cache.
+
+## 3D board renders
+
+`make render-3d` calls the installed `agent-ee render3d` command to render the
+saved FOME board. It is separate from `make check`, `make export`, `make renders`
+and `make smoke`; ordinary checks do not launch these expensive renders.
+
+```sh
+# First use: explicitly permit stock model downloads into a persistent cache:
+make render-3d MODELS="$HOME/.cache/agent-ee/models" FETCH_MODELS=1
+# Later runs can use the populated cache without downloads:
+make render-3d
+# Smaller preview using the same three native views:
+make render-3d RENDER_WIDTH=800 RENDER_HEIGHT=600
+# Inspect the images and model coverage, then publish the selected run:
+make render-3d-publish RUN=build/runs/project/fome-mc/3d-renders-<stamp>
+```
+
+Install an agent-ee version with `render3d`, or select its launcher with
+`AGENT_EE=/path/to/agent-ee/bin/agent-ee`. `MODELS` defaults to
+`$HOME/.cache/agent-ee/models`; network model fetching requires `FETCH_MODELS=1`.
+Populate that cache explicitly or select an existing model directory before an
+offline run. A missing cache is an error; ordinary rendering does not download it.
+`RENDER_WIDTH=4096`, `RENDER_HEIGHT=3072`, `RENDER_QUALITY=high`, `RENDER_JOBS=3`
+and `RENDER_TIMEOUT=1200` set the defaults. The timeout is passed to agent-ee in
+seconds. Native KiCad may produce dimensions slightly smaller than requested;
+the manifest records the actual dimensions.
+
+Each call creates a fresh `build/runs/project/fome-mc/3d-renders-<UTC stamp>/`
+containing the native renderer's staged inputs, logs and `render-manifest.json`.
+The adapter does not edit or refill the source board. Publication requires a
+completed manifest with unchanged source, all three views with matching PNG dimensions and hashes,
+and board/project hashes matching the current checkout. It replaces only
+`fome-mc-3d-top.png`, `fome-mc-3d-bottom.png`, `fome-mc-3d-isometric.png` and
+`render-manifest.json` in `docs/renders/3d/`. Invalid or partial runs leave the
+published files untouched. Rerender after changing the source board or project.
+
+Read `model_coverage` and the retained native logs before publishing. Stock
+models cannot supply component bodies for footprints with no model reference
+or unavailable custom models. A completed render is a visual preview and does
+not establish mechanical clearance, ERC/DRC success or fabrication approval.
 
 ## Commands
 
-All targets take `PROJECT=fome-mc|telemetry-pod|universal-112|fixture` (default `fome-mc`),
+The native check targets take `PROJECT=fome-mc|telemetry-pod|universal-112|fixture` (default `fome-mc`),
 `FILL=asis|refill` (default `asis`) and `REV=<git revision>` (snapshot a committed
 revision via `git archive` instead of the working tree; the run is labelled
 `<project>@<rev>`).
@@ -286,6 +328,7 @@ To move kicad-happy: change `[upstream.kicad-happy]` in `versions.toml`, run
   (no `schematic.top_level_sheets` in the `.kicad_pro`); harmless.
 - kicad-happy's own findings include upstream policies (e.g. DS-001 "no datasheets
   directory / no MPNs"). They are reported as-is, not adopted as project rules.
-- `kicad-cli pcb render` (3D) and STEP export need 3D models and are not set up.
+- `make render-3d` handles optional native 3D images through agent-ee. STEP export
+  is not configured by this toolchain.
 - KiCad 10's IPC API, MCP servers, field solvers and editing helpers (akcli,
   kicad-tools) are not installed; no current project operation needs them.
