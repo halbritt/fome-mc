@@ -59,7 +59,7 @@ These are the choices fome-mc's telemetry document left as alternatives, settled
 The pod lives under the tail cowl of a 2007 SV650, next to the battery and tail light wiring, and is treated like the ECU: sealed, vibration-loaded, and not serviced on the roadside.
 
 - Board envelope 80 mm by 50 mm or smaller, component height 12 mm or less above the board, mounting holes in all four corners. The rear seat cowl is large, so the envelope is not tight.
-- Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Potting is acceptable as for the ECU, provided the IMU is rigidly coupled to the enclosure and the enclosure to the frame; a floating IMU measures the pod, not the bike.
+- Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Do not pot the pod unless proven necessary (potting detunes the ESP32 module antenna and GNSS RF path and mechanically stresses the MEMS IMU package); rigidly couple the board and IMU to the enclosure and the enclosure to the frame so the IMU measures the bike, not a floating board.
 - Operating temperature −20 °C to +85 °C board ambient. Parts rated to 105 °C or higher.
 - Vibration: a V-twin at 10,000 rpm puts strong content between 50 Hz and 400 Hz into the frame. The IMU's ±32 g range is chosen for this. Mount the pod on the frame, not the cowl plastic, and keep tall or heavy parts (connector, SMA, electrolytic capacitors) away from the IMU.
 - IMU axes aligned to the bike: X forward, Y left, Z up, marked on the silkscreen, so that the frame scaling matches Bosch MM5.10 conventions without a software rotation.
