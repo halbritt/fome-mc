@@ -1,0 +1,15 @@
+# Independent seven-group candidate review
+
+Reviewed candidate d5dc1cf1652d3f1af6c2bc7c1f356839b62f9c061b624f8781a9f76592efb8ef. Diagnostic placement result only; no adopted board or electrical acceptance.
+
+Exact independent write_scope replay using the retained worker source matches the retained allowed report against seed 6f458cea075913629a562fe40f5c627dccfb8cbff353c9ee7c231da459ebc9da. Native candidate contains 331 unique references. All seven group grades replay pass: prior six groups plus U15/L4/C68/C69/C70 at the proposed 5 mm origin screen. These checks preserve the footprint/pad/net source structure while allowing the recorded poses; group pass is not power-loop qualification.
+
+Independently verified all 79 baseline and 79 candidate project/input hash pins. Original-rule DRC has 137 violations: 44 drill, 20 clearance, 5 edge, 30 silk overlap and 38 silk over copper; 499 unconnected items and zero schematic parity findings. The 69 non-artwork baseline findings persist with exact type/item UUID identity; all 68 added findings are silk. Included severities and ignored checks match baseline. There are no added shorts, PTH-courtyard or mask-bridge findings. This is still an unrouted, DRC-failing candidate.
+
+Reproduced nine U15 pad-pair distances/net assignments, all six crystal pad-pair distances/net assignments, and all twelve bypass-cap geometry records from the native board. U15 VIN–C70 improves 50.8035 to 2.576941 mm, PGND–C70 48.5915 to 4.814626 mm, and SW–L4 8.875 to 3.850393 mm. C68/C69 output and return placement still require actual routing/loop assessment. Crystal center distances are confirmed, not oscillator startup, load-capacitance or signal-integrity acceptance.
+
+Important regression: U26 C97/C98 supply-center distances improve from 5.589/6.791 to 2.510/1.963 mm, but their ground-center distances worsen from 3.642/2.069 to 8.276/8.578 mm. All ten other bypass assignments retain their previous relative supply/ground distances. Same-side and origin-radius pass therefore do not establish uniform electrical improvement or a good local return loop.
+
+Also verified the main-buck candidate measurement rows and component-allocation source hash, values, footprints and native pin/net mappings. Allocation contains 23 supporting parts plus U5/U7, explicitly proposed physical allocation on shared input/output rails. Both series feedback resistors are retained per regulator. Latest SW–inductor distances are U5 12.023 mm and U7 15.754 mm; VCC-cap PGND returns are 8.955 and 9.259 mm. Main-buck hot-loop/feedback/local-return obligations remain open. Pad-center distances are geometric comparisons, not copper-edge routed-length lower bounds.
+
+Remaining gates include the 69 baseline physical-rule findings, artwork repair, complete electrical placement and return-path review, routing and routed native checks, enclosure/connector/antenna obligations, thermal and operating qualification. No source, CAD, rule or packing run was changed or launched by this review.
