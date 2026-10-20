@@ -1,0 +1,149 @@
+{
+  "schema": "pod-supervisor-threshold-study/1",
+  "status": "CONDITIONAL_ANALYSIS",
+  "selection": "R60 unchanged; no binding added",
+  "candidate_mpn": "RT0603BRD0731K6L",
+  "stock_at_capture": 3818,
+  "captured_at": "2026-10-20T14:52:13.811830+00:00",
+  "assumptions": {
+    "sense_current_a": [
+      -1e-07,
+      1e-07
+    ],
+    "healthy_rail_min_v": 4.95,
+    "resistor_reference_temperature_c": [
+      20,
+      25
+    ],
+    "resistor_tcr_ppm_per_k": 25,
+    "resistor_initial_tolerance": 0.001,
+    "sense_threshold_nominal_v": 1.15,
+    "sense_threshold_accuracy": 0.01,
+    "maximum_relative_hysteresis": 0.00825
+  },
+  "rows": [
+    {
+      "top_ohm": 31200,
+      "temperature_interval_c": [
+        -40,
+        25
+      ],
+      "max_delta_from_reference_c": 65,
+      "fall_nominal_v": 4.7379999999999995,
+      "fall_min_v": 4.668892029564969,
+      "fall_max_v": 4.807583607028847,
+      "rise_max_v": 4.847220364177508,
+      "margin_below_assumed_4p95v": 0.10277963582249239
+    },
+    {
+      "top_ohm": 31300,
+      "temperature_interval_c": [
+        -40,
+        25
+      ],
+      "max_delta_from_reference_c": 65,
+      "fall_nominal_v": 4.749499999999999,
+      "fall_min_v": 4.680207388634088,
+      "fall_max_v": 4.819269772435989,
+      "rise_max_v": 4.859002857732563,
+      "margin_below_assumed_4p95v": 0.0909971422674376
+    },
+    {
+      "top_ohm": 31600,
+      "temperature_interval_c": [
+        -40,
+        25
+      ],
+      "max_delta_from_reference_c": 65,
+      "fall_nominal_v": 4.784,
+      "fall_min_v": 4.714153465841443,
+      "fall_max_v": 4.854328268657421,
+      "rise_max_v": 4.894350338397731,
+      "margin_below_assumed_4p95v": 0.05564966160226881
+    },
+    {
+      "top_ohm": 31200,
+      "temperature_interval_c": [
+        -40,
+        105
+      ],
+      "max_delta_from_reference_c": 85,
+      "fall_nominal_v": 4.7379999999999995,
+      "fall_min_v": 4.665358701467971,
+      "fall_max_v": 4.811229958981919,
+      "rise_max_v": 4.850896785651323,
+      "margin_below_assumed_4p95v": 0.09910321434867697
+    },
+    {
+      "top_ohm": 31300,
+      "temperature_interval_c": [
+        -40,
+        105
+      ],
+      "max_delta_from_reference_c": 85,
+      "fall_nominal_v": 4.749499999999999,
+      "fall_min_v": 4.676662735767547,
+      "fall_max_v": 4.822927811414553,
+      "rise_max_v": 4.862691062608539,
+      "margin_below_assumed_4p95v": 0.0873089373914615
+    },
+    {
+      "top_ohm": 31600,
+      "temperature_interval_c": [
+        -40,
+        105
+      ],
+      "max_delta_from_reference_c": 85,
+      "fall_nominal_v": 4.784,
+      "fall_min_v": 4.710574838666277,
+      "fall_max_v": 4.858021368712457,
+      "rise_max_v": 4.898073893480187,
+      "margin_below_assumed_4p95v": 0.05192610651981333
+    },
+    {
+      "top_ohm": 31200,
+      "temperature_interval_c": [
+        -40,
+        125
+      ],
+      "max_delta_from_reference_c": 105,
+      "fall_nominal_v": 4.7379999999999995,
+      "fall_min_v": 4.661828895890895,
+      "fall_max_v": 4.81487996531814,
+      "rise_max_v": 4.854576891656948,
+      "margin_below_assumed_4p95v": 0.09542310834305212
+    },
+    {
+      "top_ohm": 31300,
+      "temperature_interval_c": [
+        -40,
+        125
+      ],
+      "max_delta_from_reference_c": 105,
+      "fall_nominal_v": 4.749499999999999,
+      "fall_min_v": 4.673121616711056,
+      "fall_max_v": 4.826589516489031,
+      "rise_max_v": 4.86638296382572,
+      "margin_below_assumed_4p95v": 0.08361703617427985
+    },
+    {
+      "top_ohm": 31600,
+      "temperature_interval_c": [
+        -40,
+        125
+      ],
+      "max_delta_from_reference_c": 105,
+      "fall_nominal_v": 4.784,
+      "fall_min_v": 4.706999779171546,
+      "fall_max_v": 4.861718170001706,
+      "rise_max_v": 4.901801180332037,
+      "margin_below_assumed_4p95v": 0.04819881966796302
+    }
+  ],
+  "limitations": [
+    "TI sense current limit is specified at VSENSE=5V; use at threshold is conditional.",
+    "4.95V is illustrative before distribution drop; no healthy-load rail minimum established.",
+    "Resistor temperature interval is local part temperature, not enclosure ambient; self-heating unqualified.",
+    "No guaranteed assertion/release timing, noise immunity, transient behavior or hardware acceptance."
+  ]
+}
