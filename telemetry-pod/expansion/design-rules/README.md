@@ -15,6 +15,15 @@ owner-reserved decisions are made autonomously and recorded):**
    board-setup constraint. The board-setup minimum clearance of the expanded project is
    already 0.0 mm; the 0.20 mm comes from the default net class and still applies.
 
+**Owner authorization (2026-10-20, after the decision was recorded):** "relax the
+clearance rules if you must, as long as JLCPCB can manufacture it, and it doesn't affect
+electrical performance." Both conditions bound every rule change in this directory:
+each relaxation must cite the JLCPCB published capability it stays within, and must
+not touch spacing that carries an electrical function (creepage at higher-voltage
+nets, RF, differential pairs, loop geometry). D-PCB-1 satisfies both: the 0.15 mm
+gaps are manufacturer land patterns within JLCPCB spacing capability, and the thermal
+vias are same-net copper under exposed pads.
+
 ## Why
 
 - The restrictive values are agent-ee scaffold defaults on the generated expanded
