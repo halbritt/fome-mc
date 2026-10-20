@@ -1,0 +1,584 @@
+{
+  "schema": "agent-ee.envelope-validation/1",
+  "envelope_id": "expanded-pod-placement-candidate",
+  "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+  "structural": "pass",
+  "outcome": "unknown",
+  "unresolved": [
+    {
+      "predicate": "fab_profile_bytes",
+      "reason": "profile bytes not supplied"
+    },
+    {
+      "predicate": "stackup_layer_source_0",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_1",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_2",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_3",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_4",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_5",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "stackup_layer_source_6",
+      "reason": "fact as_of must equal pinned profile date"
+    },
+    {
+      "predicate": "finished_thickness_tolerance",
+      "reason": "no source-verified finished-thickness tolerance"
+    },
+    {
+      "predicate": "mechanical_corner-holes",
+      "reason": "Provide four corner mounting holes; generator selects drill, plating, inset and coordinates. Unbound until AGENTEE-177, AGENTEE-179."
+    },
+    {
+      "predicate": "mechanical_height",
+      "reason": "No 12 mm height limit is adopted. Actual cowl, underside, connector, mating-plug and harness clearances require enclosure validation for the expanded pod. Unbound until AGENTEE-177, AGENTEE-179."
+    },
+    {
+      "predicate": "mechanical_harness-edge",
+      "reason": "Place selected TE 1-776163-1 35-position harness connector at the board edge using its captured K1 drawing and exact footprint. Panel cutout, mating plug, retention, board thickness tolerance and harness clearance remain unqualified. Unbound until AGENTEE-177, AGENTEE-179."
+    },
+    {
+      "predicate": "mechanical_antenna",
+      "reason": "Match ESP32-S3-WROOM-1 datasheet antenna keepout; antenna-facts.json cites page 45 Figure 11-1, antenna-width and antenna-depth. Module-relative antenna rectangle is [0,0], [18,0], [18,6], [0,6] mm. Generator must select module transform and a board-coordinate keepout; the module rectangle alone does not establish base-board clearance. Unbound until AGENTEE-177, AGENTEE-179."
+    },
+    {
+      "predicate": "mechanical_imu-separation",
+      "reason": "Keep tall or heavy parts, including harness connector, SMA and electrolytic capacitors, away from the IMU. Unbound until AGENTEE-177, AGENTEE-179."
+    }
+  ],
+  "acceptance_ready": false,
+  "outline": {
+    "edges": [
+      {
+        "name": "top",
+        "start_mm": [
+          "0",
+          "0"
+        ],
+        "end_mm": [
+          "90",
+          "0"
+        ],
+        "axis_aligned": true,
+        "length_mm": "90",
+        "outward": "y-"
+      },
+      {
+        "name": "right",
+        "start_mm": [
+          "90",
+          "0"
+        ],
+        "end_mm": [
+          "90",
+          "65"
+        ],
+        "axis_aligned": true,
+        "length_mm": "65",
+        "outward": "x+"
+      },
+      {
+        "name": "bottom",
+        "start_mm": [
+          "90",
+          "65"
+        ],
+        "end_mm": [
+          "0",
+          "65"
+        ],
+        "axis_aligned": true,
+        "length_mm": "90",
+        "outward": "y+"
+      },
+      {
+        "name": "left",
+        "start_mm": [
+          "0",
+          "65"
+        ],
+        "end_mm": [
+          "0",
+          "0"
+        ],
+        "axis_aligned": true,
+        "length_mm": "65",
+        "outward": "x-"
+      }
+    ],
+    "area_mm2": "5850",
+    "winding": "positive_shoelace",
+    "axis_aligned_rectangle": true,
+    "bounds_mm": {
+      "min": [
+        "0",
+        "0"
+      ],
+      "max": [
+        "90",
+        "65"
+      ]
+    }
+  },
+  "layer_count": 4,
+  "copper_layers": [
+    "F.Cu",
+    "In1.Cu",
+    "In2.Cu",
+    "B.Cu"
+  ],
+  "stackup": {
+    "thickness_mm": "1.6",
+    "layers": [
+      {
+        "name": "F.Cu",
+        "kind": "copper",
+        "thickness_mm": "0.035",
+        "copper_weight_oz": "1"
+      },
+      {
+        "name": "dielectric 1",
+        "kind": "dielectric",
+        "thickness_mm": "0.2104"
+      },
+      {
+        "name": "In1.Cu",
+        "kind": "copper",
+        "thickness_mm": "0.0152",
+        "copper_weight_oz": "0.5"
+      },
+      {
+        "name": "dielectric 2",
+        "kind": "dielectric",
+        "thickness_mm": "1.065"
+      },
+      {
+        "name": "In2.Cu",
+        "kind": "copper",
+        "thickness_mm": "0.0152",
+        "copper_weight_oz": "0.5"
+      },
+      {
+        "name": "dielectric 3",
+        "kind": "dielectric",
+        "thickness_mm": "0.2104"
+      },
+      {
+        "name": "B.Cu",
+        "kind": "copper",
+        "thickness_mm": "0.035",
+        "copper_weight_oz": "1"
+      }
+    ],
+    "nominal_thickness_mm": "1.6",
+    "physical_thickness_mm": "1.5862",
+    "sources": [
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "7628 / prepreg: 0.21040 mm",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "core: 1.065 mm",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "7628 / prepreg: 0.21040 mm",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      },
+      {
+        "as_of": "2026-10-18",
+        "page": 1,
+        "path": "sources/jlcpcb-stackup.txt",
+        "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+      }
+    ],
+    "source_paths": []
+  },
+  "fab_profile": {
+    "status": "referenced",
+    "name": "jlc04161h-7628",
+    "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632",
+    "bytes": "not_supplied"
+  },
+  "obligations": [
+    {
+      "id": "corner-holes",
+      "owner_items": [
+        "AGENTEE-177",
+        "AGENTEE-179"
+      ],
+      "requirement_ids": [
+        "POD-ME-1",
+        "POD-AC-7"
+      ],
+      "statement": "Provide four corner mounting holes; generator selects drill, plating, inset and coordinates."
+    },
+    {
+      "id": "height",
+      "owner_items": [
+        "AGENTEE-177",
+        "AGENTEE-179"
+      ],
+      "requirement_ids": [
+        "POD-ME-1"
+      ],
+      "statement": "No 12 mm height limit is adopted. Actual cowl, underside, connector, mating-plug and harness clearances require enclosure validation for the expanded pod."
+    },
+    {
+      "id": "harness-edge",
+      "owner_items": [
+        "AGENTEE-177",
+        "AGENTEE-179"
+      ],
+      "requirement_ids": [
+        "POD-CD-HARNESS-CONNECTOR",
+        "POD-ME-2"
+      ],
+      "statement": "Place selected TE 1-776163-1 35-position harness connector at the board edge using its captured K1 drawing and exact footprint. Panel cutout, mating plug, retention, board thickness tolerance and harness clearance remain unqualified."
+    },
+    {
+      "id": "antenna",
+      "owner_items": [
+        "AGENTEE-177",
+        "AGENTEE-179"
+      ],
+      "requirement_ids": [
+        "POD-CD-MCU-AND-RADIO",
+        "POD-AC-7"
+      ],
+      "statement": "Match ESP32-S3-WROOM-1 datasheet antenna keepout; antenna-facts.json cites page 45 Figure 11-1, antenna-width and antenna-depth. Module-relative antenna rectangle is [0,0], [18,0], [18,6], [0,6] mm. Generator must select module transform and a board-coordinate keepout; the module rectangle alone does not establish base-board clearance."
+    },
+    {
+      "id": "imu-separation",
+      "owner_items": [
+        "AGENTEE-177",
+        "AGENTEE-179"
+      ],
+      "requirement_ids": [
+        "POD-ME-4"
+      ],
+      "statement": "Keep tall or heavy parts, including harness connector, SMA and electrolytic capacitors, away from the IMU."
+    }
+  ],
+  "mounting_holes": [
+    {
+      "id": "H1",
+      "at_mm": [
+        "4",
+        "4"
+      ],
+      "drill_mm": "3.2",
+      "plated": false,
+      "tolerance_mm": "0"
+    },
+    {
+      "id": "H2",
+      "at_mm": [
+        "86",
+        "4"
+      ],
+      "drill_mm": "3.2",
+      "plated": false,
+      "tolerance_mm": "0"
+    },
+    {
+      "id": "H3",
+      "at_mm": [
+        "86",
+        "61"
+      ],
+      "drill_mm": "3.2",
+      "plated": false,
+      "tolerance_mm": "0"
+    },
+    {
+      "id": "H4",
+      "at_mm": [
+        "4",
+        "61"
+      ],
+      "drill_mm": "3.2",
+      "plated": false,
+      "tolerance_mm": "0"
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "radio-antenna",
+      "antenna": {
+        "facts_check": "antenna-facts",
+        "reference": "U1"
+      },
+      "layers": [
+        "F.Cu",
+        "In1.Cu",
+        "In2.Cu",
+        "B.Cu"
+      ],
+      "forbid": [
+        "footprints",
+        "tracks",
+        "vias",
+        "pads",
+        "copper_pours"
+      ]
+    }
+  ],
+  "fixed_footprints": [
+    {
+      "reference": "J1",
+      "side": "front",
+      "layer": "F.Cu",
+      "edge": "bottom",
+      "position_mm": "45",
+      "inset_mm": "9.5",
+      "anchor_mm": [
+        "45",
+        "55.5"
+      ],
+      "rotation_deg": "0",
+      "insertion": "from_top",
+      "mating_axis": "z-",
+      "tolerance_mm": "0",
+      "courtyard_overhangs": [
+        {
+          "edge": "bottom",
+          "max_mm": "22.85"
+        }
+      ]
+    },
+    {
+      "reference": "J2",
+      "side": "front",
+      "layer": "F.Cu",
+      "edge": "right",
+      "position_mm": "28",
+      "inset_mm": "4.56",
+      "anchor_mm": [
+        "85.44",
+        "28"
+      ],
+      "rotation_deg": "180",
+      "insertion": "through_edge",
+      "mating_axis": "x+",
+      "tolerance_mm": "0",
+      "courtyard_overhangs": [
+        {
+          "edge": "right",
+          "max_mm": "9.73"
+        }
+      ]
+    },
+    {
+      "reference": "U1",
+      "side": "front",
+      "layer": "F.Cu",
+      "edge": "top",
+      "position_mm": "72.5",
+      "inset_mm": "6.5",
+      "anchor_mm": [
+        "72.5",
+        "6.5"
+      ],
+      "rotation_deg": "0",
+      "insertion": "from_top",
+      "mating_axis": "z-",
+      "tolerance_mm": "0",
+      "courtyard_overhangs": [
+        {
+          "edge": "top",
+          "max_mm": "21.25"
+        },
+        {
+          "edge": "right",
+          "max_mm": "6.5"
+        }
+      ]
+    },
+    {
+      "reference": "U2",
+      "side": "front",
+      "layer": "F.Cu",
+      "edge": "top",
+      "position_mm": "12",
+      "inset_mm": "10",
+      "anchor_mm": [
+        "12",
+        "10"
+      ],
+      "rotation_deg": "0",
+      "insertion": "from_top",
+      "mating_axis": "z-",
+      "tolerance_mm": "0"
+    }
+  ],
+  "constraint_provenance": {
+    "status": "unknown",
+    "constraints": [
+      {
+        "locator": "/outline",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/layer_count",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/stackup",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/fab_profile",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/mounting_holes/0",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/mounting_holes/1",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/mounting_holes/2",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/mounting_holes/3",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/keepouts/0",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/fixed_footprints/0",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/fixed_footprints/1",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/fixed_footprints/2",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/fixed_footprints/3",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/obligations/0",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/obligations/1",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/obligations/2",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/obligations/3",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      },
+      {
+        "locator": "/obligations/4",
+        "class": "unknown",
+        "enforcement": "hard",
+        "reason": "no provenance declared; enforced as before and never treated as owner-stated"
+      }
+    ],
+    "source_paths": [],
+    "owner_confirmation": []
+  }
+}

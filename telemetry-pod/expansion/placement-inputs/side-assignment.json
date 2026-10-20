@@ -1,0 +1,515 @@
+{
+  "schema": "pod-side-assignment/1",
+  "status": "Engineering candidate; not assembly, thermal or routing approval",
+  "groups": [
+    {
+      "group": "connectors",
+      "side": "F",
+      "references": [
+        "J1"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "power-entry",
+      "side": "F",
+      "references": [
+        "Q1",
+        "D1",
+        "D2",
+        "R1",
+        "C1",
+        "C2",
+        "C3",
+        "C8",
+        "C9",
+        "C10"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "pre-6v3",
+      "side": "F",
+      "references": [
+        "U5",
+        "C4",
+        "C5",
+        "L1",
+        "R2",
+        "R3",
+        "R27",
+        "C6",
+        "C7"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "buck-3v3",
+      "side": "F",
+      "references": [
+        "U7",
+        "C11",
+        "C12",
+        "L2",
+        "R4",
+        "R5",
+        "R28",
+        "C18",
+        "C13",
+        "C14",
+        "C15",
+        "C38",
+        "C41",
+        "C43",
+        "C44"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "supplies-5v",
+      "side": "F",
+      "references": [
+        "U11",
+        "R7",
+        "C21",
+        "C22",
+        "U6",
+        "C16",
+        "C17",
+        "R6",
+        "U12",
+        "C19",
+        "C20"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "afe",
+      "side": "B",
+      "references": [
+        "U8",
+        "R10",
+        "R11",
+        "R13",
+        "R14",
+        "R16",
+        "R17",
+        "R19",
+        "R20",
+        "C30",
+        "C32",
+        "C34",
+        "C36",
+        "U9",
+        "R22",
+        "R23",
+        "C39"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "adc",
+      "side": "B",
+      "references": [
+        "U4",
+        "R12",
+        "R15",
+        "R18",
+        "R21",
+        "C31",
+        "C33",
+        "C35",
+        "C37",
+        "C40"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "mcu",
+      "side": "F",
+      "references": [
+        "U1",
+        "C45",
+        "C46",
+        "C47",
+        "C48",
+        "C49",
+        "C50",
+        "C51",
+        "C52",
+        "C53",
+        "R29",
+        "R30",
+        "R31",
+        "R32",
+        "R33"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "imu",
+      "side": "F",
+      "references": [
+        "U2"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "gnss",
+      "side": "F",
+      "references": [
+        "U3",
+        "J2",
+        "U10",
+        "L3",
+        "D3",
+        "C42",
+        "R24",
+        "R25",
+        "R26"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "can",
+      "side": "F",
+      "references": [
+        "U100",
+        "D100",
+        "R100",
+        "C100"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "test-points",
+      "side": "B",
+      "references": [
+        "TP1",
+        "TP2",
+        "TP3",
+        "TP4",
+        "TP5",
+        "TP6"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "aux-afe",
+      "side": "B",
+      "references": [
+        "U13",
+        "R34",
+        "R35",
+        "R36",
+        "R37",
+        "R38",
+        "R39",
+        "R40",
+        "R41",
+        "R42",
+        "R43",
+        "R44",
+        "R45",
+        "C54",
+        "C55",
+        "C56",
+        "C57",
+        "C58",
+        "C59",
+        "C60",
+        "C61",
+        "C62"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "storage",
+      "side": "B",
+      "references": [
+        "U14",
+        "R46",
+        "R47",
+        "R48",
+        "R49",
+        "R50",
+        "R51",
+        "R52",
+        "R53",
+        "R54",
+        "R55",
+        "C63",
+        "C64",
+        "C65",
+        "C66",
+        "C67"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "storage-power",
+      "side": "B",
+      "references": [
+        "U15",
+        "L4",
+        "C68",
+        "C69",
+        "C70"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "supervision",
+      "side": "B",
+      "references": [
+        "U16",
+        "R56",
+        "R57",
+        "C71",
+        "C72",
+        "U17",
+        "R58",
+        "R59",
+        "C73",
+        "C74",
+        "U18",
+        "R60",
+        "R181",
+        "R61",
+        "C75",
+        "C76",
+        "U19",
+        "R62",
+        "R63",
+        "C77",
+        "C78",
+        "R64",
+        "R65"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "tire-can",
+      "side": "F",
+      "references": [
+        "U20",
+        "U21",
+        "U22",
+        "Y1",
+        "C79",
+        "C80",
+        "C81",
+        "C82",
+        "C83",
+        "C84",
+        "C85",
+        "R66",
+        "R67",
+        "R68",
+        "R69",
+        "R70",
+        "R71",
+        "R72",
+        "JP1",
+        "D101"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "SENSOR_POWER_FRONT",
+      "side": "F",
+      "references": [
+        "U23",
+        "R73",
+        "R74",
+        "R75",
+        "R76",
+        "C86",
+        "C87",
+        "C88"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "SENSOR_POWER_REAR",
+      "side": "F",
+      "references": [
+        "U24",
+        "R77",
+        "R78",
+        "R79",
+        "R80",
+        "C89",
+        "C90",
+        "C91"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "SENSOR_POWER_TIRE",
+      "side": "F",
+      "references": [
+        "U25",
+        "R81",
+        "R82",
+        "R83",
+        "R84",
+        "C92",
+        "C93",
+        "C94"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "wheel-input",
+      "side": "F",
+      "references": [
+        "U26",
+        "D102",
+        "R110",
+        "R111",
+        "R112",
+        "R113",
+        "R114",
+        "R115",
+        "R116",
+        "R117",
+        "R118",
+        "C95",
+        "D103",
+        "R119",
+        "R120",
+        "R121",
+        "R122",
+        "R123",
+        "R124",
+        "R125",
+        "R126",
+        "R127",
+        "C96",
+        "C97",
+        "C98",
+        "D104"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "diagnostic",
+      "side": "B",
+      "references": [
+        "R160",
+        "R161",
+        "U27",
+        "C118",
+        "C119",
+        "U28",
+        "C120",
+        "C121",
+        "U29",
+        "C122",
+        "C123",
+        "R128",
+        "R129",
+        "R130",
+        "R131",
+        "C110",
+        "R132",
+        "R133",
+        "R134",
+        "R135",
+        "C111",
+        "R136",
+        "R137",
+        "R138",
+        "R139",
+        "C112",
+        "R140",
+        "R141",
+        "R142",
+        "R143",
+        "C113",
+        "R144",
+        "R145",
+        "R146",
+        "R147",
+        "C114",
+        "R148",
+        "R149",
+        "R150",
+        "R151",
+        "C115",
+        "R152",
+        "R153",
+        "R154",
+        "R155",
+        "C116",
+        "R156",
+        "R157",
+        "R158",
+        "R159",
+        "C117"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    },
+    {
+      "group": "aux-power",
+      "side": "F",
+      "references": [
+        "U30",
+        "R162",
+        "R163",
+        "R164",
+        "R165",
+        "C124",
+        "C125",
+        "C126",
+        "R166",
+        "R167",
+        "R168",
+        "R169",
+        "C127"
+      ],
+      "rationale": "Candidate front-side connector, radio, interface or supply group; preserve local circuit grouping."
+    },
+    {
+      "group": "thermistor",
+      "side": "B",
+      "references": [
+        "U31",
+        "D105",
+        "R174",
+        "R175",
+        "R170",
+        "JP2",
+        "R171",
+        "JP3",
+        "R172",
+        "JP4",
+        "R173",
+        "JP5",
+        "C128",
+        "R180",
+        "R176",
+        "R177",
+        "R178",
+        "R179",
+        "C129"
+      ],
+      "rationale": "Candidate back-side analog, storage or monitoring group; keep its local circuit together."
+    }
+  ],
+  "board_only": {
+    "side": "F",
+    "references": [
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ]
+  },
+  "limitations": [
+    "No enclosure underside or component-height clearance is qualified.",
+    "Opposite-side switching coupling, analog accuracy, heat flow, BGA escape and bus routing need later verification.",
+    "Schematic group membership is a locality choice, not a complete electrical placement constraint."
+  ]
+}
