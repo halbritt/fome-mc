@@ -74,7 +74,7 @@ Native `telemetry-pod/*.kicad_*` files are unchanged.
 
 ## Regenerate and verify
 
-Compiler: agent-ee commit `62fb279fb0129de06154675d876989c53cb079a7`.
+Compiler: agent-ee release `ca15c9237c0f230cff2cea189710eae63099ba37`.
 From the repository root, using that existing checkout:
 
 ```sh
@@ -83,8 +83,9 @@ make verify-io PROJECT=telemetry-pod
 ```
 
 The contract is generated, never hand-edited. Its per-invariant `io_map` citations
-include the CSV hash. A changed CSV with a stale contract fails verification.
-Every pod verification also recompiles the CSV, bindings and paths with the existing AGENTEE-188 checkout
+include the CSV hash. Each invariant also binds the requirements source with
+`source.sha256`. A changed CSV or requirements source with a stale contract fails verification.
+Every pod verification also recompiles the CSV, bindings and paths with the installed agent-ee checkout
 and compares the output bytes against the committed contract. Hand edits, including
 swaps between terminals on the same net, fail. Compiler logs and the fresh JSON
 are retained under `build/runs/verify-io/telemetry-pod/`.
