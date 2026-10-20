@@ -5,6 +5,11 @@ the released schematic, BOM or verified io-map. The committed v9 design remains
 the earlier pilot. `allocation.json` reserves pins for the complete expansion so
 that individual additions cannot consume the same terminal twice.
 
+The [integration stage](integration/README.md) prepares the latest electrical
+capture with the reviewed connector footprint and exact-part model. Use its
+generator for the next fresh native project once the emitter release gates clear.
+The older snapshots remain evidence of their individual preparation stages.
+
 ## Connector and buses
 
 Keep J1 positions 1–16 functionally unchanged. Positions 17–20 carry the four
