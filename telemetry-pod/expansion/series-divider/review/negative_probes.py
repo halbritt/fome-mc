@@ -11,7 +11,10 @@ for name,reason in [('midpoint_attachment','terminal repeated'),('bypassed_serie
   else:
    components={c['reference']:c for c in d['components']};bridge=next(n for n in d['nets'] if n['name']=='SUP_U18_TOP_SERIES')
    if name=='midpoint_attachment':bridge['terminals'].append({'component':'supervisor/U18','pin':{'number':'1'}})
-   elif name=='bypassed_series':bridge['terminals'][1]['pin']['number']='3'
+   elif name=='bypassed_series':
+    sense=next(n for n in d['nets'] if n['name']=='SUP_U18_SENSE')
+    bridge['terminals'].extend(sense['terminals'])
+    d['nets'].remove(sense)
    elif name=='wrong_resistance':components['R60']['value']='31.6 kohm 0.1% 25ppm/K'
    else:components['U20']['part_binding']['LCSC']='C_FAKE'
   p.write_text(json.dumps(d,indent=2)+'\n')
