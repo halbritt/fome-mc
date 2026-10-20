@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "intent_sha256": "e839d92c8b1c6fe5a018f2cb0139c667b7495bf046c88f9d6ced45d75b51b346",
+  "native_sha256": "80f1ce33e103808d504ab92899025040ee5b75433af6d3afce9e40fdf1eb7786",
+  "checker_sha256": "9e0fe071b51f0976d7a819ab3beff34d9dd084ac61cb636fc815af47b5bbe665",
+  "source_native_terminals_compared": 209,
+  "adc_channels_unchanged": 10,
+  "report_exact_replay": true,
+  "module_pin_25": "IO48",
+  "negative_controls": {
+    "downstream_tap": {
+      "rejected": true,
+      "reason": "ValueError: Connectivity mismatch: (('U6', 1), ('U6', 4), ('R60', 1), ('U30', 1))"
+    },
+    "bypassed_midpoint": {
+      "rejected": true,
+      "reason": "ValueError: Series midpoint must contain only R60.2 and R181.1"
+    },
+    "misgrounded_bottom": {
+      "rejected": true,
+      "reason": "ValueError: Connectivity mismatch: (('R61', 2), ('U18', 2))"
+    }
+  },
+  "scope": "Source/native correspondence and damaged-input rejection only; no electrical qualification."
+}

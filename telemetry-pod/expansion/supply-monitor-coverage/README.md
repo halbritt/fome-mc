@@ -4,8 +4,8 @@
 external sensor supplies are valid. This matters both for R60 selection and
 for the future firmware validity policy.
 
-The current component-fit intent connects U6 OUT1 and FB4, R60 pin1, the original
-sensor supply connector pins and U30 IN1 to **POD_5V_SENSOR**. R60/R61 feed U18
+The current series-divider intent connects U6 OUT1 and FB4, R60 pin1, the original
+sensor supply connector pins and U30 IN1 to **POD_5V_SENSOR**. R60/R181/R61 feed U18
 SENSE1. U18 RESET6 connects through SENSOR_FAULT_N to U1 module pin25 (GPIO48).
 U30 OUT10 is the separate **POD_5V_AUX** node. Its series drop, current limiting,
 reverse fault or shutdown is not directly observed by U18 while U6 stays healthy.
@@ -13,7 +13,7 @@ reverse fault or shutdown is not directly observed by U18 while U6 stays healthy
 ```mermaid
 flowchart LR
   U6[U6 tracking regulator] --> S[POD_5V_SENSOR]
-  S --> U18[R60/R61 and U18]
+  S --> U18[R60/R181/R61 and U18]
   U18 --> F[SENSOR_FAULT_N]
   S --> O[J1 pins 5 / 8 / 11 / 14]
   S --> U30[U30 protection switch]
@@ -43,7 +43,15 @@ a branch fault.
 | U29 AIN2 | POD_TIRE_SUPPLY | 31 |
 
 All ten paths use three series 499 kohm resistors and a 4.99 kohm bottom
-resistor: nominal 301:1 division. The source checker follows each series junction
+resistor: nominal 301:1 division.
+
+The supervisor top arm is 30.1 kohm R60 plus 1.2 kohm R181. The checker
+requires a two-terminal midpoint, a separate SENSE node and the exact selected
+values, plus a grounded bottom arm and supervisor reference. The nominal
+31.3 kohm top arm and sensing boundary are unchanged.
+`component-fit-report.json` retains the preceding graph report.
+
+The source checker follows each series junction
 to the ADC input and ground, rather than inferring a connection from names.
 `report.json` records the exact intent hash. The ADC pin mapping follows the
 existing captured ADS1119 library. This is source graph evidence, not a native
@@ -53,10 +61,12 @@ schematic or an operational measurement.
 
 For R60, compare the supervisor's release threshold to the healthy voltage at
 **U6's sensed output node**. Do not subtract the U30 or external cable voltage
-drop from this upstream-node calculation. The earlier auxiliary study's
+drop from this upstream-node calculation. The historical, unselected 31.6 kohm
+alternative study's
 conditional reference-plus-tracking-only minimum of 4.9844 V would leave
 82.599 mV above the 31.6 kohm candidate's conditional 4.901801 V maximum release
-threshold. This remains an incomplete error budget: shared load, headroom,
+threshold. Those figures do not describe the selected series divider. The
+healthy-rail error budget remains incomplete: shared load, headroom,
 thermal operation, remaining reference errors, noise and aging are not closed.
 The original illustrative 4.95 V comparison remains a separate assumption.
 
@@ -78,4 +88,14 @@ needed when selecting the external sensors. No firmware source is modified here.
 python3 telemetry-pod/expansion/supply-monitor-coverage/check_coverage.py
 ```
 
-The output must match `report.json`. Current design inputs remain unchanged.
+The output must match `report.json`, whose intent hash pins the current series
+source. `--intent PATH` permits explicit evidence or damaged-control inputs.
+Current design inputs remain unchanged. Native graph correspondence is separately
+verified in `../series-divider/`; this checker alone makes no native or operating
+claim.
+
+Independent `review/check_review.py` compares 209 relevant source/native
+terminals, confirms module pin25 is IO48, and verifies all ten channel records
+are unchanged. Its three damaged-input controls reject a downstream supervisor
+tap, bypassed midpoint and misgrounded divider bottom. Its output must match
+`review/report.json`; these checks do not establish electrical qualification.

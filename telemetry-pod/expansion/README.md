@@ -13,8 +13,8 @@ using unreleased agent-ee candidate `b42adf7`, with independent graph, metadata,
 BOM and ERC checks. This is not released software or hardware qualification.
 Earlier snapshots retain evidence of their individual preparation and review stages.
 The [supply-monitor coverage](supply-monitor-coverage/README.md) records the
-preceding component-fit graph's sensing boundaries and ten diagnostic channels;
-its checker still needs adaptation for the new series-divider midpoint.
+current series-divider graph's sensing boundaries and ten diagnostic channels,
+including the added supervisor midpoint.
 
 ## Connector and buses
 

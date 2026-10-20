@@ -1,13 +1,17 @@
 {
-  "schema": "pod-supply-monitor-coverage/1",
-  "intent_sha256": "2af24a5305947309c7200e85ffaac967cfacd63c4b24bd6f3d07c187dae66f04",
+  "schema": "pod-supply-monitor-coverage/2",
+  "intent_sha256": "e839d92c8b1c6fe5a018f2cb0139c667b7495bf046c88f9d6ced45d75b51b346",
   "supervisor": {
     "device": "U18",
     "rail": "POD_5V_SENSOR",
     "divider": [
       "R60",
+      "R181",
       "R61"
     ],
+    "series_midpoint": "SUP_U18_TOP_SERIES",
+    "top_nominal_ohm": 31300,
+    "bottom_nominal_ohm": 10000,
     "signal": "SENSOR_FAULT_N",
     "module_pin": 25,
     "coverage": "Local U6 output; upstream of U30 and external wiring"
