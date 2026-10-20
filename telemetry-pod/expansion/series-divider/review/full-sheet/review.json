@@ -1,0 +1,151 @@
+{
+  "status": "FINDINGS_OPEN",
+  "schematic_sha256": "36cc7e8f32bad193b0f06ef130f39c903887c333df2a95697c82ad8a64586cb3",
+  "emitter_commit": "b42adf763948364547febc5f0767b2913b365af8",
+  "kicad_version": "10.0.7",
+  "scope": "Rendered full occupied sheet review by parent and independent reviewer; no electrical qualification",
+  "regions": [
+    {
+      "image": "top-left.png",
+      "viewBox": [
+        0,
+        0,
+        440,
+        155
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "top-middle.png",
+      "viewBox": [
+        440,
+        0,
+        440,
+        155
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "top-right.png",
+      "viewBox": [
+        880,
+        0,
+        309,
+        280
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "middle-left.png",
+      "viewBox": [
+        0,
+        150,
+        345,
+        220
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "middle-center.png",
+      "viewBox": [
+        340,
+        145,
+        345,
+        190
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "middle-right.png",
+      "viewBox": [
+        680,
+        150,
+        460,
+        380
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "bottom-left.png",
+      "viewBox": [
+        0,
+        365,
+        165,
+        285
+      ],
+      "output_width_px": 2600
+    },
+    {
+      "image": "diagnostics.png",
+      "viewBox": [
+        285,
+        320,
+        310,
+        450
+      ],
+      "output_width_px": 2600
+    }
+  ],
+  "findings": [
+    {
+      "id": "VIS-1",
+      "references": [
+        "R18",
+        "R128",
+        "R129",
+        "R140",
+        "R144"
+      ],
+      "problem": "Vertical net labels overlap reference/value fields on detached resistors",
+      "regions": [
+        "top-middle",
+        "diagnostics"
+      ]
+    },
+    {
+      "id": "VIS-2",
+      "references": [
+        "TP1",
+        "TP2",
+        "TP3",
+        "TP4",
+        "TP5",
+        "TP6"
+      ],
+      "problem": "Net labels overlap displayed component fields",
+      "regions": [
+        "top-left",
+        "middle-left"
+      ]
+    },
+    {
+      "id": "VIS-3",
+      "references": [
+        "U14",
+        "U15"
+      ],
+      "problem": "Group headings still say supplies pending and supervisor pending although those circuits are now present; qualification remains pending",
+      "regions": [
+        "middle-center",
+        "middle-right"
+      ]
+    }
+  ],
+  "observations": [
+    "No omitted functional groups or actual sheet-edge clipping observed; region crops intentionally cut neighboring groups.",
+    "U31 has crowded REF/K/reference labeling and needs reinspection after the systematic field-placement repair.",
+    "Independent reviewer inspected all eight regions and agrees visual acceptance remains open."
+  ],
+  "files_sha256": {
+    "bottom-left.png": "d1eaccfd7376b1d8010413f314d1be3e3e5eb5f9164161a198111e4ef50634c7",
+    "diagnostics.png": "05cdee523f2427c491b5cbe622fceccb21aa68694f7a63b4450d46e2ac599d05",
+    "middle-center.png": "dedc0f75f3dc734aaebec7b03c494025c017021b5f30b42d3f973a193cf9c052",
+    "middle-left.png": "ca0af5c5ae2b343f0ba761ce8b35cd70c14c6243eee1930a4eecfbab8d9b5aab",
+    "middle-right.png": "b6209a712f0f31f5d9e46f0ffb9d76b934b977876ecb2fe88e9c89a4d1a9a2b0",
+    "top-left.png": "8458e6b000eb0c08489ebd43f35bfd647150c4d9b81f58c33bc51e1c75daba29",
+    "top-middle.png": "1b04fb0e3f49cf3572ec14e725a6556de20e518ba6a1f741f64e7a8fbf4ede66",
+    "top-right.png": "096b70356f3b2815ec92904ebda3e75c46474847a563960af62dcd30b02b20ce",
+    "telemetry-pod.svgz": "856f5395f7c452fe3532f8ab8ea59bb297c44ebf3c3476fa0a6c167db14ad806"
+  },
+  "svg_uncompressed_sha256": "e0f65d4a1b796ef172ac19f6a86407029ed710bf036a74e53ab24713a4e49450"
+}

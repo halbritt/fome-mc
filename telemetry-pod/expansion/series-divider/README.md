@@ -113,6 +113,9 @@ reproduce this evidence or establish a separately reviewed candidate.
 The retained overview and enlarged supervisor renders were inspected. The new
 series connection is legible, with the resistor value close to adjacent graphics;
 full-sheet detailed readability review remains open. See `review/visual-review.json`.
+The subsequent [full-sheet review](review/full-sheet/README.md) found overlapping
+net labels and component fields, plus stale group titles. Those findings remain
+open despite the passing native graph and ERC checks.
 This is not a placed, routed or fabrication-ready pod and does not replace the
 committed pilot project. Placement/routing, hardware qualification, the jumper
 fabrication gate and software release remain separate outstanding work.
