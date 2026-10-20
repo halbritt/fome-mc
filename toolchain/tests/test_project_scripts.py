@@ -1,5 +1,6 @@
 """Project selection and fail-closed I/O checks; runnable with unittest offline."""
 import contextlib
+import copy
 import csv
 import importlib.util
 import io
@@ -136,8 +137,8 @@ class ProjectScripts(unittest.TestCase):
     def test_landed_pod_map_reads_before_missing_root_contract(self):
         source = REPO / 'telemetry-pod/io-map.csv'
         pins = verify.read_project_map(source)
-        self.assertEqual(len(pins), 29)
-        self.assertEqual(pins['AMPSEAL-1'], 'POD_CAN_H')
+        self.assertEqual(len(pins), 32)
+        self.assertEqual(pins['AMPSEAL-1'], '/POD_CAN_P')
         self.assertEqual(pins['BLE-RADIO'], 'N/A')
         project = self.root / 'telemetry-pod'
         project.mkdir()
@@ -182,14 +183,70 @@ class ProjectScripts(unittest.TestCase):
             map_path.write_text(map_text.replace('/IN', 'WRONG'))
             self.assertEqual(verify.verify_project_io(cfg), 1)
             self.write_map(map_path, [('J1-1', '/IN'), ('J1-2', '/OUT')])
-            with self.assertRaisesRegex(ValueError, 'coverage'):
-                verify.verify_project_io(cfg)
+            self.assertEqual(verify.verify_project_io(cfg), 1)
             map_path.write_text(map_text)
             contract['invariants'][0]['names'] = ['WRONG']
             contract_path.write_text(json.dumps(contract))
             self.assertEqual(verify.verify_project_io(cfg), 1)
         self.assertEqual((project / cfg['schematic']).read_bytes(), (fixture / cfg['schematic']).read_bytes())
         self.assertTrue(list(self.root.glob('build/runs/verify-io/*/*/snapshot.json')))
+
+
+    def test_real_pod_bindings_and_fail_closed_mutations(self):
+        project = self.root / 'telemetry-pod'
+        shutil.copytree(REPO / 'telemetry-pod', project)
+        (self.root / 'contracts').mkdir()
+        contract_path = self.root / 'contracts/telemetry-pod.interface.json'
+        original = json.loads((REPO / 'contracts/telemetry-pod.interface.json').read_text())
+        cfg = dict(verify.eda.project_config('telemetry-pod'), path=project)
+
+        def run(contract):
+            contract_path.write_text(json.dumps(contract))
+            output = io.StringIO()
+            with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(output):
+                result = verify.verify_project_io(cfg)
+            return result, output.getvalue()
+
+        result, output = run(original)
+        self.assertEqual(result, 0, output)
+        self.assertIn('NOT_EVALUATED: BLE-RADIO', output)
+        self.assertIn('81/82 invariants satisfied', output)
+        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing'):
+            with self.subTest(mutation=mutation):
+                contract = copy.deepcopy(original)
+                terminals = contract['terminals']
+                if mutation == 'net':
+                    contract['invariants'][0]['names'] = ['WRONG']
+                elif mutation == 'pin':
+                    terminals['AMPSEAL-1'], terminals['AMPSEAL-2'] = terminals['AMPSEAL-2'], terminals['AMPSEAL-1']
+                elif mutation == 'nc':
+                    terminals['AMPSEAL-17'], terminals['AMPSEAL-3'] = terminals['AMPSEAL-3'], terminals['AMPSEAL-17']
+                elif mutation == 'unresolved':
+                    terminals['AMPSEAL-1'] = {'unresolved': 'deliberate scratch mutation'}
+                elif mutation == 'unknown':
+                    inv = contract['invariants'][0]
+                    inv.pop('terminal'); inv.pop('names')
+                    inv.update(kind='unresolved', reason='deliberate scratch unknown')
+                elif mutation == 'missing':
+                    del terminals['AMPSEAL-23']
+                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'AMPSEAL-23']
+                result, output = run(contract)
+                self.assertEqual(result, 1, output)
+                self.assertIn('FAIL:', output)
+        for source in (REPO / 'telemetry-pod').glob('*.kicad_*'):
+            self.assertEqual(source.read_bytes(), (project / source.name).read_bytes())
+
+        # CSV net and MCU pin changes must refuse a stale compiled contract.
+        map_path = project / 'io-map.csv'
+        raw = map_path.read_bytes()
+        for old, new in ((b'/POD_CAN_P', b'/WRONG'), (b'U1,4;5,', b'U1,4;6,')):
+            with self.subTest(stale_map=new):
+                self.assertIn(old, raw)
+                map_path.write_bytes(raw.replace(old, new))
+                result, output = run(original)
+                self.assertEqual(result, 1, output)
+                self.assertIn('stale io-map citation', output)
+                map_path.write_bytes(raw)
 
 
 if __name__ == '__main__':

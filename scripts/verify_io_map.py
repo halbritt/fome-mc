@@ -3,11 +3,12 @@
 
 The default fome-mc audit also checks its ECU-specific pin expectations, firmware
 board configuration, connector YAML and sheet-contract documentation. Other
-projects use the FOMEMC-30 CSV header with a Net column; see toolchain/README.md
+projects use the FOMEMC-30 CSV header, optionally with MCU_Path; see toolchain/README.md
 for the input contract and contract locations.
 """
 import argparse
 import csv
+import hashlib
 import re
 import shutil
 import subprocess
@@ -20,7 +21,10 @@ AGENT_EE_SRC = Path.home() / "git/agent-ee/src"
 if AGENT_EE_SRC.exists() and str(AGENT_EE_SRC) not in sys.path:
     sys.path.insert(0, str(AGENT_EE_SRC))
 
-from agent_ee.hardware_interface import evaluate, load_contract, read_inventory  # noqa: E402
+from agent_ee.hardware_interface import (  # noqa: E402
+    atom, declared_pins, evaluate, load_contract, qualify_global_names, read_inventory,
+    resolve_components,
+)
 from agent_ee.symbol_library import children, field, parse_sexpr  # noqa: E402
 
 REPO = Path(subprocess.check_output(
@@ -307,7 +311,7 @@ def _find_kicad_cli() -> str:
     raise FileNotFoundError("kicad-cli not found in ~/.local/opt/kicad-10.0.7/bin or PATH")
 
 
-def fresh_inventory(cfg: dict) -> dict:
+def fresh_inventory(cfg: dict, contracts=()) -> dict:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     run_dir = REPO / "build/runs/verify-io" / cfg["name"] / stamp
     run_dir.mkdir(parents=True)
@@ -323,14 +327,21 @@ def fresh_inventory(cfg: dict) -> dict:
     (run_dir / "netlist.log").write_text(proc.stdout + proc.stderr)
     if proc.returncode != 0 or not xml_path.exists():
         raise ValueError(f"kicad-cli sch export netlist failed (rc={proc.returncode}); see {run_dir / 'netlist.log'}")
-    return read_inventory(xml_path)
+    inventory = read_inventory(xml_path)
+    if contracts:
+        schematics = {p.relative_to(snap).as_posix(): parse_sexpr(p.read_bytes())
+                      for p in snap.rglob("*.kicad_sch")}
+        pins = set().union(*(declared_pins(c, inventory) for c in contracts))
+        qualify_global_names(inventory, schematics, atom(schematics[cfg["schematic"]], "uuid"), pins)
+    return inventory
 
 
-def read_project_map(path: Path) -> dict[str, str]:
+def read_project_rows(path: Path) -> dict[str, dict[str, str]]:
     with path.open(newline="") as stream:
         reader = csv.DictReader(stream, strict=True)
-        if reader.fieldnames != PROJECT_MAP_COLUMNS:
-            raise ValueError("io-map.csv header must be exactly " + ",".join(PROJECT_MAP_COLUMNS))
+        if reader.fieldnames not in (PROJECT_MAP_COLUMNS, PROJECT_MAP_COLUMNS + ["MCU_Path"]):
+            raise ValueError("io-map.csv header must be exactly " + ",".join(PROJECT_MAP_COLUMNS)
+                             + " (optionally followed by ,MCU_Path)")
         pins = {}
         for row in reader:
             if None in row or any(value is None or not value.strip() for value in row.values()):
@@ -339,10 +350,18 @@ def read_project_map(path: Path) -> dict[str, str]:
             net = row["Net"].strip()
             if identity in pins:
                 raise ValueError(f"duplicate io-map connector pin {identity}")
-            pins[identity] = net
+            if net == "N/C" and not (row["Direction_Class"] == "No_Connect"
+                                         and row["Signal_Name"] == "NO_CONNECT"
+                                         and row["MCU_Ref"] == row["MCU_Pin"] == "N/A"):
+                raise ValueError(f"{identity}: N/C requires an explicit No_Connect row without MCU pins")
+            pins[identity] = {k: v.strip() for k, v in row.items()}
     if not pins:
         raise ValueError("io-map.csv contains no connector pins")
     return pins
+
+
+def read_project_map(path: Path) -> dict[str, str]:
+    return {identity: row["Net"] for identity, row in read_project_rows(path).items()}
 
 
 def verify_project_io(cfg: dict) -> int:
@@ -350,7 +369,8 @@ def verify_project_io(cfg: dict) -> int:
     map_path = project_dir / "io-map.csv"
     if not map_path.is_file():
         raise ValueError(f"no io-map for project {cfg['name']}: {map_path}")
-    pins = read_project_map(map_path)
+    rows = read_project_rows(map_path)
+    pins = {identity: row["Net"] for identity, row in rows.items()}
     if cfg["name"] == "telemetry-pod":
         contract_root = REPO
         contract_path = REPO / "contracts/telemetry-pod.interface.json"
@@ -363,39 +383,86 @@ def verify_project_io(cfg: dict) -> int:
         if not contract_paths:
             raise ValueError(f"no interface contracts for project {cfg['name']}")
     contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
-    inventory = fresh_inventory(cfg)
-    native_pins = {f"{comp['reference']}-{pin}": (comp["reference"], pin)
+    inventory = fresh_inventory(cfg, contracts)
+    native_pins = {(comp["reference"], pin)
                    for comp in inventory["components"].values()
                    if re.fullmatch(r"J[0-9]+", comp["reference"])
                    for pin in comp["pins"]}
-    if set(pins) != set(native_pins):
-        raise ValueError(f"io-map connector coverage: missing={sorted(set(native_pins) - set(pins))}, "
-                         f"extra={sorted(set(pins) - set(native_pins))}")
-    errors = []
-    for identity, expected in pins.items():
-        code = inventory["memberships"].get(native_pins[identity])
-        actual = inventory["nets"].get(code)
-        if actual != expected:
-            errors.append(f"{identity}: expected net {expected!r}, got {actual!r}")
-    declared_pins = set()
-    invariants = 0
+    errors, wireless, covered = [], [], []
+    invariants = satisfied = 0
+    digest = hashlib.sha256(map_path.read_bytes()).hexdigest()
+    bindings = {}
     for path, contract in zip(contract_paths, contracts):
+        resolved = resolve_components(contract, inventory)
         records = evaluate(contract, inventory)
         invariants += len(records)
-        errors.extend(f"{path.name}: invariant {r['id']} is {r['status']}"
-                      for r in records if r["status"] != "satisfied")
-        for terminal in contract["terminals"].values():
-            component = contract["components"][terminal["component"]]
-            declared_pins.update(f"{loc['reference']}-{terminal['pin']}" for loc in component["locations"])
-    if not set(pins) <= declared_pins:
-        errors.append(f"io-map pins absent from contracts: {sorted(set(pins) - declared_pins)}")
+        for record in records:
+            inv = record["expected"]
+            citation = inv.get("io_map")
+            if citation and citation["sha256"] != digest:
+                errors.append(f"{path.name}: stale io-map citation for {record['id']}")
+            # Only the pod's explicitly declared wireless row is exempt. It
+            # remains unknown and contributes nothing to the satisfied count.
+            is_wireless = (cfg["name"] == "telemetry-pod"
+                           and record["id"] == "BLE-RADIO:net"
+                           and inv["kind"] == "unresolved"
+                           and citation is not None
+                           and citation["connector_pin"] == "BLE-RADIO"
+                           and pins.get("BLE-RADIO") == "N/A"
+                           and rows["BLE-RADIO"]["Direction_Class"] == "Bidirectional_RF"
+                           and rows["BLE-RADIO"]["MCU_Pin"] == "N/A"
+                           and "BLE-RADIO" not in contract["terminals"])
+            if is_wireless and record["status"] == "not_evaluated":
+                wireless.append("BLE-RADIO")
+            elif record["status"] != "satisfied":
+                errors.append(f"{path.name}: invariant {record['id']} is {record['status']}")
+            else:
+                satisfied += 1
+        for tid, terminal in contract["terminals"].items():
+            if "unresolved" in terminal:
+                errors.append(f"{path.name}: unresolved terminal {tid}: {terminal['unresolved']}")
+                continue
+            component = resolved[terminal["component"]]
+            if not component or "error" in component or terminal["pin"] not in component["pins"]:
+                errors.append(f"{path.name}: terminal {tid} has no unique supported native pin")
+                continue
+            native = (component["reference"], terminal["pin"])
+            # Compiled maps use logical terminal IDs. Legacy contracts cite
+            # their CSV row in the net invariant's source locator.
+            identities = {tid} & pins.keys()
+            identities.update(i["source"]["locator"] for i in contract["invariants"]
+                              if i.get("terminal") == tid and i["source"].get("locator") in pins)
+            for identity in identities:
+                bindings.setdefault(identity, []).append(native)
+    for identity, expected in pins.items():
+        if identity in wireless:
+            continue
+        matches = bindings.get(identity, [])
+        if len(matches) != 1:
+            errors.append(f"io-map coverage: {identity} requires exactly one resolved contract terminal")
+            continue
+        native = matches[0]
+        covered.append(native)
+        actual = inventory["nets"].get(inventory["memberships"].get(native))
+        if expected == "N/C":
+            if native not in inventory["disconnected"] or native in inventory["unresolved"]:
+                errors.append(f"{identity}: N/C requires a proven unconnected native pad")
+        elif actual != expected or native in inventory["disconnected"] or native in inventory["unresolved"]:
+            errors.append(f"{identity}: expected connected net {expected!r}, got {actual!r}")
+    missing = native_pins - set(covered)
+    if missing or len(set(covered)) != len(covered):
+        errors.append(f"io-map connector coverage: missing={sorted(missing)}, duplicate native bindings="
+                      f"{len(covered) - len(set(covered))}")
     if errors:
         print(f"FAIL: project {cfg['name']} io-map / contract verification:")
         for error in errors:
             print(f"  [ERROR] {error}")
         return 1
-    print(f"PASS: project {cfg['name']}: verified {len(pins)} connector pins, "
-          f"{len(contracts)} interface contracts, {invariants} invariants against fresh netlist")
+    for identity in wireless:
+        print(f"NOT_EVALUATED: {identity}: declared wireless row (no electrical connector pin)")
+    print(f"PASS: project {cfg['name']}: verified {len(covered)} connector pins, "
+          f"{len(contracts)} interface contracts, {satisfied}/{invariants} invariants satisfied "
+          f"against fresh netlist; {len(wireless)} declared wireless not_evaluated")
     return 0
 
 

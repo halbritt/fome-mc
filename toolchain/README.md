@@ -121,36 +121,37 @@ Direct use: `python3 toolchain/eda.py --help`.
 firmware configuration in `~/git/fome-fw`, YAML connectors and sheet contracts.
 `make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv`, then
 requires exactly `contracts/telemetry-pod.interface.json` at the repository root.
-Until AGENTEE-188 generates that contract, it exits nonzero with
-`missing interface contract: <repo>/contracts/telemetry-pod.interface.json`.
-It does not accept the CSV alone or substitute the ECU's sheet contracts.
+The committed contract is compiled by AGENTEE-188 from the pod map and its
+explicit terminal bindings and indirect MCU paths. Regeneration instructions and
+input hashes are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
-including column order:
+including column order, with an optional final `MCU_Path` column:
 
 ```text
-Connector_Pin,Signal_Name,Net,Direction_Class,Voltage_Current_Domain,MCU_Ref,MCU_Pin,External_Destination,Notes
+Connector_Pin,Signal_Name,Net,Direction_Class,Voltage_Current_Domain,MCU_Ref,MCU_Pin,External_Destination,Notes,MCU_Path
 ```
 
 Empty maps, duplicate `Connector_Pin` values, ragged rows and blank cells fail.
-The reader preserves logical identifiers such as `AMPSEAL-1`, `BLE-RADIO` and
-`DEBUG-UART-TX`. Reading those rows does not establish native pin bindings.
-The landed pod map contains proposed net names, `N/C` cavities and an integrated
-radio with `Net=N/A`; reconciling these with the generated design remains an
-AGENTEE-188 obligation. See [the pod input notes](../telemetry-pod/IO_MAP.md).
+Each electrical row must bind through a loaded `agent-ee.interface/1` terminal
+to one unique native pin. Legacy contracts may bind a row through a terminal
+invariant's source locator. All pins of every native `J<number>` connector must
+be covered exactly once; test-pad rows are also checked. Nets must match the
+native names exactly, including a leading `/` where present. An explicit `N/C`
+row requires a proven unconnected native pad; generated net spelling alone is
+insufficient when source geometry is ambiguous.
 
-The current native audit requires every pin of every `J<number>` connector to
-appear exactly once as `<reference>-<pin>`, with its exact KiCad net name
-(including any leading `/`) and a terminal declaration in a loaded
-`agent-ee.interface/1` contract. It fails closed on unresolved logical identifiers;
-it cannot yet bind the pod's logical rows to generated references or interpret
-`N/C` and `N/A` as physical connectivity. Other projects load
-`<project>/contracts/*.interface.json`; the pod loads only the root contract named
-above. All contract invariants are evaluated against a fresh native XML netlist,
-exported from a snapshot under `build/runs/verify-io/<project>/`. This verifier uses
-the existing `agent-ee.hardware_interface` evaluator, not the planned generic
-`io_map` capability. Its existing checkout is expected at `~/git/agent-ee`.
-This command does not generate design content.
+Other projects load `<project>/contracts/*.interface.json`; the pod loads only
+the root contract named above. All invariants are evaluated against a fresh
+native XML netlist and source geometry from a snapshot under
+`build/runs/verify-io/<project>/`. Unresolved terminals fail without a traceback.
+The pod's declared `BLE-RADIO:net` wireless obligation is printed by name as
+`NOT_EVALUATED`, excluded from the satisfied count, and permitted only for its
+`Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. Every other
+non-satisfied invariant fails. Compiler CSV hash citations must match the current
+map; regenerate the contract after changing its input. This command checks
+connectivity using the existing `agent-ee.hardware_interface` evaluator from
+`~/git/agent-ee`; it does not generate design content.
 
 `make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
 project directories and native filenames from `toolchain/versions.toml`. Packaging
