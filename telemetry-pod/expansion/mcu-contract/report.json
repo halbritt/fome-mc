@@ -1,0 +1,577 @@
+{
+  "status": "PASS",
+  "module_terminals": 41,
+  "modes": {
+    "power": 4,
+    "signal": 30,
+    "no_connect": 7
+  },
+  "pins": [
+    {
+      "module_pin": 1,
+      "library_label": "GND",
+      "mode": "power",
+      "net": "GND",
+      "direct_peers": []
+    },
+    {
+      "module_pin": 2,
+      "library_label": "3V3",
+      "mode": "power",
+      "net": "+3V3",
+      "direct_peers": []
+    },
+    {
+      "module_pin": 3,
+      "library_label": "EN",
+      "mode": "signal",
+      "net": "MCU_EN",
+      "direct_peers": [
+        {
+          "reference": "C47",
+          "pin": "1"
+        },
+        {
+          "reference": "R29",
+          "pin": "2"
+        },
+        {
+          "reference": "TP4",
+          "pin": "1"
+        },
+        {
+          "reference": "U16",
+          "pin": "6"
+        },
+        {
+          "reference": "U17",
+          "pin": "6"
+        },
+        {
+          "reference": "U22",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 4,
+      "library_label": "IO4",
+      "mode": "signal",
+      "net": "TWAI_TX",
+      "direct_peers": [
+        {
+          "reference": "U100",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 5,
+      "library_label": "IO5",
+      "mode": "signal",
+      "net": "TWAI_RX",
+      "direct_peers": [
+        {
+          "reference": "U100",
+          "pin": "4"
+        }
+      ]
+    },
+    {
+      "module_pin": 6,
+      "library_label": "IO6",
+      "mode": "signal",
+      "net": "IMU_INT1",
+      "direct_peers": [
+        {
+          "reference": "U2",
+          "pin": "4"
+        }
+      ]
+    },
+    {
+      "module_pin": 7,
+      "library_label": "IO7",
+      "mode": "signal",
+      "net": "GNSS_PPS",
+      "direct_peers": [
+        {
+          "reference": "U3",
+          "pin": "3"
+        }
+      ]
+    },
+    {
+      "module_pin": 8,
+      "library_label": "IO15",
+      "mode": "signal",
+      "net": "TIRE_CAN_CS",
+      "direct_peers": [
+        {
+          "reference": "R66",
+          "pin": "2"
+        },
+        {
+          "reference": "U20",
+          "pin": "13"
+        }
+      ]
+    },
+    {
+      "module_pin": 9,
+      "library_label": "IO16",
+      "mode": "signal",
+      "net": "TIRE_CAN_INT_N",
+      "direct_peers": [
+        {
+          "reference": "R67",
+          "pin": "2"
+        },
+        {
+          "reference": "U20",
+          "pin": "4"
+        }
+      ]
+    },
+    {
+      "module_pin": 10,
+      "library_label": "IO17",
+      "mode": "signal",
+      "net": "GNSS_RX_IN",
+      "direct_peers": [
+        {
+          "reference": "U3",
+          "pin": "21"
+        }
+      ]
+    },
+    {
+      "module_pin": 11,
+      "library_label": "IO18",
+      "mode": "signal",
+      "net": "GNSS_TX_OUT",
+      "direct_peers": [
+        {
+          "reference": "U3",
+          "pin": "20"
+        }
+      ]
+    },
+    {
+      "module_pin": 12,
+      "library_label": "IO8",
+      "mode": "signal",
+      "net": "POWER_FAIL_N",
+      "direct_peers": [
+        {
+          "reference": "R65",
+          "pin": "2"
+        },
+        {
+          "reference": "U19",
+          "pin": "6"
+        }
+      ]
+    },
+    {
+      "module_pin": 13,
+      "library_label": "USB_D-",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 14,
+      "library_label": "USB_D+",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 15,
+      "library_label": "IO3",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 16,
+      "library_label": "IO46",
+      "mode": "signal",
+      "net": "MCU_BOOT46",
+      "direct_peers": [
+        {
+          "reference": "R33",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 17,
+      "library_label": "IO9",
+      "mode": "signal",
+      "net": "ADC_CS",
+      "direct_peers": [
+        {
+          "reference": "R32",
+          "pin": "2"
+        },
+        {
+          "reference": "U4",
+          "pin": "10"
+        }
+      ]
+    },
+    {
+      "module_pin": 18,
+      "library_label": "IO10",
+      "mode": "signal",
+      "net": "IMU_CS",
+      "direct_peers": [
+        {
+          "reference": "R31",
+          "pin": "2"
+        },
+        {
+          "reference": "U2",
+          "pin": "12"
+        }
+      ]
+    },
+    {
+      "module_pin": 19,
+      "library_label": "IO11",
+      "mode": "signal",
+      "net": "SPI_MOSI",
+      "direct_peers": [
+        {
+          "reference": "U2",
+          "pin": "14"
+        },
+        {
+          "reference": "U20",
+          "pin": "11"
+        },
+        {
+          "reference": "U4",
+          "pin": "11"
+        }
+      ]
+    },
+    {
+      "module_pin": 20,
+      "library_label": "IO12",
+      "mode": "signal",
+      "net": "SPI_SCK",
+      "direct_peers": [
+        {
+          "reference": "U2",
+          "pin": "13"
+        },
+        {
+          "reference": "U20",
+          "pin": "10"
+        },
+        {
+          "reference": "U4",
+          "pin": "13"
+        }
+      ]
+    },
+    {
+      "module_pin": 21,
+      "library_label": "IO13",
+      "mode": "signal",
+      "net": "SPI_MISO",
+      "direct_peers": [
+        {
+          "reference": "U2",
+          "pin": "1"
+        },
+        {
+          "reference": "U20",
+          "pin": "12"
+        },
+        {
+          "reference": "U4",
+          "pin": "12"
+        }
+      ]
+    },
+    {
+      "module_pin": 22,
+      "library_label": "IO14",
+      "mode": "signal",
+      "net": "DIAG_I2C_SDA",
+      "direct_peers": [
+        {
+          "reference": "R160",
+          "pin": "2"
+        },
+        {
+          "reference": "U27",
+          "pin": "15"
+        },
+        {
+          "reference": "U28",
+          "pin": "15"
+        },
+        {
+          "reference": "U29",
+          "pin": "15"
+        }
+      ]
+    },
+    {
+      "module_pin": 23,
+      "library_label": "IO21",
+      "mode": "signal",
+      "net": "DIAG_I2C_SCL",
+      "direct_peers": [
+        {
+          "reference": "R161",
+          "pin": "2"
+        },
+        {
+          "reference": "U27",
+          "pin": "16"
+        },
+        {
+          "reference": "U28",
+          "pin": "16"
+        },
+        {
+          "reference": "U29",
+          "pin": "16"
+        }
+      ]
+    },
+    {
+      "module_pin": 24,
+      "library_label": "IO47",
+      "mode": "signal",
+      "net": "EMMC_DAT3",
+      "direct_peers": [
+        {
+          "reference": "R50",
+          "pin": "2"
+        },
+        {
+          "reference": "U14",
+          "pin": "B2"
+        }
+      ]
+    },
+    {
+      "module_pin": 25,
+      "library_label": "IO48",
+      "mode": "signal",
+      "net": "SENSOR_FAULT_N",
+      "direct_peers": [
+        {
+          "reference": "R64",
+          "pin": "2"
+        },
+        {
+          "reference": "U18",
+          "pin": "6"
+        }
+      ]
+    },
+    {
+      "module_pin": 26,
+      "library_label": "IO45",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 27,
+      "library_label": "IO0",
+      "mode": "signal",
+      "net": "MCU_BOOT",
+      "direct_peers": [
+        {
+          "reference": "R30",
+          "pin": "2"
+        },
+        {
+          "reference": "TP5",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 28,
+      "library_label": "IO35",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 29,
+      "library_label": "IO36",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 30,
+      "library_label": "IO37",
+      "mode": "no_connect",
+      "net": null,
+      "direct_peers": []
+    },
+    {
+      "module_pin": 31,
+      "library_label": "IO38",
+      "mode": "signal",
+      "net": "EMMC_CLK",
+      "direct_peers": [
+        {
+          "reference": "U14",
+          "pin": "M6"
+        }
+      ]
+    },
+    {
+      "module_pin": 32,
+      "library_label": "IO39",
+      "mode": "signal",
+      "net": "EMMC_CMD",
+      "direct_peers": [
+        {
+          "reference": "R46",
+          "pin": "2"
+        },
+        {
+          "reference": "U14",
+          "pin": "M5"
+        }
+      ]
+    },
+    {
+      "module_pin": 33,
+      "library_label": "IO40",
+      "mode": "signal",
+      "net": "EMMC_DAT0",
+      "direct_peers": [
+        {
+          "reference": "R47",
+          "pin": "2"
+        },
+        {
+          "reference": "U14",
+          "pin": "A3"
+        }
+      ]
+    },
+    {
+      "module_pin": 34,
+      "library_label": "IO41",
+      "mode": "signal",
+      "net": "EMMC_DAT1",
+      "direct_peers": [
+        {
+          "reference": "R48",
+          "pin": "2"
+        },
+        {
+          "reference": "U14",
+          "pin": "A4"
+        }
+      ]
+    },
+    {
+      "module_pin": 35,
+      "library_label": "IO42",
+      "mode": "signal",
+      "net": "EMMC_DAT2",
+      "direct_peers": [
+        {
+          "reference": "R49",
+          "pin": "2"
+        },
+        {
+          "reference": "U14",
+          "pin": "A5"
+        }
+      ]
+    },
+    {
+      "module_pin": 36,
+      "library_label": "RXD0",
+      "mode": "signal",
+      "net": "POD_UART_RX",
+      "direct_peers": [
+        {
+          "reference": "TP2",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 37,
+      "library_label": "TXD0",
+      "mode": "signal",
+      "net": "POD_UART_TX",
+      "direct_peers": [
+        {
+          "reference": "TP1",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "module_pin": 38,
+      "library_label": "IO2",
+      "mode": "signal",
+      "net": "WHEEL_REAR_CAPTURE",
+      "direct_peers": [
+        {
+          "reference": "R127",
+          "pin": "2"
+        }
+      ]
+    },
+    {
+      "module_pin": 39,
+      "library_label": "IO1",
+      "mode": "signal",
+      "net": "WHEEL_FRONT_CAPTURE",
+      "direct_peers": [
+        {
+          "reference": "R118",
+          "pin": "2"
+        }
+      ]
+    },
+    {
+      "module_pin": 40,
+      "library_label": "GND",
+      "mode": "power",
+      "net": "GND",
+      "direct_peers": []
+    },
+    {
+      "module_pin": 41,
+      "library_label": "GND",
+      "mode": "power",
+      "net": "GND",
+      "direct_peers": []
+    }
+  ],
+  "limits": [
+    "Static as-designed pin assignment and direct net membership only; not a firmware configuration or operating qualification.",
+    "Power net peers are checked source-to-native, not independently enumerated in this contract.",
+    "Wheel capture peers R118/R127 are series-resistor endpoints, not external sensors.",
+    "Shared SPI needs bus ownership, modes, clock bounds, reset state and MISO-release verification.",
+    "SDMMC four-bit use, pin matrix, boot straps, UART directions, I2C addresses and reset sequencing require firmware and datasheet qualification.",
+    "GPIO35 optional storage reset remains unconnected; MCU_EN supervisor wiring does not establish valid sensor data."
+  ],
+  "sha256": {
+    "contract": "3458b74540336016de17a28e7e11de40f19b5dc9ead0677f5c3190816aebb305",
+    "intent": "e839d92c8b1c6fe5a018f2cb0139c667b7495bf046c88f9d6ced45d75b51b346",
+    "native": "d106948bbf276c9602728ba01417fbb54fa4260e72e44e13471d369521bc040b"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "fome-pod.mcu-negative-controls/1",
+  "contract_sha256": "3458b74540336016de17a28e7e11de40f19b5dc9ead0677f5c3190816aebb305",
+  "results": [
+    {
+      "case": "swapped-spi",
+      "exit_code": 1,
+      "error": "ValueError: Source net 19"
+    },
+    {
+      "case": "missing-module-pin",
+      "exit_code": 1,
+      "error": "ValueError: All 41 module pins required"
+    },
+    {
+      "case": "missing-native-nc",
+      "exit_code": 1,
+      "error": "ValueError: Explicit NC 28"
+    },
+    {
+      "case": "extra-spi-peer",
+      "exit_code": 1,
+      "error": "ValueError: Source/native membership 19"
+    }
+  ]
+}
