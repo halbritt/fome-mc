@@ -149,7 +149,10 @@ The pod's declared `BLE-RADIO:net` wireless obligation is printed by name as
 `NOT_EVALUATED`, excluded from the satisfied count, and permitted only for its
 `Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. Every other
 non-satisfied invariant fails. Compiler CSV hash citations must match the current
-map; regenerate the contract after changing its input. This command checks
+map; regenerate the contract after changing its input. The pod gate also recompiles
+its CSV, bindings and paths with AGENTEE-188 and requires byte identity with the
+committed contract. A compiler failure or any byte difference fails verification;
+fresh JSON and compiler logs are retained under `build/runs/verify-io/telemetry-pod/`. This command checks
 connectivity using the existing `agent-ee.hardware_interface` evaluator from
 `~/git/agent-ee`; it does not generate design content.
 

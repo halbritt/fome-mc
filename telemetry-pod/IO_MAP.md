@@ -15,6 +15,45 @@ terminals, devices, pin names and directions for the CAN and ADC paths.
 Cavities 17–23 declare `N/C`, with no MCU pin. The integrated BLE antenna has
 `Net=N/A` and no electrical connector terminal.
 
+## Preserved design intent and historical sources
+
+The complete prior proposal document from `13c0bfb:telemetry-pod/IO_MAP.md` is
+preserved verbatim in [IO_MAP_HISTORY.md](IO_MAP_HISTORY.md). Its proposal,
+empty-skeleton and future-compiler statements describe that historical stage;
+the resolved connectivity and current gate are documented here above and below.
+In particular, the current map has ten columns including `MCU_Path` and 32 rows.
+
+Directions are relative to the pod. `N/A` means a field does not apply; `N/C`
+is reserved for an explicitly unconnected cavity. `TBD` denotes an unresolved
+assignment in the original proposal; it does not establish connectivity.
+The current compiler and native gate evaluate the resolved columns and paths.
+
+The power row names a harness splice on the relay circuit feeding ECU J1-27,
+through the pod's own 2 A fuse. Ground returns to the J1-34 CHASSIS_ECU_GND circuit.
+Sensor supplies share the pod's own 5.00 V ±1% rail with a **total** 200 mA budget;
+the four rows do not each promise 200 mA. The ADC reference is derived from this
+rail at the connector, with both inputs and reference divided by two per the
+MCP3204 decision. ECU J1-30/J1-31 are unused by the pod.
+
+These are design-intent decisions, not analog-performance verdicts from verify-io.
+The following pinned identities describe the original revision-2 source capture;
+they do not claim that today's `REQUIREMENTS.md` still has that digest.
+The historical verifier and its output are retired, as explained below.
+
+Owner decision 6 requires identities rather than moving `main` links:
+
+| Source | Identity |
+| --- | --- |
+| `telemetry-pod/REQUIREMENTS.md` revision 2 | SHA-256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493` |
+| agent-ee `fixtures/telemetry-pod/spec-record.json` | commit `ffa8c85c0840937f3ae6861ffb58ed4392c3df4a`; Git blob `2b7f861c50368e665517c1aa0a783d409469f2ea`; SHA-256 `58f07c5ab3206aad70fc31561d873200d18ff9145b97cc0b1570c465a84fd250` |
+| `docs/WIRING_SV650_K7.md`, section 7 | Git blob `bb0ff8c1a32faef6e7cc8fe1e67538829544b106` |
+| `docs/TELEMETRY_AND_RACECHRONO.md` | Git blob `3dafed620a10f8fba209c2707b8f832eec6f6303` |
+
+The CSV includes full wiring-document blob citations in external destinations.
+Its Notes carry the captured `POD-IF-*` requirement IDs and relevant sensor
+function IDs. SMA is fixed by the NEO-M9N component decision even though the
+interface row alone allows SMA or U.FL.
+
 ## Input provenance
 
 The following files were copied byte-for-byte from:
@@ -45,6 +84,10 @@ make verify-io PROJECT=telemetry-pod
 
 The contract is generated, never hand-edited. Its per-invariant `io_map` citations
 include the CSV hash. A changed CSV with a stale contract fails verification.
+Every pod verification also recompiles the CSV, bindings and paths with the existing AGENTEE-188 checkout
+and compares the output bytes against the committed contract. Hand edits, including
+swaps between terminals on the same net, fail. Compiler logs and the fresh JSON
+are retained under `build/runs/verify-io/telemetry-pod/`.
 The gate checks a fresh native netlist and source geometry on a snapshot and
 reports 81 of 82 invariants satisfied, including 20 indirect paths. It prints
 `BLE-RADIO` as declared wireless `not_evaluated`; that obligation remains unknown
@@ -52,8 +95,13 @@ and is never counted as satisfied. Any other non-satisfied invariant fails.
 This connectivity gate does not establish analog performance, firmware behavior,
 wireless operation, physical debug access, or fabrication approval.
 
-`telemetry-pod/verify_io_map.py` is the earlier specification traceability check.
-It expects the original proposal header and pinned revision-2 specification;
-that specification differs from the current requirements. Its retained
-`io-map-cross-check.txt` is historical evidence, not a current gate. Use the
-repository `make verify-io PROJECT=telemetry-pod` command above for this pilot.
+`telemetry-pod/verify_io_map.py` is explicitly retired: it exits 2 with a
+retirement message and points to the current gate. The old checker and reproduction
+instructions can be inspected at `13c0bfb:telemetry-pod/verify_io_map.py` and in
+`IO_MAP_HISTORY.md`. It checked the original nine-column proposal against the
+revision-2 capture; later requirements changes invalidated that pinned-input
+precondition, and the current map also has `MCU_Path`. We have not recaptured or
+claimed current specification traceability. The retained `io-map-cross-check.txt`
+is historical evidence only. Use `make verify-io PROJECT=telemetry-pod` for current
+native connectivity and compiled-input parity; that gate does not replace a
+specification traceability review.

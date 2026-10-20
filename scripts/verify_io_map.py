@@ -364,6 +364,29 @@ def read_project_map(path: Path) -> dict[str, str]:
     return {identity: row["Net"] for identity, row in read_project_rows(path).items()}
 
 
+def check_pod_compilation(contract_path: Path) -> list[str]:
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    run_dir = REPO / "build/runs/verify-io/telemetry-pod" / stamp
+    run_dir.mkdir(parents=True)
+    compiled = run_dir / "compiled.interface.json"
+    proc = subprocess.run(
+        [sys.executable, "-m", "agent_ee.io_map", "telemetry-pod/io-map.csv",
+         "--csv-path", "telemetry-pod/io-map.csv", "--requirement", "POD-AC-1-pinout",
+         "--source", "telemetry-pod/REQUIREMENTS.md", "--locator", "Acceptance criteria / item 1",
+         "--bindings", "telemetry-pod/pinout-checks/bindings.json",
+         "--paths", "telemetry-pod/pinout-checks/paths.json", "--out", str(compiled)],
+        cwd=REPO, env={**eda.tool_env(), "PYTHONPATH": str(AGENT_EE_SRC)},
+        capture_output=True, text=True, check=False,
+    )
+    (run_dir / "compile.log").write_text(proc.stdout + proc.stderr)
+    if proc.returncode != 0 or not compiled.is_file():
+        return [f"pod contract compile failed (rc={proc.returncode}); see {run_dir / 'compile.log'}"]
+    if compiled.read_bytes() != contract_path.read_bytes():
+        return ["telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; "
+                "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)"]
+    return []
+
+
 def verify_project_io(cfg: dict) -> int:
     project_dir = cfg["path"]
     map_path = project_dir / "io-map.csv"
@@ -383,12 +406,13 @@ def verify_project_io(cfg: dict) -> int:
         if not contract_paths:
             raise ValueError(f"no interface contracts for project {cfg['name']}")
     contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
+    errors = check_pod_compilation(contract_path) if cfg["name"] == "telemetry-pod" else []
     inventory = fresh_inventory(cfg, contracts)
     native_pins = {(comp["reference"], pin)
                    for comp in inventory["components"].values()
                    if re.fullmatch(r"J[0-9]+", comp["reference"])
                    for pin in comp["pins"]}
-    errors, wireless, covered = [], [], []
+    wireless, covered = [], []
     invariants = satisfied = 0
     digest = hashlib.sha256(map_path.read_bytes()).hexdigest()
     bindings = {}
