@@ -3,9 +3,10 @@
 **Decision (design owner's agent, 2026-10-20, under the owner's standing direction that
 owner-reserved decisions are made autonomously and recorded):**
 
-1. **Thermal vias under exposed pads are 0.30 mm drill / 0.60 mm diameter.** The 44
+1. **Thermal vias under exposed pads are 0.30 mm drill / 0.70 mm diameter (0.20 mm ring).** The 44
    vias in U1 (ESP32-S3-WROOM-1, 12), U5 and U7 (LMR36520 DDA0008B, 8 each) and U6 and
-   U12 (TPS7B4253 DDA0008J_C02, 8 each) were 0.20 / 0.40 mm. The project minimum hole
+   U12 (TPS7B4253 DDA0008J_C02, 8 each) were 0.20 / 0.40 mm (0.10 mm ring, below JLCPCB's
+   0.18 mm absolute minimum for 2-layer 1 oz). The project minimum hole
    of 0.30 mm is **kept**. The footprint sources are changed instead; patched copies are
    in `footprints/` (before/after hashes in `evidence/`).
 2. **Pad-to-pad clearance inside the fine-pitch footprints U2, U16, U17, U18 and U19 is
@@ -39,14 +40,28 @@ vias are same-net copper under exposed pads.
   manufacturing benefit.
 - 0.20 mm drills carry a small-hole surcharge at JLCPCB and offer no thermal advantage
   here; 0.30 mm is the ordinary thermal-via drill in TI PowerPAD guidance and the KiCad
-  library convention. Via pitch is 1.30 mm (DDA) and 0.70 mm (ESP32), so 0.60 mm pads
-  leave 0.70 mm and 0.10 mm copper gaps and 1.00 mm and 0.40 mm hole-to-hole gaps, all
-  within the unchanged 0.25 mm hole-to-hole minimum and on the same net.
+  library convention; 0.70 mm diameter gives the 0.20 mm ring JLCPCB recommends for
+  multilayer and exceeds its 0.18 mm 2-layer absolute minimum. Via pitch is 1.30 mm (DDA)
+  and 0.70 mm (ESP32): the DDA vias keep 0.60 mm copper gaps, the ESP32 vias become
+  tangent same-net copper inside the exposed pad, and hole-to-hole gaps are 1.00 mm and
+  0.40 mm against JLCPCB's 0.20 mm via hole-to-hole minimum.
 
 Alternatives considered and rejected: lowering the board-setup minimums globally
 (loses protection everywhere), re-selecting the IMU and supervisor parts (no
 functional reason; the parts are accepted and purchased), and leaving 0.20 mm thermal
 drills with a global 0.20 mm hole minimum (surcharge, weaker rule for the whole board).
+
+## Constraint provenance (the structural fix)
+
+`constraints.json` classes every board-setup value for the expanded project as owner,
+manufacturer, datasheet, engineering or default, with the JLCPCB figure or datasheet
+locator beside each number. `board-setup.kicad_pro` is the diagnostic project file with
+those values applied. The scaffold's 0.0 / 0.5 / 0.1 / 0.08 / 0.8 mm defaults are
+recorded as superseded and must never gate again. Two consequences on the frozen board:
+the five copper-edge findings on J2 disappear (the 0.50 mm edge rule was a default; JLCPCB
+needs 0.20 mm and 0.30 mm is kept), and 22 silkscreen findings appear (text below the
+1.0 mm / 0.15 mm legibility minimum, overlaps) that the lax defaults had hidden. Those are
+real manufacturability findings for the silk relocation stage (AGENTEE-320), not copper.
 
 ## Evidence on the frozen diagnostic board
 
@@ -57,20 +72,24 @@ candidate (board SHA256 `79cc1310…55f36`), with the same `.kicad_pro`/`.kicad_
 | --- | ---: | ---: | ---: | ---: |
 | baseline (no custom rules beyond RF_50) | 341 | 20 | 44 | 499 |
 | + `telemetry-pod.kicad_dru` | 321 | 0 | 44 | 499 |
-| + 0.30 mm thermal vias | 277 | 0 | 0 | 499 |
+| + 0.30/0.60 mm thermal vias (first pass, ring too small) | 277 | 0 | 0 | 499 |
+| cited board setup + rules + 0.30/0.70 mm vias (`evidence/cited-constraints-*`) | 294 | 0 | 0 | 499 |
 
 `evidence/drc-comparison.json` records that the removed findings are exactly the 64
 UUIDs (20 clearance, 44 drill) of the prior proposal, on U1, U2, U5, U6, U7, U12 and
 U16–U19 only, and that no new finding appears in either step. The remaining 277 are the
 pre-existing silk (73), copper-edge (5) and library-mismatch (199) findings, which are
-unaffected by this decision and remain open. The patched candidate is retained only as
-DRC evidence (`rules-and-vias-candidate.kicad_pcb.gz`); it is not an adopted board.
+unaffected by this decision and remain open. With the cited board setup the 294 are
+199 library-mismatch, 86 silk and 8 silk-text findings; copper-edge is 0. The patched
+candidate is retained only as DRC evidence (`cited-constraints-candidate.kicad_pcb.gz`);
+it is not an adopted board.
 
 ## How this is applied and reversed
 
 - The next expanded-board import or placement run must use `footprints/` in place of the
-  three sources in `../released-source-migration/inputs/footprints/` and must carry
-  `telemetry-pod.kicad_dru` as the project's rule file. Until the migration is
+  three sources in `../released-source-migration/inputs/footprints/`, carry
+  `telemetry-pod.kicad_dru` as the project's rule file, and apply the board-setup values
+  of `constraints.json` (as in `board-setup.kicad_pro`) to the generated project. Until the migration is
   re-sealed with these sources, every candidate board must be checked with this rule
   file and the enlarged vias, as above.
 - To reverse: delete this directory's `.kicad_dru` rules and restore the three

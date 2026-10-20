@@ -1,0 +1,43 @@
+{
+  "schema": "fome-mc.constraint-provenance/1",
+  "project": "telemetry-pod expanded board (2-layer FR-4, 1 oz outer copper, JLCPCB)",
+  "classes": {
+    "owner": "stated by the owner; gates",
+    "manufacturer": "published fabricator capability; gates",
+    "datasheet": "component manufacturer land pattern or standard; gates",
+    "engineering": "design-owner margin above a cited manufacturer or datasheet value; gates, revisable by the owner",
+    "default": "chosen by an agent or tool without a source; advisory only, never gates"
+  },
+  "manufacturer_source": {
+    "name": "JLCPCB Rigid PCB Manufacturing Capabilities",
+    "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+    "read": "2026-10-20",
+    "note": "page carries no revision; values quoted for 2-layer FR-4 1 oz unless stated"
+  },
+  "board_setup_rules": {
+    "min_clearance": {"value_mm": 0.15, "class": "engineering", "basis": "JLCPCB SMD pad-to-pad (different nets) 0.15 mm; trace spacing 0.10 mm", "replaces_default": 0.0},
+    "min_track_width": {"value_mm": 0.15, "class": "engineering", "basis": "JLCPCB min trace 0.10 mm; 0.15 mm leaves 50% margin", "replaces_default": 0.2},
+    "min_through_hole_diameter": {"value_mm": 0.30, "class": "engineering", "basis": "JLCPCB min 0.15 mm; 0.2-0.25 mm holes under 0.45 mm via diameter cost extra; 0.30 mm is standard cost", "replaces_default": 0.3},
+    "min_via_diameter": {"value_mm": 0.70, "class": "engineering", "basis": "0.30 mm drill plus 2 x 0.20 mm ring; JLCPCB 2-layer 1 oz annular ring absolute minimum 0.18 mm, recommended 0.25 mm", "replaces_default": 0.5},
+    "min_via_annular_width": {"value_mm": 0.20, "class": "engineering", "basis": "JLCPCB absolute minimum 0.18 mm (2-layer 1 oz)", "replaces_default": 0.1},
+    "min_hole_to_hole": {"value_mm": 0.25, "class": "engineering", "basis": "JLCPCB via hole-to-hole 0.20 mm; component PTH pad hole-to-hole 0.45 mm must be checked separately where PTH pads are adjacent", "replaces_default": 0.25},
+    "min_hole_clearance": {"value_mm": 0.25, "class": "engineering", "basis": "JLCPCB via hole to track 0.20 mm; PTH to track 0.28 mm (0.35 mm recommended) applies to component holes", "replaces_default": 0.25},
+    "min_copper_edge_clearance": {"value_mm": 0.30, "class": "engineering", "basis": "JLCPCB copper to routed edge 0.20 mm (0.40 mm at V-cut; no V-cut on this board)", "replaces_default": 0.5},
+    "min_silk_clearance": {"value_mm": 0.15, "class": "manufacturer", "basis": "JLCPCB pad to silkscreen 0.15 mm", "replaces_default": 0.0},
+    "min_text_height": {"value_mm": 1.0, "class": "manufacturer", "basis": "JLCPCB silkscreen text height 40 mil", "replaces_default": 0.8},
+    "min_text_thickness": {"value_mm": 0.15, "class": "manufacturer", "basis": "JLCPCB silkscreen line width 0.15 mm", "replaces_default": 0.08},
+    "solder_mask_min_width": {"value_mm": 0.10, "class": "manufacturer", "basis": "JLCPCB solder mask bridge 0.10 mm pad spacing at 1 oz (green); not a KiCad board-setup field, applied in mask settings", "replaces_default": null}
+  },
+  "custom_rules": {
+    "telemetry-pod.kicad_dru": [
+      {"rule": "agent_ee_netclass_RF_50 track_width min 0.335 mm", "class": "engineering", "basis": "RF 50-ohm width from the retained stackup calculation (unchanged, inherited)"},
+      {"rule": "intra-footprint pad clearance 0.15 mm for U2, U16, U17, U18, U19", "class": "datasheet", "basis": "ST LSM6DSO32 land pattern p.149 Fig. 22 with TN0018 Rev 8 section 3.7; TI DSE0006A drawing 4220552/B p.25; within JLCPCB 0.15 mm pad-to-pad"}
+    ]
+  },
+  "footprint_changes": {
+    "thermal_vias": {"drill_mm": 0.30, "diameter_mm": 0.70, "class": "engineering", "basis": "JLCPCB annular minimum 0.18 mm and standard-cost drill; same-net copper under exposed pads; TI PowerPAD thermal via guidance", "footprints": ["PodPower:DDA0008B", "PodPower:DDA0008J_C02", "RF_Module:ESP32-S3-WROOM-1"], "pads": 44}
+  },
+  "net_class_default": {"clearance_mm": 0.20, "track_width_mm": 0.20, "class": "engineering", "basis": "general copper spacing and width above the 0.15 mm board minimum; unchanged", "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"},
+  "owner_authorization": "2026-10-20: relax the clearance rules if you must, as long as JLCPCB can manufacture it, and it doesn't affect electrical performance.",
+  "superseded_defaults": {"source": "agent-ee scaffold-generated .kicad_pro for the expanded project", "values": {"min_clearance": 0.0, "min_track_width": 0.2, "min_via_diameter": 0.5, "min_via_annular_width": 0.1, "min_copper_edge_clearance": 0.5, "min_silk_clearance": 0.0, "min_text_height": 0.8, "min_text_thickness": 0.08}, "status": "class default; never a gate"}
+}
