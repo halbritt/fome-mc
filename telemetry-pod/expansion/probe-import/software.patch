@@ -1,0 +1,90 @@
+diff --git a/src/agent_ee/forward_annotation.py b/src/agent_ee/forward_annotation.py
+index f21f021..8c36c8d 100644
+--- a/src/agent_ee/forward_annotation.py
++++ b/src/agent_ee/forward_annotation.py
+@@ -111,23 +111,34 @@ def build_plan(xml_bytes, board_sha256, facts, manifest, captured_footprints):
+                             manifest_sha256=hashlib.sha256(_canonical(manifest)).hexdigest(),
+                             facts_sha256=hashlib.sha256(_canonical(facts)).hexdigest(), footprints=[]),
+                 add=[], remove=[], update=[], retain=[], board_only=[], renames=[], new_nets=[], pads=[],
+-                stale_nets=[], counts={})
++                stale_nets=[], probe_migrations=[], counts={})
+     try:
+         inventory, elements, names = _inventory(xml_bytes)
+-        from .probe_features import PROPERTY, parse_marker, native_component, footprint_signature
++        from .probe_features import PROPERTY, parse_marker, marker, matches_marker, native_component, footprint_signature
+         from .symbol_library import parse_sexpr
+-        for ref, fields in _fields(elements).items():
++        fields_by_ref = _fields(elements)
++        for ref, fields in fields_by_ref.items():
++            if (PROPERTY in fields) != (PROPERTY in inventory['components'][ref]['properties']):
++                raise AnnotationError('probe_feature_mismatch', 'probe field/property identity differs',
++                                      '/components/' + ref)
+             if PROPERTY in fields:
+-                record = parse_marker(fields[PROPERTY])
+                 try:
++                    record = parse_marker(fields[PROPERTY])
++                    if record['reference'] != ref:
++                        raise ValueError('probe reference differs from native component')
+                     native_component(record, inventory['components'][ref], inventory, allow_legacy=True)
+                     data = captured_footprints[record['footprint_source']['path']]
+                     if hashlib.sha256(data).hexdigest() != record['footprint_source']['sha256']:
+                         raise ValueError('probe captured footprint bytes changed')
+                     if footprint_signature(parse_sexpr(data), record['pin']['number']) != record['geometry']:
+                         raise ValueError('probe captured pad geometry changed')
+-                except (ValueError, KeyError) as exc:
++                except (ValueError, KeyError, TypeError) as exc:
+                     raise AnnotationError('probe_feature_mismatch', str(exc), '/components/' + ref) from exc
++                encoded = marker(record)
++                if fields[PROPERTY] != encoded:
++                    plan['probe_migrations'].append(dict(reference=ref, source='netlist',
++                                                         previous=fields[PROPERTY], canonical=encoded))
++                    fields[PROPERTY] = encoded
+         for ref in sorted(inventory['components'], key=_natural):
+             # The reader's parsed flag: KiCad 10.0.7 exports on_board no as a
+             # valueless exclude_from_board property, whatever its byte spelling.
+@@ -139,7 +150,17 @@ def build_plan(xml_bytes, board_sha256, facts, manifest, captured_footprints):
+             raise AnnotationError('footprint_library_coverage',
+                                   '; '.join(f.get('message', f['code']) for f in index['findings']))
+         library = {fp['lib_id']: fp for fp in index['footprints']}
+-        _plan(plan, inventory, _fields(elements), facts, library, names)
++        _plan(plan, inventory, fields_by_ref, facts, library, names)
++        retained = {item['footprint_uuid']: item['reference'] for item in plan['retain']}
++        for fp in facts['footprints']:
++            ref = retained.get(fp['uuid'])
++            if ref is not None and PROPERTY in fields_by_ref[ref]:
++                previous = fp['fields'].get(PROPERTY)
++                encoded = fields_by_ref[ref][PROPERTY]
++                if previous != encoded and matches_marker(previous, parse_marker(encoded)):
++                    plan['probe_migrations'].append(dict(reference=ref, source='board',
++                                                         previous=previous, canonical=encoded))
++        plan['probe_migrations'].sort(key=lambda item: (item['reference'], item['source']))
+     except AnnotationError as exc:
+         plan['findings'].append(dict(code=exc.code, location=exc.location, message=str(exc)))
+         return _seal(plan)
+@@ -329,7 +350,7 @@ def plan(board, xml, manifest, footprint_root, work):
+             raise AnnotationError('stale_input', 'board changed during planning')
+     except AnnotationError as exc:
+         return _failed(PLAN_SCHEMA, exc.code, str(exc), exc.location)
+-    except ValueError as exc:
++    except (ValueError, KeyError, TypeError) as exc:
+         return _failed(PLAN_SCHEMA, 'probe_feature_mismatch', str(exc))
+     return build_plan(xml_bytes, board_sha, facts, manifest, captures)
+ 
+@@ -532,7 +553,7 @@ def apply(plan_record, board, xml, manifest, footprint_root, out, work, *, backu
+     work = Path(work)
+     work.mkdir(mode=0o700, parents=False, exist_ok=False)
+     result = dict(schema=RESULT_SCHEMA, execution='failed', outcome='unknown', findings=[],
+-                  plan_sha256=plan_record.get('canonical_sha256'), output=None, backup=None)
++                  plan_sha256=plan_record.get('canonical_sha256'), output=None, backup=None, probe_migrations=[])
+     try:
+         if plan_record.get('execution') != 'ok':
+             raise AnnotationError('plan_rejected', 'the plan did not complete')
+@@ -591,7 +612,7 @@ def apply(plan_record, board, xml, manifest, footprint_root, out, work, *, backu
+             _place(directory, out.name, output, mode, replace=in_place)
+         finally:
+             os.close(directory)
+-        result.update(execution='ok', outcome='info',
++        result.update(execution='ok', outcome='info', probe_migrations=fresh['probe_migrations'],
+                       output=dict(path=str(out), sha256=hashlib.sha256(output).hexdigest()))
+     except AnnotationError as exc:
+         result['findings'].append(dict(code=exc.code, location=exc.location, message=str(exc)))
