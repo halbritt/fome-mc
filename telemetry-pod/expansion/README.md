@@ -152,9 +152,11 @@ Before binding the replacement footprint:
    24–35 is nearest. Independently verify the signed X/Y transform.
 3. Project the full housing into the board plane for courtyard/keepout and
    verify mounting-hole, enclosure, connector access and antenna clearance.
-4. Establish installed height from a board-plane datum. The existing 12 mm
-   component-height limit conflicts with this connector; the owner has been
-   asked to approve a connector-specific exception.
+4. Establish installed height from a board-plane datum and measure actual
+   enclosure/cowl clearance. The owner clarified on 2026-10-20 that the earlier
+   12 mm limit was arbitrary and not owner-specified. Clearance is unknown;
+   no connector-specific exception is pending. J1 orientation remains an
+   engineering choice subject to the measured enclosure and harness geometry.
 5. Confirm nominal 1.6 mm board thickness and tolerances against TE's 1.57 mm
    recommended-board drawing.
 
