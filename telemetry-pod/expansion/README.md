@@ -160,3 +160,7 @@ Before binding the replacement footprint:
 
 Neither library footprint is copied into the candidate merely to clear an ERC
 warning. No ECU/global library was modified by this investigation.
+
+The [storage interface candidate](storage-candidate/README.md) preserves an
+expanded native schematic with eMMC wiring and independent review. Its storage
+supplies are undriven; it does not replace the actual project or qualify release.

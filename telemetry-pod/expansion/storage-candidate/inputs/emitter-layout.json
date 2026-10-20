@@ -1,0 +1,244 @@
+{
+  "namespace": "62320717-99c6-4dd3-9575-7ba8c6cb3ad4",
+  "project": "telemetry-pod",
+  "schema": "agent-ee.schematic-layout/1",
+  "transforms": {},
+  "presentation": "functional",
+  "groups": [
+    {
+      "id": "connectors",
+      "title": "Pod connector",
+      "components": [
+        "connector/J1"
+      ]
+    },
+    {
+      "id": "power-entry",
+      "title": "Power entry and reverse protection",
+      "components": [
+        "power/Q1",
+        "power/D1",
+        "power/D2",
+        "power/R1",
+        "power/C1",
+        "power/C2",
+        "power/C3",
+        "power/C8",
+        "power/C9",
+        "power/C10",
+        "power-flag/1",
+        "power-flag/2",
+        "power-flag/3"
+      ]
+    },
+    {
+      "id": "pre-6v3",
+      "title": "6V3 pre-regulator (U5)",
+      "components": [
+        "power/U5",
+        "power/C4",
+        "power/C5",
+        "power/L1",
+        "power/R2",
+        "power/R3",
+        "power/R27",
+        "power/C6",
+        "power/C7",
+        "power-flag/5"
+      ]
+    },
+    {
+      "id": "buck-3v3",
+      "title": "3V3 regulator (U7) and 3V3 bulk",
+      "components": [
+        "power/U7",
+        "power/C11",
+        "power/C12",
+        "power/L2",
+        "power/R4",
+        "power/R5",
+        "power/R28",
+        "power/C18",
+        "power/C13",
+        "power/C14",
+        "power/C15",
+        "power/C38",
+        "power/C41",
+        "power/C43",
+        "power/C44",
+        "power-flag/4"
+      ]
+    },
+    {
+      "id": "supplies-5v",
+      "title": "5V reference, sensor and CAN supplies",
+      "components": [
+        "power/U11",
+        "power/R7",
+        "power/C21",
+        "power/C22",
+        "power/U6",
+        "power/C16",
+        "power/C17",
+        "power/R6",
+        "power/U12",
+        "power/C19",
+        "power/C20"
+      ]
+    },
+    {
+      "id": "afe",
+      "title": "Sensor input dividers and buffers",
+      "components": [
+        "power/U8",
+        "power/R10",
+        "power/R11",
+        "power/R13",
+        "power/R14",
+        "power/R16",
+        "power/R17",
+        "power/R19",
+        "power/R20",
+        "power/C30",
+        "power/C32",
+        "power/C34",
+        "power/C36",
+        "power/U9",
+        "power/R22",
+        "power/R23",
+        "power/C39"
+      ]
+    },
+    {
+      "id": "adc",
+      "title": "ADC",
+      "components": [
+        "adc",
+        "power/R12",
+        "power/R15",
+        "power/R18",
+        "power/R21",
+        "power/C31",
+        "power/C33",
+        "power/C35",
+        "power/C37",
+        "power/C40"
+      ]
+    },
+    {
+      "id": "mcu",
+      "title": "MCU",
+      "components": [
+        "mcu",
+        "support/C45",
+        "support/C46",
+        "support/C47",
+        "support/C48",
+        "support/C49",
+        "support/C50",
+        "support/C51",
+        "support/C52",
+        "support/C53",
+        "support/R29",
+        "support/R30",
+        "support/R31",
+        "support/R32",
+        "support/R33"
+      ]
+    },
+    {
+      "id": "imu",
+      "title": "IMU",
+      "components": [
+        "imu"
+      ]
+    },
+    {
+      "id": "gnss",
+      "title": "GNSS receiver and antenna feed",
+      "components": [
+        "gnss",
+        "connector/J2",
+        "power/U10",
+        "power/L3",
+        "power/D3",
+        "power/C42",
+        "power/R24",
+        "power/R25",
+        "power/R26"
+      ]
+    },
+    {
+      "id": "can",
+      "title": "CAN transceiver",
+      "components": [
+        "can/U307",
+        "can/D4",
+        "can/R9",
+        "can/C308"
+      ]
+    },
+    {
+      "id": "test-points",
+      "title": "Test points",
+      "components": [
+        "debug/tp1",
+        "debug/tp2",
+        "debug/tp3",
+        "debug/tp4",
+        "debug/tp5",
+        "debug/tp6"
+      ]
+    },
+    {
+      "id": "aux-afe",
+      "title": "Auxiliary input buffers - candidate",
+      "components": [
+        "expansion/U13",
+        "expansion/R34",
+        "expansion/R35",
+        "expansion/R36",
+        "expansion/R37",
+        "expansion/R38",
+        "expansion/R39",
+        "expansion/R40",
+        "expansion/R41",
+        "expansion/R42",
+        "expansion/R43",
+        "expansion/R44",
+        "expansion/R45",
+        "expansion/C54",
+        "expansion/C55",
+        "expansion/C56",
+        "expansion/C57",
+        "expansion/C58",
+        "expansion/C59",
+        "expansion/C60",
+        "expansion/C61",
+        "expansion/C62"
+      ]
+    },
+    {
+      "id": "storage",
+      "title": "eMMC interface candidate - supplies pending",
+      "components": [
+        "storage/U14",
+        "storage/R46",
+        "storage/R47",
+        "storage/R48",
+        "storage/R49",
+        "storage/R50",
+        "storage/R51",
+        "storage/R52",
+        "storage/R53",
+        "storage/R54",
+        "storage/R55",
+        "storage/C63",
+        "storage/C64",
+        "storage/C65",
+        "storage/C66",
+        "storage/C67"
+      ]
+    }
+  ]
+}

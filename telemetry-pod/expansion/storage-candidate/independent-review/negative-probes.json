@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "scope": "Five synthetic XML changes on temporary copies, cleaned after checks; no source candidate modified.",
+  "results": [
+    {
+      "mutation": "missing_reserved_ball",
+      "exit_code": 1,
+      "status": "FAIL",
+      "detected_by": [
+        "all153 balls represented in native nets",
+        "isolated A7"
+      ]
+    },
+    {
+      "mutation": "wrong_ball_function",
+      "exit_code": 1,
+      "status": "FAIL",
+      "detected_by": [
+        "ball function A3"
+      ]
+    },
+    {
+      "mutation": "wrong_capacitor_value",
+      "exit_code": 1,
+      "status": "FAIL",
+      "detected_by": [
+        "nominal value C63"
+      ]
+    },
+    {
+      "mutation": "unexpected_signal_member",
+      "exit_code": 1,
+      "status": "FAIL",
+      "detected_by": [
+        "exact net members EMMC_CLK"
+      ]
+    },
+    {
+      "mutation": "old_terminal_regression",
+      "exit_code": 1,
+      "status": "FAIL",
+      "detected_by": [
+        "only six intended existing terminals changed"
+      ]
+    }
+  ]
+}

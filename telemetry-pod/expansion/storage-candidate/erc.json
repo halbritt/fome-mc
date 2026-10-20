@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-10-20T03:25:05",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.7",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/4a00c72c-6a3d-574d-b101-c4f5a570db89",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U14 Pin C6 [VCCQ, Power input, Line]",
+                            "pos": {
+                                "x": 198.12,
+                                "y": 279.4
+                            },
+                            "uuid": "eba7e328-b8e6-576a-ac55-7cd69ec616c5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U14 Pin E6 [VCC, Power input, Line]",
+                            "pos": {
+                                "x": 198.12,
+                                "y": 281.94
+                            },
+                            "uuid": "8d2b4465-a34d-593f-bf58-19115b9d4980"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Footprint 'ampseal-35' not found in library 'ampseal'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [Conn_01x35]",
+                            "pos": {
+                                "x": 53.34,
+                                "y": 71.12
+                            },
+                            "uuid": "077ed99b-fdad-50ef-b63f-2b6b4e9e1a7e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                }
+            ]
+        }
+    ],
+    "source": "telemetry-pod.kicad_sch"
+}
