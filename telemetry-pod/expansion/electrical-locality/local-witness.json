@@ -1,0 +1,168 @@
+{
+  "scope": "Isolated six-footprint courtyard witness only; no full-board obstacles, PTH, routing or electrical acceptance.",
+  "proposed_radius_mm": 9,
+  "gap_mm": 0.25,
+  "poses_relative_nm": {
+    "U14": [
+      0,
+      0,
+      0
+    ],
+    "C64": [
+      -7980000,
+      0,
+      90
+    ],
+    "C66": [
+      7980000,
+      0,
+      90
+    ],
+    "C63": [
+      -7730000,
+      -3500000,
+      90
+    ],
+    "C65": [
+      -7730000,
+      3500000,
+      90
+    ],
+    "C67": [
+      7730000,
+      3500000,
+      90
+    ]
+  },
+  "pairwise_separations": [
+    {
+      "a": "U14",
+      "b": "C64",
+      "separating_axis_gap_nm": 250000
+    },
+    {
+      "a": "U14",
+      "b": "C66",
+      "separating_axis_gap_nm": 250000
+    },
+    {
+      "a": "U14",
+      "b": "C63",
+      "separating_axis_gap_nm": 250000
+    },
+    {
+      "a": "U14",
+      "b": "C65",
+      "separating_axis_gap_nm": 250000
+    },
+    {
+      "a": "U14",
+      "b": "C67",
+      "separating_axis_gap_nm": 250000
+    },
+    {
+      "a": "C64",
+      "b": "C66",
+      "separating_axis_gap_nm": 14000000
+    },
+    {
+      "a": "C64",
+      "b": "C63",
+      "separating_axis_gap_nm": 320000
+    },
+    {
+      "a": "C64",
+      "b": "C65",
+      "separating_axis_gap_nm": 320000
+    },
+    {
+      "a": "C64",
+      "b": "C67",
+      "separating_axis_gap_nm": 14000000
+    },
+    {
+      "a": "C66",
+      "b": "C63",
+      "separating_axis_gap_nm": 14000000
+    },
+    {
+      "a": "C66",
+      "b": "C65",
+      "separating_axis_gap_nm": 14000000
+    },
+    {
+      "a": "C66",
+      "b": "C67",
+      "separating_axis_gap_nm": 320000
+    },
+    {
+      "a": "C63",
+      "b": "C65",
+      "separating_axis_gap_nm": 4040000
+    },
+    {
+      "a": "C63",
+      "b": "C67",
+      "separating_axis_gap_nm": 14000000
+    },
+    {
+      "a": "C65",
+      "b": "C67",
+      "separating_axis_gap_nm": 14000000
+    }
+  ],
+  "group_grading": {
+    "criterion": "placement-groups/1",
+    "status": "pass",
+    "defects": [],
+    "unknown": [],
+    "measured": [
+      {
+        "group": "u14-local-storage-bypass",
+        "ref": "C63",
+        "distance_mm": 8.485452,
+        "max_distance_mm": 9.0
+      },
+      {
+        "group": "u14-local-storage-bypass",
+        "ref": "C64",
+        "distance_mm": 7.98,
+        "max_distance_mm": 9.0
+      },
+      {
+        "group": "u14-local-storage-bypass",
+        "ref": "C65",
+        "distance_mm": 8.485452,
+        "max_distance_mm": 9.0
+      },
+      {
+        "group": "u14-local-storage-bypass",
+        "ref": "C66",
+        "distance_mm": 7.98,
+        "max_distance_mm": 9.0
+      },
+      {
+        "group": "u14-local-storage-bypass",
+        "ref": "C67",
+        "distance_mm": 8.485452,
+        "max_distance_mm": 9.0
+      }
+    ],
+    "groups": [
+      {
+        "id": "u14-local-storage-bypass",
+        "references": [
+          "C63",
+          "C64",
+          "C65",
+          "C66",
+          "C67"
+        ],
+        "anchor": {
+          "reference": "U14"
+        },
+        "max_distance_nm": 9000000
+      }
+    ]
+  }
+}

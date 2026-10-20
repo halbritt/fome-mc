@@ -1,0 +1,52 @@
+{
+  "radius_mm": 8.0,
+  "gap_mm": 0.25,
+  "u14_courtyard_half_size_mm": [
+    6.75,
+    7.5
+  ],
+  "orientations": [
+    {
+      "cap_class": "small",
+      "half_x_mm": 1.48,
+      "half_y_mm": 0.73,
+      "min_side_x_mm": 8.48,
+      "min_top_y_mm": 8.48,
+      "side_possible": false,
+      "top_possible": false,
+      "side_y_bound_mm": null
+    },
+    {
+      "cap_class": "small",
+      "half_x_mm": 0.73,
+      "half_y_mm": 1.48,
+      "min_side_x_mm": 7.73,
+      "min_top_y_mm": 9.23,
+      "side_possible": true,
+      "top_possible": false,
+      "side_y_bound_mm": 2.0608493394714706
+    },
+    {
+      "cap_class": "large",
+      "half_x_mm": 1.7,
+      "half_y_mm": 0.98,
+      "min_side_x_mm": 8.7,
+      "min_top_y_mm": 8.73,
+      "side_possible": false,
+      "top_possible": false,
+      "side_y_bound_mm": null
+    },
+    {
+      "cap_class": "large",
+      "half_x_mm": 0.98,
+      "half_y_mm": 1.7,
+      "min_side_x_mm": 7.98,
+      "min_top_y_mm": 9.45,
+      "side_possible": true,
+      "top_possible": false,
+      "side_y_bound_mm": 0.5653317610040975
+    }
+  ],
+  "conclusion": "Under rectangular courtyard gap and 8mm origin-radius constraints, two large caps require opposite sides and exclude all small caps. Thus C63-C67 cannot all fit this local policy, regardless of board area. Not a board-size impossibility or electrical-layout recommendation.",
+  "scope": "Quarter-turn rotations and unchanged same-side rectangular courtyards. Numerical bounds have >0.8mm margin; independently review exact native bounds before policy revision."
+}
