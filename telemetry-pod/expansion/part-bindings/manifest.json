@@ -1,0 +1,590 @@
+{
+  "schema": "pod-part-bindings/1",
+  "baseline": {
+    "path": "native-candidate/captured/inputs/intent.json",
+    "sha256": "bbb501d7b45b13c231cd95ba02b8b3e6669d066ea29a7580edb191ddf0af89a2"
+  },
+  "parts": [
+    {
+      "mpn": "MCP2518FDT-E/SL",
+      "manufacturer": "Microchip Tech",
+      "lcsc": "C626758",
+      "catalog": {
+        "path": "interface-preparation/stock/catalog.json",
+        "sha256": "b4cfc797656ab3a7f30a151a19f1e1c16a48a7edcea2ab82c78ac26bc9320288"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sources/mcp2518fd.pdf",
+        "sha256": "0041b5bddb2a341794958f7a3195b931b349eb863f685935bb80aee377661ff5",
+        "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/External-CAN-FD-Controller-with-SPI-Interface-DS20006027B.pdf"
+      },
+      "components": [
+        {
+          "id": "can2/U20",
+          "reference": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "TJA1051T/3/1J",
+      "manufacturer": "NXP Semicon",
+      "lcsc": "C38695",
+      "catalog": {
+        "path": "interface-preparation/stock-clock-can/catalog.json",
+        "sha256": "91ddd4492844ca0c2160da29198be3f14ce453c30d5efe0245fe265ea5ee37ad"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sources/tja1051.pdf",
+        "sha256": "6637cd500dda3c1c951ce29bed7fe909f11f9a3bef64b096dbb486827add9f11",
+        "url": "https://www.nxp.com/docs/en/data-sheet/TJA1051.pdf"
+      },
+      "components": [
+        {
+          "id": "can2/U21",
+          "reference": "U21",
+          "value": "TJA1051T/3/1J",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "SN74LVC1G132DBVR",
+      "manufacturer": "Texas Instruments",
+      "lcsc": "C403723",
+      "catalog": {
+        "path": "interface-preparation/stock-schmitt/catalog.json",
+        "sha256": "0ce7f9143803fdc86bcb0fd266cfce2d7fad92d7367c6412acc08956f9c4e6bf"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sources/sn74lvc1g132.pdf",
+        "sha256": "fae33d78fe46834ab99230aaa1106f58321f23cf06c65be9cf08ea9c0dbcb623",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g132.pdf"
+      },
+      "components": [
+        {
+          "id": "can2/U22",
+          "reference": "U22",
+          "value": "SN74LVC1G132DBVR",
+          "footprint": "Package_TO_SOT_SMD:SOT-23-5"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "X1E0003410031",
+      "manufacturer": "Seiko Epson",
+      "lcsc": "C725712",
+      "catalog": {
+        "path": "interface-preparation/stock/catalog.json",
+        "sha256": "b4cfc797656ab3a7f30a151a19f1e1c16a48a7edcea2ab82c78ac26bc9320288"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sources/C725712.pdf",
+        "sha256": "c85214b1213f65e75092d2d9c247554c0004060a9229123f41afab055641ce2c",
+        "url": "https://datasheet.lcsc.com/datasheet/pdf/6cf405a1e592f7bfbb86cbe1bf4a7a9b.pdf?productCode=C725712"
+      },
+      "components": [
+        {
+          "id": "can2/Y1",
+          "reference": "Y1",
+          "value": "X1E0003410031 20MHz 12pF",
+          "footprint": "Crystal:Crystal_SMD_SeikoEpson_FA238-4Pin_3.2x2.5mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "PESD2CANFD24V-TR",
+      "manufacturer": "Nexperia",
+      "lcsc": "C552486",
+      "catalog": {
+        "path": "interface-preparation/stock-protection/catalog.json",
+        "sha256": "218be8a4f4acb0a12ad327335ae131894fe409671aeb193b69aefd9b4479c66d"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sources/pesd2canfd24v-t.pdf",
+        "sha256": "ca36f3ab77f4d80df544458bda6c0a919a9322fbd384aa0865937484fdb892de",
+        "url": "https://datasheet.lcsc.com/datasheet/pdf/78eb58e016fa2f92eae282ce39eadf23.pdf?productCode=C552486"
+      },
+      "components": [
+        {
+          "id": "can2/D101",
+          "reference": "D101",
+          "value": "PESD2CANFD24V-TR",
+          "footprint": "Package_TO_SOT_SMD:SOT-23"
+        },
+        {
+          "id": "wheel-input/D104",
+          "reference": "D104",
+          "value": "PESD2CANFD24V-TR",
+          "footprint": "Package_TO_SOT_SMD:SOT-23"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "TPS26625DRCR",
+      "manufacturer": "Texas Instruments",
+      "lcsc": "C2862873",
+      "catalog": {
+        "path": "interface-preparation/sensor-power/stock/catalog.json",
+        "sha256": "247f17069c0b867947426bbdede2e416cb29122fc2f62e7e52e584f9ca8361c0"
+      },
+      "datasheet": {
+        "path": "interface-preparation/sensor-power/tps2662.pdf",
+        "sha256": "ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa",
+        "url": "https://www.ti.com/lit/ds/symlink/tps2662.pdf"
+      },
+      "components": [
+        {
+          "id": "sensor-power/U23",
+          "reference": "U23",
+          "value": "TPS26625DRCR",
+          "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm"
+        },
+        {
+          "id": "sensor-power/U24",
+          "reference": "U24",
+          "value": "TPS26625DRCR",
+          "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm"
+        },
+        {
+          "id": "sensor-power/U25",
+          "reference": "U25",
+          "value": "TPS26625DRCR",
+          "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm"
+        },
+        {
+          "id": "aux-power/U30",
+          "reference": "U30",
+          "value": "TPS26625DRCR",
+          "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "LM2903BQDRQ1",
+      "manufacturer": "Texas Instruments",
+      "lcsc": "C3659057",
+      "catalog": {
+        "path": "interface-preparation/wheel-input/stock/catalog.json",
+        "sha256": "b26651350abc2d9ec0bce3dbdc42b55442f5a216198adfcff2d0c891eab8bfae"
+      },
+      "datasheet": {
+        "path": "interface-preparation/wheel-input/lm2903b-q1.pdf",
+        "sha256": "8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6",
+        "url": "https://www.ti.com/lit/ds/symlink/lm2903b-q1.pdf"
+      },
+      "components": [
+        {
+          "id": "wheel-input/U26",
+          "reference": "U26",
+          "value": "LM2903BQDRQ1",
+          "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "BAV199,215",
+      "manufacturer": "Nexperia",
+      "lcsc": "C40919",
+      "catalog": {
+        "path": "interface-preparation/wheel-input/stock/catalog.json",
+        "sha256": "b26651350abc2d9ec0bce3dbdc42b55442f5a216198adfcff2d0c891eab8bfae"
+      },
+      "datasheet": {
+        "path": "interface-preparation/wheel-input/bav199.pdf",
+        "sha256": "c09cdf672eb4274e137efcf7a0d4e34fc8de099a975cfe8efa3a5a3c560cdf81",
+        "url": "https://datasheet.lcsc.com/datasheet/pdf/ee468f529f7f0290ab6d8e07859261a3.pdf?productCode=C40919"
+      },
+      "components": [
+        {
+          "id": "wheel-input/D102",
+          "reference": "D102",
+          "value": "BAV199,215",
+          "footprint": "Package_TO_SOT_SMD:SOT-23"
+        },
+        {
+          "id": "wheel-input/D103",
+          "reference": "D103",
+          "value": "BAV199,215",
+          "footprint": "Package_TO_SOT_SMD:SOT-23"
+        },
+        {
+          "id": "thermistor/D105",
+          "reference": "D105",
+          "value": "BAV199,215",
+          "footprint": "Package_TO_SOT_SMD:SOT-23"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "TPS62162QDSGRQ1",
+      "manufacturer": "Texas Instruments",
+      "lcsc": "C2071196",
+      "catalog": {
+        "path": "storage-candidate/power-sources/power-stock-tps62162/catalog.json",
+        "sha256": "812bf0b7a956bb5ee6d4f2375577cdd79f23936518b3c4a3fb25edd421c501b4"
+      },
+      "datasheet": {
+        "path": "storage-candidate/power-sources/tps62162-q1.pdf",
+        "sha256": "940736f835a41f87a3a22dcc31e8308bf6bef3bc5a176443cc3c05b4fa7d75e5",
+        "url": "https://www.ti.com/lit/ds/symlink/tps62162-q1.pdf"
+      },
+      "components": [
+        {
+          "id": "storage-power/U15",
+          "reference": "U15",
+          "value": "TPS62162QDSGRQ1",
+          "footprint": "Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "SRP4020TA-2R2M",
+      "manufacturer": "BOURNS",
+      "lcsc": "C719179",
+      "catalog": {
+        "path": "storage-candidate/power-sources/power-stock-inductor/catalog.json",
+        "sha256": "f25995fa72918312abe97288729a3079948619b66f7b4042de888465572537c7"
+      },
+      "datasheet": {
+        "path": "storage-candidate/power-sources/SRP4020TA.pdf",
+        "sha256": "601b2bd60f01531d3dd98df00eab15635fa971ebc03cf7ae4ccb5679faf03485",
+        "url": "https://www.bourns.com/docs/Product-Datasheets/SRP4020TA.pdf"
+      },
+      "components": [
+        {
+          "id": "storage-power/L4",
+          "reference": "L4",
+          "value": "2.2 uH",
+          "footprint": "PodStoragePower:SRP4020TA"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "TPS389001DSER",
+      "manufacturer": "Texas Instruments",
+      "lcsc": "C1509297",
+      "catalog": {
+        "path": "storage-candidate/supervisor-sources/stock/catalog.json",
+        "sha256": "bd84bce59d80792886980503377e13f6db86ff9d6301cd5bc9e54e3b44cee05a"
+      },
+      "datasheet": {
+        "path": "storage-candidate/supervisor-sources/tps3890.pdf",
+        "sha256": "ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3890.pdf"
+      },
+      "components": [
+        {
+          "id": "supervisor/U16",
+          "reference": "U16",
+          "value": "TPS389001DSER",
+          "footprint": "PodSupervisor:DSE0006A"
+        },
+        {
+          "id": "supervisor/U17",
+          "reference": "U17",
+          "value": "TPS389001DSER",
+          "footprint": "PodSupervisor:DSE0006A"
+        },
+        {
+          "id": "supervisor/U18",
+          "reference": "U18",
+          "value": "TPS389001DSER",
+          "footprint": "PodSupervisor:DSE0006A"
+        },
+        {
+          "id": "supervisor/U19",
+          "reference": "U19",
+          "value": "TPS389001DSER",
+          "footprint": "PodSupervisor:DSE0006A"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "RT0603BRD07499KL",
+      "manufacturer": "YAGEO",
+      "lcsc": "C515607",
+      "catalog": {
+        "path": "part-selection/stock/catalog.json",
+        "sha256": "8063f6927a0809346aea44ecf058d1857f77a305dbe5377faad8fa24b56dfc5b"
+      },
+      "datasheet": {
+        "path": "part-selection/sources/RT0603BRD07499KL.pdf",
+        "sha256": "ce504351201504306bc3026d3f08549dcd71f423656734311db63a2b03b7ec6a",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD07499KL"
+      },
+      "components": [
+        {
+          "id": "diagnostic/R128",
+          "reference": "R128",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R129",
+          "reference": "R129",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R130",
+          "reference": "R130",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R132",
+          "reference": "R132",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R133",
+          "reference": "R133",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R134",
+          "reference": "R134",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R136",
+          "reference": "R136",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R137",
+          "reference": "R137",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R138",
+          "reference": "R138",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R140",
+          "reference": "R140",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R141",
+          "reference": "R141",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R142",
+          "reference": "R142",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R144",
+          "reference": "R144",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R145",
+          "reference": "R145",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R146",
+          "reference": "R146",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R148",
+          "reference": "R148",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R149",
+          "reference": "R149",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R150",
+          "reference": "R150",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R152",
+          "reference": "R152",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R153",
+          "reference": "R153",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R154",
+          "reference": "R154",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R156",
+          "reference": "R156",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R157",
+          "reference": "R157",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R158",
+          "reference": "R158",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "aux-power/R166",
+          "reference": "R166",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "aux-power/R167",
+          "reference": "R167",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "aux-power/R168",
+          "reference": "R168",
+          "value": "499 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "thermistor/R176",
+          "reference": "R176",
+          "value": "499 kohm 0.1% 25ppm/K",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "thermistor/R177",
+          "reference": "R177",
+          "value": "499 kohm 0.1% 25ppm/K",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "thermistor/R178",
+          "reference": "R178",
+          "value": "499 kohm 0.1% 25ppm/K",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    },
+    {
+      "mpn": "RT0603BRD074K99L",
+      "manufacturer": "YAGEO",
+      "lcsc": "C723532",
+      "catalog": {
+        "path": "part-selection/stock/catalog.json",
+        "sha256": "8063f6927a0809346aea44ecf058d1857f77a305dbe5377faad8fa24b56dfc5b"
+      },
+      "datasheet": {
+        "path": "part-selection/sources/RT0603BRD074K99L.pdf",
+        "sha256": "3296b250247ecff1a1a88353a7f5c89a20508f8abc80e06ac3925c56368663fa",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD074K99L"
+      },
+      "components": [
+        {
+          "id": "diagnostic/R131",
+          "reference": "R131",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R135",
+          "reference": "R135",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R139",
+          "reference": "R139",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R143",
+          "reference": "R143",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R147",
+          "reference": "R147",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R151",
+          "reference": "R151",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R155",
+          "reference": "R155",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "diagnostic/R159",
+          "reference": "R159",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "aux-power/R169",
+          "reference": "R169",
+          "value": "4.99 kohm 0.1% 25ppm/C",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        },
+        {
+          "id": "thermistor/R179",
+          "reference": "R179",
+          "value": "4.99 kohm 0.1% 25ppm/K",
+          "footprint": "Resistor_SMD:R_0603_1608Metric"
+        }
+      ],
+      "qualification": "identity metadata only; assembly and circuit qualification pending"
+    }
+  ]
+}
