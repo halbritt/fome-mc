@@ -1,0 +1,31 @@
+{
+  "scope": "Line switching levels equal these values plus input series-diode forward voltage at actual current and temperature. No guarantee of diode VF bounds or GS100502 VOL inferred.",
+  "assumptions": {
+    "main_rail": [
+      3.201,
+      3.399
+    ],
+    "divider_tolerance": 0.001,
+    "output_pullup_tolerance": 0.01,
+    "comparator_vol": [
+      0,
+      0.55
+    ],
+    "combined_input_error_allowance": 0.005
+  },
+  "line_threshold_excluding_diode_V": {
+    "fall": [
+      0.8817149611772483,
+      1.0481436556484485
+    ],
+    "rise": [
+      1.363531320811648,
+      1.4763306328958514
+    ]
+  },
+  "filter": {
+    "C_F": 2.2e-10,
+    "tau_rise_nom_s": 1.0999999999999998e-06,
+    "tau_fall_nom_s": 2.1999999999999997e-06
+  }
+}

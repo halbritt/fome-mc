@@ -1,0 +1,272 @@
+                                                          MCP2518FD
+                                MCP2518FD
+                 Silicon Errata and Data Sheet Clarification
+
+The functionality of the MCP2518FD devices is               Bit 31 of RAM reads with CRC can also be
+described in the Device Data Sheet (DS20006027A),           affected. This can be avoided by reading from a
+except for the anomalies described below.                   receive FIFO only after the message has been
+                                                            loaded into the FIFO, indicated by the receive
+1. Module: SPI Module                                       flags. This is the recommended procedure
+                                                            independent of the issue described here.
+    Incorrect CRC for certain READ_CRC
+    commands:
+                                                         2. Module: ECC Module
+    There is a possible mismatch between the
+    transmitted CRC and the actual CRC for the              ECC Single Error Correction does not work
+    transmitted data, when data are updated at a            in all cases:
+    specific time during the SPI READ_CRC                   Fix/Work Around:
+    command.                                                Enable Single Error Correction (SEC) and
+    In such cases, the transmitted CRC is wrong             Double Error Detection (DED) interrupts by set-
+    and a glitch occurs on the SDO line, shorter than       ting SECIE and DEDIE. Handle SECIF as a
+    1 bit in length. The data transmitted are correct.      detection interrupt and do not rely on the error
+    Fix/Work Around                                         correction. Instead, handle both interrupts as a
+                                                            notification that the RAM word at ERRADDR
+    If a CRC mismatch occurs, re-issue the                  was corrupted.
+    READ_CRC command.
+    Only bits 7/15/23/31 of the following registers      3. Module: SPI Module
+    can be affected:
+                                                            SFR address rollover does not work:
+    CiTXIF
+                                                            The SFR address rollover, from 0x3FF to 0x000
+    CiRXIF                                                  and from 0xFFF to 0xE00, does not work.
+    CiCON                                                   Instead, the address changes from 0x3FF to
+                                                            0x400 and from 0xFFF to 0x000.
+    CiTBC
+                                                            The address rollover for the RAM works as
+    CiINT
+                                                            described.
+    CiRXOVIF
+                                                            Fix/Work Around:
+    CiTXATIF
+                                                            None.
+    CiTXREQ
+    CiTREC                                               4. Module: SPI/RAM Module
+    CiBDIAG0                                                The SPI can write corrupted data to the RAM
+    CiBDIAG1                                                at fast SPI speeds:
+    CiTXQSTA                                                Simultaneous activity on the CAN bus while
+                                                            writing data to RAM via the SPI interface, with
+    CiFIFOSTAm
+                                                            high SCK frequency, can lead to corrupted data
+    The occurrence can be minimized by not using            being written to RAM.
+    FIFOs 7/15/23/31. In these cases, the registers,
+                                                            Fix/Work Around:
+    CiTXIF, CiRXIF, CiRXOVIF, CiTXATIF and
+    CiTXREQ, are not affected.                              Ensure that FSCK is less than or equal to
+                                                            0.85 * (FSYSCLK/2).
+
+
+
+
+ 2018-2020 Microchip Technology Inc.                                                    DS80000789C-page 1
+MCP2518FD
+5. Module: SPI/GPIO Module                                Clarifications/Corrections to the Data
+    Writing multiple bytes to the IOCON register          Sheet:
+    using one SPI WRITE instruction may                   In the MCP2518FD Data Sheet (DS20006027A), the
+    overwrite LAT0 and LAT1:                              following clarifications and corrections should be
+    Writing Byte 2 and Byte 3 of the IOCON register       noted.
+    using one SPI WRITE instruction clears LAT0               None.
+    and LAT1.
+    Fix/Work Around:
+    When setting LAT0 or LAT1, do not use a
+    multi-data byte SPI WRITE instruction.
+    Instead, write the bit fields in the IOCON register
+    using single data byte SFR WRITE instructions.
+
+
+
+
+DS80000789C-page 2                                                          2018-2020 Microchip Technology Inc.
+                                          MCP2518FD
+APPENDIX A:            REVISION HISTORY
+
+Revision C (October 2020)
+• Corrections added to SPI Module.
+
+Revision B (September 2020)
+• Added ECC Module, SPI Module, SPI/RAM
+  Module and SPI/GPIO Module.
+
+Revision A (May 2018)
+• Initial Release of this Document.
+
+
+
+
+ 2018-2020 Microchip Technology Inc.        DS80000789C-page 3
+MCP2518FD
+NOTES:
+
+
+
+
+DS80000789C-page 4    2018-2020 Microchip Technology Inc.
+Note the following details of the code protection feature on Microchip devices:
+•    Microchip products meet the specifications contained in their particular Microchip Data Sheet.
+
+•    Microchip believes that its family of products is secure when used in the intended manner and under normal conditions.
+
+•    There are dishonest and possibly illegal methods being used in attempts to breach the code protection features of the Microchip
+     devices. We believe that these methods require using the Microchip products in a manner outside the operating specifications
+     contained in Microchip's Data Sheets. Attempts to breach these code protection features, most likely, cannot be accomplished
+     without violating Microchip's intellectual property rights.
+
+•    Microchip is willing to work with any customer who is concerned about the integrity of its code.
+
+•    Neither Microchip nor any other semiconductor manufacturer can guarantee the security of its code. Code protection does not
+     mean that we are guaranteeing the product is "unbreakable." Code protection is constantly evolving. We at Microchip are
+     committed to continuously improving the code protection features of our products. Attempts to break Microchip's code protection
+     feature may be a violation of the Digital Millennium Copyright Act. If such acts allow unauthorized access to your software or
+     other copyrighted work, you may have a right to sue for relief under that Act.
+
+
+
+
+Information contained in this publication is provided for the sole      Trademarks
+purpose of designing with and using Microchip products. Infor-          The Microchip name and logo, the Microchip logo, Adaptec,
+mation regarding device applications and the like is provided           AnyRate, AVR, AVR logo, AVR Freaks, BesTime, BitCloud, chipKIT,
+only for your convenience and may be superseded by updates.             chipKIT logo, CryptoMemory, CryptoRF, dsPIC, FlashFlex,
+                                                                        flexPWR, HELDO, IGLOO, JukeBlox, KeeLoq, Kleer, LANCheck,
+It is your responsibility to ensure that your application meets         LinkMD, maXStylus, maXTouch, MediaLB, megaAVR, Microsemi,
+with your specifications.                                               Microsemi logo, MOST, MOST logo, MPLAB, OptoLyzer,
+                                                                        PackeTime, PIC, picoPower, PICSTART, PIC32 logo, PolarFire,
+THIS INFORMATION IS PROVIDED BY MICROCHIP "AS IS".                      Prochip Designer, QTouch, SAM-BA, SenGenuity, SpyNIC, SST,
+MICROCHIP MAKES NO REPRESENTATIONS OR WAR-                              SST Logo, SuperFlash, Symmetricom, SyncServer, Tachyon,
+RANTIES OF ANY KIND WHETHER EXPRESS OR IMPLIED,                         TempTrackr, TimeSource, tinyAVR, UNI/O, Vectron, and XMEGA
+                                                                        are registered trademarks of Microchip Technology Incorporated in
+WRITTEN OR ORAL, STATUTORY OR OTHERWISE,                                the U.S.A. and other countries.
+RELATED TO THE INFORMATION INCLUDING BUT NOT
+LIMITED TO ANY IMPLIED WARRANTIES OF NON-                               APT, ClockWorks, The Embedded Control Solutions Company,
+INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A                        EtherSynch, FlashTec, Hyper Speed Control, HyperLight Load,
+PARTICULAR PURPOSE OR WARRANTIES RELATED TO                             IntelliMOS, Libero, motorBench, mTouch, Powermite 3, Precision
+                                                                        Edge, ProASIC, ProASIC Plus, ProASIC Plus logo, Quiet-Wire,
+ITS CONDITION, QUALITY, OR PERFORMANCE.                                 SmartFusion, SyncWorld, Temux, TimeCesium, TimeHub,
+                                                                        TimePictra, TimeProvider, Vite, WinPath, and ZL are registered
+IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDI-                      trademarks of Microchip Technology Incorporated in the U.S.A.
+RECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUEN-
+TIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND                          Adjacent Key Suppression, AKS, Analog-for-the-Digital Age, Any
+WHATSOEVER RELATED TO THE INFORMATION OR ITS                            Capacitor, AnyIn, AnyOut, BlueSky, BodyCom, CodeGuard,
+                                                                        CryptoAuthentication, CryptoAutomotive, CryptoCompanion,
+USE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
+                                                                        CryptoController, dsPICDEM, dsPICDEM.net, Dynamic Average
+BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES                          Matching, DAM, ECAN, EtherGREEN, In-Circuit Serial
+ARE FORESEEABLE. TO THE FULLEST EXTENT                                  Programming, ICSP, INICnet, Inter-Chip Connectivity, JitterBlocker,
+ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON                          KleerNet, KleerNet logo, memBrain, Mindi, MiWi, MPASM, MPF,
+ALL CLAIMS IN ANY WAY RELATED TO THE INFORMATION                        MPLAB Certified logo, MPLIB, MPLINK, MultiTRAK, NetDetach,
+                                                                        Omniscient Code Generation, PICDEM, PICDEM.net, PICkit,
+OR ITS USE WILL NOT EXCEED THE AMOUNT OF FEES, IF                       PICtail, PowerSmart, PureSilicon, QMatrix, REAL ICE, Ripple
+ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP                           Blocker, SAM-ICE, Serial Quad I/O, SMART-I.S., SQI,
+FOR THE INFORMATION. Use of Microchip devices in life sup-              SuperSwitcher, SuperSwitcher II, Total Endurance, TSHARC,
+port and/or safety applications is entirely at the buyer's risk, and    USBCheck, VariSense, ViewSpan, WiperLock, Wireless DNA, and
+the buyer agrees to defend, indemnify and hold harmless                 ZENA are trademarks of Microchip Technology Incorporated in the
+                                                                        U.S.A. and other countries.
+Microchip from any and all damages, claims, suits, or expenses
+resulting from such use. No licenses are conveyed, implicitly or        SQTP is a service mark of Microchip Technology Incorporated in
+otherwise, under any Microchip intellectual property rights             the U.S.A.
+unless otherwise stated.                                                The Adaptec logo, Frequency on Demand, Silicon Storage
+                                                                        Technology, and Symmcom are registered trademarks of Microchip
+                                                                        Technology Inc. in other countries.
+                                                                        GestIC is a registered trademark of Microchip Technology Germany
+                                                                        II GmbH & Co. KG, a subsidiary of Microchip Technology Inc., in
+                                                                        other countries.
+                                                                        All other trademarks mentioned herein are property of their
+                                                                        respective companies.
+
+                                                                        © 2018-2020, Microchip Technology Incorporated, All Rights
+                                                                        Reserved.
+For information regarding Microchip’s Quality Management Systems,
+please visit www.microchip.com/quality.                                 ISBN: 978-1-5224-6886-8
+
+
+
+
+ 2018-2020 Microchip Technology Inc.                                                                             DS80000789C-page 5
+                            Worldwide Sales and Service
+AMERICAS                    ASIA/PACIFIC            ASIA/PACIFIC                     EUROPE
+Corporate Office            Australia - Sydney      India - Bangalore                Austria - Wels
+2355 West Chandler Blvd.    Tel: 61-2-9868-6733     Tel: 91-80-3090-4444             Tel: 43-7242-2244-39
+Chandler, AZ 85224-6199     China - Beijing         India - New Delhi                Fax: 43-7242-2244-393
+Tel: 480-792-7200           Tel: 86-10-8569-7000    Tel: 91-11-4160-8631             Denmark - Copenhagen
+Fax: 480-792-7277                                                                    Tel: 45-4485-5910
+                            China - Chengdu         India - Pune
+Technical Support:                                                                   Fax: 45-4485-2829
+                            Tel: 86-28-8665-5511    Tel: 91-20-4121-0141
+http://www.microchip.com/
+                            China - Chongqing       Japan - Osaka                    Finland - Espoo
+support
+                            Tel: 86-23-8980-9588    Tel: 81-6-6152-7160              Tel: 358-9-4520-820
+Web Address:
+www.microchip.com           China - Dongguan        Japan - Tokyo                    France - Paris
+                            Tel: 86-769-8702-9880   Tel: 81-3-6880- 3770             Tel: 33-1-69-53-63-20
+Atlanta                                                                              Fax: 33-1-69-30-90-79
+Duluth, GA                  China - Guangzhou       Korea - Daegu
+Tel: 678-957-9614           Tel: 86-20-8755-8029    Tel: 82-53-744-4301              Germany - Garching
+                                                                                     Tel: 49-8931-9700
+Fax: 678-957-1455           China - Hangzhou        Korea - Seoul
+Austin, TX                  Tel: 86-571-8792-8115   Tel: 82-2-554-7200               Germany - Haan
+Tel: 512-257-3370                                                                    Tel: 49-2129-3766400
+                            China - Hong Kong SAR   Malaysia - Kuala Lumpur
+                            Tel: 852-2943-5100      Tel: 60-3-7651-7906              Germany - Heilbronn
+Boston
+                                                                                     Tel: 49-7131-72400
+Westborough, MA             China - Nanjing         Malaysia - Penang
+Tel: 774-760-0087           Tel: 86-25-8473-2460    Tel: 60-4-227-8870               Germany - Karlsruhe
+Fax: 774-760-0088                                                                    Tel: 49-721-625370
+                            China - Qingdao         Philippines - Manila
+Chicago                     Tel: 86-532-8502-7355   Tel: 63-2-634-9065               Germany - Munich
+Itasca, IL                                                                           Tel: 49-89-627-144-0
+                            China - Shanghai        Singapore
+Tel: 630-285-0071                                                                    Fax: 49-89-627-144-44
+                            Tel: 86-21-3326-8000    Tel: 65-6334-8870
+Fax: 630-285-0075                                                                    Germany - Rosenheim
+                            China - Shenyang        Taiwan - Hsin Chu
+Dallas                                                                               Tel: 49-8031-354-560
+                            Tel: 86-24-2334-2829    Tel: 886-3-577-8366
+Addison, TX                                                                          Israel - Ra’anana
+                            China - Shenzhen        Taiwan - Kaohsiung
+Tel: 972-818-7423                                                                    Tel: 972-9-744-7705
+                            Tel: 86-755-8864-2200   Tel: 886-7-213-7830
+Fax: 972-818-2924                                                                    Italy - Milan
+                            China - Suzhou          Taiwan - Taipei
+Detroit                                                                              Tel: 39-0331-742611
+                            Tel: 86-186-6233-1526   Tel: 886-2-2508-8600
+Novi, MI                                                                             Fax: 39-0331-466781
+Tel: 248-848-4000           China - Wuhan           Thailand - Bangkok
+                            Tel: 86-27-5980-5300    Tel: 66-2-694-1351               Italy - Padova
+Houston, TX                                                                          Tel: 39-049-7625286
+Tel: 281-894-5983           China - Xian            Vietnam - Ho Chi Minh
+                            Tel: 86-29-8833-7252    Tel: 84-28-5448-2100             Netherlands - Drunen
+Indianapolis                                                                         Tel: 31-416-690399
+Noblesville, IN             China - Xiamen                                           Fax: 31-416-690340
+Tel: 317-773-8323           Tel: 86-592-2388138
+                                                                                     Norway - Trondheim
+Fax: 317-773-5453           China - Zhuhai                                           Tel: 47-7288-4388
+Tel: 317-536-2380           Tel: 86-756-3210040
+                                                                                     Poland - Warsaw
+Los Angeles                                                                          Tel: 48-22-3325737
+Mission Viejo, CA
+                                                                                     Romania - Bucharest
+Tel: 949-462-9523
+                                                                                     Tel: 40-21-407-87-50
+Fax: 949-462-9608
+Tel: 951-273-7800                                                                    Spain - Madrid
+                                                                                     Tel: 34-91-708-08-90
+Raleigh, NC                                                                          Fax: 34-91-708-08-91
+Tel: 919-844-7510
+                                                                                     Sweden - Gothenberg
+New York, NY                                                                         Tel: 46-31-704-60-40
+Tel: 631-435-6000
+                                                                                     Sweden - Stockholm
+San Jose, CA                                                                         Tel: 46-8-5090-4654
+Tel: 408-735-9110
+Tel: 408-436-4270                                                                    UK - Wokingham
+                                                                                     Tel: 44-118-921-5800
+Canada - Toronto                                                                     Fax: 44-118-921-5820
+Tel: 905-695-1980
+Fax: 905-695-2078
+
+
+
+
+DS80000789C-page 6                                                          2018-2020 Microchip Technology Inc.
+                                                                                                           02/28/20
+

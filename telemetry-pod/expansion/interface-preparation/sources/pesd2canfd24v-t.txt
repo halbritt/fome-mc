@@ -1,0 +1,725 @@
+                                PESD2CANFD24V-T
+                                ESD protection for In-vehicle networks
+                                11 August 2020                                                              Product data sheet
+
+
+
+
+1. General description
+                            ESD protection device in a small SOT23 (TO-236AB) Surface-Mounted Device (SMD) plastic
+                            package designed to protect two automotive In-vehicle network bus lines from the damage caused
+                            by ElectroStatic discharge (ESD) and other transients.
+
+
+2. Features and benefits
+                            •   Reverse stand-off voltage: VRWM = 24 V
+                            •   Low clamping voltage: VCL= 33 V at IPP = 1 A
+                            •   ESD protection up to 23 kV (IEC 61000-4-2)
+                            •   Low capacitance: Cd = 6 pF
+                            •   ESD protection up to 23 kV (ISO 10605; C = 150 pF; R = 330 Ω)
+                            •   High temperature capability: Tj = 175 °C
+                            •   AEC-Q101 qualified
+
+
+3. Applications
+                            ESD protection for In-vehicle network lines in automotive environments
+                            •   CAN-FD
+                            •   CAN
+                            •   FlexRay
+                            •   SENT
+
+
+4. Quick reference data
+Table 1. Quick reference data
+Symbol          Parameter                     Conditions                                              Min   Typ   Max   Unit
+VRWM               reverse standoff           Tamb = 25 °C                                            -     -     24    V
+                   voltage
+IPPM               rated peak pulse           tp = 8/20 µs                                  [1] [2]   -     -     2.6   A
+                   current
+VCL                clamping voltage           IPPM = 1 A; tp = 8/20 µs; Tamb = 25 °C        [3] [2]   -     33    42    V
+
+[1]   According to IEC 61000-4-5.
+[2]   Measured from pin 1 or 2 to pin 3.
+[3]   Device stressed with 8/20 μs exponential decay waveform according to IEC 61000-4-5.
+Nexperia                                                                                                                      PESD2CANFD24V-T
+                                                                                                                  ESD protection for In-vehicle networks
+
+
+5. Pinning information
+Table 2. Pinning information
+Pin        Symbol      Description                               Simplified outline                                         Graphic symbol
+1            K1            cathode (diode 1)                                                     3
+                                                                                                                                    K1
+2            K2            cathode (diode 2)
+                                                                                                                                                            CC
+3            CC            common cathode                                                                                           K2
+
+                                                                                                                                                006aaa155
+                                                                             1                             2
+                                                                                       SOT23
+
+
+6. Ordering information
+Table 3. Ordering information
+Type number             Package
+                            Name               Description                                                                                              Version
+PESD2CANFD24V-T             SOT23              plastic, surface-mounted package; 3 terminals; 1.9 mm pitch; 2.9 SOT23
+                                               mm x 1.3 mm x 1 mm body
+
+
+7. Marking
+Table 4. Marking codes
+Type number                                                                          Marking code[1]
+PESD2CANFD24V-T                                                                      %GL
+
+[1]   % = placeholder for manufacturing site code
+
+
+
+
+PESD2CANFD24V-T                                All information provided in this document is subject to legal disclaimers.                    © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                    11 August 2020                                                                                        2 / 13
+Nexperia                                                                                                                                    PESD2CANFD24V-T
+                                                                                                                             ESD protection for In-vehicle networks
+
+
+8. Limiting values
+Table 5. Limiting values
+In accordance with the Absolute Maximum Rating System (IEC 60134).
+Symbol                Parameter                               Conditions                                                                                     Min            Max                Unit
+IPPM                  rated peak pulse current                tp = 8/20 µs                                                                      [1] [2]      -              2.6                A
+Tj                    junction temperature                                                                                                                   -              175                °C
+Tamb                  ambient temperature                                                                                                                    -55            175                °C
+Tstg                  storage temperature                                                                                                                    -65            175                °C
+ESD maximum ratings
+VESD                  electrostatic discharge                 IEC 61000-4-2; contact discharge                                                  [2] [3]      -              23                 kV
+                      voltage                                 ISO 10605; contact discharge; C = 330 pF, [2] [3]                                              -              20                 kV
+                                                              R = 330 Ω
+                                                              ISO 10605; contact discharge; C = 150 pF, [2] [3]                                              -              23                 kV
+                                                              R = 330 Ω
+
+[1]    According to IEC 61000-4-5.
+[2]    Measured from pin 1 or 2 to pin 3.
+[3]    Device stressed with ten non-repetitive ESD pulses.
+
+                                                            001aaa630                                              IPP
+         120
+                                                                                                             100 %
+        IPP                  100 % IPP; 8 µs                                                                   90 %
+        (%)
+
+
+          80
+                                  e-t
+
+
+                                               50 % IPP; 20 µs
+
+          40
+
+
+
+                                                                                                               10 %
+
+
+              0                                                                                                                        tr = 0.6 ns to 1 ns                                 t
+                  0     10              20           30                 40                                                             30 ns
+                                                             t (µs)
+                                                                                                                                                  60 ns                         001aaa631
+
+                                                                                                Fig. 2.          ESD pulse waveform according to
+Fig. 1.       8/20 µs pulse waveform according to                                                                IEC 61000-4-2
+              IEC 61000-4-5
+
+
+
+
+PESD2CANFD24V-T                                           All information provided in this document is subject to legal disclaimers.                               © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                               11 August 2020                                                                                                     3 / 13
+Nexperia                                                                                                                             PESD2CANFD24V-T
+                                                                                                                     ESD protection for In-vehicle networks
+
+
+9. Characteristics
+Table 6. Characteristics
+Symbol          Parameter                         Conditions                                                                             Min    Typ             Max            Unit
+VRWM               reverse standoff               Tamb = 25 °C                                                                           -      -               24             V
+                   voltage
+VBR                breakdown voltage              IR = 10 mA; Tamb = 25 °C                                                     [1]       25.5   30              35.5           V
+IRM                reverse leakage current VRWM = 24 V; Tamb = 25 °C                                                           [1]       -      1               50             nA
+Cd                 diode capacitance              f = 1 MHz; VR = 2.5 V; Tamb = 25 °C                                          [1]       -      5.2             6              pF
+                                                  f = 1 MHz; VR = -2.5 V; Tamb = 25 °C                                         [1]       -      5.2             6              pF
+ΔCd/Cd             diode capacitance              f = 1 MHz; VR = 2.5 V; Tamb = 25 °C                                          [2]       -      0.5             -              %
+                   matching                       f = 1 MHz; VR = -2.5 V; Tamb = 25 °C                                         [2]       -      0.5             -              %
+VCL                clamping voltage               IPPM = 1 A; tp = 8/20 µs; Tamb = 25 °C                                       [3] [1]   -      33              42             V
+Rdyn               dynamic resistance             IR = 10 A; Tamb = 25 °C                                                      [4] [1]   -      0.7             -              Ω
+
+[1]   Measured from pin 1 or 2 to pin 3.
+[2]   ∆Cd is the difference of the capacitance measured between pin 1 and pin 3 and the capacitance measured between pin 2 and pin 3.
+[3]   Device stressed with 8/20 μs exponential decay waveform according to IEC 61000-4-5.
+[4]   Non-repetitive current pulse, Transmission Line Pulse (TLP); square pulse; ANSI / ESD STM5.5.1-2008
+
+                                IPP                                                                                                                        aaa-030683
+                                                                                                        7
+                                                                                                  Cd
+                                                                                                 (pF)
+                                                                                                        6
+
+
+                                                                                                        5
+
+                                  IR
+                                IRM                                                                     4
+      -VCL -VBR -VRWM
+                                       -IRM             VRWM VBR VCL
+                                       -IR                                                              3
+
+
+                                                                                                        2
+                                              -              +
+                                                                                                        1
+
+                                       -IPP                                                             0
+                                                                  006aaa676
+                                                                                                         -24                     -12            12                      24
+                                                                                                                                                         VR (V)
+Fig. 3.     V-I characteristics for a bidirectional ESD
+                                                                                        Fig. 4.          Diode capacitance as a function of reverse
+            protection diode
+                                                                                                         voltage; typical values
+
+
+
+
+PESD2CANFD24V-T                                   All information provided in this document is subject to legal disclaimers.                         © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                       11 August 2020                                                                                             4 / 13
+Nexperia                                                                                                                       PESD2CANFD24V-T
+                                                                                                                    ESD protection for In-vehicle networks
+
+                                                    aaa-030684                                                                                  aaa-030685
+          40                                                                                         10
+       IPP                                                                                      IPP
+       (A)                                                                                      (A)
+          30                                                                                          0
+
+
+
+          20                                                                                       -10
+
+
+
+          10                                                                                       -20
+
+
+
+             0                                                                                     -30
+
+
+
+          -10                                                                                      -40
+                 0        20           40                      60                                     -60                     -40   -20                       0
+                                                VCL (V)                                                                                      VCL (V)
+
+             tp = 100 ns; Transmission Line Pulse (TLP)                                                 tp = 100 ns; Transmission Line Pulse (TLP)
+Fig. 5.      Positive clamping voltage (TLP); typical values                           Fig. 6.          Negative clamping voltage (TLP); typical values
+                                                                                                            aaa-032002
+                                         1.2
+
+                                      PPP
+                                    PPP(25°C)
+
+
+                                         0.8
+
+
+
+
+                                         0.4
+
+
+
+
+                                            0
+                                                0                50                100                150               200
+                                                                                                             Tj (°C)
+
+Fig. 7.      Relative variation of peak pulse power as a function of junction temperature; typical values
+
+
+
+
+PESD2CANFD24V-T                                  All information provided in this document is subject to legal disclaimers.               © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                      11 August 2020                                                                                   5 / 13
+Nexperia                                                                                                                                        PESD2CANFD24V-T
+                                                                                                                                 ESD protection for In-vehicle networks
+
+                                  ESD TESTER                                                                                                                  4 GHz DIGITAL
+                                                                                                   RG 223/U                                                  OSCILLOSCOPE
+                                         Rd                                                        50 Ω coax
+                                                                                                                              40 dB
+                                                                                                                           ATTENUATOR
+                                   Cs                                                                                                                                  50 Ω
+
+                                                                    DUT
+                                                                  (DEVICE
+                         IEC 61000-4-2 ed.2                        UNDER
+                         Cs = 150 pF; Rd = 330 Ω                   TEST)
+
+
+
+
+                   10                                                                                              2
+
+
+                 V                                                                                         V
+                (kV) 8                                                                                    (kV) 0
+
+
+                    6                                                                                            -2
+
+
+                    4                                                                                            -4
+
+
+                    2                                                                                            -6
+
+
+                    0                                                                                            -8
+
+
+                    -2                                                                                          -10
+                      -10     0      10       20    30    40         50       60       70                          -10         0       10       20      30    40      50      60       70
+                                                                   t (ns)                                                                                           t (ns)
+
+                            unclamped +8 kV ESD pulse waveform                                                            unclamped -8 kV ESD pulse waveform
+                                  (IEC 61000-4-2 network)                                                                       (IEC 61000-4-2 network)
+                                                                                                                                                                             aaa-003952
+
+Fig. 8.     ESD clamping test setup and waveforms
+                                                               aaa-030686                                                                                                    aaa-030687
+        120                                                                                                       40
+
+      VCL                                                                                                    VCL
+      (V)                                                                                                    (V)
+
+          80                                                                                                       0
+
+
+
+                                     VCL_ESD at 30 ns = 22.7 V
+          40                                                                                                    -40
+                                                                                                                                                     VCL_ESD at 30 ns = -26 V
+
+
+
+            0                                                                                                   -80
+
+
+
+
+          -40                                                                                                  -120
+             -10     0       10     20        30   40    50        60     70                                       -10          0          10   20      30     40     50       60     70
+                                                                     t (ns)                                                                                                      t (ns)
+
+Fig. 9.     Clamped +8 kV pulse waveform (IEC 61000-4-2                                             Fig. 10. Clamped -8 kV pulse waveform (IEC 61000-4-2
+            network)                                                                                         network)
+
+
+
+
+PESD2CANFD24V-T                                               All information provided in this document is subject to legal disclaimers.                             © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                                   11 August 2020                                                                                                 6 / 13
+Nexperia                                                                                                                   PESD2CANFD24V-T
+                                                                                                           ESD protection for In-vehicle networks
+
+
+10. Application information
+                      The device is designed for the protection of two automotive in-vehicle bus lines, e.g. CAN (FD),
+                      from the damage caused by ESD and surge pulses.
+
+
+                                      SPLIT
+
+                                      CANH
+
+                                CAN BUS                                       RT/2
+                              TRANSCEIVER                                                                            CAN
+                                                                                                                     bus
+                                                                              RT/2
+
+                                      CANL
+                                                 Common
+                                                                                            2          1
+                                                mode choke
+                                                 (optional)
+                                                                       CG
+
+                                                                                                            PESD2CANFDx
+                                                                                                  3
+                                                                                                                     aaa-031991
+
+Fig. 11. Typical application: ESD protection of two automotive CAN bus lines
+
+                      Circuit board layout and protection device placement
+                      Circuit board layout is critical for the suppression of ESD, Electrical Fast Transient (EFT) and surge
+                      transients. The following guidelines are recommended:
+                      1.   Place the device as close to the input terminal or connector as possible.
+                      2.   Minimize the path length between the device and the protected line.
+                      3.   Keep parallel signal paths to a minimum.
+                      4.   Avoid running protected conductors in parallel with unprotected conductors.
+                      5.   Minimize all Printed-Circuit Board (PCB) conductive loops including power and ground loops.
+                      6.   Minimize the length of the transient return path to ground.
+                      7.   Avoid using shared transient return paths to a common ground point.
+                      8.   Use ground planes whenever possible. For multilayer PCBs, use ground vias.
+
+
+
+
+PESD2CANFD24V-T                         All information provided in this document is subject to legal disclaimers.                © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                             11 August 2020                                                                                    7 / 13
+Nexperia                                                                                                           PESD2CANFD24V-T
+                                                                                                         ESD protection for In-vehicle networks
+
+
+11. Test information
+
+                     Quality information
+                     This product has been qualified in accordance with the Automotive Electronics Council (AEC)
+                     standard Q101 - Stress test qualification for discrete semiconductors, and is suitable for use in
+                     automotive applications.
+
+
+
+
+PESD2CANFD24V-T                       All information provided in this document is subject to legal disclaimers.            © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                           11 August 2020                                                                                8 / 13
+Nexperia                                                                                                                                      PESD2CANFD24V-T
+                                                                                                                                     ESD protection for In-vehicle networks
+
+
+12. Package outline
+  Plastic surface-mounted package; 3 leads                                                                                                                                                      SOT23
+
+
+
+
+                                                           D                                      B                                           E                    A            X
+
+
+
+
+                                                                                                                                              HE                                    v     A
+
+
+
+
+                                                                    3
+
+
+
+
+                                                                                                                                                                   Q
+
+
+                                                                                                                             A
+
+                                                                                                                                     A1
+
+                                 1                                                      2                                                                                   c
+
+                                                e1                  bp                            w        B                                                   Lp
+
+                                                           e
+                                                                                                                                                  detail X
+
+
+
+
+                                                                             0                    1                  2 mm
+
+                                                                                             scale
+
+
+
+
+    Dimensions (mm are the original dimensions)
+
+         Unit        A     A1        bp     c        D          E        e       e1         HE        Lp       Q        v        w
+
+             max     1.1   0.1       0.48 0.15       3.0       1.4                          2.5       0.45 0.55
+      mm     nom                                                         1.9     0.95                                 0.2        0.1
+             min     0.9             0.38 0.09       2.8       1.2                          2.1       0.15 0.45
+
+                                                                                                                                                                                            sot023_po
+
+           Outline                                                           References                                                               European
+                                                                                                                                                                                    Issue date
+           version                    IEC                       JEDEC                         JEITA                                                   projection
+                                                                                                                                                                                    14-06-19
+             SOT23                                             TO-236AB                                                                                                             14-09-22
+
+Fig. 12. Package outline SOT23
+
+
+
+
+PESD2CANFD24V-T                                                  All information provided in this document is subject to legal disclaimers.                            © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                                      11 August 2020                                                                                                9 / 13
+Nexperia                                                                                                                 PESD2CANFD24V-T
+                                                                                                               ESD protection for In-vehicle networks
+
+
+13. Soldering
+                                               3.3
+
+                                               2.9
+
+                                               1.9
+
+
+
+
+                                                                                                                                     solder lands
+
+
+                                                                                                                                     solder resist
+                  3     1.7                                                                      2
+
+                                                                                                                                     solder paste
+
+
+                               0.7                                                      0.6                                          occupied area
+                              (3×)                                                     (3×)
+                                                                                                                          Dimensions in mm
+
+                                                0.5
+                                               (3×)
+                                                0.6
+                                               (3×)
+
+                                                 1                                                                                          sot023_fr
+
+Fig. 13. Reflow soldering footprint for SOT23
+                                                        2.2
+                                      1.2
+                                     (2×)
+
+
+
+
+                               1.4
+                              (2×)
+
+
+                                                                                                                                      solder lands
+
+
+                  4.6   2.6                                                                                                           solder resist
+
+
+                                                                                                                                      occupied area
+
+
+                                                                                                                           Dimensions in mm
+                              1.4
+
+
+
+
+                                                                                                     preferred transport direction during soldering
+
+                                                        2.8
+
+                                                        4.5                                                                                 sot023_fw
+
+Fig. 14. Wave soldering footprint for SOT23
+
+
+
+
+PESD2CANFD24V-T                             All information provided in this document is subject to legal disclaimers.                     © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                 11 August 2020                                                                                       10 / 13
+Nexperia                                                                                                             PESD2CANFD24V-T
+                                                                                                           ESD protection for In-vehicle networks
+
+
+14. Revision history
+Table 7. Revision history
+Data sheet ID           Release date                  Data sheet status                              Change notice          Supersedes
+PESD2CANFD24V-T        20200811                       Product data sheet                             -                      PESD2CANFD24V-T
+v.4                                                                                                                         v.3
+Modifications:         •   Chapter "Features and benefits": Description adapted.
+                       •   Chapter "Characteristics": Corrected Fig. 7 to match the temperature range.
+                       •   Chapter "Application information" added.
+PESD2CANFD24V-T        20200630                       Product data sheet                             -                      PESD2CANFD24V-T
+v.3                                                                                                                         v.2
+PESD2CANFD24V-T        20191220                       Product data sheet                             -                      PESD2CANFD24V-T
+v.2                                                                                                                         v.1
+PESD2CANFD24V-T        20190311                       Objective data sheet                           -                      -
+v.1
+
+
+
+
+PESD2CANFD24V-T                         All information provided in this document is subject to legal disclaimers.              © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                             11 August 2020                                                                                11 / 13
+Nexperia                                                                                                                                PESD2CANFD24V-T
+                                                                                                                              ESD protection for In-vehicle networks
+                                                                                                   equipment, nor in applications where failure or malfunction of an Nexperia
+
+15. Legal information                                                                              product can reasonably be expected to result in personal injury, death or
+                                                                                                   severe property or environmental damage. Nexperia and its suppliers accept
+                                                                                                   no liability for inclusion and/or use of Nexperia products in such equipment or
+                                                                                                   applications and therefore such inclusion and/or use is at the customer's own
+Data sheet status                                                                                  risk.
+                                                                                                   Quick reference data — The Quick reference data is an extract of the
+ Document status         Product           Definition                                              product data given in the Limiting values and Characteristics sections of this
+ [1][2]                  status [3]                                                                document, and as such is not complete, exhaustive or legally binding.
+
+ Objective [short]       Development       This document contains data from                        Applications — Applications that are described herein for any of these
+ data sheet                                the objective specification for                         products are for illustrative purposes only. Nexperia makes no representation
+                                           product development.                                    or warranty that such applications will be suitable for the specified use
+                                                                                                   without further testing or modification.
+ Preliminary [short]     Qualification     This document contains data from
+                                                                                                   Customers are responsible for the design and operation of their applications
+ data sheet                                the preliminary specification.
+                                                                                                   and products using Nexperia products, and Nexperia accepts no liability for
+ Product [short]         Production        This document contains the product                      any assistance with applications or customer product design. It is customer’s
+ data sheet                                specification.                                          sole responsibility to determine whether the Nexperia product is suitable
+                                                                                                   and fit for the customer’s applications and products planned, as well as
+                                                                                                   for the planned application and use of customer’s third party customer(s).
+[1]   Please consult the most recently issued document before initiating or                        Customers should provide appropriate design and operating safeguards to
+      completing a design.                                                                         minimize the risks associated with their applications and products.
+[2]   The term 'short data sheet' is explained in section "Definitions".
+[3]   The product status of device(s) described in this document may have                          Nexperia does not accept any liability related to any default, damage, costs
+      changed since this document was published and may differ in case of                          or problem which is based on any weakness or default in the customer’s
+      multiple devices. The latest product status information is available on                      applications or products, or the application or use by customer’s third party
+      the internet at https://www.nexperia.com.                                                    customer(s). Customer is responsible for doing all necessary testing for the
+                                                                                                   customer’s applications and products using Nexperia products in order to
+                                                                                                   avoid a default of the applications and the products or of the application or
+Definitions                                                                                        use by customer’s third party customer(s). Nexperia does not accept any
+                                                                                                   liability in this respect.
+Draft — The document is a draft version only. The content is still under
+internal review and subject to formal approval, which may result in                                Limiting values — Stress above one or more limiting values (as defined in
+modifications or additions. Nexperia does not give any representations or                          the Absolute Maximum Ratings System of IEC 60134) will cause permanent
+warranties as to the accuracy or completeness of information included herein                       damage to the device. Limiting values are stress ratings only and (proper)
+and shall have no liability for the consequences of use of such information.                       operation of the device at these or any other conditions above those
+                                                                                                   given in the Recommended operating conditions section (if present) or the
+Short data sheet — A short data sheet is an extract from a full data sheet
+                                                                                                   Characteristics sections of this document is not warranted. Constant or
+with the same product type number(s) and title. A short data sheet is
+                                                                                                   repeated exposure to limiting values will permanently and irreversibly affect
+intended for quick reference only and should not be relied upon to contain
+                                                                                                   the quality and reliability of the device.
+detailed and full information. For detailed and full information see the relevant
+full data sheet, which is available on request via the local Nexperia sales                        Terms and conditions of commercial sale — Nexperia products are
+office. In case of any inconsistency or conflict with the short data sheet, the                    sold subject to the general terms and conditions of commercial sale, as
+full data sheet shall prevail.                                                                     published at http://www.nexperia.com/profile/terms, unless otherwise agreed
+                                                                                                   in a valid written individual agreement. In case an individual agreement is
+Product specification — The information and data provided in a Product
+                                                                                                   concluded only the terms and conditions of the respective agreement shall
+data sheet shall define the specification of the product as agreed between
+                                                                                                   apply. Nexperia hereby expressly objects to applying the customer’s general
+Nexperia and its customer, unless Nexperia and customer have explicitly
+                                                                                                   terms and conditions with regard to the purchase of Nexperia products by
+agreed otherwise in writing. In no event however, shall an agreement be
+                                                                                                   customer.
+valid in which the Nexperia product is deemed to offer functions and qualities
+beyond those described in the Product data sheet.                                                  No offer to sell or license — Nothing in this document may be interpreted
+                                                                                                   or construed as an offer to sell products that is open for acceptance or the
+                                                                                                   grant, conveyance or implication of any license under any copyrights, patents
+Disclaimers                                                                                        or other industrial or intellectual property rights.
+Limited warranty and liability — Information in this document is believed                          Export control — This document as well as the item(s) described herein
+to be accurate and reliable. However, Nexperia does not give any                                   may be subject to export control regulations. Export might require a prior
+representations or warranties, expressed or implied, as to the accuracy                            authorization from competent authorities.
+or completeness of such information and shall have no liability for the
+                                                                                                   Translations — A non-English (translated) version of a document is for
+consequences of use of such information. Nexperia takes no responsibility
+                                                                                                   reference only. The English version shall prevail in case of any discrepancy
+for the content in this document if provided by an information source outside
+                                                                                                   between the translated and English versions.
+of Nexperia.
+In no event shall Nexperia be liable for any indirect, incidental, punitive,
+special or consequential damages (including - without limitation - lost                            Trademarks
+profits, lost savings, business interruption, costs related to the removal
+                                                                                                   Notice: All referenced brands, product names, service names and
+or replacement of any products or rework charges) whether or not such
+                                                                                                   trademarks are the property of their respective owners.
+damages are based on tort (including negligence), warranty, breach of
+contract or any other legal theory.
+Notwithstanding any damages that customer might incur for any reason
+whatsoever, Nexperia’s aggregate and cumulative liability towards customer
+for the products described herein shall be limited in accordance with the
+Terms and conditions of commercial sale of Nexperia.
+Right to make changes — Nexperia reserves the right to make changes
+to information published in this document, including without limitation
+specifications and product descriptions, at any time and without notice. This
+document supersedes and replaces all information supplied prior to the
+publication hereof.
+Suitability for use in automotive applications — This Nexperia product
+has been qualified for use in automotive applications. Unless otherwise
+agreed in writing, the product is not designed, authorized or warranted to
+be suitable for use in life support, life-critical or safety-critical systems or
+
+
+
+
+PESD2CANFD24V-T                                            All information provided in this document is subject to legal disclaimers.               © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                                11 August 2020                                                                                 12 / 13
+Nexperia                                                                                                                                 PESD2CANFD24V-T
+                                                                                                                               ESD protection for In-vehicle networks
+
+
+Contents
+1. General description...................................................... 1
+2. Features and benefits.................................................. 1
+3. Applications.................................................................. 1
+4. Quick reference data....................................................1
+5. Pinning information......................................................2
+6. Ordering information....................................................2
+7. Marking.......................................................................... 2
+8. Limiting values............................................................. 3
+9. Characteristics.............................................................. 4
+10. Application information............................................. 7
+11. Test information.......................................................... 8
+12. Package outline.......................................................... 9
+13. Soldering................................................................... 10
+14. Revision history........................................................11
+15. Legal information......................................................12
+
+© Nexperia B.V. 2020. All rights reserved
+
+For more information, please visit: http://www.nexperia.com
+For sales office addresses, please send an email to: salesaddresses@nexperia.com
+Date of release: 11 August 2020
+
+
+
+
+PESD2CANFD24V-T                                             All information provided in this document is subject to legal disclaimers.            © Nexperia B.V. 2020. All rights reserved
+
+
+Product data sheet                                                                 11 August 2020                                                                              13 / 13
+

@@ -1,0 +1,1432 @@
+                  TJA1051
+                  High-speed CAN transceiver
+                  Rev. 9 — 28 November 2017                                      Product data sheet
+
+
+
+
+1. General description
+              The TJA1051 is a high-speed CAN transceiver that provides an interface between a
+              Controller Area Network (CAN) protocol controller and the physical two-wire CAN bus.
+              The transceiver is designed for high-speed CAN applications in the automotive industry,
+              providing differential transmit and receive capability to (a microcontroller with) a CAN
+              protocol controller.
+
+              The TJA1051 belongs to the third generation of high-speed CAN transceivers from NXP
+              Semiconductors, offering significant improvements over first- and second-generation
+              devices such as the TJA1050. It offers improved ElectroMagnetic Compatibility (EMC)
+              and ElectroStatic Discharge (ESD) performance, and also features:
+
+               • Ideal passive behavior to the CAN bus when the supply voltage is off
+               • TJA1051T/3 and TJA1051TK/3 can be interfaced directly to microcontrollers with
+                  supply voltages from 3 V to 5 V
+
+              The TJA1051 implements the CAN physical layer as defined in ISO 11898-2:2016 and
+              SAE J2284-1 to SAE J2284-5. This implementation enables reliable communication in the
+              CAN FD fast phase at data rates up to 5 Mbit/s.
+
+              These features make the TJA1051 an excellent choice for all types of HS-CAN networks,
+              in nodes that do not require a standby mode with wake-up capability via the bus.
+
+
+2. Features and benefits
+
+          2.1 General
+                 ISO 11898-2:2016 and SAE J2284-1 to SAE J2284-5 compliant
+                 Timing guaranteed for data rates up to 5 Mbit/s in the CAN FD fast phase
+                 Suitable for 12 V and 24 V systems
+                 Low ElectroMagnetic Emission (EME) and high ElectroMagnetic Immunity (EMI)
+                 VIO input on TJA1051T/3 and TJA1051TK/3 allows for direct interfacing with 3 V to 5 V
+                  microcontrollers (available in SO8 and very small HVSON8 packages respectively)
+                 EN input on TJA1051T/E allows the microcontroller to switch the transceiver to a very
+                  low-current Off mode
+                 Available in SO8 package or leadless HVSON8 package (3.0 mm  3.0 mm) with
+                  improved Automated Optical Inspection (AOI) capability
+                 Dark green product (halogen free and Restriction of Hazardous Substances (RoHS)
+                  compliant)
+                 AEC-Q100 qualified
+NXP Semiconductors                                                                                                                     TJA1051
+                                                                                                                           High-speed CAN transceiver
+
+
+                     2.2 Low-power management
+                          Functional behavior predictable under all supply conditions
+                          Transceiver disengages from the bus when not powered up (zero load)
+
+                     2.3 Protection
+                                 High ElectroStatic Discharge (ESD) handling capability on the bus pins
+                                 Bus pins protected against transients in automotive environments
+                                 Transmit Data (TXD) dominant time-out function
+                                 Undervoltage detection on pins VCC and VIO
+                                 Thermally protected
+
+
+3. Quick reference data
+                         Table 1.        Quick reference data
+                            Symbol       Parameter                                         Conditions                        Min   Typ           Max           Unit
+                            VCC          supply voltage                                                                     4.5    -             5.5           V
+                            VIO          supply voltage on pin VIO                                                           2.8   -             5.5           V
+                            Vuvd(VCC)    undervoltage detection                                                              3.5   -             4.5           V
+                                         voltage on pin VCC
+                            Vuvd(VIO)    undervoltage detection                                                              1.3   2.0           2.7           V
+                                         voltage on pin VIO
+                            ICC          supply current                                    Silent mode                      0.1    1             2.5           mA
+                                                                                           Normal mode; bus                 2.5    5             10            mA
+                                                                                           recessive
+                                                                                           Normal mode; bus                 20     50            70            mA
+                                                                                           dominant
+                            IIO          supply current on pin VIO                         Normal/Silent mode
+                                                                                               recessive; VTXD = VIO         -     80            250           A
+                                                                                               dominant; VTXD = 0 V         -      350           500           A
+                            VESD         electrostatic discharge                           IEC 61000-4-2 at pins            8     -             +8            kV
+                                         voltage                                           CANH and CANL
+                            VCANH        voltage on pin CANH                                                                58    -             +58           V
+                            VCANL        voltage on pin CANL                                                                58    -             +58           V
+                            Tvj          virtual junction temperature                                                       40    -             +150          C
+
+
+4. Ordering information
+Table 2.    Ordering information
+Type number           Package
+                      Name                Description                                                                                           Version
+TJA1051T              SO8                 plastic small outline package; 8 leads; body width 3.9 mm                                             SOT96-1
+
+
+
+
+TJA1051                                       All information provided in this document is subject to legal disclaimers.               © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                        Rev. 9 — 28 November 2017                                                                             2 of 25
+NXP Semiconductors                                                                                                                    TJA1051
+                                                                                                                            High-speed CAN transceiver
+
+
+Table 2.     Ordering information …continued
+Type number           Package
+                      Name                 Description                                                                                         Version
+TJA1051T/3[1]         SO8                  plastic small outline package; 8 leads; body width 3.9 mm                                           SOT96-1
+TJA1051T/E[1]         SO8                  plastic small outline package; 8 leads; body width 3.9 mm                                           SOT96-1
+TJA1051TK/3[1]        HVSON8               plastic thermal enhanced very thin small outline package; no leads;                                 SOT782-1
+                                           8 terminals; body 3  3  0.85 mm
+
+[1]   TJA1051T/3 and TJA1051TK/3 with VIO pin; TJA1051T/E with EN pin.
+
+
+5. Block diagram
+
+
+                                                                                       VIO(1)                     VCC
+
+
+                                                                                            5                         3
+
+                                                                                                                            VCC   TJA1051
+
+
+                                                                  TEMPERATURE
+                                                                   PROTECTION
+                                              VI/O(1)                                                                                            7
+                                                                                                                                                        CANH
+
+                                                                                                           SLOPE
+                                                                                                          CONTROL
+                                                                                                            AND
+                                          1                           TIME-OUT                                                                   6
+                                 TXD                                                                       DRIVER                                       CANL
+
+
+
+
+                                          8
+                                     S
+
+
+
+                                                                        MODE
+                                                                       CONTROL
+
+                                          5
+                                EN(2)
+
+
+
+
+                                          4
+                                 RXD                                    DRIVER
+
+
+
+
+                                                                                                         2
+                                                                                                                                       015aaa036
+                                                                                                     GND
+
+                                 (1) In a transceiver without a VIO pin, the VIO input is internally connected to VCC.
+                                 (2) Only present in the TJA1051T/E.
+                            Fig 1.       Block diagram
+
+
+
+
+TJA1051                                        All information provided in this document is subject to legal disclaimers.             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                         Rev. 9 — 28 November 2017                                                                           3 of 25
+NXP Semiconductors                                                                                                                                      TJA1051
+                                                                                                                                      High-speed CAN transceiver
+
+
+
+6. Pinning information
+
+                     6.1 Pinning
+
+                                                      7-$7                                                                              7-$7(
+
+                                     7;'                                        6                                           7;'                                6
+
+                                     *1'                                        &$1+                                        *1'                                &$1+
+
+                                     9&&                                        &$1/                                         9&&                               &$1/
+
+                                     5;'                                        QF                                        5;'                                (1
+
+                                                             DDD                                                                            DDD
+
+
+                                  a. TJA1051T: SO8                                                                        b. TJA1051T/E: SO8
+
+                                                                                                                               WHUPLQDO     7-$7.
+                                                     7-$7                                                               LQGH[DUHD
+
+                                     7;'                                        6                                                  7;'                         6
+                                     *1'                                        &$1+                                               *1'                         &$1+
+                                                                                                                                     9&&                         &$1/
+                                     9&&                                        &$1/
+                                                                                                                                     5;'                          9,2
+                                     5;'                                        9,2
+                                                                                                                                                     DDD
+                                                             DDD                                                                      7UDQVSDUHQWWRSYLHZ
+
+                                  c. TJA1051T/3: SO8                                                                      d. TJA1051TK/3: HVSON8
+                           Fig 2.     Pin configuration diagrams
+
+
+                     6.2 Pin description
+                         Table 3.      Pin description
+                         Symbol        Pin        Description
+                         TXD           1          transmit data input
+                         GND[1]        2          ground
+                         VCC           3          supply voltage
+                         RXD           4          receive data output; reads out data from the bus lines
+                         n.c.          5          not connected; in TJA1051T version
+                         EN            5          enable control input; TJA1051T/E only
+                         VIO           5          supply voltage for I/O level adapter; TJA1051T/3 and TJA1051TK/3 only
+                         CANL          6          LOW-level CAN bus line
+                         CANH          7          HIGH-level CAN bus line
+                         S             8          Silent mode control input
+
+                         [1]    HVSON8 package die supply ground is connected to both the GND pin and the exposed center pad. The
+                                GND pin must be soldered to board ground. For enhanced thermal and electrical performance, it is
+                                recommended that the exposed center pad also be soldered to board ground.
+
+
+
+
+TJA1051                                          All information provided in this document is subject to legal disclaimers.                             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                           Rev. 9 — 28 November 2017                                                                                           4 of 25
+NXP Semiconductors                                                                                                                       TJA1051
+                                                                                                                               High-speed CAN transceiver
+
+
+
+7. Functional description
+                         The TJA1051 is a high-speed CAN stand-alone transceiver with Silent mode. It combines
+                         the functionality of the TJA1050 transceiver with improved EMC and ESD handling
+                         capability. Improved slope control and high DC handling capability on the bus pins
+                         provides additional application flexibility.
+
+                         The TJA1051 is available in three versions, distinguished only by the function of pin 5:
+
+                           • The TJA1051T is backwards compatible with the TJA1050
+                           • The TJA1051T/3 and TJA1051TK/3 allow for direct interfacing to microcontrollers with
+                               supply voltages down to 3 V
+                           • The TJA1051T/E allows the transceiver to be switched to a very low-current Off
+                               mode.
+
+                     7.1 Operating modes
+                         The TJA1051 supports two operating modes, Normal and Silent, which are selected via
+                         pin S. An additional Off mode is supported in the TJA1051T/E via pin EN. See Table 4 for
+                         a description of the operating modes under normal supply conditions.
+
+                         Table 4.       Operating modes
+                         Mode               Inputs                                                                         Outputs
+                                            Pin EN[1]                  Pin S                        Pin TXD                CAN driver    Pin RXD
+                         Normal             HIGH                       LOW                          LOW                    dominant      active[2]
+                                            HIGH                       LOW                          HIGH                   recessive     active[2]
+                         Silent             HIGH                       HIGH                         X[3]                   recessive     active[2]
+                         Off[1]             LOW                        X[3]                         X[3]                   floating      floating
+
+                         [1]   Only available on the TJA1051T/E.
+                         [2]   LOW if the CAN bus is dominant, HIGH if the CAN bus is recessive.
+                         [3]   ‘X’ = don’t care.
+
+                7.1.1 Normal mode
+                         A LOW level on pin S selects Normal mode. In this mode, the transceiver is able to
+                         transmit and receive data via the bus lines CANH and CANL (see Figure 1 for the block
+                         diagram). The differential receiver converts the analog data on the bus lines into digital
+                         data which is output to pin RXD. The slopes of the output signals on the bus lines are
+                         controlled internally and are optimized in a way that guarantees the lowest possible
+                         ElectroMagnetic Emission (EME).
+
+                7.1.2 Silent mode
+                         A HIGH level on pin S selects Silent mode. In Silent mode the transmitter is disabled,
+                         releasing the bus pins to recessive state. All other IC functions, including the receiver,
+                         continue to operate as in Normal mode. Silent mode can be used to prevent a faulty CAN
+                         controller from disrupting all network communications.
+
+
+
+
+TJA1051                                       All information provided in this document is subject to legal disclaimers.                 © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                        Rev. 9 — 28 November 2017                                                                               5 of 25
+NXP Semiconductors                                                                                                              TJA1051
+                                                                                                                      High-speed CAN transceiver
+
+
+                7.1.3 Off mode
+                         A LOW level on pin EN of TJA1051T/E selects Off mode. In Off mode the entire
+                         transceiver is disabled, allowing the microcontroller to save power when CAN
+                         communication is not required. The bus pins are floating in Off mode, making the
+                         transceiver invisible to the rest of the network.
+
+                     7.2 Fail-safe features
+
+                7.2.1 TXD dominant time-out function
+                         A ‘TXD dominant time-out’ timer is started when pin TXD is set LOW. If the LOW state on
+                         pin TXD persists for longer than tto(dom)TXD, the transmitter is disabled, releasing the bus
+                         lines to recessive state. This function prevents a hardware and/or software application
+                         failure from driving the bus lines to a permanent dominant state (blocking all network
+                         communications). The TXD dominant time-out timer is reset when pin TXD is set HIGH.
+                         The TXD dominant time-out time also defines the minimum possible bit rate of 20 kbit/s.
+
+                7.2.2 Internal biasing of TXD, S and EN input pins
+                         Pin TXD has an internal pull-up to VIO and pins S and EN (TJA1051T/E) have internal
+                         pull-downs to GND. This ensures a safe, defined state in case one or more of these pins
+                         is left floating.
+
+                7.2.3 Undervoltage detection on pins VCC and VIO
+                         Should VCC or VIO drop below their respective undervoltage detection levels (Vuvd(VCC)
+                         and Vuvd (VIO); see Table 7), the transceiver will switch off and disengage from the bus
+                         (zero load) until VCC and VIO have recovered.
+
+                7.2.4 Overtemperature protection
+                         The output drivers are protected against overtemperature conditions. If the virtual junction
+                         temperature exceeds the shutdown junction temperature, Tj(sd), the output drivers will be
+                         disabled until the virtual junction temperature falls below Tj(sd) and TXD becomes
+                         recessive again. Including the TXD condition ensures that output driver oscillations due to
+                         temperature drift are avoided.
+
+                     7.3 VIO supply pin
+                         There are three versions of the TJA1051 available, only differing in the function of a single
+                         pin. Pin 5 is either an enable control input (EN), a VIO supply pin or is not connected.
+
+                         Pin VIO on the TJA1051T/3 and TJA1051TK/3 should be connected to the microcontroller
+                         supply voltage (see Figure 6). This will adjust the signal levels of pins TXD, RXD and S to
+                         the I/O levels of the microcontroller. For versions of the TJA1051 without a VIO pin, the VIO
+                         input is internally connected to VCC. This sets the signal levels of pins TXD, RXD and S to
+                         levels compatible with 5 V microcontrollers.
+
+
+
+
+TJA1051                                  All information provided in this document is subject to legal disclaimers.             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                   Rev. 9 — 28 November 2017                                                                           6 of 25
+NXP Semiconductors                                                                                                                               TJA1051
+                                                                                                                                 High-speed CAN transceiver
+
+
+
+8. Limiting values
+Table 5.   Limiting values
+In accordance with the Absolute Maximum Rating System (IEC 60134). All voltages are referenced to GND.
+Symbol              Parameter                                 Conditions                                                                     Min           Max            Unit
+Vx                  voltage on pin x[1]                       on pins CANH, CANL                                                             58           +58            V
+                                                              on any other pin                                                               0.3          +7             V
+V(CANH-CANL)        voltage between pin CANH                                                                                                 27           +27            V
+                    and pin CANL
+Vtrt                transient voltage                         on pins CANH, CANL                                                       [2]
+
+                                                                  pulse 1                                                                    100          -              V
+                                                                  pulse 2a                                                                   -             75             V
+                                                                  pulse 3a                                                                   150          -              V
+                                                                  pulse 3b                                                                   -             100            V
+VESD                electrostatic discharge voltage IEC 61000-4-2 (150 pF, 330 )                                                      [3]
+
+                                                                  at pins CANH and CANL                                                      8            +8             kV
+                                                              Human Body Model (HBM); 100 pF, 1.5 k                                   [4]
+
+                                                                  at pins CANH and CANL                                                      8            +8             kV
+                                                                  at any other pin                                                           4            +4             kV
+                                                              Machine Model (MM); 200 pF, 0.75 H, 10                                 [5]
+
+                                                                  at any pin                                                                 300          +300           V
+                                                              Charged Device Model (CDM); field Induced                                [6]
+
+                                                              charge; 4 pF
+                                                                  at corner pins                                                             750          +750           V
+                                                                  at any pin                                                                 500          +500           V
+Tvj                 virtual junction temperature                                                                                       [7]   40           +150           C
+Tstg                storage temperature                                                                                                      55           +150           C
+
+[1]    The device can sustain voltages up to the specified values over the product lifetime, provided applied voltages (including transients)
+       never exceed these values.
+[2]    According to IEC TS 62228 (2007), Section 4.2.4; parameters for standard pulses defined in ISO7637 part 2: 2004-06.
+[3]    According to IEC TS 62228 (2007), Section 4.3; DIN EN 61000-4-2.
+[4]    According to AEC-Q100-002.
+[5]    According to AEC-Q100-003.
+[6]    AEC-Q100-011 Rev-C1. The classification level is C4B.
+[7]    In accordance with IEC 60747-1. An alternative definition of virtual junction temperature is: Tvj = Tamb + P  Rth(vj-a), where Rth(vj-a) is a
+       fixed value to be used for the calculation of Tvj. The rating for Tvj limits the allowable combinations of power dissipation (P) and ambient
+       temperature (Tamb).
+
+
+9. Thermal characteristics
+Table 6.    Thermal characteristics
+According to IEC 60747-1.
+Symbol            Parameter                                                                            Conditions                                Value                 Unit
+Rth(vj-a)         thermal resistance from virtual junction to ambient                                 SO8 package; in free air                   155                   K/W
+                                                                                                       HVSON8 package; in free air               55                    K/W
+
+TJA1051                                             All information provided in this document is subject to legal disclaimers.                   © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                              Rev. 9 — 28 November 2017                                                                                 7 of 25
+NXP Semiconductors                                                                                                                               TJA1051
+                                                                                                                                     High-speed CAN transceiver
+
+
+
+10. Static characteristics
+Table 7.    Static characteristics
+Tvj = 40 C to +150 C; VCC = 4.5 V to 5.5 V; VIO = 2.8 V to 5.5 V[1]; RL = 60  unless specified otherwise; All voltages are
+defined with respect to ground; Positive currents flow into the IC[2].
+Symbol       Parameter                       Conditions                                                                       Min         Typ        Max                   Unit
+Supply; pin VCC
+VCC          supply voltage                                                                                                   4.5         -          5.5                   V
+ICC          supply current                  Off mode (TJA1051T/E)                                                            1           5          8                     A
+                                             Silent mode                                                                      0.1         1          2.5                   mA
+                                             Normal mode
+                                                  recessive; VTXD =VIO[3]                                                     -           5          10                    mA
+                                                  dominant; VTXD = 0 V                                                        -           50         70                    mA
+                                                  dominant; VTXD = 0 V;                                                       2.5         80         110                   mA
+                                                  short circuit on bus lines;
+                                                  3 V VCANH = VCANL)  +18 V
+Vuvd(VCC)    undervoltage detection                                                                                           3.5         -          4.5                   V
+             voltage on pin VCC
+I/O level adapter supply; pin VIO[1]
+VIO          supply voltage on pin VIO                                                                                        2.8         -          5.5                   V
+IIO          supply current on pin VIO       Normal/Silent mode
+                                                  recessive; VTXD = VIO[3]                                                    -           80         250                   A
+                                                  dominant; VTXD = 0 V                                                        -           350        500                   A
+Vuvd(VIO)    undervoltage detection                                                                                           1.3         2.0        2.7                   V
+             voltage on pin VIO
+Mode control inputs; pins S and EN[4]
+VIH          HIGH-level input voltage                                                                                   [5]   0.7VIO[3]   -          VIO + 0.3[3] V
+VIL          LOW-level input voltage                                                                                          0.3        -          0.3VIO[3]             V
+IIH          HIGH-level input current        VS = VIO; VEN = VIO                  [3]                                         1           4          10                    A
+IIL          LOW-level input current         VS = 0 V; VEN = 0 V                                                              1          0          +1                    A
+CAN transmit data input; pin TXD
+VIH          HIGH-level input voltage                                                                                   [5]   0.7VIO[3]   -          VIO + 0.3[3] V
+VIL          LOW-level input voltage                                                                                          0.3        -          +0.3VIO[3]            V
+IIH          HIGH-level input current        VTXD = VIO           [3]                                                         5          0          +5                    A
+IIL          LOW-level input current         Normal mode; VTXD = 0 V                                                          260        150       30                   A
+Ci           input capacitance                                                                                          [6]   -           5          10                    pF
+CAN receive data output; pin RXD
+IOH          HIGH-level output current       VRXD = VIO  0.4 V[3]                                                            8          3         1                    mA
+IOL          LOW-level output current        VRXD = 0.4 V; bus dominant                                                       2           5          12                    mA
+Bus lines; pins CANH and CANL
+VO(dom)      dominant output voltage         VTXD = 0 V; t < tto(dom)TXD
+                                                  pin CANH; RL = 50  to 65                                                  2.75        3.5        4.5                   V
+                                                  pin CANL; RL = 50  to 65                                                  0.5         1.5        2.25                  V
+Vdom(TX)sym transmitter dominant voltage Vdom(TX)sym = VCC  VCANH  VCANL                                                    400        -          +400                  mV
+            symmetry
+TJA1051                                    All information provided in this document is subject to legal disclaimers.                            © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                     Rev. 9 — 28 November 2017                                                                                          8 of 25
+NXP Semiconductors                                                                                                                                TJA1051
+                                                                                                                                       High-speed CAN transceiver
+
+
+Table 7.    Static characteristics …continued
+Tvj = 40 C to +150 C; VCC = 4.5 V to 5.5 V; VIO = 2.8 V to 5.5 V[1]; RL = 60  unless specified otherwise; All voltages are
+defined with respect to ground; Positive currents flow into the IC[2].
+Symbol        Parameter                         Conditions                                                                       Min        Typ       Max                   Unit
+VTXsym        transmitter voltage symmetry VTXsym = VCANH + VCANL;                                                         [6]   0.9VCC     -         1.1VCC                V
+                                           fTXD = 250 kHz, 1 MHz and 2.5 MHz;                                              [7]
+
+                                           VCC = 4.75 V to 5.25 V;
+                                           CSPLIT = 4.7 nF
+VO(dif)       differential output voltage       dominant: Normal mode; VTXD = 0 V;
+                                                t < tto(dom)TXD; VCC = 4.75 V to 5.25 V
+                                                     RL = 45  to 65                                                            1.5        -         3                     V
+                                                     RL = 45  to 70                                                            1.5        -         3.3                   V
+                                                     RL = 2240                                                                  1.5        -         5                     V
+                                                recessive; no load
+                                                     Normal mode: VTXD = VIO[3]                                                  50        -         +50                   mV
+VO(rec)       recessive output voltage          Normal/Silent mode; VTXD = VIO                              [3];                 2          0.5VCC 3                        V
+                                                no load
+Vth(RX)dif    differential receiver threshold Normal/Silent mode;                                                                0.5        0.7       0.9                   V
+              voltage                         30 V  VCANL  +30 V;
+                                              30 V  VCANH  +30 V
+Vrec(RX)      receiver recessive voltage        Normal/Silent mode;                                                              4         -         0.5                   V
+                                                30 V  VCANL  +30 V;
+                                                30 V  VCANH  +30 V
+Vdom(RX)      receiver dominant voltage         Normal/Silent mode;                                                              0.9        -         9.0                   V
+                                                30 V  VCANL  +30 V;
+                                                30 V  VCANH  +30 V
+Vhys(RX)dif   differential receiver             Normal/Silent mode;                                                              50         120       200                   mV
+              hysteresis voltage                30 V  VCANL  +30 V;
+                                                30 V  VCANH  +30 V
+IO(sc)dom     dominant short-circuit output VTXD = 0 V; t < tto(dom)TXD; VCC = 5 V
+              current                         pin CANH; VCANH = 15 V to                                                         100       70       40                   mA
+                                              +40 V
+                                                     pin CANL; VCANL = 15 V to +40 V                                            40         70        100                   mA
+IO(sc)rec     recessive short-circuit output Normal/Silent mode; VTXD = VIO                                 [3];                 5         -         +5                    mA
+              current                        VCANH = VCANL = 27 V to +32 V
+IL            leakage current                   VCC = VIO = 0 V or VCC = VIO =                                                   5         0         +5                    A
+                                                shorted to ground via 47 k;
+                                                VCANH = VCANL = 5 V
+Ri            input resistance                  2 V  VCANL  +7 V;                                                       [6]   9          15        28                    k
+                                                2 V  VCANH  +7 V
+Ri           input resistance deviation        0 V  VCANL  +5 V;                                                        [6]   1         -         +1                    %
+                                                0 V  VCANH  +5 V
+Ri(dif)       differential input resistance     2 V  VCANL  +7 V;                                                       [6]   19         30        52                    k
+                                                2 V  VCANH  +7 V
+Ci(cm)        common-mode input                                                                                            [6]   -          -         20                    pF
+              capacitance
+
+
+
+
+TJA1051                                       All information provided in this document is subject to legal disclaimers.                          © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                        Rev. 9 — 28 November 2017                                                                                        9 of 25
+NXP Semiconductors                                                                                                                                             TJA1051
+                                                                                                                                               High-speed CAN transceiver
+
+
+Table 7.    Static characteristics …continued
+Tvj = 40 C to +150 C; VCC = 4.5 V to 5.5 V; VIO = 2.8 V to 5.5 V[1]; RL = 60  unless specified otherwise; All voltages are
+defined with respect to ground; Positive currents flow into the IC[2].
+Symbol           Parameter                          Conditions                                                                       Min             Typ           Max                   Unit
+Ci(dif)          differential input capacitance                                                                                [6]   -               -             10                    pF
+Temperature protection
+Tj(sd)           shutdown junction                                                                                             [6]   -               190           -                     C
+                 temperature
+
+[1]   Only TJA1051T/3 and TJA1051TK/3 have a VIO pin. In transceivers without a VIO pin, the VIO input is internally connected to VCC.
+[2]   All parameters are guaranteed over the virtual junction temperature range by design. Factory testing uses correlated test conditions to
+      cover the specified temperature and power supply voltage range.
+[3]   VIO = VCC for the non-VIO product variants TJA1051T(/E)
+[4]   Only TJA1051T/E has an EN pin.
+[5]   Maximum value assumes VCC < VIO; if VCC > VIO, the maximum value will be VCC + 0.3 V.
+[6]   Not tested in production; guaranteed by design.
+[7]   The test circuit used to measure the bus output voltage symmetry (which includes CSPLIT) is shown in Figure 8.
+
+
+11. Dynamic characteristics
+Table 8.    Dynamic characteristics
+Tvj = 40 C to +150 C; VCC = 4.5 V to 5.5 V; VIO = 2.8 V to 5.5 V[1]; RL = 60  unless specified otherwise. All voltages are
+defined with respect to ground. Positive currents flow into the IC.[2]
+Symbol             Parameter                                                     Conditions                                                    Min       Typ       Max              Unit
+Transceiver timing; pins CANH, CANL, TXD and RXD; see Figure 7 and Figure 3
+td(TXD-busdom)     delay time from TXD to bus dominant                           Normal mode                                                   -         65        -                ns
+td(TXD-busrec)     delay time from TXD to bus recessive                          Normal mode                                                   -         90        -                ns
+td(busdom-RXD) delay time from bus dominant to RXD                               Normal/Silent mode                                            -         60        -                ns
+td(busrec-RXD)     delay time from bus recessive to RXD                          Normal/Silent mode                                            -         65        -                ns
+td(TXDL-RXDL)      delay time from TXD LOW to RXD LOW                            Normal mode: versions                                         40        -         250              ns
+                                                                                 with VIO pin
+                                                                                 Normal mode: other                                            40        -         220              ns
+                                                                                 versions
+td(TXDH-RXDH)      delay time from TXD HIGH to RXD HIGH                          Normal mode: versions                                         40        -         250              ns
+                                                                                 with VIO pin
+                                                                                 Normal mode: other                                            40        -         220              ns
+                                                                                 versions
+tbit(bus)          transmitted recessive bit width                               tbit(TXD) = 500 ns                                      [3]   435       -         530              ns
+                                                                                 tbit(TXD) = 200 ns                                      [3]   155       -         210              ns
+tbit(RXD)          bit time on pin RXD                                           tbit(TXD) = 500 ns                                      [3]   400       -         550              ns
+                                                                                 tbit(TXD) = 200 ns                                      [3]   120       -         220              ns
+trec              receiver timing symmetry                                      tbit(TXD) = 500 ns                                            65       -         +40              ns
+                                                                                 tbit(TXD) = 200 ns                                            45       -         +15              ns
+tto(dom)TXD        TXD dominant time-out time                                    VTXD = 0 V; Normal mode                                 [4]   0.3       1         5                ms
+
+[1]   Only TJA1051T/3 and TJA1051TK/3 have a VIO pin. In transceivers without a VIO pin, the VIO input is internally connected to VCC.
+[2]   All parameters are guaranteed over the virtual junction temperature range by design. Factory testing uses correlated test conditions to
+      cover the specified temperature and power supply voltage range.
+
+TJA1051                                           All information provided in this document is subject to legal disclaimers.                                   © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                            Rev. 9 — 28 November 2017                                                                                               10 of 25
+NXP Semiconductors                                                                                                                                TJA1051
+                                                                                                                                 High-speed CAN transceiver
+
+
+[3]   See Figure 4.
+[4]   Minimum value of 0.8ms required according to SAE J2284; 0.3ms is allowed according to ISO11898-2:2016 for legacy devices.
+
+
+
+
+                                                                                                                                                                  +,*+
+                                                                                                                               
+                                7;'
+                                                           
+                                                                                                                                                                  /2:
+
+
+
+                                &$1+
+
+
+
+
+                                &$1/
+
+
+
+                                                                                                                                                                   GRPLQDQW
+
+                                                                                                                                          9
+
+                                92 GLI
+
+                                                                                                                                        9
+
+                                                                                                                                                                   UHFHVVLYH
+
+                                                                                                                                                                   +,*+
+                                                                                                                                                  
+                                5;'
+                                                                                        
+                                                                                                                                                                   /2:
+
+                                  WG 7;'EXVGRP                                                          WG 7;'EXVUHF
+
+                                                                                         WG EXVGRP5;'                                             WG EXVUHF5;'
+
+                                                           WG 7;'/5;'/                                                        WG 7;'+5;'+
+                                                                                                                                                                 DDD
+
+
+                             Fig 3.      CAN transceiver timing diagram
+
+
+
+
+TJA1051                                           All information provided in this document is subject to legal disclaimers.                      © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                            Rev. 9 — 28 November 2017                                                                                  11 of 25
+NXP Semiconductors                                                                                                                            TJA1051
+                                                                                                                       High-speed CAN transceiver
+
+
+
+
+                                                                                                                    
+                       7;'
+                                                                                                                                       
+
+
+                                                                               [WELW 7;'
+                                                                                                                              WELW 7;'
+
+
+
+
+                       92 GLI                                                                                                                     9
+
+                                                                                                                           9
+
+                                                                                                                                   WELW EXV
+
+
+
+                                                                                                                                    
+                       5;'
+                                                                                                                                                                 
+
+                                                                                                                                                 WELW 5;'
+                                                                                                                                                               DDD
+
+
+                      Fig 4.    CAN FD timing definitions according to ISO 11898-2:2016
+
+
+12. Application information
+
+                12.1 Application diagrams
+
+
+                                 %$7                   9
+                                                                           
+
+
+                                                                                        9&&
+                                                             &$1+                                          (1                            9''
+                                &$1+                                                                                        3[[
+                                                                                                           6
+                                                                                                                            3\\      0,&52
+                                                                               7-$7(
+                                                                                                           7;'                     &21752//(5
+                                                                                                                            7;
+                                                              &$1/                                         5;'
+                                &$1/                                                                                        5;
+                                                                                                                                         *1'
+                                                                                         *1'
+                                                                                                                                                 DDD
+
+
+                           (1) Optional, depends on regulator.
+                      Fig 5.    Typical application of the TJA1051T/E
+
+
+
+
+TJA1051                                All information provided in this document is subject to legal disclaimers.                             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                 Rev. 9 — 28 November 2017                                                                                         12 of 25
+NXP Semiconductors                                                                                                                   TJA1051
+                                                                                                                     High-speed CAN transceiver
+
+
+
+
+                                %$7                    9
+                                                                            
+
+
+
+
+                                                                   RQRIIFRQWURO
+
+                                                       9
+                                                                        
+
+
+                                                                                   9&&             9,2
+                                                                                                                                   9''
+                                                              &$1+
+                               &$1+                                                                                   3[[
+                                                                                                             6
+                                                                                7-$7                            3\\          0,&52
+                                                                             7-$7.                     7;'                 &21752//(5
+                                                                                                                      7;
+                                                               &$1/                                          5;'
+                               &$1/                                                                                   5;
+                                                                                                                                   *1'
+                                                                                           *1'
+                                                                                                                                         DDD
+
+
+                          (1) Optional, depends on regulator.
+                      Fig 6.   Typical application of the TJA1051T/3 or TJA1051TK/3.
+
+
+                12.2 Application hints
+                     Further information on the application of the TJA1051 can be found in NXP application
+                     hints AH1014 Application Hints - Standalone high speed CAN transceiver
+                     TJA1042/TJA1043/TJA1048/TJA1051.
+
+
+13. Test information
+
+                                 +5 V
+                                                     47 μF              100 nF
+
+
+
+                                                                                 VIO/EN(1)            VCC
+
+
+                                                                             TXD                          CANH
+
+                                                                                      TJA1051                               RL           100 pF
+
+
+
+                                                                             RXD                          CANL
+
+
+                                                                                   GND                  S
+                                                               15 pF
+                                                                                                                                     015aaa040
+
+
+                          (1) For versions with a VIO pin (TJA1051T/3 and TJA1051TK/3) or an EN pin (TJA1051T/E), these
+                              inputs are connected to pin VCC.
+                      Fig 7.   Timing test circuit for CAN transceiver
+
+
+
+
+TJA1051                                 All information provided in this document is subject to legal disclaimers.                   © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                  Rev. 9 — 28 November 2017                                                                               13 of 25
+NXP Semiconductors                                                                                                                          TJA1051
+                                                                                                                            High-speed CAN transceiver
+
+
+
+
+                                                                                         9&&                      9,2
+                                                                                                            
+                                                                 7;'                                                        &$1+
+                                                                                                                       
+
+                                    I N+]                                                                                              ȍ
+                                        0+]RU
+                                         0+]                                           7-$
+                                                                                                                              &63/,7
+                                                                                                                               Q)
+                                                                                                                                              ȍ
+                                                                 5;'                                                        &$1/
+                                                                                                                       
+                                                                                                  
+                                                                                                      *1'
+                                                                                                                                        DDD
+
+
+                      Fig 8.   Test circuit for measuring transceiver driver symmetry
+
+
+                13.1 Quality information
+                     This product has been qualified in accordance with the Automotive Electronics Council
+                     (AEC) standard Q100 Rev-G - Failure mechanism based stress test qualification for
+                     integrated circuits, and is suitable for use in automotive applications.
+
+
+
+
+TJA1051                              All information provided in this document is subject to legal disclaimers.                             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                               Rev. 9 — 28 November 2017                                                                                         14 of 25
+NXP Semiconductors                                                                                                                                                              TJA1051
+                                                                                                                                                           High-speed CAN transceiver
+
+
+
+14. Package outline
+
+  62SODVWLFVPDOORXWOLQHSDFNDJHOHDGVERG\ZLGWKPP                                                                                                                                 627
+
+
+
+
+                                                              '                                                                     (                      $
+                                                                                                                                                                          ;
+
+
+
+                                                                                                     F
+
+                                                 \                                                                                 +(                                  Y 0 $
+
+
+                                           =
+
+                                                                                 
+
+
+
+
+                                                                                                                                                     4
+                                                                                                             $
+                                                                                                                                                          $         $
+                                                                                                                    $
+                                               SLQLQGH[
+                                                                                                                                                                    ș
+                                                                                                                                                /S
+
+                                                                                                                                            /
+
+                                                      H                                 Z 0                                         GHWDLO;
+                                                                            ES
+
+
+
+
+                                                                                                                      PP
+                                                                                                   VFDOH
+
+
+      ',0(16,216 LQFKGLPHQVLRQVDUHGHULYHGIURPWKHRULJLQDOPPGLPHQVLRQV 
+                   $
+          81,7             $   $          $      ES      F       '        (         H       +(         /        /S          4      Y          Z     \       =        ș
+                  PD[
+                                                                                                                                                 
+           PP                                                                                                                                   
+                                                                                                                                                        R
+                                                                                                                                         R
+          LQFKHV                                                                                                                          
+                                                                                                                                   
+
+      1RWHV
+      3ODVWLFRUPHWDOSURWUXVLRQVRIPP LQFK PD[LPXPSHUVLGHDUHQRWLQFOXGHG
+      3ODVWLFRUPHWDOSURWUXVLRQVRIPP LQFK PD[LPXPSHUVLGHDUHQRWLQFOXGHG
+
+
+              287/,1(                                                      5()(5(1&(6                                                                   (8523($1
+                                                                                                                                                                                      ,668('$7(
+              9(56,21                ,(&                        -('(&                         -(,7$                                                352-(&7,21
+
+                                                                                                                                                                                       
+              627              (                       06
+                                                                                                                                                                                       
+
+
+Fig 9.        Package outline SOT96-1 (SO8)
+
+TJA1051                                                            All information provided in this document is subject to legal disclaimers.                                   © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                                             Rev. 9 — 28 November 2017                                                                                               15 of 25
+NXP Semiconductors                                                                                                                                                 TJA1051
+                                                                                                                                                  High-speed CAN transceiver
+
+
+
+
+  +9621SODVWLFWKHUPDOHQKDQFHGYHU\WKLQVPDOORXWOLQHSDFNDJHQROHDGV
+  WHUPLQDOVERG\[[PP                                                                                                                                                 627
+
+
+
+
+                                   ;
+
+
+                                                                 '                               %       $
+
+
+
+
+                                                                                                         (               $
+                                                                                                                                 $
+                                                                                                                                                                   F
+
+
+                                                                                                                                            GHWDLO;
+
+                           WHUPLQDO
+                           LQGH[DUHD
+                                                                 H
+                           WHUPLQDO                                                                                                                     &
+                           LQGH[DUHD                                                           Y        & $ %
+                                                        H                  E
+                                                                                                Z        &                        \ &                         \
+                                                                               
+                                   /
+                                                                                                 .
+
+
+
+                                   (K
+
+
+
+
+                                                                               
+                                                                 'K
+
+                                                                                                                 PP
+
+     'LPHQVLRQV                                                                                 VFDOH
+
+          8QLW        $    $      E       F       '       'K        (        (K       H        H          .      /        Y         Z    \      \
+
+              PD[                              
+      PP      QRP                                                              
+              PLQ                                      
+     1RWH
+     3ODVWLFRUPHWDOSURWUXVLRQVRIPD[LPXPSHUVLGHDUHQRWLQFOXGHG                                                                                                  VRWBSR
+
+            2XWOLQH                                                      5HIHUHQFHV                                                              (XURSHDQ
+                                                                                                                                                                           ,VVXHGDWH
+            YHUVLRQ                 ,(&                     -('(&                           -(,7$                                                 SURMHFWLRQ
+                                                                                                                                                                            
+          627                                        
+                                                            02                           
+                                                                                                                                                                            
+
+Fig 10. Package outline SOT782-1 (HVSON8)
+
+
+TJA1051                                                      All information provided in this document is subject to legal disclaimers.                            © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                                         Rev. 9 — 28 November 2017                                                                                      16 of 25
+NXP Semiconductors                                                                                                          TJA1051
+                                                                                                                  High-speed CAN transceiver
+
+
+
+15. Handling information
+                     All input and output pins are protected against ElectroStatic Discharge (ESD) under
+                     normal handling. When handling ensure that the appropriate precautions are taken as
+                     described in JESD625-A or equivalent standards.
+
+
+16. Soldering of SMD packages
+                     This text provides a very brief insight into a complex technology. A more in-depth account
+                     of soldering ICs can be found in Application Note AN10365 “Surface mount reflow
+                     soldering description”.
+
+                16.1 Introduction to soldering
+                     Soldering is one of the most common methods through which packages are attached to
+                     Printed Circuit Boards (PCBs), to form electrical circuits. The soldered joint provides both
+                     the mechanical and the electrical connection. There is no single soldering method that is
+                     ideal for all IC packages. Wave soldering is often preferred when through-hole and
+                     Surface Mount Devices (SMDs) are mixed on one printed wiring board; however, it is not
+                     suitable for fine pitch SMDs. Reflow soldering is ideal for the small pitches and high
+                     densities that come with increased miniaturization.
+
+                16.2 Wave and reflow soldering
+                     Wave soldering is a joining technology in which the joints are made by solder coming from
+                     a standing wave of liquid solder. The wave soldering process is suitable for the following:
+
+                      • Through-hole components
+                      • Leaded or leadless SMDs, which are glued to the surface of the printed circuit board
+                     Not all SMDs can be wave soldered. Packages with solder balls, and some leadless
+                     packages which have solder lands underneath the body, cannot be wave soldered. Also,
+                     leaded SMDs with leads having a pitch smaller than ~0.6 mm cannot be wave soldered,
+                     due to an increased probability of bridging.
+
+                     The reflow soldering process involves applying solder paste to a board, followed by
+                     component placement and exposure to a temperature profile. Leaded packages,
+                     packages with solder balls, and leadless packages are all reflow solderable.
+
+                     Key characteristics in both wave and reflow soldering are:
+
+                      • Board specifications, including the board finish, solder masks and vias
+                      • Package footprints, including solder thieves and orientation
+                      • The moisture sensitivity level of the packages
+                      • Package placement
+                      • Inspection and repair
+                      • Lead-free soldering versus SnPb soldering
+
+                16.3 Wave soldering
+                     Key characteristics in wave soldering are:
+TJA1051                              All information provided in this document is subject to legal disclaimers.             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                               Rev. 9 — 28 November 2017                                                                         17 of 25
+NXP Semiconductors                                                                                                           TJA1051
+                                                                                                                   High-speed CAN transceiver
+
+
+                      • Process issues, such as application of adhesive and flux, clinching of leads, board
+                         transport, the solder wave parameters, and the time during which components are
+                         exposed to the wave
+                      • Solder bath specifications, including temperature and impurities
+
+                16.4 Reflow soldering
+                     Key characteristics in reflow soldering are:
+
+                      • Lead-free versus SnPb soldering; note that a lead-free reflow process usually leads to
+                         higher minimum peak temperatures (see Figure 11) than a SnPb process, thus
+                         reducing the process window
+                      • Solder paste printing issues including smearing, release, and adjusting the process
+                         window for a mix of large and small components on one board
+                      • Reflow temperature profile; this profile includes preheat, reflow (in which the board is
+                         heated to the peak temperature) and cooling down. It is imperative that the peak
+                         temperature is high enough for the solder to make reliable solder joints (a solder paste
+                         characteristic). In addition, the peak temperature must be low enough that the
+                         packages and/or boards are not damaged. The peak temperature of the package
+                         depends on package thickness and volume and is classified in accordance with
+                         Table 9 and 10
+
+                     Table 9.     SnPb eutectic process (from J-STD-020D)
+                     Package thickness (mm)                  Package reflow temperature (C)
+                                                             Volume (mm3)
+                                                             < 350                                                  350
+                     < 2.5                                   235                                                   220
+                      2.5                                   220                                                   220
+
+
+                     Table 10.    Lead-free process (from J-STD-020D)
+                     Package thickness (mm)                  Package reflow temperature (C)
+                                                             Volume (mm3)
+                                                             < 350                                       350 to 2000       > 2000
+                     < 1.6                                   260                                         260               260
+                     1.6 to 2.5                              260                                         250               245
+                     > 2.5                                   250                                         245               245
+
+                     Moisture sensitivity precautions, as indicated on the packing, must be respected at all
+                     times.
+
+                     Studies have shown that small packages reach higher temperatures during reflow
+                     soldering, see Figure 11.
+
+
+
+
+TJA1051                               All information provided in this document is subject to legal disclaimers.             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                Rev. 9 — 28 November 2017                                                                         18 of 25
+NXP Semiconductors                                                                                                             TJA1051
+                                                                                                                  High-speed CAN transceiver
+
+
+
+
+                                                                maximum peak temperature
+                             temperature                         = MSL limit, damage level
+
+
+
+
+                                                              minimum peak temperature
+                                                        = minimum soldering temperature
+
+
+
+
+                                                                                                                        peak
+                                                                                                                     temperature
+
+
+
+
+                                                                                                                                            time
+                                                                                                                                    001aac844
+
+
+                              MSL: Moisture Sensitivity Level
+                      Fig 11. Temperature profiles for large and small components
+
+                     For further information on temperature profiles, refer to Application Note AN10365
+                     “Surface mount reflow soldering description”.
+
+
+17. Soldering of HVSON packages
+                     Section 17 contains a brief introduction to the techniques most commonly used to solder
+                     Surface Mounted Devices (SMD). A more detailed discussion on soldering HVSON
+                     leadless package ICs can found in the following application notes:
+
+                      • AN10365 ‘Surface mount reflow soldering description”
+                      • AN10366 “HVQFN application information”
+
+
+
+
+TJA1051                              All information provided in this document is subject to legal disclaimers.                © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                               Rev. 9 — 28 November 2017                                                                            19 of 25
+NXP Semiconductors                                                                                                                      TJA1051
+                                                                                                                          High-speed CAN transceiver
+
+
+
+18. Appendix: ISO 11898-2:2016 parameter cross-reference list
+Table 11.    ISO 11898-2:2016 to NXP data sheet parameter conversion
+ISO 11898-2:2016                                                                                      NXP data sheet
+Parameter                                                                       Notation              Symbol             Parameter
+HS-PMA dominant output characteristics
+Single ended voltage on CAN_H                                                   VCAN_H                VO(dom)            dominant output voltage
+Single ended voltage on CAN_L                                                   VCAN_L
+Differential voltage on normal bus load                                         VDiff                 VO(dif)            differential output voltage
+Differential voltage on effective resistance during arbitration
+Optional: Differential voltage on extended bus load range
+HS-PMA driver symmetry
+Driver symmetry                                                                 VSYM                  VTXsym             transmitter voltage symmetry
+Maximum HS-PMA driver output current
+Absolute current on CAN_H                                                       ICAN_H                IO(sc)dom          dominant short-circuit output
+Absolute current on CAN_L                                                       ICAN_L                                   current
+
+HS-PMA recessive output characteristics, bus biasing active/inactive
+Single ended output voltage on CAN_H                                            VCAN_H                VO(rec)            recessive output voltage
+Single ended output voltage on CAN_L                                            VCAN_L
+Differential output voltage                                                     VDiff                 VO(dif)            differential output voltage
+Optional HS-PMA transmit dominant timeout
+Transmit dominant timeout, long                                                 tdom                  tto(dom)TXD        TXD dominant time-out time
+Transmit dominant timeout, short
+HS-PMA static receiver input characteristics, bus biasing active/inactive
+Recessive state differential input voltage range                                VDiff                 Vth(RX)dif         differential receiver threshold
+Dominant state differential input voltage range                                                                          voltage
+                                                                                                      Vrec(RX)           receiver recessive voltage
+                                                                                                      Vdom(RX)           receiver dominant voltage
+HS-PMA receiver input resistance (matching)
+Differential internal resistance                                                RDiff                 Ri(dif)            differential input resistance
+Single ended internal resistance                                                RCAN_H                Ri                 input resistance
+                                                                                RCAN_L
+Matching of internal resistance                                                 MR                    Ri                input resistance deviation
+HS-PMA implementation loop delay requirement
+Loop delay                                                                      tLoop                 td(TXDH-RXDH)      delay time from TXD HIGH to
+                                                                                                                         RXD HIGH
+                                                                                                      td(TXDL-RXDL)      delay time from TXD LOW to RXD
+                                                                                                                         LOW
+Optional HS-PMA implementation data signal timing requirements for use with bit rates above 1 Mbit/s up to
+2 Mbit/s and above 2 Mbit/s up to 5 Mbit/s
+Transmitted recessive bit width @ 2 Mbit/s / @ 5 Mbit/s,                        tBit(Bus)             tbit(bus)          transmitted recessive bit width
+intended
+Received recessive bit width @ 2 Mbit/s / @ 5 Mbit/s                            tBit(RXD)             tbit(RXD)          bit time on pin RXD
+Receiver timing symmetry @ 2 Mbit/s / @ 5 Mbit/s                                tRec                 trec              receiver timing symmetry
+
+
+TJA1051                                     All information provided in this document is subject to legal disclaimers.                  © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                      Rev. 9 — 28 November 2017                                                                              20 of 25
+NXP Semiconductors                                                                                                                             TJA1051
+                                                                                                                                  High-speed CAN transceiver
+
+
+Table 11.      ISO 11898-2:2016 to NXP data sheet parameter conversion …continued
+ISO 11898-2:2016                                                                                              NXP data sheet
+Parameter                                                                               Notation              Symbol             Parameter
+HS-PMA maximum ratings of VCAN_H, VCAN_L and VDiff
+Maximum rating VDiff                                                                    VDiff                 V(CANH-CANL)       voltage between pin CANH and
+                                                                                                                                 pin CANL
+General maximum rating VCAN_H and VCAN_L            VCAN_H                                                    Vx                 voltage on pin x
+Optional: Extended maximum rating VCAN_H and VCAN_L VCAN_L
+HS-PMA maximum leakage currents on CAN_H and CAN_L, unpowered
+Leakage current on CAN_H, CAN_L                                                         ICAN_H                IL                 leakage current
+                                                                                        ICAN_L
+HS-PMA bus biasing control timings
+CAN activity filter time, long                                                          tFilter               twake(busdom)[1] bus dominant wake-up time
+CAN activity filter time, short                                                                               twake(busrec)[1]   bus recessive wake-up time
+Wake-up timeout, short                                                                  tWake                 tto(wake)bus       bus wake-up time-out time
+Wake-up timeout, long
+Timeout for bus inactivity                                                              tSilence              tto(silence)       bus silence time-out time
+Bus Bias reaction time                                                                  tBias                 td(busact-bias)    delay time from bus active to bias
+
+[1]   tfltr(wake)bus - bus wake-up filter time, in devices with basic wake-up functionality
+
+
+
+
+TJA1051                                             All information provided in this document is subject to legal disclaimers.                 © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                              Rev. 9 — 28 November 2017                                                                             21 of 25
+NXP Semiconductors                                                                                                              TJA1051
+                                                                                                                      High-speed CAN transceiver
+
+
+
+19. Revision history
+Table 12.   Revision history
+Document ID          Release date               Data sheet status                                Change notice              Supersedes
+TJA1051 v.9          20171128                   Product data sheet                               -                          TJA1051 v.8.1
+Modifications:        • Updated to comply with ISO 11898-2:2016 and SAE J22884-1 through SAE J2284-5 specifications:
+                        – Section 1: text amended (2nd last paragraph)
+                        – Section 2.1: text amended (1st entry)
+                        – Table 7: values changed and/or measurements conditions amended/added for parameters ICC,
+                          Vdom(TX)sym, VTXsym, VO(dif), Vrec(RX), Vdom(RX), IO(sc)dom, Ri, Ri and Ri(dif)
+                        – Table 8: Table note 4 added
+                        – Figure 3: thresholds clarified
+                        – Figure 4: title changed
+                      • Figure 5, Figure 6, Figure 8: amended
+TJA1051 v.8.1        20160712                   Product data sheet                               -                          TJA1051 v.7
+TJA1051 v.7          20150115                   Product data sheet                               -                          TJA1051 v.6
+TJA1051 v.6          20110325                   Product data sheet                               -                          TJA1051 v.5
+TJA1051 v.5          20101229                   Product data sheet                               -                          TJA1051 v.4
+TJA1051 v.4          20091020                   Product data sheet                               -                          TJA1051 v.3
+TJA1051 v.3          20090825                   Product data sheet                               -                          TJA1051 v.2
+TJA1051 v.2          20090701                   Product data sheet                               -                          TJA1051 v.1
+TJA1051 v.1          20090309                   Product data sheet                               -                          -
+
+
+
+
+TJA1051                                  All information provided in this document is subject to legal disclaimers.             © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                   Rev. 9 — 28 November 2017                                                                         22 of 25
+NXP Semiconductors                                                                                                                                             TJA1051
+                                                                                                                                               High-speed CAN transceiver
+
+
+
+20. Legal information
+
+20.1 Data sheet status
+Document status[1][2]                  Product status[3]                    Definition
+Objective [short] data sheet           Development                          This document contains data from the objective specification for product development.
+Preliminary [short] data sheet         Qualification                        This document contains data from the preliminary specification.
+Product [short] data sheet             Production                           This document contains the product specification.
+
+[1]   Please consult the most recently issued document before initiating or completing a design.
+[2]   The term ‘short data sheet’ is explained in section “Definitions”.
+[3]   The product status of device(s) described in this document may have changed since this document was published and may differ in case of multiple devices. The latest product status
+      information is available on the Internet at URL http://www.nxp.com.
+
+
+
+20.2 Definitions                                                                                           Suitability for use in automotive applications — This NXP
+                                                                                                           Semiconductors product has been qualified for use in automotive
+                                                                                                           applications. Unless otherwise agreed in writing, the product is not designed,
+Draft — The document is a draft version only. The content is still under
+                                                                                                           authorized or warranted to be suitable for use in life support, life-critical or
+internal review and subject to formal approval, which may result in
+                                                                                                           safety-critical systems or equipment, nor in applications where failure or
+modifications or additions. NXP Semiconductors does not give any
+                                                                                                           malfunction of an NXP Semiconductors product can reasonably be expected
+representations or warranties as to the accuracy or completeness of
+                                                                                                           to result in personal injury, death or severe property or environmental
+information included herein and shall have no liability for the consequences of
+                                                                                                           damage. NXP Semiconductors and its suppliers accept no liability for
+use of such information.
+                                                                                                           inclusion and/or use of NXP Semiconductors products in such equipment or
+Short data sheet — A short data sheet is an extract from a full data sheet                                 applications and therefore such inclusion and/or use is at the customer's own
+with the same product type number(s) and title. A short data sheet is intended                             risk.
+for quick reference only and should not be relied upon to contain detailed and
+                                                                                                           Applications — Applications that are described herein for any of these
+full information. For detailed and full information see the relevant full data
+                                                                                                           products are for illustrative purposes only. NXP Semiconductors makes no
+sheet, which is available on request via the local NXP Semiconductors sales
+                                                                                                           representation or warranty that such applications will be suitable for the
+office. In case of any inconsistency or conflict with the short data sheet, the
+                                                                                                           specified use without further testing or modification.
+full data sheet shall prevail.
+                                                                                                           Customers are responsible for the design and operation of their applications
+Product specification — The information and data provided in a Product                                     and products using NXP Semiconductors products, and NXP Semiconductors
+data sheet shall define the specification of the product as agreed between                                 accepts no liability for any assistance with applications or customer product
+NXP Semiconductors and its customer, unless NXP Semiconductors and                                         design. It is customer’s sole responsibility to determine whether the NXP
+customer have explicitly agreed otherwise in writing. In no event however,                                 Semiconductors product is suitable and fit for the customer’s applications and
+shall an agreement be valid in which the NXP Semiconductors product is                                     products planned, as well as for the planned application and use of
+deemed to offer functions and qualities beyond those described in the                                      customer’s third party customer(s). Customers should provide appropriate
+Product data sheet.                                                                                        design and operating safeguards to minimize the risks associated with their
+                                                                                                           applications and products.
+
+20.3 Disclaimers                                                                                           NXP Semiconductors does not accept any liability related to any default,
+                                                                                                           damage, costs or problem which is based on any weakness or default in the
+                                                                                                           customer’s applications or products, or the application or use by customer’s
+Limited warranty and liability — Information in this document is believed to
+                                                                                                           third party customer(s). Customer is responsible for doing all necessary
+be accurate and reliable. However, NXP Semiconductors does not give any
+                                                                                                           testing for the customer’s applications and products using NXP
+representations or warranties, expressed or implied, as to the accuracy or
+                                                                                                           Semiconductors products in order to avoid a default of the applications and
+completeness of such information and shall have no liability for the
+                                                                                                           the products or of the application or use by customer’s third party
+consequences of use of such information. NXP Semiconductors takes no
+                                                                                                           customer(s). NXP does not accept any liability in this respect.
+responsibility for the content in this document if provided by an information
+source outside of NXP Semiconductors.                                                                      Limiting values — Stress above one or more limiting values (as defined in
+                                                                                                           the Absolute Maximum Ratings System of IEC 60134) will cause permanent
+In no event shall NXP Semiconductors be liable for any indirect, incidental,
+                                                                                                           damage to the device. Limiting values are stress ratings only and (proper)
+punitive, special or consequential damages (including - without limitation - lost
+                                                                                                           operation of the device at these or any other conditions above those given in
+profits, lost savings, business interruption, costs related to the removal or
+                                                                                                           the Recommended operating conditions section (if present) or the
+replacement of any products or rework charges) whether or not such
+                                                                                                           Characteristics sections of this document is not warranted. Constant or
+damages are based on tort (including negligence), warranty, breach of
+                                                                                                           repeated exposure to limiting values will permanently and irreversibly affect
+contract or any other legal theory.
+                                                                                                           the quality and reliability of the device.
+Notwithstanding any damages that customer might incur for any reason
+whatsoever, NXP Semiconductors’ aggregate and cumulative liability towards                                 Terms and conditions of commercial sale — NXP Semiconductors
+customer for the products described herein shall be limited in accordance                                  products are sold subject to the general terms and conditions of commercial
+with the Terms and conditions of commercial sale of NXP Semiconductors.                                    sale, as published at http://www.nxp.com/profile/terms, unless otherwise
+                                                                                                           agreed in a valid written individual agreement. In case an individual
+Right to make changes — NXP Semiconductors reserves the right to make                                      agreement is concluded only the terms and conditions of the respective
+changes to information published in this document, including without                                       agreement shall apply. NXP Semiconductors hereby expressly objects to
+limitation specifications and product descriptions, at any time and without                                applying the customer’s general terms and conditions with regard to the
+notice. This document supersedes and replaces all information supplied prior                               purchase of NXP Semiconductors products by customer.
+to the publication hereof.
+
+
+
+TJA1051                                                           All information provided in this document is subject to legal disclaimers.                   © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                                            Rev. 9 — 28 November 2017                                                                               23 of 25
+NXP Semiconductors                                                                                                                                   TJA1051
+                                                                                                                                      High-speed CAN transceiver
+
+
+No offer to sell or license — Nothing in this document may be interpreted or                      Translations — A non-English (translated) version of a document is for
+construed as an offer to sell products that is open for acceptance or the grant,                  reference only. The English version shall prevail in case of any discrepancy
+conveyance or implication of any license under any copyrights, patents or                         between the translated and English versions.
+other industrial or intellectual property rights.
+Export control — This document as well as the item(s) described herein
+may be subject to export control regulations. Export might require a prior
+                                                                                                  20.4 Trademarks
+authorization from competent authorities.                                                         Notice: All referenced brands, product names, service names and trademarks
+Quick reference data — The Quick reference data is an extract of the                              are the property of their respective owners.
+product data given in the Limiting values and Characteristics sections of this
+document, and as such is not complete, exhaustive or legally binding.
+
+
+
+21. Contact information
+For more information, please visit: http://www.nxp.com
+For sales office addresses, please send an email to: salesaddresses@nxp.com
+
+
+
+
+TJA1051                                                  All information provided in this document is subject to legal disclaimers.                  © NXP N.V. 2017. All rights reserved.
+
+Product data sheet                                                   Rev. 9 — 28 November 2017                                                                              24 of 25
+NXP Semiconductors                                                                                                                          TJA1051
+                                                                                                                         High-speed CAN transceiver
+
+
+
+22. Contents
+1       General description . . . . . . . . . . . . . . . . . . . . . . 1           20.2         Definitions . . . . . . . . . . . . . . . . . . . . . . . . . . .    22
+2       Features and benefits . . . . . . . . . . . . . . . . . . . . 1             20.3         Disclaimers . . . . . . . . . . . . . . . . . . . . . . . . . .      22
+2.1       General . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1   20.4         Trademarks . . . . . . . . . . . . . . . . . . . . . . . . . .       23
+2.2       Low-power management . . . . . . . . . . . . . . . . . 2                  21          Contact information . . . . . . . . . . . . . . . . . . . .           23
+2.3       Protection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2    22          Contents. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   24
+3       Quick reference data . . . . . . . . . . . . . . . . . . . . . 2
+4       Ordering information . . . . . . . . . . . . . . . . . . . . . 3
+5       Block diagram . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+6       Pinning information . . . . . . . . . . . . . . . . . . . . . . 4
+6.1       Pinning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+6.2       Pin description . . . . . . . . . . . . . . . . . . . . . . . . . 4
+7       Functional description . . . . . . . . . . . . . . . . . . . 5
+7.1       Operating modes . . . . . . . . . . . . . . . . . . . . . . . 5
+7.1.1     Normal mode . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+7.1.2     Silent mode. . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+7.1.3     Off mode . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+7.2       Fail-safe features . . . . . . . . . . . . . . . . . . . . . . . 6
+7.2.1     TXD dominant time-out function . . . . . . . . . . . . 6
+7.2.2     Internal biasing of TXD, S and EN input pins . . 6
+7.2.3     Undervoltage detection on pins VCC and VIO . . 6
+7.2.4     Overtemperature protection . . . . . . . . . . . . . . . 6
+7.3       VIO supply pin . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+8       Limiting values. . . . . . . . . . . . . . . . . . . . . . . . . . 7
+9       Thermal characteristics . . . . . . . . . . . . . . . . . . 7
+10      Static characteristics. . . . . . . . . . . . . . . . . . . . . 8
+11      Dynamic characteristics . . . . . . . . . . . . . . . . . 10
+12      Application information. . . . . . . . . . . . . . . . . . 12
+12.1      Application diagrams . . . . . . . . . . . . . . . . . . . 12
+12.2      Application hints . . . . . . . . . . . . . . . . . . . . . . . 12
+13      Test information . . . . . . . . . . . . . . . . . . . . . . . . 13
+13.1      Quality information . . . . . . . . . . . . . . . . . . . . . 13
+14      Package outline . . . . . . . . . . . . . . . . . . . . . . . . 14
+15      Handling information. . . . . . . . . . . . . . . . . . . . 16
+16      Soldering of SMD packages . . . . . . . . . . . . . . 16
+16.1      Introduction to soldering . . . . . . . . . . . . . . . . . 16
+16.2      Wave and reflow soldering . . . . . . . . . . . . . . . 16
+16.3      Wave soldering . . . . . . . . . . . . . . . . . . . . . . . . 16
+16.4      Reflow soldering . . . . . . . . . . . . . . . . . . . . . . . 17
+17      Soldering of HVSON packages. . . . . . . . . . . . 18
+18      Appendix: ISO 11898-2:2016 parameter
+        cross-reference list . . . . . . . . . . . . . . . . . . . . . 19
+19      Revision history . . . . . . . . . . . . . . . . . . . . . . . . 21
+20      Legal information. . . . . . . . . . . . . . . . . . . . . . . 22
+20.1      Data sheet status . . . . . . . . . . . . . . . . . . . . . . 22
+
+
+
+                                                                                    Please be aware that important notices concerning this document and the product(s)
+                                                                                    described herein, have been included in section ‘Legal information’.
+
+
+                                                                                    © NXP N.V. 2017.                                             All rights reserved.
+                                                                                    For more information, please visit: http://www.nxp.com
+                                                                                    For sales office addresses, please send an email to: salesaddresses@nxp.com
+                                                                                                                                         Date of release: 28 November 2017
+                                                                                                                                              Document identifier: TJA1051
+
