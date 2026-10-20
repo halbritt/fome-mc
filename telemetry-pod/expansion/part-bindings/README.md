@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 60 previously unbound components: the
-40 selected divider resistors and 20 already-selected active, crystal and
-inductor instances. The manifest has 13 exact manufacturer/supplier identities,
+This packet adds identity metadata to 66 previously unbound components: the
+40 selected divider resistors and 26 already-selected active, crystal and
+inductor instances. The manifest has 17 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 186 bindings, with 135 component bindings still
+The prepared source now contains 192 bindings, with 129 component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 13
+Each selected catalog is replayed against its retained raw responses. All 17
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -45,15 +45,25 @@ not an electrical result. `prepare.py --out NEW_DIRECTORY` preserves the full
 inputs needed to reproduce the generation attempt; `--source-only` explicitly
 limits it to preparation. No actual pod project has been replaced.
 
-## eMMC provenance gap
+## Recovered eMMC provenance
 
-U14 is deliberately not part of these 60 bindings. Its earlier stock catalog
-lacks the referenced raw response files in the committed packet. A new exact-ID
-C3249972 capture is retained under `emmc-stock/`; its current datasheet URL
-returned HTTP 403 during retrieval. The earlier manufacturer PDF and its reviewed
-hash remain in storage-candidate, but this packet has not established a URL-to-byte
-binding for that document. The supplier identity observation and document identity
-are preserved separately until that link is repaired.
+U14 now has an identity binding. The four original raw stock responses were
+recovered from retained local artifacts and restored to storage-candidate; each
+matches the hash and byte count in the original committed catalog. The newer
+exact-ID C3249972 capture remains under `emmc-stock/`.
+
+The current supplier API's datasheet endpoint returned HTTP 403. A working
+supplier-hosted manufacturer-document URL was found and downloaded independently
+by both producer and reviewer. Both downloads are byte-identical to the reviewed
+A-00093 revision 1.0 PDF already in storage-candidate. `emmc-source.json` records
+the working URL, digest and recovery. This repairs provenance without changing
+the document or component selection.
+
+The primary MCP3208, three ADS1119 diagnostic converters and TL431 shunt also
+receive exact identities from `adc-shunt-stock/`, using their existing reviewed
+manufacturer documents. Exact MPN matching excludes similarly named ATL431,
+other grades, packages and manufacturers. Accepted 85 °C exceptions and all
+operating qualification holds remain unchanged.
 
 Independent review is in `review/`. All earlier shared-SPI, Hall-input, rail,
 thermistor, transient, thermal, mechanical, firmware and manufacturing holds

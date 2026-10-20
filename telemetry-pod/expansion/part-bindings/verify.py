@@ -55,7 +55,17 @@ with tempfile.TemporaryDirectory(prefix='pod-part-bindings-') as temporary:
     if args.source_only:
         check.append('--source-only')
     subprocess.run(check, check=True)
-# Fresh eMMC observation is retained even though U14 remains unbound.
+# Replay both recovered historical responses and the newer exact-ID capture.
 validate_capture(json.loads((root/'emmc-stock/catalog.json').read_text()),
                  lambda path: (root/'emmc-stock'/path).read_bytes())
+storage = root.parent / 'storage-candidate'
+validate_capture(json.loads((storage / 'stock-catalog.json').read_text()),
+                 lambda path: (storage / path).read_bytes())
+source = json.loads((root / 'emmc-source.json').read_text())
+if hashlib.sha256((root.parent / source['path']).read_bytes()).hexdigest() != source['sha256']:
+    raise ValueError('Recovered eMMC document identity changed')
+manifest = json.loads((root / 'manifest.json').read_text())
+emmc, = [part for part in manifest['parts'] if part['lcsc'] == 'C3249972']
+if emmc['datasheet'] != {key: source[key] for key in ['path', 'url', 'sha256']}:
+    raise ValueError('eMMC binding differs from recovered document identity')
 print('PASS: identity source checks; native verification ' + ('NOT_RUN' if args.source_only else 'PASS'))
