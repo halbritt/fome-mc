@@ -1,0 +1,1739 @@
+                                Product         Order           Technical            Tools &          Support &
+                                Folder          Now             Documents            Software         Community
+
+
+
+                                                                                                                             TMUX1072
+                                                                                                SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+    TMUX1072 2-Channel 2:1 Analog Multiplexer with Overvoltage Detection and Protection
+1 Features                                                                  3 Description
+•
+1    Supply range 2.3 V to 5.5 V                                            The TMUX1072 is a high-speed, 2-channel, 2:1,
+                                                                            analog switch with integrated overvoltage detection
+•    Powered off protection: I/O pins Hi-Z when                             and powered off protection. The device is
+     VCC = 0 V                                                              bidirectional and can be used as a 2:1 or 1:2 switch
+•    6-V Overvoltage and overtemperature detection                          while supporting signals beyond VCC up to 5.5 V.
+     with fault indicator pin
+                                                                            The protection on the I/O pins of the TMUX1072
+•    18-V Overvoltage protection (OVP) on common                            tolerates a maximum of 18 V with automatic shutoff
+     pins                                                                   circuitry to prevent damage to system components
+•    Support signals beyond VCC up to 5.5 V                                 behind the switch. This protection is used for power
+                                                                            sequencing. Some boards in the system may be
+•    Low RON of 6 Ω
+                                                                            powered up before others are ready to receive
+•    BW of 1.2 GHz typical                                                  signals. The device detects overvoltage and
+•    CON of 4.5 pF typical                                                  overtemperature events, and provides an open drain
+•    Low power disable mode                                                 output signal through the FLT pin.
+•    1.8-V Compatible logic inputs                                                              Device Information(1)
+•    ESD protection exceeds JESD22                                           PART NUMBER           PACKAGE           BODY SIZE (NOM)
+     – 2000-V Human body model (HBM)                                                            UQFN (12)          2.00 mm × 1.70 mm
+                                                                            TMUX1072
+•    Small 2.00 mm x 1.70 mm QFN package available                                              VSSOP (10)         3.00 mm × 5.00 mm
+                                                                            (1) For all available packages, see the orderable addendum at
+2 Applications                                                                  the end of the data sheet.
+•    Data acquisition (DAQ)
+•    Field instrumentation
+•    Video surveillance
+•    HVAC systems
+•    Rear camera
+                                                         Simplified Schematic
+                                                                 TMUX1072
+                                                          VCC                 OVP
+                                                   NC1
+                                                                                    COM1
+                                                   NO1
+                                                   NC2
+                                                                                    COM2
+                                                   NO2
+
+                                                  SEL1
+
+                                                  SEL2      Logic
+                                                           Control
+                                                    OE
+
+                                                    FLT
+
+
+
+                                                                       GND
+
+
+
+
+1
+
+
+
+
+       An IMPORTANT NOTICE at the end of this data sheet addresses availability, warranty, changes, use in safety-critical applications,
+       intellectual property matters and other important disclaimers. PRODUCTION DATA.
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                                                            www.ti.com
+
+
+                                                                           Table of Contents
+    1   Features .................................................................. 1                8.3 Feature Description................................................. 15
+    2   Applications ........................................................... 1                   8.4 Device Functional Modes........................................ 16
+    3   Description ............................................................. 1            9    Application and Implementation ........................ 17
+    4   Revision History..................................................... 2                      9.1 Application Information............................................ 17
+                                                                                                     9.2 Typical Application .................................................. 17
+    5   Pin Configuration and Functions ......................... 3
+    6   Specifications......................................................... 4              10 Power Supply Recommendations ..................... 18
+         6.1    Absolute Maximum Ratings ...................................... 4              11 Layout................................................................... 18
+         6.2    ESD Ratings.............................................................. 4          11.1 Layout Guidelines ................................................. 18
+         6.3    Recommended Operating Conditions....................... 4                            11.2 Layout Example .................................................... 19
+         6.4    Thermal Information .................................................. 5       12 Device and Documentation Support ................. 20
+         6.5    Electrical Characteristics........................................... 5              12.1    Documentation Support ........................................ 20
+         6.6    Dynamic Characteristics ........................................... 8                12.2    Receiving Notification of Documentation Updates 20
+         6.7    Timing Requirements ................................................ 8               12.3    Community Resources.......................................... 20
+         6.8    Typical Characteristics .............................................. 9             12.4    Trademarks ........................................................... 20
+    7   Parameter Measurement Information ................ 10                                        12.5    Electrostatic Discharge Caution ............................ 20
+                                                                                                     12.6    Glossary ................................................................ 20
+    8   Detailed Description ............................................ 14
+         8.1 Overview ................................................................. 14     13 Mechanical, Packaging, and Orderable
+         8.2 Functional Block Diagram ....................................... 14
+                                                                                                  Information ........................................................... 20
+
+
+
+4 Revision History
+NOTE: Page numbers for previous revisions may differ from page numbers in the current version.
+
+Changes from Revision B (June 2019) to Revision C                                                                                                                               Page
+
+•   Added Typical Characteristics curves for AC parameters ..................................................................................................... 9
+•   Added the Application Curves section.................................................................................................................................. 18
+
+
+Changes from Revision A (August 2018) to Revision B                                                                                                                             Page
+
+•   Changed Feature From: 0-V to 18-V Overvoltage Protection (OVP) on Common Pins To: 0-V to 6-V Overvoltage
+    protection (OVP) on common pins ......................................................................................................................................... 1
+
+
+Changes from Original (April 2018) to Revision A                                                                                                                                Page
+
+•   Changed the device status From: Advanced Information To Production data ...................................................................... 1
+
+
+
+
+2        Submit Documentation Feedback                                                                          Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                                        Product Folder Links: TMUX1072
+                                                                                                                                              TMUX1072
+www.ti.com                                                                                                   SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+5 Pin Configuration and Functions
+
+                            RUT Package
+                            12-Pin UQFN                                                                            DGS Package
+                              Top View                                                                             10-Pin VSSOP
+                                                                                                                     Top View
+
+
+
+
+                                   FLT
+             SEL1             1          11                  COM1                               SEL1          1                   10          COM1
+
+                                                                                                 NO1          2                    9          NC1
+             NO1              2    12 10                     NC1
+                                                                                                GND           3                    8          VCC
+             GND              3          9                   VCC
+                                                                                                 NO2          4                    7          NC2
+
+             NO2              4    6     8                   NC2                                SEL2          5                    6          COM2
+
+
+             SEL2             5          7                   COM2
+                                                                                                            Not to scale
+                                              Not to scale
+                                   OE
+
+
+
+
+                                                                          Pin Functions
+                PIN
+                                                   I/O                                                 DESCRIPTION
+   NAME          RUT        DGS
+   SEL1             1         1                     I              Switch select 1
+    NO1             2         2                    I/O             Signal path NO1
+    GND             3         3                   GND              Ground
+    NO2             4         4                    I/O             Signal path NO2
+   SEL2             5         5                     I              Switch select 2
+     OE             6          -                    I              Output enable (Active low)
+   COM2             7         6                    I/O             Common signal path 2
+    NC2             8         7                    I/O             Signal path NC2
+    VCC             9         8                  PWR               Supply Voltage
+    NC1             10        9                    I/O             Signal path NC1
+   COM1             11        10                   I/O             Common signal path 1
+    FLT             12         -                    O              Fault indicator output pin (Active low) - open drain. If feature is unused, pin may be
+                                                                   left floating or connected to ground
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                                             Submit Documentation Feedback             3
+                                                                   Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                         www.ti.com
+
+
+6 Specifications
+6.1 Absolute Maximum Ratings
+over operating free-air temperature range (unless otherwise noted) (1) (2)
+                                                                                                              MIN           MAX         UNIT
+VCC               Supply voltage (3)                                                                          –0.5            6             V
+                                                             (3)
+                  Input/Output DC voltage (COM1, COM2)                                                        –0.5           20             V
+VI/O
+                  Input/Output DC voltage (NC1, NO1, NC2, NO2) (3)                                            –0.5            6             V
+VI                Digital input voltage (SEL1, SEL2, OE)                                                      –0.5            6             V
+VO                Digital output voltage (FLT)                                                                –0.5            6             V
+                  Input-output port diode current (COM1,
+IK                                                             VIN < 0                                        –50                        mA
+                  COM2,NC1, NO1, NC2, NO2)
+                  Digital logic input clamp current (SEL1,
+IIK                                                            VI < 0                                         –50                        mA
+                  SEL2, OE) (3)
+ICC               Continuous current through VCC                                                                            100          mA
+IGND              Continuous current through GND                                                              –100                       mA
+Tstg              Storage temperature                                                                         –65           150            °C
+TJ                Operating Junction Temperature                                                              –65           150            °C
+
+(1)    Stresses beyond those listed under Absolute Maximum Ratings may cause permanent damage to the device. These are stress ratings
+       only, which do not imply functional operation of the device at these or any other conditions beyond those indicated under Recommended
+       Operating Conditions. Exposure to absolute-maximum-rated conditions for extended periods may affect device reliability.
+(2)    The algebraic convention, whereby the most negative value is a minimum and the most positive value is a maximum.
+(3)    All voltages are with respect to ground, unless otherwise specified.
+
+6.2 ESD Ratings
+                                                                                                                       VALUE           UNIT
+             Electrostatic          Human body model (HBM), per ANSI/ESDA/JEDEC JS-001 (1)                              ±2000
+V(ESD)                                                                                                                                   V
+             discharge              Charged-device model (CDM), per JEDEC specification JESD22-C101 (2)                 ±1000
+
+(1)    JEDEC document JEP155 states that 500-V HBM allows safe manufacturing with a standard ESD control process.
+(2)    JEDEC document JEP157 states that 250-V CDM allows safe manufacturing with a standard ESD control process.
+
+6.3 Recommended Operating Conditions
+                                                                                                          MIN             MAX        UNIT
+VCC               Supply voltage                                                                           2.3              5.5        V
+VI/O                                                               COM1, COM2                                0              18         V
+VI/O                                                               (NC1, NO1, NC2, NO2)                      0              5.5        V
+                  Analog input/output
+II/O                                                               COM1, COM2                              -50              50        mA
+II/O                                                               (NC1, NO1, NC2, NO2)                    -50              50        mA
+VI                Digital input voltage                            SEL1, SEL2, OE                            0              5.5        V
+VO                Digital output voltage                           FLT                                       0              5.5        V
+                  Analog input/output port continuous current      (COM1, COM2, NC1, NO1,
+II/O                                                                                                       -50              50        mA
+                                                                   NC2, NO2)
+IOL               Digital output current                                                                                      3       mA
+TA                Operating free-air temperature                                                           –40             125         ºC
+TJ                Junction temperature                                                                     –40             125         ºC
+
+
+
+
+4         Submit Documentation Feedback                                                     Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                        Product Folder Links: TMUX1072
+                                                                                                                                 TMUX1072
+www.ti.com                                                                                       SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+6.4 Thermal Information
+                                                                                                       TMUX1072
+                                  THERMAL METRIC (1)                                        RUT (UQFN)       DGS (VSSOP)            UNIT
+                                                                                             12 PINS              10 PINS
+RθJA                Junction-to-ambient thermal resistance                                       127               175              °C/W
+RθJC(top)           Junction-to-case (top) thermal resistance                                  55.5                61.2             °C/W
+RθJB                Junction-to-board thermal resistance                                       67.7                96.9             °C/W
+ψJT                 Junction-to-top characterization parameter                                   1.6                8.2             °C/W
+ψJB                 Junction-to-board characterization parameter                               67.3                95.1             °C/W
+
+(1)   For more information about traditional and new thermal metrics, see the Semiconductor and IC Package Thermal Metrics application
+      report.
+
+6.5 Electrical Characteristics
+TA = –40°C to +125°C , VCC = 2.3 V to 5.5 V, GND = 0V, Typical values are at VCC = 3.3 V, TA = 25°C, (unless otherwise
+noted)
+                      PARAMETER                                      TEST CONDITIONS                       MIN            TYP    MAX    UNIT
+SUPPLY
+VCC                        Power supply voltage                                                             2.3                   5.5      V
+                                                           OE = 0 V
+                           Active supply current           SEL1, SEL2 = 0 V, 1.8 V or VCC                                  75    110       µA
+                                                           0 V < VI/O < 3.6 V
+ICC
+                                                           OE = 0 V
+                           Supply current during OVP
+                                                           SEL1, SEL2 = 0 V, 1.8 V or VCC                                  65     98       µA
+                           condition
+                                                           VI/O > VPOS_THLD
+                                                           OE = 1.8 V or VCC
+                           Standby powered down
+ICC_PD (1)                                                 SEL1 = 0 V, 1.8 V, or VCC                                        3     10       µA
+                           supply current
+                                                           SEL2 = 0 V, 1.8 V, or VCC
+UVLO                       Under Voltage Lock Out          VCC = rising and falling                        1.65                            V
+DC Characteristics
+                                                           VI/O = 0 V to VCC
+RON                        ON-state resistance             ISINK = 8 mA                                                     6     18       Ω
+                                                           Refer to ON-State Resistance Figure
+                                                           VI/O = 0 V to VCC
+                           ON-state resistance match
+ΔRON                                                       ISINK = 8 mA                                                   0.07    0.5      Ω
+                           between channels
+                                                           Refer to ON-State Resistance Figure
+                                                           VI/O = 0 V to VCC
+RON (FLAT)                 ON-state resistance flatness    ISINK = 8 mA                                                    2.5     7       Ω
+                                                           Refer to ON-State Resistance Figure
+
+
+
+
+(1)   Not tested for DGS package due to absence of FLT and OE pin.
+Copyright © 2018–2019, Texas Instruments Incorporated                                                  Submit Documentation Feedback            5
+                                                        Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                          www.ti.com
+
+
+Electrical Characteristics (continued)
+TA = –40°C to +125°C , VCC = 2.3 V to 5.5 V, GND = 0V, Typical values are at VCC = 3.3 V, TA = 25°C, (unless otherwise
+noted)
+                       PARAMETER                                     TEST CONDITIONS                       MIN         TYP       MAX     UNIT
+                                                           VCOM1/2 = 0 V to 5.5 V (2)
+                                                           VCC = 2.3 V to 5.5 V
+                                                                                                                        3.6        10      µA
+                                                           VNC1/2 or VNO1/2 = 5.5 V or 0 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 5.5 V (2)
+                                                           VCC = 5.5 V
+                                                                                                                                     3     µA
+                                                           VNC1/2 or VNO1/2 = 5.5 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 3.6 V (2)
+                                                           VCC = 3.3 V
+                                                                                                                                     2     µA
+                                                           VNC1/2 or VNO1/2 = 3.6 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 5.5 V
+                                                           VCC = 0 V
+IOFF                       I/O pin OFF leakage current                                                                             15      µA
+                                                           VNC1/2 or VNO1/2 = 5.5 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 3.6 V
+                                                           VCC = 0 V
+                                                                                                                                   10      uA
+                                                           VNC1/2 or VNO1/2 = 3.6 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 1 V
+                                                           VCC = 0 V
+                                                                                                                                     2     uA
+                                                           VNC1/2 or VNO1/2 = 1 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 18 V
+                                                           VCC = 0 V, 5.5 V
+                                                                                                                        165       185      µA
+                                                           VNC1/2 or VNO1/2 = 0 V
+                                                           Refer to Off Leakage Figure
+                                                           VCOM1/2 = 5.5 V
+                                                           VCC = 5.5 V                                                  1.2        3.5     µA
+                                                           VNC1/2 and VNO1/2 = high-Z
+                                                           Refer to On Leakage Figure
+ION                        ON leakage current
+                                                           VCOM1/2 = 0 V to 5.5 V
+                                                           VCC = 2.3-5.5 V                                                       11.5      µA
+                                                           VNC1/2 and VNO1/2 = high-Z
+                                                           Refer to On Leakage Figure
+Digital Characteristics
+VIH                        Input logic high                SEL1, SEL2, OE                                  1.45                            V
+VIL                        Input logic low                 SEL1, SEL2, OE                                                          0.5     V
+                                                           FLT
+VOL                        Output logic low                                                                                        0.3     V
+                                                           IOL = 3 mA
+IIH                        Input high leakage current      SEL1, SEL2, OE = 1.8 V, VCC                       -1           2          5     μA
+IIL                        Input low leakage current       SEL1, SEL2, OE = 0 V                              -1        ±0.2          1     μA
+                           Internal pull-down resistor on SEL1, SEL2                                                      6        12     MΩ
+RPD
+                           digital input pins             OE                                                              3          6    MΩ
+      (3)                                                  SEL1, SEL2 = 0 V, 1.8 V or VCC
+CI                         Digital input capacitance                                                                      8                pF
+                                                           f = 1 MHz
+Protection and Detection
+VOVP_TH                    OVP positive threshold                                                          5.55         5.8        6.0     V
+VOVP_HYST (3)              OVP threshold hysteresis                                                          40         100       300     mV
+
+(2)    Not tested on COM1/2 pins for DGS package due to the absence of OE pin
+(3)    Specified by design, not tested in production.
+6           Submit Documentation Feedback                                                    Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                        Product Folder Links: TMUX1072
+                                                                                                                             TMUX1072
+www.ti.com                                                                                      SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+Electrical Characteristics (continued)
+TA = –40°C to +125°C , VCC = 2.3 V to 5.5 V, GND = 0V, Typical values are at VCC = 3.3 V, TA = 25°C, (unless otherwise
+noted)
+                      PARAMETER                                     TEST CONDITIONS                      MIN       TYP      MAX     UNIT
+                           Thermal Shutdown
+TSD_HYST (3)                                                                                                3                  8     °C
+                           Hysteresis
+                           Overtemperature detection
+TOTD_TH (3)                                                                                               135                165     °C
+                           threshold
+                                                           VCOM1/2 = 0 to 18 V
+                                                           tRISE and tFALL(10% to 90 %) = 100 ns
+                                                           RL = Open                                        0                 9.6    V
+                                                           Switch on or off
+                           Maximum voltage to appear       OE = 0 V
+VCLAMP_V (3)               on NC1/2 and NO1/2 pins
+                           during OVP scenario             VCOM1/2 = 0 to 18 V
+                                                           tRISE and tFALL(10% to 90 %) = 100 ns
+                                                           RL = 50Ω                                         0                 9.0    V
+                                                           Switch on or off
+                                                           OE = 0 V
+                                                           RPU = 10 kΩ to VCC (FLT)
+tEN_OVP (3)                OVP enable time                 CL = 35 pF                                                0.6       3     μs
+                                                           Refer to OVP Timing Diagram Figure
+                                                           RPU = 10 kΩ to VCC (FLT)
+tREC_OVP (3)               OVP recovery time               CL = 35 pF                                                1.5       5     μs
+                                                           Refer to OVP Timing Diagram Figure
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                               Submit Documentation Feedback          7
+                                                        Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                              www.ti.com
+
+
+6.6 Dynamic Characteristics
+TA = –40°C to +125°C , VCC = 2.3 V to 5.5V, GND = 0V, Typical values are at VCC = 3.3 V, TA = 25°C, (unless otherwise
+noted)
+                    PARAMETER (1)                                        TEST CONDITIONS                           MIN     TYP         MAX        UNIT
+                                                        VCOM1/2 = 0 or 3.3 V,
+                  COM1, COM2 off capacitance            OE = VCC                             Switch OFF             1.2      4.0        6.2       pF
+                                                        f = 240 MHz
+COFF                                                    VCOM1/2 = 0 or 3.3 V,
+                  NC1, NO1, NC2, NO2 off                OE = VCC or OE = 0V with SEL1, Switch OFF or
+                                                                                                                    1.2      4.0        6.2       pF
+                  capacitance                           SEL2 (switch not selected)     not selected
+                                                        f = 240 MHz
+                  COM1, COM2, NC1, NO1, NC2,            VCOM1/2 = 0 or 3.3 V,
+CON                                                                                          Switch ON              1.4      4.0        6.2       pF
+                  NO2 on capacitance                    f = 240 MHz
+                                                        RL = 50 Ω
+                                                        CL = 5 pF
+                                                                                             Switch OFF                      -80                  dB
+                                                        f = 100 kHz
+                                                        Refer to Off Isolation Figure
+OISO              Differential off isolation
+                                                        RL = 50 Ω
+                                                        CL = 5 pF
+                                                                                             Switch OFF                      -22                  dB
+                                                        f = 240 MHz
+                                                        Refer to Off Isolation Figure
+                                                        RL = 50 Ω
+                                                        CL = 5 pF
+XTALK             Channel to Channel crosstalk                                               Switch ON                       -90                  dB
+                                                        f = 100 kHz
+                                                        Refer to Crosstalk Figure
+                                                        RL = 50 Ω; Refer to BW and
+BW                Bandwidth                                                                  Switch ON                       1.2                  GHz
+                                                        Insertion Loss Figure
+                                                        RL = 50 Ω
+ILOSS             Insertion loss                        f = TBD MHz; Refer to BW and         Switch ON                      -0.8                  dB
+                                                        Insertion Loss Figure
+
+(1)    Specified by design, not tested in production.
+
+6.7 Timing Requirements
+TA = –40°C to +125°C , VCC = 2.3 V to 5.5V, GND = 0V, Typical values are at VCC = 3.3 V, TA = 25°C, (unless otherwise
+noted)
+                PARAMETER (1)                                          TEST CONDITIONS                              MIN     NOM        MAX        UNIT
+           Switching time between channels       VNC = 0.8 V
+tswitch                                                                                                                       0.9             1    µs
+           (SEL1, SEL2 to output)                Refer to Tswitch Timing Figure
+                                                 VNC = 0.8 V
+ton        Device turn on time (OE to output)                                                                                 200       250        µs
+                                                 Refer to Ton and Toff Figure
+                                                                                        RL = 50 Ω,
+                                                 VNC = 0.8 V                            CL = 5 pF,
+toff       Device turn off time (OE to output)                                                                                     1     10        µs
+                                                 Refer to Ton and Toff Figure           VCC = 2.3 V to 5.5 V
+                                                 VNC = 0.8 V
+           Device turn off time VCC to Switch    Refer to Ton and Toff Figure
+toff_Vcc                                                                                                                                250        µs
+           off                                   Ramp rate VCC = 2.3 V to 0 V
+                                                 250µs
+           Skew of opposite transitions of                                              RL = 50 Ω,
+                                                 VCOM1/2 = VCC
+tSK(P)     same output (between COM1 and                                                CL = 1 pF,                                 9     50        ps
+                                                 Refer to Tsk Figure
+           COM2) (1)                                                                    VCC = 2.3 V to 5.5 V
+                                                                                        RL = 50 Ω,
+                                                 VCOM1/2 = VCC
+tpd        Propagation delay (1)                                                        CL = 5 pF,                            130       200        ps
+                                                 Refer to Tpd Figure
+                                                                                        VCC = 2.3 V to 5.5 V
+
+(1)    Specified by design, not tested in production.
+
+
+
+
+8          Submit Documentation Feedback                                                        Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                        Product Folder Links: TMUX1072
+                                                                                                                                                    TMUX1072
+www.ti.com                                                                                                            SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+6.8 Typical Characteristics
+
+                       10                                                                                    -60
+                        0
+                      -10
+                      -20                                                                                    -65
+                      -30
+    Magnitude (dB)
+
+
+
+
+                                                                                            Magnitude (dB)
+                      -40
+                                                                                                             -70
+                      -50
+                      -60
+                      -70
+                                                                                                             -75
+                      -80
+                      -90
+                     -100                                                                                    -80
+                     -110
+                     -120
+                     -130                                                                                    -85
+                        100k    1M        10M       100M                1G      10G                             1M                                      10M
+                                          Frequency (Hz)                         TMUX
+                                                                                  D003
+                                                                                                                            Frequency (Hz)                 TMUX
+                                                                                                                                                            D001
+                               Figure 1. Off-Isolation vs Frequency                                                  Figure 2. Xtalk vs Frequency
+                                                              0
+
+
+                                                              -1
+
+
+                                                              -2
+                                                  Gain (dB)
+
+
+
+
+                                                              -3
+
+
+                                                              -4
+
+
+                                                              -5
+
+
+                                                              -6
+                                                                   1M            10M            100M                  1G
+                                                                                   Frequency (Hz)                       TMUX
+                                                                                                                         D001
+                                                               Figure 3. Bandwidth and Insertion Loss vs Frequency
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                                                      Submit Documentation Feedback           9
+                                                                         Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                             www.ti.com
+
+
+7 Parameter Measurement Information
+                                                                     V
+
+
+
+                                              VI/O
+
+
+
+                                                                  Switch                       ISINK
+
+
+
+            Channel ON, RON = V/ISINK
+
+                                              Figure 4. ON-State Resistance (RON)
+
+
+                                            VCOM                                               VNC/NO
+                                                       A                            A
+
+                                                                  Switch
+
+
+                                                        Figure 5. Off Leakage
+
+
+                                                 VCOM
+                                                             A
+
+                                                                           Switch
+
+
+                                                        Figure 6. On Leakage
+
+                                                                                         VNC
+                                                      VCOM
+                                                                                         VNO
+                                     CL        RL
+                                                       SEL
+
+                                             VSEL
+
+
+
+                                                                                                 1.8 V
+                                                     VSEL        0.8 V          1.2 V
+                                                                                                 0V
+                                                      tSWITCH                            tSWITCH
+                                                                                                 VNC
+                                                                                        90 %
+                                                     VCOM                10 %
+                                                                                                 0V
+
+      (1)   All input pulses are supplied by generators having the following characteristics: PRR ≤ 10 MHz, ZO = 50 Ω, tr < 500
+            ps, tf < 500 ps.
+      (2)   CL includes probe and jig capacitance.
+
+                                                       Figure 7. tSWITCH Timing
+
+
+
+
+10     Submit Documentation Feedback                                                            Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                      Product Folder Links: TMUX1072
+                                                                                                                                           TMUX1072
+www.ti.com                                                                                         SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+                                     Parameter Measurement Information (continued)
+                                                                                                                                   2.3 V
+                                                                   VNC             VCC
+                                VCOM
+                                                                   VNO                                                             1.8 V
+                CL        RL                                                       VOE         0.8 V               1.2 V
+                                                                                                                                   0V
+                                     OE
+                                                                                         tON                               tOFF
+                                                                                                                                  VNC/NO
+                        VOE                                                                                                90 %
+                                                                                   VCOM                10 %
+                                                                                                                                   0V
+
+
+       (1)   All input pulses are supplied by generators having the following characteristics: PRR ≤ 10 MHz, ZO = 50 Ω, tr < 500
+             ps, tf < 500 ps.
+       (2)   CL includes probe and jig capacitance.
+
+                                                            Figure 8. tON, tOFF for OE
+
+                                     Network Analyzer                              Switch
+
+                                                     50 O            VCOM1
+                                                                                                                    50 O
+                                Source
+                                Signal
+
+
+
+                                                     50 O             VCOM2
+                                                                                                        50 O
+                                Source
+                                Signal
+
+
+
+
+                                                50 O
+
+
+                                                50 O
+
+
+
+                                                             Figure 9. Off Isolation
+
+                                 Network Analyzer                              Switch
+
+                                                50                 VCOM1
+                                                                                                                             50
+                            Source
+                            Signal
+                                                                                                                    50
+
+
+                                                                   VCOM2
+                                                                                                              50
+                                           50
+                                                                                                   50
+
+
+
+                                                             Figure 10. Cross Talk
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                                     Submit Documentation Feedback          11
+                                                            Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                            www.ti.com
+
+
+                                   Parameter Measurement Information (continued)
+                               Network Analyzer                              Switch
+
+                                           50
+                                                                VCOM1
+                                                                                                                       50
+                          Source
+                          Signal
+
+
+
+                                           50
+                                                                VCOM2
+                                                                                                      50
+                          Source
+                          Signal
+
+
+
+
+                                                  50
+
+
+
+                                                  50
+
+
+
+
+                                                  Figure 11. BW and Insertion Loss
+
+
+                                                                                                                              18 V
+                              VCOM                                            VCOM                            VPOS_THLD
+                                                                                                                              0V
+
+                                                            CL          RL
+                                   OE
+                                                                             tEN_OVP                               tREC_OVP
+                        VOE                                                                                                   VCC
+                                                                               FLT                              10 %
+                                                                                        10 %                                  0V
+
+
+                                        Figure 12. tEN_OVP and tDIS_OVP Timing Diagram
+
+                                         Switch
+
+                           VCOM
+                                                                   50                                                          0.4 V
+                                                                                 VCOM              50 %            50 %
+                                                           50                                                                  0V
+
+                                                                                          tPD                           tPD
+                                                                                                                              0.4 V
+                                                                               VNC/NO                50 %              50 %
+                                                                                                                              0V
+
+      (1)   All input pulses are supplied by generators having the following characteristics: PRR ≤ 10 MHz, ZO = 50 Ω, tr < 500
+            ps, tf < 500 ps.
+      (2)   CL includes probe and jig capacitance.
+
+                                                                Figure 13. tPD
+
+
+
+
+12     Submit Documentation Feedback                                                           Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                       Product Folder Links: TMUX1072
+                                                                                                                               TMUX1072
+www.ti.com                                                                                     SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+                                     Parameter Measurement Information (continued)
+                                       Switch
+                                                        VNC1
+                       VCOM1                                                                                              0.4 V
+                                                                50 O     VCOM1/2
+                                                         50 O                                                             0V
+                                                                                                                          0.4 V
+                                                        VNC2               VNC1                   50 %          50 %
+                       VCOM2                                                                                              0V
+                                                                50 O                     tSK                       tSK
+                                                                                                                          0.4 V
+                                                         50 O              VNC2                     50 %          50 %
+                                                                                                                          0V
+
+
+       (1)   All input pulses are supplied by generators having the following characteristics: PRR ≤ 10 MHz, ZO = 50 Ω, tr < 500
+             ps, tf < 500 ps.
+       (2)   CL includes probe and jig capacitance.
+
+                                                                Figure 14. tSK
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                              Submit Documentation Feedback       13
+                                                        Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                            www.ti.com
+
+
+8 Detailed Description
+
+8.1 Overview
+The TMUX1072 is a high speed, 2-channel 2:1 analog switch with overvoltage protection. The device is
+bidirectional and can be used as a dual 2:1 or 1:2 switch, but OVP only applies to the COM pins. The device also
+contains a fault indicator pin which can signal to the system of either an over voltage or over temperature event.
+The device maintains excellent signal integrity through the optimization of both RON and BW while protecting the
+system with up to 18 V OVP protection. The OVP implementation is designed to protect sensitive system
+components behind the switch that cannot survive fault conditions.
+
+8.2 Functional Block Diagram
+
+                                              VCC
+
+
+                              SEL1
+                                         6M
+
+                              SEL2                                Control
+                                         6M                                                   FLT
+                                                                   Logic
+
+                                OE
+                                         3M
+                                              VOVP
+                                                     OVP
+
+                                                                                             VNC1
+                             VCOM1
+                                                                                             VNC2
+
+
+
+
+                                                                                             VNO1
+                             VCOM2
+                                                                                             VNO2
+                                                                 Switches
+
+
+
+
+14     Submit Documentation Feedback                                           Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                              Product Folder Links: TMUX1072
+                                                                                                                        TMUX1072
+www.ti.com                                                                                 SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+8.3 Feature Description
+8.3.1 Powered-off Protection
+When the TMUX1072 is powered off the I/Os of the device remain in a high-Z state. The crosstalk, off-isolation,
+and leakage remain within the Electrical Specifications
+This prevents errant voltages from reaching the rest of the system and maintains isolation when the system is
+powering up.
+
+8.3.2 Overvoltage Detection
+When a voltage on the COM pin exceeds the VOVP_TH, the open drain output FLTpin pulls the pin low to indicate
+an overvoltage event has been detected. The open drain output will release the FLT pin when the voltage on the
+COM pin returns below the VOVP_TH.
+
+8.3.3 Overtemperature Detection
+When the junction temperature of the device exceeds the overtemperature detection threshold TOTD_TH, the open
+drain output FLT pin pulls the pin low to indicate an overtemperature event has been detected. The open drain
+output releases the FLT pin when the junction temperature returns below the TOTD_TH.
+
+8.3.4 Overvoltage Protection
+The OVP of the TMUX1072 is designed to protect the system from overvoltage conditions up to 18 V on the
+COM1 and COM2 pins. This protection is valid even if Vcc = 0V. Figure 15 depicts an event where up to 18 V
+could appear on COM1 and COM2 that could pass through the device and damage components behind the
+device.
+
+                                                                                              Device 1
+
+                                          Existing Solutions
+                                                                    NC1
+                                          COM1
+                                                                    NO1
+                                                                    NC2
+                                          COM2
+                                                                    NO2
+                                                                                              Device 2
+
+
+
+
+                               Figure 15. Existing Solution Being Damaged by a Short, 18 V
+
+The TMUX1072 opens the switches and protect the rest of the system by blocking the 18 V as depicted in
+Figure 16.
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                          Submit Documentation Feedback       15
+                                                          Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                     www.ti.com
+
+
+Feature Description (continued)
+
+                                                          18 V does not reach
+                                                             rest of system
+
+
+
+
+                                                                                               Device 1
+                                                                     NC1
+                                     COM1
+                                                                     NO1
+                                                                     NC2
+                                     COM2
+                                                                     NO2
+
+
+                                                                                                USB
+                                                                                               Device 2
+
+
+
+
+                                       Figure 16. Protecting During a 18-V Short
+
+Figure 17 is a waveform showing the voltage on the pins during an overvoltage scenario.
+                                                                                            18 V
+
+
+
+
+                                              VOVP_THLD
+
+                                      COM1/COM2
+                                                                                             0V
+
+
+
+
+                                       NO1/NO2 or
+                                         NC1/NC2
+                                                                                             0V
+
+
+
+
+                                                FLT
+
+
+                                  Figure 17. Overvoltage Protection Waveform, 18 V
+
+
+8.4 Device Functional Modes
+8.4.1 Pin Functions
+
+                                                           Table 1. Function Table
+           OE                       SEL1                                SEL2           COM1 Connection             COM2 Connection
+            H                          X                                   X                High-Z                        High-Z
+            L                          L                                   L             COM1 to NC1                  COM2 to NC2
+            L                          L                                   H             COM1 to NC1                  COM2 to NO2
+            L                          H                                   L            COM1 to NO1                   COM2 to NC2
+            L                          H                                   H            COM1 to NO1                   COM2 to NO2
+
+
+
+
+16     Submit Documentation Feedback                                                    Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                      Product Folder Links: TMUX1072
+                                                                                                                           TMUX1072
+www.ti.com                                                                                    SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+9 Application and Implementation
+
+                                                           NOTE
+               Information in the following applications sections is not part of the TI component
+               specification, and TI does not warrant its accuracy or completeness. TI’s customers are
+               responsible for determining suitability of components for their purposes. Customers should
+               validate and test their design implementation to confirm system functionality.
+
+
+9.1 Application Information
+There are many applications in which processors and microcontrollers have a limited number of I/Os. This IC can
+effectively expand the limited number of I/Os by switching between multiple signal paths in order to interface
+them to a single processor or microcontroller. The device can also be used to connect a single microcontroller to
+two signal paths. With independent control of the two switches using SEL1 and SEL2, TMUX1072 can be used
+to cross switch single ended signals.
+
+9.2 Typical Application
+The TMUX1072 is used to switch signals between the high speed signal paths that may be exposed to a
+connector or near a bus which could experience an overvoltage condition. The TMUX1072 has internal pull-down
+resistors on SEL1, SEL2, and OE. The pull-down on SEL1 and SEL2 pins ensure the NC1/NC2 channel is
+selected by default. The pull-down on OE enables the switch when power is applied.
+
+
+                                                                                   TMUX1072
+                                      Device 1                              VCC                OVP
+                                                                     NC1
+                                                                                                      COM1
+                                                                     NO1
+                                                                     NC2
+                                                                                                      COM2
+                                                                     NO2
+
+                                                                    SEL1
+                                      Device 2
+                                                                    SEL2      Logic
+                                                                             Control
+                                                                      OE
+
+                                                                      FLT
+
+
+
+                                                                                         GND
+
+
+
+
+                                             Figure 18. Typical TMUX1072 Application
+
+9.2.1 Design Requirements
+The TMUX1072 has internal pull-down resistors on SEL1, SEL2, and OE, so no external resistors are required
+on the logic pins. The internal pull-down resistor on SEL1 and SEL2 pins ensures the NC1 and NC2 channels
+are selected by default. The internal pull-down resistor on OE enables the switch when power is applied to VCC.
+The FLT indicator output pin is an open drain output that will require an external pull-up resistor for the
+overvoltage and overtemperature condition to be detected. If feature is unused, FLT pin may be left floating or
+connected to ground
+
+9.2.2 Detailed Design Procedure
+The TMUX1072 can be properly operated without any external components. However, TI recommends that
+unused signal pins must be connected to ground through a 50-Ω resistor to prevent signal reflections back into
+the device. TI does recommend a 100-nF bypass capacitor placed close to TMUX1072 VCC pin.
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                             Submit Documentation Feedback       17
+                                                        Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                        www.ti.com
+
+
+Typical Application (continued)
+9.2.3 Application Curves
+Bandwidth is defined as the range of frequencies that are attenuated by less than 3 dB when the input is applied
+to the source pin of an on-channel, and the output is measured at the drain pin of the TMUX1072. Figure 19
+shows the bandwidth of TMUX1072.
+                                                0
+
+
+                                                -1
+
+
+                                                -2
+                                    Gain (dB)
+
+                                                -3
+
+
+                                                -4
+
+
+                                                -5
+
+
+                                                -6
+                                                     1M           10M            100M          1G
+                                                                    Frequency (Hz)               TMUX
+                                                                                                  D001
+
+                               Figure 19. Bandwidth and Insertion Loss vs Frequency
+
+10 Power Supply Recommendations
+Power to the device is supplied through the VCC pin. TI recommends placing a 100-nF bypass capacitor as
+close to the supply pin VCC as possible to help smooth out lower frequency noise to provide better load
+regulation across the frequency spectrum.
+
+11 Layout
+
+11.1 Layout Guidelines
+1. Place supply bypass capacitors as close to VCC pin as possible and avoid placing the bypass caps near the
+   signal traces.
+2. The high-speed traces should always be of equal length and must be no more than 4 inches; otherwise, the
+   eye diagram performance may be degraded.
+3. Route the high-speed signals using a minimum of vias and corners which will reduce signal reflections and
+   impedance changes. When a via must be used, increase the clearance size around it to minimize its
+   capacitance. Each via introduces discontinuities in the transmission line of the signal and increases the
+   chance of picking up interference from the other layers of the board. Be careful when designing test points
+   on twisted pair lines; through-hole pins are not recommended.
+4. When it becomes necessary to turn 90°, use two 45° turns or an arc instead of making a single 90° turn. This
+   reduces reflections on the signal traces by minimizing impedance discontinuities.
+5. Do not route signal traces under or near crystals, oscillators, clock signal generators, switching regulators,
+   mounting holes, magnetic devices, or IC’s that use or duplicate clock signals.
+6. Avoid stubs on the high-speed signals because they cause signal reflections.
+7. Route all high-speed signal traces over continuous planes (VCC or GND), with no interruptions.
+8. Avoid crossing over anti-etch, commonly found with plane splits.
+9. For high frequency systems, a printed circuit board with at least four layers is recommended: two signal
+   layers separated by a ground layer and a power layer. The majority of signal traces should run on a single
+   layer, preferably Signal 1. Immediately next to this layer should be the GND plane, which is solid with no
+   cuts. Avoid running signal traces across a split in the ground or power plane. When running across split
+   planes is unavoidable, sufficient decoupling must be used. Minimizing the number of signal vias reduces EMI
+   by reducing inductance at high frequencies. For more information on layout guidelines, see High Speed
+   Layout Guidelines (SCAA082)
+
+18     Submit Documentation Feedback                                                       Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                          Product Folder Links: TMUX1072
+                                                                                                                            TMUX1072
+www.ti.com                                                                                     SCDS382C – APRIL 2018 – REVISED AUGUST 2019
+
+
+11.2 Layout Example
+                           LEGEND
+
+      VIA to Power Plane             Polygonal Copper Pour
+      VIA to GND Plane
+
+
+
+
+                                                               12
+                                                   1 SEL1     FLT   COM1 11
+
+
+                                                   2 NO1              NC1 10
+                                                                                                                              Vcc
+                                                   3 GND              VCC 9
+
+
+                                                   4 NO2              NC2 8                                             Bypass Capacitor
+
+
+                                                   5 SEL2           COM2    7
+                                                              OE
+                                                               6
+
+
+                                                                                Not to scale
+                                                        Figure 20. Layout Example
+
+
+
+
+Copyright © 2018–2019, Texas Instruments Incorporated                                              Submit Documentation Feedback       19
+                                                         Product Folder Links: TMUX1072
+TMUX1072
+SCDS382C – APRIL 2018 – REVISED AUGUST 2019                                                                                    www.ti.com
+
+
+12 Device and Documentation Support
+
+12.1 Documentation Support
+12.1.1 Related Documentation
+For related documentation see the following:
+• High-Speed Layout Guidelines Application Report
+• High-Speed Interface Layout Guidelines
+
+12.2 Receiving Notification of Documentation Updates
+To receive notification of documentation updates, navigate to the device product folder on ti.com. In the upper
+right corner, click on Alert me to register and receive a weekly digest of any product information that has
+changed. For change details, review the revision history included in any revised document.
+
+12.3 Community Resources
+The following links connect to TI community resources. Linked contents are provided "AS IS" by the respective
+contributors. They do not constitute TI specifications and do not necessarily reflect TI's views; see TI's Terms of
+Use.
+TI E2E™ Online Community TI's Engineer-to-Engineer (E2E) Community. Created to foster collaboration
+           among engineers. At e2e.ti.com, you can ask questions, share knowledge, explore ideas and help
+           solve problems with fellow engineers.
+Design Support TI's Design Support Quickly find helpful E2E forums along with design support tools and
+           contact information for technical support.
+
+12.4 Trademarks
+E2E is a trademark of Texas Instruments.
+12.5 Electrostatic Discharge Caution
+         This integrated circuit can be damaged by ESD. Texas Instruments recommends that all integrated circuits be handled with
+         appropriate precautions. Failure to observe proper handling and installation procedures can cause damage.
+         ESD damage can range from subtle performance degradation to complete device failure. Precision integrated circuits may be more
+         susceptible to damage because very small parametric changes could cause the device not to meet its published specifications.
+
+12.6 Glossary
+SLYZ022 — TI Glossary.
+   This glossary lists and explains terms, acronyms, and definitions.
+
+13 Mechanical, Packaging, and Orderable Information
+The following pages include mechanical, packaging, and orderable information. This information is the most
+current data available for the designated devices. This data is subject to change without notice and revision of
+this document. For browser-based versions of this data sheet, refer to the left-hand navigation.
+
+
+
+
+20     Submit Documentation Feedback                                                   Copyright © 2018–2019, Texas Instruments Incorporated
+
+                                                   Product Folder Links: TMUX1072
+                                                                                                                                                                      PACKAGE OPTION ADDENDUM
+
+       www.ti.com                                                                                                                                                                                                   10-Nov-2025
+
+
+
+
+PACKAGING INFORMATION
+
+       Orderable part number          Status     Material type      Package | Pins      Package qty | Carrier        RoHS             Lead finish/              MSL rating/               Op temp (°C)          Part marking
+                                        (1)            (2)                                                             (3)            Ball material             Peak reflow                                           (6)
+                                                                                                                                            (4)                      (5)
+
+          TMUX1072DGSR                Active      Production      VSSOP (DGS) | 10       2500 | LARGE T&R             Yes           NIPDAUAG | SN          Level-1-260C-UNLIM              -40 to 125                1A9
+         TMUX1072DGSR.A               Active      Production      VSSOP (DGS) | 10       2500 | LARGE T&R             Yes                  SN              Level-1-260C-UNLIM              -40 to 125                1A9
+          TMUX1072RUTR                Active      Production       UQFN (RUT) | 12       3000 | LARGE T&R             Yes              NIPDAUAG            Level-1-260C-UNLIM              -40 to 125                1BU
+         TMUX1072RUTR.A               Active      Production       UQFN (RUT) | 12       3000 | LARGE T&R             Yes              NIPDAUAG            Level-1-260C-UNLIM              -40 to 125                1BU
+
+(1)
+      Status: For more details on status, see our product life cycle.
+
+(2)
+   Material type: When designated, preproduction parts are prototypes/experimental devices, and are not yet approved or released for full production. Testing and final process, including without limitation quality assurance,
+reliability performance testing, and/or process qualification, may not yet be complete, and this item is subject to further changes or possible discontinuation. If available for ordering, purchases will be subject to an additional
+waiver at checkout, and are intended for early internal evaluation purposes only. These items are sold without warranties of any kind.
+
+(3)
+      RoHS values: Yes, No, RoHS Exempt. See the TI RoHS Statement for additional information and value definition.
+
+(4)
+   Lead finish/Ball material: Parts may have multiple material finish options. Finish options are separated by a vertical ruled line. Lead finish/Ball material values may wrap to two lines if the finish value exceeds the maximum
+column width.
+
+(5)
+  MSL rating/Peak reflow: The moisture sensitivity level ratings and peak solder (reflow) temperatures. In the event that a part has multiple moisture sensitivity ratings, only the lowest level per JEDEC standards is shown.
+Refer to the shipping label for the actual reflow temperature that will be used to mount the part to the printed circuit board.
+
+(6)
+      Part marking: There may be an additional marking, which relates to the logo, the lot trace code information, or the environmental category of the part.
+
+Multiple part markings will be inside parentheses. Only one part marking contained in parentheses and separated by a "~" will appear on a part. If a line is indented then it is a continuation of the previous line and the two
+combined represent the entire part marking for that device.
+
+Important Information and Disclaimer:The information provided on this page represents TI's knowledge and belief as of the date that it is provided. TI bases its knowledge and belief on information provided by third parties, and
+makes no representation or warranty as to the accuracy of such information. Efforts are underway to better integrate information from third parties. TI has taken and continues to take reasonable steps to provide representative
+and accurate information but may not have conducted destructive testing or chemical analysis on incoming materials and chemicals. TI and TI suppliers consider certain information to be proprietary, and thus CAS numbers
+and other limited information may not be available for release.
+
+In no event shall TI's liability arising out of such information exceed the total purchase price of the TI part(s) at issue in this document sold by TI to Customer on an annual basis.
+
+
+
+
+                                                                                                          Addendum-Page 1
+                                                                               PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                                                          5-Nov-2024
+
+
+
+TAPE AND REEL INFORMATION
+
+       REEL DIMENSIONS                                                                      TAPE DIMENSIONS
+                                                                                       K0         P1
+
+
+
+                                                                                                                         B0 W
+                                        Reel
+                                      Diameter
+                                                                                    Cavity             A0
+                                                                A0   Dimension designed to accommodate the component width
+                                                                B0   Dimension designed to accommodate the component length
+                                                                K0   Dimension designed to accommodate the component thickness
+                                                                W    Overall width of the carrier tape
+                                                                P1   Pitch between successive cavity centers
+
+
+                                       Reel Width (W1)
+                              QUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE
+
+                                                                                                        Sprocket Holes
+
+
+                                                 Q1        Q2          Q1    Q2
+
+                                                 Q3        Q4          Q3    Q4                    User Direction of Feed
+
+
+
+                                                            Pocket Quadrants
+
+
+*All dimensions are nominal
+             Device           Package Package Pins              SPQ       Reel   Reel   A0                     B0         K0     P1     W     Pin1
+                               Type Drawing                             Diameter Width (mm)                   (mm)       (mm)   (mm)   (mm) Quadrant
+                                                                          (mm) W1 (mm)
+    TMUX1072DGSR              VSSOP     DGS           10        2500        330.0        12.4          5.25   3.35       1.25   8.0    12.0    Q1
+     TMUX1072RUTR              UQFN     RUT           12        3000        180.0           9.5        1.9     2.2       0.7    4.0    8.0     Q1
+
+
+
+
+                                                                      Pack Materials-Page 1
+                                                                PACKAGE MATERIALS INFORMATION
+
+www.ti.com                                                                                                              5-Nov-2024
+
+
+
+ TAPE AND REEL BOX DIMENSIONS
+
+
+
+
+                                                               Width (mm)
+                                                                              H
+                      W
+
+
+
+
+                                                          L
+
+
+
+
+*All dimensions are nominal
+             Device           Package Type   Package Drawing   Pins         SPQ    Length (mm)   Width (mm)   Height (mm)
+     TMUX1072DGSR               VSSOP             DGS           10          2500      366.0        364.0         50.0
+     TMUX1072RUTR                UQFN             RUT           12          3000      189.0        185.0         36.0
+
+
+
+
+                                                        Pack Materials-Page 2
+                                                                                                           PACKAGE OUTLINE
+DGS0010A                                                        SCALE 3.200
+                                                                                                      VSSOP - 1.1 mm max height
+                                                                                                                   SMALL OUTLINE PACKAGE
+
+
+
+
+                                                                                                                            C
+                                        5.05
+                                             TYP                                                           SEATING PLANE
+                                        4.75
+
+             A                                  PIN 1 ID                                                                0.1 C
+                                                AREA
+
+                                                                                         8X 0.5
+                                                                                  10
+                    1
+
+           3.1
+           2.9                                                                           2X
+          NOTE 3                                                                          2
+
+
+                    5
+                                                                              6
+                                                                                              0.27
+                                                                                       10X
+                                                                                              0.17
+                                          3.1                                                  0.1   C A   B              1.1 MAX
+                        B
+                                          2.9
+                                        NOTE 4
+
+
+
+
+                                                                                       0.23
+                                                                                            TYP
+                                        SEE DETAIL A                                   0.13
+
+
+
+
+                                                                                         0.25
+                                                                                  GAGE PLANE
+
+
+
+
+                                                                                                                  0.7                    0.15
+                                                                                       0 -8                                              0.05
+                                                                                                                  0.4
+
+                                                                                                                 DETAIL A
+                                                                                                                  TYPICAL
+
+
+                                                                                                                                4221984/A 05/2015
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not
+   exceed 0.15 mm per side.
+4. This dimension does not include interlead flash. Interlead flash shall not exceed 0.25 mm per side.
+5. Reference JEDEC registration MO-187, variation BA.
+
+
+
+
+                                                                              www.ti.com
+                                                                                EXAMPLE BOARD LAYOUT
+DGS0010A                                                                                VSSOP - 1.1 mm max height
+                                                                                                          SMALL OUTLINE PACKAGE
+
+
+
+
+                                                10X (1.45)
+                             10X (0.3)                           SYMM                           (R0.05)
+                                            1                                                   TYP
+                                                                                          10
+
+                                                                                               SYMM
+
+
+
+                           8X (0.5)         5                                             6
+
+
+                                                                  (4.4)
+
+
+                                                     LAND PATTERN EXAMPLE
+                                                              SCALE:10X
+
+
+
+
+                SOLDER MASK                                               METAL UNDER                     SOLDER MASK
+                                                 METAL                                                    OPENING
+                OPENING                                                   SOLDER MASK
+
+
+
+
+                                      0.05 MAX                                                0.05 MIN
+                                      ALL AROUND                                              ALL AROUND
+
+                             NON SOLDER MASK                                            SOLDER MASK
+                                 DEFINED                                                  DEFINED
+
+                                                      SOLDER MASK DETAILS
+                                                             NOT TO SCALE
+
+
+
+
+                                                                                                                4221984/A 05/2015
+NOTES: (continued)
+
+6. Publication IPC-7351 may have alternate designs.
+7. Solder mask tolerances between and around signal pads can vary based on board fabrication site.
+
+
+
+
+                                                                www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+DGS0010A                                                                                VSSOP - 1.1 mm max height
+                                                                                                         SMALL OUTLINE PACKAGE
+
+
+
+
+                                                10X (1.45)
+                                                                 SYMM                           (R0.05) TYP
+                              10X (0.3)
+                                            1
+                                                                                           10
+
+                                                                                                SYMM
+                                 8X (0.5)
+
+                                            5                                              6
+
+                                                                  (4.4)
+
+
+
+                                                     SOLDER PASTE EXAMPLE
+                                                   BASED ON 0.125 mm THICK STENCIL
+                                                              SCALE:10X
+
+
+
+
+                                                                                                                  4221984/A 05/2015
+NOTES: (continued)
+
+8. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+9. Board assembly site may have different recommendations for stencil design.
+
+
+
+
+                                                                 www.ti.com
+                                                                                                                    PACKAGE OUTLINE
+ RUT0012A                                                          SCALE 6.800
+                                                                                                           UQFN - 0.55 mm max height
+                                                                                                                    PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                       1.8                              A
+                                    B
+                                                       1.6
+
+
+
+
+                                                                                                                           0.6
+                PIN 1 INDEX AREA                                                                                           0.4
+                                                                                                                                        0.25
+                                                                                        2.1                (0.15)                       0.15
+                                                                                        1.9
+
+
+
+
+                                                                                                                                     PIN 1 ID
+
+                                                                                                             OPTIONAL TERMINAL & PIN 1 ID
+
+
+
+
+                       0.55 MAX                                                                 C
+
+                                                                                                     SEATING PLANE
+                             0.05
+                             0.00
+                                                                                                     0.08 C
+                                                     SYMM
+                                                                                                                                     (0.15) TYP
+                                                      6
+                        10X 0.4
+                                        5
+                                                                                   7
+
+
+
+
+                             2X                                                         SYMM
+                             1.6
+
+
+
+
+                                                                                   11
+                                        1
+                                                     12                                             0.25
+                                                                                              12X
+                              PIN 1 ID                                                              0.15
+                                                                             0.6
+                           (OPTIONAL)                           12X                                  0.1      C B A
+                                                                             0.4
+                                                                                                     0.05      C
+
+                                                                                                                                   4220310/A 11/2016
+
+NOTES:
+
+1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing
+   per ASME Y14.5M.
+2. This drawing is subject to change without notice.
+
+
+
+
+                                                                   www.ti.com
+                                                                                      EXAMPLE BOARD LAYOUT
+ RUT0012A                                                                                      UQFN - 0.55 mm max height
+                                                                                                     PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                                  SYMM
+
+
+                                                  12X (0.7)                12
+                                                                                                       (R0.05) TYP
+                                              1
+
+                                                                                                11
+
+                            12X (0.2)
+
+
+
+                                   SYMM
+                                                                                                      (1.7)
+
+
+
+
+                                   8X (0.4)
+                                                                                                7
+                                              5
+
+
+
+                                                                      6
+                                                                   (1.4)
+
+
+
+                                                     LAND PATTERN EXAMPLE
+                                                                SCALE:30X
+
+
+
+
+                    0.05 MAX                                                        0.05 MIN
+                ALL AROUND                                                      ALL AROUND
+
+
+
+
+                   SOLDER MASK                       METAL                      METAL UNDER                      SOLDER MASK
+                   OPENING                                                      SOLDER MASK                      OPENING
+                                NON SOLDER MASK                                                 SOLDER MASK
+                                    DEFINED                                                       DEFINED
+                                  (PREFERRED)
+
+                                                              SOLDER MASK DETAILS
+
+
+
+                                                                                                                     4220310/A 11/2016
+
+NOTES: (continued)
+
+3. For more information, see Texas Instruments literature number SLUA271 (www.ti.com/lit/slua271).
+
+
+
+
+                                                                    www.ti.com
+                                                                               EXAMPLE STENCIL DESIGN
+RUT0012A                                                                                 UQFN - 0.55 mm max height
+                                                                                               PLASTIC QUAD FLATPACK - NO LEAD
+
+
+
+
+                                                              SYMM
+
+
+                                              12X (0.7)                12
+                                                                                               (R0.05) TYP
+                                          1
+                                                                                          11
+
+                        12X (0.2)
+
+
+
+                               SYMM
+                                                                                               (1.7)
+
+
+
+
+                               8X (0.4)
+                                                                                          7
+                                          5
+
+
+
+                                                                  6
+                                                               (1.4)
+
+
+                                                 SOLDER PASTE EXAMPLE
+                                                BASED ON 0.1 mm THICK STENCIL
+                                                         SCALE: 30X
+
+
+
+
+                                                                                                                   4220310/A 11/2016
+
+NOTES: (continued)
+
+4. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate
+   design recommendations.
+
+
+
+
+                                                                  www.ti.com
+                                         IMPORTANT NOTICE AND DISCLAIMER
+TI PROVIDES TECHNICAL AND RELIABILITY DATA (INCLUDING DATASHEETS), DESIGN RESOURCES (INCLUDING REFERENCE
+DESIGNS), APPLICATION OR OTHER DESIGN ADVICE, WEB TOOLS, SAFETY INFORMATION, AND OTHER RESOURCES “AS IS”
+AND WITH ALL FAULTS, AND DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING WITHOUT LIMITATION ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT OF THIRD
+PARTY INTELLECTUAL PROPERTY RIGHTS.
+These resources are intended for skilled developers designing with TI products. You are solely responsible for (1) selecting the appropriate
+TI products for your application, (2) designing, validating and testing your application, and (3) ensuring your application meets applicable
+standards, and any other safety, security, regulatory or other requirements.
+These resources are subject to change without notice. TI grants you permission to use these resources only for development of an
+application that uses the TI products described in the resource. Other reproduction and display of these resources is prohibited. No license
+is granted to any other TI intellectual property right or to any third party intellectual property right. TI disclaims responsibility for, and you fully
+indemnify TI and its representatives against any claims, damages, costs, losses, and liabilities arising out of your use of these resources.
+TI’s products are provided subject to TI’s Terms of Sale, TI’s General Quality Guidelines, or other applicable terms available either on
+ti.com or provided in conjunction with such TI products. TI’s provision of these resources does not expand or otherwise alter TI’s applicable
+warranties or warranty disclaimers for TI products. Unless TI explicitly designates a product as custom or customer-specified, TI products
+are standard, catalog, general purpose devices.
+TI objects to and rejects any additional or different terms you may propose.
+IMPORTANT NOTICE
+
+                                                Copyright © 2025, Texas Instruments Incorporated
+                                                                Last updated 10/2025
+

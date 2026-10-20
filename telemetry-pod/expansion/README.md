@@ -5,9 +5,10 @@ the released schematic, BOM or verified io-map. The committed v9 design remains
 the earlier pilot. `allocation.json` reserves pins for the complete expansion so
 that individual additions cannot consume the same terminal twice.
 
-The [integration stage](integration/README.md) prepares the latest electrical
-capture with the reviewed connector footprint and exact-part model. Use its
-generator for the next fresh native project once the emitter release gates clear.
+The [thermistor stage](thermistor/README.md) adds optional protected excitation
+to the [integrated sources](integration/README.md), including the reviewed
+connector footprint and exact-part model. Use the thermistor generator for the
+next fresh native project once the emitter release gates clear.
 The older snapshots remain evidence of their individual preparation stages.
 
 ## Connector and buses
@@ -25,7 +26,10 @@ cable drops in the ratiometric error budget. An independently regulated auxiliar
 nominal voltages do not establish ratiometric tracking.
 Place optional thermistor pull-ups on the protected auxiliary branch, downstream
 of its switch; an auxiliary branch fault invalidates those channels. Calibration
-must include the input divider's parallel loading.
+must include the input divider's parallel loading. The prepared thermistor
+candidate uses a separate2.495V shunt excitation downstream of AUX5V to absorb
+input-fault current. It therefore needs explicit excitation/reference calibration;
+it does not inherit ratiometric accuracy from its upstream power source.
 
 Positions 29–30 and 33–34 carry the same dedicated tire-sensor CAN pair, providing
 two harness legs for a linear bus. Positions 31–32 supply the tire sensors, and

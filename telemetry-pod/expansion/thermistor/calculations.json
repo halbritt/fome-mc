@@ -1,0 +1,95 @@
+{
+  "status": "conditional DC/acquisition model; physical qualification pending",
+  "planning_excitation_V": [
+    2.4,
+    2.586
+  ],
+  "bias_fractional_allowance": 0.023129999999999873,
+  "pullup_fractional_allowance": 0.004253249999999875,
+  "normal_all_shorted_min_shunt_A_if_VF_le_1_5V": 0.001070621244504235,
+  "max_diode_VF_for_1mA_shunt_at_min_aux_and_four_shorts_V": 1.5289018855558472,
+  "source_fault_corners": {
+    "16": {
+      "max_shunt_current_A": 0.040268277099508476,
+      "max_shunt_power_W": 0.1027095822108175,
+      "max_each_bias_resistor_power_W": 0.23667427600397178,
+      "max_each_pullup_power_W": 0.0185750041363429,
+      "shunt_rise_K_if_board_matches_datasheet_206K_per_W": 21.158173935428405
+    },
+    "24": {
+      "max_shunt_current_A": 0.06395549892274877,
+      "max_shunt_power_W": 0.16396473784571686,
+      "max_each_bias_resistor_power_W": 0.5970088138646903,
+      "max_each_pullup_power_W": 0.04685528725049817,
+      "shunt_rise_K_if_board_matches_datasheet_206K_per_W": 33.776735996217674
+    }
+  },
+  "bias_resistor_ambient_derating_W_if_linear_70_to_155C": {
+    "105": 0.8823529411764706,
+    "125": 0.5294117647058824
+  },
+  "nominal_no_sensor_open_line_V": 1.6633333333333333,
+  "nominal_short_line_V": 0.0,
+  "nominal_max_sensor_power_W_any_resistance": 0.00010375041666666668,
+  "nominal_resistance_at_max_sensor_power_ohm": 6666.666666666666,
+  "nominal_max_input_RC_seconds": 0.0006666666666666665,
+  "full_scale_step_to_half_12bit_LSB_seconds": 0.0060072755648528575,
+  "ten_channel_four_round_ideal_schedule_seconds": 0.008279113520408162,
+  "diagnostic_excitation_volts_per_code": 0.004703125,
+  "examples": [
+    {
+      "sensor_ohm": 100.0,
+      "line_V": 0.02458128078817734,
+      "buffer_V": 0.01229064039408867,
+      "ideal_MCP3208_code": 20.136985221674877,
+      "recovered_ohm_with_loading": 99.99999999999999,
+      "wrong_ohm_if_loading_ignored": 99.50248756218905,
+      "sensor_power_W": 6.042393651872164e-06
+    },
+    {
+      "sensor_ohm": 1000.0,
+      "line_V": 0.21695652173913044,
+      "buffer_V": 0.10847826086956522,
+      "ideal_MCP3208_code": 177.73078260869565,
+      "recovered_ohm_with_loading": 999.9999999999998,
+      "wrong_ohm_if_loading_ignored": 952.3809523809523,
+      "sensor_power_W": 4.707013232514178e-05
+    },
+    {
+      "sensor_ohm": 10000.0,
+      "line_V": 0.998,
+      "buffer_V": 0.499,
+      "ideal_MCP3208_code": 817.5616,
+      "recovered_ohm_with_loading": 9999.999999999998,
+      "wrong_ohm_if_loading_ignored": 6666.666666666666,
+      "sensor_power_W": 9.96004e-05
+    },
+    {
+      "sensor_ohm": 100000.0,
+      "line_V": 1.559375,
+      "buffer_V": 0.7796875,
+      "ideal_MCP3208_code": 1277.44,
+      "recovered_ohm_with_loading": 99999.99999999994,
+      "wrong_ohm_if_loading_ignored": 16666.666666666664,
+      "sensor_power_W": 2.4316503906249998e-05
+    },
+    {
+      "sensor_ohm": 1000000.0,
+      "line_V": 1.652317880794702,
+      "buffer_V": 0.826158940397351,
+      "ideal_MCP3208_code": 1353.5788079470199,
+      "recovered_ohm_with_loading": 1000000.0000000028,
+      "wrong_ohm_if_loading_ignored": 19607.843137254902,
+      "sensor_power_W": 2.7301543791938955e-06
+    }
+  ],
+  "excludes": [
+    "BAV199 cold VF bound",
+    "dynamic reverse-current/backfeed and surge",
+    "TL431 full-temperature current-related error and stability",
+    "resistor aging and layout thermal resistance/coupling",
+    "capacitor effective capacitance and ESR",
+    "sensor R-T calibration, tolerance, self-heating temperature, and harness error",
+    "ADC/buffer/reference errors and actual diagnostic timing"
+  ]
+}

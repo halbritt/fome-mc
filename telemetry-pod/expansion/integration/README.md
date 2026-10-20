@@ -19,7 +19,9 @@ STEP under project-local capture paths. All electrical components, pin numbers,
 nets, no-connects, layout and previous captured files remain identical. No
 component binding is invented from a CAD model or copied from a donor.
 
-Run `python3 prepare.py --out /absolute/fresh-inputs` before native emission.
+For the latest circuit, run [thermistor/prepare.py](../thermistor/prepare.py); it
+calls this generator and adds the optional thermistor excitation. To reproduce
+this baseline alone, run `python3 prepare.py --out /absolute/fresh-inputs`.
 Use the resulting intent/layout/captures with the released emitter, then create
 project-local library tables and verify native connectivity, ERC, assembly
 policies and the connector's actual placed geometry. The current private-property

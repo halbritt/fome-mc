@@ -1,0 +1,34 @@
+[
+  {
+    "probe": "reversed_diode",
+    "exit_code": 1,
+    "failures": [
+      "exact membership POD_5V_AUX",
+      "exact membership THERM_BIAS_IN"
+    ]
+  },
+  {
+    "probe": "REF_grounded",
+    "exit_code": 1,
+    "failures": [
+      "exact membership GND",
+      "exact membership THERM_EXC_2V495"
+    ]
+  },
+  {
+    "probe": "upstream_pullup",
+    "exit_code": 1,
+    "failures": [
+      "exact membership POD_5V_SENSOR",
+      "exact membership THERM_EXC_2V495"
+    ]
+  },
+  {
+    "probe": "malformed_library",
+    "exit_code": 1,
+    "failures": [
+      "complete library parses PodThermistor.kicad_sym",
+      "TL431 DBZ pins"
+    ]
+  }
+]
