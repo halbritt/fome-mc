@@ -1,0 +1,27 @@
+{
+  "map_sha256": "2deb314c21cb88837e106770aeb5d8600f67bd130647ca0ea9523f1a395d2b30",
+  "results": [
+    {
+      "case": "omit-concurrency",
+      "exit_code": 1,
+      "output_created": false,
+      "stderr": "",
+      "stdout": "{\n  \"findings\": [\n    {\n      \"code\": \"unmapped_requirement\",\n      \"id\": \"POD-AC-10\",\n      \"message\": \"POD-AC-10: no mapping\"\n    }\n  ],\n  \"outcome\": \"refused\"\n}"
+    },
+    {
+      "case": "omit-power-prose",
+      "exit_code": 1,
+      "output_created": false,
+      "stderr": "",
+      "stdout": "{\n  \"findings\": [\n    {\n      \"code\": \"unmapped_requirement\",\n      \"id\": \"POD-PI-P2\",\n      \"message\": \"POD-PI-P2: no mapping\"\n    }\n  ],\n  \"outcome\": \"refused\"\n}"
+    },
+    {
+      "case": "stale-record",
+      "exit_code": 1,
+      "output_created": false,
+      "stderr": "",
+      "stdout": "{\n  \"findings\": [\n    {\n      \"code\": \"spec_record_hash\",\n      \"id\": \"spec-record\",\n      \"message\": \"spec-record: map names different spec-record bytes\"\n    }\n  ],\n  \"outcome\": \"refused\"\n}"
+    }
+  ],
+  "schema": "fome-pod.requirement-map-negative-controls/1"
+}

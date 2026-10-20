@@ -32,10 +32,11 @@ The existing files must not be overwritten by the capture command.
 
 ## Acceptance evidence still required
 
-This table is a campaign work inventory, not an executable requirement map.
-The scope compiler still needs a Revision 3 map covering all 78 entries. Do not
-reuse the old map merely because some IDs are unchanged. No item below is
-claimed complete by this capture.
+This table is a campaign work inventory. `requirement-map.json` now accounts
+for all 78 entries and `compiled/` retains the compiler output. Only AC-3 has
+executable predicates (native ERC/DRC); the other obligations are explicit
+limitations or bench requirements. No criterion is claimed complete by capture
+or compilation. Unchanged IDs do not transfer old candidate evidence.
 
 | Criterion | Evidence required for the expanded candidate | Current boundary |
 | --- | --- | --- |
@@ -70,3 +71,38 @@ claimed complete by this capture.
 - This capture preserves the specification's wording. Mechanical, electrical
   and parts deviations belong in the subsequent map and evidence, not in a
   silent rewrite of the requirement source.
+
+## Compiled map
+
+The map was compiled with agent-ee `4df4c9da263065d495cb2f59d9c3075a28f997ef`.
+It declares all 58 requirement IDs and all 20 prose IDs, including built-board
+AC-8 through AC-11 and the separate on-bike power waveform obligation. The
+verification-stage subject lists the 333 references in the current series-divider
+intent. It is not the old fixture's single-U1 subject.
+
+```sh
+PYTHONPATH=/home/halbritt/git/agent-ee/src python3 -m agent_ee.requirement_scope \
+  telemetry-pod/expansion/requirements/requirement-map.json \
+  --spec-record telemetry-pod/expansion/requirements/spec-record.json \
+  --spec telemetry-pod/REQUIREMENTS.md --out /path/to/fresh-output
+```
+
+The compiled scope expects a future expanded native project at
+`scaffold/project`, relative to its output directory. This directory is not
+supplied here: a routed expanded PCB does not yet exist. Compilation without
+`--inputs` validates declarations and their baseline, and does not run ERC/DRC,
+prove schematic/PCB parity, or capture a candidate. Do not populate that path
+with the historical v9 pilot to obtain a passing result.
+
+This is a verification-stage preparation scope. The full campaign still needs
+parts, schematic, placement, routing and manufacturing stage declarations,
+complete captured contracts, and supported predicates/evidence to replace
+limitations when justified. In particular, the temperature exceptions are
+cited and their limits retained, but no assembly predicate is declared or
+exempted by this map. The canonical exemption input and assembly parameters
+must be integrated together when that predicate is added.
+
+`compiled/receipt.json` records all dispositions, tool identities and baseline
+hashes. `map-negative-controls.json` retains rejection of missing AC-10,
+missing on-bike power prose, and a stale specification-record hash. These
+refusals test accounting boundaries; they do not validate the circuit.
