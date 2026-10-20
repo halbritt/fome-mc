@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 181 previously unbound components: the
-40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 55 capacitors and 26 already-selected active, crystal and
-inductor instances. The manifest has 42 exact manufacturer/supplier identities,
+This packet adds identity metadata to 187 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 55 capacitors, six power resistors and 26 already-selected active, crystal and
+inductor instances. The manifest has 44 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 307 bindings, with 14 component bindings still
+The prepared source now contains 313 bindings, with eight component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 42
+Each selected catalog is replayed against its retained raw responses. All 44
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -115,6 +115,23 @@ not establish enclosure clearance, land-pattern suitability or vibration life.
 The 1 uF and 22 uF parts retain effective-capacitance, DC-bias, aging, ripple,
 regulator-stability and hold-up checks. All three manufacturers' rating data
 remain inputs to qualification, not completed vehicle qualification.
+
+## Power resistor identities
+
+R110/R111/R119/R120 use Vishay CRCW2512620RFKEG / C3988368: 620 ohm,
+1%, 100 ppm/K, 2512, with 1 W rated at 70 °C. R174/R175 use Vishay
+CRCW2512200RFKEGHP / C2073505: 200 ohm, 1%, 100 ppm/K, 2512, with
+1.5 W rated at 70 °C. Exact supplier responses are in `power-resistor-stock/`.
+The manifest pins the existing reviewed Vishay documents 20035 and 20043.
+Their ordering tables distinguish the EG packaging code from the HP suffix;
+omitting HP would select a different power-resistor family.
+
+The rating is conditional on heat removal and film temperature. The existing
+Hall thermal calculations, simultaneous-fault heat, thermistor 125 °C failure
+screen, PCB thermal coupling and assembled-temperature validation still apply.
+The HP sheet's separate 2 W entry at a specified terminal temperature does not
+make this a generally rated 2 W resistor. No new thermal qualification or
+transient immunity is asserted by these identity bindings.
 
 ## Native generation blocker
 
