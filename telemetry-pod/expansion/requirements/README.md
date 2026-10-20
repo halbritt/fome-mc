@@ -61,10 +61,11 @@ or compilation. Unchanged IDs do not transfer old candidate evidence.
 - The six power-integrity bullets and their prose include physical evidence.
   Keep simulated, injected and on-bike disturbances distinct. The reported
   SV650 behavior near 2,500 rpm is still an unmeasured investigation lead.
-- Carry the exact three temperature exemptions and the unresolved own-rating,
-  exact-part and enclosure-thermal obligations from
-  `../temperature-scope-fragment.json`. Exemption from a blanket predicate does
-  not qualify operation at the manufacturer's limit.
+- Verify U1, U2 and U4 against their individually accepted temperature limits;
+  these are not waivers of operating-temperature verification. The owner ruling
+  and evidence obligations are recorded in [temperature-acceptance.md](temperature-acceptance.md).
+  `../temperature-scope-fragment.json` retains historical preparation evidence;
+  its exemption wording must not be used to claim qualification.
 - The six pre-layout decision bullets require closure evidence, even where
   candidate implementation choices already exist. A generated circuit is not
   evidence that all its design choices were resolved or qualified.
@@ -127,10 +128,11 @@ with the historical v9 pilot to obtain a passing result.
 This is a verification-stage preparation scope. The full campaign still needs
 parts, schematic, placement, routing and manufacturing stage declarations,
 complete captured contracts, and supported predicates/evidence to replace
-limitations when justified. In particular, the temperature exceptions are
-cited and their limits retained, but no assembly predicate is declared or
-exempted by this map. The canonical exemption input and assembly parameters
-must be integrated together when that predicate is added.
+limitations when justified. No operating-temperature assembly predicate is
+executed by this map. Integrate the supported per-part accepted-limit input
+and part-bound thermal evidence together when AGENTEE-310 is released. Until
+then, the historical exemption input is not an executable qualification path;
+missing thermal evidence remains unknown, never pass.
 
 `compiled/receipt.json` records all dispositions, tool identities and baseline
 hashes. `map-negative-controls.json` retains rejection of missing AC-10,
