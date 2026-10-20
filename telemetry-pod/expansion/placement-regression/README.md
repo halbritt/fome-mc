@@ -82,3 +82,11 @@ Repair must reserve qualified through-board copper and mechanical occupancy
 on their actual layers, and independently check the saved candidate. Blanket
 mirroring of front courtyards, altered pads or weaker rules would not establish
 a correct repair.
+
+## Artwork follow-up
+
+[Artwork classification](artwork/README.md) retains all 117 mask and silkscreen
+records with native indexes and item UUIDs, a reproducible classifier, and
+independent review. It separates reference-field involvement from PTH-pad
+involvement without treating those overlapping categories as proven causes.
+Re-evaluate all categories on the repaired candidate.
