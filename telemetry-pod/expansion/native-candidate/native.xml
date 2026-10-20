@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/tmp/agent469-coordination/expanded-v13/project/telemetry-pod.kicad_sch</source>
-    <date>2026-10-20T06:33:43</date>
+    <source>/tmp/agent469-coordination/expanded-spi-corrected/project/telemetry-pod.kicad_sch</source>
+    <date>2026-10-20T06:37:14</date>
     <tool>Eeschema 10.0.7-10.0.7~ubuntu24.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -10082,7 +10082,7 @@
         <pin num="9" name="DGND" type="power_in"/>
         <pin num="10" name="~{CS}/SHDN" type="input"/>
         <pin num="11" name="Din" type="input"/>
-        <pin num="12" name="Dout" type="output"/>
+        <pin num="12" name="Dout" type="tri_state"/>
         <pin num="13" name="CLK" type="input"/>
         <pin num="14" name="AGND" type="power_in"/>
         <pin num="15" name="Vref" type="power_in"/>
@@ -12172,7 +12172,7 @@
       <node ref="U1" pin="21" pinfunction="IO13_21" pintype="bidirectional"/>
       <node ref="U2" pin="1" pinfunction="SDO_1" pintype="bidirectional"/>
       <node ref="U20" pin="12" pinfunction="SDO_12" pintype="tri_state"/>
-      <node ref="U4" pin="12" pinfunction="Dout_12" pintype="output"/>
+      <node ref="U4" pin="12" pinfunction="Dout_12" pintype="tri_state"/>
     </net>
     <net code="145" name="/SPI_MOSI" class="Default">
       <node ref="U1" pin="19" pinfunction="IO11_19" pintype="bidirectional"/>

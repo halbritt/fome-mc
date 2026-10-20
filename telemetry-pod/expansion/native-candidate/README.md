@@ -9,7 +9,7 @@ The emitter is agent-ee `e4cf3ab31eca7c2ed74740e6a6db61c76d3b7372`.
 Its released private-property support permits the captured CAN clock symbol to
 retain its metadata. The emission receipt pins the implementation and inputs.
 
-`prepare.py` layers three explicit adaptations onto the reviewed thermistor
+`prepare.py` layers four explicit adaptations onto the reviewed thermistor
 source:
 
 - Shorten the auxiliary-power group title from 70 characters to fit the
@@ -21,12 +21,23 @@ source:
   Its SHA-256 is pinned in the preparation script. This supplies CAD, not a
   selected capacitor or qualified land pattern.
 
+- Correct MCP3208 DOUT pin 12 from `output` to `tri_state`. The exact captured
+  manufacturer datasheet DS21298E shows output disable/high impedance in
+  Figures 1-2/1-3 and 5-1/5-2. Only this electrical-type atom changes; pin
+  geometry, names, numbers, other metadata and circuit connectivity are preserved.
+  The corrected library digest is propagated to the intent.
+
 The generated project resolves symbols and footprints from captured libraries.
-No symbol electrical types, circuit nets, component values or ERC exclusions
-are changed. The retained native ERC report from KiCad 10.0.7 has zero errors
-and one warning: U20 SDO (tri-state) shares a net with U4 DOUT (output).
-This warning remains open pending verification of output enable/disable behavior,
-chip-select sequencing and contention conditions. It is not waived here.
+Circuit nets, component values and ERC exclusions are unchanged. The native ERC
+report from KiCad 10.0.7 now has zero errors and zero warnings. The preceding
+shared-output warning is retained in `previous-spi-erc.json`; it was resolved by
+correcting an inaccurate symbol type, not by an ERC waiver.
+
+This does not qualify shared-SPI arbitration. MCP3208's 100 ns maximum output
+release and 500 ns minimum chip-select high times are listed under default 5 V
+conditions; the ADC operates at 3.3 V here. They are not asserted as guaranteed
+3.3 V turnaround limits. The CAN controller and IMU also require their own
+release-time, startup and configuration checks. See `spi-arbitration.md`.
 The native BOM contains 315 entries: JP1–JP5, six existing pogo pads and six
 power flags are excluded. This checks schematic population policy, not assembly
 readiness or PCB fabrication policy.

@@ -29,6 +29,19 @@ layout_path.write_text(json.dumps(layout, indent=2) + '\n')
 # Copper jumpers remain on-board and electrically visible, but are not parts.
 intent_path = inputs / 'intent.json'
 intent = json.loads(intent_path.read_text())
+# DS21298E figures 1-2/1-3 and 5-1/5-2 show DOUT disabled/high-Z.
+# Correct the captured symbol, without treating ERC as timing qualification.
+adc, = [lib for lib in intent['libraries'] if lib['name'] == 'Analog_ADC']
+adc_path = inputs / adc['path']
+raw = adc_path.read_bytes()
+if hashlib.sha256(raw).hexdigest() != 'cfb2be046b87a769f2d36c0ff530ce34b766d08055c1bdffd1bf6daae0487c35':
+    raise ValueError('ADC library baseline changed')
+old = b'(pin output line\n\t\t\t\t(at 15.24 0 180)\n\t\t\t\t(length 2.54)\n\t\t\t\t(name "Dout"'
+if raw.count(old) != 1:
+    raise ValueError('Expected exactly one MCP3208 DOUT declaration')
+raw = raw.replace(old, old.replace(b'pin output', b'pin tri_state'), 1)
+adc_path.write_bytes(raw)
+adc['sha256'] = hashlib.sha256(raw).hexdigest()
 jumper_ids = {'can2/JP1', *(f'thermistor/JP{i}' for i in range(2, 6))}
 found = set()
 for component in intent['components']:

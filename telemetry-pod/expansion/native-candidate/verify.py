@@ -9,6 +9,9 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 root = Path(__file__).resolve().parent
+for source in json.loads((root / 'spi-sources.json').read_text())['sources']:
+    if hashlib.sha256((root / source['path']).read_bytes()).hexdigest() != source['sha256']:
+        raise ValueError('SPI source capture changed: ' + source['path'])
 
 def hashes(path):
     return {str(p.relative_to(path)): hashlib.sha256(p.read_bytes()).hexdigest()
@@ -59,4 +62,4 @@ with tempfile.TemporaryDirectory(prefix='pod-expanded-native-') as temporary:
     subprocess.run([sys.executable, str(root / 'review/check_native.py'),
                     str(run), str(root.parent / 'thermistor/inputs'),
                     str(run / 'review.json')], check=True)
-print('PASS: exact reproduction and native graph/ERC checks; shared-SPI ERC warning remains open')
+print('PASS: exact reproduction and native graph/ERC checks; shared-SPI operational qualification remains open')
