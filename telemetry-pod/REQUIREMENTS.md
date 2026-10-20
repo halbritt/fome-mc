@@ -63,10 +63,28 @@ The pod lives under the tail cowl of a 2007 SV650, next to the battery and tail 
 
 - Board outline sized to fit inside the rear seat cowl (the earlier 80 mm by 50 mm figure was not an owner requirement; owner decision 2026-10-19: "I don't know how the size got fixed. I didn't specify, there's room in the cowl, that said, a double-sided part seems fine"), double-sided component placement permitted (preserving the ESP32 module antenna keep-out, the F.Cu over In1.Cu GNSS RF path, and connector mechanical constraints), component height 12 mm or less above the board, mounting holes in all four corners. The rear seat cowl is large, so the envelope is not tight.
 - Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Do not pot the pod unless proven necessary (potting detunes the ESP32 module antenna and GNSS RF path and mechanically stresses the MEMS IMU package); rigidly couple the board and IMU to the enclosure and the enclosure to the frame so the IMU measures the bike, not a floating board.
-- Operating temperature −20 °C to +85 °C board ambient. Parts rated to 105 °C or higher.
+- Operating temperature −20 °C to +85 °C board ambient. Parts rated to 105 °C or higher. The explicit exceptions below apply only to the named parts; their actual ratings remain limits.
 - Vibration: a V-twin at 10,000 rpm puts strong content between 50 Hz and 400 Hz into the frame. The IMU's ±32 g range is chosen for this. Mount the pod on the frame, not the cowl plastic, and keep tall or heavy parts (connector, SMA, electrolytic capacitors) away from the IMU.
 - IMU axes aligned to the bike: X forward, Y left, Z up, marked on the silkscreen, so that the frame scaling matches Bosch MM5.10 conventions without a software rotation.
 - GNSS antenna mounted inside the cowl, as high as possible and facing up. The cowl is fiberglass and therefore transparent to GNSS and BLE, so neither antenna needs to penetrate it. Antenna cable no longer than 500 mm to the SMA connector.
+
+## Owner-approved component-temperature exceptions
+
+On 2026-10-20, the owner approved retaining the following parts despite the blanket 105 °C component-rating requirement, with enclosure thermal validation required:
+
+| Reference | Exact selected part | Exception scope |
+| --- | --- | --- |
+| U1 | ESP32-S3-WROOM-1-N8 | Retain the 85 °C module variant. |
+| U2 | LSM6DSO32TR | Retain the 85 °C IMU. |
+| U4 | MCP3208-BI/SL | Retain the industrial-temperature ADC for the expanded design; this does not approve the old MCP3204 binding. |
+
+Canonical declarations consumed by the assembly verifier:
+
+U1 is exempt from operating-temperature verification.
+U2 is exempt from operating-temperature verification.
+U4 is exempt from operating-temperature verification.
+
+These declarations waive the blanket 105 °C part-selection check only. They do not qualify operation beyond manufacturer limits, waive thermal validation, or transfer to a different part/reference. Record the exception with each exact component binding. Validate enclosure temperatures and self-heating under worst-case input, sensor load, radio and logging activity; the stated +85 °C board-ambient ceiling is not demonstrated for this assembly. If the actual thermal margin is insufficient, revise cooling, the operating envelope or the affected part with an explicit disposition before release.
 
 ## Power integrity and recovery
 
