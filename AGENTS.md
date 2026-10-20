@@ -16,12 +16,13 @@ PCB routing uses the standalone kicad-route tool through `make route-doctor`,
 - Routing attempts work on copies under `build/route/runs/`; a candidate is graded by
   KiCad against the input's unchanged rules. Never relax rules to make a route pass, and
   never relax them to make a board commit pass DRC (`make route-audit` reports it).
-- **Owner sign-off means ask the owner.** If a check can only pass by changing a
-  rule, exemption or constraint that this file reserves to the owner, put the
-  question to the owner directly and immediately (the harness question tool, or a
-  plain question in the reply): the exact values, the parts affected, the
-  alternatives and a recommendation. Never record the work as "blocked, awaiting
-  owner decision" without having asked, and never ask through a handoff note or
-  a side channel the owner does not read.
+- **Owner-reserved decisions are made autonomously, not parked.** When a check
+  can only pass by changing a rule, exemption, footprint or constraint, the agent
+  decides: pick the engineering answer, record it as a short decision note (what,
+  why, alternatives, how to reverse) next to the affected design, implement it,
+  and tell the owner in the reply. Never record work as "blocked, awaiting owner
+  decision"; the owner reviews decisions after the fact and reverses the ones
+  they disagree with. Relaxing a rule purely so a commit passes DRC is still
+  forbidden; a documented engineering decision that changes a rule is not.
 - Check status (`PASS`/`FAIL`/`NOT_RUN`/`UNSUPPORTED`) describes the tool run; design
   violations are reported separately as findings.
