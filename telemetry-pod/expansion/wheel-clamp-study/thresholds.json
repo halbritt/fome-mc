@@ -1,0 +1,52 @@
+{
+  "baseline": {
+    "resistors_ohm": {
+      "input_a": 10000,
+      "input_b": 0,
+      "input_ground": 10000,
+      "threshold_ground": 10000
+    },
+    "input_dc_load_ohm": 20000,
+    "signal_gain": 0.5,
+    "clamp_attenuation": 1.0,
+    "input_thevenin_ohm": 5000.0,
+    "filter_capacitance_F": 2.2e-10,
+    "ideal_filter_tau_s": 1.0999999999999998e-06,
+    "falling_input_thresholds_after_isolation_diode_V": {
+      "0": 0.9217877094972067,
+      "0.11": 0.9389944134078212,
+      "0.55": 1.0078212290502793
+    },
+    "rising_input_threshold_after_isolation_diode_V": 1.4198013440068535,
+    "high_output_voltage_V": 3.1837300206152443
+  },
+  "same_loading_experiment": {
+    "resistors_ohm": {
+      "input_a": 4000,
+      "input_b": 12000,
+      "input_ground": 4000,
+      "threshold_ground": 3430
+    },
+    "input_dc_load_ohm": 20000,
+    "signal_gain": 0.2,
+    "clamp_attenuation": 0.25,
+    "input_thevenin_ohm": 3200.0,
+    "filter_capacitance_F": 3.4375e-10,
+    "ideal_filter_tau_s": 1.0999999999999998e-06,
+    "falling_input_thresholds_after_isolation_diode_V": {
+      "0": 0.9224818584272739,
+      "0.11": 0.9397015197845832,
+      "0.55": 1.0085801652138195
+    },
+    "rising_input_threshold_after_isolation_diode_V": 1.417874638645136,
+    "high_output_voltage_V": 3.1645921887328217
+  },
+  "limitations": [
+    "Ideal source, nominal resistances, ideal open collector high state, specified hypothetical low voltages.",
+    "Example resistor/capacitor values are not selected assembly parts.",
+    "Voltages are after the BAV199 isolation diode: no constant forward drop or connector-level threshold qualification assumed.",
+    "Small DC threshold shifts and different dynamic source impedance remain; diode loading is preserved only in the nominal DC no-clamp model.",
+    "No diode leakage, comparator input bias, tolerances, temperature, ground error or transient overshoot included.",
+    "Clamping current for 4k input resistor at -24V and hypothetical1V clamp is5.75mA, versus2.3mA in earlier10k example."
+  ]
+}
