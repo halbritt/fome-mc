@@ -1,5 +1,7 @@
 # telemetry-pod (`FOMEMC-28` — Pilot Snapshot)
 
+> **Expanded requirements accepted 2026-10-20:** [Revision 3](REQUIREMENTS.md) calls for MCP3208/eight analog inputs, two wheel-speed inputs, standalone logging, digital tire-temperature provision and a 35-position AMPSEAL. The files and renders below remain the earlier v9 pilot and do not implement this baseline.
+
 > **PILOT SNAPSHOT — NOT A RELEASE:** This placed-and-routed 4-layer `90 × 65 mm` board (`driver-preparation-v9-90x65`) is committed as an owner-approved pilot snapshot so the complete schematic, placement, routing, and 2D/3D renders are visible in-tree while trunk requalification finishes. It will be replaced by the clean-`main` requalified board once the open items below land.
 
 ## Pilot Provenance & Open Requalification Items
