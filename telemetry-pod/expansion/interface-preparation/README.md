@@ -98,3 +98,8 @@ Its [independent review](diagnostics/independent-review.md) confirms the candida
 pinmap, protocol and arithmetic, and requires a separate first-frame settling
 policy. The nominal 5 V step example needs about 3.81 ms to reach half a code;
 normal scan timing alone does not guarantee settled readings after a transition.
+
+The [prepared diagnostic circuit](diagnostic-circuit/README.md) connects three
+ADCs to eight existing rails. The ninth channel remains reserved until the
+protected auxiliary 5 V branch is implemented. Its generator preserves the
+wheel/CAN/storage/supervision circuits; native verification is still pending.

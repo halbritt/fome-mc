@@ -1,0 +1,39 @@
+[
+  {
+    "mutation": "Wrong ADC physical AIN0/AIN1 map",
+    "detected": true,
+    "failures": [
+      "TSSOP physical pin functions"
+    ],
+    "parse_errors": {}
+  },
+  {
+    "mutation": "U28 address collision with U27",
+    "detected": true,
+    "failures": [
+      "exact membership +3V3",
+      "exact membership GND"
+    ],
+    "parse_errors": {}
+  },
+  {
+    "mutation": "Prior sensor-power RTN EP grounded",
+    "detected": true,
+    "failures": [
+      "exact membership GND",
+      "exact membership SENSOR_POWER_FRONT_RTN"
+    ],
+    "parse_errors": {}
+  },
+  {
+    "mutation": "Malformed authored library",
+    "detected": true,
+    "failures": [
+      "complete library parses PodDiagnostic.kicad_sym",
+      "TSSOP physical pin functions"
+    ],
+    "parse_errors": {
+      "PodDiagnostic.kicad_sym": "expected one complete nonempty S-expression"
+    }
+  }
+]
