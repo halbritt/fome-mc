@@ -76,3 +76,8 @@ crystal and plain NAND sources are retained for review history, not selection.
 The wheel review records its primary source URLs; sensor evidence is also in
 `../sources/GS1005-GS1007.pdf`. Exact sensor output voltage/pulse limits, hot diode
 behavior and continuous negative-short pull-up dissipation remain release gates.
+
+The [Hall thermal follow-up](wheel-thermal/README.md) specifies a 2512 pull-up
+resistor candidate and excludes the supply switch's open-load FAULT indication
+from the shared fault line. It retains the unresolved assembled thermal and
+sensor qualification boundaries.

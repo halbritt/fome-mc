@@ -1,0 +1,39 @@
+{
+  "status": "calculated candidate envelope; assembled thermal validation pending",
+  "part_candidate": "Vishay CRCW2512620RFKEG / C3988368",
+  "assumptions": {
+    "rail_max_v_unverified": 6.5,
+    "continuous_signal_fault_v": -24.0,
+    "diode_forward_drop_v_conservative": 0,
+    "resistors_per_channel": 2,
+    "channels": 2,
+    "nominal_resistance_ohm": 620.0,
+    "initial_tolerance_fraction": 0.01,
+    "tcr_per_kelvin": 0.0001,
+    "film_temperature_ceiling_c": 155.0,
+    "additional_life_drift_fraction": 0.02,
+    "life_drift_scope": "design allowance, not indefinite-life guarantee"
+  },
+  "resistance_min_ohm": 593.7041879999999,
+  "maximum_channel_current_a": 0.02568619239721449,
+  "maximum_each_resistor_power_w": 0.39171443405752093,
+  "maximum_two_channel_resistor_power_w": 1.5668577362300837,
+  "nominal_family_derating_w": {
+    "85": 0.8235294117647058,
+    "105": 0.5882352941176471,
+    "125": 0.35294117647058826
+  },
+  "maximum_assembled_film_to_local_ambient_thermal_resistance_k_per_w": {
+    "85": 178.70160993281374,
+    "105": 127.64400709486696
+  },
+  "nominal_derating_curve_maximum_local_ambient_c": 121.70427310511073,
+  "exclusions": [
+    "diode heating and transient behavior",
+    "sensor survival",
+    "rail above 6.5 V",
+    "fault below -24 V",
+    "coupled heating without a verified assembled thermal model",
+    "assembly availability and exact part binding"
+  ]
+}
