@@ -24,5 +24,13 @@ PCB routing uses the standalone kicad-route tool through `make route-doctor`,
   decision"; the owner reviews decisions after the fact and reverses the ones
   they disagree with. Relaxing a rule purely so a commit passes DRC is still
   forbidden; a documented engineering decision that changes a rule is not.
+- **Every gating constraint needs a cited provenance class.** A design rule,
+  envelope dimension, clearance, hole size or limit may gate work only when it is
+  owner-stated, a manufacturer's published capability, or a datasheet/standard value,
+  each with a citation next to the number. A value an agent or a tool chose as a
+  default or a placeholder is advisory: record it as `class: default`, never let it
+  block, and replace it with a sourced value at the first opportunity. When a check
+  fails against a limit, first ask where the limit came from; an unsourced limit is a
+  defect in the limit, not in the design.
 - Check status (`PASS`/`FAIL`/`NOT_RUN`/`UNSUPPORTED`) describes the tool run; design
   violations are reported separately as findings.
