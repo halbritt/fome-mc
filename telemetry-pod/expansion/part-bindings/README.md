@@ -1,25 +1,42 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 66 previously unbound components: the
-40 selected divider resistors and 26 already-selected active, crystal and
-inductor instances. The manifest has 17 exact manufacturer/supplier identities,
+This packet adds identity metadata to 98 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors and 26 already-selected active, crystal and
+inductor instances. The manifest has 18 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 192 bindings, with 129 component bindings still
+The prepared source now contains 224 bindings, with 97 component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 17
+Each selected catalog is replayed against its retained raw responses. All 18
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
 not current purchasing promises. The 40 resistor selections are now identity-bound
 in this prepared source; the older part-selection inventory remains a historical
 snapshot of its own pinned intent.
+
+## Additional 10 kohm resistors
+
+The 32 new positions use YAGEO RT0603BRD0710KL / C95204. This exact identity
+already appears in the baseline, but the new positions have a fresh exact-ID
+stock capture and an independently downloaded manufacturer specification sheet
+in `resistor-stock/` and `resistor-sources/`. The manifest lists every position;
+all use the existing 0603 footprint. The part provides 10 kohm, 0.1% tolerance,
+25 ppm/°C and a −55 to 155 °C temperature range, covering the stated nominal,
+tolerance and temperature-coefficient requirements, including R170–R173.
+
+The sheet rates power at 0.1 W at 70 °C and lists a 75 V maximum continuous
+voltage. Both limits apply: at 10 kohm, 0.1 W corresponds to about 31.62 V.
+This selection does not establish safe operation at 75 V, the power available
+at higher local temperatures, or transient performance. Existing thermistor
+fault dissipation, local-temperature and derating holds remain open. No prior
+binding is replaced by this newer document.
 
 ## Native generation blocker
 
