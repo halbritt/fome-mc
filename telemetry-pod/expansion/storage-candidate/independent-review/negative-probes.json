@@ -1,46 +1,36 @@
 {
   "status": "PASS",
-  "scope": "Five synthetic XML changes on temporary copies, cleaned after checks; no source candidate modified.",
+  "source_sha256": "d7f638e3599b6f13957a800d97c1757dea95b426df068ccbee5ea8cb4ffa2101",
+  "checker_sha256": "cf23115c4a42f1bc17ccddb2cc8b349fd107fbf239ba68921eaf746adc5a1b9f",
+  "scope": "Synthetic mutations of final native power candidate; scratch copies removed; actual candidate untouched.",
   "results": [
     {
-      "mutation": "missing_reserved_ball",
+      "mutation": "wrong_vos_net",
       "exit_code": 1,
-      "status": "FAIL",
       "detected_by": [
-        "all153 balls represented in native nets",
-        "isolated A7"
+        "complete members EMMC_VCC_3V3",
+        "complete members GND"
       ]
     },
     {
-      "mutation": "wrong_ball_function",
+      "mutation": "wrong_cap_value",
       "exit_code": 1,
-      "status": "FAIL",
       "detected_by": [
-        "ball function A3"
+        "new nominal value C69"
       ]
     },
     {
-      "mutation": "wrong_capacitor_value",
+      "mutation": "missing_inductor_terminal",
       "exit_code": 1,
-      "status": "FAIL",
       "detected_by": [
-        "nominal value C63"
+        "complete members EMMC_VCC_3V3"
       ]
     },
     {
-      "mutation": "unexpected_signal_member",
+      "mutation": "storage_ball_regression",
       "exit_code": 1,
-      "status": "FAIL",
       "detected_by": [
-        "exact net members EMMC_CLK"
-      ]
-    },
-    {
-      "mutation": "old_terminal_regression",
-      "exit_code": 1,
-      "status": "FAIL",
-      "detected_by": [
-        "only six intended existing terminals changed"
+        "complete storage contract replay"
       ]
     }
   ]

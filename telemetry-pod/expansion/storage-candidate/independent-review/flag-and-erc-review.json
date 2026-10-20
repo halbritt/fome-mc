@@ -1,0 +1,9 @@
+{
+  "kind": "independent source observation, not automated schematic geometry test",
+  "schematic_sha256": "b54e4e4aceaa1259b9c919bd8ae464bf76a23e88c54479d9f09ebfedec9c5118",
+  "erc_sha256": "7ef23068cef00080638ca0f86cf84ec1fbae5a710e9466e5d688b18efb7b7e10",
+  "flag": "#FLG06 power:PWR_FLAG at289.56,195.58; same-point EMMC_VCC_3V3 label at source line14344; symbol starts line37280.",
+  "verified_driver_path": "U15 SW pin7 -> EMMC_CORE_SW -> L4 pin1 -> L4 pin2 -> EMMC_VCC_3V3; U15 VOS pin6 senses that output. Full net membership checked independently.",
+  "erc_observation": "Final report contains only existing footprint_link_issues warning on J1; prior two undriven storage power errors no longer present.",
+  "interpretation": "Flag describes an actual regulated output through its inductor; it does not establish regulator operating performance or replace supervision/hold-up."
+}

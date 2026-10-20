@@ -1,0 +1,24 @@
+{
+  "status": "circuit candidate; no supervisor or hold-up qualification",
+  "source_intent_sha256": "2d96f86c81dbd539aaa5c650c5ec661b3812ade6aaca0349724bad453cb199eb",
+  "new_components": [
+    "storage-power/U15",
+    "storage-power/L4",
+    "storage-power/C68",
+    "storage-power/C69",
+    "storage-power/C70",
+    "storage-power/#FLG06"
+  ],
+  "changed_net": "EMMC_VCCQ_3V3 merged into MCU +3V3; VCC remains independently regulated",
+  "regulator": "TPS62162QDSGRQ1 C2071196",
+  "inductor": "SRP4020TA-2R2M C719179",
+  "caps": "C68,C69,C70 nominal22uF/25V; exact reference bindings/effective capacitance unresolved",
+  "pending": [
+    "Dedicated reset supervisor with independent-sense sequencing compatibility",
+    "Early power-fail and hold-up strategy; no safe-flush time claimed",
+    "Whole power budget, input protection/filtering, short-dip envelope",
+    "Exact new passive bindings and temperature/bias/load validation",
+    "Inductor/regulator thermal and assembly qualification",
+    "Layout and SI validation"
+  ]
+}

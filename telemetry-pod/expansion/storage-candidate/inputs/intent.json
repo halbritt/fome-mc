@@ -2585,6 +2585,66 @@
         1
       ],
       "value": "100nF"
+    },
+    {
+      "id": "storage-power/U15",
+      "reference": "U15",
+      "lib_id": "Regulator_Switching:TPS62162DSG",
+      "value": "TPS62162QDSGRQ1",
+      "footprint": "Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm",
+      "units": [
+        1
+      ]
+    },
+    {
+      "footprint": "PodStoragePower:SRP4020TA",
+      "id": "storage-power/L4",
+      "lib_id": "Device:L",
+      "reference": "L4",
+      "units": [
+        1
+      ],
+      "value": "2.2 uH"
+    },
+    {
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "storage-power/C68",
+      "lib_id": "Device:C",
+      "reference": "C68",
+      "units": [
+        1
+      ],
+      "value": "22 uF/25 V"
+    },
+    {
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "storage-power/C69",
+      "lib_id": "Device:C",
+      "reference": "C69",
+      "units": [
+        1
+      ],
+      "value": "22 uF/25 V"
+    },
+    {
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "storage-power/C70",
+      "lib_id": "Device:C",
+      "reference": "C70",
+      "units": [
+        1
+      ],
+      "value": "22 uF/25 V"
+    },
+    {
+      "footprint": "",
+      "id": "storage-power/#FLG06",
+      "lib_id": "power:PWR_FLAG",
+      "reference": "#FLG06",
+      "units": [
+        1
+      ],
+      "value": "PWR_FLAG"
     }
   ],
   "libraries": [
@@ -2662,6 +2722,11 @@
       "name": "PodStorage",
       "path": "authored-cad/PodStorage.kicad_sym",
       "sha256": "0ea1110a7812c9a080eb671f1b9e9d0738de702a076dd3c51dff025c2c136d65"
+    },
+    {
+      "name": "Regulator_Switching",
+      "path": "symbols/Regulator_Switching.kicad_sym",
+      "sha256": "b821f0efed30625426fdebc0c8b8d23ae12a6e3f1b0f208f12a49c4f66fc6e83"
     }
   ],
   "nets": [
@@ -2893,6 +2958,102 @@
         },
         {
           "component": "expansion/C62",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/U14",
+          "pin": {
+            "number": "C6"
+          }
+        },
+        {
+          "component": "storage/U14",
+          "pin": {
+            "number": "M4"
+          }
+        },
+        {
+          "component": "storage/U14",
+          "pin": {
+            "number": "N4"
+          }
+        },
+        {
+          "component": "storage/U14",
+          "pin": {
+            "number": "P3"
+          }
+        },
+        {
+          "component": "storage/U14",
+          "pin": {
+            "number": "P5"
+          }
+        },
+        {
+          "component": "storage/R46",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R47",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R48",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R49",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R50",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R51",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R52",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R53",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/R54",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/C66",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage/C67",
           "pin": {
             "number": "1"
           }
@@ -4036,6 +4197,48 @@
           "pin": {
             "number": "2"
           }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "1"
+          }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "4"
+          }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "5"
+          }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "9"
+          }
+        },
+        {
+          "component": "storage-power/C68",
+          "pin": {
+            "number": "2"
+          }
+        },
+        {
+          "component": "storage-power/C69",
+          "pin": {
+            "number": "2"
+          }
+        },
+        {
+          "component": "storage-power/C70",
+          "pin": {
+            "number": "2"
+          }
         }
       ]
     },
@@ -4737,6 +4940,24 @@
           "component": "power/U6",
           "pin": {
             "number": "8"
+          }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "2"
+          }
+        },
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "3"
+          }
+        },
+        {
+          "component": "storage-power/C70",
+          "pin": {
+            "number": "1"
           }
         }
       ]
@@ -5626,105 +5847,33 @@
           "pin": {
             "number": "1"
           }
-        }
-      ]
-    },
-    {
-      "id": "storage-EMMC_VCCQ_3V3",
-      "name": "EMMC_VCCQ_3V3",
-      "terminals": [
+        },
         {
-          "component": "storage/U14",
+          "component": "storage-power/U15",
           "pin": {
-            "number": "C6"
+            "number": "6"
           }
         },
         {
-          "component": "storage/U14",
+          "component": "storage-power/L4",
           "pin": {
-            "number": "M4"
+            "number": "2"
           }
         },
         {
-          "component": "storage/U14",
-          "pin": {
-            "number": "N4"
-          }
-        },
-        {
-          "component": "storage/U14",
-          "pin": {
-            "number": "P3"
-          }
-        },
-        {
-          "component": "storage/U14",
-          "pin": {
-            "number": "P5"
-          }
-        },
-        {
-          "component": "storage/R46",
+          "component": "storage-power/C68",
           "pin": {
             "number": "1"
           }
         },
         {
-          "component": "storage/R47",
+          "component": "storage-power/C69",
           "pin": {
             "number": "1"
           }
         },
         {
-          "component": "storage/R48",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R49",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R50",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R51",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R52",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R53",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/R54",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/C66",
-          "pin": {
-            "number": "1"
-          }
-        },
-        {
-          "component": "storage/C67",
+          "component": "storage-power/#FLG06",
           "pin": {
             "number": "1"
           }
@@ -5973,6 +6122,24 @@
           "component": "storage/R54",
           "pin": {
             "number": "2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "storage-power-EMMC_CORE_SW",
+      "name": "EMMC_CORE_SW",
+      "terminals": [
+        {
+          "component": "storage-power/U15",
+          "pin": {
+            "number": "7"
+          }
+        },
+        {
+          "component": "storage-power/L4",
+          "pin": {
+            "number": "1"
           }
         }
       ]
@@ -7027,6 +7194,12 @@
       "component": "storage/U14",
       "pin": {
         "number": "K5"
+      }
+    },
+    {
+      "component": "storage-power/U15",
+      "pin": {
+        "number": "8"
       }
     }
   ],

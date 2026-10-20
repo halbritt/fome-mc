@@ -1,0 +1,46 @@
+{
+  "status": "captured manufacturer sources; full parts binding and physical qualification pending",
+  "sources": [
+    {
+      "path": "tps62162-q1.pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tps62162-q1.pdf",
+      "sha256": "940736f835a41f87a3a22dcc31e8308bf6bef3bc5a176443cc3c05b4fa7d75e5",
+      "role": "implemented circuit candidate source"
+    },
+    {
+      "path": "SRP4020TA.pdf",
+      "url": "https://www.bourns.com/docs/Product-Datasheets/SRP4020TA.pdf",
+      "sha256": "601b2bd60f01531d3dd98df00eab15635fa971ebc03cf7ae4ccb5679faf03485",
+      "role": "implemented circuit candidate source"
+    },
+    {
+      "path": "tps386000.pdf",
+      "url": "https://www.ti.com/lit/ds/symlink/tps386000.pdf",
+      "sha256": "02e788626e1d8d546ada465dc63703635834e41ee109d6c9fc6970a26fb62e98",
+      "role": "rejected supervisor candidate evidence"
+    }
+  ],
+  "implemented_choices": {
+    "U15": {
+      "mpn": "TPS62162QDSGRQ1",
+      "lcsc": "C2071196",
+      "pinout": "SLVSCK6B p3",
+      "temperature_basis": "Recommended junction temperature -40 to125C; board thermal validation required"
+    },
+    "L4": {
+      "mpn": "SRP4020TA-2R2M",
+      "lcsc": "C719179",
+      "land_pattern": "SRP4020TA p1 recommended layout",
+      "temperature_basis": "-55 to150C including self-heating; actual rise unverified"
+    }
+  },
+  "new_capacitors": {
+    "references": [
+      "C68",
+      "C69",
+      "C70"
+    ],
+    "nominal": "22uF/25V",
+    "status": "No new exact part binding; effective capacitance and dielectric/thermal proof pending"
+  }
+}
