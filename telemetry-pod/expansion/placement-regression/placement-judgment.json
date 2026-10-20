@@ -1,0 +1,120 @@
+{
+  "advisories": [],
+  "associations": [],
+  "authority": "standalone-unsealed",
+  "board_sha256": "b1063a86b4a818cddd2fe7f9d431bd3f44f406e62d3e6f1a0963a0f72c89f8ca",
+  "declared_overhangs": [
+    {
+      "overhang_area_mm2": 1780.015,
+      "ref": "J1",
+      "side": "F"
+    },
+    {
+      "overhang_area_mm2": 118.5114,
+      "ref": "J2",
+      "side": "B"
+    },
+    {
+      "overhang_area_mm2": 118.5114,
+      "ref": "J2",
+      "side": "F"
+    },
+    {
+      "overhang_area_mm2": 1012.875,
+      "ref": "U1",
+      "side": "F"
+    }
+  ],
+  "hard_failures": [],
+  "off_board": [],
+  "outcome": "pass",
+  "overhangs": [
+    {
+      "edges": [
+        {
+          "end_nm": [
+            0,
+            65000000
+          ],
+          "max_nm": 22850000,
+          "name": "bottom",
+          "outward": "y+",
+          "start_nm": [
+            90000000,
+            65000000
+          ]
+        }
+      ],
+      "reference": "J1",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/0/courtyard_overhangs"
+      }
+    },
+    {
+      "edges": [
+        {
+          "end_nm": [
+            90000000,
+            65000000
+          ],
+          "max_nm": 9730000,
+          "name": "right",
+          "outward": "x+",
+          "start_nm": [
+            90000000,
+            0
+          ]
+        }
+      ],
+      "reference": "J2",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/1/courtyard_overhangs"
+      }
+    },
+    {
+      "edges": [
+        {
+          "end_nm": [
+            90000000,
+            0
+          ],
+          "max_nm": 21250000,
+          "name": "top",
+          "outward": "y-",
+          "start_nm": [
+            0,
+            0
+          ]
+        },
+        {
+          "end_nm": [
+            90000000,
+            65000000
+          ],
+          "max_nm": 6500000,
+          "name": "right",
+          "outward": "x+",
+          "start_nm": [
+            90000000,
+            0
+          ]
+        }
+      ],
+      "reference": "U1",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/2/courtyard_overhangs"
+      }
+    }
+  ],
+  "policy": null,
+  "schema": "agent-ee.placement-judgment/1",
+  "score": null,
+  "unknown": [],
+  "verdict": "pass"
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "expanded-pod-placement-regression/1",
+  "status": "rejected_for_adoption",
+  "reason": "cross-side through-hole collisions and other full DRC violations",
+  "source_commit": "ca121f5b1f2519e87adfc7935c615d83baecbb65",
+  "software_commit": "58999a9b1d411db8d6914823b34cd079943a532b",
+  "seed_path": "telemetry-pod/expansion/placement-inputs/rejected-seed.kicad_pcb.gz",
+  "seed_uncompressed_sha256": "6f458cea075913629a562fe40f5c627dccfb8cbff353c9ee7c231da459ebc9da",
+  "envelope_path": "telemetry-pod/expansion/placement-inputs/envelope.json",
+  "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+  "baseline_project": "telemetry-pod/expansion/revised-native/project",
+  "native_run_exit": 0,
+  "disposable_status": "placed",
+  "candidate_sha256": "b1063a86b4a818cddd2fe7f9d431bd3f44f406e62d3e6f1a0963a0f72c89f8ca",
+  "steps": 13585,
+  "placements": 331,
+  "ignored_drc_checks": [
+    {
+      "description": "Footprint has no courtyard defined",
+      "key": "missing_courtyard"
+    },
+    {
+      "description": "Track endpoint not centered on via",
+      "key": "track_not_centered_on_via"
+    },
+    {
+      "description": "Tuning profile track geometries",
+      "key": "tuning_profile_track_geometries"
+    },
+    {
+      "description": "Footprint doesn't match symbol's footprint filters",
+      "key": "footprint_filters_mismatch"
+    },
+    {
+      "description": "Footprint component type doesn't match footprint pads",
+      "key": "footprint_type_mismatch"
+    }
+  ],
+  "files": {
+    "baseline-drc.json": "e84ce6f9bb823f984d412f2a81161cf2586b597283a6e91b94a4405f2157b60b",
+    "baseline-execution.json": "b6db7da98dcad4bcccfa36eb871f497a8d1cef6f33d0b97915b5bd72c02edab6",
+    "baseline-input-hashes.json": "2e9595ddc9029b9fc824e6e99106edb1a32c18d1f93666aab104d4983e6d2378",
+    "candidate-comparison.json": "979fd00d66c30249de345a810e57b1c104280f59fb135417e7a255b264522c7a",
+    "candidate-drc.json": "d7fc823b75496e96be41cdb42ffb3cbb12ac6464f461a50f53b602701754dd62",
+    "candidate-execution.json": "e205c8b6c3c228002725e10816e5c4e23b77c10fea327f4b20a338cb54179f93",
+    "candidate-input-hashes.json": "3af13b3c2a83b3407ab79551026192288f1c65cee23a1c37a245ffbd8795ac0c",
+    "derived-policy.json": "0a623aec22d9c55a1b2753106fe0415029b22bc1a8f9b03d08c102e9649f52ca",
+    "independent-review.txt": "3ce44c10e425e9ba9dfbc309112f878222cc9d6c54de4ea3db84d847d773c161",
+    "placement-judgment.json": "2389eea1dc81ef79bc797de9c5f606648b0cdd4532d2e10745228e5ab4a077dd",
+    "placement-result.json": "3a851041ec6850025852aa4b0e1f422e1b95f054b1daf77d6f89c5bf9f83f05f",
+    "placement-write-scope.json": "feadd48873f57b9a9c9dc1e5d1f9be90bf52b861ee2ec44495c2441cb100c2d9",
+    "rejected-candidate.kicad_pcb": "b1063a86b4a818cddd2fe7f9d431bd3f44f406e62d3e6f1a0963a0f72c89f8ca",
+    "seed-fixed-geometry-findings.json": "e3502a811a3cd5cde6bddb88916258928d629bcec5129616b7b1c87d1db37e8b",
+    "replay-inputs.tar.gz": "f150904b1d65f019f46a927564b4dbf0271fe5a399f2dd58e84a3f2f1ea936e3"
+  }
+}
