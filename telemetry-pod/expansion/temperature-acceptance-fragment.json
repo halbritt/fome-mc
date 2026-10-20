@@ -1,0 +1,48 @@
+{
+  "schema": "pod-temperature-acceptance-fragment/1",
+  "status": "Prepared for released AGENTEE-310; not a completed assembly check",
+  "producer_contract_commit": "f507cf28e8c1874f219f98860df95d49488e2843",
+  "captured_input": "requirements/operating-temperature-acceptances.txt",
+  "reduced_acceptance": {
+    "U1": {
+      "min_c": -20,
+      "max_c": 85,
+      "source": "requirements/operating-temperature-acceptances.txt",
+      "sha256": "7ca91bc748e3029432e5bb40501c056301429da08119759c612daea7cca8678a",
+      "line": 1,
+      "quote": "U1 is accepted for operating temperature -20 to 85 degC."
+    },
+    "U2": {
+      "min_c": -20,
+      "max_c": 85,
+      "source": "requirements/operating-temperature-acceptances.txt",
+      "sha256": "7ca91bc748e3029432e5bb40501c056301429da08119759c612daea7cca8678a",
+      "line": 2,
+      "quote": "U2 is accepted for operating temperature -20 to 85 degC."
+    },
+    "U4": {
+      "min_c": -20,
+      "max_c": 85,
+      "source": "requirements/operating-temperature-acceptances.txt",
+      "sha256": "7ca91bc748e3029432e5bb40501c056301429da08119759c612daea7cca8678a",
+      "line": 3,
+      "quote": "U4 is accepted for operating temperature -20 to 85 degC."
+    }
+  },
+  "exact_parts": {
+    "U1": "ESP32-S3-WROOM-1-N8",
+    "U2": "LSM6DSO32TR",
+    "U4": "MCP3208-BI/SL"
+  },
+  "integration": [
+    "Capture the acceptance file as the declared relative input and retain its hash.",
+    "Keep all three references in operating_temperature.parts with captured DigiKey MPN, manufacturer and package bindings; retain the board-wide -20 to 105 degC part-selection criterion.",
+    "Merge reduced_acceptance into assembly_readiness params.operating_temperature; do not merge legacy exemptions.",
+    "Do not supply thermal_evidence until actual part-bound enclosure validation exists. Missing evidence must remain unknown."
+  ],
+  "limitations": [
+    "The accepted interval combines the existing -20 degC lower requirement with the owner-accepted 85 degC upper rating; it does not assert a new manufacturer lower rating.",
+    "The board ambient requirement remains -20 to 85 degC. Self-heating and enclosure thermal performance are not qualified.",
+    "This fragment does not supply board-wide parts coverage, DigiKey captures or package mappings and is not independently executable."
+  ]
+}

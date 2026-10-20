@@ -65,7 +65,9 @@ or compilation. Unchanged IDs do not transfer old candidate evidence.
   these are not waivers of operating-temperature verification. The owner ruling
   and evidence obligations are recorded in [temperature-acceptance.md](temperature-acceptance.md).
   `../temperature-scope-fragment.json` retains historical preparation evidence;
-  its exemption wording must not be used to claim qualification.
+  its exemption wording must not be used to claim qualification. The released
+  replacement is `../temperature-acceptance-fragment.json`; it preserves
+  actual-rating checks and the unresolved thermal-validation obligation.
 - The six pre-layout decision bullets require closure evidence, even where
   candidate implementation choices already exist. A generated circuit is not
   evidence that all its design choices were resolved or qualified.
@@ -129,10 +131,11 @@ This is a verification-stage preparation scope. The full campaign still needs
 parts, schematic, placement, routing and manufacturing stage declarations,
 complete captured contracts, and supported predicates/evidence to replace
 limitations when justified. No operating-temperature assembly predicate is
-executed by this map. Integrate the supported per-part accepted-limit input
-and part-bound thermal evidence together when AGENTEE-310 is released. Until
-then, the historical exemption input is not an executable qualification path;
-missing thermal evidence remains unknown, never pass.
+executed by this map. AGENTEE-310 is released; integrate the prepared per-part
+accepted-limit input into the future assembly scope with complete captured parts
+bindings. Add part-bound thermal evidence only when actual validation exists.
+The historical exemption input is not an executable qualification path; missing
+thermal evidence remains unknown, never pass.
 
 `compiled/receipt.json` records all dispositions, tool identities and baseline
 hashes. `map-negative-controls.json` retains rejection of missing AC-10,
