@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 98 previously unbound components: the
-40 selected divider resistors, 32 additional 10 kohm resistors and 26 already-selected active, crystal and
-inductor instances. The manifest has 18 exact manufacturer/supplier identities,
+This packet adds identity metadata to 126 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors and 26 already-selected active, crystal and
+inductor instances. The manifest has 33 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 224 bindings, with 97 component bindings still
+The prepared source now contains 252 bindings, with 69 component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 18
+Each selected catalog is replayed against its retained raw responses. All 33
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -37,6 +37,29 @@ This selection does not establish safe operation at 75 V, the power available
 at higher local temperatures, or transient performance. Existing thermistor
 fault dissipation, local-temperature and derating holds remain open. No prior
 binding is replaced by this newer document.
+
+## Remaining 0603 resistor identities
+
+A further 28 positions use 15 exact YAGEO RT0603BRD07 parts. Their fresh
+exact-ID captures and manufacturer sheets are retained in
+`remaining-resistor-stock/` and `remaining-resistor-sources/`. The manifest maps
+all positions to the exact MPN and supplier identity. These sheets specify the
+required nominal values, 0.1% tolerance, 25 ppm/°C, 0603, −55 to 155 °C,
+and 0.1 W at 70 °C. Tighter tolerance and temperature coefficient satisfy the
+positions stated as 1% and 100 ppm/°C; this does not qualify circuit operation.
+
+The lower resistance values have much lower power-limited voltage ceilings:
+120 ohm R70 reaches 0.1 W at about 3.46 V rms differential, and 100 ohm
+R118/R127 reach it at about 3.16 V rms. Sustained dominant CAN operation,
+fault voltage, pulse energy and local-temperature derating need separate
+verification. The 75 V sheet ceiling does not override power dissipation.
+
+R60 (31.3 kohm), the four 1.05 Mohm positions, and the 2512 power resistors
+remain unbound. The search for `RT0603BRD0731K3L` was rewritten by the server
+to `RT0603BRD0711K3L`; its empty response does not establish availability of
+the requested part. The exact manufacturer URLs for the requested 31.3 kohm
+and 1.05 Mohm MPNs returned 404. `unresolved-searches.json` retains these
+limited observations. Neither result justifies rounding a circuit value.
 
 ## Native generation blocker
 
