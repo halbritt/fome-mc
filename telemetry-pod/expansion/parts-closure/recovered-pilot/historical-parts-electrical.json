@@ -1,0 +1,4650 @@
+{
+  "cad": {
+    "assignments": {
+      "path": "cad/assignments.json",
+      "sha256": "887ffbd2e35abe427efe1ac00bbf1e2fd6a4ce269f1b977f63702dfc71b70005"
+    },
+    "declarations": {
+      "path": "cad/declarations.json",
+      "sha256": "bdc3bdd81238c9ef77e2ad8ae8f25cc7aa5fdcb3a7dab55d4fdf64824ae5d5ad"
+    },
+    "manifest": {
+      "path": "cad/manifest.json",
+      "sha256": "3ef0c5b5ec3ed4c7848b011236bb838f4d633c655c4c9d5ad63ea3507a22dc3d"
+    },
+    "members_sha256": "34ef256965cdaa02b67049c30e3b6e1f0792f69c933b41c12d4c0dd64a4dd099"
+  },
+  "catalog": null,
+  "declaration_source": {
+    "locator": "Circuit decisions",
+    "path": "complete-decisions.md",
+    "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+  },
+  "parts": [
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-core/bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf",
+          "sha256": "27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435"
+        },
+        "provenance": {
+          "locator": "parts[id=esp32]",
+          "path": "core/datasheets-core/manifest.json",
+          "sha256": "15ac9ebd556e3e6de2a9ac8a7141fe8acf066c9382d421b60eb18e1f538a9ca4"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "id": "mcu",
+      "instances": [
+        {
+          "reference": "U1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2913198",
+      "lib_id": "RF_Module:ESP32-S3-WROOM-1",
+      "manufacturer": "Espressif Systems",
+      "mpn": "ESP32-S3-WROOM-1-N8",
+      "package": "SMD,25.5x18mm",
+      "required": true,
+      "role": "mcu",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2913198",
+        "part_record": "records/mcu.json",
+        "part_record_sha256": "95b4589c2b18883f31b40f09a0a56501ed01c0223717f89dc471cc1b8718ffb5"
+      },
+      "selection_id": "mcu",
+      "stock": 1667
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+          "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7"
+        },
+        "provenance": {
+          "locator": "parts[id=lsm6dso32]",
+          "path": "core/datasheets-current/manifest.json",
+          "sha256": "6830ffa1feba3935d77e8bbffaad745a26c435d1e9662d3c4fd4b5d2312d8505"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y",
+      "id": "imu",
+      "instances": [
+        {
+          "reference": "U2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C1864162",
+      "lib_id": "PodPrimarySPI:LSM6DSO32",
+      "manufacturer": "STMicroelectronics",
+      "mpn": "LSM6DSO32TR",
+      "package": "LGA-14(2.5x3)",
+      "required": true,
+      "role": "imu",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C1864162",
+        "part_record": "records/imu.json",
+        "part_record_sha256": "3956346fc25963396693c86ce6e0208df29811096e6bc42bc8c5b8b6a2f69e9f"
+      },
+      "selection_id": "imu",
+      "stock": 97
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-core/77a91ad2ec0cb517250cf68189d10140001682ec6b9c40cc264afb36ff9d972e.pdf",
+          "sha256": "e21b35c1a4fd04f353e298a3c3c411c08e683a318d87ad3af9f570da40a40150"
+        },
+        "provenance": {
+          "locator": "parts[id=neo-m9n]",
+          "path": "core/datasheets-core/manifest.json",
+          "sha256": "15ac9ebd556e3e6de2a9ac8a7141fe8acf066c9382d421b60eb18e1f538a9ca4"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "RF_GPS:ublox_NEO",
+      "id": "gnss",
+      "instances": [
+        {
+          "reference": "U3",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C5119087",
+      "lib_id": "RF_GPS:NEO-M9N",
+      "manufacturer": "U-BLOX",
+      "mpn": "NEO-M9N-00B",
+      "package": "SMD-24P",
+      "required": true,
+      "role": "gnss",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C5119087",
+        "part_record": "records/gnss.json",
+        "part_record_sha256": "e6933a2b1a794f3dab653b4af7cf04a2ce4d9dc487a96b41d33717903d9b99d4"
+      },
+      "selection_id": "gnss",
+      "stock": 618
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-core/b0cadbda0fc05c619ebdfee6b96c09d99814bba70e534c0fdbbfe7ffe3f241ac.pdf",
+          "sha256": "89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20"
+        },
+        "provenance": {
+          "locator": "parts[id=mcp3204]",
+          "path": "core/datasheets-core/manifest.json",
+          "sha256": "15ac9ebd556e3e6de2a9ac8a7141fe8acf066c9382d421b60eb18e1f538a9ca4"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+      "id": "adc",
+      "instances": [
+        {
+          "reference": "U4",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C107363",
+      "lib_id": "Analog_ADC:MCP3204",
+      "manufacturer": "Microchip Tech",
+      "mpn": "MCP3204-BI/SL",
+      "package": "SOIC-14",
+      "required": true,
+      "role": "adc",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C107363",
+        "part_record": "records/adc.json",
+        "part_record_sha256": "5a83a863ffe4aa545fc5ecbb374e95d997d3fc2df6188f10b9f3335764d56f86"
+      },
+      "selection_id": "adc",
+      "stock": 199
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-core/7cdf4f56dd2ee4a581372db4f54b0460f24080b359e20336f56a93bcecfc0715.pdf",
+          "sha256": "6637cd500dda3c1c951ce29bed7fe909f11f9a3bef64b096dbb486827add9f11"
+        },
+        "provenance": {
+          "locator": "parts[id=tja1051]",
+          "path": "core/datasheets-core/manifest.json",
+          "sha256": "15ac9ebd556e3e6de2a9ac8a7141fe8acf066c9382d421b60eb18e1f538a9ca4"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "id": "can",
+      "instances": [
+        {
+          "reference": "U100",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C38695",
+      "lib_id": "Block_63616e_496e746572666163655f43414e5f4c494e:TJA1051T-3",
+      "manufacturer": "NXP Semicon",
+      "mpn": "TJA1051T/3/1J",
+      "package": "SOIC-8-150mil",
+      "required": true,
+      "role": "can",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C38695",
+        "part_record": "records/can.json",
+        "part_record_sha256": "b7d1f1726a42cceac6510a35d251aa197882a2e9b6b35025aaf290a5835fd8ba"
+      },
+      "selection_id": "can",
+      "stock": 288170
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-current/a02be00fc3187b19989ad92a989faf04a320a11231c2d8ccdd017eda6bd19883.pdf",
+          "sha256": "b1cae7e9b1903cc2b5029dc600f48ddbbd920dfa8be4fce4977faf13631878e3"
+        },
+        "provenance": {
+          "locator": "parts[id=pesd-tech-public]",
+          "path": "core/datasheets-current/manifest.json",
+          "sha256": "6830ffa1feba3935d77e8bbffaad745a26c435d1e9662d3c4fd4b5d2312d8505"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-323_SC-70",
+      "id": "can-esd",
+      "instances": [
+        {
+          "reference": "D100",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C907839",
+      "lib_id": "Block_63616e_446576696365:D_TVS_x2_AAC",
+      "manufacturer": "TECH PUBLIC",
+      "mpn": "PESD1CAN-UX",
+      "package": "SOT-323",
+      "required": true,
+      "role": "can-esd",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C907839",
+        "part_record": "records/can-esd.json",
+        "part_record_sha256": "c9039a57d74678906b93a8c8ea3f13fcf30843358d5618b2e282e3bb44d82301"
+      },
+      "selection_id": "can-esd",
+      "stock": 1285
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-current/e445b401ee1a15a7c907976a895e8588445660220d8a0dd6d71b13d0e31ae9b8.pdf",
+          "sha256": "11cd644d5d8a34a6d12775afb80bf58d8fc11f0c3b700dbd0f7a59942ceaa5ef"
+        },
+        "provenance": {
+          "locator": "parts[id=termination]",
+          "path": "core/datasheets-current/manifest.json",
+          "sha256": "6830ffa1feba3935d77e8bbffaad745a26c435d1e9662d3c4fd4b5d2312d8505"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "can-termination",
+      "instances": [
+        {
+          "reference": "R100",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C22787",
+      "lib_id": "Block_63616e_446576696365:R_Small",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "mpn": "0603WAF1200T5E",
+      "package": "0603",
+      "required": true,
+      "role": "can-termination",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C22787",
+        "part_record": "records/can-termination.json",
+        "part_record_sha256": "7123e9a2496ac27392b3401815da417aceed4fc6a091b9b11e48eec3a952c490"
+      },
+      "selection_id": "can-termination",
+      "stock": 2066292
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "core/datasheets-current/6b1f4a5c0e27cb364413b0026a3a3dd89a5e667554df78583448d756f907cc4c.pdf",
+          "sha256": "96baebe4bd0ce363e87be28b5b003f511f1502e084a6fc4f02333ded56c808f6"
+        },
+        "provenance": {
+          "locator": "parts[id=can-decoupling]",
+          "path": "core/datasheets-current/manifest.json",
+          "sha256": "6830ffa1feba3935d77e8bbffaad745a26c435d1e9662d3c4fd4b5d2312d8505"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "id": "can-decoupling",
+      "instances": [
+        {
+          "reference": "C100",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C1525",
+      "lib_id": "Block_63616e_446576696365:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05B104KO5NNNC",
+      "package": "0402",
+      "required": true,
+      "role": "can-decoupling",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C1525",
+        "part_record": "records/can-decoupling.json",
+        "part_record_sha256": "8014042a00790b964f6fc5b60ceb4c35e0878c854fddfffb1965e70f92ca6435"
+      },
+      "selection_id": "can-decoupling",
+      "stock": 29370046
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
+          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b"
+        },
+        "provenance": {
+          "locator": "parts[id=lmr36520]",
+          "path": "power-source/acquisition/manifest.json",
+          "sha256": "c483188c50c6fab8f73c603dbb18128382cbe4aa11e60d17e507c3027067e530"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:DDA0008B",
+      "id": "power-u5",
+      "instances": [
+        {
+          "reference": "U5",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2879422",
+      "lib_id": "PodPower:LMR36520ADDAR",
+      "manufacturer": "Texas Instruments",
+      "mpn": "LMR36520ADDAR",
+      "package": "SOPowerPAD-8",
+      "required": true,
+      "role": "6.3 V pre-regulator",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2879422",
+        "part_record": "records/power-u5.json",
+        "part_record_sha256": "f138c45505aefe9137c736e9150c0da11e6f0b504bed9111b3beb0f7d71191a1"
+      },
+      "selection_id": "power-u5",
+      "stock": 7706
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-tracker/f0068c8d96247b629703e6eacc46990097dff6779f4204d95b88ed3118e22827.pdf",
+          "sha256": "a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a"
+        },
+        "provenance": {
+          "locator": "parts[id=tps7b4253]",
+          "path": "power-source/acquisition-tracker/manifest.json",
+          "sha256": "92a0f7a1a580f355b60c3d2c03fd9ee11f3976f672de91361d28a68d1e271080"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:DDA0008J_C02",
+      "id": "power-u6",
+      "instances": [
+        {
+          "reference": "U6",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C129339",
+      "lib_id": "PodPower:TPS7B4253QDDARQ1",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS7B4253QDDARQ1",
+      "package": "SOIC-8-EP",
+      "required": true,
+      "role": "dedicated 5 V sensor tracker",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C129339",
+        "part_record": "records/power-u6.json",
+        "part_record_sha256": "b71062b0c8125f5feaa58b1fee02578cd1fd0b17e0a166e29d56a0862f1d0834"
+      },
+      "selection_id": "power-u6",
+      "stock": 595
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
+          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b"
+        },
+        "provenance": {
+          "locator": "parts[id=lmr36520]",
+          "path": "power-source/acquisition/manifest.json",
+          "sha256": "c483188c50c6fab8f73c603dbb18128382cbe4aa11e60d17e507c3027067e530"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:DDA0008B",
+      "id": "power-u7",
+      "instances": [
+        {
+          "reference": "U7",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2879422",
+      "lib_id": "PodPower:LMR36520ADDAR",
+      "manufacturer": "Texas Instruments",
+      "mpn": "LMR36520ADDAR",
+      "package": "SOPowerPAD-8",
+      "required": true,
+      "role": "3.3 V digital buck",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2879422",
+        "part_record": "records/power-u7.json",
+        "part_record_sha256": "f138c45505aefe9137c736e9150c0da11e6f0b504bed9111b3beb0f7d71191a1"
+      },
+      "selection_id": "power-u7",
+      "stock": 7706
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-adoption/1b0bcb3b671fc2fcfa8ab1938e74d5191322da58252000488f4085c424f6037e.pdf",
+          "sha256": "f3228b64a892b72a846c88f9c724cbe7f3d0d5b14b6350f48f28e1575f54a18f"
+        },
+        "provenance": {
+          "locator": "parts[id=ada4096-primary-mirror]",
+          "path": "power-source/acquisition-adoption/manifest.json",
+          "sha256": "d3fc252df8fea1436eb9b04faf9296d64d043eb34ba4d4fc98320b0e9ca9b519"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "id": "power-u8",
+      "instances": [
+        {
+          "reference": "U8",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C208539",
+      "lib_id": "PodPower:ADA4096-4ARUZ-R7",
+      "manufacturer": "Analog Devices",
+      "mpn": "ADA4096-4ARUZ-R7",
+      "package": "TSSOP-14",
+      "required": true,
+      "role": "quad protected analog followers",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C208539",
+        "part_record": "records/power-u8.json",
+        "part_record_sha256": "2820eec54da6196238efdb680be89ecfe764756486d9bf2bfba043ede311a1fb"
+      },
+      "selection_id": "power-u8",
+      "stock": 32
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf",
+          "sha256": "6ad9e31b95374c9bd582b821c528c91cb5813772e74e68f80cf81d0c10772b13"
+        },
+        "provenance": {
+          "locator": "parts[id=opa320]",
+          "path": "power-source/acquisition-adoption/manifest.json",
+          "sha256": "d3fc252df8fea1436eb9b04faf9296d64d043eb34ba4d4fc98320b0e9ca9b519"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "id": "power-u9",
+      "instances": [
+        {
+          "reference": "U9",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C92494",
+      "lib_id": "PodPower:OPA320AIDBVR_VREF",
+      "manufacturer": "Texas Instruments",
+      "mpn": "OPA320AIDBVR",
+      "package": "SOT-23-5",
+      "required": true,
+      "role": "connector rail divided reference follower",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C92494",
+        "part_record": "records/power-u9.json",
+        "part_record_sha256": "eeec6c26a11d1bc32301b73c38b5f90887c4fb0cdf2f79a2ec3f3f04adb6c3e0"
+      },
+      "selection_id": "power-u9",
+      "stock": 26696
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-supplement/e6af2a2fa244eda794e2840cd76eba2c0faa226ef1f0f4e132dfcb53b3abc930.pdf",
+          "sha256": "ae020244567f34db96d4095a581b0e54d9c90284ebb7c5488c9b454c17b8c98d"
+        },
+        "provenance": {
+          "locator": "parts[id=tps2553-q1]",
+          "path": "power-source/acquisition-supplement/manifest.json",
+          "sha256": "4508b6ca4a1c7277c0098bf3b04fc8ac30b39e0a8e44c5a985a6d542dead436e"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "id": "power-u10",
+      "instances": [
+        {
+          "reference": "U10",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C130055",
+      "lib_id": "PodPower:TPS2553QDBVRQ1",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS2553QDBVRQ1",
+      "package": "SOT-23-6",
+      "required": true,
+      "role": "active antenna current limiter",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C130055",
+        "part_record": "records/power-u10.json",
+        "part_record_sha256": "c0d64c0f05d8333af1f0b9d4b51d0098e9fa4369aa370f643be00be70cc3f769"
+      },
+      "selection_id": "power-u10",
+      "stock": 55
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-final-adopt/2610fbb215351b8b45475fdc807dffe3aa2ffc609a4eaf561e79f61b81ae8ba7.pdf",
+          "sha256": "33b13191ad54693f9a4f52e226b354757ad092d2cec6b2c31dba2fecb710d0c6"
+        },
+        "provenance": {
+          "locator": "parts[id=ref50]",
+          "path": "power-source/acquisition-final-adopt/manifest.json",
+          "sha256": "c3966863f6f6fa8e782f04a935c8996e3c4bf60b9788649bf3f323cba99db1ea"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "id": "power-u11",
+      "instances": [
+        {
+          "reference": "U11",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C27804",
+      "lib_id": "Reference_Voltage:REF5050AD",
+      "manufacturer": "Texas Instruments",
+      "mpn": "REF5050AIDR",
+      "package": "SOIC-8",
+      "required": true,
+      "role": "precision setpoint for two trackers; not ADC reference",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C27804",
+        "part_record": "records/power-u11.json",
+        "part_record_sha256": "5593e6c953e3a644e7a5f2a940421d44778422752a36ab8d8e405b96760fe55a"
+      },
+      "selection_id": "power-u11",
+      "stock": 11185
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-tracker/f0068c8d96247b629703e6eacc46990097dff6779f4204d95b88ed3118e22827.pdf",
+          "sha256": "a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a"
+        },
+        "provenance": {
+          "locator": "parts[id=tps7b4253]",
+          "path": "power-source/acquisition-tracker/manifest.json",
+          "sha256": "92a0f7a1a580f355b60c3d2c03fd9ee11f3976f672de91361d28a68d1e271080"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:DDA0008J_C02",
+      "id": "power-u12",
+      "instances": [
+        {
+          "reference": "U12",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C129339",
+      "lib_id": "PodPower:TPS7B4253QDDARQ1",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS7B4253QDDARQ1",
+      "package": "SOIC-8-EP",
+      "required": true,
+      "role": "dedicated 5 V CAN tracker",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C129339",
+        "part_record": "records/power-u12.json",
+        "part_record_sha256": "b71062b0c8125f5feaa58b1fee02578cd1fd0b17e0a166e29d56a0862f1d0834"
+      },
+      "selection_id": "power-u12",
+      "stock": 595
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-ua-supplement/1ca62229550d6563985708be4c25d8cd1df2bd312d7e838a0bad3f2799006fb6.pdf",
+          "sha256": "175824e1809b9ee239012a5704fd17ae29ec274f70cb3f451245b662f1964c59"
+        },
+        "provenance": {
+          "locator": "parts[id=dmp6023le]",
+          "path": "power-source/acquisition-ua-supplement/manifest.json",
+          "sha256": "7880409afd27f76a7fda3a29c94e32f37708e9e4006d289b583361d8f9325c11"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:DMP6023LE_SOT223",
+      "id": "power-q1",
+      "instances": [
+        {
+          "reference": "Q1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C154901",
+      "lib_id": "Transistor_FET:Q_PMOS_GDS",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "DMP6023LE-13",
+      "package": "SOT-223",
+      "required": true,
+      "role": "reverse-polarity PMOS",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C154901",
+        "part_record": "records/power-q1.json",
+        "part_record_sha256": "17542b235f0d51f165f726393de0dd3ed687354ca49a8ad4faf12faf4a898f7e"
+      },
+      "selection_id": "power-q1",
+      "stock": 13206
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-protection-resolved/120215f78f3abcdf1719371f93b746ffeba97d637f352d4cc131baf373fc88cc.pdf",
+          "sha256": "6e610db955ed876306999009c62b242f7de9bb05e2cd9717288a96586a5093ea"
+        },
+        "provenance": {
+          "locator": "parts[id=smcj24ca]",
+          "path": "power-source/acquisition-protection-resolved/manifest.json",
+          "sha256": "ac34198e677a1b4d664f6e635cb4eb6e41636e2f895454ebc9ed6a0645a29eba"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Diode_SMD:D_SMC",
+      "id": "power-d1",
+      "instances": [
+        {
+          "reference": "D1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C151279",
+      "lib_id": "Device:D_TVS",
+      "manufacturer": "Littelfuse",
+      "mpn": "SMCJ24CA",
+      "package": "DO-214AB",
+      "required": true,
+      "role": "bidirectional input TVS",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C151279",
+        "part_record": "records/power-d1.json",
+        "part_record_sha256": "f95920e7e449624fcfe3e3adf02645a35d8255c6ac38068d63a57541399c6932"
+      },
+      "selection_id": "power-d1",
+      "stock": 6779
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-protection-resolved/1dc767476fed5a9be7fa02315690660bb392383f9aec1d3c6cf50fe8983e4e2c.pdf",
+          "sha256": "571f24a8367ffab61981ddb3cbbb3eb316b2bf9918913e58d6a17e9411ef6578"
+        },
+        "provenance": {
+          "locator": "parts[id=rf-esd]",
+          "path": "power-source/acquisition-protection-resolved/manifest.json",
+          "sha256": "ac34198e677a1b4d664f6e635cb4eb6e41636e2f895454ebc9ed6a0645a29eba"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:SOD882BD",
+      "id": "power-d3",
+      "instances": [
+        {
+          "reference": "D3",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C5311564",
+      "lib_id": "Device:D_TVS",
+      "manufacturer": "Nexperia",
+      "mpn": "PESD5V0C1BLS-QYL",
+      "package": "DFN1006-2(SOD-882)",
+      "required": true,
+      "role": "SMA RF ESD shunt",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C5311564",
+        "part_record": "records/power-d3.json",
+        "part_record_sha256": "76c9efa44773ccb33d4d5c96075c123eb17325bcdd1727f851231967066952e8"
+      },
+      "selection_id": "power-d3",
+      "stock": 6
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-protection/d11833e51c114e81f0a87f6758def7d1e4b4d82130e7797a8a1c3341bc6ae91e.pdf",
+          "sha256": "fc7b222019dd531fb42b6379462461b6626cc63573e63ce6f0a08805e8e970b6"
+        },
+        "provenance": {
+          "locator": "parts[id=murata-lqw18]",
+          "path": "power-source/acquisition-protection/manifest.json",
+          "sha256": "367297be1c55b2bc7dc9b663dd51e6cbcfa7066bd912337e5a39191242b7ba20"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Inductor_SMD:L_0603_1608Metric",
+      "id": "power-l3",
+      "instances": [
+        {
+          "reference": "L3",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C98080",
+      "lib_id": "Device:L",
+      "manufacturer": "Murata Electronics",
+      "mpn": "LQW18AN56NJ00D",
+      "package": "0603",
+      "required": true,
+      "role": "GNSS bias choke, impedance verification still open",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C98080",
+        "part_record": "records/power-l3.json",
+        "part_record_sha256": "76b0c84386063886594e8f0a7eb9dff18b4f7d198a03234e6845610200999fcc"
+      },
+      "selection_id": "power-l3",
+      "stock": 10804
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-retry/ce3f0562457e47306cef36edf6ef8b428a01724f1d6acdf8310872bc43d5f0ce.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C105579]",
+          "path": "power-source/acquisition-passives-retry/manifest.json",
+          "sha256": "2aa3f17dd8d1f8359a116f199bf62f4cd35e9be1740df87cf053a236f56056b9"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r6",
+      "instances": [
+        {
+          "reference": "R6",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C105579",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-0747KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C105579",
+        "part_record": "records/power-r6.json",
+        "part_record_sha256": "2b16c887f4c6ddfce5c1907dfd9d50974ffd41482b655315305b5a286c7e53b0"
+      },
+      "selection_id": "power-r6",
+      "stock": 85931
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C105588]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r12",
+      "instances": [
+        {
+          "reference": "R12",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C105588",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100RL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C105588",
+        "part_record": "records/power-r12.json",
+        "part_record_sha256": "32a59904fec2b1980d2714726c7c5895f7b8a82a5192f18d87f9482051469529"
+      },
+      "selection_id": "power-r12",
+      "stock": 2682048
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C105588]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r15",
+      "instances": [
+        {
+          "reference": "R15",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C105588",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100RL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C105588",
+        "part_record": "records/power-r15.json",
+        "part_record_sha256": "32a59904fec2b1980d2714726c7c5895f7b8a82a5192f18d87f9482051469529"
+      },
+      "selection_id": "power-r15",
+      "stock": 2682048
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C105588]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r18",
+      "instances": [
+        {
+          "reference": "R18",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C105588",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100RL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C105588",
+        "part_record": "records/power-r18.json",
+        "part_record_sha256": "32a59904fec2b1980d2714726c7c5895f7b8a82a5192f18d87f9482051469529"
+      },
+      "selection_id": "power-r18",
+      "stock": 2682048
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C105588]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r21",
+      "instances": [
+        {
+          "reference": "R21",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C105588",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100RL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C105588",
+        "part_record": "records/power-r21.json",
+        "part_record_sha256": "32a59904fec2b1980d2714726c7c5895f7b8a82a5192f18d87f9482051469529"
+      },
+      "selection_id": "power-r21",
+      "stock": 2682048
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/51ccf8d88415271513905842ff6d9aa7a8955cf1a534b673238dc2a1edaffeaf.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C108080]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "id": "power-r26",
+      "instances": [
+        {
+          "reference": "R26",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C108080",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC1206FR-0710RL",
+      "package": "1206",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C108080",
+        "part_record": "records/power-r26.json",
+        "part_record_sha256": "b78ca0cc9c489a90040118e2e35fb06fc399b462327a54f0785b03ac501a4e7f"
+      },
+      "selection_id": "power-r26",
+      "stock": 1148594
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/f95024639ad15fbd3ad968ee32ca3f0ce53faef2e965907fd3a868dacd13b689.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C110776]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r28",
+      "instances": [
+        {
+          "reference": "R28",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C110776",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD071KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C110776",
+        "part_record": "records/power-r28.json",
+        "part_record_sha256": "4eab40a07dd9db9f6b023bb6986c013d91b95ef698f9bbea42052785abb3f0b9"
+      },
+      "selection_id": "power-r28",
+      "stock": 1756436
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-2/a2680f573d31682972abd2fec94ee7324caadc2af6d0e7e025e029c7040ad332.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C112305]",
+          "path": "power-source/acquisition-passives-2/manifest.json",
+          "sha256": "84a14cb5d03508249e210864e7a2e6fca95c1dee7f8f13189403373cb5214579"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r7",
+      "instances": [
+        {
+          "reference": "R7",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C112305",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-071RL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C112305",
+        "part_record": "records/power-r7.json",
+        "part_record_sha256": "5c045ca6bdb6ac73a2773e043d74b9ed359060765c13dd2b634e03f2821d757c"
+      },
+      "selection_id": "power-r7",
+      "stock": 9597
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/9a0da6593a9c6b20af96671eae5970d69de21848208b73ae7f1e171889843d53.pdf",
+          "sha256": "0fbd7d137524820f0160594065cbceb8c6b3188757c328416d08fceb7418202f"
+        },
+        "provenance": {
+          "locator": "parts[id=C124196]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Diode_SMD:D_SOD-123",
+      "id": "power-d2",
+      "instances": [
+        {
+          "reference": "D2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C124196",
+      "lib_id": "Device:D_Zener",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "BZT52C12-7-F",
+      "package": "SOD-123",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C124196",
+        "part_record": "records/power-d2.json",
+        "part_record_sha256": "6da88e61b0176de747c6d08c6b32b4bff9330ef9ea04041178829889b49951f9"
+      },
+      "selection_id": "power-d2",
+      "stock": 23981
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/87ba60f5cd72a5004b42569fcfefef4e0d310099f554d2377291860cdb27d01c.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C14675]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r1",
+      "instances": [
+        {
+          "reference": "R1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C14675",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C14675",
+        "part_record": "records/power-r1.json",
+        "part_record_sha256": "99b8f018f7ec2c1bd429921fe0e353c62c5a9bb7ced95fd6e06649c3c7c398e0"
+      },
+      "selection_id": "power-r1",
+      "stock": 8947718
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/87ba60f5cd72a5004b42569fcfefef4e0d310099f554d2377291860cdb27d01c.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C14675]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r24",
+      "instances": [
+        {
+          "reference": "R24",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C14675",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C14675",
+        "part_record": "records/power-r24.json",
+        "part_record_sha256": "99b8f018f7ec2c1bd429921fe0e353c62c5a9bb7ced95fd6e06649c3c7c398e0"
+      },
+      "selection_id": "power-r24",
+      "stock": 8947718
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/87ba60f5cd72a5004b42569fcfefef4e0d310099f554d2377291860cdb27d01c.pdf",
+          "sha256": "e7dbabb0611925227ccfc429c14c8833a7b1f2c755684444124446f20b22a229"
+        },
+        "provenance": {
+          "locator": "parts[id=C14675]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r25",
+      "instances": [
+        {
+          "reference": "R25",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C14675",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0603FR-07100KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C14675",
+        "part_record": "records/power-r25.json",
+        "part_record_sha256": "99b8f018f7ec2c1bd429921fe0e353c62c5a9bb7ced95fd6e06649c3c7c398e0"
+      },
+      "selection_id": "power-r25",
+      "stock": 8947718
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "sha256": "c983a26f83ea68de59c2986d60815ac1893accc3ff47b5eed8638a6fde1df15b"
+        },
+        "provenance": {
+          "locator": "parts[id=C17288249]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c1",
+      "instances": [
+        {
+          "reference": "C1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C17288249",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL32B475KCVZNWE",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C17288249",
+        "part_record": "records/power-c1.json",
+        "part_record_sha256": "916210e5452de2d3e07d467602621506900b42f5b7ebbd552f0c92206b100e49"
+      },
+      "selection_id": "power-c1",
+      "stock": 717
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "sha256": "c983a26f83ea68de59c2986d60815ac1893accc3ff47b5eed8638a6fde1df15b"
+        },
+        "provenance": {
+          "locator": "parts[id=C17288249]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c2",
+      "instances": [
+        {
+          "reference": "C2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C17288249",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL32B475KCVZNWE",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C17288249",
+        "part_record": "records/power-c2.json",
+        "part_record_sha256": "916210e5452de2d3e07d467602621506900b42f5b7ebbd552f0c92206b100e49"
+      },
+      "selection_id": "power-c2",
+      "stock": 717
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "sha256": "c983a26f83ea68de59c2986d60815ac1893accc3ff47b5eed8638a6fde1df15b"
+        },
+        "provenance": {
+          "locator": "parts[id=C17288249]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c8",
+      "instances": [
+        {
+          "reference": "C8",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C17288249",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL32B475KCVZNWE",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C17288249",
+        "part_record": "records/power-c8.json",
+        "part_record_sha256": "916210e5452de2d3e07d467602621506900b42f5b7ebbd552f0c92206b100e49"
+      },
+      "selection_id": "power-c8",
+      "stock": 717
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "sha256": "c983a26f83ea68de59c2986d60815ac1893accc3ff47b5eed8638a6fde1df15b"
+        },
+        "provenance": {
+          "locator": "parts[id=C17288249]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c9",
+      "instances": [
+        {
+          "reference": "C9",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C17288249",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL32B475KCVZNWE",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C17288249",
+        "part_record": "records/power-c9.json",
+        "part_record_sha256": "916210e5452de2d3e07d467602621506900b42f5b7ebbd552f0c92206b100e49"
+      },
+      "selection_id": "power-c9",
+      "stock": 717
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/f0af36c4610db770cddb3187f5886f7dfecee94bebb3cbfbaa2a5814081aebab.pdf",
+          "sha256": "3f16305b69b019bfa37f51cdb23dcba7c4c7d2bae6c9690cc97ed36729283027"
+        },
+        "provenance": {
+          "locator": "parts[id=C19947708]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:SRP7050WA",
+      "id": "power-l2",
+      "instances": [
+        {
+          "reference": "L2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C19947708",
+      "lib_id": "Device:L",
+      "manufacturer": "BOURNS",
+      "mpn": "SRP7050WA-6R8M",
+      "package": "SMD,7.9x7.3mm",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C19947708",
+        "part_record": "records/power-l2.json",
+        "part_record_sha256": "ef1b1d589b6b8f86cd838d4d71984523a9894c4c4ab98807a9f3481c1f9911d0"
+      },
+      "selection_id": "power-l2",
+      "stock": 62
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/568de3f85af600c6d92620d18e52e9e44383e6e90efdecf23313283a831b82e7.pdf",
+          "sha256": "5a7926dd7ffb3281e0df2fe4dc468fdc95d78246bb633ef83b0ad4a5a3f34d25"
+        },
+        "provenance": {
+          "locator": "parts[id=C2045384]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "PodPower:SRP7050TA",
+      "id": "power-l1",
+      "instances": [
+        {
+          "reference": "L1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2045384",
+      "lib_id": "Device:L",
+      "manufacturer": "BOURNS",
+      "mpn": "SRP7050TA-150M",
+      "package": "SMD,7.3x6.6mm",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2045384",
+        "part_record": "records/power-l1.json",
+        "part_record_sha256": "2dc163e5c2cd9e3917d53aa2e070f2a1f6158bd6e3aae3c6be7411ae8541dcea"
+      },
+      "selection_id": "power-l1",
+      "stock": 754
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "sha256": "45736551c293444013721b068eef78e766d56e74b4ea39a0544890e6f24b635c"
+        },
+        "provenance": {
+          "locator": "parts[id=C2167328]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c31",
+      "instances": [
+        {
+          "reference": "C31",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2167328",
+      "lib_id": "Device:C",
+      "manufacturer": "KEMET",
+      "mpn": "C0603C101J5GACTU",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2167328",
+        "part_record": "records/power-c31.json",
+        "part_record_sha256": "a55a85268842f7bf56580920d842be909da4a826167713ad7fb6b4cd7215b8ee"
+      },
+      "selection_id": "power-c31",
+      "stock": 7643
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "sha256": "45736551c293444013721b068eef78e766d56e74b4ea39a0544890e6f24b635c"
+        },
+        "provenance": {
+          "locator": "parts[id=C2167328]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c33",
+      "instances": [
+        {
+          "reference": "C33",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2167328",
+      "lib_id": "Device:C",
+      "manufacturer": "KEMET",
+      "mpn": "C0603C101J5GACTU",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2167328",
+        "part_record": "records/power-c33.json",
+        "part_record_sha256": "a55a85268842f7bf56580920d842be909da4a826167713ad7fb6b4cd7215b8ee"
+      },
+      "selection_id": "power-c33",
+      "stock": 7643
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "sha256": "45736551c293444013721b068eef78e766d56e74b4ea39a0544890e6f24b635c"
+        },
+        "provenance": {
+          "locator": "parts[id=C2167328]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c35",
+      "instances": [
+        {
+          "reference": "C35",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2167328",
+      "lib_id": "Device:C",
+      "manufacturer": "KEMET",
+      "mpn": "C0603C101J5GACTU",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2167328",
+        "part_record": "records/power-c35.json",
+        "part_record_sha256": "a55a85268842f7bf56580920d842be909da4a826167713ad7fb6b4cd7215b8ee"
+      },
+      "selection_id": "power-c35",
+      "stock": 7643
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "sha256": "45736551c293444013721b068eef78e766d56e74b4ea39a0544890e6f24b635c"
+        },
+        "provenance": {
+          "locator": "parts[id=C2167328]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c37",
+      "instances": [
+        {
+          "reference": "C37",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C2167328",
+      "lib_id": "Device:C",
+      "manufacturer": "KEMET",
+      "mpn": "C0603C101J5GACTU",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C2167328",
+        "part_record": "records/power-c37.json",
+        "part_record_sha256": "a55a85268842f7bf56580920d842be909da4a826167713ad7fb6b4cd7215b8ee"
+      },
+      "selection_id": "power-c37",
+      "stock": 7643
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passive-exact/7f8040ff30575f0dea0a4805d4d71f5a69f97d78179a1331486678f83e69a9dc.pdf",
+          "sha256": "d8b97e97fcdc223160e113f8b0e803bf9c843f48e635eb595bcb984c94ab238b"
+        },
+        "provenance": {
+          "locator": "parts[id=C307542]",
+          "path": "power-source/acquisition-passive-exact/manifest.json",
+          "sha256": "dae34b7cace6122814e30effdaecf92f618df50c6b8a34d25727919ed5554158"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "id": "power-c3",
+      "instances": [
+        {
+          "reference": "C3",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C307542",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21B224KCFSFNE",
+      "package": "0805",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C307542",
+        "part_record": "records/power-c3.json",
+        "part_record_sha256": "1adc349a436a619b1eb3eea4f941509fd37538b23153cb5df0e41456dee4bd52"
+      },
+      "selection_id": "power-c3",
+      "stock": 33163
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passive-exact/7f8040ff30575f0dea0a4805d4d71f5a69f97d78179a1331486678f83e69a9dc.pdf",
+          "sha256": "d8b97e97fcdc223160e113f8b0e803bf9c843f48e635eb595bcb984c94ab238b"
+        },
+        "provenance": {
+          "locator": "parts[id=C307542]",
+          "path": "power-source/acquisition-passive-exact/manifest.json",
+          "sha256": "dae34b7cace6122814e30effdaecf92f618df50c6b8a34d25727919ed5554158"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "id": "power-c10",
+      "instances": [
+        {
+          "reference": "C10",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C307542",
+      "lib_id": "Device:C",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21B224KCFSFNE",
+      "package": "0805",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C307542",
+        "part_record": "records/power-c10.json",
+        "part_record_sha256": "1adc349a436a619b1eb3eea4f941509fd37538b23153cb5df0e41456dee4bd52"
+      },
+      "selection_id": "power-c10",
+      "stock": 33163
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/e171be81af1fd58fcb06f260ba912d6d565041a69a7e6dd28d81f471710e97b2.pdf",
+          "sha256": "4746ff205f5df05b8703d29c99a31aba2dfbc8e9ec679fb47b59d08985496ef5"
+        },
+        "provenance": {
+          "locator": "parts[id=C452751]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C452751",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c40",
+      "instances": [
+        {
+          "reference": "C40",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C452751",
+      "lib_id": "Device:C",
+      "manufacturer": "KEMET",
+      "mpn": "C0603C471J5GACTU",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C452751",
+        "part_record": "records/power-c40.json",
+        "part_record_sha256": "1466a8920484b89199f163d64d8aab9a7086d458e45456d6cdf08a8dea23dc97"
+      },
+      "selection_id": "power-c40",
+      "stock": 2937
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/f18f5ecadcf0226f50c08c8c79b5421051058049b4113d69c876494f87443bd6.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C469656]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r4",
+      "instances": [
+        {
+          "reference": "R4",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C469656",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0722KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C469656",
+        "part_record": "records/power-r4.json",
+        "part_record_sha256": "0f52a45f47a192b4733a62c6369efa4047a59faf63edfba8ce26ed3f954630c7"
+      },
+      "selection_id": "power-r4",
+      "stock": 46993
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c6",
+      "instances": [
+        {
+          "reference": "C6",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c6.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c6",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c7",
+      "instances": [
+        {
+          "reference": "C7",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c7.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c7",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c13",
+      "instances": [
+        {
+          "reference": "C13",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c13.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c13",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c14",
+      "instances": [
+        {
+          "reference": "C14",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c14.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c14",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c15",
+      "instances": [
+        {
+          "reference": "C15",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c15.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c15",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c17",
+      "instances": [
+        {
+          "reference": "C17",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c17.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c17",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "power-c19",
+      "instances": [
+        {
+          "reference": "C19",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/power-c19.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "power-c19",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/88073ff1a0234062435905a9d33e3c30b77832ee019dc8ee9c5a599025151782.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C728588]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r27",
+      "instances": [
+        {
+          "reference": "R27",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C728588",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD072KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C728588",
+        "part_record": "records/power-r27.json",
+        "part_record_sha256": "c8df47ea9b38bdb26dfecf4739622668052e6a04f5a529a84efb59791aadcb43"
+      },
+      "selection_id": "power-r27",
+      "stock": 12870
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c4",
+      "instances": [
+        {
+          "reference": "C4",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c4.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c4",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c11",
+      "instances": [
+        {
+          "reference": "C11",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c11.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c11",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c16",
+      "instances": [
+        {
+          "reference": "C16",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c16.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c16",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c18",
+      "instances": [
+        {
+          "reference": "C18",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c18.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c18",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c20",
+      "instances": [
+        {
+          "reference": "C20",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c20.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c20",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c21",
+      "instances": [
+        {
+          "reference": "C21",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c21.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c21",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c22",
+      "instances": [
+        {
+          "reference": "C22",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c22.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c22",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c44",
+      "instances": [
+        {
+          "reference": "C44",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/power-c44.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "power-c44",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c5",
+      "instances": [
+        {
+          "reference": "C5",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c5.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c5",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c12",
+      "instances": [
+        {
+          "reference": "C12",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c12.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c12",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c30",
+      "instances": [
+        {
+          "reference": "C30",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c30.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c30",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c32",
+      "instances": [
+        {
+          "reference": "C32",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c32.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c32",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c34",
+      "instances": [
+        {
+          "reference": "C34",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c34.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c34",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c36",
+      "instances": [
+        {
+          "reference": "C36",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c36.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c36",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c38",
+      "instances": [
+        {
+          "reference": "C38",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c38.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c38",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c39",
+      "instances": [
+        {
+          "reference": "C39",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c39.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c39",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c41",
+      "instances": [
+        {
+          "reference": "C41",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c41.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c41",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c42",
+      "instances": [
+        {
+          "reference": "C42",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c42.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c42",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "power-c43",
+      "instances": [
+        {
+          "reference": "C43",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/power-c43.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "power-c43",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/e12952a5717dc6a69bf62d260ace66561db142307a7991a0cb5b033c81a81d7b.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C861458]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r2",
+      "instances": [
+        {
+          "reference": "R2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C861458",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0751KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C861458",
+        "part_record": "records/power-r2.json",
+        "part_record_sha256": "fa6ef9e987c198f5e3338655c9bd863d14f79d74a4b43aec8e7f0ced6a137dc2"
+      },
+      "selection_id": "power-r2",
+      "stock": 7687
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r3",
+      "instances": [
+        {
+          "reference": "R3",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r3.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r3",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r5",
+      "instances": [
+        {
+          "reference": "R5",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r5.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r5",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r22",
+      "instances": [
+        {
+          "reference": "R22",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r22.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r22",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r23",
+      "instances": [
+        {
+          "reference": "R23",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r23.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r23",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r10",
+      "instances": [
+        {
+          "reference": "R10",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r10.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r10",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r11",
+      "instances": [
+        {
+          "reference": "R11",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r11.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r11",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r13",
+      "instances": [
+        {
+          "reference": "R13",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r13.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r13",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r14",
+      "instances": [
+        {
+          "reference": "R14",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r14.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r14",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r16",
+      "instances": [
+        {
+          "reference": "R16",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r16.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r16",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r17",
+      "instances": [
+        {
+          "reference": "R17",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r17.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r17",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r19",
+      "instances": [
+        {
+          "reference": "R19",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r19.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r19",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "power-r20",
+      "instances": [
+        {
+          "reference": "R20",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "power and analog support",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/power-r20.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "power-r20",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "source_selection": {
+          "part_key": "C694521",
+          "path": "passive-source-selection.json",
+          "sha256": "96fe06d6eee16b21c32eaa3da4474f8663ed0d04b6821835ee663c5347ebf4e5"
+        },
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "id": "support-c45",
+      "instances": [
+        {
+          "reference": "C45",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C694521",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "package": "1210",
+      "required": true,
+      "role": "MCU local22uF bulk",
+      "selection": {
+        "decision_ref": {
+          "locator": "C694521 source-selection proposal",
+          "path": "source-correction-decision.txt",
+          "sha256": "d29ecffef298a13527c22e8f40b37b3c902a0a88265a8657fae421674d805170"
+        },
+        "kind": "named",
+        "lcsc": "C694521",
+        "part_record": "records/support-c45.json",
+        "part_record_sha256": "b1abf7c4daee4d87da7f7f6aceff7174f35dbdb7f0cd2224d120c48034c4ad72"
+      },
+      "selection_id": "support-c45",
+      "stock": 363
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c46",
+      "instances": [
+        {
+          "reference": "C46",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "MCU local100nF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/support-c46.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "support-c46",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c47",
+      "instances": [
+        {
+          "reference": "C47",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "MCU EN1uF delay",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/support-c47.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "support-c47",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "support-r29",
+      "instances": [
+        {
+          "reference": "R29",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "MCU EN10k pullup",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/support-r29.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "support-r29",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "support-r30",
+      "instances": [
+        {
+          "reference": "R30",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "MCU BOOT10k pullup",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/support-r30.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "support-r30",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c48",
+      "instances": [
+        {
+          "reference": "C48",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "IMU VDD100nF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/support-c48.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "support-c48",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c49",
+      "instances": [
+        {
+          "reference": "C49",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "IMU VDDIO100nF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/support-c49.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "support-c49",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c50",
+      "instances": [
+        {
+          "reference": "C50",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "GNSS local1uF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/support-c50.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "support-c50",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c51",
+      "instances": [
+        {
+          "reference": "C51",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "GNSS local100nF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/support-c51.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "support-c51",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+        },
+        "provenance": {
+          "locator": "parts[id=C76706]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c52",
+      "instances": [
+        {
+          "reference": "C52",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76706",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "ADC VDD1uF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76706",
+        "part_record": "records/support-c52.json",
+        "part_record_sha256": "70e4be9fa26fe6e77419c8f84653714b40c4cf27dfb17b0e0eeafb0c728c06bb"
+      },
+      "selection_id": "support-c52",
+      "stock": 8358
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+        },
+        "provenance": {
+          "locator": "parts[id=C76711]",
+          "path": "power-source/acquisition-auto-caps/manifest.json",
+          "sha256": "3e8c5ff40a146ae658fcf36d2e13a18b9bbd202e14365951cf10e25d88f1db9f"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "id": "support-c53",
+      "instances": [
+        {
+          "reference": "C53",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C76711",
+      "lib_id": "Device:C",
+      "manufacturer": "TDK",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "package": "0603",
+      "required": true,
+      "role": "CAN VIO100nF bypass",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C76711",
+        "part_record": "records/support-c53.json",
+        "part_record_sha256": "2ec47ce072e7e17d7c37504d36820a7b9c0443ad51c75f951a99e8b691f4c656"
+      },
+      "selection_id": "support-c53",
+      "stock": 492043
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "support-r31",
+      "instances": [
+        {
+          "reference": "R31",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "IMU CS10k pullup",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/support-r31.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "support-r31",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "support-r32",
+      "instances": [
+        {
+          "reference": "R32",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "ADC CS10k pullup",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/support-r32.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "support-r32",
+      "stock": 2023420
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "connector-source/acquisition-te/ce8dfd9de5f67c0f5427e925c999cccd9a8114729a6b8f249b59787fbc427d9c.pdf",
+          "sha256": "14bd5c3bb2ca16bfcf01918b678eab1aa19df10001c17735dd1f11356a6e4fe8"
+        },
+        "provenance": {
+          "locator": "parts[id=te-776228-1]",
+          "path": "connector-source/acquisition-te/manifest.json",
+          "sha256": "e2a6228cc3f7727a2c95f6883d690542291b0199a4d2ec153e1f45583b216f0a"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "ampseal:ampseal-23",
+      "id": "connector-j1",
+      "instances": [
+        {
+          "reference": "J1",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C498958",
+      "lib_id": "Connector_Generic:Conn_01x23",
+      "manufacturer": "TE Connectivity",
+      "mpn": "776228-1",
+      "package": "Plugin,P=4mm",
+      "required": true,
+      "role": "harness connector",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C498958",
+        "part_record": "records/connector-j1.json",
+        "part_record_sha256": "a910be6bfc52394394244fff43a678e6f1ede234b11d68d794f00f3de9fc498b"
+      },
+      "selection_id": "connector-j1",
+      "stock": 260
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "connector-source/acquisition-molex-retry/51952567592f862257faf27ada51ab65d688858349be5a4763cc3804d1cbd2e4.pdf",
+          "sha256": "252330f9eaf1469a8b5e2613297b15db5543c3934072f769233915f6468e5580"
+        },
+        "provenance": {
+          "locator": "parts[id=molex-sma-product]",
+          "path": "connector-source/acquisition-molex-retry/manifest.json",
+          "sha256": "70b70286a830a1f06eaeb8be1a536035a5715da30cc90a47986eadd66b56648b"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Connector_Coaxial:SMA_Molex_73251-1153_EdgeMount_Horizontal",
+      "id": "connector-j2",
+      "instances": [
+        {
+          "reference": "J2",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C841205",
+      "lib_id": "Connector:Conn_Coaxial",
+      "manufacturer": "MOLEX",
+      "mpn": "732511150",
+      "package": "-",
+      "required": true,
+      "role": "active antenna connector",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C841205",
+        "part_record": "records/connector-j2.json",
+        "part_record_sha256": "3ec9f571a6c389f174fac95e2ddd0859df5d12f75bdb11f631955a5cc7a946e2"
+      },
+      "selection_id": "connector-j2",
+      "stock": 191
+    },
+    {
+      "datasheet": {
+        "artifact": {
+          "path": "power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+        },
+        "provenance": {
+          "locator": "parts[id=C95204]",
+          "path": "power-source/acquisition-passives-1/manifest.json",
+          "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+        },
+        "required": true,
+        "status": "captured"
+      },
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "id": "support-r33",
+      "instances": [
+        {
+          "reference": "R33",
+          "sheet": "/"
+        }
+      ],
+      "lcsc": "C95204",
+      "lib_id": "Device:R",
+      "manufacturer": "YAGEO",
+      "mpn": "RT0603BRD0710KL",
+      "package": "0603",
+      "required": true,
+      "role": "GPIO46 10k strap pulldown",
+      "selection": {
+        "decision_ref": {
+          "locator": "Circuit decisions",
+          "path": "complete-decisions.md",
+          "sha256": "f09a0b56852332738ce3d2f342f0bc815732cc8b59e751e6b2b5cb14e4b08dcb"
+        },
+        "kind": "named",
+        "lcsc": "C95204",
+        "part_record": "records/support-r33.json",
+        "part_record_sha256": "6db99465ea0715fdcc9259982cff48412bacde7e509fb3a9c86b5d3c70a1e0c1"
+      },
+      "selection_id": "support-r33",
+      "stock": 2023420
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp1",
+      "instances": [
+        {
+          "native_net": "/POD_UART_TX",
+          "net": "POD_UART_TX",
+          "reference": "TP1",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP1"
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp2",
+      "instances": [
+        {
+          "native_net": "/POD_UART_RX",
+          "net": "POD_UART_RX",
+          "reference": "TP2",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP2"
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp3",
+      "instances": [
+        {
+          "native_net": "/GND",
+          "net": "GND",
+          "reference": "TP3",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP3"
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp4",
+      "instances": [
+        {
+          "native_net": "/MCU_EN",
+          "net": "MCU_EN",
+          "reference": "TP4",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP4"
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp5",
+      "instances": [
+        {
+          "native_net": "/MCU_BOOT",
+          "net": "MCU_BOOT",
+          "reference": "TP5",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP5"
+    },
+    {
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "id": "probe-tp6",
+      "instances": [
+        {
+          "native_net": "/+3V3",
+          "net": "+3V3",
+          "reference": "TP6",
+          "sheet": "/"
+        }
+      ],
+      "kind": "bare_copper_probe",
+      "lib_id": "PodFeatures:PogoPad",
+      "probe": {
+        "footprint": {
+          "path": "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "sha256": "a66a197ae2723a8059dc3a2397bc7426f2a6f97e8d7e755ac1954ded5ce1526c"
+        },
+        "pin": {
+          "electrical_type": "passive",
+          "name": "PROBE",
+          "number": "1"
+        },
+        "symbol": {
+          "path": "symbols/PodFeatures.kicad_sym",
+          "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+        }
+      },
+      "required": true,
+      "role": "Manufactured programming and rail-sense pad TP6"
+    }
+  ],
+  "population": "native-dnp-optional-only/1",
+  "property_fields": {
+    "lcsc": "LCSC",
+    "manufacturer": "Manufacturer",
+    "mpn": "Partnumber"
+  },
+  "schema": "agent-ee.parts/1",
+  "selection": null
+}
