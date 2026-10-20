@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "connector_cavities": 35,
+  "expansion_gpio_allocations": 15,
+  "independent_map_matches": true,
+  "report_replay_matches": true,
+  "negative_controls": {
+    "swapped_cavities": {
+      "rejected": true,
+      "reason": "ValueError: Native net mismatch ('J1', '24')"
+    },
+    "wrong_gpio_label": {
+      "rejected": true,
+      "reason": "ValueError: GPIO/module-pin mismatch"
+    },
+    "native_nc_removed": {
+      "rejected": true,
+      "reason": "ValueError: Missing native NC ('U1', '28')"
+    }
+  },
+  "sha256": {
+    "contract": "2a1ed481885c9bb5640e99ae2a791446faacb60126fc52820f1cc2270d788b8f",
+    "checker": "93a54887425044d74dfa9f64f411a1fce4d7d4e4de5b8d026c8aeda4281e225f",
+    "intent": "e839d92c8b1c6fe5a018f2cb0139c667b7495bf046c88f9d6ced45d75b51b346",
+    "native": "80f1ce33e103808d504ab92899025040ee5b75433af6d3afce9e40fdf1eb7786"
+  },
+  "scope": "Partial interface correspondence only; no pilot io-map replacement or operational qualification."
+}

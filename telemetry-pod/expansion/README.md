@@ -15,6 +15,10 @@ Earlier snapshots retain evidence of their individual preparation and review sta
 The [supply-monitor coverage](supply-monitor-coverage/README.md) records the
 current series-divider graph's sensing boundaries and ten diagnostic channels,
 including the added supervisor midpoint.
+The [expanded endpoint contract](interface-contract/README.md) checks all 35
+connector cavities and 15 expansion GPIO allocations against that source and
+native netlist, with explicit tire CAN/eMMC aliases and unused reset state.
+The full compiled interface and firmware contract remain outstanding.
 
 ## Connector and buses
 
