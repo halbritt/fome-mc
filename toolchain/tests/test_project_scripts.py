@@ -1,5 +1,6 @@
 """Project selection and fail-closed I/O checks; runnable with unittest offline."""
 import contextlib
+import copy
 import csv
 import importlib.util
 import io
@@ -136,8 +137,8 @@ class ProjectScripts(unittest.TestCase):
     def test_landed_pod_map_reads_before_missing_root_contract(self):
         source = REPO / 'telemetry-pod/io-map.csv'
         pins = verify.read_project_map(source)
-        self.assertEqual(len(pins), 29)
-        self.assertEqual(pins['AMPSEAL-1'], 'POD_CAN_H')
+        self.assertEqual(len(pins), 32)
+        self.assertEqual(pins['AMPSEAL-1'], '/POD_CAN_P')
         self.assertEqual(pins['BLE-RADIO'], 'N/A')
         project = self.root / 'telemetry-pod'
         project.mkdir()
@@ -154,12 +155,11 @@ class ProjectScripts(unittest.TestCase):
         fixture = REPO / 'toolchain/fixtures/rc_filter'
         project = self.root / 'fixture'
         shutil.copytree(fixture, project)
-        cfg = {'name': 'telemetry-pod', 'path': project,
+        cfg = {'name': 'fixture', 'path': project,
                'schematic': 'rc_filter.kicad_sch', 'pcb': 'rc_filter.kicad_pcb'}
         (self.root / 'contracts').mkdir()
         (self.root / 'contracts/unrelated.interface.json').write_text('{}')
         (project / 'contracts').mkdir()
-        (project / 'contracts/wrong-location.interface.json').write_text('{}')
         contract = {
             'schema': 'agent-ee.interface/1',
             'components': {'connector': {'locations': [{'sheet': '/', 'reference': 'J1'}],
@@ -172,24 +172,110 @@ class ProjectScripts(unittest.TestCase):
                 'kind': 'named_net', 'terminal': f'p{n}', 'names': [net],
             } for n, net in ((1, '/IN'), (2, '/OUT'), (3, 'GND'))],
         }
-        contract_path = self.root / 'contracts/telemetry-pod.interface.json'
+        contract_path = project / 'contracts/fixture.interface.json'
         contract_path.write_text(json.dumps(contract))
         map_path = project / 'io-map.csv'
         self.write_map(map_path, [('J1-1', '/IN'), ('J1-2', '/OUT'), ('J1-3', 'GND')])
         map_text = map_path.read_text()
-        with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(io.StringIO()):
+        output = io.StringIO()
+        with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(output):
             self.assertEqual(verify.verify_project_io(cfg), 0)
             map_path.write_text(map_text.replace('/IN', 'WRONG'))
             self.assertEqual(verify.verify_project_io(cfg), 1)
             self.write_map(map_path, [('J1-1', '/IN'), ('J1-2', '/OUT')])
-            with self.assertRaisesRegex(ValueError, 'coverage'):
-                verify.verify_project_io(cfg)
+            output.truncate(0)
+            output.seek(0)
+            self.assertEqual(verify.verify_project_io(cfg), 1)
+            self.assertIn("io-map connector coverage: missing=[('J1', '3')]", output.getvalue())
             map_path.write_text(map_text)
             contract['invariants'][0]['names'] = ['WRONG']
             contract_path.write_text(json.dumps(contract))
             self.assertEqual(verify.verify_project_io(cfg), 1)
         self.assertEqual((project / cfg['schematic']).read_bytes(), (fixture / cfg['schematic']).read_bytes())
         self.assertTrue(list(self.root.glob('build/runs/verify-io/*/*/snapshot.json')))
+
+
+    def test_real_pod_bindings_and_fail_closed_mutations(self):
+        project = self.root / 'telemetry-pod'
+        shutil.copytree(REPO / 'telemetry-pod', project)
+        (self.root / 'contracts').mkdir()
+        contract_path = self.root / 'contracts/telemetry-pod.interface.json'
+        original_bytes = (REPO / 'contracts/telemetry-pod.interface.json').read_bytes()
+        original = json.loads(original_bytes)
+        cfg = dict(verify.eda.project_config('telemetry-pod'), path=project)
+
+        def run(contract):
+            contract_path.write_bytes(original_bytes if contract == original else json.dumps(contract).encode())
+            output = io.StringIO()
+            with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(output):
+                result = verify.verify_project_io(cfg)
+            return result, output.getvalue()
+
+        result, output = run(original)
+        self.assertEqual(result, 0, output)
+        self.assertIn('NOT_EVALUATED: BLE-RADIO', output)
+        self.assertIn('81/82 invariants satisfied', output)
+        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap'):
+            with self.subTest(mutation=mutation):
+                contract = copy.deepcopy(original)
+                terminals = contract['terminals']
+                if mutation == 'net':
+                    contract['invariants'][0]['names'] = ['WRONG']
+                elif mutation == 'pin':
+                    terminals['AMPSEAL-1'], terminals['AMPSEAL-2'] = terminals['AMPSEAL-2'], terminals['AMPSEAL-1']
+                elif mutation == 'nc':
+                    terminals['AMPSEAL-17'], terminals['AMPSEAL-3'] = terminals['AMPSEAL-3'], terminals['AMPSEAL-17']
+                elif mutation == 'unresolved':
+                    terminals['AMPSEAL-1'] = {'unresolved': 'deliberate scratch mutation'}
+                elif mutation == 'unknown':
+                    inv = contract['invariants'][0]
+                    inv.pop('terminal'); inv.pop('names')
+                    inv.update(kind='unresolved', reason='deliberate scratch unknown')
+                elif mutation == 'missing':
+                    del terminals['AMPSEAL-23']
+                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'AMPSEAL-23']
+                elif mutation == 'same-net-swap':
+                    terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+                result, output = run(contract)
+                self.assertEqual(result, 1, output)
+                self.assertIn('FAIL:', output)
+                if mutation == 'same-net-swap':
+                    self.assertIn('differs from fresh AGENTEE-188 compile', output)
+        for source in (REPO / 'telemetry-pod').glob('*.kicad_*'):
+            self.assertEqual(source.read_bytes(), (project / source.name).read_bytes())
+
+        # CSV net and MCU pin changes must refuse a stale compiled contract.
+        map_path = project / 'io-map.csv'
+        raw = map_path.read_bytes()
+        for old, new in ((b'/POD_CAN_P', b'/WRONG'), (b'U1,4;5,', b'U1,4;6,')):
+            with self.subTest(stale_map=new):
+                self.assertIn(old, raw)
+                map_path.write_bytes(raw.replace(old, new))
+                result, output = run(original)
+                self.assertEqual(result, 1, output)
+                self.assertIn('stale io-map citation', output)
+                map_path.write_bytes(raw)
+
+        # Bindings and indirect paths are compiler inputs too, even if the
+        # committed contract still evaluates against the unchanged native board.
+        bindings_path = project / 'pinout-checks/bindings.json'
+        raw_bindings = bindings_path.read_bytes()
+        bindings = json.loads(raw_bindings)
+        terminals = bindings['terminals']
+        terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+        bindings_path.write_text(json.dumps(bindings))
+        result, output = run(original)
+        self.assertEqual(result, 1, output)
+        self.assertIn('differs from fresh AGENTEE-188 compile', output)
+        bindings_path.write_bytes(raw_bindings)
+
+        paths_path = project / 'pinout-checks/paths.json'
+        raw_paths = paths_path.read_bytes()
+        paths_path.write_text('{"schema":"invalid","paths":{}}')
+        result, output = run(original)
+        self.assertEqual(result, 1, output)
+        self.assertIn('pod contract compile failed (rc=2)', output)
+        paths_path.write_bytes(raw_paths)
 
 
 if __name__ == '__main__':

@@ -1,37 +1,32 @@
-# Pod I/O map input
+# Pod I/O map and compiled contract
 
-`io-map.csv` is an input to the future pod generator. Its 23 `AMPSEAL-<cavity>`
-rows describe the TE 776228-1 header. Six other rows cover the module's BLE radio,
-the GNSS SMA connector (center and shield), and the factory UART pogo pads
-(TX, RX, return). These extra rows are outside the AMPSEAL housing.
+`io-map.csv` describes the committed v9 pilot: 23 AMPSEAL cavities, the integrated
+BLE radio, two GNSS SMA contacts and six factory debug pads. Logical row names
+bind to native references through `pinout-checks/bindings.json`. The three debug
+rows for EN, BOOT and 3V3 come from the pilot5 inputs; this change adds no design
+content. Notes retain the original proposal's wording, including historical
+`TBD` text; the Net, MCU_Ref, MCU_Pin and MCU_Path columns carry the resolved
+connectivity declarations.
 
-The cavity allocation is proposed by FOMEMC-30: 1–2 CAN, 3–4 power and ground,
-5–7 front fork, 8–10 rear shock, 11–13 front brake, 14–16 rear brake, and 17–23
-plugged. Revision 2 specifies the functions and counts but does **not** specify
-cavity numbers. The generated design must reconcile this proposal with its
-connector symbol and footprint. `AMPSEAL` is a logical connector identifier;
-it does not assign a KiCad reference. Net names in this CSV are proposed names
-to bind when generating the schematic, not observations of the empty skeleton.
+CAN rows name `/POD_CAN_P` and `/POD_CAN_N`; sensor returns name `/GND`.
+Concrete MCU pins use either `MCU_Path=direct` or semicolon-separated indirect
+path IDs, one per MCU pin. `pinout-checks/paths.json` supplies the intermediate
+terminals, devices, pin names and directions for the CAN and ADC paths.
+Cavities 17–23 declare `N/C`, with no MCU pin. The integrated BLE antenna has
+`Net=N/A` and no electrical connector terminal.
 
-The columns, in order, are:
+## Preserved design intent and historical sources
 
-```text
-Connector_Pin,Signal_Name,Net,Direction_Class,Voltage_Current_Domain,MCU_Ref,MCU_Pin,External_Destination,Notes
-```
+The complete prior proposal document from `13c0bfb:telemetry-pod/IO_MAP.md` is
+preserved verbatim in [IO_MAP_HISTORY.md](IO_MAP_HISTORY.md). Its proposal,
+empty-skeleton and future-compiler statements describe that historical stage;
+the resolved connectivity and current gate are documented here above and below.
+In particular, the current map has ten columns including `MCU_Path` and 32 rows.
 
-Each row has nine nonempty fields, with ordinary CSV quoting. Directions are
-relative to the pod. `N/A` means a field does not apply; `N/C` is reserved for
-an explicitly unconnected cavity. Each unused cavity has `Signal_Name=NO_CONNECT`,
-`Direction_Class=No_Connect`, no PCB net, no harness contact, and a TE 770678-1
-cavity plug. No-connect rows do not mean spare signals wired to the board.
-
-`MCU_Ref=TBD` means the ESP32-S3-WROOM-1 reference is not assigned. `MCU_Pin=TBD`
-means the specification leaves its GPIO assignment open. CAN pins reach the MCU
-through the TJA1051T/3, and analog signals through the protected divider and
-MCP3204 SPI ADC; they are not direct GPIO/ADC connections. ADC channel assignments,
-UART test-pad references and boot-entry implementation, the SMA reference and
-active-antenna bias, and sensor-return topology remain generator obligations.
-The BLE antenna is integrated into the MCU module and has no external GPIO.
+Directions are relative to the pod. `N/A` means a field does not apply; `N/C`
+is reserved for an explicitly unconnected cavity. `TBD` denotes an unresolved
+assignment in the original proposal; it does not establish connectivity.
+The current compiler and native gate evaluate the resolved columns and paths.
 
 The power row names a harness splice on the relay circuit feeding ECU J1-27,
 through the pod's own 2 A fuse. Ground returns to the J1-34 CHASSIS_ECU_GND circuit.
@@ -40,7 +35,10 @@ the four rows do not each promise 200 mA. The ADC reference is derived from this
 rail at the connector, with both inputs and reference divided by two per the
 MCP3204 decision. ECU J1-30/J1-31 are unused by the pod.
 
-## Pinned sources
+These are design-intent decisions, not analog-performance verdicts from verify-io.
+The following pinned identities describe the original revision-2 source capture;
+they do not claim that today's `REQUIREMENTS.md` still has that digest.
+The historical verifier and its output are retired, as explained below.
 
 Owner decision 6 requires identities rather than moving `main` links:
 
@@ -56,32 +54,54 @@ Its Notes carry the captured `POD-IF-*` requirement IDs and relevant sensor
 function IDs. SMA is fixed by the NEO-M9N component decision even though the
 interface row alone allows SMA or U.FL.
 
-## Reproduce the cross-check
+## Input provenance
 
-From this worktree, extract the pinned capture into an existing scratch directory
-(the command reads Git objects without checking out or modifying agent-ee):
+The following files were copied byte-for-byte from:
 
-```sh
-git --git-dir=/home/halbritt/git/agent-ee/.git show \
-  ffa8c85c0840937f3ae6861ffb58ed4392c3df4a:fixtures/telemetry-pod/spec-record.json \
-  > "$scratch/spec-record.json"
-python3 telemetry-pod/verify_io_map.py "$scratch/spec-record.json"
+```text
+/tmp/agent469-coordination/pod-campaign-v1/driver-preparation-v8-90x65/work-inputs-pilot5/pinout-checks
 ```
 
-`verify_io_map.py` uses only Python's standard library. It verifies the pinned
-spec, capture and document identities, validates every captured interface-row
-byte range against the spec, checks the CSV structure and cavity declarations,
-and prints the requirement-to-row mapping and every cell containing `TBD`.
-`io-map-cross-check.txt` is the committed output. Compare a fresh run with that
-file to check reproducibility.
+| Pilot5 source file | Committed destination | SHA-256 |
+| --- | --- | --- |
+| `io-map.paths.csv` | `telemetry-pod/io-map.csv` | `be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea` |
+| `bindings.json` | `telemetry-pod/pinout-checks/bindings.json` | `6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b` |
+| `paths.json` | `telemetry-pod/pinout-checks/paths.json` | `b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e` |
 
-This cross-check proves CSV structure and traceability. The pod still has an
-empty schematic, so electrical connectivity and MCU pin suitability remain
-unverified. The existing `make verify-io PROJECT=fome-mc` gate checks the ECU;
-it does not consume the pod CSV.
+These are the pilot5 inputs matching the committed v9 board. The similarly named
+`pinout-path-proposal-v1` directory was inspected but supplies no copied inputs.
+Native `telemetry-pod/*.kicad_*` files are unchanged.
 
-AGENTEE-188 (`pod-33`) will compile this file using agent-ee `io_map` and produce
-`contracts/telemetry-pod.interface.json`. That compiler is not built at this
-assignment's pinned input. No contract is hand-written here, and compiler
-acceptance is **not evaluated**. Its eventual strict input rules and generated
-netlist agreement must be checked before this map is accepted as a board pinout.
+## Regenerate and verify
+
+Compiler: agent-ee commit `62fb279fb0129de06154675d876989c53cb079a7`.
+From the repository root, using that existing checkout:
+
+```sh
+PYTHONPATH=/home/halbritt/git/agent-ee/src python3 -m agent_ee.io_map telemetry-pod/io-map.csv --csv-path telemetry-pod/io-map.csv --requirement POD-AC-1-pinout --source telemetry-pod/REQUIREMENTS.md --locator 'Acceptance criteria / item 1' --bindings telemetry-pod/pinout-checks/bindings.json --paths telemetry-pod/pinout-checks/paths.json --out contracts/telemetry-pod.interface.json
+make verify-io PROJECT=telemetry-pod
+```
+
+The contract is generated, never hand-edited. Its per-invariant `io_map` citations
+include the CSV hash. A changed CSV with a stale contract fails verification.
+Every pod verification also recompiles the CSV, bindings and paths with the existing AGENTEE-188 checkout
+and compares the output bytes against the committed contract. Hand edits, including
+swaps between terminals on the same net, fail. Compiler logs and the fresh JSON
+are retained under `build/runs/verify-io/telemetry-pod/`.
+The gate checks a fresh native netlist and source geometry on a snapshot and
+reports 81 of 82 invariants satisfied, including 20 indirect paths. It prints
+`BLE-RADIO` as declared wireless `not_evaluated`; that obligation remains unknown
+and is never counted as satisfied. Any other non-satisfied invariant fails.
+This connectivity gate does not establish analog performance, firmware behavior,
+wireless operation, physical debug access, or fabrication approval.
+
+`telemetry-pod/verify_io_map.py` is explicitly retired: it exits 2 with a
+retirement message and points to the current gate. The old checker and reproduction
+instructions can be inspected at `13c0bfb:telemetry-pod/verify_io_map.py` and in
+`IO_MAP_HISTORY.md`. It checked the original nine-column proposal against the
+revision-2 capture; later requirements changes invalidated that pinned-input
+precondition, and the current map also has `MCU_Path`. We have not recaptured or
+claimed current specification traceability. The retained `io-map-cross-check.txt`
+is historical evidence only. Use `make verify-io PROJECT=telemetry-pod` for current
+native connectivity and compiled-input parity; that gate does not replace a
+specification traceability review.

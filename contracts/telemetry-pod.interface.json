@@ -1,0 +1,3356 @@
+{
+  "allowed_edits": [],
+  "components": {
+    "adc": {
+      "locations": [
+        {
+          "reference": "U4",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Analog_ADC:MCP3204"
+      ]
+    },
+    "can/U307": {
+      "locations": [
+        {
+          "reference": "U100",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Block_63616e_496e746572666163655f43414e5f4c494e:TJA1051T-3"
+      ]
+    },
+    "connector/J1": {
+      "locations": [
+        {
+          "reference": "J1",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Connector_Generic:Conn_01x23"
+      ]
+    },
+    "connector/J2": {
+      "locations": [
+        {
+          "reference": "J2",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Connector:Conn_Coaxial"
+      ]
+    },
+    "debug/tp1": {
+      "locations": [
+        {
+          "reference": "TP1",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "debug/tp2": {
+      "locations": [
+        {
+          "reference": "TP2",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "debug/tp3": {
+      "locations": [
+        {
+          "reference": "TP3",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "debug/tp4": {
+      "locations": [
+        {
+          "reference": "TP4",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "debug/tp5": {
+      "locations": [
+        {
+          "reference": "TP5",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "debug/tp6": {
+      "locations": [
+        {
+          "reference": "TP6",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodFeatures:PogoPad"
+      ]
+    },
+    "mcu": {
+      "locations": [
+        {
+          "reference": "U1",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "RF_Module:ESP32-S3-WROOM-1"
+      ]
+    },
+    "power/R10": {
+      "locations": [
+        {
+          "reference": "R10",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R12": {
+      "locations": [
+        {
+          "reference": "R12",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R13": {
+      "locations": [
+        {
+          "reference": "R13",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R15": {
+      "locations": [
+        {
+          "reference": "R15",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R16": {
+      "locations": [
+        {
+          "reference": "R16",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R18": {
+      "locations": [
+        {
+          "reference": "R18",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R19": {
+      "locations": [
+        {
+          "reference": "R19",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/R21": {
+      "locations": [
+        {
+          "reference": "R21",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "Device:R"
+      ]
+    },
+    "power/U8": {
+      "locations": [
+        {
+          "reference": "U8",
+          "sheet": "/"
+        }
+      ],
+      "symbols": [
+        "PodPower:ADA4096-4ARUZ-R7"
+      ]
+    }
+  },
+  "invariants": [
+    {
+      "id": "AMPSEAL-1:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_CAN_P"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-1"
+    },
+    {
+      "devices": [
+        {
+          "component": "can/U307",
+          "role": "TJA1051T/3 CAN transceiver",
+          "value": "TJA1051T-3"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-1:mcu-path:AMPSEAL-1.twai-tx",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_1",
+        "CANH",
+        "TXD",
+        "IO4"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-1",
+        "U100:7",
+        "U100:1",
+        "U1:4"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "can/U307",
+          "role": "TJA1051T/3 CAN transceiver",
+          "value": "TJA1051T-3"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-1:mcu-path:AMPSEAL-1.twai-rx",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_1",
+        "CANH",
+        "RXD",
+        "IO5"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-1",
+        "U100:7",
+        "U100:4",
+        "U1:5"
+      ]
+    },
+    {
+      "id": "AMPSEAL-2:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-2",
+        "external_destination": "fome-mc J2-29 CAN1_L; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 3,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_L"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_CAN_N"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-2"
+    },
+    {
+      "devices": [
+        {
+          "component": "can/U307",
+          "role": "TJA1051T/3 CAN transceiver",
+          "value": "TJA1051T-3"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-2:mcu-path:AMPSEAL-2.twai-tx",
+      "io_map": {
+        "connector_pin": "AMPSEAL-2",
+        "external_destination": "fome-mc J2-29 CAN1_L; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 3,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_L"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_2",
+        "CANL",
+        "TXD",
+        "IO4"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-2",
+        "U100:6",
+        "U100:1",
+        "U1:4"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "can/U307",
+          "role": "TJA1051T/3 CAN transceiver",
+          "value": "TJA1051T-3"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-2:mcu-path:AMPSEAL-2.twai-rx",
+      "io_map": {
+        "connector_pin": "AMPSEAL-2",
+        "external_destination": "fome-mc J2-29 CAN1_L; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 3,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_L"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_2",
+        "CANL",
+        "RXD",
+        "IO5"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-2",
+        "U100:6",
+        "U100:4",
+        "U1:5"
+      ]
+    },
+    {
+      "id": "AMPSEAL-3:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-3",
+        "external_destination": "R/Y main-relay harness splice on circuit feeding J1-27; own 2 A inline fuse; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-POWER-IN"
+        ],
+        "row": 4,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "SWITCHED_12V_IN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_12V_IN"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-3"
+    },
+    {
+      "id": "AMPSEAL-4:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-4",
+        "external_destination": "Chassis ground point on J1-34 CHASSIS_ECU_GND circuit; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-POWER-IN"
+        ],
+        "row": 5,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CHASSIS_GND"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-4"
+    },
+    {
+      "id": "AMPSEAL-5:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-5",
+        "external_destination": "front fork linear potentiometer (0-130 mm) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 6,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_5V"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_5V_SENSOR"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-5"
+    },
+    {
+      "id": "AMPSEAL-6:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_FRONT_FORK_SIGNAL"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-6"
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R10",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R12",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-6:mcu-path:AMPSEAL-6.adc-cs",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_6",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH0",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-6",
+        "R10:1",
+        "R10:2",
+        "U8:3",
+        "U8:1",
+        "R12:1",
+        "R12:2",
+        "U4:1",
+        "U4:8",
+        "U1:17"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R10",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R12",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-6:mcu-path:AMPSEAL-6.adc-mosi",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_6",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH0",
+        "Din",
+        "IO11"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-6",
+        "R10:1",
+        "R10:2",
+        "U8:3",
+        "U8:1",
+        "R12:1",
+        "R12:2",
+        "U4:1",
+        "U4:9",
+        "U1:19"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R10",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R12",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-6:mcu-path:AMPSEAL-6.adc-sck",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_6",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH0",
+        "CLK",
+        "IO12"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-6",
+        "R10:1",
+        "R10:2",
+        "U8:3",
+        "U8:1",
+        "R12:1",
+        "R12:2",
+        "U4:1",
+        "U4:11",
+        "U1:20"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R10",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R12",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-6:mcu-path:AMPSEAL-6.adc-miso",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_6",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH0",
+        "Dout",
+        "IO13"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-6",
+        "R10:1",
+        "R10:2",
+        "U8:3",
+        "U8:1",
+        "R12:1",
+        "R12:2",
+        "U4:1",
+        "U4:10",
+        "U1:21"
+      ]
+    },
+    {
+      "id": "AMPSEAL-7:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-7",
+        "external_destination": "front fork linear potentiometer (0-130 mm) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 8,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_RETURN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-7"
+    },
+    {
+      "id": "AMPSEAL-8:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-8",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 9,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_5V"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_5V_SENSOR"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-8"
+    },
+    {
+      "id": "AMPSEAL-9:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_REAR_SHOCK_SIGNAL"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-9"
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R13",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R15",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-9:mcu-path:AMPSEAL-9.adc-cs",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_9",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH1",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-9",
+        "R13:1",
+        "R13:2",
+        "U8:5",
+        "U8:7",
+        "R15:1",
+        "R15:2",
+        "U4:2",
+        "U4:8",
+        "U1:17"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R13",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R15",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-9:mcu-path:AMPSEAL-9.adc-mosi",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_9",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH1",
+        "Din",
+        "IO11"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-9",
+        "R13:1",
+        "R13:2",
+        "U8:5",
+        "U8:7",
+        "R15:1",
+        "R15:2",
+        "U4:2",
+        "U4:9",
+        "U1:19"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R13",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R15",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-9:mcu-path:AMPSEAL-9.adc-sck",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_9",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH1",
+        "CLK",
+        "IO12"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-9",
+        "R13:1",
+        "R13:2",
+        "U8:5",
+        "U8:7",
+        "R15:1",
+        "R15:2",
+        "U4:2",
+        "U4:11",
+        "U1:20"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R13",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R15",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-9:mcu-path:AMPSEAL-9.adc-miso",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_9",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH1",
+        "Dout",
+        "IO13"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-9",
+        "R13:1",
+        "R13:2",
+        "U8:5",
+        "U8:7",
+        "R15:1",
+        "R15:2",
+        "U4:2",
+        "U4:10",
+        "U1:21"
+      ]
+    },
+    {
+      "id": "AMPSEAL-10:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-10",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 11,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_RETURN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-10"
+    },
+    {
+      "id": "AMPSEAL-11:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-11",
+        "external_destination": "front brake pressure transducer (0-100 bar) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 12,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_5V"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_5V_SENSOR"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-11"
+    },
+    {
+      "id": "AMPSEAL-12:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_FRONT_BRAKE_SIGNAL"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-12"
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R16",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R18",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-12:mcu-path:AMPSEAL-12.adc-cs",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_12",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH2",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-12",
+        "R16:1",
+        "R16:2",
+        "U8:10",
+        "U8:8",
+        "R18:1",
+        "R18:2",
+        "U4:3",
+        "U4:8",
+        "U1:17"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R16",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R18",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-12:mcu-path:AMPSEAL-12.adc-mosi",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_12",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH2",
+        "Din",
+        "IO11"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-12",
+        "R16:1",
+        "R16:2",
+        "U8:10",
+        "U8:8",
+        "R18:1",
+        "R18:2",
+        "U4:3",
+        "U4:9",
+        "U1:19"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R16",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R18",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-12:mcu-path:AMPSEAL-12.adc-sck",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_12",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH2",
+        "CLK",
+        "IO12"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-12",
+        "R16:1",
+        "R16:2",
+        "U8:10",
+        "U8:8",
+        "R18:1",
+        "R18:2",
+        "U4:3",
+        "U4:11",
+        "U1:20"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R16",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R18",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-12:mcu-path:AMPSEAL-12.adc-miso",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_12",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH2",
+        "Dout",
+        "IO13"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-12",
+        "R16:1",
+        "R16:2",
+        "U8:10",
+        "U8:8",
+        "R18:1",
+        "R18:2",
+        "U4:3",
+        "U4:10",
+        "U1:21"
+      ]
+    },
+    {
+      "id": "AMPSEAL-13:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-13",
+        "external_destination": "front brake pressure transducer (0-100 bar) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 14,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_RETURN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-13"
+    },
+    {
+      "id": "AMPSEAL-14:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-14",
+        "external_destination": "rear brake pressure transducer (0-100 bar) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 15,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_5V"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_5V_SENSOR"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-14"
+    },
+    {
+      "id": "AMPSEAL-15:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_REAR_BRAKE_SIGNAL"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-15"
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R19",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R21",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-15:mcu-path:AMPSEAL-15.adc-cs",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_15",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH3",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-15",
+        "R19:1",
+        "R19:2",
+        "U8:12",
+        "U8:14",
+        "R21:1",
+        "R21:2",
+        "U4:4",
+        "U4:8",
+        "U1:17"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R19",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R21",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-15:mcu-path:AMPSEAL-15.adc-mosi",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_15",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH3",
+        "Din",
+        "IO11"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-15",
+        "R19:1",
+        "R19:2",
+        "U8:12",
+        "U8:14",
+        "R21:1",
+        "R21:2",
+        "U4:4",
+        "U4:9",
+        "U1:19"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R19",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R21",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ],
+      "id": "AMPSEAL-15:mcu-path:AMPSEAL-15.adc-sck",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_15",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH3",
+        "CLK",
+        "IO12"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-15",
+        "R19:1",
+        "R19:2",
+        "U8:12",
+        "U8:14",
+        "R21:1",
+        "R21:2",
+        "U4:4",
+        "U4:11",
+        "U1:20"
+      ]
+    },
+    {
+      "devices": [
+        {
+          "component": "power/R19",
+          "role": "input divider upper resistor",
+          "value": "10 kohm"
+        },
+        {
+          "component": "power/U8",
+          "role": "op-amp buffer",
+          "value": "ADA4096-4ARUZ-R7"
+        },
+        {
+          "component": "power/R21",
+          "role": "ADC input series resistor",
+          "value": "100 ohm"
+        },
+        {
+          "component": "adc",
+          "role": "MCP3204 SPI ADC",
+          "value": "MCP3204-BI/SL"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ],
+      "id": "AMPSEAL-15:mcu-path:AMPSEAL-15.adc-miso",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "indirect_path",
+      "pin_names": [
+        "Pin_15",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH3",
+        "Dout",
+        "IO13"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "AMPSEAL-15",
+        "R19:1",
+        "R19:2",
+        "U8:12",
+        "U8:14",
+        "R21:1",
+        "R21:2",
+        "U4:4",
+        "U4:10",
+        "U1:21"
+      ]
+    },
+    {
+      "id": "AMPSEAL-16:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-16",
+        "external_destination": "rear brake pressure transducer (0-100 bar) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR",
+          "POD-IF-SENSOR-SUPPLY"
+        ],
+        "row": 17,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_RETURN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-16"
+    },
+    {
+      "id": "AMPSEAL-17:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-17",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 18,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-17"
+    },
+    {
+      "id": "AMPSEAL-18:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-18",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 19,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-18"
+    },
+    {
+      "id": "AMPSEAL-19:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-19",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 20,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-19"
+    },
+    {
+      "id": "AMPSEAL-20:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-20",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 21,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-20"
+    },
+    {
+      "id": "AMPSEAL-21:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-21",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 22,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-21"
+    },
+    {
+      "id": "AMPSEAL-22:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-22",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 23,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-22"
+    },
+    {
+      "id": "AMPSEAL-23:net",
+      "io_map": {
+        "connector_pin": "AMPSEAL-23",
+        "external_destination": "No connection; cavity plugged with TE 770678-1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 24,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "NO_CONNECT"
+      },
+      "kind": "no_connect",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "AMPSEAL-23"
+    },
+    {
+      "id": "BLE-RADIO:net",
+      "io_map": {
+        "connector_pin": "BLE-RADIO",
+        "external_destination": "RaceChrono Pro phone in tank bag or jacket pocket; docs/TELEMETRY_AND_RACECHRONO.md blob 3dafed620a10f8fba209c2707b8f832eec6f6303 section 4.1",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-BLUETOOTH-LE",
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 25,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "BLE_RACECHRONO"
+      },
+      "kind": "unresolved",
+      "reason": "row 25: no electrical net declared (N/A)",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "id": "GNSS-SMA-CENTER:net",
+      "io_map": {
+        "connector_pin": "GNSS-SMA-CENTER",
+        "external_destination": "External active GNSS antenna in cowl; upward facing; cable <=500 mm",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-GNSS-ANTENNA"
+        ],
+        "row": 26,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "GNSS_ACTIVE_ANTENNA"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_GNSS_RF"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "GNSS-SMA-CENTER"
+    },
+    {
+      "id": "GNSS-SMA-SHIELD:net",
+      "io_map": {
+        "connector_pin": "GNSS-SMA-SHIELD",
+        "external_destination": "External active GNSS antenna coax shield",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-GNSS-ANTENNA"
+        ],
+        "row": 27,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "GNSS_ANTENNA_SHIELD"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "GNSS-SMA-SHIELD"
+    },
+    {
+      "id": "DEBUG-UART-TX:net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-TX",
+        "external_destination": "Factory pogo-pin fixture UART receive",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 28,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_TX"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_UART_TX"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-UART-TX"
+    },
+    {
+      "id": "DEBUG-UART-TX:mcu-net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-TX",
+        "external_destination": "Factory pogo-pin fixture UART receive",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 28,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_TX"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_UART_TX"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "U1:37"
+    },
+    {
+      "id": "DEBUG-UART-TX:same-net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-TX",
+        "external_destination": "Factory pogo-pin fixture UART receive",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 28,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_TX"
+      },
+      "kind": "same_net",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "DEBUG-UART-TX",
+        "U1:37"
+      ]
+    },
+    {
+      "id": "DEBUG-UART-RX:net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RX",
+        "external_destination": "Factory pogo-pin fixture UART transmit",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 29,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_RX"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_UART_RX"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-UART-RX"
+    },
+    {
+      "id": "DEBUG-UART-RX:mcu-net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RX",
+        "external_destination": "Factory pogo-pin fixture UART transmit",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 29,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_RX"
+      },
+      "kind": "named_net",
+      "names": [
+        "/POD_UART_RX"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "U1:36"
+    },
+    {
+      "id": "DEBUG-UART-RX:same-net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RX",
+        "external_destination": "Factory pogo-pin fixture UART transmit",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 29,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_RX"
+      },
+      "kind": "same_net",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "DEBUG-UART-RX",
+        "U1:36"
+      ]
+    },
+    {
+      "id": "DEBUG-UART-RETURN:net",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RETURN",
+        "external_destination": "Factory pogo-pin fixture ground",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 30,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_GND"
+      },
+      "kind": "named_net",
+      "names": [
+        "/GND"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-UART-RETURN"
+    },
+    {
+      "id": "DEBUG-MCU-EN:net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-EN",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 31,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_EN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/MCU_EN"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-MCU-EN"
+    },
+    {
+      "id": "DEBUG-MCU-EN:mcu-net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-EN",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 31,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_EN"
+      },
+      "kind": "named_net",
+      "names": [
+        "/MCU_EN"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "U1:3"
+    },
+    {
+      "id": "DEBUG-MCU-EN:same-net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-EN",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 31,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_EN"
+      },
+      "kind": "same_net",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "DEBUG-MCU-EN",
+        "U1:3"
+      ]
+    },
+    {
+      "id": "DEBUG-MCU-BOOT:net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-BOOT",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 32,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_BOOT"
+      },
+      "kind": "named_net",
+      "names": [
+        "/MCU_BOOT"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-MCU-BOOT"
+    },
+    {
+      "id": "DEBUG-MCU-BOOT:mcu-net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-BOOT",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 32,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_BOOT"
+      },
+      "kind": "named_net",
+      "names": [
+        "/MCU_BOOT"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "U1:27"
+    },
+    {
+      "id": "DEBUG-MCU-BOOT:same-net",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-BOOT",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 32,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_BOOT"
+      },
+      "kind": "same_net",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "DEBUG-MCU-BOOT",
+        "U1:27"
+      ]
+    },
+    {
+      "id": "DEBUG-3V3:net",
+      "io_map": {
+        "connector_pin": "DEBUG-3V3",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 33,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "3V3"
+      },
+      "kind": "named_net",
+      "names": [
+        "/+3V3"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "DEBUG-3V3"
+    },
+    {
+      "id": "DEBUG-3V3:mcu-net",
+      "io_map": {
+        "connector_pin": "DEBUG-3V3",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 33,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "3V3"
+      },
+      "kind": "named_net",
+      "names": [
+        "/+3V3"
+      ],
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminal": "U1:2"
+    },
+    {
+      "id": "DEBUG-3V3:same-net",
+      "io_map": {
+        "connector_pin": "DEBUG-3V3",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 33,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "3V3"
+      },
+      "kind": "same_net",
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      },
+      "terminals": [
+        "DEBUG-3V3",
+        "U1:2"
+      ]
+    },
+    {
+      "component": "connector/J1",
+      "id": "connector/J1:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "can/U307",
+      "id": "can/U307:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "mcu",
+      "id": "mcu:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-1",
+        "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-CAN1",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 2,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "CAN_H"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R10",
+      "id": "power/R10:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/U8",
+      "id": "power/U8:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R12",
+      "id": "power/R12:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "adc",
+      "id": "adc:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-6",
+        "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 7,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_FORK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R13",
+      "id": "power/R13:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R15",
+      "id": "power/R15:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-9",
+        "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 10,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_SHOCK_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R16",
+      "id": "power/R16:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R18",
+      "id": "power/R18:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-12",
+        "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 13,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FRONT_BRAKE_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R19",
+      "id": "power/R19:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "power/R21",
+      "id": "power/R21:populated",
+      "io_map": {
+        "connector_pin": "AMPSEAL-15",
+        "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-ANALOG-INPUTS",
+          "POD-IF-HARNESS-CONNECTOR"
+        ],
+        "row": 16,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "REAR_BRAKE_SIGNAL"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "connector/J2",
+      "id": "connector/J2:populated",
+      "io_map": {
+        "connector_pin": "GNSS-SMA-CENTER",
+        "external_destination": "External active GNSS antenna in cowl; upward facing; cable <=500 mm",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-GNSS-ANTENNA"
+        ],
+        "row": 26,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "GNSS_ACTIVE_ANTENNA"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp1",
+      "id": "debug/tp1:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-TX",
+        "external_destination": "Factory pogo-pin fixture UART receive",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 28,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_TX"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp2",
+      "id": "debug/tp2:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RX",
+        "external_destination": "Factory pogo-pin fixture UART transmit",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 29,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_RX"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp3",
+      "id": "debug/tp3:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-UART-RETURN",
+        "external_destination": "Factory pogo-pin fixture ground",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 30,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "FACTORY_UART_GND"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp4",
+      "id": "debug/tp4:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-EN",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 31,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_EN"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp5",
+      "id": "debug/tp5:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-MCU-BOOT",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 32,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "MCU_BOOT"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    },
+    {
+      "component": "debug/tp6",
+      "id": "debug/tp6:populated",
+      "io_map": {
+        "connector_pin": "DEBUG-3V3",
+        "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+        "path": "telemetry-pod/io-map.csv",
+        "requirements": [
+          "POD-IF-PROGRAMMING-AND-DEBUG"
+        ],
+        "row": 33,
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+        "signal": "3V3"
+      },
+      "kind": "component",
+      "populated": true,
+      "requirement": "POD-AC-1-pinout",
+      "source": {
+        "locator": "Acceptance criteria / item 1",
+        "path": "telemetry-pod/REQUIREMENTS.md"
+      }
+    }
+  ],
+  "schema": "agent-ee.interface/1",
+  "terminals": {
+    "AMPSEAL-1": {
+      "component": "connector/J1",
+      "pin": "1"
+    },
+    "AMPSEAL-10": {
+      "component": "connector/J1",
+      "pin": "10"
+    },
+    "AMPSEAL-11": {
+      "component": "connector/J1",
+      "pin": "11"
+    },
+    "AMPSEAL-12": {
+      "component": "connector/J1",
+      "pin": "12"
+    },
+    "AMPSEAL-13": {
+      "component": "connector/J1",
+      "pin": "13"
+    },
+    "AMPSEAL-14": {
+      "component": "connector/J1",
+      "pin": "14"
+    },
+    "AMPSEAL-15": {
+      "component": "connector/J1",
+      "pin": "15"
+    },
+    "AMPSEAL-16": {
+      "component": "connector/J1",
+      "pin": "16"
+    },
+    "AMPSEAL-17": {
+      "component": "connector/J1",
+      "pin": "17"
+    },
+    "AMPSEAL-18": {
+      "component": "connector/J1",
+      "pin": "18"
+    },
+    "AMPSEAL-19": {
+      "component": "connector/J1",
+      "pin": "19"
+    },
+    "AMPSEAL-2": {
+      "component": "connector/J1",
+      "pin": "2"
+    },
+    "AMPSEAL-20": {
+      "component": "connector/J1",
+      "pin": "20"
+    },
+    "AMPSEAL-21": {
+      "component": "connector/J1",
+      "pin": "21"
+    },
+    "AMPSEAL-22": {
+      "component": "connector/J1",
+      "pin": "22"
+    },
+    "AMPSEAL-23": {
+      "component": "connector/J1",
+      "pin": "23"
+    },
+    "AMPSEAL-3": {
+      "component": "connector/J1",
+      "pin": "3"
+    },
+    "AMPSEAL-4": {
+      "component": "connector/J1",
+      "pin": "4"
+    },
+    "AMPSEAL-5": {
+      "component": "connector/J1",
+      "pin": "5"
+    },
+    "AMPSEAL-6": {
+      "component": "connector/J1",
+      "pin": "6"
+    },
+    "AMPSEAL-7": {
+      "component": "connector/J1",
+      "pin": "7"
+    },
+    "AMPSEAL-8": {
+      "component": "connector/J1",
+      "pin": "8"
+    },
+    "AMPSEAL-9": {
+      "component": "connector/J1",
+      "pin": "9"
+    },
+    "DEBUG-3V3": {
+      "component": "debug/tp6",
+      "pin": "1"
+    },
+    "DEBUG-MCU-BOOT": {
+      "component": "debug/tp5",
+      "pin": "1"
+    },
+    "DEBUG-MCU-EN": {
+      "component": "debug/tp4",
+      "pin": "1"
+    },
+    "DEBUG-UART-RETURN": {
+      "component": "debug/tp3",
+      "pin": "1"
+    },
+    "DEBUG-UART-RX": {
+      "component": "debug/tp2",
+      "pin": "1"
+    },
+    "DEBUG-UART-TX": {
+      "component": "debug/tp1",
+      "pin": "1"
+    },
+    "GNSS-SMA-CENTER": {
+      "component": "connector/J2",
+      "pin": "1"
+    },
+    "GNSS-SMA-SHIELD": {
+      "component": "connector/J2",
+      "pin": "2"
+    },
+    "R10:1": {
+      "component": "power/R10",
+      "pin": "1"
+    },
+    "R10:2": {
+      "component": "power/R10",
+      "pin": "2"
+    },
+    "R12:1": {
+      "component": "power/R12",
+      "pin": "1"
+    },
+    "R12:2": {
+      "component": "power/R12",
+      "pin": "2"
+    },
+    "R13:1": {
+      "component": "power/R13",
+      "pin": "1"
+    },
+    "R13:2": {
+      "component": "power/R13",
+      "pin": "2"
+    },
+    "R15:1": {
+      "component": "power/R15",
+      "pin": "1"
+    },
+    "R15:2": {
+      "component": "power/R15",
+      "pin": "2"
+    },
+    "R16:1": {
+      "component": "power/R16",
+      "pin": "1"
+    },
+    "R16:2": {
+      "component": "power/R16",
+      "pin": "2"
+    },
+    "R18:1": {
+      "component": "power/R18",
+      "pin": "1"
+    },
+    "R18:2": {
+      "component": "power/R18",
+      "pin": "2"
+    },
+    "R19:1": {
+      "component": "power/R19",
+      "pin": "1"
+    },
+    "R19:2": {
+      "component": "power/R19",
+      "pin": "2"
+    },
+    "R21:1": {
+      "component": "power/R21",
+      "pin": "1"
+    },
+    "R21:2": {
+      "component": "power/R21",
+      "pin": "2"
+    },
+    "U100:1": {
+      "component": "can/U307",
+      "pin": "1"
+    },
+    "U100:4": {
+      "component": "can/U307",
+      "pin": "4"
+    },
+    "U100:6": {
+      "component": "can/U307",
+      "pin": "6"
+    },
+    "U100:7": {
+      "component": "can/U307",
+      "pin": "7"
+    },
+    "U1:17": {
+      "component": "mcu",
+      "pin": "17"
+    },
+    "U1:19": {
+      "component": "mcu",
+      "pin": "19"
+    },
+    "U1:2": {
+      "component": "mcu",
+      "pin": "2"
+    },
+    "U1:20": {
+      "component": "mcu",
+      "pin": "20"
+    },
+    "U1:21": {
+      "component": "mcu",
+      "pin": "21"
+    },
+    "U1:27": {
+      "component": "mcu",
+      "pin": "27"
+    },
+    "U1:3": {
+      "component": "mcu",
+      "pin": "3"
+    },
+    "U1:36": {
+      "component": "mcu",
+      "pin": "36"
+    },
+    "U1:37": {
+      "component": "mcu",
+      "pin": "37"
+    },
+    "U1:4": {
+      "component": "mcu",
+      "pin": "4"
+    },
+    "U1:5": {
+      "component": "mcu",
+      "pin": "5"
+    },
+    "U4:1": {
+      "component": "adc",
+      "pin": "1"
+    },
+    "U4:10": {
+      "component": "adc",
+      "pin": "10"
+    },
+    "U4:11": {
+      "component": "adc",
+      "pin": "11"
+    },
+    "U4:2": {
+      "component": "adc",
+      "pin": "2"
+    },
+    "U4:3": {
+      "component": "adc",
+      "pin": "3"
+    },
+    "U4:4": {
+      "component": "adc",
+      "pin": "4"
+    },
+    "U4:8": {
+      "component": "adc",
+      "pin": "8"
+    },
+    "U4:9": {
+      "component": "adc",
+      "pin": "9"
+    },
+    "U8:1": {
+      "component": "power/U8",
+      "pin": "1"
+    },
+    "U8:10": {
+      "component": "power/U8",
+      "pin": "10"
+    },
+    "U8:12": {
+      "component": "power/U8",
+      "pin": "12"
+    },
+    "U8:14": {
+      "component": "power/U8",
+      "pin": "14"
+    },
+    "U8:3": {
+      "component": "power/U8",
+      "pin": "3"
+    },
+    "U8:5": {
+      "component": "power/U8",
+      "pin": "5"
+    },
+    "U8:7": {
+      "component": "power/U8",
+      "pin": "7"
+    },
+    "U8:8": {
+      "component": "power/U8",
+      "pin": "8"
+    }
+  }
+}
