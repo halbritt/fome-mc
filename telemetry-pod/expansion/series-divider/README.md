@@ -75,13 +75,44 @@ Independent source review passed 1,062 checks and five negative controls
 (midpoint attachment, bypassed series resistor, wrong value, damaged prior
 binding and wrong layout placement). Reports and reviewer scripts are retained.
 
-Native verification for this new topology is not yet implemented or passed.
-A fresh emission attempt against agent-ee `1962cf0` again rejects U20
-PARAM_Datasheet before producing a schematic. Its exact receipt is retained
-in `native-attempt/emission-receipt.json`; AGENTEE-293 remains the blocker. The component-fit checker
-cannot be applied unchanged: it expects the prior 332-symbol graph and poses.
-The next native review must validate all 333 symbols and the added intermediate
-net, then prove the permitted series reduction preserves the previous electrical
-connections. It must also check metadata, BOM, ERC, explicit NCs and readability
-before placement. This source is not a placed, routed or fabrication-ready pod,
-and does not replace the committed pilot project.
+Native verification now passes against the **unreleased agent-ee integration
+candidate b42adf763948364547febc5f0767b2913b365af8**, including AGENTEE-293.
+This does not establish that the repair is released on main. The prior failed
+1962cf0 emission receipt remains in `native-attempt/` as historical evidence.
+
+`native-candidate/` retains the portable project, complete captured inputs,
+emission receipt, native XML, BOM and ERC report. `native-provenance.json`
+pins the source archive and every retained file. The producer receipt still
+says `NOT_RUN` because it records preparation; subsequent independent reports
+record the actual native checks.
+
+Independent native review passes 34,521 checks: all 333 source components,
+337 units, 327 non-power XML components, 194 named nets, 175 explicit NCs,
+316 BOM rows and 322 bindings. It compares embedded pin definitions with the
+captured libraries, checks actual NC coordinates and power-flag connections,
+and contracts the series subdivision to prove exact prior native connectivity.
+All eight negative controls reject damaged bindings, series endpoints,
+embedded pin types, NC markers, power flags, DNP state, BOM exclusions and ERC
+sheet coverage. KiCad 10.0.7 reports zero ERC violations under the unchanged
+recorded policy.
+
+To reproduce, obtain the exact agent-ee commit with `git archive` into a fresh
+local directory, then point `PYTHONPATH` at that directory's `src`:
+
+```sh
+PYTHONPATH=/path/to/b42adf7/src python3 telemetry-pod/expansion/series-divider/verify.py --out /path/to/new-evidence
+PYTHONPATH=/path/to/b42adf7/src python3 telemetry-pod/expansion/series-divider/review/negative_native_probes.py telemetry-pod/expansion/series-divider telemetry-pod/expansion/series-divider/native-candidate /path/to/negative-report.json
+```
+
+The native verifier requires a fresh output directory and retains failures.
+It requires byte-exact reconstructed inputs, project and receipts; then compares
+native XML with only source path/date removed, exact BOM, and ERC with only date
+removed. Its emission receipt also pins the emitter module. Later software must
+reproduce this evidence or establish a separately reviewed candidate.
+
+The retained overview and enlarged supervisor renders were inspected. The new
+series connection is legible, with the resistor value close to adjacent graphics;
+full-sheet detailed readability review remains open. See `review/visual-review.json`.
+This is not a placed, routed or fabrication-ready pod and does not replace the
+committed pilot project. Placement/routing, hardware qualification, the jumper
+fabrication gate and software release remain separate outstanding work.

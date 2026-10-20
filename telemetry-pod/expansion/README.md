@@ -8,11 +8,13 @@ that individual additions cannot consume the same terminal twice.
 The latest prepared source is [series-divider](series-divider/README.md), built
 on [component-fit](component-fit/README.md). It selects exact parts for the
 expanded functions and implements R60 as two series resistors without shifting
-the nominal supervisor threshold. Use its producer for the next native attempt.
-Native verification of this latest topology remains pending; the earlier
-snapshots retain evidence of their individual preparation and review stages.
+the nominal supervisor threshold. Its native schematic now reproduces exactly
+using unreleased agent-ee candidate `b42adf7`, with independent graph, metadata,
+BOM and ERC checks. This is not released software or hardware qualification.
+Earlier snapshots retain evidence of their individual preparation and review stages.
 The [supply-monitor coverage](supply-monitor-coverage/README.md) records the
-current source graph's sensing boundaries and ten diagnostic channels.
+preceding component-fit graph's sensing boundaries and ten diagnostic channels;
+its checker still needs adaptation for the new series-divider midpoint.
 
 ## Connector and buses
 
@@ -55,7 +57,7 @@ interrupt service latency must preserve the acquisition deadlines. A separate
 I2C diagnostic ADC with an independent reference can measure input, intermediate,
 sensor and logic rails without consuming any of the eight external analog
 channels. Exact identities and captured sources are now present in the prepared stages;
-operating qualification and native verification of the latest source remain open.
+operating qualification remains open.
 The maximum tire workload is 800 received classic CAN frames/s. Size the
 controller receive buffers against worst-case SPI service latency, not average
 bus utilization. Configure SDMMC width explicitly to four bits; do not inherit
