@@ -1,0 +1,30 @@
+{
+  "reviewer": "/root/expanded_pod_review",
+  "status": "PASS_WITH_EXPLICIT_GAPS",
+  "software_commit": "014c7c3e4079c35c52bc5a42007ed7ed612feb55",
+  "checks": [
+    "All82 canonical records replay",
+    "Fresh builder output byte-identical",
+    "Records and gaps exactly partition316 purchased instances",
+    "No changed PDF or binding silently substituted"
+  ],
+  "record_instances": 299,
+  "gap_instances": 17,
+  "capture": {
+    "targets": 49,
+    "successes": 47,
+    "exact_bound_matches": 44,
+    "changed_pdf_bytes": 3,
+    "failures": {
+      "NXP": "HTTP404",
+      "TE": "HTTP403"
+    }
+  },
+  "source_inspection": "Released parts/1 has no truthful two-pad copper-jumper route; populated JP1-JP5 remain required despite BOM exclusion; one-pad probes are not substitutes.",
+  "limits": [
+    "No expanded parts manifest qualification",
+    "No CAD or native parts_subset gate",
+    "No assembly or operating acceptance"
+  ],
+  "integration_delta_review": "Snapshot-scoped prior parts-closure verification independently passed; corrupted retained dependency hash rejected; current discovery still available with --out."
+}

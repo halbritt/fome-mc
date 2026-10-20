@@ -56,3 +56,8 @@ The trace searches tracked telemetry-pod captures only; stage newly retained
 captures before regenerating it. It refuses missing or altered raw responses.
 Its source inventory and validator hashes are retained. This is an offline
 source prerequisite check, not a native ERC/DRC or fabrication gate.
+
+Verification replays the retained dependency set and requires every file to remain
+tracked. New generation discovers current tracked captures. Later acquisition
+packets therefore do not silently expand an earlier trace or invalidate it merely
+by adding duplicate PDFs; changes to retained sources still fail verification.

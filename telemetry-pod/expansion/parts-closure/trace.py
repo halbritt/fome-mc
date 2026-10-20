@@ -21,10 +21,14 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def build():
+def build(captured_paths=None):
     tracked = subprocess.check_output(
         ['git', '-C', str(ROOT), 'ls-files', '-z', '--', 'telemetry-pod'],
     ).decode().split('\0')
+    if captured_paths is not None:
+        if not set(captured_paths) <= set(tracked):
+            raise ValueError('Retained dependency is no longer tracked')
+        tracked = sorted(captured_paths)
     pdfs = defaultdict(list)
     catalogs = defaultdict(list)
     inspected = {}
@@ -120,9 +124,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if bool(args.out) == bool(args.verify):
         parser.error('Choose exactly one of --out or --verify')
-    report = build()
+    retained = json.loads(args.verify.read_text()) if args.verify else None
+    report = build(retained['inspected_dependencies'] if retained else None)
     if args.verify:
-        assert report == json.loads(args.verify.read_text()), 'Trace differs from retained evidence'
+        assert report == retained, 'Trace differs from retained evidence'
     else:
         with args.out.open('x') as stream:
             json.dump(report, stream, indent=2); stream.write('\n')
