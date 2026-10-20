@@ -45,7 +45,7 @@ def main():
     inputs = here.parent / 'inputs'
     if not inputs.is_dir():
         inputs = here.parent / 'storage-power-inputs'
-    footprint = inputs / 'footprints/PodStoragePower.pretty/SRP4020TA.kicad_mod' 
+    footprint = inputs / 'footprints/PodStoragePower.pretty/SRP4020TA.kicad_mod'
     root, nets, pins = parse(current)
     oldroot, oldnets, oldpins = parse(previous)
     failures, checks = [], []
