@@ -103,3 +103,9 @@ The [prepared diagnostic circuit](diagnostic-circuit/README.md) connects three
 ADCs to eight existing rails. The ninth channel remains reserved until the
 protected auxiliary 5 V branch is implemented. Its generator preserves the
 wheel/CAN/storage/supervision circuits; native verification is still pending.
+
+The [auxiliary-power preparation](aux-power/README.md) extends that snapshot with
+an independently protected branch from the precision sensor supply, J1 pins21/22,
+and the ninth diagnostic channel. Its wiring passed independent graph checks;
+5 V ±1% at a positive external load remains unqualified because source tolerance,
+switch voltage drop, harness loss and shared-rail fault behavior need bounds.
