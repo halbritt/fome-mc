@@ -84,7 +84,13 @@ must preserve the five jumper and six captured pogo-pad exclusions. ERC must
 have no violations and retain the previous ignored checks, severities and
 KiCad version and checked sheet identities. Unexpected XML identity fields and
 changed BOM exclusion flags are rejected. Output and failed-emission evidence remain in the requested
-directory. The native checker does not inspect PCB land-pattern geometry or
+directory. The native checker also parses the schematic, including power flags omitted
+from XML. It checks all component and unit membership, library identifiers,
+values, footprint identifiers, binding properties, board/BOM attributes and
+symbol poses including mirroring, DNP and other preserved native exclusion
+attributes. Explicit no-connect marker positions must match the last native
+candidate and their count must match the intent. Both schematic hashes are
+retained in the report. It does not inspect PCB land-pattern geometry or
 establish placement, routing, fabrication or operating qualification.
 
 `test_native_check.py` exercises the checker against retained previous native
@@ -93,7 +99,9 @@ the expanded revision emits or passes native checks. The independent source
 review remains separate; independent review of emitted expanded artifacts is
 still required before advancing to placement.
 
-Native XML omits the six schematic power flags. This checker does not establish
-all 332 schematic symbols/units, explicit schematic NC markers, or on-board
-flags; those require independent inspection of the emitted schematic. A passing
-XML/BOM/ERC report alone is insufficient to advance to placement.
+The 24 checker controls include missing power flags, changed units, board/BOM
+flags, missing binding fields, and moved or duplicated no-connect markers.
+They use retained prior native artifacts and parser-level damaged copies, not
+an emitted component-fit candidate. Independent inspection of the newly emitted
+artifacts remains required; this checker does not establish visual readability,
+physical footprint suitability or operational correctness.
