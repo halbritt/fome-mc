@@ -1,0 +1,49 @@
+"""Reproduce candidate and run native checks on a fresh snapshot."""
+import hashlib
+import csv
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+root = Path(__file__).resolve().parent
+
+def hashes(path):
+    return {str(p.relative_to(path)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in path.rglob('*') if p.is_file()}
+
+with tempfile.TemporaryDirectory(prefix='pod-expanded-native-') as temporary:
+    run = Path(temporary) / 'candidate'
+    subprocess.run([sys.executable, str(root / 'prepare.py'), '--out', str(run)], check=True)
+    if hashes(run) != hashes(root / 'captured'):
+        raise ValueError('Candidate does not reproduce byte-for-byte')
+    schematic = run / 'project/telemetry-pod.kicad_sch'
+    subprocess.run(['kicad-cli', 'sch', 'export', 'netlist', '--format', 'kicadxml',
+                    '-o', str(run / 'native.xml'), str(schematic)], check=True)
+    subprocess.run(['kicad-cli', 'sch', 'erc', '--format', 'json',
+                    '-o', str(run / 'erc.json'), str(schematic)], check=True)
+    subprocess.run(['kicad-cli', 'sch', 'export', 'bom', '--fields',
+                    'Reference,Value,Footprint,EXCLUDE_FROM_BOM,EXCLUDE_FROM_BOARD',
+                    '--labels', 'Reference,Value,Footprint,ExcludeBOM,ExcludeBoard',
+                    '-o', str(run / 'native-bom.csv'), str(schematic)], check=True)
+    with (run / 'native-bom.csv').open() as stream:
+        rows = list(csv.DictReader(stream))
+    with (root / 'native-bom.csv').open() as stream:
+        if rows != list(csv.DictReader(stream)):
+            raise ValueError('Native BOM changed')
+    intent = json.loads((run / 'inputs/intent.json').read_text())
+    omitted = {f'JP{i}' for i in range(1, 6)} | {f'TP{i}' for i in range(1, 7)}
+    expected = {c['reference'] for c in intent['components']
+                if c['lib_id'] != 'power:PWR_FLAG' and c['reference'] not in omitted}
+    if {row['Reference'] for row in rows} != expected or len(rows) != len(expected):
+        raise ValueError('BOM component coverage changed')
+    erc = json.loads((run / 'erc.json').read_text())
+    retained = json.loads((root / 'erc.json').read_text())
+    for field in ['sheets', 'ignored_checks', 'included_severities', 'kicad_version']:
+        if erc[field] != retained[field]:
+            raise ValueError('Native ERC changed: ' + field)
+    subprocess.run([sys.executable, str(root / 'review/check_native.py'),
+                    str(run), str(root.parent / 'thermistor/inputs'),
+                    str(run / 'review.json')], check=True)
+print('PASS: exact reproduction and native graph/ERC checks; shared-SPI ERC warning remains open')
