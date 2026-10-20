@@ -5,6 +5,7 @@ import json
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 root = Path(__file__).resolve().parent
@@ -12,6 +13,16 @@ root = Path(__file__).resolve().parent
 def hashes(path):
     return {str(p.relative_to(path)): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in path.rglob('*') if p.is_file()}
+
+def netlist_content(path):
+    tree = ET.parse(path).getroot()
+    design = tree.find('design')
+    for name in ['source', 'date']:
+        element = design.find(name)
+        if element is None:
+            raise ValueError('Missing native netlist metadata: ' + name)
+        design.remove(element)
+    return ET.tostring(tree)
 
 with tempfile.TemporaryDirectory(prefix='pod-expanded-native-') as temporary:
     run = Path(temporary) / 'candidate'
@@ -21,6 +32,8 @@ with tempfile.TemporaryDirectory(prefix='pod-expanded-native-') as temporary:
     schematic = run / 'project/telemetry-pod.kicad_sch'
     subprocess.run(['kicad-cli', 'sch', 'export', 'netlist', '--format', 'kicadxml',
                     '-o', str(run / 'native.xml'), str(schematic)], check=True)
+    if netlist_content(run / 'native.xml') != netlist_content(root / 'native.xml'):
+        raise ValueError('Retained native netlist differs beyond source path and timestamp')
     subprocess.run(['kicad-cli', 'sch', 'erc', '--format', 'json',
                     '-o', str(run / 'erc.json'), str(schematic)], check=True)
     subprocess.run(['kicad-cli', 'sch', 'export', 'bom', '--fields',
