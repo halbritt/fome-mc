@@ -37,7 +37,7 @@ The pod's external interfaces are fixed by fome-mc and are not the generator's t
 | Analog inputs | Eight channels, 0–5 V, 12-bit, input-protected to 16 V, capable of 200 Hz per channel. Retain the four suspension/brake channels; provide four auxiliary channels with optional thermistor pull-ups. Specify pull-up values, filtering, acquisition settling, calibration and fault interpretation for the selected sensor configurations. |
 | Wheel speed | Two independently conditioned pulse inputs for front and rear wheel speed. Resolve Hall, VR or dual-mode support and the sensor electrical requirements before choosing the conditioning circuit. |
 | Digital tire temperature | Provide an external digital interface for front and rear tire-temperature sensors. Resolve protocol, channel/zone count, sensor power, cable length and protection before assigning pins. Provision does not establish compatibility with arbitrary sensors. |
-| Standalone logging | Record pod measurements and received ECU telemetry without a phone connection. Define storage capacity, throughput, retention duration, timestamps, retrieval, full-media behavior and recovery from interrupted power before selecting storage. |
+| Standalone logging | Record pod measurements and received ECU telemetry without a phone connection. Target eight hours of recording as a soft capacity goal, with wireless download while parked (owner clarification 2026-10-20). Report achieved duration against the declared workload; shorter duration is a disclosed tradeoff, not an automatic failure. Define throughput, timestamps, full-media behavior and recovery from interrupted power before selecting storage. |
 | GNSS antenna | Active antenna connector (SMA or U.FL) if the receiver has no integrated antenna; see component decisions. |
 | Programming and debug | Factory firmware load and serial console over UART pogo-pin test pads before the enclosure is sealed. Field updates over BLE using the ESP-IDF OTA dual-partition scheme from the first firmware. No CAN1 bootloader and no external USB connector. |
 | Harness connector | One black, sealed TE AMPSEAL 35-position right-angle header, with explicit signal, sensor-power, return and spare-pin allocation. Use TE 776163-1 as the mechanical candidate; validate its drawing, footprint, mating plug and enclosure fit before binding the BOM. Replace the old 23-position map and regenerate its interface contract. |
@@ -68,12 +68,27 @@ The pod lives under the tail cowl of a 2007 SV650, next to the battery and tail 
 - IMU axes aligned to the bike: X forward, Y left, Z up, marked on the silkscreen, so that the frame scaling matches Bosch MM5.10 conventions without a software rotation.
 - GNSS antenna mounted inside the cowl, as high as possible and facing up. The cowl is fiberglass and therefore transparent to GNSS and BLE, so neither antenna needs to penetrate it. Antenna cable no longer than 500 mm to the SMA connector.
 
+## Power integrity and recovery
+
+Owner direction, 2026-10-20: redesign the power block to accommodate brownouts and ripple as well as the expanded sensor load. The owner reports possible unusual SV650 supply behavior around 2,500 rpm. This is an investigation lead, not a measured waveform or established model-wide defect.
+
+- Retain reverse-polarity and automotive-transient protection. Coordinate the clamp, input disconnect/protection, capacitor ratings and regulator absolute maxima using the actual pulse voltage, duration and source impedance. A nominal TVS voltage alone does not establish survival.
+- Define a continuous-operation voltage range, a short-dip ride-through envelope and a lower-voltage controlled-reset region separately. Check both electronics and powered sensors: a running MCU does not establish valid sensor data during a supply dip.
+- Specify and validate input filtering and damping over the regulator's load range, including radio and storage bursts. Measure ripple at the connector, logic rails, sensor supply and ADC reference; set limits from regulator stability and acquisition error budgets.
+- Add independent input/rail monitoring and a power-fail/reset supervisor path. Use hysteresis to avoid repeated resets during marginal supply. Record supply faults and invalidate affected sensor samples.
+- Define bounded log loss on abrupt power removal, storage recovery and restart behavior. Calculate hold-up energy from measured worst-case consumption and storage completion time before claiming a safe flush; capacitors do not cover indefinite brownouts.
+- Recalculate sensor-rail current and thermal limits. The pilot's TPS7B4253-Q1 rail is rated for 300 mA and had a 200 mA aggregate sensor budget; it is not prequalified for the expansion. Evaluate separately protected sensor branches so an external sensor fault does not unnecessarily collapse the logger.
+
+Verification must include programmable supply dips/recovery, swept ripple, sensor shorts and load steps while acquiring and logging. Capture the actual bike supply at the pod harness around 2,500 rpm, across the operating range and during starting, then replay relevant measured disturbances on the bench. Keep simulation, injected-waveform testing and on-bike evidence distinct. No specific ripple amplitude or dip duration has yet been established.
+
+Reference design for topology and test methods: [TI TIDA-00699 automotive front end](https://www.ti.com/tool/TIDA-00699). Its reported results apply to that reference design, not this pod.
+
 ## Expanded-design decisions required before layout
 
 The owner accepted the capability baseline on 2026-10-20. The following implementation choices remain open; the generator must not silently invent them:
 
 - A joint GPIO, SPI/bus and 35-pin connector allocation covering the MCP3208, both wheel-speed inputs, digital tire sensors, storage, existing IMU/GNSS/CAN and debug access. Preserve existing ECU connector assignments and CAN frame definitions; allocate new telemetry messages separately.
-- Wheel sensor type, voltage/current interface, maximum pulse frequency, low-speed behavior and conditioning. Support for Hall and VR together is not yet a requirement.
+- Wheel sensor type, voltage/current interface, maximum pulse frequency, low-speed behavior and conditioning. The owner has no wheel sensors or tone rings selected; develop a sensor-and-conditioning recommendation. Support for Hall and VR together is not yet a requirement.
 - Digital tire sensor protocol, mounting and field of view, zone count, harness length and update rate. No specific tire sensor has been selected.
 - Logging duration, data format, timestamp source, retrieval method, media endurance and power-loss behavior. Storage must coexist with BLE OTA and the sealed enclosure.
 - Expanded power and thermal budgets, including sensor faults and storage/radio peaks; define supply-voltage monitoring, sensor-supply fault detection and feasible open/short diagnostics.
