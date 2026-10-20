@@ -51,6 +51,17 @@ Alternatives considered and rejected: lowering the board-setup minimums globally
 functional reason; the parts are accepted and purchased), and leaving 0.20 mm thermal
 drills with a global 0.20 mm hole minimum (surcharge, weaker rule for the whole board).
 
+## Layer count (D-PCB-2)
+
+The expanded board is a 4-layer board on JLCPCB's standard JLC04161H-7628 1.6 mm stackup,
+which is what the scaffold generated. It is kept as a cited engineering decision, not a
+default: the eMMC U14 is a 153-ball 0.5 mm BGA that cannot fan out on two layers, the
+LMR36520 layout guide asks for a middle-layer ground plane, and the GNSS 50-ohm line needs
+a defined reference. "Double-sided" in the owner's target means components on both sides.
+Annular-ring and trace figures in `constraints.json` are quoted for JLCPCB multilayer
+(recommended ring 0.20 mm, absolute 0.15 mm), and the chosen 0.20 mm ring meets the
+recommendation.
+
 ## Constraint provenance (the structural fix)
 
 `constraints.json` classes every board-setup value for the expanded project as owner,
