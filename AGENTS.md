@@ -16,5 +16,12 @@ PCB routing uses the standalone kicad-route tool through `make route-doctor`,
 - Routing attempts work on copies under `build/route/runs/`; a candidate is graded by
   KiCad against the input's unchanged rules. Never relax rules to make a route pass, and
   never relax them to make a board commit pass DRC (`make route-audit` reports it).
+- **Owner sign-off means ask the owner.** If a check can only pass by changing a
+  rule, exemption or constraint that this file reserves to the owner, put the
+  question to the owner directly and immediately (the harness question tool, or a
+  plain question in the reply): the exact values, the parts affected, the
+  alternatives and a recommendation. Never record the work as "blocked, awaiting
+  owner decision" without having asked, and never ask through a handoff note or
+  a side channel the owner does not read.
 - Check status (`PASS`/`FAIL`/`NOT_RUN`/`UNSUPPORTED`) describes the tool run; design
   violations are reported separately as findings.
