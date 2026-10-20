@@ -5,6 +5,7 @@ import hashlib
 import json
 import shutil
 from pathlib import Path
+from agent_ee.symbol_library import parse_library
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--base', type=Path, required=True)
@@ -58,8 +59,9 @@ for i, (pin, label, kind) in enumerate(pins):
     symbol.append(f'(pin {kind} line (at {x} {y:g} {angle}) (length 2.54) '
                   f'(name "{label}" (effects (font (size 1.016 1.016)))) '
                   f'(number "{pin}" (effects (font (size 1.016 1.016)))))')
-symbol.append('))\n')
+symbol.append(')))\n')
 raw = '\n'.join(symbol).encode()
+parse_library(raw)  # Reject malformed authored CAD before it becomes an input.
 lib_path = 'authored-cad/PodSensorPower.kicad_sym'
 (args.out / lib_path).write_bytes(raw)
 intent['libraries'].append({'name': 'PodSensorPower', 'path': lib_path,

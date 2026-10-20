@@ -65,11 +65,12 @@ component substitution. Copper clearances must account for the fault voltage.
 From this directory, with a fresh output path:
 
 ```sh
-python3 prepare.py --base ../inputs --out /absolute/fresh-inputs
+PYTHONPATH=/home/halbritt/git/agent-ee/src python3 prepare.py \
+  --base ../inputs --out /absolute/fresh-inputs
 ```
 
 `inputs/` retains the resulting 24 added components. The producer refuses an
-existing destination. Once AGENTEE-288 is released, reconcile its JP1 assembly
+existing destination and parses its authored library before writing it. Once AGENTEE-288 is released, reconcile its JP1 assembly
 policy into the base inputs, regenerate, then perform native emission/netlist/ERC
 and independent preservation checks. The earlier CAN failure receipt applies to
 the earlier CAN-only inputs; it is not an attempted emission of this branch set.
@@ -80,3 +81,13 @@ open. No purchase or reservation was made. TPS25947 was rejected for this branch
 because its output-voltage limit with zero input does not accommodate a +24 V
 miswire. The TPS1H200A findings remain useful rejection history, not the current
 sensor-power implementation.
+
+Run the complete source-preparation check before integration:
+
+```sh
+PYTHONPATH=/home/halbritt/git/agent-ee/src python3 verify.py
+```
+
+This parses all captured libraries and footprints, verifies library hashes,
+reproduces the prepared files and runs the independent graph checker. It does
+not substitute for native KiCad emission or ERC.

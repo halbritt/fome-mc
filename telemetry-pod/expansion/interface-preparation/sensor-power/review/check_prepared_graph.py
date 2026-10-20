@@ -2,7 +2,9 @@
 """Independent prepared intent graph only. Usage: OLD_INTENT NEW_INTENT SYMBOL REPORT.
 Does not import producer logic, emit KiCad, or assert ERC/physical acceptance.
 """
-import copy,hashlib,json,re,sys
+import copy,hashlib,json,sys
+from agent_ee.symbol_library import parse_library, LibraryError
+import agent_ee.symbol_library as library_parser
 from pathlib import Path
 oldpath,newpath,symbolpath,reportpath=map(Path,sys.argv[1:])
 old=json.loads(oldpath.read_text());new=json.loads(newpath.read_text());checks=[];fail=[]
@@ -53,10 +55,26 @@ check('exact net set',set(b)==set(expected))
 for n,ts in expected.items():check('exact membership '+n,b.get(n)==ts)
 check('exact NC set',bnc==enc)
 parsed={}
-for line in symbolpath.read_text().splitlines():
- if line.startswith('(pin '):
-  name=re.search(r'\(name "([^"]+)"',line);pin=re.search(r'\(number "([^"]+)"',line)
-  if name and pin:check('unique symbol pin '+pin[1],pin[1] not in parsed);parsed[pin[1]]=name[1]
+parse_error=None
+try:
+ symbols=parse_library(symbolpath.read_bytes())
+ check('complete authored symbol library parses',True)
+ check('exact authored symbol set',set(symbols)=={'TPS26625_DRC'})
+ def walk(node):
+  if isinstance(node,list):
+   yield node
+   for child in node:yield from walk(child)
+ for node in walk(symbols.get('TPS26625_DRC',[])):
+  if node and node[0]=='pin':
+   names=[x for x in node if isinstance(x,list) and x and x[0]=='name']
+   numbers=[x for x in node if isinstance(x,list) and x and x[0]=='number']
+   check('structured symbol pin fields',len(names)==len(numbers)==1 and len(names[0])>=2 and len(numbers[0])>=2)
+   if len(names)==len(numbers)==1 and len(names[0])>=2 and len(numbers[0])>=2:
+    pin,name=numbers[0][1],names[0][1]
+    check('unique symbol pin '+pin,pin not in parsed);parsed[pin]=name
+except LibraryError as exc:
+ parse_error=str(exc)
+ check('complete authored symbol library parses',False)
 check('exact physical pin functions',parsed=={'1':'IN','2':'UVLO','3':'OVP','4':'SHDN','5':'RTN','6':'GND','7':'ILIM','8':'dVdT','9':'FLT','10':'OUT','11':'EP_RTN'})
-result={'status':'FAIL' if fail else 'PASS','check_count':len(checks),'failures':fail,'scope':'Prepared intent only; no native emission, ERC, footprint land qualification or electrical acceptance','inputs':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in [oldpath,newpath,symbolpath]},'checks':checks,'limits':['C0G10% dVdT minimum nominal9nF; exact binding remains open','1uF nominal input bypass; exact effective capacitance and transient verification open','RTN-island negative-fault waveform and UVLO internal clamp assumptions need validation','No assembly availability or passive rating binding verified']}
+result={'status':'FAIL' if fail else 'PASS','check_count':len(checks),'failures':fail,'scope':'Prepared intent only; no native emission, ERC, footprint land qualification or electrical acceptance','inputs':{str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in [oldpath,newpath,symbolpath]},'checks':checks,'library_parse_error':parse_error,'parser_source_sha256':hashlib.sha256(Path(library_parser.__file__).read_bytes()).hexdigest(),'limits':['C0G10% dVdT minimum nominal9nF; exact binding remains open','1uF nominal input bypass; exact effective capacitance and transient verification open','RTN-island negative-fault waveform and UVLO internal clamp assumptions need validation','No assembly availability or passive rating binding verified']}
 reportpath.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ['status','check_count','failures']}));sys.exit(bool(fail))

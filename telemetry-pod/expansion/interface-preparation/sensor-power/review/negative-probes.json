@@ -5,7 +5,8 @@
     "failures": [
       "exact membership GND",
       "exact membership SENSOR_POWER_FRONT_RTN"
-    ]
+    ],
+    "library_parse_error": null
   },
   {
     "mutation": "Unrelated ADC terminal moved",
@@ -13,6 +14,16 @@
     "failures": [
       "exact membership GND",
       "exact membership ADC_AIN0"
-    ]
+    ],
+    "library_parse_error": null
+  },
+  {
+    "mutation": "Missing outer library closing parenthesis",
+    "detected": true,
+    "failures": [
+      "complete authored symbol library parses",
+      "exact physical pin functions"
+    ],
+    "library_parse_error": "expected one complete nonempty S-expression"
   }
 ]
