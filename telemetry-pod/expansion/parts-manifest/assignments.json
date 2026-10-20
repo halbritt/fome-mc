@@ -1,0 +1,2409 @@
+{
+  "schema": "agent-ee.footprint-assignments-input/1",
+  "libraries": [
+    {
+      "name": "Analog_ADC",
+      "path": "core/symbols/Analog_ADC.kicad_sym",
+      "sha256": "ca22792972b4233f5d9f9355b111ab8f1136a3f0b7d47e8ecf5436018c1c23f6"
+    },
+    {
+      "name": "Block_63616e_446576696365",
+      "path": "libraries/Block_63616e_446576696365.kicad_sym",
+      "sha256": "e210f6952a8a4713e098a0b0c340ee3dfe3d79f2d283ab76dcbe8c1a2b38a9f8"
+    },
+    {
+      "name": "Block_63616e_496e746572666163655f43414e5f4c494e",
+      "path": "libraries/Block_63616e_496e746572666163655f43414e5f4c494e.kicad_sym",
+      "sha256": "c2855f63887e1f72cb170ed6e11775bf48824e795d53f6ad315152ba45b8a64c"
+    },
+    {
+      "name": "Connector",
+      "path": "symbols/Connector.kicad_sym",
+      "sha256": "45a07de2ee612fd70807ce22b0e8261a3a9b1a98c9b7d36b7c4dce4c59ef20fc"
+    },
+    {
+      "name": "Connector_Generic",
+      "path": "symbols/Connector_Generic.kicad_sym",
+      "sha256": "6a4ab1b6a3d738aa99d7c9729a67ea35549dea0fe3c98679db803a1470639a25"
+    },
+    {
+      "name": "Device",
+      "path": "symbols/Device.kicad_sym",
+      "sha256": "a0d4a03fc9c54f74662cb3c3c76bb3d972d4ea3bbdf51c12f7145a5963d4d427"
+    },
+    {
+      "name": "PodFeatures",
+      "path": "symbols/PodFeatures.kicad_sym",
+      "sha256": "f66de5538cc957ffe56ee45e5afc2ac4f5c3d8f3a46f4b12bc35f4b0aded14a9"
+    },
+    {
+      "name": "PodPower",
+      "path": "authored-cad/PodPower.kicad_sym",
+      "sha256": "5af00985ec14f31942e30bc828b8f8528f96c0414d304a46eb577483ddea44c8"
+    },
+    {
+      "name": "PodPrimarySPI",
+      "path": "authored-cad/PodPrimarySPI.kicad_sym",
+      "sha256": "e5735373cabc21c1f74eb78b02d698c5041ae6dd02624933aa458626fa385e98"
+    },
+    {
+      "name": "RF_GPS",
+      "path": "core/symbols/RF_GPS.kicad_sym",
+      "sha256": "29381ed67fac5b68def2e817d93a97e0299bcf8c19c8b69731c0c8a272251c13"
+    },
+    {
+      "name": "RF_Module",
+      "path": "core/symbols/RF_Module.kicad_sym",
+      "sha256": "ad427c46f8d046f47595edd16128520b75d9b386cc36a14e4d8f75ae036ab23d"
+    },
+    {
+      "name": "Reference_Voltage",
+      "path": "symbols/Reference_Voltage.kicad_sym",
+      "sha256": "2f8db9d98616eb089d4e70779c3807e465d71717d2ad79b1c77da473064ab702"
+    },
+    {
+      "name": "Transistor_FET",
+      "path": "symbols/Transistor_FET.kicad_sym",
+      "sha256": "02677a5ad15f4ad32237c3d692381be6de7c14a4ac033046e0cf54cb1d8bae89"
+    },
+    {
+      "name": "power",
+      "path": "symbols/power.kicad_sym",
+      "sha256": "5308c8c77530d5ba458ca658925119069cb6cb8ad6fbf424d88afb1fdb4e3ef1"
+    },
+    {
+      "name": "PodStorage",
+      "path": "authored-cad/PodStorage.kicad_sym",
+      "sha256": "0ea1110a7812c9a080eb671f1b9e9d0738de702a076dd3c51dff025c2c136d65"
+    },
+    {
+      "name": "Regulator_Switching",
+      "path": "symbols/Regulator_Switching.kicad_sym",
+      "sha256": "b821f0efed30625426fdebc0c8b8d23ae12a6e3f1b0f208f12a49c4f66fc6e83"
+    },
+    {
+      "name": "PodSupervisor",
+      "path": "authored-cad/PodSupervisor.kicad_sym",
+      "sha256": "0c72d4a4eef98af42b94ca9d9440d35b6528a0d5a1d837e41fccb484859cdf9a"
+    },
+    {
+      "name": "CANClock",
+      "path": "authored-cad/CANClock.kicad_sym",
+      "sha256": "84b419f45f564b391ab81579eb3c84f301ffad816f7488f98a13129a16073b3b"
+    },
+    {
+      "name": "CANJumper",
+      "path": "authored-cad/CANJumper.kicad_sym",
+      "sha256": "050bb6e8e4ae1bcd436e72ebf05b142cae5d6a6414e0cde938e0e7a7af526f20"
+    },
+    {
+      "name": "PodCAN",
+      "path": "authored-cad/PodCAN.kicad_sym",
+      "sha256": "e4bc76104669d06395793a45d2df1553842d62b391c29189ec11799d5cc90926"
+    },
+    {
+      "name": "PodSensorPower",
+      "path": "authored-cad/PodSensorPower.kicad_sym",
+      "sha256": "5f991698a58fb9161e9ac4b8b068aa3a9805cae69a6f5acfb532f73abd52c2e4"
+    },
+    {
+      "name": "PodWheel",
+      "path": "authored-cad/PodWheel.kicad_sym",
+      "sha256": "7f2f6eb4991793136567fbcc59303153206914a851ea39ef18e51c34568dc17c"
+    },
+    {
+      "name": "PodDiagnostic",
+      "path": "authored-cad/PodDiagnostic.kicad_sym",
+      "sha256": "a28c6c7f0cce4e4de89503f8fbca4acc4f4d21c94b3b3be0b66a271e2adc9045"
+    },
+    {
+      "name": "PodThermistor",
+      "path": "authored-cad/PodThermistor.kicad_sym",
+      "sha256": "fe84651cfd13cbb8c1ad217fd2318eb0161bb952199cc4879fa306c95edee3c4"
+    }
+  ],
+  "components": [
+    {
+      "reference": "power/C1",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C10",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can/C308",
+      "lib_id": "Block_63616e_446576696365:C",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C11",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C110",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C111",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C112",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C113",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C114",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C115",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C116",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C117",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C118",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C119",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C12",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C120",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C121",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C122",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/C123",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/C124",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/C125",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/C126",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/C127",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/C128",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/C129",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C13",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C14",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C15",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C16",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C17",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C18",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C19",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C2",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C20",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C21",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C22",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C3",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C30",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C31",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C32",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C33",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C34",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C35",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C36",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C37",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C38",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C39",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C4",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C40",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C41",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C42",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C43",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C44",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C45",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C46",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C47",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C48",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C49",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C5",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C50",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C51",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C52",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/C53",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C54",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C55",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C56",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C57",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C58",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C59",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C6",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C60",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C61",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/C62",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/C63",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/C64",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/C65",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/C66",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/C67",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage-power/C68",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage-power/C69",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C7",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage-power/C70",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C71",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C72",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C73",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C74",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C75",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C76",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C77",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/C78",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C79",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C8",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C80",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C81",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C82",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C83",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C84",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/C85",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C86",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C87",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C88",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C89",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/C9",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C90",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C91",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C92",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C93",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/C94",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/C95",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/C96",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/C97",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/C98",
+      "lib_id": "Device:C",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/D1",
+      "lib_id": "Device:D_TVS",
+      "footprint": "Diode_SMD:D_SMC",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can/D4",
+      "lib_id": "Block_63616e_446576696365:D_TVS_x2_AAC",
+      "footprint": "Package_TO_SOT_SMD:SOT-323_SC-70",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/D101",
+      "lib_id": "PodCAN:PESD2CANFD24V_T",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/D102",
+      "lib_id": "PodWheel:BAV199",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/D103",
+      "lib_id": "PodWheel:BAV199",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/D104",
+      "lib_id": "PodCAN:PESD2CANFD24V_T",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/D105",
+      "lib_id": "PodWheel:BAV199",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/D2",
+      "lib_id": "Device:D_Zener",
+      "footprint": "Diode_SMD:D_SOD-123",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/D3",
+      "lib_id": "Device:D_TVS",
+      "footprint": "PodPower:SOD882BD",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "connector/J2",
+      "lib_id": "Connector:Conn_Coaxial",
+      "footprint": "Connector_Coaxial:SMA_Molex_73251-1153_EdgeMount_Horizontal",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/JP1",
+      "lib_id": "CANJumper:SolderJumper_2_Open",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/JP2",
+      "lib_id": "CANJumper:SolderJumper_2_Open",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/JP3",
+      "lib_id": "CANJumper:SolderJumper_2_Open",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/JP4",
+      "lib_id": "CANJumper:SolderJumper_2_Open",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/JP5",
+      "lib_id": "CANJumper:SolderJumper_2_Open",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/L1",
+      "lib_id": "Device:L",
+      "footprint": "PodPower:SRP7050TA",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/L2",
+      "lib_id": "Device:L",
+      "footprint": "PodPower:SRP7050WA",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/L3",
+      "lib_id": "Device:L",
+      "footprint": "Inductor_SMD:L_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage-power/L4",
+      "lib_id": "Device:L",
+      "footprint": "PodStoragePower:SRP4020TA",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/Q1",
+      "lib_id": "Transistor_FET:Q_PMOS_GDS",
+      "footprint": "PodPower:DMP6023LE_SOT223",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R1",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R10",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can/R9",
+      "lib_id": "Block_63616e_446576696365:R_Small",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R11",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R110",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R111",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R112",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R113",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R114",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R115",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R116",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R117",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R118",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R119",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R12",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R120",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R121",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R122",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R123",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R124",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R125",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R126",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/R127",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R128",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R129",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R13",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R130",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R131",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R132",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R133",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R134",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R135",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R136",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R137",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R138",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R139",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R14",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R140",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R141",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R142",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R143",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R144",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R145",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R146",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R147",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R148",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R149",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R15",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R150",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R151",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R152",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R153",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R154",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R155",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R156",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R157",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R158",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R159",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R16",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R160",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/R161",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R162",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R163",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R164",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R165",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R166",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R167",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R168",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/R169",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R17",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R170",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R171",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R172",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R173",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R174",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R175",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R176",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R177",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R178",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R179",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R18",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/R180",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R181",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R19",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R2",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R20",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R21",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R22",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R23",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R24",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R25",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R26",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R27",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R28",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/R29",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R3",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/R30",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/R31",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/R32",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "support/R33",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R34",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R35",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R36",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R37",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R38",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R39",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R4",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R40",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R41",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R42",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R43",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R44",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/R45",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R46",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R47",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R48",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R49",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R5",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R50",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R51",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R52",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R53",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R54",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/R55",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R56",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R57",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R58",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R59",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R6",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R60",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R61",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R62",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R63",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R64",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/R65",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R66",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R67",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R68",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R69",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/R7",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R70",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R71",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/R72",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R73",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R74",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R75",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R76",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R77",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R78",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R79",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R80",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R81",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R82",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R83",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/R84",
+      "lib_id": "Device:R",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp1",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp2",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp3",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp4",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp5",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "probe-tp6",
+      "lib_id": "PodFeatures:PogoPad",
+      "footprint": "PodFeatures:PogoPad_D1.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "mcu",
+      "lib_id": "RF_Module:ESP32-S3-WROOM-1",
+      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U10",
+      "lib_id": "PodPower:TPS2553QDBVRQ1",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can/U307",
+      "lib_id": "Block_63616e_496e746572666163655f43414e5f4c494e:TJA1051T-3",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U11",
+      "lib_id": "Reference_Voltage:REF5050AD",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U12",
+      "lib_id": "PodPower:TPS7B4253QDDARQ1",
+      "footprint": "PodPower:DDA0008J_C02",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "expansion/U13",
+      "lib_id": "PodPower:ADA4096-4ARUZ-R7",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage/U14",
+      "lib_id": "PodStorage:FEMDME008G-A8A39",
+      "footprint": "Package_BGA:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "storage-power/U15",
+      "lib_id": "Regulator_Switching:TPS62162DSG",
+      "footprint": "Package_SON:Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/U16",
+      "lib_id": "PodSupervisor:TPS389001DSE",
+      "footprint": "PodSupervisor:DSE0006A",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/U17",
+      "lib_id": "PodSupervisor:TPS389001DSE",
+      "footprint": "PodSupervisor:DSE0006A",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/U18",
+      "lib_id": "PodSupervisor:TPS389001DSE",
+      "footprint": "PodSupervisor:DSE0006A",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "supervisor/U19",
+      "lib_id": "PodSupervisor:TPS389001DSE",
+      "footprint": "PodSupervisor:DSE0006A",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "imu",
+      "lib_id": "PodPrimarySPI:LSM6DSO32",
+      "footprint": "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/U20",
+      "lib_id": "PodCAN:MCP2518FD_SL",
+      "footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/U21",
+      "lib_id": "Block_63616e_496e746572666163655f43414e5f4c494e:TJA1051T-3",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/U22",
+      "lib_id": "PodCAN:SN74LVC1G132DBV",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/U23",
+      "lib_id": "PodSensorPower:TPS26625_DRC",
+      "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/U24",
+      "lib_id": "PodSensorPower:TPS26625_DRC",
+      "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "sensor-power/U25",
+      "lib_id": "PodSensorPower:TPS26625_DRC",
+      "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "wheel-input/U26",
+      "lib_id": "PodWheel:LM2903BQ_D",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/U27",
+      "lib_id": "PodDiagnostic:ADS1119_PW",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/U28",
+      "lib_id": "PodDiagnostic:ADS1119_PW",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "diagnostic/U29",
+      "lib_id": "PodDiagnostic:ADS1119_PW",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "gnss",
+      "lib_id": "RF_GPS:NEO-M9N",
+      "footprint": "RF_GPS:ublox_NEO",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "aux-power/U30",
+      "lib_id": "PodSensorPower:TPS26625_DRC",
+      "footprint": "Package_SON:VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "thermistor/U31",
+      "lib_id": "PodThermistor:TL431DBZ",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "adc",
+      "lib_id": "Analog_ADC:MCP3208",
+      "footprint": "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U5",
+      "lib_id": "PodPower:LMR36520ADDAR",
+      "footprint": "PodPower:DDA0008B",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U6",
+      "lib_id": "PodPower:TPS7B4253QDDARQ1",
+      "footprint": "PodPower:DDA0008J_C02",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U7",
+      "lib_id": "PodPower:LMR36520ADDAR",
+      "footprint": "PodPower:DDA0008B",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U8",
+      "lib_id": "PodPower:ADA4096-4ARUZ-R7",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "power/U9",
+      "lib_id": "PodPower:OPA320AIDBVR_VREF",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "assembly": "smd",
+      "connector": null
+    },
+    {
+      "reference": "can2/Y1",
+      "lib_id": "CANClock:Crystal_GND24",
+      "footprint": "Crystal:Crystal_SMD_SeikoEpson_FA238-4Pin_3.2x2.5mm",
+      "assembly": "smd",
+      "connector": null
+    }
+  ]
+}
