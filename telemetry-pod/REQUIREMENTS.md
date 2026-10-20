@@ -78,13 +78,24 @@ On 2026-10-20, the owner approved retaining the following parts despite the blan
 | U2 | LSM6DSO32TR | Retain the 85 °C IMU. |
 | U4 | MCP3208-BI/SL | Retain the industrial-temperature ADC for the expanded design; this does not approve the old MCP3204 binding. |
 
-Canonical declarations consumed by the assembly verifier:
-
-U1 is exempt from operating-temperature verification.
-U2 is exempt from operating-temperature verification.
-U4 is exempt from operating-temperature verification.
+The assembly verifier's canonical source is
+[operating-temperature-exemptions.txt](operating-temperature-exemptions.txt).
+That file contains only the three owner-approved exemption lines, without
+Markdown, headings, comments or blank lines. Cite its captured bytes, SHA-256 and
+individual line numbers in the expanded pod scope. Withdraw an exemption by
+deleting its line and regenerating the scope citations.
 
 These declarations waive the blanket 105 °C part-selection check only. They do not qualify operation beyond manufacturer limits, waive thermal validation, or transfer to a different part/reference. Record the exception with each exact component binding. Validate enclosure temperatures and self-heating under worst-case input, sensor load, radio and logging activity; the stated +85 °C board-ambient ceiling is not demonstrated for this assembly. If the actual thermal margin is insufficient, revise cooling, the operating envelope or the affected part with an explicit disposition before release.
+
+The current exemption mechanism excludes these references from the assembly
+operating-temperature predicate entirely; it does not verify them against their
+own ratings. Therefore the expanded scope must carry actual manufacturer limits,
+exact-part binding and enclosure thermal validation as unresolved declared
+limitations. A passing assembly predicate does not discharge those obligations.
+The scope fragment in
+[expansion/temperature-scope-fragment.json](expansion/temperature-scope-fragment.json)
+retains the citations and limitations for incorporation when the expanded scope
+is generated; it is not a completed assembly check.
 
 ## Power integrity and recovery
 

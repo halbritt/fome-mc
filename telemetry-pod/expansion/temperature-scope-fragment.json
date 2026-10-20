@@ -1,0 +1,40 @@
+{
+  "schema": "pod-temperature-scope-fragment/1",
+  "status": "prepared; merge into regenerated expanded scope after AGENTEE-281 lands; not an executed check",
+  "captured_input": "requirements/operating-temperature-exemptions.txt",
+  "assembly_operating_temperature_exemptions": {
+    "U1": {
+      "source": "requirements/operating-temperature-exemptions.txt",
+      "sha256": "45b9ba0af879fabd7f33b99c0fa83e61a29fba2ec338bfa5cdf95e1484cd9236",
+      "line": 1,
+      "quote": "U1 is exempt from operating-temperature verification."
+    },
+    "U2": {
+      "source": "requirements/operating-temperature-exemptions.txt",
+      "sha256": "45b9ba0af879fabd7f33b99c0fa83e61a29fba2ec338bfa5cdf95e1484cd9236",
+      "line": 2,
+      "quote": "U2 is exempt from operating-temperature verification."
+    },
+    "U4": {
+      "source": "requirements/operating-temperature-exemptions.txt",
+      "sha256": "45b9ba0af879fabd7f33b99c0fa83e61a29fba2ec338bfa5cdf95e1484cd9236",
+      "line": 3,
+      "quote": "U4 is exempt from operating-temperature verification."
+    }
+  },
+  "exact_parts": {
+    "U1": "ESP32-S3-WROOM-1-N8",
+    "U2": "LSM6DSO32TR",
+    "U4": "MCP3208-BI/SL"
+  },
+  "limitations": [
+    "POD-TEMP-EXEMPT-PARTS: NOT CHECKED: U1 ESP32-S3-WROOM-1-N8, U2 LSM6DSO32TR and U4 MCP3208-BI/SL are excluded from assembly:operating-temperature by owner approval of exceptions to the blanket 105 C part-selection criterion. The predicate does not compare them against their own manufacturer ratings. Their 85 C grade ceilings remain limits; confirm exact datasheet conditions and actual part bindings independently. No substitution inherits an exemption.",
+    "POD-TEMP-ENCLOSURE: NOT CHECKED: Enclosure thermal validation must measure the selected components under worst-case supply, sensor load, radio and logging activity, including self-heating. Neither the +85 C board ambient envelope nor adequate margin to actual manufacturer limits is qualified. A passing assembly predicate does not discharge this obligation."
+  ],
+  "integration": [
+    "Capture the canonical text as requirements/operating-temperature-exemptions.txt and include it in the scope inputs.",
+    "Merge assembly_operating_temperature_exemptions into the assembly_readiness params.operating_temperature.exemptions object; exclude those same references from its judged parts map. Supply all other required evidence fields independently.",
+    "Append both limitations to the scope limitations list, retaining all unrelated limitations.",
+    "Regenerate source digests and line citations after any change; never repurpose old v9 acceptance receipts."
+  ]
+}
