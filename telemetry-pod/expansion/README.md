@@ -5,11 +5,14 @@ the released schematic, BOM or verified io-map. The committed v9 design remains
 the earlier pilot. `allocation.json` reserves pins for the complete expansion so
 that individual additions cannot consume the same terminal twice.
 
-The [thermistor stage](thermistor/README.md) adds optional protected excitation
-to the [integrated sources](integration/README.md), including the reviewed
-connector footprint and exact-part model. Use the thermistor generator for the
-next fresh native project once the emitter release gates clear.
-The older snapshots remain evidence of their individual preparation stages.
+The latest prepared source is [series-divider](series-divider/README.md), built
+on [component-fit](component-fit/README.md). It selects exact parts for the
+expanded functions and implements R60 as two series resistors without shifting
+the nominal supervisor threshold. Use its producer for the next native attempt.
+Native verification of this latest topology remains pending; the earlier
+snapshots retain evidence of their individual preparation and review stages.
+The [supply-monitor coverage](supply-monitor-coverage/README.md) records the
+current source graph's sensing boundaries and ten diagnostic channels.
 
 ## Connector and buses
 
@@ -51,8 +54,8 @@ SPI bus with its own chip select and interrupt; bound transfer lengths and
 interrupt service latency must preserve the acquisition deadlines. A separate
 I2C diagnostic ADC with an independent reference can measure input, intermediate,
 sensor and logic rails without consuming any of the eight external analog
-channels. Exact controller, storage, diagnostic and protection parts still need
-datasheets, stock bindings, circuit design and native verification.
+channels. Exact identities and captured sources are now present in the prepared stages;
+operating qualification and native verification of the latest source remain open.
 The maximum tire workload is 800 received classic CAN frames/s. Size the
 controller receive buffers against worst-case SPI service latency, not average
 bus utilization. Configure SDMMC width explicitly to four bits; do not inherit
