@@ -127,10 +127,12 @@ tests pass, neither bounded log loss nor safe power removal is established.
 
 ## Connector CAD hold
 
-The captured TE drawing is revision J8, obtained from a public mirror. TE's
-current product page lists K1; attempts to capture its drawing/model failed.
-J8 is sufficient to reject the existing library footprint, but it does not
-establish current-revision qualification.
+The [connector candidate](connector-candidate/README.md) now captures TE's current
+K1 drawing and exact 1-776163-1 revision T STEP. Its project-local footprint
+corrects the locator pattern, and native drill/model checks cover all35 contacts
+and both locator holes. The earlier J8 mirror remains historical evidence.
+The shared ECU library and actual pod still need deliberate adoption; this
+standalone candidate is not whole-board mechanical qualification.
 
 The local `Simon.pretty/ampseal-35` and fome-mc
 `libs/footprints/ampseal.pretty/ampseal-35` contain four PCB NPTH at the panel
@@ -146,10 +148,11 @@ placement of 776163-1. Independent review confirmed these defects.
 
 Before binding the replacement footprint:
 
-1. Capture current drawing/CAD or reconcile the J8-to-K1 changes.
-2. Register the two PCB locators, finished holes and pin numbering to an explicit
-   PCB-top coordinate system. Row 1–12 is farthest from the mating face; row
-   24–35 is nearest. Independently verify the signed X/Y transform.
+1. Use the captured K1 drawing and exact-part revision T model, retaining the
+   documented revision differences and physical tolerance checks.
+2. Adopt the reviewed connector-candidate coordinates and model transform into
+   the regenerated project, then recheck its emitted pins, drills and model.
+   Row 1–12 is farthest from the mating face; row 24–35 is nearest.
 3. Project the full housing into the board plane for courtyard/keepout and
    verify mounting-hole, enclosure, connector access and antenna clearance.
 4. Establish installed height from a board-plane datum and measure actual
