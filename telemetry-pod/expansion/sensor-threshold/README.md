@@ -48,16 +48,19 @@ The divider equation includes sense current as `Vrail = Vsense × (1 + Rt/Rb)
 guaranteed device limit at threshold.
 
 For illustration only, the candidate's maximum release threshold is 48.199 mV
-below a 4.95 V healthy rail. The actual delivered healthy minimum after regulator
-error, tracking, current-dependent switch/drop, wiring and ripple is not yet
-established. Therefore this margin does **not** close the selection decision.
+below a 4.95 V healthy rail. U18 senses the local U6 output, before U30 and external wiring. The actual
+healthy minimum at that sensing node under shared load, regulator/reference
+error, headroom, temperature and ripple is not yet established. Downstream
+U30 and cable drops affect sensor validity separately; they must not be
+subtracted from the upstream node when evaluating U18. See
+[monitor coverage](../supply-monitor-coverage/README.md). Therefore this margin does **not** close the selection decision.
 The candidate would require a justified healthy minimum above its qualified
 maximum release threshold, with an allocated dynamic noise margin. The desired
 latest fault-assertion voltage also needs a downstream sensor requirement.
 
 ## Disposition and reproduction
 
-Keep R60 unchanged until the delivered rail envelope and threshold-current
+Keep R60 unchanged until the local sensed-rail envelope and threshold-current
 assumption are resolved. The candidate preserves the existing 0603 footprint
 identifier but still needs ordinary land-pattern/assembly qualification.
 Local resistor temperatures, not enclosure ambient, define the calculation;

@@ -47,6 +47,6 @@ print(json.dumps({'schema': 'pod-supervisor-threshold-study/1', 'status': 'CONDI
                     'resistor_initial_tolerance': .001, 'sense_threshold_nominal_v': 1.15,
                     'sense_threshold_accuracy': .01, 'maximum_relative_hysteresis': .00825},
     'rows': rows, 'limitations': ['TI sense current limit is specified at VSENSE=5V; use at threshold is conditional.',
-    '4.95V is illustrative before distribution drop; no healthy-load rail minimum established.',
+    '4.95V is illustrative at the local U6/U18 node; no healthy-load minimum there is established. Downstream drops are separately unobserved by U18.',
     'Resistor temperature interval is local part temperature, not enclosure ambient; self-heating unqualified.',
     'No guaranteed assertion/release timing, noise immunity, transient behavior or hardware acceptance.']}, indent=2))

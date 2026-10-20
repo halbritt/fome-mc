@@ -1,0 +1,176 @@
+{
+  "schema": "pod-supply-monitor-coverage/1",
+  "intent_sha256": "2af24a5305947309c7200e85ffaac967cfacd63c4b24bd6f3d07c187dae66f04",
+  "supervisor": {
+    "device": "U18",
+    "rail": "POD_5V_SENSOR",
+    "divider": [
+      "R60",
+      "R61"
+    ],
+    "signal": "SENSOR_FAULT_N",
+    "module_pin": 25,
+    "coverage": "Local U6 output; upstream of U30 and external wiring"
+  },
+  "adc_channels": [
+    {
+      "adc": "U27",
+      "channel": 0,
+      "pin": 11,
+      "rail": "POD_12V_PROTECTED",
+      "divider": [
+        "R128",
+        "R129",
+        "R130",
+        "R131"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": []
+    },
+    {
+      "adc": "U27",
+      "channel": 1,
+      "pin": 10,
+      "rail": "PRE_6V3",
+      "divider": [
+        "R132",
+        "R133",
+        "R134",
+        "R135"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": []
+    },
+    {
+      "adc": "U27",
+      "channel": 2,
+      "pin": 7,
+      "rail": "+3V3",
+      "divider": [
+        "R136",
+        "R137",
+        "R138",
+        "R139"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": []
+    },
+    {
+      "adc": "U28",
+      "channel": 0,
+      "pin": 11,
+      "rail": "EMMC_VCC_3V3",
+      "divider": [
+        "R140",
+        "R141",
+        "R142",
+        "R143"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": []
+    },
+    {
+      "adc": "U28",
+      "channel": 1,
+      "pin": 10,
+      "rail": "POD_5V_SENSOR",
+      "divider": [
+        "R144",
+        "R145",
+        "R146",
+        "R147"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": [
+        5,
+        8,
+        11,
+        14
+      ]
+    },
+    {
+      "adc": "U29",
+      "channel": 0,
+      "pin": 11,
+      "rail": "POD_WHEEL_FRONT_SUPPLY",
+      "divider": [
+        "R148",
+        "R149",
+        "R150",
+        "R151"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": [
+        23
+      ]
+    },
+    {
+      "adc": "U29",
+      "channel": 1,
+      "pin": 10,
+      "rail": "POD_WHEEL_REAR_SUPPLY",
+      "divider": [
+        "R152",
+        "R153",
+        "R154",
+        "R155"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": [
+        26
+      ]
+    },
+    {
+      "adc": "U29",
+      "channel": 2,
+      "pin": 7,
+      "rail": "POD_TIRE_SUPPLY",
+      "divider": [
+        "R156",
+        "R157",
+        "R158",
+        "R159"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": [
+        31
+      ]
+    },
+    {
+      "adc": "U28",
+      "channel": 2,
+      "pin": 7,
+      "rail": "POD_5V_AUX",
+      "divider": [
+        "R166",
+        "R167",
+        "R168",
+        "R169"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": [
+        21
+      ]
+    },
+    {
+      "adc": "U28",
+      "channel": 3,
+      "pin": 6,
+      "rail": "THERM_EXC_2V495",
+      "divider": [
+        "R176",
+        "R177",
+        "R178",
+        "R179"
+      ],
+      "nominal_ratio": 301,
+      "connector_pins_at_sensed_node": []
+    }
+  ],
+  "limits": [
+    "Graph inspection only; no native emission or functional monitoring proof.",
+    "Connector-node sensing does not observe remote cable or return-path drop.",
+    "SENSOR_FAULT_N high does not establish all sensor supplies healthy.",
+    "ADC conversion/error/settling bounds and firmware validity policy remain separate."
+  ]
+}
