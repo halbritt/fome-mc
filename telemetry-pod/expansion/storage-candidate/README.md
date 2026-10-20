@@ -1,7 +1,7 @@
 # Storage circuit candidate
 
 This preserved schematic adds FORESEE FEMDME008G-A8A39 eMMC and its core supply
-to the expanded MCP3208 acquisition candidate. It is **not ready for fabrication**
+and four rail supervisors to the expanded MCP3208 acquisition candidate. It is **not ready for fabrication**
 and has not replaced the actual telemetry-pod project.
 
 U14 uses the reserved four-bit SDMMC interface at an initial 20 MHz SDR target.
@@ -19,7 +19,10 @@ The native power flag at the core output describes the verified path from
 U15's switch output through L4. KiCad does not propagate the power-output type
 through that inductor. The flag does not establish load capacity or rail quality.
 U15's PG is unconnected: it becomes high-impedance on UVLO, disable and thermal
-shutdown, so it cannot alone establish reliable reset behavior.
+shutdown. U16/U17 now supervise main and eMMC core rails and share MCU_EN.
+U18/U19 report sensor-supply and protected-input faults separately. See
+[supervision.md](supervision.md) for thresholds, footprint interpretation and
+remaining qualification limits.
 
 The captured eMMC manufacturer document A-00093 v1.0 specifies −40…+105 °C,
 3.3 V-compatible VCCQ, and 7,818,182,656 user bytes. At 60,400 bytes/s and an
@@ -46,25 +49,28 @@ pins the inputs and native outputs.
 
 Run `python3 verify.py` here to export a fresh native netlist and check the
 independent circuit contract and expected ERC findings on a temporary snapshot.
-`native.xml` is the retained export; `previous-storage-native.xml` and
-`previous-adc-native.xml` preserve the preceding circuit boundaries. Historical
+`native.xml` is the retained export; `previous-power-native.xml`,
+`previous-storage-native.xml` and `previous-adc-native.xml` preserve the preceding
+circuit boundaries. Historical
 interface-only migration assumptions are in `interface-migration.json`;
-`power-migration.json` describes the current power change.
+`power-migration.json` describes the preceding storage power change;
+`supervisor-migration.json` describes the current supervision change.
 
 ERC has no electrical errors and retains the missing AMPSEAL-35 footprint
 warning. This is not a waiver or a release pass. Captured footprints support
 native checks; 3D model paths and assembly suitability remain unqualified.
 Inherited part bindings are historical inputs, not a new parts approval.
 
-Sources are the captured eMMC PDF and `power-sources/`. The regulator and
+Sources are the captured eMMC PDF, `power-sources/` and `supervisor-sources/`. The regulator and
 inductor documents were downloaded from TI and Bourns. The supervisor PDF is
 retained as evidence for the rejected circuit described in
 [supervisor-review.md](supervisor-review.md).
 
 ## Remaining work
 
-- Resolve reset supervision, independent input/rail diagnostics and sequencing,
-  including host behavior when eMMC core power disappears.
+- Qualify reset supervision, input/rail diagnostics and sequencing, including
+  host behavior when eMMC core power disappears; circuit implementation alone
+  does not establish reset or logging recovery.
 - Complete input protection/filter damping, whole-system peak-load and thermal
   budgets, sensor-branch protection and a declared dip/recovery envelope.
 - Select and bind new passives; verify effective capacitance, bias, temperature,

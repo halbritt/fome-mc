@@ -1,0 +1,26 @@
+[
+  {
+    "mutation": "U17 reset disconnected from MCU_EN",
+    "terminal": "U17.6",
+    "original_net": "/MCU_EN",
+    "mutated_net": "/GND",
+    "detected": true,
+    "failed_checks": [
+      "exact members GND",
+      "exact members MCU_EN"
+    ]
+  },
+  {
+    "mutation": "Unrelated ADC connection changed",
+    "terminal": "C31.1",
+    "original_net": "/ADC_AIN0",
+    "mutated_net": "/GND",
+    "detected": true,
+    "failed_checks": [
+      "exact members ADC_AIN0",
+      "exact members GND",
+      "only two prior NC reassignments",
+      "full previous power/storage contract replay"
+    ]
+  }
+]

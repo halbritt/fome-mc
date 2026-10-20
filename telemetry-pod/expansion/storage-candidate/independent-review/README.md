@@ -1,6 +1,25 @@
-# Independent storage power review
+# Independent supervision review
 
-No wiring defect found in the final native candidate: 574 power/delta checks pass,
+`supervisor-report.json` records 655 passing checks on the current supervisor
+candidate, with 574 prior power checks replayed. Two deliberate native XML
+regressions were rejected; see `supervisor-negative-probes.json`. The checker
+verifies the complete native graph delta, nominal values, supervisor pin map
+and the explicitly interpreted custom footprint. It then replays the preceding
+power/storage checks after removing only the independently verified changes
+from a temporary XML copy.
+
+```sh
+python3 independent-review/check_supervisor_independent.py CURRENT.xml PREVIOUS-POWER.xml PREVIOUS-STORAGE.xml PREVIOUS-ADC.xml inputs REPORT.json
+```
+
+Keep `check_power_independent.py` and `storage_contract.py` beside this checker.
+The nested reports apply to normalized historical predecessors; their statements
+that supervision is absent do not describe the current candidate. The current
+circuit still requires waveform, thermal, assembly and recovery qualification.
+
+## Historical storage power review
+
+No wiring defect was found in the preceding storage-power candidate: 574 power/delta checks pass,
 including replay of the previous independently transcribed 324-check storage
 contract. Four deliberate XML regressions were detected on temporary copies.
 
@@ -18,7 +37,7 @@ XML is deleted; it restores only the separately checked power delta so the full
 original storage contract can be replayed. The outer report binds the real
 current/previous inputs and both checker hashes.
 
-The final ERC observation and flag registration are recorded separately in
+The historical ERC observation and flag registration are recorded separately in
 `flag-and-erc-review.json`. PWR_FLAG is on an output with a real U15 SW -> L4 ->
 VCC path; it does not qualify converter performance. Final ERC retains the
 existing J1 missing-footprint warning only. Supervision, early power failure,

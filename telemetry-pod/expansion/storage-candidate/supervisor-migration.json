@@ -1,0 +1,56 @@
+{
+  "status": "circuit candidate; physical and brownout qualification pending",
+  "source": "https://www.ti.com/lit/ds/symlink/tps3890.pdf",
+  "document": "SLVSD65A; DSE0006A drawing4220552/B01/2024",
+  "source_sha256": "ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0",
+  "source_native_sha256": "d7f638e3599b6f13957a800d97c1757dea95b426df068ccbee5ea8cb4ffa2101",
+  "native_schematic_sha256": "56b01e6f853e7383f6772feec729b26b26f6606a7c1614902a7434252a2f96bb",
+  "native_netlist_sha256": "c9ab21f7ec08d8fc78d65d1facdb9f00857987c097b13b1bfc992fc2c2ca63f3",
+  "new_components": [
+    "U16",
+    "U17",
+    "U18",
+    "U19",
+    "R56",
+    "R57",
+    "R58",
+    "R59",
+    "R60",
+    "R61",
+    "R62",
+    "R63",
+    "R64",
+    "R65",
+    "C71",
+    "C72",
+    "C73",
+    "C74",
+    "C75",
+    "C76",
+    "C77",
+    "C78"
+  ],
+  "changed_components": {
+    "R29": "100 kohm; historical10k binding removed",
+    "C47": "10nF; historical1uF binding removed"
+  },
+  "new_gpio_connections": {
+    "U1.25": "SENSOR_FAULT_N",
+    "U1.12": "POWER_FAIL_N"
+  },
+  "qualification_pending": [
+    "All new parts binding and actual thermal limits",
+    "Input clamp overshoot remains below recommended sense limit",
+    "Resistor drift, reset propagation, startup/runt-pulse behavior",
+    "Supervisor low-VDD leakage, MCU input loading and probes",
+    "Footprint mask interpretation, fabrication registration and assembly",
+    "Input protection, energy hold-up, firmware recovery and logging loss bounds"
+  ],
+  "footprint_fixture": {
+    "supervisor-sources/footprint-check.kicad_pcb": "dbacd981a8140389be1b7a439cca52b8899057546454d51208cbb4dc88e642b1",
+    "supervisor-sources/footprint-gerbers/footprint-check-F_Cu.gtl": "0ae48c11d292eca17602188c62d9742ccb91c7fcbb01f90323a30517956cf6f0",
+    "supervisor-sources/footprint-gerbers/footprint-check-F_Mask.gts": "761cad4e6f015383910473f3ab94c13a12fd17cb9a009f65dc7e4a4bc24b69f7",
+    "supervisor-sources/footprint-gerbers/footprint-check-F_Paste.gtp": "2e7b7a08482a09257daa87a10a3a097fa657c7365be3e5fd4f1d8a6836fde4af",
+    "supervisor-sources/footprint-gerbers/footprint-check-job.gbrjob": "1c8a69447700d89346576f6cddfe54f6bbde9c16a747f7d18bccf66c9795f534"
+  }
+}

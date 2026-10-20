@@ -1,0 +1,68 @@
+{
+  "kind": "independent calculation, not measured qualification",
+  "source_sha256": "ee79599730e7606ba9718d9820b411020e3dcd9ff7d44572f8ee63fead15b9d0",
+  "assumptions": [
+    "TPS389001 nominal VITN1.15V and VITP1.157V, each1% accuracy",
+    "Resistors initial tolerance0.1%; temperature drift not included",
+    "ISENSE treated conservatively as +/-100nA although table gives positive maximum100nA at VSENSE5V; no claim of characterization across every voltage",
+    "Direct VITP and separately conservative hysteresis bounds shown; not added twice"
+  ],
+  "thresholds": [
+    {
+      "channel": "main",
+      "top_ohm": 16500,
+      "bottom_ohm": 10000,
+      "fall_nominal_V": 3.0475,
+      "fall_min_V": 3.0116200532967032,
+      "fall_max_V": 3.083463436786787,
+      "rise_max_direct_VITP_V": 3.1022222911411417,
+      "rise_max_conservative_hysteresis_V": 3.1088883840277783
+    },
+    {
+      "channel": "core",
+      "top_ohm": 15200,
+      "bottom_ohm": 10000,
+      "fall_nominal_V": 2.8979999999999997,
+      "fall_min_V": 2.8640408975824174,
+      "fall_max_V": 2.932036014494494,
+      "rise_max_direct_VITP_V": 2.9498739288088087,
+      "rise_max_conservative_hysteresis_V": 2.956212759074074
+    },
+    {
+      "channel": "sensor",
+      "top_ohm": 31300,
+      "bottom_ohm": 10000,
+      "fall_nominal_V": 4.749499999999999,
+      "fall_min_V": 4.69175197989011,
+      "fall_max_V": 4.8074063982682675,
+      "rise_max_direct_VITP_V": 4.836649800770771,
+      "rise_max_conservative_hysteresis_V": 4.847041652731482
+    },
+    {
+      "channel": "input",
+      "top_ohm": 64900,
+      "bottom_ohm": 10000,
+      "fall_nominal_V": 8.6135,
+      "fall_min_V": 8.506105542967033,
+      "fall_max_V": 8.721222851361361,
+      "rise_max_direct_VITP_V": 8.774269011821822,
+      "rise_max_conservative_hysteresis_V": 8.793119343842593
+    },
+    {
+      "channel": "main_alternative",
+      "top_ohm": 16900,
+      "bottom_ohm": 10000,
+      "fall_nominal_V": 3.0934999999999997,
+      "fall_min_V": 3.0570290242857143,
+      "fall_max_V": 3.1300564897997996,
+      "rise_max_direct_VITP_V": 3.1490987103203203,
+      "rise_max_conservative_hysteresis_V": 3.155865499398148
+    }
+  ],
+  "CT22nF": {
+    "nominal_seconds": 0.023565,
+    "example_10pct_low_seconds": 0.017185,
+    "example_10pct_high_seconds": 0.03471166666666667,
+    "qualification": "Illustrative bounds using cap+/-10%, VCT1.17..1.29V, ICT0.90..1.35uA and nominal25us additive term. Not a guaranteed timing interval; cap grade/effective capacitance and additive term need qualification."
+  }
+}
