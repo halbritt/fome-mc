@@ -1,0 +1,385 @@
+Texas Instruments Incorporated                                                                                                        Data Acquisition
+
+
+
+
+Precision voltage references
+By Perry Miller, Application Specialist—Data Converters, Texas Instruments, Dallas,
+and Doug Moore, Managing Director, Thaler Corp., Tucson, Arizona
+Introduction                                                        Figure 1. Band-gap reference circuit
+One reason why designing a data conversion system is
+such a challenge is the fact that the system accuracy very                            VCC   VCC
+much depends on the accuracy of the voltage established
+by the internal or external DC voltage reference. The
+voltage reference is used to produce a precise value of
+output voltage for setting the full-scale input of the data                      I2                I1
+conversion system. In an analog-to-digital converter
+(ADC), the DC voltage reference together with the analog                                                      +                   Σ        VBG = VOUT
+input signal is used to generate the digitized output signal.
+                                                                                                              –
+                                                                                                                λ       VPTAT
+And in a digital-to-analog converter (DAC), the DAC
+selects and produces an analog output from the DC refer-                   VBE2                        VBE1
+ence voltage according to the digital input signal presented
+at the input of the DAC. Any errors in the reference volt-
+age over the operating temperature range will adversely
+affect the linearity and spurious free dynamic range
+(SFDR) of the ADC/DAC. Practically all voltage refer-
+ences vary with time or environmental factors such as
+humidity, pressure, and temperature. As a result most              operating temperature range. But often what is not obvi-
+CMOS ADCs/DACs have internal references suitable only              ous when reading a manufacturer’s data sheet is how the
+for applications demanding ≤12-bit resolution even                 initial accuracy of the device is affected by other key device
+though the converter may be capable of higher resolution.          parameters such as line regulation, load regulation, initial
+Modern CMOS converters operate from 3.3-V or 5-V sup-              voltage error, output voltage temperature coefficient (TC),
+plies, which limits the on-chip voltage reference to a             output voltage noise, turn-on settling time, thermal hyste-
+band-gap reference. By way of the external reference pins          resis, quiescent supply current, and long-term stability.
+provided on the chip, an external precision reference can
+also be connected to a CMOS ADC or DAC. A precision                The design origins
+external voltage reference has a much lower temperature            Modern voltage references are constructed using the
+coefficient, thermal hysteresis, and long-term drift than          energy-band-gap voltage of integrated transistors, buried
+an on-chip band-gap voltage reference; therefore, in               zener diodes, and junction field-effect transistors. Each
+applications demanding high accuracy (14-bit or 16-bit             technology offers inherent performance characteristics
+ADCs/DACs), an external precision voltage reference is             that can be enhanced with compensation networks or
+often required.                                                    additional active circuitry. The basis topologies for the
+   Precision voltage references are available with varying         band-gap, buried zener, and XFET references are shown
+degrees of precision and initial accuracy over some                in Figures 1, 2, and 3, respectively.
+                                                                                                         Continued on next page
+
+ Figure 2. Buried zener reference circuit                           Figure 3. XFET reference circuit
+
+            +V                                                                                                              VIN
+
+
+                                                                            I1                    I2
+                                                                                                                    –
+        I
+                 R1                                                                                                 +
+                                      +
+                                                   VOUT                                                                                         VOUT
+         VZ                           –                                                                                               R1
+                                                                                                                                            IPTAT
+                      R2
+                                     R4                                                                                               R2
+                                R3
+                                                                                                                                      R3
+
+
+
+
+                                      www.ti.com/sc/docs/products/msp/dataconv/default.htm                                                               1
+
+  Analog Applications Journal                             November 1999                      Analog and Mixed-Signal Products
+    Data Acquisition                                                                                       Texas Instruments Incorporated
+
+
+    Continued from previous page                                            noise. The long-term stability is typically 6–15 ppm/1000
+                                                                            hrs. Buried zener-based references are frequently used
+    Band-gap reference                                                      for 12-bit, 14-bit, and higher resolution systems because
+    At its simplest, a band-gap reference is simply two tran-               the performance of the buried zener-based references can
+    sistors with different emitter areas used for generating a              be extended by incorporating nonlinear temperature com-
+    voltage proportional to absolute temperature. VBE1 and                  pensation networks into the design. The compensation
+    VBE2 have opposite temperature coefficients. The voltage                network is trimmed at several temperatures to optimize
+    VCC is converted to a current I1 and I2 that are mirrored to            the electrical performance over the operating tempera-
+    the output branch. The output equation is                               ture range.
+
+           VO = VBE1 + λ( VBE1 − VBE2 ),                         (1)        XFET reference
+                                                                            The XFET reference is a new reference technique that
+    where λ is the scale factor, VBE1 is the base-emitter volt-             consists of two junction field-effect transistors, one of
+    age of the larger of the two transistors, and VBE2 is the               which has an extra channel implant to raise the pinch-off
+    base-emitter voltage of the second transistor.                          voltage. The two JFETs are run at the same drain current.
+      The band-gap references are widely used in ADC/DAC                    The difference in pinch-off voltage is amplified and used
+    converters as well as for external reference source because             to form a voltage reference. The general equation is
+    they are fairly inexpensive. Generally, they are used in
+                                                                                             R1 + R2 + R3 
+    system designs where a maximum accuracy of 10 bits is                          VO = ∆VP                + (IPTAT )(R3),             (3)
+    required. Band-gap references typically have an initial                                       R1      
+    error of 0.5–1.0% and a TC of 25–50 ppm/°C. The output                  where ∆VP is the difference in pinch-off voltage between
+    voltage noise is typically 15–30 µVp-p (0.1–10 Hz) with a               the two FETs and IPTAT is the positive temperature
+    long-term stability of 20–30 ppm/1000 hrs.                              coefficient correction current.
+    Zener reference                                                            The simplified schematic for the XFET reference is
+                                                                            shown in Figure 3.
+    The zener voltage reference and feedback amplifier shown                   The XFET references are relatively new and provide a
+    in Figure 2 are used to provide a very stable output. A                 performance level between band-gap and zener refer-
+    current source is used to bias a 6.3-V zener diode. The                 ences. The initial error is typically 0.06%, a TC of 10 ppm/°C,
+    zener voltage is divided by the resistor network R1 and R2.             and 15-µVp-p (0.1- to 10-Hz) noise. The long-term stability
+    This voltage is applied to the non-inverting input of the               is 0.2 ppm/1000 hrs.
+    operational amplifier, which amplifies the voltage to the
+    required output voltage. The amplifier gain is determined               Reference selection for a 14-bit converter
+    by the resistor networks R3 and R4, where G = 1 + R4/R3.                Specified parameters for voltage references include line
+    A 6.3-V zener diode is used because it is the most stable               regulation, load regulation, initial voltage error, output
+    zener diode over time and temperature.                                  voltage temperature coefficient (TC), output voltage
+      The output equation is                                                noise, turn-on settling time, thermal hysterisis, quiescent
+                   R2  R4                                                 supply current, and long term stability.
+          VO =           1 +     × VZ .                        (2)          The most important parameters for data acquisition
+                 R1 + R2     R3                                           systems design are initial error, output voltage tempera-
+                                                                            ture coefficient (TC), thermal hysteresis, noise, and long-
+    Buried zener diode references are more expensive than                   term stability of the voltage reference device.
+    band-gap references but provide a higher performance                      Table 1 summarizes the major error sources for the
+    level. They typically have an initial error of 0.01–0.04%, a            three references that are compared in this application
+    TC of 1–10 ppm/°C, and less than 10-µVp-p (0.1- to 10-Hz)               note. The data represents the highest grade for each
+
+    Table 1. Voltage reference major error sources (all information is based on published data sheets)
+                                                     THALER CORP. VRE3050             MAXIM MAX6250              ANALOG DEVICES ADR293
+                    PARAMETER                        TEMPERATURE RANGE              TEMPERATURE RANGE             TEMPERATURE RANGE
+                                                        –40°C to +85°C                  –40°C to +85°C               –40°C to +85°C
+     Output voltage                                    5.000 V                        5.000 V                       5.000 V
+     Initial error                                     0.01%                          0.04%                         0.06%
+     Temperature coefficient                           0.6 ppm/°C                     3.0 ppm/°C                    8.00 ppm/°C
+     Noise (0.1–10 Hz)                                 3.0 µVp-p                      3.0 µVp-p                     15.0 µVp-p
+     Thermal hysteresis                                2 ppm                          20 ppm                        15 ppm
+     25°C→50°C→25°C
+     Long-term stability                                6.0 ppm/1000 hrs.             20.0 ppm/1000 hrs.             0.2 ppm/1000 hrs.
+     Power supply                                       8.0 V–36 V                    8.0 V–36 V                     6.0 V–15 V
+     Turn-on settling time                              10 µs                         10 µs                          <10 µs
+     Line regulation (8 V ≤ VIN ≤ 10 V)                 25 ppm/V                      35.00 ppm/V                    100.00 ppm/V
+     Load regulation (source 0 mA ≤ IO ≤ 15 mA)         5 ppm/mA                      7 ppm/mA                       100 ppm/mA
+     PSRR (10 Hz–900 Hz)                                95 dB                         90 dB                          40 dB
+
+2                                            www.ti.com/sc/docs/products/msp/dataconv/default.htm
+
+    Analog and Mixed-Signal Products                            November 1999                                 Analog Applications Journal
+Texas Instruments Incorporated                                                                                                     Data Acquisition
+
+
+respective model in the 8-pin plastic DIP package over
+                                                                         Figure 4. VOUT vs. temperature
+the industrial temperature range (–40°C to +85°C). The
+poorest-performing references are band-gap type and are
+not included in this summary. Buried zener diodes have                                      5.0004
+better overall performance than band-gap devices and the                                    5.0003
+XFET references. The buried zener reference with a third-                                                       Upper Limit
+order temperature compensation network (VRE3050) is                                         5.0002
+the best performer with respect to initial error, TC, and                                   5.0001
+
+
+
+
+                                                                                    Volts
+thermal hysteresis.                                                                         5.0000
+                                                                                            -5.0001
+Explanation of parameters
+                                                                                            -5.0002
+Initial error—The output voltage tolerance of a refer-                                                         Lower Limit
+                                                                                            -5.0003
+ence after the device is turned on and warmed up. It is
+                                                                                            -5.0004
+usually measured without a load applied. In many applica-                                          -50 -25     0   25    50      75 100
+tions, initial error is the most important specification.                                                    Temperature (°C )
+Often instrument manufacturers will specify a reference
+with a tight initial error so they do not have to perform
+room-temperature systems calibration after assembly.
+Temperature coefficient (TC)—A change in output                           This method corresponds more accurately to the method
+voltage due to change in temperature usually expressed                  of test and provides a closer estimate of actual error than
+in ppm/°C. It is the second most important specification                the other methods. The box method guarantees limits for
+after initial accuracy. For many instrument manufacturers,              the temperature error but does not specify the exact
+a voltage reference with a temperature coefficient less                 shape and slope of the device under test. Assuming a 5-V
+than 1 ppm/°C makes it possible not to have to perform a                reference with a 0.6-ppm/°C TC over the industrial tem-
+system temperature calibration, a slow and costly process.              perature range, a plot of the box calculation method
+Of the three TC specification methods (slope, butterfly,                would appear as in Figure 4.
+and box), the box method is most commonly used. A box                     A designer who needs a 14-bit accurate data acquisition
+is formed by the min/max limits for the nominal output                  system over the industrial temperature range (–40°C
+voltage over the operating temperature range. The equa-                 to +85°C) will need a voltage reference with a TC of
+tion follows.                                                           1.0 ppm/°C if the reference is allowed to contribute an
+                                                                      error equivalent to 1 LSB. For 1/2 LSB equivalent error
+                       VMAX − VMIN
+            TC =                           × 10
+                                                 6
+                                                                (4)     from the reference, a voltage reference with a tempera-
+                  nominal
+                   V       × (TMAX − TMIN 
+                                         )                              ture coefficient of 0.5 ppm/°C would be needed. Figure 5
+                                                                        shows the required reference TC vs. ∆T change from
+                                                                                                         25°C for resolution rang-
+                                                                                                         ing from 8 bits to 20 bits.
+ Figure 5. System performance vs. reference TC                                                                     Thermal hysteresis—A
+                                                                                                                   change in output voltage
+                                                                                                                   as a result of a tempera-
+                             10000                                                                                 ture change. When
+                                                                                                                   references experience a
+                             1000
+                                                                                                                   temperature change and
+                                                                                                                   return to the initial tem-
+                                                                                                                   perature, they do not
+     Reference TC (ppm/°C)
+
+
+
+
+                              100                                                                                  always have the same
+                                                                                                  8 Bits           initial output voltage.
+                                                                                                                   Thermal hysteresis is dif-
+                               10                                                                 10 Bits          ficult to correct and is a
+                                                                                                  12 Bits
+                                                                                                                   major error source in sys-
+                                                                                                                   tems that experience tem-
+                                 1
+                                                                                                  14 Bits          perature changes of 25°C
+                                                                                                                   or more. Voltage refer-
+                                                                                                  16 Bits
+                               0.1                                                                                 ence manufacturers are
+                                                                                                  18 Bits          starting to include this
+                                                                                                                   important specification in
+                              0.01                                                                20 Bits          their datasheets.
+                                     1                  10                                     100
+                                                ∆T Change from 25°C                                                     Continued on next page
+
+ Reference TC vs. ∆T change from 25°C for 1 LSB change
+
+
+                                           www.ti.com/sc/docs/products/msp/dataconv/default.htm                                                       3
+
+  Analog Applications Journal                                  November 1999                          Analog and Mixed-Signal Products
+    Data Acquisition                                                                                                                Texas Instruments Incorporated
+
+
+    Continued from previous page
+                                                                       Figure 6. 0.1-Hz to 10-Hz noise
+    Noise (1/f and broadband)—
+    Electrical noise on the output of a voltage
+    reference. It can include wideband ther-                                           8
+    mal noise and narrowband 1/f noise.                                                6
+                                                                                       4
+
+
+
+
+                                                                         ∆VOUT (µV)
+    Wideband noise can be effectively
+    filtered with a simple RC network. 1/f                                             2
+                                                                                       0
+    noise is inherent in the reference and
+                                                                                      -2
+    cannot be filtered. It is specified in the                                        -4
+    0.1- to 10-Hz range. Low 1/f noise refer-                                         -6
+    ences are important in precision designs.                                         -8
+    Long-term drift—A slow change in                        0                                                                                                 10
+                                                                                                                      Time (sec.)
+    output voltage that occurs over months
+    of operation. Long-term drift is usually
+    expressed in ppm/1000 hrs. In zener
+    references, the long-term drift is typi-
+    cally 6 ppm/1000 hrs. and decreases at
+    an exponential rate over time. Additional temperature                                           PCB layout—Poor printed circuit board layout can
+    burn-in of the reference can accelerate the stability of a                                      adversely affect the performance of the reference. Poor
+    zener reference. The XFET reference has excellent long-                                         layout can affect the output voltage, noise, and thermal
+    term stability—0.2 ppm/1000 hrs.                                                                performance of the device. Inherent stress in the PCB can
+    Turn-on settling time—A change in voltage over a                                                also be transferred to the reference and can shift the out-
+    specified time interval after the power is applied. Most                                        put voltage.
+    references settle to 0.1% in less than 10 µs. Turn-on                                           Conclusion
+    settling time is important for portable battery systems
+    that conserve energy by powering the circuitry only for                                         It has been shown that a number of key parameters must
+    short periods of time.                                                                          be evaluated before selecting an external reference for a
+                                                                                                    high-resolution data acquisition system. The XFET refer-
+    Line regulation—An error produced by a change in the                                            ence is suitable for systems that will be held at a constant
+    input voltage. This dc specification does not include the                                       temperature and where good long-term stability of the
+    effects of ripple voltage or line transients.                                                   reference is important. In 14-bit conversion systems that
+    Load regulation—An error produced by a change in                                                are designed for the industrial operating temperature
+    load current. Like line regulation, this dc specification                                       range, the VRE3050 is the preferred device because of its
+    does not include the effects of load transients.                                                better initial error, TC, and thermal hysteresis performance.
+                                                                                                            References
+                                                                                                             1. Analog Devices Inc., Low Noise, Micropower,
+     Figure 7. VRE3050 long-term drift vs. hours                                                                Precision Reference ADR293 Datasheet.
+                                                                                                             2. Paul R. Gray and Robert G. Meyer, Analysis
+                                                                                                                and Design of Analog Integrated Circuits,
+                                          Long-term Drift—Zener Reference                                       3rd ed. (John Wiley & Sons, Inc., 1992).
+                                                                                                             3. Maxim Corp., MAX6250, Low Noise Precision,
+                           0                                                                                    +2.5 V +4.096 V +5 V Voltage Reference
+         ppm Deviation
+
+
+
+
+                          -2                                                                                    Datasheet.
+                          -4
+                          -6                                                                                 4. Texas Instruments, THS1265, 12-bit, 65 MSPS,
+                          -8                                                                                    IF Sampling Communications A/D converter.
+                         -10                                                                                 5. Texas Instruments, THS1470, 14-bit, 70 MSPS,
+                         -12                                                                                    IF Sampling Communications A/D converter.
+                               0   1000          2000           3000                  4000       5000        6. Thaler Corp., Precision Reference VRE3050
+                                                        Hours
+                                                                                                                Datasheet.
+
+
+
+
+4                                                       www.ti.com/sc/docs/products/msp/dataconv/default.htm
+
+    Analog and Mixed-Signal Products                                                       November 1999                               Analog Applications Journal
+                        IMPORTANT NOTICE                                    TI Worldwide Technical Support
+Texas Instruments Incorporated and its subsidiaries (TI) reserve
+the right to make corrections, modifications, enhancements,                 Internet
+improvements, and other changes to its products and services at             TI Semiconductor Product Information Center Home Page
+any time and to discontinue any product or service without notice.          support.ti.com
+Customers should obtain the latest relevant information before              TI Semiconductor KnowledgeBase Home Page
+placing orders and should verify that such information is current           support.ti.com/sc/knowledgebase
+and complete. All products are sold subject to TI's terms and
+conditions of sale supplied at the time of order acknowledgment.            Product Information Centers
+                                                                            Americas
+TI warrants performance of its hardware products to the                     Phone                +1(972) 644-5580           Fax                   +1(972) 927-6377
+specifications applicable at the time of sale in accordance with TI's       Internet/Email       support.ti.com/sc/pic/americas.htm
+standard warranty. Testing and other quality control techniques are         Europe, Middle East, and Africa
+used to the extent TI deems necessary to support this warranty.             Phone
+Except where mandated by government requirements, testing of                   Belgium (English) +32 (0) 27 45 54 32          Netherlands (English) +31 (0) 546 87 95 45
+all parameters of each product is not necessarily performed.                   Finland (English) +358 (0) 9 25173948         Russia                +7 (0) 95 7850415
+                                                                               France            +33 (0) 1 30 70 11 64       Spain                 +34 902 35 40 28
+TI assumes no liability for applications assistance or customer                Germany           +49 (0) 8161 80 33 11       Sweden (English)      +46 (0) 8587 555 22
+product design. Customers are responsible for their products and               Israel (English)  1800 949 0107               United Kingdom        +44 (0) 1604 66 33 99
+applications using TI components. To minimize the risks                        Italy             800 79 11 37
+associated with customer products and applications, customers               Fax                  +(49) (0) 8161 80 2045
+should provide adequate design and operating safeguards.                    Internet             support.ti.com/sc/pic/euro.htm
+                                                                            Japan
+TI does not warrant or represent that any license, either express or        Fax
+implied, is granted under any TI patent right, copyright, mask work            International     +81-3-3344-5317            Domestic              0120-81-0036
+right, or other TI intellectual property right relating to any              Internet/Email
+combination, machine, or process in which TI products or services              International     support.ti.com/sc/pic/japan.htm
+are used. Information published by TI regarding third-party                    Domestic          www.tij.co.jp/pic
+products or services does not constitute a license from TI to use           Asia
+such products or services or a warranty or endorsement thereof.             Phone
+Use of such information may require a license from a third party               International     +886-2-23786800
+under the patents or other intellectual property of the third party, or a      Domestic          Toll-Free Number                                    Toll-Free Number
+license from TI under the patents or other intellectual property of TI.           Australia      1-800-999-084                     New Zealand       0800-446-934
+                                                                                  China          800-820-8682                      Philippines       1-800-765-7404
+Reproduction of information in TI data books or data sheets is                    Hong Kong      800-96-5941                       Singapore         800-886-1028
+permissible only if reproduction is without alteration and is                     Indonesia      001-803-8861-1006                 Taiwan            0800-006800
+accompanied by all associated warranties, conditions, limitations,                Korea          080-551-2804                      Thailand          001-800-886-0010
+                                                                                  Malaysia       1-800-80-3973
+and notices. Reproduction of this information with alteration is an
+                                                                            Fax                  886-2-2378-6808                   Email             tiasia@ti.com
+unfair and deceptive business practice. TI is not responsible or            Internet             support.ti.com/sc/pic/asia.htm                      ti-china@ti.com
+liable for such altered documentation.
+                                                                                                                                                               C011905
+Resale of TI products or services with statements different from or         Safe Harbor Statement: This publication may contain forward-
+beyond the parameters stated by TI for that product or service              looking statements that involve a number of risks and
+voids all express and any implied warranties for the associated TI          uncertainties. These “forward-looking statements” are intended
+product or service and is an unfair and deceptive business                  to qualify for the safe harbor from liability established by the
+practice. TI is not responsible or liable for any such statements.          Private Securities Litigation Reform Act of 1995. These forward-
+Following are URLs where you can obtain information on other                looking statements generally can be identified by phrases such
+Texas Instruments products and application solutions:                       as TI or its management “believes,” “expects,” “anticipates,”
+                                                                            “foresees,” “forecasts,” “estimates” or other words or phrases
+       Products                                                             of similar import. Similarly, such statements herein that describe
+       Amplifiers                 amplifier.ti.com                          the company's products, business strategy, outlook, objectives,
+       Data Converters            dataconverter.ti.com                      plans, intentions or goals also are forward-looking statements.
+       DSP                        dsp.ti.com                                All such forward-looking statements are subject to certain risks
+                                                                            and uncertainties that could cause actual results to differ
+       Interface                  interface.ti.com
+                                                                            materially from those in forward-looking statements. Please
+       Logic                      logic.ti.com                              refer to TI's most recent Form 10-K for more information on the
+       Power Mgmt                 power.ti.com                              risks and uncertainties that could materially affect future results
+       Microcontrollers           microcontroller.ti.com                    of operations. We disclaim any intention or obligation to update
+                                                                            any forward-looking statements as a result of developments
+       Applications                                                         occurring after the date of this publication.
+       Audio                      www.ti.com/audio
+                                                                            Trademarks: All trademarks are the property of their
+       Automotive                 www.ti.com/automotive                     respective owners.
+       Broadband                  www.ti.com/broadband
+       Digital control            www.ti.com/digitalcontrol
+                                                                            Mailing Address:             Texas Instruments
+       Military                   www.ti.com/military
+                                                                                                         Post Office Box 655303
+       Optical Networking         www.ti.com/opticalnetwork                                              Dallas, Texas 75265
+       Security                   www.ti.com/security
+       Telephony                  www.ti.com/telephony                      © 2005 Texas Instruments Incorporated
+       Video & Imaging            www.ti.com/video
+       Wireless                   www.ti.com/wireless
+                                                                                                                                                            SLYT183
+

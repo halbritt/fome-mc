@@ -90,3 +90,11 @@ required to avoid fault propagation into logic. Native checks remain pending.
 The [wheel-input preparation](wheel-input/README.md) adds both Hall channels to
 the protected sensor-power snapshot. Its diode recovery/negative-input transient
 hold remains explicit; source-graph verification does not establish survival.
+
+[Rail diagnostics study](diagnostics/README.md) selects a three-ADS1119 candidate
+and examines high-attenuation inputs, nine-rail acquisition and validity rules.
+It is a pre-emission study; passive-model bounds do not establish fault survival.
+Its [independent review](diagnostics/independent-review.md) confirms the candidate
+pinmap, protocol and arithmetic, and requires a separate first-frame settling
+policy. The nominal 5 V step example needs about 3.81 ms to reach half a code;
+normal scan timing alone does not guarantee settled readings after a transition.
