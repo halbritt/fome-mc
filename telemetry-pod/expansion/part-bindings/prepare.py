@@ -68,8 +68,8 @@ for part in manifest['parts']:
         'captured_at': identity['last_seen'], 'stock_at_capture': identity['stock'],
         'assemblyComponentFlag': row['assemblyComponentFlag'],
         'references': [c['reference'] for c in part['components']]})
-if len(seen) != 126:
-    raise ValueError('Expected exactly 126 newly bound components')
+if len(seen) != 171:
+    raise ValueError('Expected exactly 171 newly bound components')
 shutil.copytree(expansion / 'native-candidate/captured/inputs', out / 'inputs')
 (out / 'inputs/intent.json').write_text(json.dumps(intent, indent=2) + '\n')
 receipt = {'schema': 'pod-part-binding-receipt/1', 'new_bindings': len(seen),

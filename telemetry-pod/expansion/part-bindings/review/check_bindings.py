@@ -31,6 +31,13 @@ for req in historic['requests']:
 old=json.loads(pinned(manifest['baseline'])); new=json.loads((candidate/'inputs/intent.json').read_text())
 check(manifest['baseline']['sha256']=='bbb501d7b45b13c231cd95ba02b8b3e6669d066ea29a7580edb191ddf0af89a2','baseline pin')
 expected={
+'C0603C104K5RACTU':('C127833',{'C114', 'C67', 'C97', 'C112', 'C129', 'C115', 'C116', 'C78', 'C85', 'C127', 'C93', 'C87', 'C113', 'C117', 'C83', 'C111', 'C110', 'C79', 'C90', 'C72', 'C84', 'C74', 'C65', 'C125', 'C76'}),
+'C0805C105K5RACTU':('C3018567',{'C86', 'C89', 'C92', 'C119', 'C118', 'C122', 'C98', 'C123', 'C120', 'C124', 'C121'}),
+'C0603C180J5GACTU':('C2168350',{'C82', 'C81'}),
+'C0603C221J5GACTU':('C452747',{'C95', 'C96'}),
+'C0603C223K5RACTU':('C2167136',{'C71', 'C73', 'C75', 'C77'}),
+'C1206C106K4RACTU':('C2174822',{'C128'}),
+
 'RT0603BRD07100KL':('C122538',{'R116', 'R125', 'R180', 'R29'}),
 'RT0603BRD0716K9L':('C861156',{'R56'}),
 'RT0603BRD0715K2L':('C861141',{'R58'}),
@@ -58,7 +65,7 @@ expected={
 'TPS389001DSER':('C1509297',{'U16','U17','U18','U19'}),
 'RT0603BRD07499KL':('C515607',{f'R{i}' for start in list(range(128,160,4))+[166,176] for i in range(start,start+3)}),
 'RT0603BRD074K99L':('C723532',{f'R{i}' for i in list(range(131,160,4))+[169,179]})}
-check({p['mpn'] for p in manifest['parts']}==set(expected) and len(manifest['parts'])==33,'33 exact identities')
+check({p['mpn'] for p in manifest['parts']}==set(expected) and len(manifest['parts'])==39,'39 exact identities')
 oldmap={c['id']:c for c in old['components']};newmap={c['id']:c for c in new['components']}
 check(set(oldmap)==set(newmap) and len(newmap)==332,'component membership')
 normal=copy.deepcopy(new);normalmap={c['id']:c for c in normal['components']};seen=set();observations=[]
@@ -85,21 +92,25 @@ for part in manifest['parts']:
             nominal=float(suffix.replace('K','.').replace('R','.'))*(1000 if 'K' in suffix else 1)
             tokens=oldmap[cid]['value'].split(); actual=float(tokens[0])*(1000 if tokens[1]=='kohm' else 1)
             check(nominal==actual and oldmap[cid]['footprint']=='Resistor_SMD:R_0603_1608Metric','resistor nominal/0603 '+cid)
+        if part['mpn'] in {'C0603C104K5RACTU','C0805C105K5RACTU','C0603C180J5GACTU','C0603C221J5GACTU','C0603C223K5RACTU','C1206C106K4RACTU'}:
+            caprules={'C0603C104K5RACTU':({'100nF','100nF 50V X7R'},'0603_1608'),'C0805C105K5RACTU':({'1uF 50V X7R'},'0805_2012'),'C0603C180J5GACTU':({'18pF C0G'},'0603_1608'),'C0603C221J5GACTU':({'220pF C0G'},'0603_1608'),'C0603C223K5RACTU':({'22nF'},'0603_1608'),'C1206C106K4RACTU':({'10uF 16V X7R'},'1206_3216')}
+            values,package=caprules[part['mpn']]
+            check(oldmap[cid]['value'] in values and oldmap[cid]['footprint']=='Capacitor_SMD:C_'+package+'Metric','capacitor nominal/dielectric/footprint '+cid)
         binding=newmap[cid]['part_binding']
         expectedbinding={'Manufacturer':part['manufacturer'],'Partnumber':part['mpn'],'LCSC':lcsc,'Datasheet':part['datasheet']['url'],'Qualification':'Identity metadata only; assembly and operating qualification pending'}
         check({k:v for k,v in binding.items() if k!='PARAM_Datasheet'}==expectedbinding,'exact binding fields '+cid)
         check(json.loads(binding['PARAM_Datasheet'])=={'schema':'agent-ee.datasheet-binding/1','sha256':part['datasheet']['sha256'],'url':part['datasheet']['url']},'datasheet binding '+cid)
         del normalmap[cid]['part_binding']
     observations.append({'mpn':part['mpn'],'lcsc':lcsc,'stock_at_capture':identity['stock'],'captured_at':identity['last_seen'],'assemblyComponentFlag':row['assemblyComponentFlag'],'references':[c['reference'] for c in part['components']]})
-check(len(seen)==126 and normal==old,'only126 metadata additions; entire prior graph/source preserved')
-check(sum(bool(c.get('part_binding')) for c in new['components'])==252,'252 binding fields present, not qualification')
+check(len(seen)==171 and normal==old,'only171 metadata additions; entire prior graph/source preserved')
+check(sum(bool(c.get('part_binding')) for c in new['components'])==297,'297 binding fields present, not qualification')
 for p in (expansion/'native-candidate/captured/inputs').rglob('*'):
     if p.is_file() and p.name!='intent.json':check((candidate/'inputs'/p.relative_to(expansion/'native-candidate/captured/inputs')).read_bytes()==p.read_bytes(),'capture byte preservation '+str(p))
 receipt=json.loads((candidate/'binding-receipt.json').read_text())
-check(receipt=={'schema':'pod-part-binding-receipt/1','new_bindings':126,'total_bindings_present':252,'qualification':'Not qualified for assembly or operation','observations':observations},'receipt historical observations and qualification')
+check(receipt=={'schema':'pod-part-binding-receipt/1','new_bindings':171,'total_bindings_present':297,'qualification':'Not qualified for assembly or operation','observations':observations},'receipt historical observations and qualification')
 check({str(p.relative_to(candidate/'inputs')) for p in (candidate/'inputs').rglob('*') if p.is_file()}=={str(p.relative_to(expansion/'native-candidate/captured/inputs')) for p in (expansion/'native-candidate/captured/inputs').rglob('*') if p.is_file()},'capture file membership')
 if source_only:
-    result={'status':'SOURCE_ONLY_PASS','checks':checks,'identities':33,'new_bindings':126,'total_bindings_present':252,'observations':observations,'scope':'Prepared metadata-only source delta verified. Native emission and metadata round-trip not verified. Historical catalog facts do not establish assembly/operational qualification.'}
+    result={'status':'SOURCE_ONLY_PASS','checks':checks,'identities':39,'new_bindings':171,'total_bindings_present':297,'observations':observations,'scope':'Prepared metadata-only source delta verified. Native emission and metadata round-trip not verified. Historical catalog facts do not establish assembly/operational qualification.'}
     report.parent.mkdir(parents=True,exist_ok=True);report.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result));sys.exit(0)
 # XML graph and per-component values/footprints are independent of added metadata.
 before=ET.parse(expansion/'native-candidate/native.xml');after=ET.parse(candidate/'native.xml')
@@ -113,5 +124,5 @@ for ref,c in newxml.items():
 for cid in seen:
     c=newxml[newmap[cid]['reference']];fields={f.attrib['name']:f.text or '' for f in c.findall('./fields/field')}
     for k,v in newmap[cid]['part_binding'].items():check(fields.get(k)==v,'native binding '+cid+' '+k)
-result={'status':'PASS','checks':checks,'identities':33,'new_bindings':126,'total_bindings_present':252,'components':332,'native_components':326,'observations':observations,'scope':'Identity metadata only. Historical stock/assembly flags are not current availability or qualification. U14 source provenance restored; qualification remains pending. Existing electrical/thermal/mechanical/fabrication holds remain.'}
+result={'status':'PASS','checks':checks,'identities':39,'new_bindings':171,'total_bindings_present':297,'components':332,'native_components':326,'observations':observations,'scope':'Identity metadata only. Historical stock/assembly flags are not current availability or qualification. U14 source provenance restored; qualification remains pending. Existing electrical/thermal/mechanical/fabrication holds remain.'}
 report.parent.mkdir(parents=True,exist_ok=True);report.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

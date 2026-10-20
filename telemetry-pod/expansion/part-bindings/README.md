@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 126 previously unbound components: the
-40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors and 26 already-selected active, crystal and
-inductor instances. The manifest has 33 exact manufacturer/supplier identities,
+This packet adds identity metadata to 171 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 45 capacitors and 26 already-selected active, crystal and
+inductor instances. The manifest has 39 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 252 bindings, with 69 component bindings still
+The prepared source now contains 297 bindings, with 24 component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 33
+Each selected catalog is replayed against its retained raw responses. All 39
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -60,6 +60,36 @@ to `RT0603BRD0711K3L`; its empty response does not establish availability of
 the requested part. The exact manufacturer URLs for the requested 31.3 kohm
 and 1.05 Mohm MPNs returned 404. `unresolved-searches.json` retains these
 limited observations. Neither result justifies rounding a circuit value.
+
+## Capacitor identities
+
+Six exact KEMET identities cover 45 positions. Manufacturer sheets and fresh
+exact-ID supplier responses are retained in `capacitor-sources/` and
+`capacitor-stock/`. All are commercial parts specified from −55 to 125 °C;
+these documents do not establish automotive qualification.
+
+| Part | Positions | Nominal, dielectric, voltage, tolerance | Package |
+| --- | --- | --- | --- |
+| C0603C104K5RACTU | 25 | 100 nF, X7R, 50 V, 10% | 0603 |
+| C0805C105K5RACTU | 11 | 1 uF, X7R, 50 V, 10% | 0805 |
+| C0603C180J5GACTU | C81, C82 | 18 pF, C0G, 50 V, 5% | 0603 |
+| C0603C221J5GACTU | C95, C96 | 220 pF, C0G, 50 V, 5% | 0603 |
+| C0603C223K5RACTU | C71, C73, C75, C77 | 22 nF, X7R, 50 V, 10% | 0603 |
+| C1206C106K4RACTU | C128 | 10 uF, X7R, 16 V, 10% | 1206 |
+
+These nominal matches do not close effective-capacitance, ESR, leakage, ripple,
+transient or assembled-temperature requirements. The X7R sheets specify ±15%
+temperature change and 3% loss per decade hour under their referee conditions;
+DC bias, initial tolerance and aging must enter the relevant circuit budgets.
+Their plotted simulations describe typical behavior, not guaranteed limits.
+
+C128 remains subject to the TL431 stability and effective-capacitance check.
+The four 22 nF supervisor capacitors require a release-delay tolerance budget.
+C81/C82 provide nominal 9 pF in series before board and pin capacitance; this
+does not establish the crystal's required load or oscillator startup margin.
+The Hall input's selected C0G part does not resolve the existing negative-input
+clamp problem. No source connectivity, value or footprint changes accompany
+these identity bindings.
 
 ## Native generation blocker
 
