@@ -62,9 +62,38 @@ resistor footprint. `prepared/` retains only the resulting intent and receipt;
 the other inputs are pinned in the manifest and reconstructed from the predecessor.
 Independent review checks the full source delta, captures and pad geometry.
 
-Native generation remains blocked by AGENTEE-293 in agent-ee e4cf3ab.
-`prepare.py` without `--source-only` attempts emission with full metadata and
-copies the existing project library tables. Native acceptance for this stage
-is deliberately not implemented or claimed: `verify.py` requires the explicit
-source-only flag. After the emitter repair, add and exercise native XML/ERC
-and metadata/footprint round-trip review before advancing to placement.
+Native generation remains blocked by AGENTEE-293, reproduced against released
+agent-ee `1962cf0`. `native-attempt/emission-receipt.json` records the current
+component-fit attempt: U20's complete `PARAM_Datasheet` is rejected as
+`malformed_part_binding` before schematic emission. No native pass for this
+revision is claimed.
+
+The native verification path is now implemented. Run it after the emitter repair
+with a fresh retained output directory:
+
+```sh
+PYTHONPATH=/home/halbritt/git/agent-ee/src python3 telemetry-pod/expansion/component-fit/verify.py --out /tmp/pod-component-fit-native-fresh
+```
+
+It reproduces and checks the source, exports native XML and BOM, runs ERC, then
+compares every non-power component's value, footprint identifier and complete
+binding fields against the intent. Connectivity and pin functions must match
+the last native candidate; all 175 explicit NC nets are included in that XML
+comparison (368 XML nets total, including 193 connected nets). BOM membership
+must preserve the five jumper and six captured pogo-pad exclusions. ERC must
+have no violations and retain the previous ignored checks, severities and
+KiCad version and checked sheet identities. Unexpected XML identity fields and
+changed BOM exclusion flags are rejected. Output and failed-emission evidence remain in the requested
+directory. The native checker does not inspect PCB land-pattern geometry or
+establish placement, routing, fabrication or operating qualification.
+
+`test_native_check.py` exercises the checker against retained previous native
+evidence and deliberately damaged copies. These controls do not establish that
+the expanded revision emits or passes native checks. The independent source
+review remains separate; independent review of emitted expanded artifacts is
+still required before advancing to placement.
+
+Native XML omits the six schematic power flags. This checker does not establish
+all 332 schematic symbols/units, explicit schematic NC markers, or on-board
+flags; those require independent inspection of the emitted schematic. A passing
+XML/BOM/ERC report alone is insufficient to advance to placement.
