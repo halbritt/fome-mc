@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 187 previously unbound components: the
-40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 55 capacitors, six power resistors and 26 already-selected active, crystal and
-inductor instances. The manifest has 44 exact manufacturer/supplier identities,
+This packet adds identity metadata to 188 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 55 capacitors, six power resistors, the connector and 26 already-selected active, crystal and
+inductor instances. The manifest has 45 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 313 bindings, with eight component bindings still
+The prepared source now contains 314 bindings, with seven component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 44
+Each selected catalog is replayed against its retained raw responses. All 45
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -54,8 +54,8 @@ R118/R127 reach it at about 3.16 V rms. Sustained dominant CAN operation,
 fault voltage, pulse energy and local-temperature derating need separate
 verification. The 75 V sheet ceiling does not override power dissipation.
 
-R60 (31.3 kohm), the four 1.05 Mohm positions, and the 2512 power resistors
-remain unbound. The search for `RT0603BRD0731K3L` was rewritten by the server
+R60 (31.3 kohm) and the four 1.05 Mohm positions remain unbound. The six
+2512 power resistors are now bound as described below. The search for `RT0603BRD0731K3L` was rewritten by the server
 to `RT0603BRD0711K3L`; its empty response does not establish availability of
 the requested part. The exact manufacturer URLs for the requested 31.3 kohm
 and 1.05 Mohm MPNs returned 404. `unresolved-searches.json` retains these
@@ -132,6 +132,20 @@ screen, PCB thermal coupling and assembled-temperature validation still apply.
 The HP sheet's separate 2 W entry at a specified terminal temperature does not
 make this a generally rated 2 W resistor. No new thermal qualification or
 transient immunity is asserted by these identity bindings.
+
+## Selected connector identity
+
+J1 now records the already-selected TE Connectivity 1-776163-1 / C596198
+identity. The retained K1 customer drawing in `connector-candidate/` identifies
+this as the black, gold-plated variant. The black, tin-plated 776163-1 is a
+different part and is not substituted. The existing custom footprint and
+previously reviewed model remain unchanged.
+
+The fresh exact-ID capture in `connector-stock/` reports **zero stock** and
+`assemblyComponentFlag=false`. This binding records the design's fixed identity;
+it does not establish a procurement or assembly path. Mating contacts, harness,
+fit, mounting, environmental and assembly qualification remain open. The
+independent checker rejects promotion of the retained zero-stock observation.
 
 ## Native generation blocker
 
