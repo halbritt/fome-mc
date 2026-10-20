@@ -1,0 +1,259 @@
+{
+  "added": [
+    {
+      "id": "POD-AC-10",
+      "text": "All eight analog channels meet the declared range, accuracy and acquisition requirements while wheel-speed capture, IMU/GNSS, CAN, BLE and logging operate concurrently. Verify the selected wheel sensors over their declared speed range and exercise the specified sensor-fault cases."
+    },
+    {
+      "id": "POD-AC-11",
+      "text": "Standalone logging meets its declared duration and data-integrity requirements without a phone, including power interruption and full-media tests. Verify the selected digital tire-sensor interface over the declared harness and record the actual sensor/zone coverage."
+    },
+    {
+      "id": "POD-ED-1",
+      "text": "A joint GPIO, SPI/bus and 35-pin connector allocation covering the MCP3208, both wheel-speed inputs, digital tire sensors, storage, existing IMU/GNSS/CAN and debug access. Preserve existing ECU connector assignments and CAN frame definitions; allocate new telemetry messages separately."
+    },
+    {
+      "id": "POD-ED-2",
+      "text": "Wheel sensor type, voltage/current interface, maximum pulse frequency, low-speed behavior and conditioning. The owner has no wheel sensors or tone rings selected; develop a sensor-and-conditioning recommendation. Support for Hall and VR together is not yet a requirement."
+    },
+    {
+      "id": "POD-ED-3",
+      "text": "Digital tire sensor protocol, mounting and field of view, zone count, harness length and update rate. No specific tire sensor has been selected."
+    },
+    {
+      "id": "POD-ED-4",
+      "text": "Logging duration, data format, timestamp source, retrieval method, media endurance and power-loss behavior. Storage must coexist with BLE OTA and the sealed enclosure."
+    },
+    {
+      "id": "POD-ED-5",
+      "text": "Expanded power and thermal budgets, including sensor faults and storage/radio peaks; define supply-voltage monitoring, sensor-supply fault detection and feasible open/short diagnostics."
+    },
+    {
+      "id": "POD-ED-6",
+      "text": "Full connector courtyard and module antenna keep-outs, mounting-hole clearances and enclosure fit. Start with the current 90 \u00d7 65 mm pilot outline; unchanged dimensions are a layout target, not a demonstrated fit. TE drawing 776163 K1 gives 76.9 mm overall header width; 63.4 mm is not its overall width."
+    },
+    {
+      "id": "POD-ED-P1",
+      "text": "The owner accepted the capability baseline on 2026-10-20. The following implementation choices remain open; the generator must not silently invent them:"
+    },
+    {
+      "id": "POD-ED-P2",
+      "text": "Manufacturer references: [MCP3204/3208 datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21298e.pdf) and [TE 776163-1 product and drawing](https://www.te.com/en/product-776163-1.html)."
+    },
+    {
+      "id": "POD-ED-P3",
+      "text": "The previous v9 schematic, PCB, BOM, io-map and compiled interface contract remain historical pilot artifacts. Their passing checks do not establish compliance with Revision 3. Regenerate the expanded candidate from revised source inputs and repeat placement, routing and review."
+    },
+    {
+      "id": "POD-IF-DIGITAL-TIRE-TEMPERATURE",
+      "text": "| Digital tire temperature | Provide an external digital interface for front and rear tire-temperature sensors. Resolve protocol, channel/zone count, sensor power, cable length and protection before assigning pins. Provision does not establish compatibility with arbitrary sensors. |"
+    },
+    {
+      "id": "POD-IF-STANDALONE-LOGGING",
+      "text": "| Standalone logging | Record pod measurements and received ECU telemetry without a phone connection. Target eight hours of recording as a soft capacity goal, with wireless download while parked (owner clarification 2026-10-20). Report achieved duration against the declared workload; shorter duration is a disclosed tradeoff, not an automatic failure. Define throughput, timestamps, full-media behavior and recovery from interrupted power before selecting storage. |"
+    },
+    {
+      "id": "POD-IF-WHEEL-SPEED",
+      "text": "| Wheel speed | Two independently conditioned pulse inputs for front and rear wheel speed. Resolve Hall, VR or dual-mode support and the sensor electrical requirements before choosing the conditioning circuit. |"
+    },
+    {
+      "id": "POD-PI-1",
+      "text": "Retain reverse-polarity and automotive-transient protection. Coordinate the clamp, input disconnect/protection, capacitor ratings and regulator absolute maxima using the actual pulse voltage, duration and source impedance. A nominal TVS voltage alone does not establish survival."
+    },
+    {
+      "id": "POD-PI-2",
+      "text": "Define a continuous-operation voltage range, a short-dip ride-through envelope and a lower-voltage controlled-reset region separately. Check both electronics and powered sensors: a running MCU does not establish valid sensor data during a supply dip."
+    },
+    {
+      "id": "POD-PI-3",
+      "text": "Specify and validate input filtering and damping over the regulator's load range, including radio and storage bursts. Measure ripple at the connector, logic rails, sensor supply and ADC reference; set limits from regulator stability and acquisition error budgets."
+    },
+    {
+      "id": "POD-PI-4",
+      "text": "Add independent input/rail monitoring and a power-fail/reset supervisor path. Use hysteresis to avoid repeated resets during marginal supply. Record supply faults and invalidate affected sensor samples."
+    },
+    {
+      "id": "POD-PI-5",
+      "text": "Define bounded log loss on abrupt power removal, storage recovery and restart behavior. Calculate hold-up energy from measured worst-case consumption and storage completion time before claiming a safe flush; capacitors do not cover indefinite brownouts."
+    },
+    {
+      "id": "POD-PI-6",
+      "text": "Recalculate sensor-rail current and thermal limits. The pilot's TPS7B4253-Q1 rail is rated for 300 mA and had a 200 mA aggregate sensor budget; it is not prequalified for the expansion. Evaluate separately protected sensor branches so an external sensor fault does not unnecessarily collapse the logger."
+    },
+    {
+      "id": "POD-PI-P1",
+      "text": "Owner direction, 2026-10-20: redesign the power block to accommodate brownouts and ripple as well as the expanded sensor load. The owner reports possible unusual SV650 supply behavior around 2,500 rpm. This is an investigation lead, not a measured waveform or established model-wide defect."
+    },
+    {
+      "id": "POD-PI-P2",
+      "text": "Verification must include programmable supply dips/recovery, swept ripple, sensor shorts and load steps while acquiring and logging. Capture the actual bike supply at the pod harness around 2,500 rpm, across the operating range and during starting, then replay relevant measured disturbances on the bench. Keep simulation, injected-waveform testing and on-bike evidence distinct. No specific ripple amplitude or dip duration has yet been established."
+    },
+    {
+      "id": "POD-PI-P3",
+      "text": "Reference design for topology and test methods: [TI TIDA-00699 automotive front end](https://www.ti.com/tool/TIDA-00699). Its reported results apply to that reference design, not this pod."
+    },
+    {
+      "id": "POD-TE-P1",
+      "text": "On 2026-10-20, the owner approved retaining the following parts despite the blanket 105 \u00b0C component-rating requirement, with enclosure thermal validation required:"
+    },
+    {
+      "id": "POD-TE-P2",
+      "text": "The assembly verifier's canonical source is\n[operating-temperature-exemptions.txt](operating-temperature-exemptions.txt).\nThat file contains only the three owner-approved exemption lines, without\nMarkdown, headings, comments or blank lines. Cite its captured bytes, SHA-256 and\nindividual line numbers in the expanded pod scope. Withdraw an exemption by\ndeleting its line and regenerating the scope citations."
+    },
+    {
+      "id": "POD-TE-P3",
+      "text": "These declarations waive the blanket 105 \u00b0C part-selection check only. They do not qualify operation beyond manufacturer limits, waive thermal validation, or transfer to a different part/reference. Record the exception with each exact component binding. Validate enclosure temperatures and self-heating under worst-case input, sensor load, radio and logging activity; the stated +85 \u00b0C board-ambient ceiling is not demonstrated for this assembly. If the actual thermal margin is insufficient, revise cooling, the operating envelope or the affected part with an explicit disposition before release."
+    },
+    {
+      "id": "POD-TE-P4",
+      "text": "The current exemption mechanism excludes these references from the assembly\noperating-temperature predicate entirely; it does not verify them against their\nown ratings. Therefore the expanded scope must carry actual manufacturer limits,\nexact-part binding and enclosure thermal validation as unresolved declared\nlimitations. A passing assembly predicate does not discharge those obligations.\nThe scope fragment in\n[expansion/temperature-scope-fragment.json](expansion/temperature-scope-fragment.json)\nretains the citations and limitations for incorporation when the expanded scope\nis generated; it is not a completed assembly check."
+    },
+    {
+      "id": "POD-TE-U1",
+      "text": "| U1 | ESP32-S3-WROOM-1-N8 | Retain the 85 \u00b0C module variant. |"
+    },
+    {
+      "id": "POD-TE-U2",
+      "text": "| U2 | LSM6DSO32TR | Retain the 85 \u00b0C IMU. |"
+    },
+    {
+      "id": "POD-TE-U4",
+      "text": "| U4 | MCP3208-BI/SL | Retain the industrial-temperature ADC for the expanded design; this does not approve the old MCP3204 binding. |"
+    }
+  ],
+  "baseline": {
+    "commit": "4df4c9da263065d495cb2f59d9c3075a28f997ef",
+    "path": "fixtures/telemetry-pod/spec-record.json",
+    "repository": "agent-ee",
+    "sha256": "58f07c5ab3206aad70fc31561d873200d18ff9145b97cc0b1570c465a84fd250",
+    "spec": {
+      "bytes": 12999,
+      "name": "spec.md",
+      "sha256": "09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493"
+    }
+  },
+  "changed": [
+    {
+      "after": "Every BOM line has an LCSC part number that is in stock at JLCPCB on the day of generation, captured from JLCPCB's public component search per LCSC id with the response hash and UTC timestamp as evidence. Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery: excluded from assembly with a not\\_assembled marker and a recorded deviation naming the purchase source.",
+      "before": "Every BOM line has an LCSC part number that is in stock at JLCPCB on the day of generation, captured from JLCPCB's public component search per LCSC id with the response hash and UTC timestamp as evidence. Parts JLCPCB does not stock or assemble (the 776228-1 header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery: excluded from assembly with a not\\_assembled marker and a recorded deviation naming the purchase source.",
+      "id": "POD-AC-5"
+    },
+    {
+      "after": "A generated pod design is accepted when all of the following hold, each backed by tool output in the evidence trail. Items 1 to 7 are checked on the files; 8 to 11 require a built board.",
+      "before": "A generated pod design is accepted when all of the following hold, each backed by tool output in the evidence trail. Items 1 to 7 are checked on the files; 8 and 9 on a built board.",
+      "id": "POD-AC-P1"
+    },
+    {
+      "after": "| Analog front end | MCP3208 12-bit 8-channel SPI ADC replaces MCP3204. Retain the 3.3 V ADC supply and nominal 2:1 input/reference scaling, subject to verification for every added input configuration. | Four auxiliary channels without a second ADC or chip-select. | MCP3204: insufficient channels for the expanded baseline. |",
+      "before": "| Analog front end | MCP3204 12-bit 4-channel SPI ADC. Inputs and the ADC reference are both divided by two from the 5 V sensor rail. | Keeps the four channels ratiometric to the sensor supply with the ADC on 3.3 V, and samples far above the 200 Hz needed. | ESP32-S3 internal ADC: nonlinear and noisy. ADS1115: 860 samples/s total, below 4 channels at 200 Hz. |",
+      "id": "POD-CD-ANALOG-FRONT-END"
+    },
+    {
+      "after": "| Harness connector | 35-position right-angle AMPSEAL; candidate 776163-1 with matching 776164-1 plug. Exact contact and cavity-plug selections require verification. | Separate power/return connections and expansion room. | 23-position header: insufficient wiring flexibility for the expanded baseline. |",
+      "before": "| Harness connector | TE AMPSEAL 23-position header 776228-1 (right-angle, black) with the matching 23-position plug, cavity plugs 770678-1 and 770520-3 contacts (the family comes in 8, 14, 23 and 35 positions), same family as the ECU's J1 and J2, 16 cavities used | One crimp tool, one seal system and one set of cavity plugs across the bike. | A separate waterproof connector family: more tooling for no benefit. |",
+      "id": "POD-CD-HARNESS-CONNECTOR"
+    },
+    {
+      "after": "Revision 3, Oct 20, 2026 \u00b7 @Heath. The owner accepted eight analog inputs, two wheel-speed inputs, standalone logging, and provision for digital tire-temperature sensors, with a 35-position right-angle AMPSEAL connector. This revision supersedes the four-channel and 23-position requirements. The committed v9 pilot hardware and its verification artifacts still describe the earlier design.",
+      "before": "Oct 17, 2026 \u00b7 @Heath \u00b7 Revision 2, Oct 18, 2026: the owner decisions of 2026-10-18 are folded into the text below; this file supersedes the Oct 17 text (sha256 c5128ef9391e2114\u2026).",
+      "id": "POD-DOC-P1"
+    },
+    {
+      "after": "The pod also relays every CAN1 frame it receives from the ECU to RaceChrono over the BLE DIY CAN characteristic, filtered to the IDs RaceChrono subscribes to. The eight analog channels are 12-bit and use a reference derived from the pod's own 5 V sensor supply (see Interfaces). Ratiometric sensors track that supply; absolute-voltage sensors require their own transfer-function and reference-error treatment. The pod is a standalone unit with its own power supply; the ECU's 5V\\_SENSOR\\_2 rail is not used.",
+      "before": "The pod also relays every CAN1 frame it receives from the ECU to RaceChrono over the BLE DIY CAN characteristic, filtered to the IDs RaceChrono subscribes to. The four analog channels are 12-bit and ratiometric to the pod's own 5 V sensor supply (see Interfaces), so the channels need no recalibration against the regulator. The pod is a standalone unit with its own power supply; the ECU's 5V\\_SENSOR\\_2 rail is not used.",
+      "id": "POD-FN-P2"
+    },
+    {
+      "after": "| Analog inputs | Eight channels, 0\u20135 V, 12-bit, input-protected to 16 V, capable of 200 Hz per channel. Retain the four suspension/brake channels; provide four auxiliary channels with optional thermistor pull-ups. Specify pull-up values, filtering, acquisition settling, calibration and fault interpretation for the selected sensor configurations. |",
+      "before": "| Analog inputs | Four channels, 0\u20135 V, 12-bit, ratiometric to the sensor supply, input-protected to 16 V, 200 Hz per channel. |",
+      "id": "POD-IF-ANALOG-INPUTS"
+    },
+    {
+      "after": "| Harness connector | One black, sealed TE AMPSEAL 35-position right-angle header, with explicit signal, sensor-power, return and spare-pin allocation. Use TE 776163-1 as the mechanical candidate; validate its drawing, footprint, mating plug and enclosure fit before binding the BOM. Replace the old 23-position map and regenerate its interface contract. |",
+      "before": "| Harness connector | One TE AMPSEAL 23-position header, TE 776228-1 (right-angle PCB header, black, the ECU J1 family), carrying CAN\\_H, CAN\\_L, +12 V, ground, and the four sensors (each with supply, signal and return): 16 signals in a 23-position housing, unused cavities plugged. |",
+      "id": "POD-IF-HARNESS-CONNECTOR"
+    },
+    {
+      "after": "| Sensor supply | Provide 5.00 V \u00b11 % from the pod's own regulator. The earlier 200 mA aggregate budget is a baseline to reassess against all selected sensors; it is not qualification for the expanded load. Derive the ADC reference from this rail at the connector. The ECU's 5V\\_SENSOR\\_2 is not used. |",
+      "before": "| Sensor supply | Provide 5.00 V \u00b11 % at 200 mA to the four external sensors from the pod's own regulator. The ADC reference derives from this same rail at the connector so the channels stay ratiometric. The ECU's 5V\\_SENSOR\\_2 is not used. |",
+      "id": "POD-IF-SENSOR-SUPPLY"
+    },
+    {
+      "after": "Board outline sized to fit inside the rear seat cowl (the earlier 80 mm by 50 mm figure was not an owner requirement; owner decision 2026-10-19: \"I don't know how the size got fixed. I didn't specify, there's room in the cowl, that said, a double-sided part seems fine\"), double-sided component placement permitted (preserving the ESP32 module antenna keep-out, the F.Cu over In1.Cu GNSS RF path, and connector mechanical constraints), mounting holes in all four corners. The earlier 12 mm component-height limit was an agent-drafted assumption, not an owner requirement (owner correction 2026-10-20: \"I never set 12mm, that was arbitrary.\"). Actual enclosure/cowl height clearance remains unknown and must be measured; 12 mm is not a hard pass/fail limit, and no connector-specific exception is pending. The rear seat cowl is large, so the envelope is not tight.",
+      "before": "Board envelope 80 mm by 50 mm or smaller, component height 12 mm or less above the board, mounting holes in all four corners. The rear seat cowl is large, so the envelope is not tight.",
+      "id": "POD-ME-1"
+    },
+    {
+      "after": "Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Do not pot the pod unless proven necessary (potting detunes the ESP32 module antenna and GNSS RF path and mechanically stresses the MEMS IMU package); rigidly couple the board and IMU to the enclosure and the enclosure to the frame so the IMU measures the bike, not a floating board.",
+      "before": "Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Potting is acceptable as for the ECU, provided the IMU is rigidly coupled to the enclosure and the enclosure to the frame; a floating IMU measures the pod, not the bike.",
+      "id": "POD-ME-2"
+    },
+    {
+      "after": "Operating temperature \u221220 \u00b0C to +85 \u00b0C board ambient. Parts rated to 105 \u00b0C or higher. The explicit exceptions below apply only to the named parts; their actual ratings remain limits.",
+      "before": "Operating temperature \u221220 \u00b0C to +85 \u00b0C board ambient. Parts rated to 105 \u00b0C or higher.",
+      "id": "POD-ME-3"
+    },
+    {
+      "after": "The tail-cowl telemetry pod is the first real board the agent-ee generator must produce from a specification, before it is pointed at fome-mc. fome-mc already defines the pod's job and its CAN interface in its telemetry document but left the parts, mechanics and acceptance criteria open. This document records the accepted capabilities. The implementation decisions listed below must be resolved before the expanded design is generated.",
+      "before": "The tail-cowl telemetry pod is the first real board the agent-ee generator must produce from a specification, before it is pointed at fome-mc. fome-mc already defines the pod's job and its CAN interface in its telemetry document but left the parts, mechanics and acceptance criteria open. This document closes them, with every choice settled with Heath on 2026-10-17, so the generator's input is fixed and its output can be judged.",
+      "id": "POD-PU-P1"
+    }
+  ],
+  "counts": {
+    "added": 30,
+    "changed": 13,
+    "removed": 0,
+    "unchanged": 35
+  },
+  "current": {
+    "commit": "e4f710f124568bf1ff04de53e4e232055a26545d",
+    "path": "telemetry-pod/REQUIREMENTS.md",
+    "record_sha256": "1d978fc1ddeddfe64a6900a719c437dabb31b2999feb258265b0fbad1ab4820b",
+    "repository": "fome-mc",
+    "spec": {
+      "bytes": 22746,
+      "name": "REQUIREMENTS.md",
+      "sha256": "e71dcca744f4b520fc4698402202d7d9efff2d316f8ad3c5eb6403cdf9d036c6"
+    }
+  },
+  "purpose": "Inventory change only; no requirement is discharged by this comparison. Same ID does not imply equivalent text or transferable evidence.",
+  "removed": [],
+  "schema": "fome-pod.requirements-delta/1",
+  "unchanged": [
+    "POD-AC-1",
+    "POD-AC-2",
+    "POD-AC-3",
+    "POD-AC-4",
+    "POD-AC-6",
+    "POD-AC-7",
+    "POD-AC-8",
+    "POD-AC-9",
+    "POD-AC-P2",
+    "POD-CD-BOARD",
+    "POD-CD-CAN-TRANSCEIVER",
+    "POD-CD-GNSS",
+    "POD-CD-IMU",
+    "POD-CD-MCU-AND-RADIO",
+    "POD-CD-P1",
+    "POD-CD-POWER",
+    "POD-FN-FRONT-AND-REAR-BRAKE-PRESSURE",
+    "POD-FN-FRONT-FORK-TRAVEL",
+    "POD-FN-LATERAL-LONGITUDINAL-VERTICAL-ACCELERATION",
+    "POD-FN-LEAN-AND-PITCH-ANGLE",
+    "POD-FN-P1",
+    "POD-FN-POSITION-SPEED-HEADING-ALTITUDE",
+    "POD-FN-REAR-SHOCK-TRAVEL",
+    "POD-FN-YAW-ROLL-PITCH-RATE",
+    "POD-IF-BLUETOOTH-LE",
+    "POD-IF-CAN1",
+    "POD-IF-GNSS-ANTENNA",
+    "POD-IF-P1",
+    "POD-IF-POWER-IN",
+    "POD-IF-PROGRAMMING-AND-DEBUG",
+    "POD-ME-4",
+    "POD-ME-5",
+    "POD-ME-6",
+    "POD-ME-P1",
+    "POD-PU-P2"
+  ]
+}
