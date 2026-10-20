@@ -81,3 +81,8 @@ The [Hall thermal follow-up](wheel-thermal/README.md) specifies a 2512 pull-up
 resistor candidate and excludes the supply switch's open-load FAULT indication
 from the shared fault line. It retains the unresolved assembled thermal and
 sensor qualification boundaries.
+
+The newer [sensor-power preparation](sensor-power/README.md) adds three TPS26625
+branches to a separate input snapshot. It supersedes the unimplemented TPS1H200A
+supply-switch proposal; its independent RTN domains and unused FLT pins are
+required to avoid fault propagation into logic. Native checks remain pending.
