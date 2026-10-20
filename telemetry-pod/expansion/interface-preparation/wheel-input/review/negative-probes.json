@@ -1,0 +1,32 @@
+[
+  {
+    "mutation": "BAV199 anode/cathode swap",
+    "detected": true,
+    "failures": [
+      "exact membership WHEEL_FRONT_PULLUP",
+      "exact membership WHEEL_FRONT_DIODE_OUT"
+    ],
+    "parse_errors": {}
+  },
+  {
+    "mutation": "Prior sensor-power EP grounded",
+    "detected": true,
+    "failures": [
+      "exact membership GND",
+      "exact membership SENSOR_POWER_FRONT_RTN"
+    ],
+    "parse_errors": {}
+  },
+  {
+    "mutation": "Malformed wheel library outer close",
+    "detected": true,
+    "failures": [
+      "complete library parses PodWheel.kicad_sym",
+      "physical functions LM2903BQ_D",
+      "physical functions BAV199"
+    ],
+    "parse_errors": {
+      "PodWheel.kicad_sym": "expected one complete nonempty S-expression"
+    }
+  }
+]

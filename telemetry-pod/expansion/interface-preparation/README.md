@@ -86,3 +86,7 @@ The newer [sensor-power preparation](sensor-power/README.md) adds three TPS26625
 branches to a separate input snapshot. It supersedes the unimplemented TPS1H200A
 supply-switch proposal; its independent RTN domains and unused FLT pins are
 required to avoid fault propagation into logic. Native checks remain pending.
+
+The [wheel-input preparation](wheel-input/README.md) adds both Hall channels to
+the protected sensor-power snapshot. Its diode recovery/negative-input transient
+hold remains explicit; source-graph verification does not establish survival.
