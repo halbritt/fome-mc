@@ -1,19 +1,19 @@
 # Expanded pod identity bindings
 
-This packet adds identity metadata to 171 previously unbound components: the
-40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 45 capacitors and 26 already-selected active, crystal and
-inductor instances. The manifest has 39 exact manufacturer/supplier identities,
+This packet adds identity metadata to 181 previously unbound components: the
+40 selected divider resistors, 32 additional 10 kohm resistors, 28 other 0603 resistors, 55 capacitors and 26 already-selected active, crystal and
+inductor instances. The manifest has 42 exact manufacturer/supplier identities,
 component IDs, references, footprints, source URLs and SHA-256 pins. It does not
 change circuit connectivity, values, footprints, or earlier bindings.
 
-The prepared source now contains 297 bindings, with 24 component bindings still
+The prepared source now contains 307 bindings, with 14 component bindings still
 missing, five copper jumpers awaiting fabrication policy and six power flags.
 Presence of a binding is not electrical, thermal, parameter, assembly or release
 qualification. The earlier 126 bindings are retained without requalification.
 New bindings explicitly state that qualification is pending. Required normalized
 rating parameters and complete pipeline part qualification remain outstanding.
 
-Each selected catalog is replayed against its retained raw responses. All 39
+Each selected catalog is replayed against its retained raw responses. All 42
 selected identities have raw `assemblyComponentFlag=false`; this packet records
 that observation without inventing an assembly exception or claiming the field
 alone proves availability or ineligibility. Stock figures are capture-time data,
@@ -90,6 +90,31 @@ does not establish the crystal's required load or oscillator startup margin.
 The Hall input's selected C0G part does not resolve the existing negative-input
 clamp problem. No source connectivity, value or footprint changes accompany
 these identity bindings.
+
+## Further capacitor identities
+
+Three additional exact identities cover ten positions. Fresh exact-ID captures
+and manufacturer documents are in `capacitor-stock-v2/` and
+`capacitor-sources-v2/`:
+
+| Part | Positions | Nominal, dielectric, voltage, tolerance | Package |
+| --- | --- | --- | --- |
+| KEMET C0603C105K4RACTU / C2167386 | C63, C80 | 1 uF, X7R, 16 V, 10% | 0603 |
+| YAGEO CC1210KKX7R8BB226 / C5341638 | C68, C69, C70 | 22 uF, X7R, 25 V, 10% | 1210 |
+| Murata GRM1885C1H103JA01D / C85973 | C47, C88, C91, C94, C126 | 10 nF, C0G, 50 V, 5% | 0603 |
+
+All three captures show positive stock at capture time. This is not a reservation
+or assembly approval. No existing bound TDK or other component is replaced.
+The Murata reference sheet explicitly maps the D suffix to its paper reel
+package and gives −55 to 125 °C operation. Its ±30 ppm/°C coefficient row
+specifies 25 to 125 °C; that row alone does not establish the same linear bound
+below 25 °C. The 5% initial tolerance meets the four positions specified as 10%.
+
+The Yageo 22 uF body is 2.5 ±0.2 mm thick. Nominal package compatibility does
+not establish enclosure clearance, land-pattern suitability or vibration life.
+The 1 uF and 22 uF parts retain effective-capacitance, DC-bias, aging, ripple,
+regulator-stability and hold-up checks. All three manufacturers' rating data
+remain inputs to qualification, not completed vehicle qualification.
 
 ## Native generation blocker
 
