@@ -1,4 +1,4 @@
-> **2026-10-21 (third fix, from the AGENTEE-355 diagnostic):** C18 (1 µF on PRE_6V3, the U5/L1 output node; U7 is not on that net) left `buck-3v3` and R33 (10 k MCU_BOOT46 strap pull-down, whose only non-plane net is to the fixed U1, which cannot be a block member) left `mcu`; both are residual, like C16/C20. Members must be reachable from the block through non-plane nets.
+> **2026-10-21 (third fix, from the AGENTEE-355 diagnostic):** C18 (1 µF on PRE_6V3, the U5/L1 output node; U7 is not on that net) left `buck-3v3` and R33 (10 k MCU_BOOT46 strap pull-down, whose only non-plane net is to the fixed U1, which cannot be a block member) left `mcu`; both are residual (C16/C20 on the same node stay in `supplies-5v`, where they are reachable). Members must be reachable from the block through non-plane nets.
 
 > **2026-10-21 (second fix):** the supervision block lost C73/C74/R58/R59/U17 and the diagnostic block lost C113/R140-R143, which the microSD change removed (agent-449 found the stale entries from the 340 review). Every member is now checked against `../storage-microsd/native.xml`.
 
