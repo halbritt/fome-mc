@@ -1,0 +1,216 @@
+[
+  {
+    "check": "project_files",
+    "status": "PASS",
+    "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+    "differences": []
+  },
+  {
+    "check": "board_outline",
+    "status": "PASS",
+    "detail": "4 Edge.Cuts shapes",
+    "differences": []
+  },
+  {
+    "check": "layers",
+    "status": "PASS",
+    "detail": "4 copper layers",
+    "differences": []
+  },
+  {
+    "check": "stackup",
+    "status": "PASS",
+    "detail": "explicit stackup",
+    "differences": []
+  },
+  {
+    "check": "board_setup",
+    "status": "PASS",
+    "detail": "board-file (setup) settings other than the stackup",
+    "differences": []
+  },
+  {
+    "check": "nets_and_netclasses",
+    "status": "PASS",
+    "detail": "369 nets with their effective net classes",
+    "differences": []
+  },
+  {
+    "check": "pad_connectivity",
+    "status": "PASS",
+    "detail": "1257 pad-to-net assignments",
+    "differences": []
+  },
+  {
+    "check": "footprints",
+    "status": "PASS",
+    "detail": "331 footprints: library id, position, orientation, side, lock state and pad geometry",
+    "differences": []
+  },
+  {
+    "check": "zones",
+    "status": "PASS",
+    "detail": "0 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+    "differences": []
+  },
+  {
+    "check": "keepouts",
+    "status": "PASS",
+    "detail": "0 rule areas",
+    "differences": []
+  },
+  {
+    "check": "copper_graphics",
+    "status": "PASS",
+    "detail": "0 non-track copper graphics (shapes; text and other items with content and position)",
+    "differences": []
+  },
+  {
+    "check": "protected_copper",
+    "status": "PASS",
+    "detail": "0 tracks and 0 vias designated (all pre-existing copper); max deviation 0 nm",
+    "differences": []
+  },
+  {
+    "check": "new_copper_netclass_geometry",
+    "status": "PASS",
+    "detail": "4656 new tracks and 404 new vias checked against their net class width / via (microvia) diameter / drill (1 um quantisation tolerance)",
+    "differences": []
+  },
+  {
+    "check": "routing_scope",
+    "status": "PASS",
+    "detail": "new copper only on the 369 in-scope nets",
+    "differences": []
+  },
+  {
+    "check": "net_completion",
+    "differences": [
+      {
+        "net": "/ADC_AIN1",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/ADC_AIN3",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/ADC_AIN6",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_BUF6",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_BUF7",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/ANT_LIMITED",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_I2C_SCL",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_CLK",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_CMD",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT1",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT3",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/EMMC_DAT4",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT5",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT6",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT7",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DS",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_VCC_3V3",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_VDDi",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/IMU_CS",
+        "unconnected_items": 2
+      }
+    ],
+    "status": "FAIL",
+    "detail": "34 of the 312 nets fully connected in the input lost connection: /ADC_AIN1, /ADC_AIN3, /ADC_AIN6, /AFE_BUF6, /AFE_BUF7, /AFE_DIV2, /ANT_LIMITED, /DIAG_I2C_SCL, /EMMC_CLK, /EMMC_CMD",
+    "nets_connected_in_input": 312,
+    "nets_lost": [
+      "/ADC_AIN1",
+      "/ADC_AIN3",
+      "/ADC_AIN6",
+      "/AFE_BUF6",
+      "/AFE_BUF7",
+      "/AFE_DIV2",
+      "/ANT_LIMITED",
+      "/DIAG_I2C_SCL",
+      "/EMMC_CLK",
+      "/EMMC_CMD",
+      "/EMMC_DAT1",
+      "/EMMC_DAT3",
+      "/EMMC_DAT4",
+      "/EMMC_DAT5",
+      "/EMMC_DAT6",
+      "/EMMC_DAT7",
+      "/EMMC_DS",
+      "/EMMC_VCC_3V3",
+      "/EMMC_VDDi",
+      "/IMU_CS",
+      "/IMU_INT1",
+      "/POD_AUX3_SIGNAL",
+      "/SENSOR_POWER_FRONT_DVDT",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_POWER_REAR_ILIM",
+      "/SENSOR_REF_2V5",
+      "/SPI_MISO",
+      "/SPI_SCK",
+      "/SUP_U16_CT",
+      "/SUP_U17_SENSE",
+      "/SUP_U18_CT",
+      "/SUP_U19_CT",
+      "/TIRE_CAN_CS",
+      "/TIRE_CAN_OSC2"
+    ]
+  },
+  {
+    "check": "pour_integrity",
+    "status": "PASS",
+    "detail": "no copper zones",
+    "differences": []
+  }
+]

@@ -1,0 +1,498 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "krt",
+    "version": "0.23.1",
+    "build": "owned-c6c09054f684",
+    "commit": "fcea55923ae6ef454ac6110be1320a26af196c31",
+    "source": "https://github.com/halbritt/kicad-route",
+    "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+    "upstream": {
+      "project": "KiCadRoutingTools",
+      "license": "MIT",
+      "upstream": "https://github.com/drandyhaas/KiCadRoutingTools",
+      "upstream_base": "295f9ee197517e8323726853361eb137cc08ba9e",
+      "upstream_release": "v0.23.1",
+      "fork": "https://github.com/halbritt/KiCadRoutingTools",
+      "fork_commit": "0494a05e30063b849c9cf1b9ac02098073d82216",
+      "fork_tree": "288b2baca668892c812c82f0e7db4c2b2b0a50c1",
+      "fixes": {
+        "KICADROUTE-64": "4b316ba",
+        "KICADROUTE-63": "0494a05"
+      },
+      "source_inventory": "reports/routing-engine/source-closure.json",
+      "additional_license_notices": [
+        "py_router/stage3d/vendor/three/LICENSE"
+      ],
+      "ownership": "Maintained as part of kicad-route; upstream is provenance, not a runtime source selector."
+    },
+    "runtime": {
+      "source": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/router",
+      "venv": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/venv",
+      "generation": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f"
+    },
+    "rust_router": "0.23.1",
+    "execution_identity": {
+      "name": "krt",
+      "tag": "owned-c6c09054f684",
+      "version": "0.23.1",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+      "extension_module_sha256": "e9a0c7939e87e414f6ce441d57ef51d729336fa2bcb49d84841cf19ff93e2425",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "reproducible": true,
+    "reproducible_basis": "determinism check 2026-10-20T22:53:29.293454+00:00: identical copper geometry on repeat"
+  },
+  "measurement": false,
+  "input": {
+    "project": "patched2",
+    "board": "p2.kicad_pcb",
+    "fingerprint": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+    "source_dir": "/home/halbritt/.cache/agent499-rule-decision/patched2",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null,
+    "baseline": {
+      "report": "../../../../.cache/baseline/2131f91fc9e5d4f382e259c2dab618bcb26a2b39654777030dec1de47973face/generation-a4ikxod6/baseline-drc.json",
+      "cached": false,
+      "reasons": [],
+      "identity": {
+        "schema": 1,
+        "input": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+        "board": "p2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "61aff3300f1f784a9e8a778e45430e3f5cb8041f820b7feea80423566bf60a4e",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "40dc7e85b3b74bc8dd7155ec4a90a9c74fe9f4120aae80f6367ef9001f2dc02d",
+          "result-2.json": "ede5fd72501ceb66985ce2fa63da525ae06ed301a2e75aa43c2a6ead3724b74c"
+        }
+      },
+      "generation": "generation-a4ikxod6"
+    },
+    "rules_files": {
+      "project": "p2.kicad_pro",
+      "custom_rules": "p2.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "krt",
+    "budget_s": 600,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {},
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 180,
+    "mode": "all",
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 369,
+    "nets_list": null
+  },
+  "unsupported": [
+    "KRT reads only a subset of .kicad_dru custom rules; every rule is still graded by KiCad DRC",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class",
+    "backend reported: .kicad_dru: rule 'fine-pitch intra-footprint pad clearance (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U16 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U17 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U18 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U19 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it"
+  ],
+  "floor": null,
+  "process": {
+    "status": "FAIL",
+    "reasons": [
+      "KRT exceeded the 600 s budget, did not stop at the stop file, and was killed (last output: 'U28 sits on B.Cu - routing the board turned over and mirroring back (flip_frame)'); retry with a larger --budget, or --backend-env KICAD_NET_RESCUE=0 (KRT's net rescue ignores the stop file)"
+    ],
+    "exit_code": -15,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/venv/bin/python",
+          "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/router/py_router/route.py",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/input/patched2/p2.kicad_pcb",
+          "--output",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/krt-out/p2.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "*"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work",
+        "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0"
+        },
+        "budget_s": 600,
+        "budget_reached": true,
+        "stop_requested": true,
+        "stop_s": 600.156,
+        "killed": true,
+        "last_phase": "net rescue",
+        "last_metric": {
+          "rescuing": "/DIAG_I2C_SCL",
+          "parts": 2
+        },
+        "heartbeats": {
+          "count": 5017,
+          "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/heartbeat.jsonl",
+          "stall_s": 180,
+          "since_last_progress_s": 0.0,
+          "tail": [
+            {
+              "t_s": 720.573,
+              "utc": "2026-10-20T23:59:44.135624+00:00",
+              "phase": "net rescue",
+              "metric": {
+                "rescuing": "/AFE_DIV2",
+                "parts": 2
+              },
+              "line": "Rescuing /AFE_DIV2 (partial, 2 disconnected parts)"
+            },
+            {
+              "t_s": 720.573,
+              "utc": "2026-10-20T23:59:44.135855+00:00",
+              "phase": "net rescue",
+              "metric": {
+                "rescuing": "/AFE_DIV7",
+                "parts": 2
+              },
+              "line": "Rescuing /AFE_DIV7 (partial, 2 disconnected parts)"
+            },
+            {
+              "t_s": 720.574,
+              "utc": "2026-10-20T23:59:44.136990+00:00",
+              "phase": "net rescue",
+              "metric": {
+                "rescuing": "/ANT_LIMITED",
+                "parts": 2
+              },
+              "line": "Rescuing /ANT_LIMITED (failed, 2 disconnected parts)"
+            },
+            {
+              "t_s": 720.575,
+              "utc": "2026-10-20T23:59:44.137202+00:00",
+              "phase": "net rescue",
+              "metric": {
+                "rescuing": "/ANT_LIMITED",
+                "parts": 2,
+                "outcome": "improved"
+              },
+              "line": "improved (2 -> 2 parts, 7.8s)"
+            },
+            {
+              "t_s": 720.575,
+              "utc": "2026-10-20T23:59:44.137275+00:00",
+              "phase": "net rescue",
+              "metric": {
+                "rescuing": "/DIAG_I2C_SCL",
+                "parts": 2
+              },
+              "line": "Rescuing /DIAG_I2C_SCL (partial, 2 disconnected parts)"
+            }
+          ]
+        },
+        "stalled": false,
+        "exit_code": -15,
+        "duration_s": 720.582,
+        "stop_to_exit_s": 120.426,
+        "output_tail": " grid 0.025, clearance 0.2, track 0.2 (3 segs, 1 vias, 48736 iters)\n    improved (41 -> 35 parts, 53.2s)\n  Rescuing /ADC_AIN1 (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 262341 iterations (forward), trying backward...\nNo route found after 282774 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 262341 iterations (forward), trying backward...\nNo route found after 282774 iterations (both directions)\n    rescue failed (6.4s)\n  Rescuing /ADC_AIN3 (partial, 2 disconnected parts)\n    bare-ball escape: R21.2 dogbone (0 seg(s), 1 via(s)) (#666)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 12564 iterations (forward), trying backward...\nNo route found after 1022564 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 12564 iterations (forward), trying backward...\nNo route found after 1022564 iterations (both directions)\n    improved (2 -> 2 parts, 12.9s)\n  Rescuing /ADC_AIN6 (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nRoute found in 23321 iterations, path length: 313\n    rescued a gap: grid 0.025, clearance 0.2, track 0.2 (50 segs, 0 vias, 23321 iters)\n    fully reconnected (2 -> 1 parts, 4.4s)\n  Rescuing /AFE_BUF6 (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 381387 iterations (forward), trying backward...\nNo route found after 417688 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 381387 iterations (forward), trying backward...\nNo route found after 417688 iterations (both directions)\n    rescue failed (6.7s)\n  Rescuing /AFE_BUF7 (partial, 2 disconnected parts)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 417608 iterations (forward), trying backward...\nNo route found after 437077 iterations (both directions)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nNo route found after 417608 iterations (forward), trying backward...\nNo route found after 437077 iterations (both directions)\n    rescue failed (5.3s)\n  Rescuing /AFE_DIV2 (partial, 2 disconnected parts)\n  obstacles: pads 0/85 (5s elapsed)\nbackward stuck (3077 < 5000), forward=5000\n  backward cell (439, 1351, layer=3): ok, 0/8 neighbors blocked\nNo route found after 8077 iterations (both directions)\nbackward stuck (3077 < 5000), forward=5000\n  backward cell (439, 1351, layer=3): ok, 0/8 neighbors blocked\nNo route found after 8077 iterations (both directions)\n    rescue failed (18.1s)\n  Rescuing /AFE_DIV7 (partial, 2 disconnected parts)\n  U13 sits on B.Cu - routing the board turned over and mirroring back (flip_frame)\n    (fanout-rescue error for U13.12: cannot pickle 'builtins.GridObstacleMap' object)\nProbe: forward=5000, backward=5000 iters, trying forward with full iterations...\nRoute found in 141970 iterations, path length: 454\n    rescued a gap: grid 0.025, clearance 0.2, track 0.2 (17 segs, 2 vias, 141970 iters)\n    fully reconnected (2 -> 1 parts, 7.5s)\n  Rescuing /ANT_LIMITED (failed, 2 disconnected parts)\n    bare-ball escape: R26.1 dogbone (0 seg(s), 1 via(s)) (#666)\nbackward stuck (795 < 5000), forward=5000\n  backward cell (1535, 500, layer=0): ok, 0/8 neighbors blocked\nNo route found after 5795 iterations (both directions)\nbackward stuck (795 < 5000), forward=5000\n  backward cell (1535, 500, layer=0): ok, 0/8 neighbors blocked\nNo route found after 5795 iterations (both directions)\n    improved (2 -> 2 parts, 7.8s)\n  Rescuing /DIAG_I2C_SCL (partial, 2 disconnected parts)\n  U28 sits on B.Cu - routing the board turned over and mirroring back (flip_frame)\n"
+      }
+    ],
+    "backend_report": null,
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 0
+      },
+      "lock_exit": 0
+    },
+    "project_writeback": [],
+    "runtime_s": 722.99,
+    "last_phase": "net rescue",
+    "heartbeats": {
+      "count": 5017,
+      "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z/work/heartbeat.jsonl",
+      "stall_s": 180,
+      "since_last_progress_s": 0.0,
+      "tail": [
+        {
+          "t_s": 720.573,
+          "utc": "2026-10-20T23:59:44.135624+00:00",
+          "phase": "net rescue",
+          "metric": {
+            "rescuing": "/AFE_DIV2",
+            "parts": 2
+          },
+          "line": "Rescuing /AFE_DIV2 (partial, 2 disconnected parts)"
+        },
+        {
+          "t_s": 720.573,
+          "utc": "2026-10-20T23:59:44.135855+00:00",
+          "phase": "net rescue",
+          "metric": {
+            "rescuing": "/AFE_DIV7",
+            "parts": 2
+          },
+          "line": "Rescuing /AFE_DIV7 (partial, 2 disconnected parts)"
+        },
+        {
+          "t_s": 720.574,
+          "utc": "2026-10-20T23:59:44.136990+00:00",
+          "phase": "net rescue",
+          "metric": {
+            "rescuing": "/ANT_LIMITED",
+            "parts": 2
+          },
+          "line": "Rescuing /ANT_LIMITED (failed, 2 disconnected parts)"
+        },
+        {
+          "t_s": 720.575,
+          "utc": "2026-10-20T23:59:44.137202+00:00",
+          "phase": "net rescue",
+          "metric": {
+            "rescuing": "/ANT_LIMITED",
+            "parts": 2,
+            "outcome": "improved"
+          },
+          "line": "improved (2 -> 2 parts, 7.8s)"
+        },
+        {
+          "t_s": 720.575,
+          "utc": "2026-10-20T23:59:44.137275+00:00",
+          "phase": "net rescue",
+          "metric": {
+            "rescuing": "/DIAG_I2C_SCL",
+            "parts": 2
+          },
+          "line": "Rescuing /DIAG_I2C_SCL (partial, 2 disconnected parts)"
+        }
+      ]
+    },
+    "stalled": false,
+    "measurement_qualification": {
+      "measurement": false,
+      "build_reproducible": true,
+      "reasons": [
+        "wall-clock stop: budget_reached",
+        "wall-clock stop: killed"
+      ]
+    }
+  },
+  "routing": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "validation": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "candidate": null,
+  "run_dir": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-constraints-krt/20261020T234657.666358Z",
+  "runtime_s": 766.779,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "08b9942b329fc69dbccb8024526fdfd5a239a7ab8944bd85e6d76457e57289b9",
+    "input_fingerprint": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+    "baseline": {
+      "identity": {
+        "schema": 1,
+        "input": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+        "board": "p2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "61aff3300f1f784a9e8a778e45430e3f5cb8041f820b7feea80423566bf60a4e",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "40dc7e85b3b74bc8dd7155ec4a90a9c74fe9f4120aae80f6367ef9001f2dc02d",
+          "result-2.json": "ede5fd72501ceb66985ce2fa63da525ae06ed301a2e75aa43c2a6ead3724b74c"
+        }
+      },
+      "generation": "generation-a4ikxod6"
+    },
+    "reference_files": {
+      "p2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "p2.kicad_pcb": "08b9942b329fc69dbccb8024526fdfd5a239a7ab8944bd85e6d76457e57289b9",
+      "p2.kicad_pro": "42ee5c6de8db25e06ea580e88775dfca101b67061d6ada296f894ff76e5762d1"
+    },
+    "rules_files": {
+      "p2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "p2.kicad_pro": "42ee5c6de8db25e06ea580e88775dfca101b67061d6ada296f894ff76e5762d1"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": null,
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": null,
+    "pre_refill_board_sha256": null,
+    "candidate_copper_signature": null,
+    "records": {
+      "attempt.json": "48e712f21dd7275d1679b6bd6973a25be769ae62e9447112932cd4d5966f8544"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "fcea559",
+      "commit": "fcea55923ae6ef454ac6110be1320a26af196c31",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "krt",
+      "tag": "owned-c6c09054f684",
+      "version": "0.23.1",
+      "commit": "fcea55923ae6ef454ac6110be1320a26af196c31",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+      "extension_module_sha256": "e9a0c7939e87e414f6ce441d57ef51d729336fa2bcb49d84841cf19ff93e2425",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "state_manifest_sha256": "87ae9cf328c50c1f3275a480dab2b4a9a951f09d2b2b9c6d91bfac9296221bfd",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-20T23:59:46.181043+00:00",
+  "exit_code": 1,
+  "ledger": {
+    "fingerprint": "49efd3709df520659e71d5778d2d2f0b03bf14063509a0439cf7f0c14476ce59",
+    "short": "49efd3709df5",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/agent499-route-diag/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/agent499-route-diag"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/agent499-route-diag/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/agent499-route-diag/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/agent499-route-diag/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-route-diag/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  }
+}

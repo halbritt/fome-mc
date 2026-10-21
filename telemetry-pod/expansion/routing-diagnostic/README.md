@@ -1,0 +1,54 @@
+# Routing diagnostic on the frozen placement (not an adopted board)
+
+First end-to-end routing evidence for the expanded telemetry pod, produced with
+kicad-route (checkout fcea559, KRT 0.23.1 owned source, Freerouting 2.5.0, KiCad 10.0.7)
+on the frozen 17-group diagnostic placement `79cc1310…` with decision D-PCB-1 applied
+(enlarged thermal vias, scoped fine-pitch rule, cited board setup from
+`../design-rules/`; 4 copper layers, no zones). The placement is unqualified (13 declared
+pad-locality exceedances, see `../electrical-locality/pad-obligations/`), so the candidate
+is evidence about the tooling and the board's routability, never a design candidate.
+
+## Input readiness
+
+`blocked-by-input.json` (`kicad-route blocked --board`, heuristic): 487 of 499
+connections unobstructed on straight or L corridors; the 12 obstructed ones sit at J1,
+U12, U7, U6, U1 and U14.
+
+## Attempts
+
+| Attempt | Setting | Outcome |
+| --- | --- | --- |
+| KRT, 600 s | defaults | main pass routed all but about 10 nets, then KRT's net-rescue phase ignored the stop file and was killed; no candidate (`failed-attempts/`) |
+| Freerouting, 1500 s, stall 300 s | defaults | killed by the stall watchdog while actively routing: the headless log is silent between stages (`failed-attempts/`) |
+| **KRT, 1800 s, net rescue and plane finalize off** | `--backend-env KICAD_NET_RESCUE=0 KICAD_PLANE_FINALIZE=0` | candidate in 1014 s: 142 of 194 nets routed, 4656 tracks, 404 vias, 5.99 m of track; 52 nets open; receipts under `patched2/cited-krt-norescue/` |
+
+The published receipts are kicad-route's verdict for that run: routing INCOMPLETE,
+validation FAIL with 430 new findings. 398 of those were via-diameter and annular-width
+findings against the board setup of the time (0.70 mm / 0.20 mm), which contradicted the
+0.60 / 0.30 mm net-class via the router used; `../design-rules/` has since corrected the
+via minimum to JLCPCB's published via capability (0.50 mm / 0.10 mm). `krt-candidate-
+regrade-drc.json` is the same candidate under the corrected project: 32 new findings, all
+`track_dangling` stubs of the unfinished nets, no copper clearance or geometry finding,
+and 101 unconnected items left of 499. Preservation checks all PASS except
+`net_completion`, which lists the nets the router left partly connected.
+
+## What the open nets say
+
+- **eMMC bus** (`EMMC_CLK/CMD/DAT*/DS/VCC/VDDi`): U14 is a 0.5 mm-pitch BGA-153 with ten
+  connected interior balls; a 0.60 mm via cannot dogbone between them. Open design item
+  D-PCB-3 in `../design-rules/constraints.json` (BGA net class on JLCPCB's published BGA
+  allowances, or filled via-in-pad).
+- **Sensor-power control nets** (`SENSOR_POWER_*_DVDT/ILIM/OVP/UVLO`, 16 nets) and several
+  analog lines (`ADC_AIN*`, `AFE_*`): blocked mainly by the router's own earlier copper
+  (`blocked_by` top entries are new tracks of the diagnostic ADC nets on the inner layers),
+  which is the hard-nets-first case for `kicad-route campaign`.
+- `GND`, `+3V3`, `PRE_6V3`: plane nets with no zones in this diagnostic; plane planning
+  (`kicad-route planes`) is a separate step once the placement is qualified.
+
+## Tool behaviour worth knowing
+
+KRT's net-rescue phase ignores the stop file and can overrun the budget by minutes; run
+pod-scale attempts with `KICAD_NET_RESCUE=0` or a budget with headroom. Freerouting's
+headless log is silent between stages, so `--stall` must be at least the budget.
+
+No file outside this directory was changed; no candidate board is committed.

@@ -1,0 +1,406 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "freerouting",
+    "version": "v2.5.0",
+    "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+    "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+    "java_required": 25,
+    "source": "https://github.com/freerouting/freerouting",
+    "execution_identity": {
+      "name": "freerouting",
+      "tag": "v2.5.0",
+      "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+      "build_revision": "b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+      "java_path": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+      "java_version": "25.0.4.1 (build 25.0.4.1+1-1-24.04.4-Ubuntu)"
+    },
+    "reproducible": false,
+    "reproducible_basis": "Freerouting's outcome may vary between runs: this result is an attempt, not a measurement"
+  },
+  "measurement": false,
+  "input": {
+    "project": "patched2",
+    "board": "p2.kicad_pcb",
+    "fingerprint": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+    "source_dir": "/home/halbritt/.cache/agent499-rule-decision/patched2",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null,
+    "baseline": {
+      "report": "../../../../.cache/baseline/2131f91fc9e5d4f382e259c2dab618bcb26a2b39654777030dec1de47973face/generation-a4ikxod6/baseline-drc.json",
+      "cached": true,
+      "reasons": [],
+      "identity": {
+        "schema": 1,
+        "input": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+        "board": "p2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "61aff3300f1f784a9e8a778e45430e3f5cb8041f820b7feea80423566bf60a4e",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "40dc7e85b3b74bc8dd7155ec4a90a9c74fe9f4120aae80f6367ef9001f2dc02d",
+          "result-2.json": "ede5fd72501ceb66985ce2fa63da525ae06ed301a2e75aa43c2a6ead3724b74c"
+        }
+      },
+      "generation": "generation-a4ikxod6"
+    },
+    "rules_files": {
+      "project": "p2.kicad_pro",
+      "custom_rules": "p2.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "freerouting",
+    "budget_s": 1500,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {},
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 300,
+    "mode": "all",
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 369,
+    "nets_list": null
+  },
+  "unsupported": [
+    "Freerouting never rips up pre-existing copper (KiCad exports it as fixed/protected); --protect locked behaves like --protect existing",
+    "Specctra carries per-class width/clearance/via only: custom .kicad_dru rules, diff pairs and length tuning are not exported; KiCad DRC grades them",
+    "rule areas export only their no-tracks/no-vias restrictions; zones export as plane outlines",
+    "p2.kicad_dru: net-class-to-net-class clearance rules are translated to Specctra class_class rules; any other custom rule is listed as untranslated below"
+  ],
+  "floor": null,
+  "process": {
+    "status": "FAIL",
+    "reasons": [
+      "Freerouting stalled in auto-routing started at score 0.0, unrouted 829 for 300.2 s and was killed"
+    ],
+    "commands": [
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/specctra.py",
+          "export",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/input/patched2/p2.kicad_pcb",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/board.dsn",
+          "--dru",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/input/patched2/p2.kicad_dru"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work",
+        "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/export-dsn.log",
+        "exit_code": 0,
+        "duration_s": 0.819
+      },
+      {
+        "argv": [
+          "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+          "-Djava.awt.headless=true",
+          "-Duser.home=/home/halbritt/.cache/agent499-route-diag/.home/java",
+          "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-route-diag/.home/java/prefs",
+          "-jar",
+          "/home/halbritt/git/kicad-route/vendor/freerouting/current/freerouting-2.5.0.jar",
+          "-de",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/board.dsn",
+          "-do",
+          "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/board.ses",
+          "--gui.enabled=false",
+          "-da",
+          "--api_server.enabled=false",
+          "--user_data_path=/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/freerouting-userdata",
+          "--router.result_json=/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/freerouting-result.json",
+          "--router.automatic_neckdown=false",
+          "--router.fanout.enabled=false",
+          "--router.job_timeout=00:25:00"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work",
+        "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/freerouting.log",
+        "env": {
+          "HTTPS_PROXY": "http://127.0.0.1:9",
+          "HTTP_PROXY": "http://127.0.0.1:9",
+          "FREEROUTING__USAGE_AND_DIAGNOSTIC_DATA__DISABLE_ANALYTICS": "true"
+        },
+        "budget_s": 1560,
+        "stalled": true,
+        "stop_s": 310.494,
+        "killed": true,
+        "last_phase": "auto-routing started",
+        "last_metric": {
+          "score": 0.0,
+          "unrouted": 829
+        },
+        "heartbeats": {
+          "count": 2,
+          "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/heartbeat.jsonl",
+          "stall_s": 300,
+          "since_last_progress_s": 305.9,
+          "tail": [
+            {
+              "t_s": 6.025,
+              "utc": "2026-10-21T00:00:32.199231+00:00",
+              "phase": "loading board",
+              "metric": {},
+              "line": "2026-10-20 17:00:32.189 INFO [F14416\\B9C49D] Loading board file 'board.dsn'..."
+            },
+            {
+              "t_s": 10.29,
+              "utc": "2026-10-21T00:00:36.464396+00:00",
+              "phase": "auto-routing started",
+              "metric": {
+                "score": 0.0,
+                "unrouted": 829
+              },
+              "line": "2026-10-20 17:00:36.226 INFO [F14416\\B9C49D] Auto-routing stage started on board 'e37d7352c1a51f81dad939dc47888d8b' with baseline score 0.00 for 829 unrouted..."
+            }
+          ]
+        },
+        "stall": {
+          "phase": "auto-routing started",
+          "metric": {
+            "score": 0.0,
+            "unrouted": 829
+          },
+          "no_progress_s": 300.2
+        },
+        "exit_code": 143,
+        "duration_s": 316.203,
+        "stop_to_exit_s": 5.709,
+        "output_tail": "2026-10-20 17:00:29.241 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)\n2026-10-20 17:00:29.967 INFO   Hardware: 12 CPU cores, 99 CPU score, 30688 MB RAM\n2026-10-20 17:00:29.994 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.\n2026-10-20 17:00:30.010 INFO   Configured network proxy: 127.0.0.1:9\n2026-10-20 17:00:32.189 INFO   [F14416\\B9C49D] Loading board file 'board.dsn'...\n2026-10-20 17:00:34.201 INFO   [F14416\\B9C49D] Job 'F14416\\B9C49D' started at 2026-10-21T00:00:34.200714618Z.\n2026-10-20 17:00:35.561 INFO   [F14416\\B9C49D] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=11.\n2026-10-20 17:00:36.226 INFO   [F14416\\B9C49D] Auto-routing stage started on board 'e37d7352c1a51f81dad939dc47888d8b' with baseline score 0.00 for 829 unrouted items.\n"
+      }
+    ],
+    "exit_code": 143,
+    "runtime_s": 318.821,
+    "last_phase": "auto-routing started",
+    "heartbeats": {
+      "count": 2,
+      "log": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z/work/heartbeat.jsonl",
+      "stall_s": 300,
+      "since_last_progress_s": 305.9,
+      "tail": [
+        {
+          "t_s": 6.025,
+          "utc": "2026-10-21T00:00:32.199231+00:00",
+          "phase": "loading board",
+          "metric": {},
+          "line": "2026-10-20 17:00:32.189 INFO [F14416\\B9C49D] Loading board file 'board.dsn'..."
+        },
+        {
+          "t_s": 10.29,
+          "utc": "2026-10-21T00:00:36.464396+00:00",
+          "phase": "auto-routing started",
+          "metric": {
+            "score": 0.0,
+            "unrouted": 829
+          },
+          "line": "2026-10-20 17:00:36.226 INFO [F14416\\B9C49D] Auto-routing stage started on board 'e37d7352c1a51f81dad939dc47888d8b' with baseline score 0.00 for 829 unrouted..."
+        }
+      ]
+    },
+    "stalled": true,
+    "measurement_qualification": {
+      "measurement": false,
+      "build_reproducible": false,
+      "reasons": [
+        "wall-clock stop: killed",
+        "wall-clock stop: stalled",
+        "Freerouting's outcome may vary between runs: this result is an attempt, not a measurement"
+      ]
+    }
+  },
+  "routing": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "validation": {
+    "status": "NOT_RUN",
+    "reasons": [
+      "backend produced no candidate"
+    ]
+  },
+  "candidate": null,
+  "run_dir": "/home/halbritt/.cache/agent499-route-diag/runs/patched2/cited-freerouting/20261021T000018.858886Z",
+  "runtime_s": 323.524,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "08b9942b329fc69dbccb8024526fdfd5a239a7ab8944bd85e6d76457e57289b9",
+    "input_fingerprint": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+    "baseline": {
+      "identity": {
+        "schema": 1,
+        "input": "e15d64bc1cdc39f8198fb6546c00a056a46eb776047e87c1ad9d279a98c3c52b",
+        "board": "p2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "61aff3300f1f784a9e8a778e45430e3f5cb8041f820b7feea80423566bf60a4e",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "40dc7e85b3b74bc8dd7155ec4a90a9c74fe9f4120aae80f6367ef9001f2dc02d",
+          "result-2.json": "ede5fd72501ceb66985ce2fa63da525ae06ed301a2e75aa43c2a6ead3724b74c"
+        }
+      },
+      "generation": "generation-a4ikxod6"
+    },
+    "reference_files": {
+      "p2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "p2.kicad_pcb": "08b9942b329fc69dbccb8024526fdfd5a239a7ab8944bd85e6d76457e57289b9",
+      "p2.kicad_pro": "42ee5c6de8db25e06ea580e88775dfca101b67061d6ada296f894ff76e5762d1"
+    },
+    "rules_files": {
+      "p2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "p2.kicad_pro": "42ee5c6de8db25e06ea580e88775dfca101b67061d6ada296f894ff76e5762d1"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": null,
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": null,
+    "pre_refill_board_sha256": null,
+    "candidate_copper_signature": null,
+    "records": {
+      "attempt.json": "aed709b42fb0105724c60c5f3669503ec15f3a3980930fa415738d0215a96c41"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "fcea559",
+      "commit": "fcea55923ae6ef454ac6110be1320a26af196c31",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "freerouting",
+      "tag": "v2.5.0",
+      "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+      "build_revision": "b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+      "java_path": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+      "java_version": "25.0.4.1 (build 25.0.4.1+1-1-24.04.4-Ubuntu)"
+    },
+    "state_manifest_sha256": "87ae9cf328c50c1f3275a480dab2b4a9a951f09d2b2b9c6d91bfac9296221bfd",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-21T00:05:44.467409+00:00",
+  "exit_code": 1,
+  "ledger": {
+    "fingerprint": "47ec5db78a2939e52aeaeab457bbef3afe8b8cd87409126a3134baf4ad90d043",
+    "short": "47ec5db78a29",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/agent499-route-diag/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/agent499-route-diag"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/agent499-route-diag/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/agent499-route-diag/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/agent499-route-diag/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/agent499-route-diag/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-route-diag/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  }
+}
