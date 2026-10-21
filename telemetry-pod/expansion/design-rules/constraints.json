@@ -164,22 +164,6 @@
       "class": "engineering",
       "basis": "general copper spacing, width and via above the board minimums; unchanged from the generated project; the via (0.15 mm ring) sits above the 0.10 mm board minimum",
       "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"
-    },
-    "EFUSE_SET": {
-      "patterns": [
-        "/SENSOR_POWER_*_DVDT",
-        "/SENSOR_POWER_*_ILIM",
-        "/SENSOR_POWER_*_OVP",
-        "/SENSOR_POWER_*_UVLO",
-        "/SUP_*_SENSE",
-        "/SUP_*_CT"
-      ],
-      "clearance_mm": 0.15,
-      "track_width_mm": 0.15,
-      "via_diameter_mm": 0.5,
-      "via_drill_mm": 0.3,
-      "class": "manufacturer+engineering",
-      "basis": "TPS26625 eFuse setting-resistor nets (DVDT, ILIM, OVP, UVLO) and TPS3890 supervisor sense/CT nets carry microamp DC levels; 0.15 mm track and clearance sit above JLCPCB's 0.09 mm floor with margin and let a track pass between resistor pads packed at the 0.25 mm courtyard gap (iteration 7: 14 of the 30 open nets are these). Decided as D-PCB-15 (2026-10-21), autonomous under the owner's 2026-10-20 bound (JLCPCB can manufacture; no electrical performance effect)."
     }
   },
   "decisions": {
@@ -191,7 +175,7 @@
     "D-PCB-10 J1 orientation (owner ruling 2026-10-21)": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1), as REQUIREMENTS.md rev 3 specifies and as every candidate board already carries. Owner, 2026-10-21: 'the J1 connector should be right angle, that much is fixed.' The earlier D-PCB-10 text (written the same day) wrongly discussed the superseded 23-position 776228-1/776087-1 pair from AGENTEE-209; that question is closed by the 35-position requirement. Not reversible without an owner change.",
     "D-PCB-13 microSD card envelope in the J3 courtyard (2026-10-21)": "The Hirose DM3AT-SF-PEJM5 footprint's courtyard (KiCad 10.0.7 library, body to y=8.88 mm) is extended to y=13.98 mm, 0.25 mm past the inserted card the library draws on F.Fab (to y=13.725), in footprints/Connector_Card.pretty. Basis: the iteration-5 review found TP2/TP5 pogo-pad copper 0.06 mm from the seated card's edge; with the card inside the courtyard every packer keeps the card path clear and native DRC sees overlaps. Cosmetic/mechanical only; pads unchanged. Reverse: use the stock footprint. Decided autonomously; owner review after the fact. v2 (2026-10-21, iteration-6 review): the courtyard now extends to y=29.0 mm, i.e. the seated card plus a 15 mm insertion lane plus 0.25 mm, because the two-level placer put the ADC U4 0.52 mm beyond the seated card's tip, inside the lane the card must slide through. Any part may still sit beside the lane; nothing may sit in it. v3 (owner, 2026-10-21: 'obviously point the slot off the board edge'): J3 is fixed at (8.9, 32.0) on B, rotation 90, mouth at the left board edge, so the seated card and its 15 mm lane lie outside the outline (declared overhang band, left edge, 20.3 mm) and the 600 mm2 reserve on the back side returns to placement. The enclosure's left wall gets a card opening or a blind pocket at y 24-40 mm (card loaded with the board out of the box either way).",
     "D-PCB-14 SD bus length (2026-10-21)": "The microSD SDMMC bus (SD_CLK/CMD/DAT0-3, 4-bit SDR) may run up to 90 mm pad-to-pad between U1 and J3: iteration 7 places the storage block in the bottom-left corner with 73.9-88.3 mm spans, because the 15 mm card insertion lane (D-PCB-13 v2) no longer fits under the ESP32 module. Basis: the storage stage targets 20 MHz SDR (storage-candidate README; ESP32-S3 SDMMC default), where a 90 mm trace (about 0.6 ns) is a small fraction of the 50 ns period and 10 k pull-ups at the socket suffice; the default-SDR 25 MHz and high-speed 50 MHz modes lose margin and would need the block re-placed near U1 or series termination. Routing constraint: route the six SD nets as one bundle on one layer pair with matched lengths within 10 mm and no stubs; no 40 MHz claim. Reverse: move the storage block next to U1 with the lane pointing along the board edge (an arrangement keepout/preference), then re-review. Decided autonomously (owner ruling 2026-10-20); owner review after the fact.",
-    "D-PCB-15 EFUSE_SET net class (2026-10-21)": "Net class EFUSE_SET 0.15/0.15 mm (via 0.5/0.3 unchanged) for /SENSOR_POWER_*_{DVDT,ILIM,OVP,UVLO}, /SUP_*_SENSE and /SUP_*_CT. Basis and reversal in net_classes.EFUSE_SET; reverse by deleting the class and its patterns. Owner review after the fact.",
+    "D-PCB-15 EFUSE_SET net class (2026-10-21)": "WITHDRAWN the same day: a full builtin pass on the planed iteration-7 board with the 0.15/0.15 mm class left every eFuse setting net open (33 open, 3 dangling stubs, net_completion regressions), so the thinner class bought nothing and the loosening is removed. The open eFuse nets are a placement-channel problem (blocks compacted at the 0.25 mm gap), to be solved by AGENTEE-376 (fixed pairs exempt from the gap) and a routability-aware block packing, not by thinner copper.",
     "D-PCB-16 ESP32 antenna overhang and enclosure pocket (owner 2026-10-21)": "U1 ESP32-S3-WROOM-1 stays at (72.5, 6.5) F with its antenna section protruding past the top board edge: module fabrication outline y = -6.46 to 19.51 mm (6.46 mm overhang, module 18 mm wide, x 62.74-81.76), Espressif's preferred antenna placement; the captured footprint's courtyard (y to -21.3, x 48.5-96.5) is the manufacturer antenna keep-out and stays enforced. Owner, 2026-10-21: 'I'll roll with the overhang. I think a 3d printed enclosure could easily accommodate.' Enclosure requirements derived: a pocket above the top edge at least 20 mm wide and 8 mm deep (6.46 mm overhang + clearance) with about 5 mm of air over the antenna face, non-metallic (REQUIREMENTS: non-metallic over the module antenna), no screw boss, insert or metal within the 15 mm keep-out, and no support touching the protruding module (vibration). Alternative recorded if the enclosure cannot: pull U1 inboard 6.5 mm and give the antenna a copper-free strip inside the outline (Espressif option 2), at some pattern cost. Owner decision; not autonomous."
   }
 }
