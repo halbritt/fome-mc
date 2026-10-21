@@ -111,8 +111,9 @@ the stock footprint and delete the U14 rule.
 - **D-PCB-9 NEO-M9N.** U3 accepted as an exact 85 C exception on the owner's terms for
   U1/U2/U4 (AGENTEE-209: tested against its actual limit, thermal evidence required).
   NEO-M9L-01A has 0 stock and changes three pin functions.
-- **D-PCB-10 J1.** Stays TE 776228-1 vertical; the 12 mm limit that argued for the
-  right-angle 776087-1 was owner-withdrawn on 2026-10-19.
+- **D-PCB-10 J1.** Right-angle, fixed by the owner on 2026-10-21: the 35-position TE
+  AMPSEAL 1-776163-1 already on every candidate. The vertical/right-angle question in
+  AGENTEE-209 was about the superseded 23-position part and is closed.
 - **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the block-placed routing campaign
   leaves +3V3 plane pads open or fails pour integrity on In2 (the via-fill trigger went
   with D-PCB-3).
