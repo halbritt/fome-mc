@@ -1,0 +1,124 @@
+{
+  "schema": "kicad-route/publication/1",
+  "kind": "run",
+  "files": {
+    "RESULT.md": "8269dfcdd4a31fbad063ac64bd424f70b9142c03b2e9c105ff266943ae850403",
+    "attempt.json": "b84a4b1c07ee13e037fb01c733b7d9e4384beebef740ecf414b5597f9e008270",
+    "blocked-by.json": "377b9f11fbf347aabc1d43504e52f8c69558118d1f385a2dfa5396bf7cc4bde5",
+    "candidate-drc.json": "b5b13ca25fa7e5dfabdfda6c5df13ceedc179fb326677458875367237513782c",
+    "candidate-facts.json": "77ecb3da69fa3ec0f82b6eaa0b682ff3e932027db6a4012b29d353c13d0a39e6",
+    "candidate-pour.json": "21f2ed84c91f6d2bb312d3f25ed0ce2d5edfcb7253f7fc6e0c4faea53d47f098",
+    "candidate-refill.json": "d10950ad7dc9f5f4a26e1e4fc51eab847ddb901ae0d7e0078de00a2f56e67074",
+    "facts/reference-facts.json": "012f4f77cac70a8611ac0a7e3a7d11a148f2e4fca276ef5fea6c780f16457399",
+    "new-findings.json": "f448de078c6250eac14e78690e51b48a033fdce8589c9c23e8e5a1f1f84f6870",
+    "pour-integrity.json": "6acd1edfd25c61677b3c864a1c48e6b0469c2276ad544b24acb490cba95a61af",
+    "preservation.json": "94a60ac0bf3a4d15483592c91c46371a521be3a952661c05a230bccba9c056c0",
+    "result.json": "a10ce117027a80d3cf959316f598ba8f60efc046edc642ec92afb97c03875b87",
+    "snapshot.json": "bf255d90b295c705ddb7f7f89c116dcdf6b37b4f7fec20b2dd73664b01323036"
+  },
+  "locators": {
+    "RESULT.md": "RESULT.md",
+    "attempt.json": "attempt.json",
+    "result.json": "result.json",
+    "snapshot.json": "snapshot.json",
+    "validate/blocked-by.json": "blocked-by.json",
+    "validate/candidate-drc.json": "candidate-drc.json",
+    "validate/candidate-facts.json": "candidate-facts.json",
+    "validate/candidate-pour.json": "candidate-pour.json",
+    "validate/candidate-refill.json": "candidate-refill.json",
+    "validate/new-findings.json": "new-findings.json",
+    "validate/pour-integrity.json": "pour-integrity.json",
+    "validate/preservation.json": "preservation.json",
+    "facts/reference-facts.json": "facts/reference-facts.json"
+  },
+  "evidence": {
+    "result.json": {
+      "records": {
+        "attempt.json": {
+          "path": "attempt.json",
+          "sha256": "b84a4b1c07ee13e037fb01c733b7d9e4384beebef740ecf414b5597f9e008270",
+          "availability": "included"
+        },
+        "validate/preservation.json": {
+          "path": "preservation.json",
+          "sha256": "94a60ac0bf3a4d15483592c91c46371a521be3a952661c05a230bccba9c056c0",
+          "availability": "included"
+        },
+        "validate/new-findings.json": {
+          "path": "new-findings.json",
+          "sha256": "f448de078c6250eac14e78690e51b48a033fdce8589c9c23e8e5a1f1f84f6870",
+          "availability": "included"
+        },
+        "validate/candidate-drc.json": {
+          "path": "candidate-drc.json",
+          "sha256": "b5b13ca25fa7e5dfabdfda6c5df13ceedc179fb326677458875367237513782c",
+          "availability": "included"
+        },
+        "validate/candidate-facts.json": {
+          "path": "candidate-facts.json",
+          "sha256": "77ecb3da69fa3ec0f82b6eaa0b682ff3e932027db6a4012b29d353c13d0a39e6",
+          "availability": "included"
+        },
+        "validate/pour-integrity.json": {
+          "path": "pour-integrity.json",
+          "sha256": "6acd1edfd25c61677b3c864a1c48e6b0469c2276ad544b24acb490cba95a61af",
+          "availability": "included"
+        }
+      },
+      "external": {
+        "input_board_sha256": "36509bf33ef7a5fe26a9c10a00eb9413a846a48d1747921bf7b6f19cf2d8a3a5",
+        "input_fingerprint": "84717eabe7786f42eba6dde7dfd8c36ed51a9ec2e2cbee62f799e31c6d277340",
+        "baseline": {
+          "identity": {
+            "schema": 1,
+            "input": "84717eabe7786f42eba6dde7dfd8c36ed51a9ec2e2cbee62f799e31c6d277340",
+            "board": "bg2.kicad_pcb",
+            "kicad_cli": {
+              "path": "/usr/bin/kicad-cli",
+              "version": "10.0.7",
+              "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+            },
+            "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+            "pour_schema": 1,
+            "grading": {
+              "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+              "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+              "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+              "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+              "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+            },
+            "result_schemas": {
+              "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+              "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+            }
+          },
+          "generation": "generation-rhufrmk8"
+        },
+        "reference_files": {
+          "bg.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "bg.kicad_pcb": "f0baf0938341bcc216164c65c2d2ce8b8cd083cbe5514737d846b1f48499fe7d",
+          "bg.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8",
+          "bg2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "bg2.kicad_pcb": "36509bf33ef7a5fe26a9c10a00eb9413a846a48d1747921bf7b6f19cf2d8a3a5",
+          "bg2.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8"
+        },
+        "rules_files": {
+          "bg.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "bg.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8",
+          "bg2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "bg2.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8"
+        },
+        "rule_floor_sha256": null,
+        "backend_output_board_sha256": "56a80df1909272b36ec0004723c2676f8752b0339b8a8e80d823704bd28edd1e",
+        "candidate_hash_basis": "post-refill",
+        "candidate_board_sha256": "c8262529c4da36362f5d4c2583fa61240048dad5ce1898549f0e5888a5552cf5",
+        "pre_refill_board_sha256": "56a80df1909272b36ec0004723c2676f8752b0339b8a8e80d823704bd28edd1e",
+        "candidate_copper_signature": {
+          "sha256": "4705b4974a00cf82eb7df92bb4a6b2a0ac1bc88fa0ab1b2e146b6a919f34f5a3",
+          "tracks": 4335,
+          "vias": 344
+        }
+      }
+    }
+  }
+}

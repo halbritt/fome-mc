@@ -102,6 +102,16 @@ EMMC_VCC_3V3 interior balls are connected. Decision text in `../design-rules/con
 (D-PCB-3): filled via-in-pad for those five balls is the remaining spec-compliant answer and
 an owner cost decision.
 
+## Full pass on the D-PCB-3 board with both inner layers closed (`iteration-3/bga-exp/bg2-full-nofinalize/`)
+
+`kicad-route run --backend builtin --budget 1800`, net rescue and plane finalize off (a
+first 1500 s attempt was killed in the engine's refill recheck, which ignores the stop
+file): 114 of 194 nets, 4335 tracks, 344 vias, 80 nets open, 77 new findings = 64
+`items_not_allowed` (46 In1.Cu and 18 In2.Cu layer-change stubs inside the no-tracks rule
+areas, 3.8 mm total; the builtin engine does not honour inner-layer rule areas, reported
+to the kicad-route owner) + 13 dangling stubs. Two signal layers are too few for this
+board; D-PCB-7 v2 keeps only In1.Cu closed and opens In2.Cu to signals.
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.
