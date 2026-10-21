@@ -52,6 +52,18 @@ KRT's net-rescue phase ignores the stop file and can overrun the budget by minut
 pod-scale attempts with `KICAD_NET_RESCUE=0` or a budget with headroom. Freerouting's
 headless log is silent between stages, so `--stall` must be at least the budget.
 
+## Campaign on the cluster-anchored iteration-1 placement (rejected placement; diagnostic)
+
+`kicad-route campaign --backend krt --rounds 2 --budget 900 --total-budget 3300`, net rescue
+and plane finalize off, on the cluster-anchored iteration-1 candidate under the cited
+rules with patched thermal vias (`campaign-iter1-anchored.json`, receipts under
+`cited/anchored-krt-campaign-r0/`): best chain is round 0 (full pass, 372 s): 145 of 194
+nets routed, 89 unconnected items left, 4352 tracks, 381 vias, **1 new finding (a
+dangling-stub warning)**, net_completion FAIL for the 31 unfinished nets. The two
+hard-nets-first rounds finished worse (73 and 69 nets open), so net ordering is not the
+limiter on this board. The open set is the same as before: eMMC bus (D-PCB-3), the
+TPS26625 control nets, and the plane nets GND / +3V3 / PRE_6V3 without zones (D-PCB-5).
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.
