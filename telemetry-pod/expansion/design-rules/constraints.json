@@ -16,16 +16,18 @@
   },
   "board_setup_rules": {
     "min_clearance": {
-      "value_mm": 0.15,
-      "class": "engineering",
-      "basis": "JLCPCB SMD pad-to-pad (different nets) 0.15 mm; trace spacing 0.10 mm",
-      "replaces_default": 0.0
+      "value_mm": 0.09,
+      "class": "manufacturer",
+      "basis": "JLCPCB multilayer 1 oz minimum trace spacing 0.09 mm and BGA pad-to-track 0.09 mm; the earlier 0.15 mm was an agent-chosen margin (advisory) and blocked any BGA escape at 0.5 mm pitch",
+      "replaces_default": 0.0,
+      "history": "0.15 (agent margin) -> 0.09 (JLCPCB figure) on 2026-10-21 for D-PCB-3"
     },
     "min_track_width": {
-      "value_mm": 0.15,
-      "class": "engineering",
-      "basis": "JLCPCB multilayer 1 oz min trace 0.09 mm (2-layer 0.10 mm); 0.15 mm leaves ample margin; inner 0.5 oz copper has no separate published figure",
-      "replaces_default": 0.2
+      "value_mm": 0.09,
+      "class": "manufacturer",
+      "basis": "JLCPCB multilayer 1 oz minimum trace 0.09 mm (3 mil acceptable in BGA fan-outs); general nets keep the 0.20 mm Default net class",
+      "replaces_default": 0.2,
+      "history": "0.15 (agent margin) -> 0.09 (JLCPCB figure) on 2026-10-21"
     },
     "min_through_hole_diameter": {
       "value_mm": 0.3,
@@ -116,15 +118,6 @@
       "pads": 44
     }
   },
-  "net_class_default": {
-    "clearance_mm": 0.2,
-    "track_width_mm": 0.2,
-    "via_diameter_mm": 0.6,
-    "via_drill_mm": 0.3,
-    "class": "engineering",
-    "basis": "general copper spacing, width and via above the board minimums; unchanged from the generated project; the via (0.15 mm ring) sits above the 0.10 mm board minimum",
-    "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"
-  },
   "owner_authorization": "2026-10-20: relax the clearance rules if you must, as long as JLCPCB can manufacture it, and it doesn't affect electrical performance.",
   "superseded_defaults": {
     "source": "agent-ee scaffold-generated .kicad_pro for the expanded project",
@@ -148,12 +141,34 @@
     "decided": "2026-10-20"
   },
   "open_items": {
-    "D-PCB-3 eMMC interior fanout": "U14 FEMDME008G (BGA-153, 0.5 mm pitch, 0.24 mm pads) has 10 connected interior balls (EMMC_VCC_3V3 x4, GND x5, EMMC_DS at H5). A 0.60 mm via does not fit a dogbone between 0.5 mm balls (0.467 mm pad-edge diagonal gap). Candidate answers, to be decided by a bounded routing experiment: a BGA net class with JLCPCB's published BGA allowances (0.09 mm pad-to-track, 0.10 mm track, 0.25/0.15 mm via, surcharge) or via-in-pad with filled vias (JLCPCB lists filled and capped vias as default for 6 layers and above; availability as a 4-layer option must be confirmed on the order form). The first KRT diagnostic left all eMMC bus nets unrouted. Analysis 2026-10-20 (agent-499): of the ten interior balls, nine are GND (E7, G5, H10, J5, K8) and EMMC_VCC_3V3 (E6, F5, J10, K9), reachable by B.Cu (ball-side) pours under U14 without any via; the only interior signal is EMMC_DS at H5, which connects solely to pull-down R55 (10 k). The ESP32-S3 SD/MMC host has no HS400 mode, so DS is unused; if the FEMDME008G datasheet permits an unused DS to be left open or terminated at the device, the schematic can drop or relocate R55 and no interior dogbone via is needed at all. The perimeter signals (CLK, CMD, DAT0-7, VDDi at C2) escape on the surface. Leading answer: B.Cu GND/VCC pours under U14 plus a storage-stage schematic decision on DS; no via-in-pad and no BGA net class unless the DS decision fails."
+    "D-PCB-3 eMMC interior fanout": "U14 FEMDME008G (BGA-153, 0.5 mm pitch, 0.24 mm pads) has 10 connected interior balls (EMMC_VCC_3V3 x4, GND x5, EMMC_DS at H5). A 0.60 mm via does not fit a dogbone between 0.5 mm balls (0.467 mm pad-edge diagonal gap). Candidate answers, to be decided by a bounded routing experiment: a BGA net class with JLCPCB's published BGA allowances (0.09 mm pad-to-track, 0.10 mm track, 0.25/0.15 mm via, surcharge) or via-in-pad with filled vias (JLCPCB lists filled and capped vias as default for 6 layers and above; availability as a 4-layer option must be confirmed on the order form). The first KRT diagnostic left all eMMC bus nets unrouted. Analysis 2026-10-20 (agent-499): of the ten interior balls, nine are GND (E7, G5, H10, J5, K8) and EMMC_VCC_3V3 (E6, F5, J10, K9), reachable by B.Cu (ball-side) pours under U14 without any via; the only interior signal is EMMC_DS at H5, which connects solely to pull-down R55 (10 k). The ESP32-S3 SD/MMC host has no HS400 mode, so DS is unused; if the FEMDME008G datasheet permits an unused DS to be left open or terminated at the device, the schematic can drop or relocate R55 and no interior dogbone via is needed at all. The perimeter signals (CLK, CMD, DAT0-7, VDDi at C2) escape on the surface. Leading answer: B.Cu GND/VCC pours under U14 plus a storage-stage schematic decision on DS; no via-in-pad and no BGA net class unless the DS decision fails. DECISION v2 (2026-10-21, experiment pending): U14 LFBGA-153 ball pads reduced from 0.24 to 0.22 mm NSMD (within IPC-7351 for 0.30 mm balls at 0.5 mm pitch; the FEMDME008G datasheet gives no land pattern, package per JEDEC MO-276 11.5x13 mm); net class BGA_EMMC 0.09/0.09 mm for the EMMC_* nets; board-setup clearance and track floors set to JLCPCB's 0.09 mm; B.Cu pours for GND and EMMC_VCC_3V3 under U14 with 0.09 mm clearance and 0.09 mm minimum width (solid connection). Geometry: 0.5 pitch - 0.22 pad = 0.28 mm between pad edges; a 0.09 mm track with 0.095 mm to each pad meets the 0.09 floor; a 0.10 mm pour web between balls meets the 0.09 minimum width. If the routing experiment cannot connect the interior GND/VCC balls this way, the next options are filled via-in-pad (JLCPCB option, cost) or leaving DS/unused balls open per datasheet; those are owner-visible decisions recorded here."
   },
   "decisions_pending_next_seed": {
     "D-PCB-4 J2 anchor": "Molex 73251-1150 edge-launch SMA (captured footprint 73251-1153 family, SHA 318c8b54...). The footprint's F.Fab edge datum is 0.50 mm outboard of its pad copper. At the historical anchor x=85.44 (rotation 180) the datum lands at x=90.20, 0.20 mm outside the board edge, and the pads at 89.70 (0.30 mm clearance, 5 copper_edge findings). Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge (x=90.00) and the pads sit at 0.50 mm. Evidence: agent-491 J2 geometry review (~/.cache/agent491-sma-mechanical-review). Apply at the next seed; the manufacturer drawing SD-73251-115 B3 could not be downloaded and must still be inspected for launch geometry.",
     "D-PCB-5 plane plan": "agent-ee.plane-plan/1 with In1.Cu = GND over the board outline and In2.Cu = +3V3 over the board outline (largest rail, the MCU/IMU/ADC logic supply); thermal reliefs 0.3/0.3, clearance 0.25, min width 0.20, island removal always. Basis: LMR36520 \u00a78.5.1 item 5 (ground plane in a middle layer), RF_50 reference for the GNSS line, JLC04161H-7628 stack. PRE_6V3, POD_12V_PROTECTED and the sensor rails are routed as tracks sized by net class. Recorded in planes.json; applied by kicad-route planes before the routing campaign.",
     "D-PCB-6 RF reference keep-out": "Under the GNSS line from the U3 RF pad (77.5, 29.1) to the J2 pin (86.96, 28.0), keep In1.Cu (GND plane) unbroken and keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm: a native rule area (no tracks, no vias, layers In1.Cu and In2.Cu) added to the board before routing. Basis: 50-ohm microstrip referenced to the In1 plane (RF_50 net class), reviewer condition on iteration 3. Applied at the next routing pass of iteration 3.",
     "D-PCB-7 plane layers carry no tracks": "In1.Cu (GND) and In2.Cu (+3V3) are plane layers: native rule areas over the board outline with no-tracks on both layers (vias allowed, so fan-out and layer changes still pass through). Basis: the planed iteration-3 route placed signal tracks on In1.Cu (blocked-by top entries TIRE_CAN_TX_ENABLE, TWAI_RX, MCU_BOOT46, TWAI_TX on In1.Cu), which cuts the GND reference the RF_50 line and the bucks depend on (LMR36520 SNVSBF0C \u00a78.5.1 item 5). Signal routing is F.Cu and B.Cu only; if two signal layers prove insufficient, the owner decision is a 6-layer stack, not tracks in the planes. Applied with D-PCB-6 before the next routing pass."
+  },
+  "net_classes": {
+    "Default": {
+      "clearance_mm": 0.2,
+      "track_width_mm": 0.2,
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.3,
+      "class": "engineering",
+      "basis": "general copper spacing, width and via above the board minimums; unchanged from the generated project; the via (0.15 mm ring) sits above the 0.10 mm board minimum",
+      "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"
+    },
+    "BGA_EMMC": {
+      "patterns": [
+        "/EMMC_*"
+      ],
+      "clearance_mm": 0.09,
+      "track_width_mm": 0.09,
+      "via_diameter_mm": 0.5,
+      "via_drill_mm": 0.3,
+      "class": "manufacturer",
+      "basis": "JLCPCB multilayer 1 oz: trace/space 0.09/0.09 mm, pad-to-track 0.09 mm locally for BGA pads; applies only to the eMMC bus nets for the ball escape (D-PCB-3)"
+    }
   }
 }
