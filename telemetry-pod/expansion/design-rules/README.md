@@ -117,6 +117,9 @@ the stock footprint and delete the U14 rule.
 - **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the block-placed routing campaign
   leaves +3V3 plane pads open or fails pour integrity on In2 (the via-fill trigger went
   with D-PCB-3).
+- **D-PCB-13 J3 card envelope.** `footprints/Connector_Card.pretty` extends the socket's
+  courtyard over the inserted card (to y=13.98 mm) so packers and DRC keep the card path
+  clear (iteration-5 review: TP2/TP5 were 0.06 mm from the card edge).
 - **D-PCB-12 J3.** The microSD socket (−25 to +85 °C) is an 85 °C exception on the
   owner's U1/U2/U4 terms; no 105 °C socket is stocked with a library footprint.
 
@@ -146,7 +149,8 @@ it is not an adopted board.
 ## How this is applied and reversed
 
 - The next expanded-board import or placement run must use `footprints/` in place of the
-  three sources in `../released-source-migration/inputs/footprints/`, run
+  three sources in `../released-source-migration/inputs/footprints/` and of
+  `../storage-microsd/inputs/footprints/Connector_Card.pretty` (D-PCB-13), run
   `silk/apply-silk-policy.py` on the seed (D-PCB-8), carry
   `telemetry-pod.kicad_dru` as the project's rule file, and apply the board-setup values
   of `constraints.json` (as in `board-setup.kicad_pro`) to the generated project. Until the migration is

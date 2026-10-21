@@ -27,12 +27,17 @@ for vio in drc["violations"]:
             refs.add(d.split()[-1])
         elif " on F.Silkscreen" in d or " on B.Silkscreen" in d:
             gfx.add(it["uuid"])
-log = {"hidden_refs": [], "graphics_to_fab": []}
+log = {"hidden_refs": [], "graphics_to_fab": [], "text_resized": []}
+MIN_H, MIN_T = 1000000, 150000  # JLCPCB silk legend minimum 1.0 mm / 0.15 mm (board setup text limits)
 for fp in b.GetFootprints():
     r = fp.GetReference()
     if r in refs:
         fp.Reference().SetVisible(False)
         log["hidden_refs"].append(r)
+    ref = fp.Reference()
+    if ref.IsVisible() and (ref.GetTextHeight() < MIN_H or ref.GetTextThickness() < MIN_T):
+        ref.SetTextSize(k.VECTOR2I(MIN_H, MIN_H)); ref.SetTextThickness(MIN_T)
+        log["text_resized"].append(r)
     for g in fp.GraphicalItems():
         if g.m_Uuid.AsString() in gfx and g.GetLayer() in (k.F_SilkS, k.B_SilkS):
             g.SetLayer(k.F_Fab if g.GetLayer() == k.F_SilkS else k.B_Fab)

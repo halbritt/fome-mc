@@ -20,3 +20,9 @@ Uncompressed SHA-256 in `uncompressed-sha256.txt`. The packer seed of a placemen
 iteration is this base seed plus that iteration's cluster anchoring (see
 `../placement-candidate/iteration-5/inputs/`). No placement, routing or qualification
 is claimed here.
+
+3. `base-seed-viapatched.kicad_pcb.gz`: the base seed with the D-PCB-1 thermal-via patch
+   applied by `via-patch.py` (44 pads 0.20 -> 0.30/0.70 mm on U1, U5, U6, U7, U12), which
+   removes the 44 `drill_out_of_range` findings every candidate has carried. Use it as the
+   input of the next placement pass, together with the D-PCB-13 `Connector_Card` footprint
+   (courtyard over the inserted card) and the D-PCB-8 silk policy on the saved board.
