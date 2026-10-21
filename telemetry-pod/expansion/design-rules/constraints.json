@@ -5,7 +5,7 @@
     "owner": "stated by the owner; gates",
     "manufacturer": "published fabricator capability; gates",
     "datasheet": "component manufacturer land pattern or standard; gates",
-    "engineering": "design-owner margin above a cited manufacturer or datasheet value; gates, revisable by the owner",
+    "engineering": "agent-chosen margin above a cited manufacturer or datasheet value; the cited value is the floor and is what gates; the margin itself is advisory and revisable (owner direction 2026-10-21: limits are validated against a component spec or JLCPCB manufacturability)",
     "default": "chosen by an agent or tool without a source; advisory only, never gates"
   },
   "manufacturer_source": {
@@ -152,6 +152,7 @@
   },
   "decisions_pending_next_seed": {
     "D-PCB-4 J2 anchor": "Molex 73251-1150 edge-launch SMA (captured footprint 73251-1153 family, SHA 318c8b54...). The footprint's F.Fab edge datum is 0.50 mm outboard of its pad copper. At the historical anchor x=85.44 (rotation 180) the datum lands at x=90.20, 0.20 mm outside the board edge, and the pads at 89.70 (0.30 mm clearance, 5 copper_edge findings). Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge (x=90.00) and the pads sit at 0.50 mm. Evidence: agent-491 J2 geometry review (~/.cache/agent491-sma-mechanical-review). Apply at the next seed; the manufacturer drawing SD-73251-115 B3 could not be downloaded and must still be inspected for launch geometry.",
-    "D-PCB-5 plane plan": "agent-ee.plane-plan/1 with In1.Cu = GND over the board outline and In2.Cu = +3V3 over the board outline (largest rail, the MCU/IMU/ADC logic supply); thermal reliefs 0.3/0.3, clearance 0.25, min width 0.20, island removal always. Basis: LMR36520 \u00a78.5.1 item 5 (ground plane in a middle layer), RF_50 reference for the GNSS line, JLC04161H-7628 stack. PRE_6V3, POD_12V_PROTECTED and the sensor rails are routed as tracks sized by net class. Recorded in planes.json; applied by kicad-route planes before the routing campaign."
+    "D-PCB-5 plane plan": "agent-ee.plane-plan/1 with In1.Cu = GND over the board outline and In2.Cu = +3V3 over the board outline (largest rail, the MCU/IMU/ADC logic supply); thermal reliefs 0.3/0.3, clearance 0.25, min width 0.20, island removal always. Basis: LMR36520 \u00a78.5.1 item 5 (ground plane in a middle layer), RF_50 reference for the GNSS line, JLC04161H-7628 stack. PRE_6V3, POD_12V_PROTECTED and the sensor rails are routed as tracks sized by net class. Recorded in planes.json; applied by kicad-route planes before the routing campaign.",
+    "D-PCB-6 RF reference keep-out": "Under the GNSS line from the U3 RF pad (77.5, 29.1) to the J2 pin (86.96, 28.0), keep In1.Cu (GND plane) unbroken and keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm: a native rule area (no tracks, no vias, layers In1.Cu and In2.Cu) added to the board before routing. Basis: 50-ohm microstrip referenced to the In1 plane (RF_50 net class), reviewer condition on iteration 3. Applied at the next routing pass of iteration 3."
   }
 }

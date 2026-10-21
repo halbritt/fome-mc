@@ -1,4 +1,4 @@
-# Placement candidate, iteration 3 (pending independent review; not adopted)
+# Placement candidate, iteration 3 (independent review: proceed; fit for adoption review after routing; not adopted)
 
 Iteration 2 plus the review's two should-fix items:
 
@@ -15,6 +15,22 @@ Iteration 2 plus the review's two should-fix items:
 Everything else as iteration 2 (cross-side clearance, IMU isolation, inductor shadows,
 J2 0.20 mm inboard). 44 fixed references, 9 obstacles. Two refusals preceded the run (the
 keep-out 0.10 mm from U1's courtyard, inside the 0.25 mm reserved gap; moved to 0.40 mm).
+
+## Independent review (`review/independent-review.md`)
+
+No blocking or should-fix placement findings. Verified with the reviewer's own pcbnew code:
+L3 pad 3.36 mm from the U3 RF pad and 0.92 mm off the straight line to J2, C42 behind it,
+D3 0.26 mm from the line, RF net members U3/L3/D3/J2 only; U14 under U1 only, U1's thermal
+PTH pads at least 1.145 mm outside U14's courtyard (hole edge to ball copper >= 5.17 mm);
+the full checklist (331 parts, overhangs, same-side gaps, 33 pairs, anchors, IMU distances,
+J2 0.50 mm edge) and the cited-rules DRC identical item-for-item to
+`evidence/cited-rules-drc-committed-board.json`. Fit for adoption review after routing,
+conditional on: the D-PCB-1 patched thermal-via footprints on the routed board, D-PCB-3
+(eMMC fan-out) decided and shown to route, the GNSS line routed over an unbroken In1 GND
+with L3/D3 tapped at the line and no In2 traces under it (D-PCB-6 keep-out), and silk
+relocation (AGENTEE-320). Reviewer notes: eMMC CLK/CMD/DAT0-3 straight lengths 7.7-17.8 mm
+(4-bit mode, DAT4-7/DS are U14-only nets); nine B parts sit 0.26 mm from U14's courtyard,
+so a 1.5 mm B-side moat is the first lever if BGA escape stalls.
 
 ## Checks on the candidate (board SHA256 `fc28ba79…a3660e`)
 
