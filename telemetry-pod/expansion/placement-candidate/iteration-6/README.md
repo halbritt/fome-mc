@@ -1,4 +1,4 @@
-# Placement candidate, iteration 6 (two-level placement on released agent-ee 15e92c9; pending independent review; not adopted)
+# Placement candidate, iteration 6 (two-level placement on released agent-ee 15e92c9; independent review: REJECT as the board to route; not adopted)
 
 First pod placement by the released two-level placer (AGENTEE-339/340/355): 17 engineer
 blocks packed in isolation (stage A, `inputs/candidates/`), arranged as rigid macros and
@@ -46,6 +46,15 @@ Compared with iteration 5 (cluster-anchored, released packer): same obligation r
 the 44 drill findings gone, no stacking under the inductors, and the storage, AFE, ADC, CAN,
 sensor-power, supervision and diagnostic groups now placed as rigid blocks.
 
-Routing on the silk-policy board (planes + `kicad-route campaign`) is reported under
-`../../routing-diagnostic/iteration-6/` when it completes. Open: independent review, routing,
-then adoption.
+## Independent review (`review/independent-review.md`): reject, one placement change
+
+Every claim above reproduced (0 same-side gaps under 0.25 mm, nothing under L1/L2 or within
+4 mm of U2, 26/26 obligations, all 17 blocks rigid at their candidate poses, DRC identical,
+GNSS corridor intact with an empty B side, 486 of 499 connections unobstructed). **Blocking:**
+the ADC U4 (SOIC-16, B, `adc` block anchor at (50.06, 11.45)) sits 0.52 mm beyond the seated
+card's tip and overlaps the card's insertion lane over 10.4 mm, so a microSD card cannot be
+loaded and push-push ejection would drive it into U4. D-PCB-13 protected only the seated card;
+the next seed carries the full insertion lane in J3's courtyard (D-PCB-13 v2) and is
+re-packed. Should-fix carried: JP3/JP5/R22 within 0.4 mm of J1's through-hole pins and
+boardlock (THT soldering access); U6/U12 LDOs 0.26 mm apart. Routing of this board was
+stopped; no routing receipts are published for it.
