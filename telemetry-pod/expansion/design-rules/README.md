@@ -117,6 +117,9 @@ the stock footprint and delete the U14 rule.
 - **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the block-placed routing campaign
   leaves +3V3 plane pads open or fails pour integrity on In2 (the via-fill trigger went
   with D-PCB-3).
+- **D-PCB-15 EFUSE_SET net class.** 0.15/0.15 mm for the eFuse setting-resistor and
+  supervisor sense nets (microamp DC), so a track fits between resistor pads at the
+  0.25 mm packing gap; above JLCPCB's 0.09 mm floor.
 - **D-PCB-14 SD bus length.** Up to 90 mm pad-to-pad at the 20 MHz SDR target (iteration 7
   places the socket in the far corner because the card lane no longer fits under U1); route
   the six SD nets as one matched bundle; higher SD clocks need the block moved next to U1.

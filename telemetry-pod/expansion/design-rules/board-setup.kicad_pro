@@ -290,6 +290,25 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "EFUSE_SET",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.15,
+        "tuning_profile": "",
+        "via_diameter": 0.5,
+        "via_drill": 0.3,
+        "wire_width": 6
       }
     ],
     "meta": {
@@ -297,7 +316,32 @@
     },
     "net_colors": {},
     "netclass_assignments": [],
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SENSOR_POWER_*_DVDT"
+      },
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SENSOR_POWER_*_ILIM"
+      },
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SENSOR_POWER_*_OVP"
+      },
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SENSOR_POWER_*_UVLO"
+      },
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SUP_*_SENSE"
+      },
+      {
+        "netclass": "EFUSE_SET",
+        "pattern": "/SUP_*_CT"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
