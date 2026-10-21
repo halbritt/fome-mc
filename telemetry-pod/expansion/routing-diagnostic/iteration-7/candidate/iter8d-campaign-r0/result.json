@@ -1,0 +1,1419 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "builtin",
+    "version": "0.23.1",
+    "build": "owned-89a2efbf5305",
+    "commit": "557ae5758c06b050508dd8016f5c7b6abc2a83f8",
+    "source": "https://github.com/halbritt/kicad-route",
+    "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+    "upstream": {
+      "project": "KiCadRoutingTools",
+      "license": "MIT",
+      "upstream": "https://github.com/drandyhaas/KiCadRoutingTools",
+      "upstream_base": "295f9ee197517e8323726853361eb137cc08ba9e",
+      "upstream_release": "v0.23.1",
+      "fork": "https://github.com/halbritt/KiCadRoutingTools",
+      "fork_commit": "0494a05e30063b849c9cf1b9ac02098073d82216",
+      "fork_tree": "288b2baca668892c812c82f0e7db4c2b2b0a50c1",
+      "fixes": {
+        "KICADROUTE-64": "4b316ba",
+        "KICADROUTE-63": "0494a05"
+      },
+      "source_inventory": "reports/routing-engine/source-closure.json",
+      "additional_license_notices": [
+        "py_router/stage3d/vendor/three/LICENSE"
+      ],
+      "ownership": "Maintained as part of kicad-route; upstream is provenance, not a runtime source selector.",
+      "selective_adoptions": {
+        "KICADROUTE-83": {
+          "commits": [
+            "fd59a050e258581d5938c4d9456bbfeb13240e67"
+          ],
+          "scope": "pass-rules"
+        },
+        "KICADROUTE-84": {
+          "commits": [
+            "8c3e833179615dbe5e3cd205e68b03e25a6f73e8",
+            "29be549c9747855315957ccc160d69746a3d66cb",
+            "20a8e1b83b00e410f2adf60861ee536d3e57dabc",
+            "0e0029f450fa609447bcb62d16a9381cbc9d9d5d",
+            "ca96bc28f39d3c5e5f014950e8ed9664a755a8f1"
+          ],
+          "scope": "layer-stub-safety"
+        },
+        "KICADROUTE-85": {
+          "commits": [
+            "a0489b30621460e35f9d390f929fab215f7cc7f3"
+          ],
+          "scope": "pair-keepouts"
+        },
+        "KICADROUTE-86": {
+          "commits": [
+            "9ac916bc16d6edcd554bf4dc8640f30379386447",
+            "ed17b29f7eaec4822ba12178a65eca5c3a452e40"
+          ],
+          "scope": "obstacle-lifecycle"
+        },
+        "KICADROUTE-87": {
+          "commits": [
+            "0b3b6a2d19666c3411252f314d3ca8d12f1766fa"
+          ],
+          "scope": "rescue-custody"
+        },
+        "KICADROUTE-88": {
+          "commits": [
+            "2ddfc187a1bd4aa0f33263de3d5194a4c6205809"
+          ],
+          "scope": "parser-lifecycle"
+        }
+      },
+      "adoption_review_head": "0b3b6a2d19666c3411252f314d3ca8d12f1766fa",
+      "adoption_note": "Selected headless fixes only; extraction baseline above is unchanged. Parser caches use parse-local context rather than upstream global memo. Owned quote-aware copper-preserving writer, unsupported-copper refusal and tap/weld repairs remain authoritative.",
+      "adoption_inventory": "reports/upstream-fixes-20261021/source-closure.json"
+    },
+    "runtime": {
+      "source": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/router",
+      "venv": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/venv",
+      "generation": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363"
+    },
+    "rust_router": "0.23.1",
+    "execution_identity": {
+      "name": "builtin",
+      "tag": "owned-89a2efbf5305",
+      "version": "0.23.1",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+      "extension_module_sha256": "a68e93acff252282e8836b0ac33e1347684f66db7af5633c90afd326fa9d60a6",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "reproducible": true,
+    "reproducible_basis": "determinism check 2026-10-21T10:10:57.626520+00:00: identical copper geometry on repeat"
+  },
+  "measurement": true,
+  "input": {
+    "project": "candidate",
+    "board": "ca2.kicad_pcb",
+    "fingerprint": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+    "source_dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/planes-1/candidate",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null,
+    "baseline": {
+      "report": "../../../../.cache/baseline/89660781ebe2ee1069f2543301b9730945a4fc968ed42e2c538cb3f1754b013a/generation-obh2rjvw/baseline-drc.json",
+      "cached": false,
+      "reasons": [],
+      "identity": {
+        "schema": 1,
+        "input": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+        "board": "ca2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-obh2rjvw"
+    },
+    "rules_files": {
+      "project": "ca2.kicad_pro",
+      "custom_rules": "ca2.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "builtin",
+    "budget_s": 900,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_NET_RESCUE": "0",
+      "KICAD_PLANE_FINALIZE": "0"
+    },
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 600,
+    "mode": "all",
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 235,
+    "nets_list": null
+  },
+  "unsupported": [
+    "KRT reads only a subset of .kicad_dru custom rules; every rule is still graded by KiCad DRC",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class",
+    "backend reported: .kicad_dru: rule 'fine-pitch intra-footprint pad clearance (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U16 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U17 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U18 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U19 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it"
+  ],
+  "floor": null,
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "exit_code": 0,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/venv/bin/python",
+          "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/router/py_router/route.py",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/input/candidate/ca2.kicad_pcb",
+          "--output",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/ca2.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "*"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_NET_RESCUE": "0",
+          "KICAD_PLANE_FINALIZE": "0"
+        },
+        "budget_s": 900,
+        "last_phase": "Run complete -- whole run, re-graded on the written board (182 net(s), 1.1s)",
+        "last_metric": {},
+        "heartbeats": {
+          "count": 4170,
+          "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/heartbeat.jsonl",
+          "stall_s": 600,
+          "since_last_progress_s": 1.0,
+          "tail": [
+            {
+              "t_s": 309.077,
+              "utc": "2026-10-21T14:05:04.821585+00:00",
+              "phase": "FAILED NET HISTORIES",
+              "metric": {},
+              "line": "============================================================"
+            },
+            {
+              "t_s": 309.08,
+              "utc": "2026-10-21T14:05:04.824269+00:00",
+              "phase": "summary",
+              "metric": {},
+              "line": "JSON_SUMMARY: {\"routed_single\": [], \"failed_single\": [\"/SPI_MOSI\", \"/POWER_FAIL_N\", \"/AFE_DIV1\", \"/SENSOR_POWER_TIRE_DVDT\", \"/SENSOR_POWER_FRONT_DVDT\", \"/SEN..."
+            },
+            {
+              "t_s": 309.08,
+              "utc": "2026-10-21T14:05:04.824528+00:00",
+              "phase": "writing output",
+              "metric": {},
+              "line": "Writing output to /home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/ca2.kicad_pcb..."
+            },
+            {
+              "t_s": 315.334,
+              "utc": "2026-10-21T14:05:11.078177+00:00",
+              "phase": "regrade",
+              "metric": {},
+              "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 182, \"seconds\": 1.15, \"routed_single\": [\"/SPI_MISO\", \"/IMU_INT1\", \"/IMU_CS\", \"/POD_UART_TX\", \"/SENSOR_POWER_TI..."
+            },
+            {
+              "t_s": 315.334,
+              "utc": "2026-10-21T14:05:11.078302+00:00",
+              "phase": "Run complete -- whole run, re-graded on the written board (182 net(s), 1.1s)",
+              "metric": {},
+              "line": "============================================================"
+            }
+          ]
+        },
+        "stalled": false,
+        "exit_code": 0,
+        "duration_s": 316.338,
+        "output_tail": "6\", \"pad_number\": \"?\"}, {\"x\": 60.725, \"y\": 8.7844, \"component_ref\": \"U16\", \"pad_number\": \"?\"}, {\"x\": 80.215, \"y\": 44.8075, \"component_ref\": \"U8\", \"pad_number\": \"?\"}]}, {\"net_name\": \"/GND\", \"failed_pads\": [{\"x\": 60.06, \"y\": 15.212, \"component_ref\": \"C80\", \"pad_number\": \"?\"}, {\"x\": 60.06, \"y\": 12.002, \"component_ref\": \"C79\", \"pad_number\": \"?\"}, {\"x\": 13.5003, \"y\": 36.665, \"component_ref\": \"U26\", \"pad_number\": \"?\"}, {\"x\": 59.3925, \"y\": 32.995, \"component_ref\": \"U28\", \"pad_number\": \"?\"}, {\"x\": 57.43, \"y\": 15.2344, \"component_ref\": \"C54\", \"pad_number\": \"?\"}, {\"x\": 65.585, \"y\": 7.0219, \"component_ref\": \"U19\", \"pad_number\": \"?\"}, {\"x\": 82.93, \"y\": 42.84, \"component_ref\": \"C32\", \"pad_number\": \"?\"}, {\"x\": 62.19, \"y\": 15.2344, \"component_ref\": \"C56\", \"pad_number\": \"?\"}, {\"x\": 63.875, \"y\": 3.8119, \"component_ref\": \"U18\", \"pad_number\": \"?\"}, {\"x\": 78.17, \"y\": 42.84, \"component_ref\": \"C30\", \"pad_number\": \"?\"}, {\"x\": 55.0, \"y\": 26.6044, \"component_ref\": \"R44\", \"pad_number\": \"?\"}, {\"x\": 61.925, \"y\": 8.2844, \"component_ref\": \"U16\", \"pad_number\": \"?\"}, {\"x\": 80.215, \"y\": 50.5325, \"component_ref\": \"U8\", \"pad_number\": \"?\"}, {\"x\": 58.285, \"y\": 26.4194, \"component_ref\": \"C60\", \"pad_number\": \"?\"}]}, {\"net_name\": \"/MCU_EN\", \"failed_pads\": [{\"x\": 63.75, \"y\": 3.78, \"component_ref\": \"U1\", \"pad_number\": \"?\"}, {\"x\": 63.16, \"y\": 23.422, \"component_ref\": \"C47\", \"pad_number\": \"?\"}, {\"x\": 56.665, \"y\": 23.397, \"component_ref\": \"R29\", \"pad_number\": \"?\"}, {\"x\": 60.725, \"y\": 7.7844, \"component_ref\": \"U16\", \"pad_number\": \"?\"}]}, {\"net_name\": \"/POD_5V_AUX\", \"failed_pads\": [{\"x\": 84.2, \"y\": 44.815, \"component_ref\": \"U30\", \"pad_number\": \"?\"}, {\"x\": 84.62, \"y\": 46.445, \"component_ref\": \"C125\", \"pad_number\": \"?\"}]}, {\"net_name\": \"/SENSOR_FAULT_N\", \"failed_pads\": [{\"x\": 63.375, \"y\": 5.0119, \"component_ref\": \"U18\", \"pad_number\": \"?\"}, {\"x\": 60.805, \"y\": 11.8894, \"component_ref\": \"R64\", \"pad_number\": \"?\"}]}, {\"net_name\": \"/SPI_SCK\", \"failed_pads\": [{\"x\": 12.0, \"y\": 9.0875, \"component_ref\": \"U2\", \"pad_number\": \"?\"}, {\"x\": 57.855, \"y\": 13.977, \"component_ref\": \"U20\", \"pad_number\": \"?\"}]}], \"multipoint_pads_total\": 748, \"multipoint_pads_connected\": 718, \"successful\": 150, \"failed\": 32, \"unowned_broken\": [], \"recovered\": [\"/AFE_BUF3\", \"/DIAG_I2C_SCL\", \"/WHEEL_FRONT_OUT\", \"/WHEEL_REAR_CAPTURE\"], \"broken_by_run\": []}\n\n============================================================\nRun complete -- whole run, re-graded on the written board (182 net(s), 1.1s)\n============================================================\n  Single-ended:  150/182 routed (26 FAILED)\n  Multi-point:   718/748 pads connected (30 FAILED)\n  Recovered after a summary reported them failing: 4\n  Ships broken: 32 net(s) -- the `failed` count, over every net the run owns\n  route summary written to /home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/summary.json\nJSON_SUMMARY_MIN: {\"escalations\": 0, \"failed\": 32, \"failed_single\": [\"/AFE_BUF1\", \"/AFE_DIV1\", \"/DIAG_U28_AIN2\", \"/DIAG_U28_AIN3\", \"/GNSS_PPS\", \"/POD_AUX3_SIGNAL\", \"/POWER_FAIL_N\", \"/SD_CD\", \"/SD_CMD\", \"/SD_DAT1\", \"/SD_DAT2\", \"/SENSOR_POWER_FRONT_DVDT\", \"/SENSOR_POWER_FRONT_ILIM\", \"/SENSOR_POWER_FRONT_OVP\", \"/SENSOR_POWER_FRONT_UVLO\", \"/SENSOR_POWER_REAR_DVDT\", \"/SENSOR_POWER_REAR_ILIM\", \"/SENSOR_POWER_REAR_OVP\", \"/SENSOR_POWER_REAR_UVLO\", \"/SENSOR_POWER_TIRE_DVDT\", \"+6 more\"], \"main_loop_time_s\": 25.009999999999998, \"min_clearance_used\": 0.2, \"multipoint_deficit\": 30, \"open_single\": [], \"pad_pairs_open\": {\"count\": 32, \"nets\": [\"/+3V3\", \"/AFE_BUF1\", \"/AFE_DIV1\", \"/DIAG_U28_AIN2\", \"/DIAG_U28_AIN3\", \"/GND\", \"/GNSS_PPS\", \"/MCU_EN\", \"/POD_5V_AUX\", \"/POD_AUX3_SIGNAL\", \"/POWER_FAIL_N\", \"/SD_CD\", \"/SD_CMD\", \"/SD_DAT1\", \"/SD_DAT2\", \"/SENSOR_FAULT_N\", \"/SENSOR_POWER_FRONT_DVDT\", \"/SENSOR_POWER_FRONT_ILIM\", \"/SENSOR_POWER_FRONT_OVP\", \"/SENSOR_POWER_FRONT_UVLO\", \"+12 more\"]}, \"regraded_nets\": 182, \"routed\": 150, \"scope\": \"merged\", \"terminal_restores_broken\": [\"/POWER_FAIL_N\"], \"vias\": 412}\nEXIT=0\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/locks.py",
+          "restore",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/ca2.kicad_pcb",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/locks.json"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/restore-locks.log",
+        "exit_code": 0,
+        "duration_s": 0.563
+      }
+    ],
+    "backend_report": {
+      "successful": 150,
+      "failed": 32,
+      "failed_single": [
+        "/AFE_BUF1",
+        "/AFE_DIV1",
+        "/DIAG_U28_AIN2",
+        "/DIAG_U28_AIN3",
+        "/GNSS_PPS",
+        "/POD_AUX3_SIGNAL",
+        "/POWER_FAIL_N",
+        "/SD_CD",
+        "/SD_CMD",
+        "/SD_DAT1",
+        "/SD_DAT2",
+        "/SENSOR_POWER_FRONT_DVDT",
+        "/SENSOR_POWER_FRONT_ILIM",
+        "/SENSOR_POWER_FRONT_OVP",
+        "/SENSOR_POWER_FRONT_UVLO",
+        "/SENSOR_POWER_REAR_DVDT",
+        "/SENSOR_POWER_REAR_ILIM",
+        "/SENSOR_POWER_REAR_OVP",
+        "/SENSOR_POWER_REAR_UVLO",
+        "/SENSOR_POWER_TIRE_DVDT",
+        "/SENSOR_POWER_TIRE_ILIM",
+        "/SPI_MOSI",
+        "/SUP_U18_SENSE",
+        "/TIRE_CAN_CS",
+        "/TIRE_CAN_INT_N",
+        "/TIRE_CAN_TX"
+      ],
+      "open_single": [],
+      "failed_multipoint": [
+        {
+          "net_name": "/+3V3",
+          "failed_pads": [
+            {
+              "x": 11.5,
+              "y": 10.9125,
+              "component_ref": "U2",
+              "pad_number": "?"
+            },
+            {
+              "x": 63.555,
+              "y": 8.2169,
+              "component_ref": "R56",
+              "pad_number": "?"
+            },
+            {
+              "x": 57.405,
+              "y": 33.63,
+              "component_ref": "C118",
+              "pad_number": "?"
+            },
+            {
+              "x": 61.925,
+              "y": 8.7844,
+              "component_ref": "U16",
+              "pad_number": "?"
+            },
+            {
+              "x": 60.725,
+              "y": 8.7844,
+              "component_ref": "U16",
+              "pad_number": "?"
+            },
+            {
+              "x": 80.215,
+              "y": 44.8075,
+              "component_ref": "U8",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "/GND",
+          "failed_pads": [
+            {
+              "x": 60.06,
+              "y": 15.212,
+              "component_ref": "C80",
+              "pad_number": "?"
+            },
+            {
+              "x": 60.06,
+              "y": 12.002,
+              "component_ref": "C79",
+              "pad_number": "?"
+            },
+            {
+              "x": 13.5003,
+              "y": 36.665,
+              "component_ref": "U26",
+              "pad_number": "?"
+            },
+            {
+              "x": 59.3925,
+              "y": 32.995,
+              "component_ref": "U28",
+              "pad_number": "?"
+            },
+            {
+              "x": 57.43,
+              "y": 15.2344,
+              "component_ref": "C54",
+              "pad_number": "?"
+            },
+            {
+              "x": 65.585,
+              "y": 7.0219,
+              "component_ref": "U19",
+              "pad_number": "?"
+            },
+            {
+              "x": 82.93,
+              "y": 42.84,
+              "component_ref": "C32",
+              "pad_number": "?"
+            },
+            {
+              "x": 62.19,
+              "y": 15.2344,
+              "component_ref": "C56",
+              "pad_number": "?"
+            },
+            {
+              "x": 63.875,
+              "y": 3.8119,
+              "component_ref": "U18",
+              "pad_number": "?"
+            },
+            {
+              "x": 78.17,
+              "y": 42.84,
+              "component_ref": "C30",
+              "pad_number": "?"
+            },
+            {
+              "x": 55.0,
+              "y": 26.6044,
+              "component_ref": "R44",
+              "pad_number": "?"
+            },
+            {
+              "x": 61.925,
+              "y": 8.2844,
+              "component_ref": "U16",
+              "pad_number": "?"
+            },
+            {
+              "x": 80.215,
+              "y": 50.5325,
+              "component_ref": "U8",
+              "pad_number": "?"
+            },
+            {
+              "x": 58.285,
+              "y": 26.4194,
+              "component_ref": "C60",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "/MCU_EN",
+          "failed_pads": [
+            {
+              "x": 63.75,
+              "y": 3.78,
+              "component_ref": "U1",
+              "pad_number": "?"
+            },
+            {
+              "x": 63.16,
+              "y": 23.422,
+              "component_ref": "C47",
+              "pad_number": "?"
+            },
+            {
+              "x": 56.665,
+              "y": 23.397,
+              "component_ref": "R29",
+              "pad_number": "?"
+            },
+            {
+              "x": 60.725,
+              "y": 7.7844,
+              "component_ref": "U16",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "/POD_5V_AUX",
+          "failed_pads": [
+            {
+              "x": 84.2,
+              "y": 44.815,
+              "component_ref": "U30",
+              "pad_number": "?"
+            },
+            {
+              "x": 84.62,
+              "y": 46.445,
+              "component_ref": "C125",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "/SENSOR_FAULT_N",
+          "failed_pads": [
+            {
+              "x": 63.375,
+              "y": 5.0119,
+              "component_ref": "U18",
+              "pad_number": "?"
+            },
+            {
+              "x": 60.805,
+              "y": 11.8894,
+              "component_ref": "R64",
+              "pad_number": "?"
+            }
+          ]
+        },
+        {
+          "net_name": "/SPI_SCK",
+          "failed_pads": [
+            {
+              "x": 12.0,
+              "y": 9.0875,
+              "component_ref": "U2",
+              "pad_number": "?"
+            },
+            {
+              "x": 57.855,
+              "y": 13.977,
+              "component_ref": "U20",
+              "pad_number": "?"
+            }
+          ]
+        }
+      ],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 714,
+      "pad_pairs_total": 769,
+      "total_vias": 412,
+      "total_iterations": 9563648,
+      "total_time": 25.009999999999998,
+      "protected_skipped": null,
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [],
+        "fab_tier_escalations": 0,
+        "min_delivered": {},
+        "unsupported_rules": []
+      },
+      "improvement_gate": null,
+      "project_writes": null
+    },
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 0
+      },
+      "lock_exit": 0,
+      "restore": {
+        "restored": 0,
+        "not_found": 0
+      }
+    },
+    "project_writeback": [
+      {
+        "file": "ca2.kicad_prl",
+        "identical_to_input": true
+      },
+      {
+        "file": "ca2.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 318.089,
+    "last_phase": "Run complete -- whole run, re-graded on the written board (182 net(s), 1.1s)",
+    "heartbeats": {
+      "count": 4170,
+      "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/heartbeat.jsonl",
+      "stall_s": 600,
+      "since_last_progress_s": 1.0,
+      "tail": [
+        {
+          "t_s": 309.077,
+          "utc": "2026-10-21T14:05:04.821585+00:00",
+          "phase": "FAILED NET HISTORIES",
+          "metric": {},
+          "line": "============================================================"
+        },
+        {
+          "t_s": 309.08,
+          "utc": "2026-10-21T14:05:04.824269+00:00",
+          "phase": "summary",
+          "metric": {},
+          "line": "JSON_SUMMARY: {\"routed_single\": [], \"failed_single\": [\"/SPI_MOSI\", \"/POWER_FAIL_N\", \"/AFE_DIV1\", \"/SENSOR_POWER_TIRE_DVDT\", \"/SENSOR_POWER_FRONT_DVDT\", \"/SEN..."
+        },
+        {
+          "t_s": 309.08,
+          "utc": "2026-10-21T14:05:04.824528+00:00",
+          "phase": "writing output",
+          "metric": {},
+          "line": "Writing output to /home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/work/krt-out/ca2.kicad_pcb..."
+        },
+        {
+          "t_s": 315.334,
+          "utc": "2026-10-21T14:05:11.078177+00:00",
+          "phase": "regrade",
+          "metric": {},
+          "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 182, \"seconds\": 1.15, \"routed_single\": [\"/SPI_MISO\", \"/IMU_INT1\", \"/IMU_CS\", \"/POD_UART_TX\", \"/SENSOR_POWER_TI..."
+        },
+        {
+          "t_s": 315.334,
+          "utc": "2026-10-21T14:05:11.078302+00:00",
+          "phase": "Run complete -- whole run, re-graded on the written board (182 net(s), 1.1s)",
+          "metric": {},
+          "line": "============================================================"
+        }
+      ]
+    },
+    "stalled": false,
+    "measurement_qualification": {
+      "measurement": true,
+      "build_reproducible": true,
+      "reasons": []
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 55,
+    "unconnected_total": 55,
+    "baseline_unconnected_total": 499,
+    "unrouted_nets": [
+      "/+3V3",
+      "/AFE_BUF1",
+      "/AFE_DIV1",
+      "/DIAG_U28_AIN2",
+      "/DIAG_U28_AIN3",
+      "/GND",
+      "/GNSS_PPS",
+      "/MCU_EN",
+      "/POD_5V_AUX",
+      "/POD_AUX3_SIGNAL",
+      "/POWER_FAIL_N",
+      "/SD_CD",
+      "/SD_CMD",
+      "/SD_DAT1",
+      "/SD_DAT2",
+      "/SENSOR_FAULT_N",
+      "/SENSOR_POWER_FRONT_DVDT",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_POWER_FRONT_OVP",
+      "/SENSOR_POWER_FRONT_UVLO",
+      "/SENSOR_POWER_REAR_DVDT",
+      "/SENSOR_POWER_REAR_ILIM",
+      "/SENSOR_POWER_REAR_OVP",
+      "/SENSOR_POWER_REAR_UVLO",
+      "/SENSOR_POWER_TIRE_DVDT",
+      "/SENSOR_POWER_TIRE_ILIM",
+      "/SPI_MOSI",
+      "/SPI_SCK",
+      "/SUP_U18_SENSE",
+      "/TIRE_CAN_CS",
+      "/TIRE_CAN_INT_N",
+      "/TIRE_CAN_TX"
+    ],
+    "stats": {
+      "new_tracks": 3532,
+      "new_vias": 412,
+      "new_track_length_mm": 4497.724,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 1640.772,
+        "F.Cu": 1970.922,
+        "In1.Cu": 481.68,
+        "In2.Cu": 404.35
+      },
+      "new_copper_nets": 173,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate/blocked-by.json",
+      "connections_analyzed": 55,
+      "unobstructed_connections": 35,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "4514d48b-85b7-469e-89d5-2a07766087ab",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /TIRE_CAN_TX (new, unlocked) 4514d48b",
+          "net": "/TIRE_CAN_TX",
+          "locked": false,
+          "origin": "new",
+          "blocks": 3,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/SD_DAT1",
+            "/SPI_MOSI",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "30556dd6-19e2-4413-bce8-ac4350e9ca3b",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /SUP_U19_CT In2.Cu (new, unlocked) 30556dd6",
+          "net": "/SUP_U19_CT",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 8,
+          "nets_blocked": [
+            "/+3V3",
+            "/GND",
+            "/GNSS_PPS",
+            "/MCU_EN",
+            "/SD_DAT1",
+            "/SENSOR_FAULT_N",
+            "/TIRE_CAN_CS",
+            "/TIRE_CAN_TX"
+          ]
+        },
+        {
+          "id": "f74a23f0-02cb-47f0-868b-39681ece69bd",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /POD_AUX2_SIGNAL In1.Cu (new, unlocked) f74a23f0",
+          "net": "/POD_AUX2_SIGNAL",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 5,
+          "nets_blocked": [
+            "/GND",
+            "/MCU_EN",
+            "/SD_CD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "14f5cb65-0007-4d99-be9f-5187ac7b8f37",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /SPI_MISO In2.Cu (new, unlocked) 14f5cb65",
+          "net": "/SPI_MISO",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 5,
+          "nets_blocked": [
+            "/GND",
+            "/SD_CMD",
+            "/SENSOR_FAULT_N",
+            "/TIRE_CAN_INT_N"
+          ]
+        },
+        {
+          "id": "d971e460-4784-4412-bb75-588207c752c6",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /SPI_MISO In2.Cu (new, unlocked) d971e460",
+          "net": "/SPI_MISO",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/GND",
+            "/SD_CMD",
+            "/TIRE_CAN_INT_N"
+          ]
+        },
+        {
+          "id": "dacb6bc4-9d29-40a1-bce8-fdf223ca8fde",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /SPI_MISO In2.Cu (new, unlocked) dacb6bc4",
+          "net": "/SPI_MISO",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/SPI_MOSI",
+            "/SPI_SCK",
+            "/TIRE_CAN_CS"
+          ]
+        },
+        {
+          "id": "61512e74-faa8-448c-b063-ba9c264449e2",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /DIAG_U28_AIN1_UPPER2 In1.Cu (new, unlocked) 61512e74",
+          "net": "/DIAG_U28_AIN1_UPPER2",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/DIAG_U28_AIN3",
+            "/POD_AUX3_SIGNAL"
+          ]
+        },
+        {
+          "id": "69d51fcc-6280-4294-ad69-edf7d2d56bc6",
+          "category": "new_copper",
+          "kind": "track",
+          "label": "track /GNSS_RX_IN In1.Cu (new, unlocked) 69d51fcc",
+          "net": "/GNSS_RX_IN",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/SD_CD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "b66b4296-778c-455a-a8c2-392b601c3e25",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /SPI_MOSI (new, unlocked) b66b4296",
+          "net": "/SPI_MOSI",
+          "locked": false,
+          "origin": "new",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/SD_CD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "footprint:U1",
+          "category": "footprint",
+          "kind": "footprint",
+          "label": "footprint U1 pads 3, 4, 17, 18, 8, 9 +17 more (/MCU_EN, /TWAI_TX, /ADC_CS +15 more)",
+          "locked": true,
+          "blocks": 1,
+          "blocks_any_layer": 12,
+          "nets_blocked": [
+            "/AFE_BUF1",
+            "/GND",
+            "/GNSS_PPS",
+            "/MCU_EN",
+            "/SD_CD",
+            "/SD_CMD",
+            "/SD_DAT1",
+            "/SD_DAT2",
+            "/SENSOR_FAULT_N",
+            "/SPI_SCK",
+            "/SUP_U18_SENSE"
+          ]
+        }
+      ],
+      "nets": {
+        "/+3V3": {
+          "connections": 4,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /GND 8273d977"
+          ]
+        },
+        "/AFE_BUF1": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /GND 93895e5b"
+          ]
+        },
+        "/AFE_DIV1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/DIAG_U28_AIN2": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /DIAG_I2C_SDA In2.Cu 33fb5cc0",
+            "track /DIAG_I2C_SDA In2.Cu 58c22b11",
+            "track /ANT_LIMITED In2.Cu 1fa15a9f",
+            "via /DIAG_I2C_SDA 03fa1901",
+            "via /DIAG_I2C_SCL 0fc7e71a"
+          ]
+        },
+        "/DIAG_U28_AIN3": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 13,
+          "blockers": [
+            "track /TIRE_CAN_L In1.Cu 4def16cc",
+            "track /TIRE_CAN_L In1.Cu b2346d9f",
+            "track /TIRE_CAN_H In1.Cu c39ee8e2",
+            "track /POD_TIRE_SUPPLY In1.Cu fb8b7f30",
+            "track /SD_DAT0 In1.Cu 34ab89e4"
+          ]
+        },
+        "/GND": {
+          "connections": 14,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /+3V3 6c541906",
+            "footprint C80"
+          ]
+        },
+        "/GNSS_PPS": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /IMU_INT1 In1.Cu 9996666a",
+            "track /SENSOR_REF_2V5 In1.Cu eca76af7",
+            "track /ADC_AIN4 In1.Cu adb5178d",
+            "track /DIAG_U29_AIN2_UPPER2 In1.Cu 020d13b7",
+            "via /DIAG_U29_AIN2_UPPER2 ef936836"
+          ]
+        },
+        "/MCU_EN": {
+          "connections": 4,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 5,
+          "blockers": [
+            "via /SUP_U19_CT 1de3bd57",
+            "track /SPI_MOSI In2.Cu 0636041f",
+            "track /SPI_MISO In2.Cu 29040aec",
+            "track /SUP_U19_CT In2.Cu 30556dd6",
+            "via /GND 1d8d8ca2"
+          ]
+        },
+        "/POD_5V_AUX": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/POD_AUX3_SIGNAL": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /TIRE_CAN_H In1.Cu 041b703b",
+            "track /POD_TIRE_SUPPLY In1.Cu d966121a",
+            "track /DIAG_U28_AIN1_UPPER2 In1.Cu 61512e74",
+            "via /GND c347b52e",
+            "via /DIAG_U29_AIN0_UPPER2 d77e8ef0"
+          ]
+        },
+        "/POWER_FAIL_N": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SD_CD": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 18,
+          "blockers": [
+            "track /GND In1.Cu f3774e66",
+            "track /PRE_6V3 In1.Cu 6acb734e",
+            "track /GNSS_RX_IN In1.Cu 69d51fcc",
+            "track /POD_AUX1_SIGNAL In1.Cu 629bafd1",
+            "track /POD_AUX2_SIGNAL In1.Cu f74a23f0"
+          ]
+        },
+        "/SD_CMD": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 15,
+          "blockers": [
+            "track /+3V3 In2.Cu b5df756e",
+            "track /SPI_MISO In2.Cu 14f5cb65",
+            "track /SPI_MISO In2.Cu 4ffd5811",
+            "track /SPI_MISO In2.Cu d971e460",
+            "track /WHEEL_FRONT_PULLUP In2.Cu 2af3015f"
+          ]
+        },
+        "/SD_DAT1": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 9,
+          "blockers": [
+            "track /SUP_U19_CT In2.Cu 30556dd6",
+            "track /SUP_U19_CT In2.Cu f3ff8ea6",
+            "via /TIRE_CAN_TX 4514d48b",
+            "via /SUP_U19_CT 76c0e13c",
+            "footprint U1"
+          ]
+        },
+        "/SD_DAT2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 11,
+          "blockers": [
+            "track /+3V3 In1.Cu 6ac684be",
+            "track /GND In1.Cu 15a6c941",
+            "track /GND In1.Cu 4687083f",
+            "track /TWAI_RX In1.Cu 1ce37649",
+            "track /SD_DAT0 In1.Cu 706dc71d"
+          ]
+        },
+        "/SENSOR_FAULT_N": {
+          "connections": 2,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 3,
+          "blockers": [
+            "track /MCU_BOOT In1.Cu 0e1b558b",
+            "via /IMU_INT1 dcba173e",
+            "via /SPI_MISO d11fbdb8"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_DVDT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_FRONT_ILIM": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_FRONT_OVP": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_FRONT_UVLO": {
+          "connections": 2,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_DVDT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_ILIM": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_OVP": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_UVLO": {
+          "connections": 2,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_TIRE_DVDT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_TIRE_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SPI_MOSI": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "track /SPI_MISO In2.Cu dacb6bc4",
+            "via /TIRE_CAN_TX 4514d48b"
+          ]
+        },
+        "/SPI_SCK": {
+          "connections": 2,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 4,
+          "blockers": [
+            "track /SPI_MOSI In2.Cu 3695ccf7",
+            "track /SPI_MOSI In2.Cu b88aad2d",
+            "track /SPI_MISO In2.Cu dacb6bc4",
+            "via /TIRE_CAN_TX 4514d48b",
+            "track /GNSS_RX_IN In1.Cu 69d51fcc"
+          ]
+        },
+        "/SUP_U18_SENSE": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/TIRE_CAN_CS": {
+          "connections": 1,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "track /+3V3 F.Cu c088958c"
+          ]
+        },
+        "/TIRE_CAN_INT_N": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /SPI_MOSI In2.Cu 33a352ea",
+            "track /SPI_MISO In2.Cu 14f5cb65",
+            "track /SPI_MISO In2.Cu d971e460",
+            "via /POD_12V_PROTECTED df02994e",
+            "via /SPI_MOSI a5757acc"
+          ]
+        },
+        "/TIRE_CAN_TX": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "track /TIRE_CAN_TX_ENABLE In1.Cu 51241c3d"
+          ]
+        }
+      }
+    }
+  },
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "1 new DRC violations: via_dangling 1",
+      "preservation net_completion: 10 of the 155 nets fully connected in the input lost connection: /AFE_BUF1, /AFE_DIV1, /DIAG_U28_AIN3, /POD_AUX3_SIGNAL, /SD_DAT1, /SD_DAT2, /SENSOR_POWER_FRONT_DVDT, /SENSOR_POWER_FRONT_ILIM, /SENSOR_POWER_REAR_ILIM, /SUP_U18_SENSE"
+    ],
+    "dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate",
+    "rules_files": {
+      "project": "ca2.kicad_pro",
+      "custom_rules": "ca2.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "f90f320ab36dc3481a05128568df99cc38b2af792a6fdeda69bc96383b636a81",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate/candidate-refill.json",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate/ca2.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 3.58
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate/candidate-drc.json",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate/ca2.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.646
+      }
+    ],
+    "validated_board_sha256": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+    "candidate_board_sha256": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+    "refill_modified_board": true,
+    "parity_performed": null,
+    "drc": {
+      "violations_total": 24,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 1,
+        "by_type": {
+          "via_dangling": 1
+        },
+        "by_severity": {
+          "warning": 1
+        }
+      },
+      "preexisting_violations": 23,
+      "resolved_violations": 13,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "net_completion": {
+      "status": "FAIL",
+      "nets_connected_in_input": 155,
+      "nets_lost": [
+        "/AFE_BUF1",
+        "/AFE_DIV1",
+        "/DIAG_U28_AIN3",
+        "/POD_AUX3_SIGNAL",
+        "/SD_DAT1",
+        "/SD_DAT2",
+        "/SENSOR_POWER_FRONT_DVDT",
+        "/SENSOR_POWER_FRONT_ILIM",
+        "/SENSOR_POWER_REAR_ILIM",
+        "/SUP_U18_SENSE"
+      ]
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "FAIL",
+      "pour_integrity": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate",
+    "board": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate/ca2.kicad_pcb"
+  },
+  "run_dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z",
+  "runtime_s": 341.624,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+    "input_fingerprint": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+    "baseline": {
+      "identity": {
+        "schema": 1,
+        "input": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+        "board": "ca2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-obh2rjvw"
+    },
+    "reference_files": {
+      "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "ca2.kicad_pcb": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+      "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+    },
+    "rules_files": {
+      "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": "f90f320ab36dc3481a05128568df99cc38b2af792a6fdeda69bc96383b636a81",
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+    "pre_refill_board_sha256": "f90f320ab36dc3481a05128568df99cc38b2af792a6fdeda69bc96383b636a81",
+    "candidate_copper_signature": {
+      "sha256": "37f6cfabf192fcced75f176ce94fc3c3a50dca8279ee865db2698f839549ff20",
+      "tracks": 3532,
+      "vias": 412
+    },
+    "records": {
+      "attempt.json": "e64d87c5a6a69cf01f603191f86e3e8e45bc8a845ddfb5c86446e3e2841aa58a",
+      "validate/preservation.json": "cb07547417ac19f39fb2ce0c966d336e62197759bcb609709aff92ac701f5bca",
+      "validate/new-findings.json": "59e47205cf199216889e32be1e1b065e2ce85d3f0f9577c2eb5727e7650efc39",
+      "validate/candidate-drc.json": "6463c141a0da1a81e402d71dcedd322efb194e4dd3841a6ce8d5b17e8cf1a2fa",
+      "validate/candidate-facts.json": "a0b00b6e1001bcd03244ed4d883d3acbd917f94856ee8338b7985db9a3dfae3f",
+      "validate/pour-integrity.json": "71eabd85f2c48fd52fad39f80678127ca29fef6ff6dde9eb9a775b3d05036e43"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "557ae57",
+      "commit": "557ae5758c06b050508dd8016f5c7b6abc2a83f8",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "builtin",
+      "tag": "owned-89a2efbf5305",
+      "version": "0.23.1",
+      "commit": "557ae5758c06b050508dd8016f5c7b6abc2a83f8",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+      "extension_module_sha256": "a68e93acff252282e8836b0ac33e1347684f66db7af5633c90afd326fa9d60a6",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "state_manifest_sha256": "c67400a1ae5d4569c5402e432c3d2e298d4ca61d69f2353d217cf49ff8d15377",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-21T14:05:21.878259+00:00",
+  "exit_code": 3,
+  "ledger": {
+    "fingerprint": "fbb908fedf03229ae932c57b065b58ced63dcac014a81ba5338c2e8862cbc874",
+    "short": "fbb908fedf03",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/agent499-microsd/iter8d/route/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/agent499-microsd/iter8d/route"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  }
+}

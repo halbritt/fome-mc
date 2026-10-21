@@ -1,0 +1,119 @@
+{
+  "schema": "kicad-route/publication/1",
+  "kind": "run",
+  "files": {
+    "RESULT.md": "4e28573f7213bd3a92474cc3400e36f2cb9416613097ff08c9649b7a5fc449d2",
+    "attempt.json": "e64d87c5a6a69cf01f603191f86e3e8e45bc8a845ddfb5c86446e3e2841aa58a",
+    "blocked-by.json": "e8531f3ced96c1da7a55a825e2ab3916a8c2a19f1e14ff1d3f82e7119399d599",
+    "candidate-drc.json": "6463c141a0da1a81e402d71dcedd322efb194e4dd3841a6ce8d5b17e8cf1a2fa",
+    "candidate-facts.json": "a0b00b6e1001bcd03244ed4d883d3acbd917f94856ee8338b7985db9a3dfae3f",
+    "candidate-pour.json": "35792c935293c507e19abd290820a970db70703f51a0e7fff71727534978f4a7",
+    "candidate-refill.json": "9d243875dd805403fe317f9a53d02e3c4af7f36cf7401d66292e1ddf788263ce",
+    "facts/reference-facts.json": "d219b1f213e3672cbe6ccba62232a628e3dd24346ac881e722c2a3927a54c197",
+    "new-findings.json": "59e47205cf199216889e32be1e1b065e2ce85d3f0f9577c2eb5727e7650efc39",
+    "pour-integrity.json": "71eabd85f2c48fd52fad39f80678127ca29fef6ff6dde9eb9a775b3d05036e43",
+    "preservation.json": "cb07547417ac19f39fb2ce0c966d336e62197759bcb609709aff92ac701f5bca",
+    "result.json": "4775da053bc16df6396ae14fdf094353db13e82f6947ac14a0024085a575ef28",
+    "snapshot.json": "e4d94dd796e750ab85d5c2edce4d3757103687f8815d18757fa39f1a8d276f6b"
+  },
+  "locators": {
+    "RESULT.md": "RESULT.md",
+    "attempt.json": "attempt.json",
+    "result.json": "result.json",
+    "snapshot.json": "snapshot.json",
+    "validate/blocked-by.json": "blocked-by.json",
+    "validate/candidate-drc.json": "candidate-drc.json",
+    "validate/candidate-facts.json": "candidate-facts.json",
+    "validate/candidate-pour.json": "candidate-pour.json",
+    "validate/candidate-refill.json": "candidate-refill.json",
+    "validate/new-findings.json": "new-findings.json",
+    "validate/pour-integrity.json": "pour-integrity.json",
+    "validate/preservation.json": "preservation.json",
+    "facts/reference-facts.json": "facts/reference-facts.json"
+  },
+  "evidence": {
+    "result.json": {
+      "records": {
+        "attempt.json": {
+          "path": "attempt.json",
+          "sha256": "e64d87c5a6a69cf01f603191f86e3e8e45bc8a845ddfb5c86446e3e2841aa58a",
+          "availability": "included"
+        },
+        "validate/preservation.json": {
+          "path": "preservation.json",
+          "sha256": "cb07547417ac19f39fb2ce0c966d336e62197759bcb609709aff92ac701f5bca",
+          "availability": "included"
+        },
+        "validate/new-findings.json": {
+          "path": "new-findings.json",
+          "sha256": "59e47205cf199216889e32be1e1b065e2ce85d3f0f9577c2eb5727e7650efc39",
+          "availability": "included"
+        },
+        "validate/candidate-drc.json": {
+          "path": "candidate-drc.json",
+          "sha256": "6463c141a0da1a81e402d71dcedd322efb194e4dd3841a6ce8d5b17e8cf1a2fa",
+          "availability": "included"
+        },
+        "validate/candidate-facts.json": {
+          "path": "candidate-facts.json",
+          "sha256": "a0b00b6e1001bcd03244ed4d883d3acbd917f94856ee8338b7985db9a3dfae3f",
+          "availability": "included"
+        },
+        "validate/pour-integrity.json": {
+          "path": "pour-integrity.json",
+          "sha256": "71eabd85f2c48fd52fad39f80678127ca29fef6ff6dde9eb9a775b3d05036e43",
+          "availability": "included"
+        }
+      },
+      "external": {
+        "input_board_sha256": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+        "input_fingerprint": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+        "baseline": {
+          "identity": {
+            "schema": 1,
+            "input": "d75d2e1d150742d39b85c15f7c467293cbc424694a96fce88eabcfad2919b846",
+            "board": "ca2.kicad_pcb",
+            "kicad_cli": {
+              "path": "/usr/bin/kicad-cli",
+              "version": "10.0.7",
+              "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+            },
+            "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+            "pour_schema": 1,
+            "grading": {
+              "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+              "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+              "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+              "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+              "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+            },
+            "result_schemas": {
+              "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+              "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+            }
+          },
+          "generation": "generation-obh2rjvw"
+        },
+        "reference_files": {
+          "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "ca2.kicad_pcb": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+          "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+        },
+        "rules_files": {
+          "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+          "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+        },
+        "rule_floor_sha256": null,
+        "backend_output_board_sha256": "f90f320ab36dc3481a05128568df99cc38b2af792a6fdeda69bc96383b636a81",
+        "candidate_hash_basis": "post-refill",
+        "candidate_board_sha256": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+        "pre_refill_board_sha256": "f90f320ab36dc3481a05128568df99cc38b2af792a6fdeda69bc96383b636a81",
+        "candidate_copper_signature": {
+          "sha256": "37f6cfabf192fcced75f176ce94fc3c3a50dca8279ee865db2698f839549ff20",
+          "tracks": 3532,
+          "vias": 412
+        }
+      }
+    }
+  }
+}
