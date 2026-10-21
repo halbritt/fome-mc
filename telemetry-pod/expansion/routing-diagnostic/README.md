@@ -20,6 +20,7 @@ U12, U7, U6, U1 and U14.
 | --- | --- | --- |
 | KRT, 600 s | defaults | main pass routed all but about 10 nets, then KRT's net-rescue phase ignored the stop file and was killed; no candidate (`failed-attempts/`) |
 | Freerouting, 1500 s, stall 300 s | defaults | killed by the stall watchdog while actively routing: the headless log is silent between stages (`failed-attempts/`) |
+| Freerouting, 1500 s, stall off | defaults | timed out with a candidate: 110 of 194 nets, 1976 tracks, 154 vias, 84 nets open; receipts under `patched2/cited-freerouting-nostall/`; `compare-krt-freerouting.txt` |
 | **KRT, 1800 s, net rescue and plane finalize off** | `--backend-env KICAD_NET_RESCUE=0 KICAD_PLANE_FINALIZE=0` | candidate in 1014 s: 142 of 194 nets routed, 4656 tracks, 404 vias, 5.99 m of track; 52 nets open; receipts under `patched2/cited-krt-norescue/` |
 
 The published receipts are kicad-route's verdict for that run: routing INCOMPLETE,
@@ -50,5 +51,9 @@ and 101 unconnected items left of 499. Preservation checks all PASS except
 KRT's net-rescue phase ignores the stop file and can overrun the budget by minutes; run
 pod-scale attempts with `KICAD_NET_RESCUE=0` or a budget with headroom. Freerouting's
 headless log is silent between stages, so `--stall` must be at least the budget.
+
+KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
+next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
+qualified placement, after plane planning.
 
 No file outside this directory was changed; no candidate board is committed.
