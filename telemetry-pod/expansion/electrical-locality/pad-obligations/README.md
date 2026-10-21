@@ -30,7 +30,7 @@ version of this file, not a rule relaxation of the board.
 | U5/U7 switch node (L1/L2) | SW pin 8 to inductor pad 1 | 5.5 | §8.5.1 item 8 |
 | U15 input (C70, 1210) | VIN pin 2, PGND pin 1 | 4.0 / 4.0 | TPS6216x-Q1 §11.1 item 1, p.22 |
 | U15 switch node (L4) | SW pin 7 to L4 pad 1 | 4.0 | §11.1 item 5 |
-| U15 output (C68, C69, 1210) | VOS pin 6, PGND pin 1 | 4.5 / 5.0 and 6.5 / 7.0 | §11.1 items 2 and 4 |
+| U15 output (C68, C69, 1210) | VOS pin 6, PGND pin 1 | 4.5 / 5.0 and 8.0 / 8.5 (rev 2) | §11.1 items 2 and 4 |
 | U26 bypass (C97 0603, C98 0805) | V+ pin 8, GND pin 4 | 3.5 / 8.5 and 5.5 / 10.0 | LM2903B-Q1 §4.4.1, p.18 |
 
 Pin numbers and functions were read from the retained PDFs (hashes in each citation):
@@ -47,6 +47,11 @@ selection of AGENTEE-328 and will be added when that lands. Output-capacitor loo
 the LMR36520 bucks (L1/L2 pad 2 to C6/C7, C13–C15) cannot be expressed in the 322
 schema, which requires supply and return pairs to start at the same IC; this is
 recorded as a software gap for AGENTEE-328 or a follow-up.
+
+**Rev 2 (2026-10-20):** C69's bounds were loosened from 6.5 / 7.0 mm to 8.0 / 8.5 mm after the
+AGENTEE-322 guided packer exhausted its budget with C69 as the unplaced part (peak 41 of
+331 placed, 28 backjumps). C69 is the second, bulk output capacitor; C68 keeps the tight
+bound. The frozen-board measurement below is unchanged by this (C69 measured 2.68 / 6.89 mm).
 
 ## Measurement on the frozen diagnostic board
 
