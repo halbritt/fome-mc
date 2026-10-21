@@ -76,6 +76,20 @@ already connected in the input (GND and +3V3 pads reach the pours). The open set
 same families as before and is addressed by iteration 3's placement (U14 under the MCU,
 L3 in the RF corridor).
 
+## Planed iteration-3 placement (reviewed candidate)
+
+Same plane plan and `kicad-route run --backend krt --budget 1500` (net rescue off) on the
+via-patched iteration-3 candidate (`iteration-3/`): 136 of 194 nets, 3918 tracks, 390
+vias, **5 new findings, all dangling-stub warnings**, net_completion FAIL for 39 nets. The
+blocked-by receipt names the router's own new tracks on **In1.Cu, the GND plane layer**, as
+the top blockers: kicad-route lets the backend route signals on the plane layers, which
+breaks the reference under the GNSS line and crowds the planes. Decision D-PCB-7 in
+`../design-rules/`: In1.Cu and In2.Cu carry no tracks (rule areas, no-tracks, whole board;
+vias still pass through). The eMMC bus (all `EMMC_*` nets) is open again with U14 under the
+MCU: with 0.24 mm balls at 0.5 mm pitch and the default 0.20 mm track / 0.20 mm clearance,
+no trace can pass between balls, so rows B and C cannot escape; D-PCB-3 must be decided from
+the FEMDME008G land pattern (pad size, NSMD) and a BGA net class before routing can finish.
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.
