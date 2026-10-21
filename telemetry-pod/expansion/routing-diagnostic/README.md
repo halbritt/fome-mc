@@ -130,6 +130,7 @@ the same engine limitation) + 25 dangling stubs; copper clearance findings 0.
 | iteration 3 + D-PCB-3/6/7 v2, In1 closed | 136 | 58 | 35 rule-area stubs |
 | **iteration 5 (microSD source, eMMC gone), planes, campaign best chain r1** | **182** | **53** | 0 DRC; pour integrity 1 spoke below minimum |
 | **iteration 7 (two-level placer, fixed clusters, card lane), planes, campaign best chain r0** | **203** | **32** | 1 via_dangling; `net_completion` flags 10 nets the grader counted as connected on the unrouted input; see iteration-7/ |
+| iteration 7 + Freerouting on the leftovers (chained from the builtin candidate, protect existing) | **205** | **30** | 0 new findings, validation PASS; `iteration-7/candidate/iter8d-fr-leftovers/` |
 
 Iteration 7 (`iteration-7/`, the first two-level placement on released agent-ee 15e92c9,
 placement-candidate/iteration-7 reviewed conditional proceed) routes **203 of 235 nets** in a
@@ -137,7 +138,11 @@ single 342 s full pass (campaign chain r0: 3532 tracks, 412 vias, 4.50 m) with o
 via as the only new DRC finding (the grader's `net_completion` check also lists 10 nets it
 counted as connected on the unrouted planed input); the hard-first rounds did not beat it (59 and 64 open with 3 and 9
 findings). The two-level placement is therefore worth about 20 nets over the cluster-anchored
-iteration 5 at the same budget.
+iteration 5 at the same budget. Freerouting chained on that candidate (1500 s, protect
+existing) closes two more nets with no new findings (205 of 235, validation PASS); the
+remaining 30 are the eFuse setting nets inside the sensor-power blocks, SPI clock/MOSI,
+three SD lines, TIRE_CAN control, two AFE and two DIAG inputs, GNSS_PPS, MCU_EN and the
+last pads of the plane nets.
 
 Iteration 5 on the microSD source (`iteration-5/`, kicad-route 784fd6d builtin, `campaign
 --rounds 2 --budget 900 --total-budget 3300`, net rescue and plane finalize off, planes from

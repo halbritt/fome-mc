@@ -1,0 +1,1113 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "freerouting",
+    "version": "v2.5.0",
+    "build": "freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+    "sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+    "java": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java (25)",
+    "java_required": 25,
+    "source": "https://github.com/freerouting/freerouting",
+    "execution_identity": {
+      "name": "freerouting",
+      "tag": "v2.5.0",
+      "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+      "build_revision": "b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+      "java_path": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+      "java_version": "25.0.4.1 (build 25.0.4.1+1-1-24.04.4-Ubuntu)"
+    },
+    "reproducible": false,
+    "reproducible_basis": "Freerouting's outcome may vary between runs: this result is an attempt, not a measurement"
+  },
+  "measurement": false,
+  "input": {
+    "project": "candidate",
+    "board": "ca2.kicad_pcb",
+    "fingerprint": "bf10798c3725a18b9fac9eeb5e64d9846abf595c3667232af27e68b643895f54",
+    "source_dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-campaign-r0/20261021T135939.841838Z/candidate/candidate",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null,
+    "baseline": {
+      "report": "../../../../.cache/baseline/f4397d15d48d3c37d9dae9db898154ed2563a82ff513809e19e114d96b5c88c6/generation-vxbxgo_x/baseline-drc.json",
+      "cached": false,
+      "reasons": [],
+      "identity": {
+        "schema": 1,
+        "input": "bf10798c3725a18b9fac9eeb5e64d9846abf595c3667232af27e68b643895f54",
+        "board": "ca2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-vxbxgo_x"
+    },
+    "rules_files": {
+      "project": "ca2.kicad_pro",
+      "custom_rules": "ca2.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "freerouting",
+    "budget_s": 1500,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {},
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 1500,
+    "mode": "all",
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "all",
+    "nets": 235,
+    "nets_list": null
+  },
+  "unsupported": [
+    "Freerouting never rips up pre-existing copper (KiCad exports it as fixed/protected); --protect locked behaves like --protect existing",
+    "Specctra carries per-class width/clearance/via only: custom .kicad_dru rules, diff pairs and length tuning are not exported; KiCad DRC grades them",
+    "rule areas export only their no-tracks/no-vias restrictions; zones export as plane outlines",
+    "ca2.kicad_dru: net-class-to-net-class clearance rules are translated to Specctra class_class rules; any other custom rule is listed as untranslated below",
+    "custom rule 'agent_ee_netclass_RF_50' not given to the backend: only a single clearance constraint without layer clauses is translatable",
+    "custom rule 'fine-pitch intra-footprint pad clearance (D-PCB-1)' not given to the backend: condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U2') && B.memberOfFootprint('U2')\" is not purely net-class based",
+    "custom rule 'supervisor intra-footprint pad clearance U16 (D-PCB-1)' not given to the backend: condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U16') && B.memberOfFootprint('U16')\" is not purely net-class based",
+    "custom rule 'supervisor intra-footprint pad clearance U17 (D-PCB-1)' not given to the backend: condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U17') && B.memberOfFootprint('U17')\" is not purely net-class based",
+    "custom rule 'supervisor intra-footprint pad clearance U18 (D-PCB-1)' not given to the backend: condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U18') && B.memberOfFootprint('U18')\" is not purely net-class based",
+    "custom rule 'supervisor intra-footprint pad clearance U19 (D-PCB-1)' not given to the backend: condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U19') && B.memberOfFootprint('U19')\" is not purely net-class based"
+  ],
+  "floor": null,
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "commands": [
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/specctra.py",
+          "export",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/input/candidate/ca2.kicad_pcb",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.dsn",
+          "--dru",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/input/candidate/ca2.kicad_dru"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/export-dsn.log",
+        "exit_code": 0,
+        "duration_s": 0.774
+      },
+      {
+        "argv": [
+          "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+          "-Djava.awt.headless=true",
+          "-Duser.home=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java",
+          "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java/prefs",
+          "-jar",
+          "/home/halbritt/git/kicad-route/vendor/freerouting/current/freerouting-2.5.0.jar",
+          "-de",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.dsn",
+          "-do",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.ses",
+          "--gui.enabled=false",
+          "-da",
+          "--api_server.enabled=false",
+          "--user_data_path=/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/freerouting-userdata",
+          "--router.result_json=/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/freerouting-result.json",
+          "--router.automatic_neckdown=false",
+          "--router.fanout.enabled=false",
+          "--router.job_timeout=00:25:00"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/freerouting.log",
+        "env": {
+          "HTTPS_PROXY": "http://127.0.0.1:9",
+          "HTTP_PROXY": "http://127.0.0.1:9",
+          "FREEROUTING__USAGE_AND_DIAGNOSTIC_DATA__DISABLE_ANALYTICS": "true"
+        },
+        "budget_s": 1560,
+        "budget_reached": true,
+        "stop_s": 1560.011,
+        "last_phase": "saving session",
+        "last_metric": {
+          "pass": 2,
+          "score": 478.53,
+          "unrouted": 298,
+          "violations": 337
+        },
+        "heartbeats": {
+          "count": 5,
+          "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/heartbeat.jsonl",
+          "stall_s": 1500,
+          "since_last_progress_s": 17.5,
+          "tail": [
+            {
+              "t_s": 3.006,
+              "utc": "2026-10-21T15:26:38.306116+00:00",
+              "phase": "loading board",
+              "metric": {},
+              "line": "2026-10-21 08:26:38.089 INFO [6BF89E\\9F2F3B] Loading board file 'board.dsn'..."
+            },
+            {
+              "t_s": 16.533,
+              "utc": "2026-10-21T15:26:51.832795+00:00",
+              "phase": "auto-routing started",
+              "metric": {
+                "score": 201.4,
+                "unrouted": 531
+              },
+              "line": "2026-10-21 08:26:51.756 INFO [6BF89E\\9F2F3B] Auto-routing stage started on board '7a2d52767e60cf07d6e9493ecf623d58' with baseline score 201.40 for 531 unrout..."
+            },
+            {
+              "t_s": 1344.249,
+              "utc": "2026-10-21T15:48:59.549304+00:00",
+              "phase": "auto-routing started",
+              "metric": {
+                "pass": 1,
+                "score": 478.53,
+                "unrouted": 298,
+                "violations": 337
+              },
+              "line": "2026-10-21 08:48:59.347 INFO [6BF89E\\9F2F3B] Auto-routing pass #1 on board '7a2d52767e60cf07d6e9493ecf623d58' was completed in 1325.12 seconds with score 478..."
+            },
+            {
+              "t_s": 1535.194,
+              "utc": "2026-10-21T15:52:10.494288+00:00",
+              "phase": "saving session",
+              "metric": {},
+              "line": "2026-10-21 08:52:10.278 INFO Saving output file '/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.08847..."
+            },
+            {
+              "t_s": 1544.955,
+              "utc": "2026-10-21T15:52:20.255374+00:00",
+              "phase": "saving session",
+              "metric": {
+                "pass": 2,
+                "score": 478.53,
+                "unrouted": 298,
+                "violations": 337
+              },
+              "line": "2026-10-21 08:52:20.159 INFO [6BF89E\\9F2F3B] Auto-routing pass #2 on board '5745393c6d641a01ebe9d7a1b876e36a' was completed in 191.59 seconds with score 478...."
+            }
+          ]
+        },
+        "stalled": false,
+        "exit_code": 0,
+        "duration_s": 1562.413,
+        "stop_to_exit_s": 2.402,
+        "output_tail": "2026-10-21 08:26:36.153 INFO   Freerouting v2.5.0 (build-date: 2026-10-05)\n2026-10-21 08:26:36.495 INFO   Hardware: 12 CPU cores, 412 CPU score, 30688 MB RAM\n2026-10-21 08:26:36.504 WARN   GUI is disabled and you don't have a console available, so the only feedback from Freerouting is in the log.\n2026-10-21 08:26:36.509 INFO   Configured network proxy: 127.0.0.1:9\n2026-10-21 08:26:38.089 INFO   [6BF89E\\9F2F3B] Loading board file 'board.dsn'...\n2026-10-21 08:26:39.207 INFO   Layer 'In1.Cu' contains a power plane / large copper pour covering >=30% of the board; associated net(s) configured for plane routing.\n2026-10-21 08:26:39.207 INFO   Layer 'In2.Cu' contains a power plane / large copper pour covering >=30% of the board; associated net(s) configured for plane routing.\n2026-10-21 08:26:39.280 INFO   [6BF89E\\9F2F3B] Job '6BF89E\\9F2F3B' started at 2026-10-21T15:26:39.279846656Z.\n2026-10-21 08:26:44.008 WARN   Design Warning: Board has 337 pre-existing clearance violation(s) in the loaded design (before routing):\n  - 337 unfixable violation(s) (cannot be resolved by Freerouting):\n      * 337 fixed trace/via clearance violations (first 5 shown):\n          - FixedVia#6140 [net /DIAG_U27_AIN1_UPPER1] <-> FixedVia#5976 [net /POD_5V_SENSOR]\n          - FixedVia#6140 [net /DIAG_U27_AIN1_UPPER1] <-> FixedVia#5976 [net /POD_5V_SENSOR]\n          - FixedVia#6140 [net /DIAG_U27_AIN1_UPPER1] <-> FixedVia#5976 [net /POD_5V_SENSOR]\n          - FixedVia#6140 [net /DIAG_U27_AIN1_UPPER1] <-> FixedVia#5976 [net /POD_5V_SENSOR]\n          - FixedVia#6108 [net /POD_12V_IN] <-> FixedVia#5854 [net /GND]\n          ... and 332 more\n  - 0 potentially fixable violations\nNotice: Freerouting does not modify component placement, board outlines, or fixed items.\nResolving these 337 unfixable violation(s) is the responsibility of the board author in their EDA tool (e.g. KiCad).\n2026-10-21 08:26:44.282 INFO   [6BF89E\\9F2F3B] Pipeline thread limits: autorouter pass is single-threaded, optimizer.max_threads=11.\n2026-10-21 08:26:51.756 INFO   [6BF89E\\9F2F3B] Auto-routing stage started on board '7a2d52767e60cf07d6e9493ecf623d58' with baseline score 201.40 for 531 unrouted items.\n2026-10-21 08:43:07.324 WARN   Polyline: must contain at least 2 different points\n2026-10-21 08:45:19.245 WARN   BasicBoard.normalizeTraces: reached 2000 iterations for net '/SENSOR_POWER_AUX_RTN' \u2014 stopping to prevent hang. The board geometry for this net may be oscillating (split/combine cycle); traces are kept as-is and further normalization for this net is suppressed on this board candidate.\n2026-10-21 08:48:59.347 INFO   [6BF89E\\9F2F3B] Auto-routing pass #1 on board '7a2d52767e60cf07d6e9493ecf623d58' was completed in 1325.12 seconds with score 478.53 (298 unrouted and 337 violations), using 868.40 CPU seconds and the job allocated 241.72 GB of memory so far.\n2026-10-21 08:52:10.278 INFO   Saving output file '/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.ses' (SES)...\n2026-10-21 08:52:10.284 INFO   Successfully saved output file '/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.ses' (83905 bytes).\n2026-10-21 08:52:20.159 INFO   [6BF89E\\9F2F3B] Auto-routing pass #2 on board '5745393c6d641a01ebe9d7a1b876e36a' was completed in 191.59 seconds with score 478.53 (298 unrouted and 337 violations), using 942.34 CPU seconds and the job allocated 258.55 GB of memory so far.\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/specctra.py",
+          "import",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/input/candidate/ca2.kicad_pcb",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.ses",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/freerouting-out/ca2.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/import-ses.log",
+        "exit_code": 0,
+        "duration_s": 2.702
+      }
+    ],
+    "exit_code": 0,
+    "backend_report": {
+      "final_state": "TIMED_OUT",
+      "exit_code": 0,
+      "output_written": true,
+      "incomplete_connections": 313,
+      "clearance_violations": 337
+    },
+    "bridge": {
+      "export": {
+        "ignored_classes": [],
+        "clearance_raised": [],
+        "existing_copper_locked_for_export": 3944,
+        "net_names_respelled": [],
+        "dru_translated": [],
+        "dru_untranslated": [
+          {
+            "rule": "agent_ee_netclass_RF_50",
+            "reason": "only a single clearance constraint without layer clauses is translatable"
+          },
+          {
+            "rule": "fine-pitch intra-footprint pad clearance (D-PCB-1)",
+            "reason": "condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U2') && B.memberOfFootprint('U2')\" is not purely net-class based"
+          },
+          {
+            "rule": "supervisor intra-footprint pad clearance U16 (D-PCB-1)",
+            "reason": "condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U16') && B.memberOfFootprint('U16')\" is not purely net-class based"
+          },
+          {
+            "rule": "supervisor intra-footprint pad clearance U17 (D-PCB-1)",
+            "reason": "condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U17') && B.memberOfFootprint('U17')\" is not purely net-class based"
+          },
+          {
+            "rule": "supervisor intra-footprint pad clearance U18 (D-PCB-1)",
+            "reason": "condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U18') && B.memberOfFootprint('U18')\" is not purely net-class based"
+          },
+          {
+            "rule": "supervisor intra-footprint pad clearance U19 (D-PCB-1)",
+            "reason": "condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U19') && B.memberOfFootprint('U19')\" is not purely net-class based"
+          }
+        ]
+      },
+      "import": {
+        "placement_dropped": true,
+        "session": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/board.noplacement.ses",
+        "existing_copper_locked": 3944,
+        "lock_flags_restored": 3944
+      }
+    },
+    "project_writeback": [],
+    "runtime_s": 1566.23,
+    "last_phase": "saving session",
+    "heartbeats": {
+      "count": 5,
+      "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/work/heartbeat.jsonl",
+      "stall_s": 1500,
+      "since_last_progress_s": 17.5,
+      "tail": [
+        {
+          "t_s": 3.006,
+          "utc": "2026-10-21T15:26:38.306116+00:00",
+          "phase": "loading board",
+          "metric": {},
+          "line": "2026-10-21 08:26:38.089 INFO [6BF89E\\9F2F3B] Loading board file 'board.dsn'..."
+        },
+        {
+          "t_s": 16.533,
+          "utc": "2026-10-21T15:26:51.832795+00:00",
+          "phase": "auto-routing started",
+          "metric": {
+            "score": 201.4,
+            "unrouted": 531
+          },
+          "line": "2026-10-21 08:26:51.756 INFO [6BF89E\\9F2F3B] Auto-routing stage started on board '7a2d52767e60cf07d6e9493ecf623d58' with baseline score 201.40 for 531 unrout..."
+        },
+        {
+          "t_s": 1344.249,
+          "utc": "2026-10-21T15:48:59.549304+00:00",
+          "phase": "auto-routing started",
+          "metric": {
+            "pass": 1,
+            "score": 478.53,
+            "unrouted": 298,
+            "violations": 337
+          },
+          "line": "2026-10-21 08:48:59.347 INFO [6BF89E\\9F2F3B] Auto-routing pass #1 on board '7a2d52767e60cf07d6e9493ecf623d58' was completed in 1325.12 seconds with score 478..."
+        },
+        {
+          "t_s": 1535.194,
+          "utc": "2026-10-21T15:52:10.494288+00:00",
+          "phase": "saving session",
+          "metric": {},
+          "line": "2026-10-21 08:52:10.278 INFO Saving output file '/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.08847..."
+        },
+        {
+          "t_s": 1544.955,
+          "utc": "2026-10-21T15:52:20.255374+00:00",
+          "phase": "saving session",
+          "metric": {
+            "pass": 2,
+            "score": 478.53,
+            "unrouted": 298,
+            "violations": 337
+          },
+          "line": "2026-10-21 08:52:20.159 INFO [6BF89E\\9F2F3B] Auto-routing pass #2 on board '5745393c6d641a01ebe9d7a1b876e36a' was completed in 191.59 seconds with score 478...."
+        }
+      ]
+    },
+    "stalled": false,
+    "measurement_qualification": {
+      "measurement": false,
+      "build_reproducible": false,
+      "reasons": [
+        "wall-clock stop: budget_reached",
+        "Freerouting's outcome may vary between runs: this result is an attempt, not a measurement"
+      ]
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 51,
+    "unconnected_total": 51,
+    "baseline_unconnected_total": 55,
+    "unrouted_nets": [
+      "/+3V3",
+      "/AFE_BUF1",
+      "/AFE_DIV1",
+      "/DIAG_U28_AIN2",
+      "/DIAG_U28_AIN3",
+      "/GND",
+      "/GNSS_PPS",
+      "/MCU_EN",
+      "/POD_5V_AUX",
+      "/POD_AUX3_SIGNAL",
+      "/POWER_FAIL_N",
+      "/SD_CD",
+      "/SD_CMD",
+      "/SD_DAT1",
+      "/SD_DAT2",
+      "/SENSOR_FAULT_N",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_POWER_FRONT_OVP",
+      "/SENSOR_POWER_FRONT_UVLO",
+      "/SENSOR_POWER_REAR_DVDT",
+      "/SENSOR_POWER_REAR_ILIM",
+      "/SENSOR_POWER_REAR_OVP",
+      "/SENSOR_POWER_TIRE_DVDT",
+      "/SENSOR_POWER_TIRE_ILIM",
+      "/SPI_MOSI",
+      "/SPI_SCK",
+      "/SUP_U18_SENSE",
+      "/TIRE_CAN_CS",
+      "/TIRE_CAN_INT_N",
+      "/TIRE_CAN_TX"
+    ],
+    "stats": {
+      "new_tracks": 794,
+      "new_vias": 5,
+      "new_track_length_mm": 173.309,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 40.216,
+        "F.Cu": 92.508,
+        "In1.Cu": 36.88,
+        "In2.Cu": 3.704
+      },
+      "new_copper_nets": 149,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate/blocked-by.json",
+      "connections_analyzed": 51,
+      "unobstructed_connections": 32,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "4514d48b-85b7-469e-89d5-2a07766087ab",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /TIRE_CAN_TX (input, unlocked) 4514d48b",
+          "net": "/TIRE_CAN_TX",
+          "locked": false,
+          "origin": "input",
+          "blocks": 3,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/SD_DAT1",
+            "/SPI_MOSI",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "f74a23f0-02cb-47f0-868b-39681ece69bd",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /POD_AUX2_SIGNAL In1.Cu (input, unlocked) f74a23f0",
+          "net": "/POD_AUX2_SIGNAL",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 4,
+          "nets_blocked": [
+            "/GND",
+            "/SD_CD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "69d51fcc-6280-4294-ad69-edf7d2d56bc6",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /GNSS_RX_IN In1.Cu (input, unlocked) 69d51fcc",
+          "net": "/GNSS_RX_IN",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/SD_CD",
+            "/SD_CMD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "dacb6bc4-9d29-40a1-bce8-fdf223ca8fde",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SPI_MISO In2.Cu (input, unlocked) dacb6bc4",
+          "net": "/SPI_MISO",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 3,
+          "nets_blocked": [
+            "/SPI_MOSI",
+            "/SPI_SCK",
+            "/TIRE_CAN_CS"
+          ]
+        },
+        {
+          "id": "61512e74-faa8-448c-b063-ba9c264449e2",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /DIAG_U28_AIN1_UPPER2 In1.Cu (input, unlocked) 61512e74",
+          "net": "/DIAG_U28_AIN1_UPPER2",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/DIAG_U28_AIN3",
+            "/POD_AUX3_SIGNAL"
+          ]
+        },
+        {
+          "id": "ef936836-ccbb-43b1-b73f-d354cc3623a1",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /DIAG_U29_AIN2_UPPER2 (input, unlocked) ef936836",
+          "net": "/DIAG_U29_AIN2_UPPER2",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/DIAG_U28_AIN2",
+            "/GNSS_PPS"
+          ]
+        },
+        {
+          "id": "44567c7f-f15a-4614-9457-3993d35667fd",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /SPI_MISO (input, unlocked) 44567c7f",
+          "net": "/SPI_MISO",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/SD_CMD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "b66b4296-778c-455a-a8c2-392b601c3e25",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /SPI_MOSI (input, unlocked) b66b4296",
+          "net": "/SPI_MOSI",
+          "locked": false,
+          "origin": "input",
+          "blocks": 2,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/SD_CD",
+            "/SPI_SCK"
+          ]
+        },
+        {
+          "id": "footprint:U1",
+          "category": "footprint",
+          "kind": "footprint",
+          "label": "footprint U1 pads 3, 17, 18, 8, 9, 41 +17 more (/MCU_EN, /ADC_CS, /IMU_CS +15 more)",
+          "locked": true,
+          "blocks": 1,
+          "blocks_any_layer": 11,
+          "nets_blocked": [
+            "/AFE_BUF1",
+            "/GND",
+            "/GNSS_PPS",
+            "/SD_CD",
+            "/SD_CMD",
+            "/SD_DAT1",
+            "/SD_DAT2",
+            "/SENSOR_FAULT_N",
+            "/SPI_SCK",
+            "/SUP_U18_SENSE"
+          ]
+        },
+        {
+          "id": "30556dd6-19e2-4413-bce8-ac4350e9ca3b",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SUP_U19_CT In2.Cu (input, unlocked) 30556dd6",
+          "net": "/SUP_U19_CT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 7,
+          "nets_blocked": [
+            "/+3V3",
+            "/GND",
+            "/GNSS_PPS",
+            "/SD_DAT1",
+            "/SENSOR_FAULT_N",
+            "/TIRE_CAN_CS",
+            "/TIRE_CAN_TX"
+          ]
+        }
+      ],
+      "nets": {
+        "/+3V3": {
+          "connections": 4,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /GND 8273d977"
+          ]
+        },
+        "/AFE_BUF1": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /GND 93895e5b"
+          ]
+        },
+        "/AFE_DIV1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/DIAG_U28_AIN2": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "via /+3V3 5732e2f9",
+            "via /GND 24a3ee37",
+            "via /GND 4d843ac7",
+            "via /GND b01b85d8",
+            "via /ANT_LIMITED 475d2222"
+          ]
+        },
+        "/DIAG_U28_AIN3": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 13,
+          "blockers": [
+            "track /TIRE_CAN_L In1.Cu 4def16cc",
+            "track /TIRE_CAN_L In1.Cu b2346d9f",
+            "track /TIRE_CAN_H In1.Cu c39ee8e2",
+            "track /POD_TIRE_SUPPLY In1.Cu fb8b7f30",
+            "track /SD_DAT0 In1.Cu 34ab89e4"
+          ]
+        },
+        "/GND": {
+          "connections": 14,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /+3V3 6c541906",
+            "footprint C80"
+          ]
+        },
+        "/GNSS_PPS": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /IMU_INT1 In1.Cu 9996666a",
+            "track /SENSOR_REF_2V5 In1.Cu eca76af7",
+            "track /ADC_AIN4 In1.Cu adb5178d",
+            "track /DIAG_U29_AIN2_UPPER2 In1.Cu 020d13b7",
+            "via /DIAG_U29_AIN2_UPPER2 ef936836"
+          ]
+        },
+        "/MCU_EN": {
+          "connections": 3,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /SUP_U19_CT 1de3bd57"
+          ]
+        },
+        "/POD_5V_AUX": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/POD_AUX3_SIGNAL": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 5,
+          "blockers": [
+            "track /TIRE_CAN_H In1.Cu 041b703b",
+            "track /POD_TIRE_SUPPLY In1.Cu d966121a",
+            "track /DIAG_U28_AIN1_UPPER2 In1.Cu 61512e74",
+            "footprint U6"
+          ]
+        },
+        "/POWER_FAIL_N": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SD_CD": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 19,
+          "blockers": [
+            "track /GND In1.Cu f3774e66",
+            "track /PRE_6V3 In1.Cu 6acb734e",
+            "track /MCU_EN In1.Cu f4b0487a",
+            "track /GNSS_RX_IN In1.Cu 69d51fcc",
+            "track /POD_AUX1_SIGNAL In1.Cu 629bafd1"
+          ]
+        },
+        "/SD_CMD": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 18,
+          "blockers": [
+            "track /+3V3 In2.Cu a401adc2",
+            "track /+5V_CAN In2.Cu 2c6ff269",
+            "track /POD_5V_SENSOR In2.Cu 5db7622d",
+            "track /POD_5V_SENSOR In2.Cu 8164194a",
+            "track /POD_CAN_P In2.Cu 6b0f33b8"
+          ]
+        },
+        "/SD_DAT1": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 10,
+          "blockers": [
+            "track /SUP_U19_CT In2.Cu 0a43fa04",
+            "track /SUP_U19_CT In2.Cu 30556dd6",
+            "track /SUP_U19_CT In2.Cu f3ff8ea6",
+            "via /TIRE_CAN_TX 4514d48b",
+            "via /SUP_U19_CT 76c0e13c"
+          ]
+        },
+        "/SD_DAT2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 13,
+          "blockers": [
+            "track /+3V3 In1.Cu 00ee79a0",
+            "track /+3V3 In1.Cu 8af80b89",
+            "track /GND In1.Cu 6d1b7751",
+            "track /TWAI_RX In1.Cu 1ce37649",
+            "track /WHEEL_FRONT_OUT In1.Cu cf833659"
+          ]
+        },
+        "/SENSOR_FAULT_N": {
+          "connections": 2,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 3,
+          "blockers": [
+            "track /MCU_BOOT In1.Cu 0e1b558b",
+            "via /IMU_INT1 dcba173e",
+            "via /SPI_MISO d11fbdb8"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_ILIM": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_FRONT_OVP": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_FRONT_UVLO": {
+          "connections": 2,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_DVDT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_ILIM": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_REAR_OVP": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_TIRE_DVDT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SENSOR_POWER_TIRE_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/SPI_MOSI": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "track /SPI_MISO In2.Cu dacb6bc4",
+            "via /TIRE_CAN_TX 4514d48b"
+          ]
+        },
+        "/SPI_SCK": {
+          "connections": 2,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 4,
+          "blockers": [
+            "track /SPI_MOSI In2.Cu 3695ccf7",
+            "track /SPI_MOSI In2.Cu b88aad2d",
+            "track /SPI_MISO In2.Cu dacb6bc4",
+            "via /TIRE_CAN_TX 4514d48b",
+            "track /GNSS_RX_IN In1.Cu 69d51fcc"
+          ]
+        },
+        "/SUP_U18_SENSE": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/TIRE_CAN_CS": {
+          "connections": 1,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "track /+3V3 F.Cu c088958c"
+          ]
+        },
+        "/TIRE_CAN_INT_N": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "track /SPI_MOSI In2.Cu 33a352ea",
+            "track /SPI_MISO In2.Cu 14f5cb65",
+            "track /SPI_MISO In2.Cu d971e460",
+            "via /POD_12V_PROTECTED df02994e",
+            "via /SPI_MOSI a5757acc"
+          ]
+        },
+        "/TIRE_CAN_TX": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "track /TIRE_CAN_TX_ENABLE In1.Cu 51241c3d"
+          ]
+        }
+      }
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate",
+    "rules_files": {
+      "project": "ca2.kicad_pro",
+      "custom_rules": "ca2.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "117bc141d1fe928cd5395f0e111df9a8d3f7634eacb590b366f3bf9e23e49e95",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate/candidate-refill.json",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate/ca2.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 20.659
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate/candidate-drc.json",
+          "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate/ca2.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate",
+        "log": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 12.013
+      }
+    ],
+    "validated_board_sha256": "09b3c0bec29663f94ebf165c8a7ae3d96db81ad174e4c18996882cc48b39fc5e",
+    "candidate_board_sha256": "09b3c0bec29663f94ebf165c8a7ae3d96db81ad174e4c18996882cc48b39fc5e",
+    "refill_modified_board": true,
+    "parity_performed": null,
+    "drc": {
+      "violations_total": 24,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 24,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 203,
+      "nets_lost": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate",
+    "board": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z/candidate/candidate/ca2.kicad_pcb"
+  },
+  "run_dir": "/home/halbritt/.cache/agent499-microsd/iter8d/route/runs/candidate/iter8d-fr-leftovers/20261021T152620.088475Z",
+  "runtime_s": 1620.583,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+    "input_fingerprint": "bf10798c3725a18b9fac9eeb5e64d9846abf595c3667232af27e68b643895f54",
+    "baseline": {
+      "identity": {
+        "schema": 1,
+        "input": "bf10798c3725a18b9fac9eeb5e64d9846abf595c3667232af27e68b643895f54",
+        "board": "ca2.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-vxbxgo_x"
+    },
+    "reference_files": {
+      "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "ca2.kicad_pcb": "471ffb9b5a1ebf7ae7100d59582c1a0bcbfb8666a053f9029eb8603e88bf430e",
+      "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+    },
+    "rules_files": {
+      "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": "117bc141d1fe928cd5395f0e111df9a8d3f7634eacb590b366f3bf9e23e49e95",
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": "09b3c0bec29663f94ebf165c8a7ae3d96db81ad174e4c18996882cc48b39fc5e",
+    "pre_refill_board_sha256": "117bc141d1fe928cd5395f0e111df9a8d3f7634eacb590b366f3bf9e23e49e95",
+    "candidate_copper_signature": {
+      "sha256": "4f4bf44bda3b8832704de361e24a1fab9b20599659811634dc1f1cccfa131980",
+      "tracks": 4326,
+      "vias": 417
+    },
+    "records": {
+      "attempt.json": "e613fc730fc262e481099ec47062cc85183b9a56b0eac57267c67c448e126419",
+      "validate/preservation.json": "b69a7c5614c3c70143626f9be6cd61e01da101f94163a9dba6cb43d7a2cc0a35",
+      "validate/new-findings.json": "5ff88c9f28b8acc5f2c72b470a49c028151205a12102b200c793d6ef1aeebbbd",
+      "validate/candidate-drc.json": "00fb80698487488c6311fef12a6852a7637d08757b5c943b5bd452409b758e2b",
+      "validate/candidate-facts.json": "69292be36d750dfc61c04f2aead353de8ed18595d0f949b56846f371ced1a3a6",
+      "validate/pour-integrity.json": "352c68466f1f6f1e062fe21c6c319fd174a7c7b278b441c08a290534284817c9"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "557ae57",
+      "commit": "557ae5758c06b050508dd8016f5c7b6abc2a83f8",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "freerouting",
+      "tag": "v2.5.0",
+      "jar_sha256": "f6f51bb02245e8e717f9359bd260cc9c5c0b1bc0acc8b7cb2cd5b8ffeb5de3c7",
+      "build_revision": "b647a2f824cfbc54bc4dcaee71b03b7cd945eb76",
+      "java_path": "/usr/lib/jvm/java-25-openjdk-amd64/bin/java",
+      "java_version": "25.0.4.1 (build 25.0.4.1+1-1-24.04.4-Ubuntu)"
+    },
+    "state_manifest_sha256": "c67400a1ae5d4569c5402e432c3d2e298d4ca61d69f2353d217cf49ff8d15377",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-21T15:53:22.727388+00:00",
+  "exit_code": 2,
+  "ledger": {
+    "fingerprint": "7fd5d8de12deaf4092305adf1c2e066c7ea565497fc35a5602c2e15e6d14de8e",
+    "short": "7fd5d8de12de",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/agent499-microsd/iter8d/route/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/agent499-microsd/iter8d/route"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-microsd/iter8d/route/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  }
+}
