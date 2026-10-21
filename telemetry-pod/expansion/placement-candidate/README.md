@@ -32,6 +32,7 @@ before it can become the project board.
 | Check | Result |
 | --- | --- |
 | Pad obligations (33 pairs, independent `measure.py`) | 33 pass, 0 exceed, 0 unknown |
+| Pad obligations, released AGENTEE-322 grader (agent-ee main `9c96a1f`, `electrical_locality.grade`) | pass: 33 measured, 0 defects, 0 unknown (the frozen 79cc1310 board grades 13 defects with the same code) |
 | Native DRC, scaffold project rules (`evidence/native-drc.json`) | 331 findings: the 64 default-rule findings closed by D-PCB-1, 5 J2 copper-edge, 63 silk, 199 library-mismatch |
 | Native DRC, cited rules + enlarged thermal vias (`evidence/cited-rules-drc.json`) | 267: 199 library-mismatch, 63 silk, 5 J2 copper-edge; **no clearance, drill, courtyard or hole finding** |
 | Unconnected items | 499 (unrouted, as expected) |
