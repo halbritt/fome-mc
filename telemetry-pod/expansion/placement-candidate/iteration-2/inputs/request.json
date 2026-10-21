@@ -1,0 +1,419 @@
+{
+ "policy": {
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000,
+  "gap_nm": 250000,
+  "min_courtyard_edge_mm": 0.5,
+  "fixed_refs": [
+   "C1",
+   "C10",
+   "C11",
+   "C12",
+   "C13",
+   "C14",
+   "C15",
+   "C2",
+   "C3",
+   "C4",
+   "C5",
+   "C6",
+   "C68",
+   "C69",
+   "C7",
+   "C70",
+   "C8",
+   "C9",
+   "C97",
+   "C98",
+   "H1",
+   "H2",
+   "H3",
+   "H4",
+   "J1",
+   "J2",
+   "L1",
+   "L2",
+   "L4",
+   "R2",
+   "R27",
+   "R28",
+   "R3",
+   "R4",
+   "R5",
+   "U1",
+   "U15",
+   "U2",
+   "U26",
+   "U3",
+   "U5",
+   "U7"
+  ],
+  "priority_refs": [
+   "J1",
+   "U1",
+   "J2",
+   "U14",
+   "U3"
+  ],
+  "ground_nets": [
+   "/GND"
+  ],
+  "obstacles": [
+   {
+    "side": "B",
+    "polygons": [
+     [
+      [
+       7000000,
+       5000000
+      ],
+      [
+       17000000,
+       5000000
+      ],
+      [
+       17000000,
+       15000000
+      ],
+      [
+       7000000,
+       15000000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "F",
+    "polygons": [
+     [
+      [
+       7500000,
+       4500000
+      ],
+      [
+       9900000,
+       4500000
+      ],
+      [
+       9900000,
+       15500000
+      ],
+      [
+       7500000,
+       15500000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "F",
+    "polygons": [
+     [
+      [
+       14100000,
+       4500000
+      ],
+      [
+       17750000,
+       4500000
+      ],
+      [
+       17750000,
+       15500000
+      ],
+      [
+       14100000,
+       15500000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "F",
+    "polygons": [
+     [
+      [
+       10100000,
+       4500000
+      ],
+      [
+       13900000,
+       4500000
+      ],
+      [
+       13900000,
+       8150000
+      ],
+      [
+       10100000,
+       8150000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "F",
+    "polygons": [
+     [
+      [
+       10100000,
+       11850000
+      ],
+      [
+       13900000,
+       11850000
+      ],
+      [
+       13900000,
+       15500000
+      ],
+      [
+       10100000,
+       15500000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "F",
+    "polygons": [
+     [
+      [
+       53400000,
+       23345000
+      ],
+      [
+       60100000,
+       23345000
+      ],
+      [
+       60100000,
+       29155000
+      ],
+      [
+       53400000,
+       29155000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "B",
+    "polygons": [
+     [
+      [
+       34450000,
+       16050000
+      ],
+      [
+       43550000,
+       16050000
+      ],
+      [
+       43550000,
+       26550000
+      ],
+      [
+       34450000,
+       26550000
+      ]
+     ]
+    ]
+   },
+   {
+    "side": "B",
+    "polygons": [
+     [
+      [
+       27800000,
+       1650000
+      ],
+      [
+       36200000,
+       1650000
+      ],
+      [
+       36200000,
+       11550000
+      ],
+      [
+       27800000,
+       11550000
+      ]
+     ]
+    ]
+   }
+  ],
+  "capacity_proof": true,
+  "fixed_overhangs": [
+   {
+    "reference": "J1",
+    "edges": [
+     {
+      "name": "bottom",
+      "start_nm": [
+       90000000,
+       65000000
+      ],
+      "end_nm": [
+       0,
+       65000000
+      ],
+      "outward": "y+",
+      "max_nm": 22850000
+     }
+    ],
+    "source": {
+     "envelope_id": "expanded-pod-placement-candidate",
+     "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+     "pointer": "/fixed_footprints/0/courtyard_overhangs"
+    }
+   },
+   {
+    "reference": "J2",
+    "edges": [
+     {
+      "name": "right",
+      "start_nm": [
+       90000000,
+       0
+      ],
+      "end_nm": [
+       90000000,
+       65000000
+      ],
+      "outward": "x+",
+      "max_nm": 9730000
+     }
+    ],
+    "source": {
+     "envelope_id": "expanded-pod-placement-candidate",
+     "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+     "pointer": "/fixed_footprints/1/courtyard_overhangs"
+    }
+   },
+   {
+    "reference": "U1",
+    "edges": [
+     {
+      "name": "top",
+      "start_nm": [
+       0,
+       0
+      ],
+      "end_nm": [
+       90000000,
+       0
+      ],
+      "outward": "y-",
+      "max_nm": 21250000
+     },
+     {
+      "name": "right",
+      "start_nm": [
+       90000000,
+       0
+      ],
+      "end_nm": [
+       90000000,
+       65000000
+      ],
+      "outward": "x+",
+      "max_nm": 6500000
+     }
+    ],
+    "source": {
+     "envelope_id": "expanded-pod-placement-candidate",
+     "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+     "pointer": "/fixed_footprints/2/courtyard_overhangs"
+    }
+   }
+  ],
+  "groups": [
+   {
+    "id": "u14-local-storage-bypass",
+    "references": [
+     "C63",
+     "C64",
+     "C65",
+     "C66",
+     "C67"
+    ],
+    "anchor": {
+     "reference": "U14"
+    },
+    "max_distance_nm": 9000000
+   },
+   {
+    "id": "u20-local-bypass",
+    "references": [
+     "C79",
+     "C80"
+    ],
+    "anchor": {
+     "reference": "U20"
+    },
+    "max_distance_nm": 5000000
+   },
+   {
+    "id": "u20-local-clock",
+    "references": [
+     "Y1",
+     "C81",
+     "C82"
+    ],
+    "anchor": {
+     "reference": "U20"
+    },
+    "max_distance_nm": 9000000
+   },
+   {
+    "id": "u21-local-bypass",
+    "references": [
+     "C83",
+     "C84"
+    ],
+    "anchor": {
+     "reference": "U21"
+    },
+    "max_distance_nm": 5000000
+   },
+   {
+    "id": "u22-local-bypass",
+    "references": [
+     "C85"
+    ],
+    "anchor": {
+     "reference": "U22"
+    },
+    "max_distance_nm": 3500000
+   },
+   {
+    "id": "gnss-rf-bias-tee",
+    "references": [
+     "L3"
+    ],
+    "anchor": {
+     "reference": "U3"
+    },
+    "max_distance_nm": 12000000
+   },
+   {
+    "id": "gnss-antenna-power",
+    "references": [
+     "U10"
+    ],
+    "anchor": {
+     "reference": "U3"
+    },
+    "max_distance_nm": 15000000
+   }
+  ]
+ },
+ "authorization": {
+  "schema": "agent-ee.placement-write/1",
+  "single_design_writer": true,
+  "source_sha256": "83d71463ad7b573decb4a51307188d4541385df73944a9dca19f61314b53139a",
+  "writable_root": "/work"
+ }
+}
