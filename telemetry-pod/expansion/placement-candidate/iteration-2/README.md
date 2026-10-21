@@ -1,4 +1,4 @@
-# Placement candidate, iteration 2 (pending independent review; not adopted)
+# Placement candidate, iteration 2 (independent review: may proceed as a candidate, conditionally; superseded by iteration 3)
 
 Same method as iteration 1 (regulator clusters placed by construction, the rest by the
 released origin-group packer, agent-ee main `39a6b626…`), with the review's defects fixed in
@@ -22,6 +22,18 @@ Cluster origins (mm): U5 (29, 14) F, U7 (36, 29) F, U15 (52, 26) B, U26 (8, 21) 
 attempts preceded this run (touching obstacle contours; C1 0.22 mm from an obstacle) and
 one search exhaustion (U10 could not fit within 9 mm of U3 against the SMA and the
 antenna keep-out), which is why U3 moved and the GNSS radii widened.
+
+## Independent review (`review/independent-review.md`)
+
+Iteration-1 blockers verified fixed by exact courtyard polygons (U2 to L1/L2/L4/U5/U7/U15/U26:
+14.56 / 21.81 / 42.02 / 11.54 / 23.73 / 39.12 / 6.81 mm; no through-board inductor
+intersections). All 331 footprints, overhangs, same-side gaps, 33 pad pairs and anchors
+confirmed. Two should-fix placement items drive iteration 3: L3 (bias tee) landed on the far
+side of U3 (12.17 mm from the RF pad), and U14, which is not a fixed part, was packed under
+U3 so its fan-out area is covered on the front (U3 100 mm², U1 27 mm², six small parts).
+Evidence note from the reviewer: the packet's via-patched DRC file lacks 19 silk/text
+findings relative to a run with the full cited project on the committed board (silk 69,
+text 8, drill 44, copper 0); treat the reviewer's counts as authoritative.
 
 ## Checks on the candidate (board SHA256 `4c607898…848c51`)
 
