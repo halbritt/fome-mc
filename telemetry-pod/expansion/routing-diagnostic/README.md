@@ -128,8 +128,18 @@ the same engine limitation) + 25 dangling stubs; copper clearance findings 0.
 | iteration 3 + D-PCB-3/6/7, eMMC nets only | all eMMC | 0 | 0 |
 | iteration 3 + D-PCB-3/6/7, In1+In2 closed | 114 | 80 | 64 rule-area stubs |
 | iteration 3 + D-PCB-3/6/7 v2, In1 closed | 136 | 58 | 35 rule-area stubs |
+| **iteration 5 (microSD source, eMMC gone), planes, campaign best chain r1** | **182** | **53** | 0 DRC; pour integrity 1 spoke below minimum |
 
-The plateau is 136-145 nets with zero clearance violations. The open set is stable:
+Iteration 5 on the microSD source (`iteration-5/`, kicad-route 784fd6d builtin, `campaign
+--rounds 2 --budget 900 --total-budget 3300`, net rescue and plane finalize off, planes from
+`../design-rules/planes.json`) moved the plateau: the best chain routes 182 of 235 nets graded
+against the planed input (53 open; the r1-rest step alone leaves 32 of its scope open), 1602
+new tracks, 251 vias, 3.01 m, **0 new DRC violations**; the only validation failure is
+`pour_integrity` (one zone-connected pad below 2 spokes, both planes −8 % area). The open set
+is now AFE dividers and ADC inputs, the DIAG I2C pair and U29 inputs, the GNSS UART/PPS,
+SD_DAT0/DAT2/CD, TIRE_CAN control lines, wheel captures, PRE_6V3, +5V_CAN and SENSOR_REF_2V5.
+
+Before iteration 5 the plateau was 136-145 nets with zero clearance violations. The open set is stable:
 analog front-end and ADC lines, the diagnostic I2C pair, the SPI bus, the TPS26625
 control nets and the plane nets' last pads. Net ordering (campaign) and layer policy do
 not move it; the remaining levers are placement (the two-level block placer,

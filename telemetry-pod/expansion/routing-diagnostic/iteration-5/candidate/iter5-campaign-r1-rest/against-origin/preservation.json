@@ -1,0 +1,273 @@
+[
+  {
+    "check": "project_files",
+    "status": "PASS",
+    "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+    "differences": []
+  },
+  {
+    "check": "board_outline",
+    "status": "PASS",
+    "detail": "4 Edge.Cuts shapes",
+    "differences": []
+  },
+  {
+    "check": "layers",
+    "status": "PASS",
+    "detail": "4 copper layers",
+    "differences": []
+  },
+  {
+    "check": "stackup",
+    "status": "PASS",
+    "detail": "explicit stackup",
+    "differences": []
+  },
+  {
+    "check": "board_setup",
+    "status": "PASS",
+    "detail": "board-file (setup) settings other than the stackup",
+    "differences": []
+  },
+  {
+    "check": "nets_and_netclasses",
+    "status": "PASS",
+    "detail": "235 nets with their effective net classes",
+    "differences": []
+  },
+  {
+    "check": "pad_connectivity",
+    "status": "PASS",
+    "detail": "1061 pad-to-net assignments",
+    "differences": []
+  },
+  {
+    "check": "footprints",
+    "status": "PASS",
+    "detail": "309 footprints: library id, position, orientation, side, lock state and pad geometry",
+    "differences": []
+  },
+  {
+    "check": "zones",
+    "status": "PASS",
+    "detail": "2 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+    "differences": []
+  },
+  {
+    "check": "keepouts",
+    "status": "PASS",
+    "detail": "0 rule areas",
+    "differences": []
+  },
+  {
+    "check": "copper_graphics",
+    "status": "PASS",
+    "detail": "0 non-track copper graphics (shapes; text and other items with content and position)",
+    "differences": []
+  },
+  {
+    "check": "protected_copper",
+    "status": "PASS",
+    "detail": "0 tracks and 0 vias designated (all pre-existing copper); max deviation 0 nm",
+    "differences": []
+  },
+  {
+    "check": "new_copper_netclass_geometry",
+    "status": "PASS",
+    "detail": "3396 new tracks and 384 new vias checked against their net class width / via (microvia) diameter / drill (1 um quantisation tolerance)",
+    "differences": []
+  },
+  {
+    "check": "routing_scope",
+    "status": "PASS",
+    "detail": "new copper only on the 235 in-scope nets",
+    "differences": []
+  },
+  {
+    "check": "net_completion",
+    "differences": [
+      {
+        "net": "/ADC_AIN1",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/ADC_AIN3",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/ADC_AIN6",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/AFE_BUF4",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV4",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV5",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV7",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U28_AIN3",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U29_AIN1",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U29_AIN2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U29_AIN2_UPPER2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SD_DAT0",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SD_DAT2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SENSOR_POWER_FRONT_DVDT",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SENSOR_POWER_FRONT_ILIM",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SENSOR_REF_2V5",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SUP_U16_CT",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/SUP_U19_CT",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/TIRE_CAN_OSC2",
+        "unconnected_items": 1
+      }
+    ],
+    "status": "FAIL",
+    "detail": "23 of the 155 nets fully connected in the input lost connection: /ADC_AIN1, /ADC_AIN3, /ADC_AIN6, /AFE_BUF4, /AFE_DIV2, /AFE_DIV4, /AFE_DIV5, /AFE_DIV7, /DIAG_U28_AIN3, /DIAG_U29_AIN1",
+    "nets_connected_in_input": 155,
+    "nets_lost": [
+      "/ADC_AIN1",
+      "/ADC_AIN3",
+      "/ADC_AIN6",
+      "/AFE_BUF4",
+      "/AFE_DIV2",
+      "/AFE_DIV4",
+      "/AFE_DIV5",
+      "/AFE_DIV7",
+      "/DIAG_U28_AIN3",
+      "/DIAG_U29_AIN1",
+      "/DIAG_U29_AIN2",
+      "/DIAG_U29_AIN2_UPPER2",
+      "/SD_DAT0",
+      "/SD_DAT2",
+      "/SENSOR_POWER_FRONT_DVDT",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_REF_2V5",
+      "/SUP_U16_CT",
+      "/SUP_U19_CT",
+      "/TIRE_CAN_OSC2",
+      "/TIRE_CAN_TX_ENABLE",
+      "/WHEEL_FRONT_CAPTURE",
+      "/WHEEL_REAR_CAPTURE"
+    ]
+  },
+  {
+    "check": "pour_integrity",
+    "status": "FAIL",
+    "detail": "2 copper zones, 55 zone-connected pads compared on the refilled boards (min spokes 2); /+3V3@In2.Cu 4802.7 mm2 (-11.511 %), 1 polygons; /GND@In1.Cu 4812.8 mm2 (-11.736 %), 1 polygons; 1 spokes_below_minimum",
+    "differences": [
+      {
+        "kind": "spokes_below_minimum",
+        "pad": "U12.9@In1.Cu",
+        "connection": "thermal",
+        "position_mm": [
+          48.49,
+          37.315
+        ],
+        "touches_fill": [
+          true,
+          true
+        ],
+        "spokes": [
+          1,
+          1
+        ],
+        "solid": [
+          true,
+          false
+        ],
+        "track_spokes": [
+          0,
+          0
+        ],
+        "in_main": [
+          true,
+          true
+        ],
+        "polygons": [
+          "/GND@In1.Cu/agent-ee-plane/4066f5eb-5e74-5c98-b0f9-8bdce0926886#0"
+        ],
+        "other_path": true,
+        "minimum": 2
+      },
+      {
+        "kind": "spokes_reduced",
+        "pad": "J1.13@In1.Cu",
+        "connection": "thermal",
+        "position_mm": [
+          25.0,
+          55.5
+        ],
+        "touches_fill": [
+          true,
+          true
+        ],
+        "spokes": [
+          4,
+          3
+        ],
+        "solid": [
+          false,
+          false
+        ],
+        "track_spokes": [
+          0,
+          0
+        ],
+        "in_main": [
+          true,
+          true
+        ],
+        "polygons": [
+          "/GND@In1.Cu/agent-ee-plane/4066f5eb-5e74-5c98-b0f9-8bdce0926886#0"
+        ],
+        "other_path": false
+      }
+    ]
+  }
+]
