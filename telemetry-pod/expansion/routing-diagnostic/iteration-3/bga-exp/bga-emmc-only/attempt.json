@@ -1,0 +1,99 @@
+{
+  "schema": "kicad-route/attempt/1",
+  "backend": "builtin",
+  "project": "bga-exp",
+  "board": "bg.kicad_pcb",
+  "schematic": null,
+  "input_fingerprint": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+  "source": {
+    "source_dir": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/bga-exp",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null
+  },
+  "reference_dir": "reference/bga-exp",
+  "candidate_dir": "candidate/bga-exp",
+  "reference_facts": "facts/reference-facts.json",
+  "rules_files": {
+    "project": "bg.kicad_pro",
+    "custom_rules": "bg.kicad_dru",
+    "not_loaded": []
+  },
+  "baseline": {
+    "report": "../../../../.cache/baseline/ce25bb492c4e0b250c6e445f3381e0e03c7e7d1f9eecbcaa3e5b5bb0dc0cb342/generation-em6_s28v/baseline-drc.json",
+    "cached": false,
+    "reasons": [],
+    "identity": {
+      "schema": 1,
+      "input": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+      "board": "bg.kicad_pcb",
+      "kicad_cli": {
+        "path": "/usr/bin/kicad-cli",
+        "version": "10.0.7",
+        "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+      },
+      "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+      "pour_schema": 1,
+      "grading": {
+        "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+        "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+        "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+        "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+        "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+      },
+      "result_schemas": {
+        "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+        "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+      }
+    },
+    "generation": "generation-em6_s28v"
+  },
+  "scope": {
+    "nets": [
+      "/EMMC_CLK",
+      "/EMMC_CMD",
+      "/EMMC_CORE_SW",
+      "/EMMC_DAT0",
+      "/EMMC_DAT1",
+      "/EMMC_DAT2",
+      "/EMMC_DAT3",
+      "/EMMC_DAT4",
+      "/EMMC_DAT5",
+      "/EMMC_DAT6",
+      "/EMMC_DAT7",
+      "/EMMC_DS",
+      "/EMMC_VCC_3V3",
+      "/EMMC_VDDi"
+    ],
+    "mode": "selected",
+    "net_patterns": [
+      "/EMMC_*"
+    ],
+    "netclasses": []
+  },
+  "settings": {
+    "backend": "builtin",
+    "budget_s": 600,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_NET_RESCUE": "0"
+    },
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 300,
+    "mode": "selected",
+    "net_patterns": [
+      "/EMMC_*"
+    ],
+    "netclasses": [],
+    "rule_floor_sha256": null
+  },
+  "floor": null
+}

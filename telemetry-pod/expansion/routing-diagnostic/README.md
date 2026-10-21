@@ -90,6 +90,18 @@ MCU: with 0.24 mm balls at 0.5 mm pitch and the default 0.20 mm track / 0.20 mm 
 no trace can pass between balls, so rows B and C cannot escape; D-PCB-3 must be decided from
 the FEMDME008G land pattern (pad size, NSMD) and a BGA net class before routing can finish.
 
+## D-PCB-3 experiment: eMMC escape on iteration 3 (`iteration-3/bga-exp/`)
+
+Planed iteration-3 board plus D-PCB-3 v2 (0.22 mm balls, BGA_EMMC class 0.09/0.09 mm, B.Cu
+pours under U14), D-PCB-6 (RF reference keep-out) and D-PCB-7 (no tracks on the plane
+layers). `kicad-route run --nets '/EMMC_*' --budget 600`, net rescue off: **routing
+COMPLETE for every eMMC net**, 126 tracks, 10 vias, 151 mm, **0 new DRC violations**. The
+only failure is pour integrity: the GND pour under U14 collapsed to 1.1 mm² in 11 islands,
+so the five interior GND balls are not reachable by a pour between 0.22 mm balls; the
+EMMC_VCC_3V3 interior balls are connected. Decision text in `../design-rules/constraints.json`
+(D-PCB-3): filled via-in-pad for those five balls is the remaining spec-compliant answer and
+an owner cost decision.
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.

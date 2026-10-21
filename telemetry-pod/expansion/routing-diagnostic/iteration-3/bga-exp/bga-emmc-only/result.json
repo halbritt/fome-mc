@@ -1,0 +1,678 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "builtin",
+    "version": "0.23.1",
+    "build": "owned-c6c09054f684",
+    "commit": "8bafe2d563317764e3a7de7b41bcf7d8eb369bf2",
+    "source": "https://github.com/halbritt/kicad-route",
+    "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+    "upstream": {
+      "project": "KiCadRoutingTools",
+      "license": "MIT",
+      "upstream": "https://github.com/drandyhaas/KiCadRoutingTools",
+      "upstream_base": "295f9ee197517e8323726853361eb137cc08ba9e",
+      "upstream_release": "v0.23.1",
+      "fork": "https://github.com/halbritt/KiCadRoutingTools",
+      "fork_commit": "0494a05e30063b849c9cf1b9ac02098073d82216",
+      "fork_tree": "288b2baca668892c812c82f0e7db4c2b2b0a50c1",
+      "fixes": {
+        "KICADROUTE-64": "4b316ba",
+        "KICADROUTE-63": "0494a05"
+      },
+      "source_inventory": "reports/routing-engine/source-closure.json",
+      "additional_license_notices": [
+        "py_router/stage3d/vendor/three/LICENSE"
+      ],
+      "ownership": "Maintained as part of kicad-route; upstream is provenance, not a runtime source selector."
+    },
+    "runtime": {
+      "source": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/router",
+      "venv": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/venv",
+      "generation": "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f"
+    },
+    "rust_router": "0.23.1",
+    "execution_identity": {
+      "name": "builtin",
+      "tag": "owned-c6c09054f684",
+      "version": "0.23.1",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+      "extension_module_sha256": "e9a0c7939e87e414f6ce441d57ef51d729336fa2bcb49d84841cf19ff93e2425",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "reproducible": true,
+    "reproducible_basis": "determinism check 2026-10-20T22:53:29.293454+00:00: identical copper geometry on repeat"
+  },
+  "measurement": true,
+  "input": {
+    "project": "bga-exp",
+    "board": "bg.kicad_pcb",
+    "fingerprint": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+    "source_dir": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/bga-exp",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": null,
+    "baseline": {
+      "report": "../../../../.cache/baseline/ce25bb492c4e0b250c6e445f3381e0e03c7e7d1f9eecbcaa3e5b5bb0dc0cb342/generation-em6_s28v/baseline-drc.json",
+      "cached": false,
+      "reasons": [],
+      "identity": {
+        "schema": 1,
+        "input": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+        "board": "bg.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-em6_s28v"
+    },
+    "rules_files": {
+      "project": "bg.kicad_pro",
+      "custom_rules": "bg.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "builtin",
+    "budget_s": 600,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [],
+    "backend_env": {
+      "KICAD_NET_RESCUE": "0"
+    },
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": 300,
+    "mode": "selected",
+    "net_patterns": [
+      "/EMMC_*"
+    ],
+    "netclasses": [],
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "selected",
+    "nets": 14,
+    "nets_list": [
+      "/EMMC_CLK",
+      "/EMMC_CMD",
+      "/EMMC_CORE_SW",
+      "/EMMC_DAT0",
+      "/EMMC_DAT1",
+      "/EMMC_DAT2",
+      "/EMMC_DAT3",
+      "/EMMC_DAT4",
+      "/EMMC_DAT5",
+      "/EMMC_DAT6",
+      "/EMMC_DAT7",
+      "/EMMC_DS",
+      "/EMMC_VCC_3V3",
+      "/EMMC_VDDi"
+    ]
+  },
+  "unsupported": [
+    "KRT reads only a subset of .kicad_dru custom rules; every rule is still graded by KiCad DRC",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class",
+    "backend reported: .kicad_dru: rule 'fine-pitch intra-footprint pad clearance (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U16 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U17 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U18 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U19 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it"
+  ],
+  "floor": null,
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "exit_code": 0,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/venv/bin/python",
+          "/home/halbritt/git/kicad-route/.router-generations/f23025e1b26d406d83e2167aa0c0da9f/router/py_router/route.py",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/input/bga-exp/bg.kicad_pcb",
+          "--output",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/krt-out/bg.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "/EMMC_CLK",
+          "/EMMC_CMD",
+          "/EMMC_CORE_SW",
+          "/EMMC_DAT0",
+          "/EMMC_DAT1",
+          "/EMMC_DAT2",
+          "/EMMC_DAT3",
+          "/EMMC_DAT4",
+          "/EMMC_DAT5",
+          "/EMMC_DAT6",
+          "/EMMC_DAT7",
+          "/EMMC_DS",
+          "/EMMC_VCC_3V3",
+          "/EMMC_VDDi"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work",
+        "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_NET_RESCUE": "0"
+        },
+        "budget_s": 600,
+        "last_phase": "Run complete -- whole run, re-graded on the written board (14 net(s), 3.5s)",
+        "last_metric": {},
+        "heartbeats": {
+          "count": 111,
+          "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/heartbeat.jsonl",
+          "stall_s": 300,
+          "since_last_progress_s": 11.5,
+          "tail": [
+            {
+              "t_s": 191.715,
+              "utc": "2026-10-21T02:23:34.709910+00:00",
+              "phase": "Routing complete",
+              "metric": {},
+              "line": "============================================================"
+            },
+            {
+              "t_s": 191.715,
+              "utc": "2026-10-21T02:23:34.710205+00:00",
+              "phase": "FAILED NET HISTORIES",
+              "metric": {},
+              "line": "============================================================"
+            },
+            {
+              "t_s": 191.716,
+              "utc": "2026-10-21T02:23:34.710845+00:00",
+              "phase": "summary",
+              "metric": {},
+              "line": "JSON_SUMMARY: {\"routed_single\": [], \"failed_single\": [\"/EMMC_VDDi\", \"/EMMC_DAT4\", \"/EMMC_DAT5\", \"/EMMC_DAT6\", \"/EMMC_DAT3\", \"/EMMC_CMD\", \"/EMMC_DS\", \"/EMMC_D..."
+            },
+            {
+              "t_s": 213.515,
+              "utc": "2026-10-21T02:23:56.510573+00:00",
+              "phase": "regrade",
+              "metric": {},
+              "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 14, \"seconds\": 3.45, \"routed_single\": [\"/EMMC_CLK\", \"/EMMC_DAT0\", \"/EMMC_DAT2\", \"/EMMC_CORE_SW\"], \"failed_sing..."
+            },
+            {
+              "t_s": 213.516,
+              "utc": "2026-10-21T02:23:56.510735+00:00",
+              "phase": "Run complete -- whole run, re-graded on the written board (14 net(s), 3.5s)",
+              "metric": {},
+              "line": "============================================================"
+            }
+          ]
+        },
+        "stalled": false,
+        "exit_code": 0,
+        "duration_s": 224.973,
+        "output_tail": "me\": \"open\", \"open_subtype\": \"unrouted\"}, {\"net\": \"/EMMC_DAT6\", \"pairs_connected\": 0, \"pairs_total\": 1, \"outcome\": \"open\", \"open_subtype\": \"unrouted\"}, {\"net\": \"/EMMC_DAT7\", \"pairs_connected\": 0, \"pairs_total\": 1, \"outcome\": \"open\", \"open_subtype\": \"unrouted\"}, {\"net\": \"/EMMC_DS\", \"pairs_connected\": 0, \"pairs_total\": 1, \"outcome\": \"open\", \"open_subtype\": \"unrouted\"}, {\"net\": \"/EMMC_VDDi\", \"pairs_connected\": 0, \"pairs_total\": 1, \"outcome\": \"open\", \"open_subtype\": \"unrouted\"}], \"scope\": \"reconciliation-subset\", \"board_scoped_keys\": [\"min_clearance_used\"], \"env_knobs\": {\"KICAD_CACHE_HOME\": \"/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/cache\", \"KICAD_CLI\": \"/usr/bin/kicad-cli\", \"KICAD_DYNAMIC_ITERATIONS\": \"0\", \"KICAD_FINALIZE_RIP\": \"0\", \"KICAD_IMPEDANCE_NECKDOWN\": \"0\", \"KICAD_INRUN_FLOOR_SYNC\": \"0\", \"KICAD_NET_RESCUE\": \"0\", \"KICAD_RESCUE_CAP_MOVE\": \"0\", \"KICAD_RIP_PREEXISTING\": \"0\", \"KICAD_STOP_FILE\": \"/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/STOP\", \"KICAD_TERMINAL_ESCALATION\": \"0\"}}\nNote: the JSON_SUMMARY above covers only the reconciliation subset (it carries scope=\"reconciliation-subset\"). The run's tally is the final re-grade of the shipped board (JSON_REGRADE, folded into JSON_SUMMARY_MIN and --json-out). Never scrape the LAST JSON_SUMMARY of a route log.\n  Strict collapse (#1063, end of run): removed 11 redundant segment(s) on 4 net(s)\n\n  FAB NOTE (route): 6 via(s) in a pad or paste opening [R46.2 B.Paste (pad), R48.2 B.Paste (pad), R58.1 B.Paste (pad), U1.33 F.Paste (pad), U1.35 F.Paste (pad), U14.M6 B.Paste (pad)] -- 6 stamped (capping yes) (filling yes), 0 already filled+capped. via-in-pad requires IPC-4761 Type VII (filled + capped + plated); state it on the fab drawing or solder wicks into the barrel.\nVIA_IN_PAD_JSON: {\"count\": 6, \"sites\": [\"R46.2 B.Paste (pad)\", \"R48.2 B.Paste (pad)\", \"R58.1 B.Paste (pad)\", \"U1.33 F.Paste (pad)\", \"U1.35 F.Paste (pad)\", \"U14.M6 B.Paste (pad)\"], \"stamped\": 6, \"restored\": 0, \"protected\": 0, \"unstampable\": 0, \"site_created\": 0, \"unprotected\": [], \"note\": \"via-in-pad requires IPC-4761 Type VII (filled + capped + plated); state it on the fab drawing or solder wicks into the barrel\"}\nJSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 14, \"seconds\": 3.45, \"routed_single\": [\"/EMMC_CLK\", \"/EMMC_DAT0\", \"/EMMC_DAT2\", \"/EMMC_CORE_SW\"], \"failed_single\": [\"/EMMC_CMD\", \"/EMMC_DAT1\", \"/EMMC_DAT3\", \"/EMMC_DAT4\", \"/EMMC_DAT5\", \"/EMMC_DAT6\", \"/EMMC_DAT7\", \"/EMMC_DS\", \"/EMMC_VDDi\"], \"open_single\": [], \"failed_multipoint\": [{\"net_name\": \"/EMMC_VCC_3V3\", \"failed_pads\": [{\"x\": 52.95, \"y\": 25.75, \"component_ref\": \"U15\", \"pad_number\": \"?\"}]}], \"multipoint_pads_total\": 18, \"multipoint_pads_connected\": 17, \"successful\": 4, \"failed\": 10, \"unowned_broken\": [], \"recovered\": [], \"broken_by_run\": []}\n\n============================================================\nRun complete -- whole run, re-graded on the written board (14 net(s), 3.5s)\n============================================================\n  Single-ended:  4/14 routed (9 FAILED)\n  Multi-point:   17/18 pads connected (1 FAILED)\n  Ships broken: 10 net(s) -- the `failed` count, over every net the run owns\n  route summary written to /home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/krt-out/summary.json\nJSON_SUMMARY_MIN: {\"escalations\": 0, \"failed\": 10, \"failed_single\": [\"/EMMC_CMD\", \"/EMMC_DAT1\", \"/EMMC_DAT3\", \"/EMMC_DAT4\", \"/EMMC_DAT5\", \"/EMMC_DAT6\", \"/EMMC_DAT7\", \"/EMMC_DS\", \"/EMMC_VDDi\"], \"finalize_excluded_nets\": [\"/+3V3\", \"/GND\"], \"main_loop_time_s\": 6.9, \"min_clearance_used\": 0.2, \"multipoint_deficit\": 1, \"open_single\": [], \"pad_pairs_open\": {\"count\": 10, \"nets\": [\"/EMMC_CMD\", \"/EMMC_DAT1\", \"/EMMC_DAT3\", \"/EMMC_DAT4\", \"/EMMC_DAT5\", \"/EMMC_DAT6\", \"/EMMC_DAT7\", \"/EMMC_DS\", \"/EMMC_VCC_3V3\", \"/EMMC_VDDi\"]}, \"regraded_nets\": 14, \"routed\": 4, \"scope\": \"merged\", \"terminal_restores_broken\": [], \"vias\": 8}\nEXIT=0\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/locks.py",
+          "restore",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/krt-out/bg.kicad_pcb",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/locks.json"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work",
+        "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/restore-locks.log",
+        "exit_code": 0,
+        "duration_s": 1.431
+      }
+    ],
+    "backend_report": {
+      "successful": 4,
+      "failed": 10,
+      "failed_single": [
+        "/EMMC_CMD",
+        "/EMMC_DAT1",
+        "/EMMC_DAT3",
+        "/EMMC_DAT4",
+        "/EMMC_DAT5",
+        "/EMMC_DAT6",
+        "/EMMC_DAT7",
+        "/EMMC_DS",
+        "/EMMC_VDDi"
+      ],
+      "open_single": [],
+      "failed_multipoint": [
+        {
+          "net_name": "/EMMC_VCC_3V3",
+          "failed_pads": [
+            {
+              "x": 52.95,
+              "y": 25.75,
+              "component_ref": "U15",
+              "pad_number": "?"
+            }
+          ]
+        }
+      ],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 19,
+      "pad_pairs_total": 29,
+      "total_vias": 8,
+      "total_iterations": 108960,
+      "total_time": 6.9,
+      "protected_skipped": null,
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [],
+        "fab_tier_escalations": 0,
+        "min_delivered": {},
+        "unsupported_rules": []
+      },
+      "improvement_gate": null,
+      "project_writes": null
+    },
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 0
+      },
+      "lock_exit": 0,
+      "restore": {
+        "restored": 0,
+        "not_found": 0
+      }
+    },
+    "project_writeback": [
+      {
+        "file": "bg.kicad_prl",
+        "identical_to_input": true
+      },
+      {
+        "file": "bg.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 229.174,
+    "last_phase": "Run complete -- whole run, re-graded on the written board (14 net(s), 3.5s)",
+    "heartbeats": {
+      "count": 111,
+      "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/work/heartbeat.jsonl",
+      "stall_s": 300,
+      "since_last_progress_s": 11.5,
+      "tail": [
+        {
+          "t_s": 191.715,
+          "utc": "2026-10-21T02:23:34.709910+00:00",
+          "phase": "Routing complete",
+          "metric": {},
+          "line": "============================================================"
+        },
+        {
+          "t_s": 191.715,
+          "utc": "2026-10-21T02:23:34.710205+00:00",
+          "phase": "FAILED NET HISTORIES",
+          "metric": {},
+          "line": "============================================================"
+        },
+        {
+          "t_s": 191.716,
+          "utc": "2026-10-21T02:23:34.710845+00:00",
+          "phase": "summary",
+          "metric": {},
+          "line": "JSON_SUMMARY: {\"routed_single\": [], \"failed_single\": [\"/EMMC_VDDi\", \"/EMMC_DAT4\", \"/EMMC_DAT5\", \"/EMMC_DAT6\", \"/EMMC_DAT3\", \"/EMMC_CMD\", \"/EMMC_DS\", \"/EMMC_D..."
+        },
+        {
+          "t_s": 213.515,
+          "utc": "2026-10-21T02:23:56.510573+00:00",
+          "phase": "regrade",
+          "metric": {},
+          "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 14, \"seconds\": 3.45, \"routed_single\": [\"/EMMC_CLK\", \"/EMMC_DAT0\", \"/EMMC_DAT2\", \"/EMMC_CORE_SW\"], \"failed_sing..."
+        },
+        {
+          "t_s": 213.516,
+          "utc": "2026-10-21T02:23:56.510735+00:00",
+          "phase": "Run complete -- whole run, re-graded on the written board (14 net(s), 3.5s)",
+          "metric": {},
+          "line": "============================================================"
+        }
+      ]
+    },
+    "stalled": false,
+    "measurement_qualification": {
+      "measurement": true,
+      "build_reproducible": true,
+      "reasons": []
+    }
+  },
+  "routing": {
+    "status": "COMPLETE",
+    "unconnected_in_scope": 0,
+    "unconnected_total": 499,
+    "baseline_unconnected_total": 499,
+    "unrouted_nets": [],
+    "stats": {
+      "new_tracks": 126,
+      "new_vias": 10,
+      "new_track_length_mm": 151.125,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 79.422,
+        "F.Cu": 71.704
+      },
+      "new_copper_nets": 8,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "preservation pour_integrity: 4 copper zones, 77 zone-connected pads compared on the refilled boards (min spokes 2); /+3V3@In2.Cu 5400.4 mm2 (-0.158 %), 13 polygons, 5.5 mm2 off the main pour; /EMMC_VCC_3V3@B.Cu 165.0 mm2 (+1386.454 %), 2 polygons, 10.7 mm2 off the main pour; /GND@B.Cu 1.1 mm2 (-99.304 %), 11 polygons, 1.1 mm2 off the main pour; /GND@In1.Cu 5430.4 mm2 (-0.157 %), 1 polygons; 4 isolated_island"
+    ],
+    "dir": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/validate",
+    "rules_files": {
+      "project": "bg.kicad_pro",
+      "custom_rules": "bg.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "323bd527bb223d933c0645fb796eb5a0d97b049efd397c816ec8e0453089edaf",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/validate/candidate-refill.json",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp/bg.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp",
+        "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 54.891
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/validate/candidate-drc.json",
+          "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp/bg.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp",
+        "log": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 33.574
+      }
+    ],
+    "validated_board_sha256": "00c9d10da0dd9253df59f6bdb9061424950ac03167642cbfc3a812eebb7aa376",
+    "candidate_board_sha256": "00c9d10da0dd9253df59f6bdb9061424950ac03167642cbfc3a812eebb7aa376",
+    "refill_modified_board": true,
+    "parity_performed": null,
+    "drc": {
+      "violations_total": 208,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 208,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 303,
+      "nets_lost": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "FAIL"
+    }
+  },
+  "candidate": {
+    "dir": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp",
+    "board": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z/candidate/bga-exp/bg.kicad_pcb"
+  },
+  "run_dir": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/runs/bga-exp/bga-emmc-only/20261021T021925.704175Z",
+  "runtime_s": 376.517,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "f0baf0938341bcc216164c65c2d2ce8b8cd083cbe5514737d846b1f48499fe7d",
+    "input_fingerprint": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+    "baseline": {
+      "identity": {
+        "schema": 1,
+        "input": "80ddcdbd880043c7b5b667ef1aec2ac600d6f9ff877b058f7dedfb7b244c8dee",
+        "board": "bg.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "grading": {
+          "baselinecache.py": "2b4d52298d4c8ffe227150478217e01fe0c206306698cd687b64c93f603bad13",
+          "cli.py": "7f9a3f69ce54d84eb82ea76ae074d2a0bc42691c8544929e199d172a30ce2999",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "51e5b43be4f05ece426e17bc541d325e311d9751747729141af16214b9a949fd"
+        },
+        "result_schemas": {
+          "result-1.json": "901158e768f9a310530f8f4aa4d76e3db68963d4c8dca34187ac3000b1d5f168",
+          "result-2.json": "8c7c587825ce8a07dd0e63d1695c23571be8331d98d9685fc558607584b2e639"
+        }
+      },
+      "generation": "generation-em6_s28v"
+    },
+    "reference_files": {
+      "bg.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "bg.kicad_pcb": "f0baf0938341bcc216164c65c2d2ce8b8cd083cbe5514737d846b1f48499fe7d",
+      "bg.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8"
+    },
+    "rules_files": {
+      "bg.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "bg.kicad_pro": "3da9b275cfb83943a1b591477927564824730a8f9c766a69a902cae56264d3d8"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": "323bd527bb223d933c0645fb796eb5a0d97b049efd397c816ec8e0453089edaf",
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": "00c9d10da0dd9253df59f6bdb9061424950ac03167642cbfc3a812eebb7aa376",
+    "pre_refill_board_sha256": "323bd527bb223d933c0645fb796eb5a0d97b049efd397c816ec8e0453089edaf",
+    "candidate_copper_signature": {
+      "sha256": "33c666648dba04de5470ee2fe86af3e1de468c54dc4d73d553a7ae95b2553579",
+      "tracks": 126,
+      "vias": 10
+    },
+    "records": {
+      "attempt.json": "2e9dccf614cc9395c678d386731e5aeebbd1279c225efaa967f9366afb7436c5",
+      "validate/preservation.json": "2ae5ccfb246c5bdbb9201dc5e340cf59d370a2bb64895701fe866d083661b221",
+      "validate/new-findings.json": "5ff88c9f28b8acc5f2c72b470a49c028151205a12102b200c793d6ef1aeebbbd",
+      "validate/candidate-drc.json": "4e8da0519e110c7c6fa2c2e0d7351686aba63aa74a7822fa8c66622baecd2c1c",
+      "validate/candidate-facts.json": "e29c65445a1b55b89394369816f39f9d98532c02c8644f4b8898a18cdfb0031e",
+      "validate/pour-integrity.json": "0edd56796efb27e8ba62d5df937772891237b58c98e518c1a60800fe490562a9"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "784fd6d",
+      "commit": "784fd6d5f7d9e0c9aeff3ebcebe970c96bc6570b",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "builtin",
+      "tag": "owned-c6c09054f684",
+      "version": "0.23.1",
+      "commit": "8bafe2d563317764e3a7de7b41bcf7d8eb369bf2",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "c6c09054f6845442867ed99141ecbcfdc78f39f622cda06ff401e8230bd9bab1",
+      "extension_module_sha256": "e9a0c7939e87e414f6ce441d57ef51d729336fa2bcb49d84841cf19ff93e2425",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "state_manifest_sha256": "87ae9cf328c50c1f3275a480dab2b4a9a951f09d2b2b9c6d91bfac9296221bfd",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-21T02:25:43.801542+00:00",
+  "exit_code": 3,
+  "ledger": {
+    "fingerprint": "8e293590807aff2754ce4b373892cfecbe003e6921d0ed90b31ac5fbe56bf8e7",
+    "short": "8e293590807a",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/agent499-cluster-anchored/iter3/route/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  }
+}
