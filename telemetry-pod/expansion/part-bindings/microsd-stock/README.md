@@ -12,3 +12,8 @@ harness header) shows **0** JLCPCB assembly stock at capture time. Everything el
 that JLCPCB cannot place from stock; either order it separately (TE/Digi-Key/Mouser) and
 solder it by hand, use JLCPCB's pre-order/consign option, or wait for restock. This does not
 change the design; it is an ordering decision for the owner at fab time.
+
+Quantity check (per-board usage from `native.xml` against the captured stock): 81 ids, 294
+placements. Short: only J1 (`C596198`). Tight for more than one board: `C127833` 100 nF 0603
+(22 per board, 23 in stock) and `C701613` ADS1119 (3 per board, 5 in stock); both have
+drop-in alternatives at JLCPCB and should be re-checked at order time.
