@@ -1,3 +1,5 @@
+> **2026-10-21 (fifth fix):** C38, C41, C43 and C44 leave `buck-3v3`: they are +3V3 bypass capacitors of other ICs (48–51 mm from U7 in iteration 5), not part of the regulator; they are residual. `buck-3v3` is now U7, C8–C15, L2, R4, R5, R28.
+
 > **2026-10-21 (fourth fix):** the `gnss` block is dissolved into the residual set. U3 and L3 are fixed in the reviewed RF corridor (iteration 3/5: U3 facing J2 with the bias tee L3 on the line), and locked parts cannot be rigid-block members; the remaining members C42, D3, R24–R26, U10 pack as residual parts held near U3 by packing groups. 19 blocks.
 
 > **2026-10-21 (third fix, from the AGENTEE-355 diagnostic):** C18 (1 µF on PRE_6V3, the U5/L1 output node; U7 is not on that net) left `buck-3v3` and R33 (10 k MCU_BOOT46 strap pull-down, whose only non-plane net is to the fixed U1, which cannot be a block member) left `mcu`; both are residual (C16/C20 on the same node stay in `supplies-5v`, where they are reachable). Members must be reachable from the block through non-plane nets.
