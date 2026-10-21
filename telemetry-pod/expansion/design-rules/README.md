@@ -76,14 +76,44 @@ needs 0.20 mm and 0.30 mm is kept), and 22 silkscreen findings appear (text belo
 1.0 mm / 0.15 mm legibility minimum, overlaps) that the lax defaults had hidden. Those are
 real manufacturability findings for the silk relocation stage (AGENTEE-320), not copper.
 
-## Open design item D-PCB-3: eMMC interior fanout
+## D-PCB-3: eMMC interior fanout (decided v3, 2026-10-21)
 
 The first KRT routing diagnostic on this board (`~/.cache/agent499-route-diag`, run
 `cited-krt-norescue`) routed 142 of 194 nets and left every eMMC bus net open: U14 is a
 0.5 mm-pitch BGA-153 with ten connected interior balls, and a 0.60 mm via cannot dogbone
-between its balls. `constraints.json` records the two candidate answers (a BGA net class
-on JLCPCB's published BGA allowances, or filled via-in-pad). This is decided by a bounded
-routing experiment, not by relaxing the general rules.
+between its balls. `constraints.json` records the history. The bounded routing experiment (D-PCB-3 v2,
+`../routing-diagnostic/iteration-3/bga-exp/`) routed every EMMC_* net with 0.22 mm pads and
+the `BGA_EMMC` class, but a B.Cu GND pour cannot reach the five interior GND balls.
+
+**Decision v3 (autonomous under the owner's 2026-10-20 ruling; owner review after the
+fact):** E7, G5, H10, J5 and K8 are filled-and-capped via-in-pad, 0.15 mm hole /
+0.25 mm diameter, carried as through-hole pads by the patched footprint
+`footprints/Package_BGA.pretty/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.kicad_mod`
+(all pads 0.22 mm NSMD). `telemetry-pod.kicad_dru` scopes hole 0.15 / ring 0.05 mm to
+U14's through-hole pads (JLCPCB 4-layer via minimum). Order form: via covering = epoxy
+filled and capped. Evidence in `evidence/d-pcb-3-v3/`: the derived iteration-3 board
+(`../placement-candidate/iteration-3/derived-d-pcb-3-silk/`) has 0 silk, 0 hole and 0
+annular findings; its 6 clearance + 4 pth_inside_courtyard findings are the via-in-pad
+sites under U1's pads 19-22 on the other side, which the next seed must avoid (the
+patched footprint lets the packer's hole-conflict check enforce that). Reverse: restore
+the stock footprint and delete the U14 rule.
+
+## Decisions D-PCB-8 to D-PCB-11 (2026-10-21, autonomous, owner review after the fact)
+
+- **D-PCB-8 silkscreen policy.** `silk/apply-silk-policy.py` hides the reference/value
+  fields and moves to Fab the footprint silk graphics that KiCad's own DRC names in
+  silk findings. Cosmetic only; JLCPCB assembles from the position file. On iteration 3
+  it removed all 58 silk findings (29 references hidden, 12 graphics moved).
+- **D-PCB-9 NEO-M9N.** U3 accepted as an exact 85 C exception on the owner's terms for
+  U1/U2/U4 (AGENTEE-209: tested against its actual limit, thermal evidence required).
+  NEO-M9L-01A has 0 stock and changes three pin functions.
+- **D-PCB-10 J1.** Stays TE 776228-1 vertical; the 12 mm limit that argued for the
+  right-angle 776087-1 was owner-withdrawn on 2026-10-19.
+- **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the order form lacks filled-and-
+  capped vias on this stack, or the block-placed routing campaign leaves +3V3 plane pads
+  open or fails pour integrity on In2.
+
+Full text with reversal paths: `constraints.json` `decisions`.
 
 ## Evidence on the frozen diagnostic board
 
@@ -109,7 +139,9 @@ it is not an adopted board.
 ## How this is applied and reversed
 
 - The next expanded-board import or placement run must use `footprints/` in place of the
-  three sources in `../released-source-migration/inputs/footprints/`, carry
+  three sources in `../released-source-migration/inputs/footprints/` and of the stock
+  `Package_BGA:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm` (D-PCB-3 v3), run
+  `silk/apply-silk-policy.py` on the seed (D-PCB-8), carry
   `telemetry-pod.kicad_dru` as the project's rule file, and apply the board-setup values
   of `constraints.json` (as in `board-setup.kicad_pro`) to the generated project. Until the migration is
   re-sealed with these sources, every candidate board must be checked with this rule

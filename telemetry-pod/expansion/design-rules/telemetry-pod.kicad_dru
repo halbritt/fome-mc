@@ -17,3 +17,7 @@
 (rule "supervisor intra-footprint pad clearance U19 (D-PCB-1)"
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U19') && B.memberOfFootprint('U19')")
   (constraint clearance (min 0.15mm)))
+(rule "U14 via-in-pad (D-PCB-3 v3; JLCPCB 0.15 mm hole, 0.25 mm diameter, filled and capped)"
+  (condition "A.memberOfFootprint('U14') && A.Pad_Type == 'Through-hole'")
+  (constraint hole_size (min 0.15mm))
+  (constraint annular_width (min 0.05mm)))
