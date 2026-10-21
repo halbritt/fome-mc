@@ -1,3 +1,5 @@
+> **2026-10-21 (seventh fix, owner):** the card slot points off the left board edge, so J3 is a fixed part at (8.9, 32.0) B rot 90 and the `storage` block is dissolved into the residual set with a packing group (R46–R50, R55, C64, C65 within 12 mm of J3). With AGENTEE-375 released, `pre-6v3` and `buck-3v3` are blocks again, served from the block library (iteration-5 layouts). 18 blocks.
+
 > **2026-10-21 (sixth fix):** `pre-6v3` and `buck-3v3` are dissolved into the residual set because their members are fixed in the seed at the reviewed iteration-5 cluster poses (U5 at 29,14 and U7 at 36,29 with their capacitors, inductors and dividers). The block library import of those layouts refuses to materialize on the two-level seed (`courtyard` identity differs between a part captured at rotation 90 and the same part at rotation 0; reported to agent-449), so the clusters are carried as fixed parts instead. 17 blocks.
 
 > **2026-10-21 (fifth fix):** C38, C41, C43 and C44 leave `buck-3v3`: they are +3V3 bypass capacitors of other ICs (48–51 mm from U7 in iteration 5), not part of the regulator; they are residual. `buck-3v3` is now U7, C8–C15, L2, R4, R5, R28.

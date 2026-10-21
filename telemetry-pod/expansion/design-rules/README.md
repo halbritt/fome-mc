@@ -126,6 +126,8 @@ the stock footprint and delete the U14 rule.
 - **D-PCB-14 SD bus length.** Up to 90 mm pad-to-pad at the 20 MHz SDR target (iteration 7
   places the socket in the far corner because the card lane no longer fits under U1); route
   the six SD nets as one matched bundle; higher SD clocks need the block moved next to U1.
+- **D-PCB-13 v3 (owner): slot off the edge.** J3 fixed at (8.9, 32.0) B rot 90 with the
+  mouth at the left edge; the card lane lies outside the outline (overhang band 20.3 mm).
 - **D-PCB-13 J3 card envelope.** `footprints/Connector_Card.pretty` extends the socket's
   courtyard over the inserted card and its 15 mm insertion lane (to y=29.0 mm; v2 after the
   iteration-6 review found U4 in the lane) so packers and DRC keep the card path
