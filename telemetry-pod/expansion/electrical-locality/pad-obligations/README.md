@@ -9,17 +9,31 @@ requires before a guided pod placement can run. Origin groups in `../next-groups
 and `../../electrical-locality/storage-power` remain in force; a passing origin group
 is not electrical acceptance.
 
+## Provenance status (owner direction 2026-10-21): ADVISORY
+
+Owner, relayed by agent-449: "the limits should be validated against some spec, either the
+component or what JLCPCB can manufacture." The 33 numeric bounds below were chosen by the
+agent from package geometry; the owner did not choose them, so the earlier "design-owner
+declaration" label was wrong and is withdrawn. Until each bound is re-derived from (a) a
+component figure (a datasheet number, or a measurement of the datasheet's reference layout
+with its scale recorded) or (b) the JLCPCB manufacturable floor for that pair (footprints
+plus captured JLCPCB assembly and PCB rules), the bounds are advisory placement guidance,
+not pass/fail: a pair over its bound is an "exceedance of an advisory bound", never a
+failure, and nothing blocks on it. AGENTEE-337 (agent-ee) adds provenance classes to
+locality bounds, computes the JLCPCB floor per pair and will supply the classification
+table that this file's next revision uses for the derivation. The cluster-anchored
+placements already satisfy all 33 bounds by construction, so the advisory status changes
+no placement outcome.
+
 ## What is declared and by whom
 
 Every pair names the exact IC pad, capacitor or inductor pad and native net, and a
 numeric bound with a citation locating the datasheet guideline it implements. The
 datasheets give prose only ("as close as possible", "short, wide"); none gives a
-numeric radius. The numeric bounds are therefore **design-owner declarations
-(D-PL-1, 2026-10-20)**, chosen from package and capacitor geometry so that a
-capacitor seated directly against the named pins satisfies the bound with roughly
-1 mm of placement slack. They are not manufacturer limits and do not claim
-qualification. The owner may tighten or loosen any bound; a change is a new
-version of this file, not a rule relaxation of the board.
+numeric radius. The numeric bounds were chosen by the agent (D-PL-1, 2026-10-20) from package and
+capacitor geometry so that a capacitor seated directly against the named pins satisfies
+the bound with roughly 1 mm of placement slack. They are advisory (see above) until
+re-derived from a spec; they are not manufacturer limits and do not claim qualification.
 
 | Cluster | Pairs | Bounds (mm) | Datasheet locator |
 | --- | --- | --- | --- |
@@ -64,18 +78,17 @@ retained 17-group diagnostic candidate (board SHA256
 python3 -I measure.py <placement-probe.json> electrical-locality.json
 ```
 
-`frozen-79cc1310-measurements.json` records 33 pairs: 20 pass, 13 exceed the declared
+`frozen-79cc1310-measurements.json` records 33 pairs: 20 within and 13 over the advisory
 bound, 0 unknown. Every pad, net and limit resolves, so the document is usable as a
 322 input without further authoring. `cross-check-322-18aad41.json` records that the
 unreleased AGENTEE-322 grader (worktree commit 18aad41, diagnostic use only) reports
 identical distances and the identical defect set.
 
-The 13 exceedances are concrete defects of the frozen diagnostic board, not of the
-design: U7's HF input capacitor C10 (4.34 / 7.51 mm), bulk returns C8/C9, U7 VCC
+The 13 exceedances of the advisory bounds on the frozen diagnostic board are: U7's HF input capacitor C10 (4.34 / 7.51 mm), bulk returns C8/C9, U7 VCC
 capacitor C11 (7.58 mm), U5's C2 bulk and L1 switch node (6.86 mm), U15's input C70
 supply and L4 switch node, C68 output return, and U26's C98 supply (7.42 mm). They
-are the regressions the origin-group packing left behind, now expressed as
-obligations the packer must satisfy.
+are where origin-group packing left capacitors far from their pins; the cluster-anchored
+placements (../../placement-candidate/) satisfy all 33 bounds by construction.
 
 ## Status and next step
 
