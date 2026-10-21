@@ -118,7 +118,8 @@ the stock footprint and delete the U14 rule.
   leaves +3V3 plane pads open or fails pour integrity on In2 (the via-fill trigger went
   with D-PCB-3).
 - **D-PCB-13 J3 card envelope.** `footprints/Connector_Card.pretty` extends the socket's
-  courtyard over the inserted card (to y=13.98 mm) so packers and DRC keep the card path
+  courtyard over the inserted card and its 15 mm insertion lane (to y=29.0 mm; v2 after the
+  iteration-6 review found U4 in the lane) so packers and DRC keep the card path
   clear (iteration-5 review: TP2/TP5 were 0.06 mm from the card edge).
 - **D-PCB-12 J3.** The microSD socket (−25 to +85 °C) is an 85 °C exception on the
   owner's U1/U2/U4 terms; no 105 °C socket is stocked with a library footprint.
