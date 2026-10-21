@@ -112,6 +112,31 @@ areas, 3.8 mm total; the builtin engine does not honour inner-layer rule areas, 
 to the kicad-route owner) + 13 dangling stubs. Two signal layers are too few for this
 board; D-PCB-7 v2 keeps only In1.Cu closed and opens In2.Cu to signals.
 
+## Full pass with D-PCB-7 v2 (In1 closed, In2 open) (`iteration-3/bga-exp/bg3-in2-open/`)
+
+Same settings on `bg3`: 136 of 194 nets, 4413 tracks, 401 vias (939 mm on In2.Cu, 1.4 mm
+of stubs on In1.Cu), 58 nets open, 60 new findings = 35 `items_not_allowed` (In1 stubs,
+the same engine limitation) + 25 dangling stubs; copper clearance findings 0.
+
+## Where routing stands after six attempts on the cluster-anchored placements
+
+| Input | Nets routed | Open | New copper findings |
+| --- | ---: | ---: | --- |
+| iteration 1, no planes, 4 layers routable | 145 | 49 | 1 dangling |
+| iteration 2, planes, 4 layers routable | 143 | 51 | 6 dangling |
+| iteration 3, planes, 4 layers routable | 136 | 58 | 5 dangling |
+| iteration 3 + D-PCB-3/6/7, eMMC nets only | all eMMC | 0 | 0 |
+| iteration 3 + D-PCB-3/6/7, In1+In2 closed | 114 | 80 | 64 rule-area stubs |
+| iteration 3 + D-PCB-3/6/7 v2, In1 closed | 136 | 58 | 35 rule-area stubs |
+
+The plateau is 136-145 nets with zero clearance violations. The open set is stable:
+analog front-end and ADC lines, the diagnostic I2C pair, the SPI bus, the TPS26625
+control nets and the plane nets' last pads. Net ordering (campaign) and layer policy do
+not move it; the remaining levers are placement (the two-level block placer,
+AGENTEE-339/340, with the allocation in `../blocks/`), the builtin engine honouring rule
+areas (reported to the kicad-route owner), and the eMMC interior-ground via-in-pad
+decision (D-PCB-3).
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.
