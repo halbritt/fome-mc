@@ -1,0 +1,951 @@
+{
+ "block_id": "storage",
+ "block_policy": {
+  "fixed_refs": [
+   "J3"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "obstacles": [],
+  "priority_refs": [
+   "C64",
+   "C65",
+   "R46",
+   "R47",
+   "R48",
+   "R49",
+   "R50",
+   "R55"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "deferred": {
+  "board_rule_areas": 0,
+  "groups": [],
+  "obligations": [],
+  "obstacles": 7
+ },
+ "frame": {
+  "anchor": "J3",
+  "convention": "anchor-origin-quarter-turn/1"
+ },
+ "grade": {
+  "electrical_locality": null,
+  "groups": null
+ },
+ "members": [
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1700000,
+        980000
+       ],
+       [
+        1700000,
+        980000
+       ],
+       [
+        1700000,
+        -980000
+       ],
+       [
+        -1700000,
+        -980000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "7eb4b3423de60d5c2b0e517e075ca61e03ee9fb0fbac0760fa170ee2f7b54bb8",
+   "fpid": "Capacitor_SMD:C_0805_2012Metric",
+   "pad_geometry_sha256": "24a4cd6d5e142acd6fed86e0ed113768ae7408c8ae520364f8144b8edfa64911",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n6"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     975000,
+     10050000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "C64",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "4.7 uF/16 V X7R"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "e8d7cfd75b0a511fb2c7e128bb8f1b3f3265b2519844f477924734dc04049dd8",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n6"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2455000,
+     10300000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "C65",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "100nF"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        7880000,
+        8820000
+       ],
+       [
+        7880000,
+        -13980000
+       ],
+       [
+        -7820000,
+        -13980000
+       ],
+       [
+        -7820000,
+        8820000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "de251f9acf8800c659d60a7d5020c8022c3669c5c9a36aa66a2f721c65e70b75",
+   "fpid": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
+   "pad_geometry_sha256": "7d486aa01a1e95e4017deaf4fdde4d1bc39a73b13dd5e25c4d5d584d644215f3",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "DAT2"
+     },
+     "net": "/SD_DAT2",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "DAT3/CD"
+     },
+     "net": "/SD_DAT3",
+     "pad": "2",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "CMD"
+     },
+     "net": "/SD_CMD",
+     "pad": "3",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VDD"
+     },
+     "net": "/+3V3",
+     "pad": "4",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "CLK"
+     },
+     "net": "/SD_CLK",
+     "pad": "5",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VSS"
+     },
+     "net": "/GND",
+     "pad": "6",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "DAT0"
+     },
+     "net": "/SD_DAT0",
+     "pad": "7",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "DAT1"
+     },
+     "net": "/SD_DAT1",
+     "pad": "8",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "DET_B"
+     },
+     "net": "/SD_CD",
+     "pad": "9",
+     "role": "n9"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "DET_A"
+     },
+     "net": "/GND",
+     "pad": "10",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "SHIELD"
+     },
+     "net": "/GND",
+     "pad": "SH",
+     "role": "n6"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     0,
+     0
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "J3",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "DM3AT-SF-PEJM5"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_CMD",
+     "pad": "2",
+     "role": "n3"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     755000,
+     12010000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R46",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_DAT0",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2455000,
+     12010000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R47",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_DAT1",
+     "pad": "2",
+     "role": "n8"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4915000,
+     11050000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R48",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_DAT2",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     3655000,
+     11050000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R49",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_DAT3",
+     "pad": "2",
+     "role": "n2"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     5365000,
+     11050000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R50",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "B": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        -1480000,
+        -730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "db2b442678c2784d5b46c0efd1701bf0d0db1e1bfe343f5e69708d6ae2343df0",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "5de1a1824ace8584ecaa609eed1e85a47caaa5c5c7733be36f5e57caaf864365",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SD_CD",
+     "pad": "1",
+     "role": "n9"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -6625000,
+     11050000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R55",
+   "side": "B",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  }
+ ],
+ "outline": {
+  "B": {
+   "box_nm": [
+    -7820000,
+    -13980000,
+    7880000,
+    12740000
+   ],
+   "courtyards": [
+    [
+     [
+      -725000,
+      9070000
+     ],
+     [
+      2675000,
+      9070000
+     ],
+     [
+      2675000,
+      11030000
+     ],
+     [
+      -725000,
+      11030000
+     ]
+    ],
+    [
+     [
+      -975000,
+      11030000
+     ],
+     [
+      -3935000,
+      11030000
+     ],
+     [
+      -3935000,
+      9570000
+     ],
+     [
+      -975000,
+      9570000
+     ]
+    ],
+    [
+     [
+      -7820000,
+      8820000
+     ],
+     [
+      -7820000,
+      -13980000
+     ],
+     [
+      7880000,
+      -13980000
+     ],
+     [
+      7880000,
+      8820000
+     ]
+    ],
+    [
+     [
+      -725000,
+      11280000
+     ],
+     [
+      2235000,
+      11280000
+     ],
+     [
+      2235000,
+      12740000
+     ],
+     [
+      -725000,
+      12740000
+     ]
+    ],
+    [
+     [
+      -975000,
+      12740000
+     ],
+     [
+      -3935000,
+      12740000
+     ],
+     [
+      -3935000,
+      11280000
+     ],
+     [
+      -975000,
+      11280000
+     ]
+    ],
+    [
+     [
+      -5645000,
+      12530000
+     ],
+     [
+      -5645000,
+      9570000
+     ],
+     [
+      -4185000,
+      9570000
+     ],
+     [
+      -4185000,
+      12530000
+     ]
+    ],
+    [
+     [
+      2925000,
+      12530000
+     ],
+     [
+      2925000,
+      9570000
+     ],
+     [
+      4385000,
+      9570000
+     ],
+     [
+      4385000,
+      12530000
+     ]
+    ],
+    [
+     [
+      4635000,
+      12530000
+     ],
+     [
+      4635000,
+      9570000
+     ],
+     [
+      6095000,
+      9570000
+     ],
+     [
+      6095000,
+      12530000
+     ]
+    ],
+    [
+     [
+      -5895000,
+      9570000
+     ],
+     [
+      -5895000,
+      12530000
+     ],
+     [
+      -7355000,
+      12530000
+     ],
+     [
+      -7355000,
+      9570000
+     ]
+    ]
+   ]
+  }
+ },
+ "placer_judgment": {
+  "basis": "transformed-proposal-not-native",
+  "verdict": "pass"
+ },
+ "provenance": {
+  "citation": "agent-ee.blocks intra-block search over the captured board; no manufacturer or owner layout authority",
+  "class": "search-derived",
+  "enforcement": "advisory",
+  "method": "ranked-first-fit-backjump/1"
+ },
+ "schema": "agent-ee.block-candidate/2",
+ "search": {
+  "backjumps": 0,
+  "compaction": {
+   "box_area_nm2": 419504000000000,
+   "first_box_area_nm2": 443054000000000,
+   "objective": "outline-bisection-min-box-area/1",
+   "step_cap": 10000,
+   "steps_total": 16,
+   "trials": [
+    {
+     "box_area_nm2": 419504000000000,
+     "family": "anchor-square",
+     "parameter": 14110000,
+     "status": "packed",
+     "steps_used": 8
+    }
+   ]
+  },
+  "step_budget": 200000,
+  "steps_used": 8,
+  "strategy": "ranked-first-fit-backjump/1"
+ },
+ "sources": {
+  "allocation_sha256": "30ff53342642fb31505df3531a34198bb43780dbc738771650314acacea31f25",
+  "board_sha256": "8605b07caea6444085d6b4f80ea03a703ab9d90f3d5c9f12fc874bc6d85a38d8",
+  "derivation_sha256": "88c16a8af607cc10dbfd2a57e53972e0cb0e167890f1d28ec4b416b470dec979",
+  "inventory_sha256": "7791d44380d40bb46b0dbe1cd7495ce59408e8691afe2bf360eaf70b3eab7556",
+  "policy_sha256": "5269061f6b0494d9e72e8143d3d643c89805a874751da140792e01688574dd22"
+ },
+ "status": "packed",
+ "witness": {
+  "below_gap": [],
+  "drilled_pad_conflicts": [],
+  "gap_nm": 250000,
+  "method": "exact-courtyard-separation/1",
+  "minimum": {
+   "B": {
+    "distance_squared_nm2": [
+     62500000000,
+     1
+    ],
+    "refs": [
+     "C64",
+     "C65"
+    ]
+   }
+  },
+  "pairs_checked": 36,
+  "status": "pass"
+ }
+}
