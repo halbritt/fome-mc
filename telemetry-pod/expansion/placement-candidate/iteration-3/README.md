@@ -37,7 +37,8 @@ so a 1.5 mm B-side moat is the first lever if BGA escape stalls.
 | Check | Result |
 | --- | --- |
 | Packer (`evidence/placement-*.json`) | placed, 866 s, 16 511 steps, 2 backjumps, judgment pass, groups pass, 331 of 331, 162 F / 169 B |
-| Pad obligations rev 2 (`measure.py`) | 33 pass, 0 exceed, 0 unknown |
+| Pad obligations rev 2 (`measure.py`, pad anchors) | 33 within, 0 over, 0 unknown (advisory bounds) |
+| Pad obligations on released agent-ee `c7a2285` (AGENTEE-328 copper-centroid metric, probe re-extracted: `evidence/placement-probe-released-c7a2285.json`) | pass: 33 measured, 0 defects, 0 unknown; largest pair 8.12 mm (U5/U7 VCC return) |
 | Native DRC, **cited project on the committed board** (`evidence/cited-rules-drc-committed-board.json`) | 329: 44 drill (unpatched 0.20 mm thermal vias of the migration footprints), 199 library, 86 silk/text; **clearance 0, courtyard 0, hole 0, copper-edge 0** |
 | Same on a copy with 0.30/0.70 mm thermal vias (`…-via-patched-copy.json`) | 257: 199 library, 58 silk; 0 drill |
 | IMU courtyard distances, exact polygons (L1/L2/L4/U5/U7/U15/U26) | 14.56 / 21.81 / 42.02 / 11.54 / 23.73 / 39.12 / 6.81 mm |
