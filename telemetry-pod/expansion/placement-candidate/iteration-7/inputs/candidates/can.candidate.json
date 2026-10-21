@@ -1,0 +1,690 @@
+{
+ "block_id": "can",
+ "block_policy": {
+  "fixed_refs": [
+   "U100"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "obstacles": [],
+  "priority_refs": [
+   "D100",
+   "C100",
+   "R100"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "deferred": {
+  "board_rule_areas": 0,
+  "groups": [],
+  "obligations": [],
+  "obstacles": 7
+ },
+ "frame": {
+  "anchor": "U100",
+  "convention": "anchor-origin-quarter-turn/1"
+ },
+ "grade": {
+  "electrical_locality": null,
+  "groups": null
+ },
+ "members": [
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -910000,
+        -460000
+       ],
+       [
+        910000,
+        -460000
+       ],
+       [
+        910000,
+        460000
+       ],
+       [
+        -910000,
+        460000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e65c81b6881498d4c0f0eb7baf69d75382f52f20bfb31ff6f6aadb72d0ff33b7",
+   "fpid": "Capacitor_SMD:C_0402_1005Metric",
+   "pad_geometry_sha256": "70fdc5581e22caf23d698916261548ed2d6e4a7e1ce6ec8e8968bf4106fcb208",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+5V_CAN",
+     "pad": "1",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n2"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4860000,
+     910000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "C100",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100n"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1450000,
+        -980000
+       ],
+       [
+        -730000,
+        -980000
+       ],
+       [
+        -730000,
+        -1100000
+       ],
+       [
+        730000,
+        -1100000
+       ],
+       [
+        730000,
+        -330000
+       ],
+       [
+        1450000,
+        -330000
+       ],
+       [
+        1450000,
+        330000
+       ],
+       [
+        730000,
+        330000
+       ],
+       [
+        730000,
+        1100000
+       ],
+       [
+        -730000,
+        1100000
+       ],
+       [
+        -730000,
+        980000
+       ],
+       [
+        -1450000,
+        980000
+       ],
+       [
+        -1450000,
+        320000
+       ],
+       [
+        -730000,
+        320000
+       ],
+       [
+        -730000,
+        -320000
+       ],
+       [
+        -1450000,
+        -320000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "d214fc9f3594f553a6b2dd8883722f9a6ad172c606814703e39dee4f0e622b2a",
+   "fpid": "Package_TO_SOT_SMD:SOT-323_SC-70",
+   "pad_geometry_sha256": "4b9a7fcca4ce56518a30394a50c5292b538b47ad67c65fdcf6d124401f5ee44e",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "A1"
+     },
+     "net": "/POD_CAN_N",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "A2"
+     },
+     "net": "/POD_CAN_P",
+     "pad": "2",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "common"
+     },
+     "net": "/GND",
+     "pad": "3",
+     "role": "n2"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     5050000,
+     -1250000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "D100",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "PESD1CAN-UX"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_CAN_P",
+     "pad": "1",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_CAN_N",
+     "pad": "2",
+     "role": "n6"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     5430000,
+     1180000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R100",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "120"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3700000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2460000
+       ],
+       [
+        3700000,
+        -2460000
+       ],
+       [
+        3700000,
+        2460000
+       ],
+       [
+        2200000,
+        2460000
+       ],
+       [
+        2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2460000
+       ],
+       [
+        -3700000,
+        2460000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "12acff2cf47a1c3fb5020188ffc4a44f85e0df59385dd33c418e13b789ba23dd",
+   "fpid": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+   "pad_geometry_sha256": "eefd5cce19af04f02b44c6b63db9719e6c5bc84a147c4ea6f4647289160dd488",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "TXD"
+     },
+     "net": "/TWAI_TX",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "GND"
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VCC"
+     },
+     "net": "/+5V_CAN",
+     "pad": "3",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "output",
+      "name": "RXD"
+     },
+     "net": "/TWAI_RX",
+     "pad": "4",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VIO"
+     },
+     "net": "/+3V3",
+     "pad": "5",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "CANL"
+     },
+     "net": "/POD_CAN_N",
+     "pad": "6",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "CANH"
+     },
+     "net": "/POD_CAN_P",
+     "pad": "7",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "S"
+     },
+     "net": "/GND",
+     "pad": "8",
+     "role": "n2"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     0,
+     0
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "U100",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "TJA1051T-3"
+   }
+  }
+ ],
+ "outline": {
+  "F": {
+   "box_nm": [
+    -5770000,
+    -2700000,
+    6910000,
+    2700000
+   ],
+   "courtyards": [
+    [
+     [
+      -3950000,
+      1370000
+     ],
+     [
+      -5770000,
+      1370000
+     ],
+     [
+      -5770000,
+      450000
+     ],
+     [
+      -3950000,
+      450000
+     ]
+    ],
+    [
+     [
+      4070000,
+      200000
+     ],
+     [
+      4070000,
+      -520000
+     ],
+     [
+      3950000,
+      -520000
+     ],
+     [
+      3950000,
+      -1980000
+     ],
+     [
+      4720000,
+      -1980000
+     ],
+     [
+      4720000,
+      -2700000
+     ],
+     [
+      5380000,
+      -2700000
+     ],
+     [
+      5380000,
+      -1980000
+     ],
+     [
+      6150000,
+      -1980000
+     ],
+     [
+      6150000,
+      -520000
+     ],
+     [
+      6030000,
+      -520000
+     ],
+     [
+      6030000,
+      200000
+     ],
+     [
+      5370000,
+      200000
+     ],
+     [
+      5370000,
+      -520000
+     ],
+     [
+      4730000,
+      -520000
+     ],
+     [
+      4730000,
+      200000
+     ]
+    ],
+    [
+     [
+      6910000,
+      1910000
+     ],
+     [
+      3950000,
+      1910000
+     ],
+     [
+      3950000,
+      450000
+     ],
+     [
+      6910000,
+      450000
+     ]
+    ],
+    [
+     [
+      -3700000,
+      -2460000
+     ],
+     [
+      -2200000,
+      -2460000
+     ],
+     [
+      -2200000,
+      -2700000
+     ],
+     [
+      2200000,
+      -2700000
+     ],
+     [
+      2200000,
+      -2460000
+     ],
+     [
+      3700000,
+      -2460000
+     ],
+     [
+      3700000,
+      2460000
+     ],
+     [
+      2200000,
+      2460000
+     ],
+     [
+      2200000,
+      2700000
+     ],
+     [
+      -2200000,
+      2700000
+     ],
+     [
+      -2200000,
+      2460000
+     ],
+     [
+      -3700000,
+      2460000
+     ]
+    ]
+   ]
+  }
+ },
+ "placer_judgment": {
+  "basis": "transformed-proposal-not-native",
+  "verdict": "pass"
+ },
+ "provenance": {
+  "citation": "agent-ee.blocks intra-block search over the captured board; no manufacturer or owner layout authority",
+  "class": "search-derived",
+  "enforcement": "advisory",
+  "method": "ranked-first-fit-backjump/1"
+ },
+ "schema": "agent-ee.block-candidate/2",
+ "search": {
+  "backjumps": 0,
+  "compaction": {
+   "box_area_nm2": 68472000000000,
+   "first_box_area_nm2": 68472000000000,
+   "objective": "outline-bisection-min-box-area/1",
+   "step_cap": 10000,
+   "steps_total": 49,
+   "trials": [
+    {
+     "box_area_nm2": 79809850000000,
+     "family": "anchor-square",
+     "parameter": 5305000,
+     "status": "packed",
+     "steps_used": 7
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 4502500,
+     "status": "packing_search_exhausted",
+     "steps_used": 0
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 4903750,
+     "status": "packing_search_exhausted",
+     "steps_used": 32
+    },
+    {
+     "box_area_nm2": 77809618750000,
+     "family": "anchor-square",
+     "parameter": 5104375,
+     "status": "packed",
+     "steps_used": 7
+    }
+   ]
+  },
+  "step_budget": 200000,
+  "steps_used": 3,
+  "strategy": "ranked-first-fit-backjump/1"
+ },
+ "sources": {
+  "allocation_sha256": "30ff53342642fb31505df3531a34198bb43780dbc738771650314acacea31f25",
+  "board_sha256": "21bbf8efdfaf848f1a9494846a6fb1bdf31d19581daaf2c5fb601a26ffba8ecc",
+  "derivation_sha256": "5fd3d9f6763bac0ce7e6e1c2d3db3f985e7a669982f18967afd67f2f5cd1ca8f",
+  "inventory_sha256": "7791d44380d40bb46b0dbe1cd7495ce59408e8691afe2bf360eaf70b3eab7556",
+  "policy_sha256": "5269061f6b0494d9e72e8143d3d643c89805a874751da140792e01688574dd22"
+ },
+ "status": "packed",
+ "witness": {
+  "below_gap": [],
+  "drilled_pad_conflicts": [],
+  "gap_nm": 250000,
+  "method": "exact-courtyard-separation/1",
+  "minimum": {
+   "F": {
+    "distance_squared_nm2": [
+     62500000000,
+     1
+    ],
+    "refs": [
+     "C100",
+     "U100"
+    ]
+   }
+  },
+  "pairs_checked": 6,
+  "status": "pass"
+ }
+}

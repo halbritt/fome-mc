@@ -1,0 +1,3437 @@
+{
+ "block_id": "wheel-input",
+ "block_policy": {
+  "electrical_locality": {
+   "obligations": [
+    {
+     "id": "u26-bypass-C97",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "4",
+       "reference": "U26"
+      },
+      "max_distance_nm": 8500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C97"
+      }
+     },
+     "supply": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/PRE_6V3",
+       "pad": "8",
+       "reference": "U26"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/PRE_6V3",
+       "pad": "1",
+       "reference": "C97"
+      }
+     }
+    },
+    {
+     "id": "u26-bypass-C98",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "4",
+       "reference": "U26"
+      },
+      "max_distance_nm": 10000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C98"
+      }
+     },
+     "supply": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/PRE_6V3",
+       "pad": "8",
+       "reference": "U26"
+      },
+      "max_distance_nm": 5500000,
+      "to": {
+       "net": "/PRE_6V3",
+       "pad": "1",
+       "reference": "C98"
+      }
+     }
+    }
+   ],
+   "schema": "agent-ee.electrical-locality/1"
+  },
+  "fixed_refs": [
+   "U26"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "obstacles": [],
+  "priority_refs": [
+   "C95",
+   "C96",
+   "C97",
+   "C98",
+   "R112",
+   "R113",
+   "R114",
+   "R115",
+   "R116",
+   "R117",
+   "R118",
+   "R121",
+   "R122",
+   "R123",
+   "R124",
+   "R125",
+   "R126",
+   "R127",
+   "D102",
+   "D103",
+   "D104",
+   "R111",
+   "R120",
+   "R110",
+   "R119"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "deferred": {
+  "board_rule_areas": 0,
+  "groups": [],
+  "obligations": [],
+  "obstacles": 7
+ },
+ "frame": {
+  "anchor": "U26",
+  "convention": "anchor-origin-quarter-turn/1"
+ },
+ "grade": {
+  "electrical_locality": {
+   "advisories": [
+    {
+     "below_floor": false,
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.0275662751190158,
+     "distance_squared_nm": 4111025000000,
+     "exceeded": false,
+     "from": {
+      "net": "/PRE_6V3",
+      "pad": "8",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0603"
+       ],
+       "pad_envelope_estimate_nm": 1150000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C97",
+     "refs": [
+      "C97",
+      "U26"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/PRE_6V3",
+      "pad": "1",
+      "reference": "C97"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 6.086758168352017,
+     "distance_squared_nm": 37048625000000,
+     "exceeded": false,
+     "from": {
+      "net": "/GND",
+      "pad": "4",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0603"
+       ],
+       "pad_envelope_estimate_nm": 1150000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 8500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C97",
+     "refs": [
+      "C97",
+      "U26"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C97"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.757181531927124,
+     "distance_squared_nm": 7602050000000,
+     "exceeded": false,
+     "from": {
+      "net": "/PRE_6V3",
+      "pad": "8",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0805"
+       ],
+       "pad_envelope_estimate_nm": 1200000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 5500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C98",
+     "refs": [
+      "C98",
+      "U26"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/PRE_6V3",
+      "pad": "1",
+      "reference": "C98"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 8.053027381053662,
+     "distance_squared_nm": 64851250000000,
+     "exceeded": false,
+     "from": {
+      "net": "/GND",
+      "pad": "4",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0805"
+       ],
+       "pad_envelope_estimate_nm": 1200000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 10000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C98",
+     "refs": [
+      "C98",
+      "U26"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C98"
+     }
+    }
+   ],
+   "criterion": "electrical-locality/1",
+   "declaration": {
+    "obligations": [
+     {
+      "id": "u26-bypass-C97",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U26"
+       },
+       "max_distance_nm": 8500000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C97"
+       }
+      },
+      "supply": {
+       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/PRE_6V3",
+        "pad": "8",
+        "reference": "U26"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C97"
+       }
+      }
+     },
+     {
+      "id": "u26-bypass-C98",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U26"
+       },
+       "max_distance_nm": 10000000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C98"
+       }
+      },
+      "supply": {
+       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/PRE_6V3",
+        "pad": "8",
+        "reference": "U26"
+       },
+       "max_distance_nm": 5500000,
+       "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C98"
+       }
+      }
+     }
+    ],
+    "schema": "agent-ee.electrical-locality/1"
+   },
+   "defects": [],
+   "measured": [
+    {
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.0275662751190158,
+     "distance_squared_nm": 4111025000000,
+     "from": {
+      "net": "/PRE_6V3",
+      "pad": "8",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0603"
+       ],
+       "pad_envelope_estimate_nm": 1150000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C97",
+     "refs": [
+      "C97",
+      "U26"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/PRE_6V3",
+      "pad": "1",
+      "reference": "C97"
+     }
+    },
+    {
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 6.086758168352017,
+     "distance_squared_nm": 37048625000000,
+     "from": {
+      "net": "/GND",
+      "pad": "4",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0603"
+       ],
+       "pad_envelope_estimate_nm": 1150000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 8500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C97",
+     "refs": [
+      "C97",
+      "U26"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C97"
+     }
+    },
+    {
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.757181531927124,
+     "distance_squared_nm": 7602050000000,
+     "from": {
+      "net": "/PRE_6V3",
+      "pad": "8",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0805"
+       ],
+       "pad_envelope_estimate_nm": 1200000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 5500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C98",
+     "refs": [
+      "C98",
+      "U26"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/PRE_6V3",
+      "pad": "1",
+      "reference": "C98"
+     }
+    },
+    {
+     "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 8.053027381053662,
+     "distance_squared_nm": 64851250000000,
+     "from": {
+      "net": "/GND",
+      "pad": "4",
+      "reference": "U26"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "component_spacing_nm": 400000,
+       "packages": [
+        "SOIC",
+        "chip 0805"
+       ],
+       "pad_envelope_estimate_nm": 1200000,
+       "reason": "native solder lands do not establish physical body/lead extents",
+       "source": {
+        "bytes": 111306,
+        "captured_at": "2026-10-21T01:57:29.530534+00:00",
+        "resolved_url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components",
+        "sha256": "1c696592e13da945bfd327ffe7757d8d0070e6b61ed3739942b9ed6b9b073ffe",
+        "url": "https://jlcpcb.com/help/article/minimum-spacing-for-smd-components"
+       },
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 10000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u26-bypass-C98",
+     "refs": [
+      "C98",
+      "U26"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C98"
+     }
+    }
+   ],
+   "status": "info",
+   "unknown": []
+  },
+  "groups": null
+ },
+ "members": [
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_FILTERED",
+     "pad": "1",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4680000,
+     -1220000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C95",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "220pF C0G"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_FILTERED",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4680000,
+     1220000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C96",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "220pF C0G"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/PRE_6V3",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     720000,
+     -3680000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "C97",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100nF 50V X7R"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1700000,
+        -980000
+       ],
+       [
+        1700000,
+        -980000
+       ],
+       [
+        1700000,
+        980000
+       ],
+       [
+        -1700000,
+        980000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "b068b38e8f8eb4596d91bad18549ceb806882ec930c4d8503407b17f31f047b7",
+   "fpid": "Capacitor_SMD:C_0805_2012Metric",
+   "pad_geometry_sha256": "80bed122979444e2bd6392260e894a1e34d98ea2918e620f3f224438c687da68",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/PRE_6V3",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4930000,
+     -2210000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C98",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "1uF 50V X7R"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1930000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1700000
+       ],
+       [
+        900000,
+        -1700000
+       ],
+       [
+        900000,
+        -550000
+       ],
+       [
+        1930000,
+        -550000
+       ],
+       [
+        1930000,
+        550000
+       ],
+       [
+        900000,
+        550000
+       ],
+       [
+        900000,
+        1700000
+       ],
+       [
+        -900000,
+        1700000
+       ],
+       [
+        -900000,
+        1500000
+       ],
+       [
+        -1930000,
+        1500000
+       ],
+       [
+        -1930000,
+        390000
+       ],
+       [
+        -900000,
+        390000
+       ],
+       [
+        -900000,
+        -390000
+       ],
+       [
+        -1930000,
+        -390000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e1330d4f0d1e1656bbbe80bfbb709c48a8ab1caf1080ad6b5cb87f20cb9cced5",
+   "fpid": "Package_TO_SOT_SMD:SOT-23",
+   "pad_geometry_sha256": "7e9f5e25288a736d841c9cc1a7d2c56153c02f5c8152edea6858dfa6c753e1fd",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "A1"
+     },
+     "net": "/WHEEL_FRONT_PULLUP",
+     "pad": "1",
+     "role": "n9"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K2"
+     },
+     "net": "/WHEEL_FRONT_DIODE_OUT",
+     "pad": "2",
+     "role": "n10"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K1_A2"
+     },
+     "net": "/POD_WHEEL_FRONT_SIGNAL",
+     "pad": "3",
+     "role": "n11"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -7550000,
+     7900313
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "D102",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "BAV199,215"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1930000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1700000
+       ],
+       [
+        900000,
+        -1700000
+       ],
+       [
+        900000,
+        -550000
+       ],
+       [
+        1930000,
+        -550000
+       ],
+       [
+        1930000,
+        550000
+       ],
+       [
+        900000,
+        550000
+       ],
+       [
+        900000,
+        1700000
+       ],
+       [
+        -900000,
+        1700000
+       ],
+       [
+        -900000,
+        1500000
+       ],
+       [
+        -1930000,
+        1500000
+       ],
+       [
+        -1930000,
+        390000
+       ],
+       [
+        -900000,
+        390000
+       ],
+       [
+        -900000,
+        -390000
+       ],
+       [
+        -1930000,
+        -390000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e1330d4f0d1e1656bbbe80bfbb709c48a8ab1caf1080ad6b5cb87f20cb9cced5",
+   "fpid": "Package_TO_SOT_SMD:SOT-23",
+   "pad_geometry_sha256": "7e9f5e25288a736d841c9cc1a7d2c56153c02f5c8152edea6858dfa6c753e1fd",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "A1"
+     },
+     "net": "/WHEEL_REAR_PULLUP",
+     "pad": "1",
+     "role": "n12"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K2"
+     },
+     "net": "/WHEEL_REAR_DIODE_OUT",
+     "pad": "2",
+     "role": "n13"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K1_A2"
+     },
+     "net": "/POD_WHEEL_REAR_SIGNAL",
+     "pad": "3",
+     "role": "n14"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     7860000,
+     -2440000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "D103",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "BAV199,215"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1930000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1700000
+       ],
+       [
+        900000,
+        -1700000
+       ],
+       [
+        900000,
+        -550000
+       ],
+       [
+        1930000,
+        -550000
+       ],
+       [
+        1930000,
+        550000
+       ],
+       [
+        900000,
+        550000
+       ],
+       [
+        900000,
+        1700000
+       ],
+       [
+        -900000,
+        1700000
+       ],
+       [
+        -900000,
+        1500000
+       ],
+       [
+        -1930000,
+        1500000
+       ],
+       [
+        -1930000,
+        390000
+       ],
+       [
+        -900000,
+        390000
+       ],
+       [
+        -900000,
+        -390000
+       ],
+       [
+        -1930000,
+        -390000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e1330d4f0d1e1656bbbe80bfbb709c48a8ab1caf1080ad6b5cb87f20cb9cced5",
+   "fpid": "Package_TO_SOT_SMD:SOT-23",
+   "pad_geometry_sha256": "7e9f5e25288a736d841c9cc1a7d2c56153c02f5c8152edea6858dfa6c753e1fd",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K1"
+     },
+     "net": "/POD_WHEEL_FRONT_SIGNAL",
+     "pad": "1",
+     "role": "n11"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K2"
+     },
+     "net": "/POD_WHEEL_REAR_SIGNAL",
+     "pad": "2",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "CC"
+     },
+     "net": "/GND",
+     "pad": "3",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     7660000,
+     -6550000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "D104",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "PESD2CANFD24V-TR"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        1930000
+       ],
+       [
+        -3830000,
+        1930000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "ded60e732b1ce5513d054409f065e20cfde7a95c21c3c9c4dcf10d10b85eaeae",
+   "fpid": "Resistor_SMD:R_2512_6332Metric",
+   "pad_geometry_sha256": "3daee4fe2cfac3a747a9499bb2ba5690dc546bb388682a42317cfa0d10778bb4",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_WHEEL_FRONT_SUPPLY",
+     "pad": "1",
+     "role": "n15"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_PULLUP_MID",
+     "pad": "2",
+     "role": "n16"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -7689687,
+     -5789687
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R110",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "620 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        1930000
+       ],
+       [
+        -3830000,
+        1930000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "ded60e732b1ce5513d054409f065e20cfde7a95c21c3c9c4dcf10d10b85eaeae",
+   "fpid": "Resistor_SMD:R_2512_6332Metric",
+   "pad_geometry_sha256": "3daee4fe2cfac3a747a9499bb2ba5690dc546bb388682a42317cfa0d10778bb4",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_PULLUP_MID",
+     "pad": "1",
+     "role": "n16"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_PULLUP",
+     "pad": "2",
+     "role": "n9"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     1880000,
+     -7689687
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R111",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "620 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_DIODE_OUT",
+     "pad": "1",
+     "role": "n10"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_FILTERED",
+     "pad": "2",
+     "role": "n2"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4680000,
+     1990000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R112",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_FILTERED",
+     "pad": "1",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4680000,
+     -4430000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R113",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n17"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_THRESHOLD",
+     "pad": "2",
+     "role": "n3"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2930000,
+     4430000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R114",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "56 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_THRESHOLD",
+     "pad": "1",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -1220000,
+     4430000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R115",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_OUT",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_THRESHOLD",
+     "pad": "2",
+     "role": "n3"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2930000,
+     -4430000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R116",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n17"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_OUT",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4640000,
+     5200000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R117",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "4.7 kohm 1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_OUT",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_FRONT_CAPTURE",
+     "pad": "2",
+     "role": "n18"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2930000,
+     -7640000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R118",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        1930000
+       ],
+       [
+        -3830000,
+        1930000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "ded60e732b1ce5513d054409f065e20cfde7a95c21c3c9c4dcf10d10b85eaeae",
+   "fpid": "Resistor_SMD:R_2512_6332Metric",
+   "pad_geometry_sha256": "3daee4fe2cfac3a747a9499bb2ba5690dc546bb388682a42317cfa0d10778bb4",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_WHEEL_REAR_SUPPLY",
+     "pad": "1",
+     "role": "n19"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_PULLUP_MID",
+     "pad": "2",
+     "role": "n20"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     3590000,
+     6590000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R119",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "620 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        -1930000
+       ],
+       [
+        3830000,
+        1930000
+       ],
+       [
+        -3830000,
+        1930000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "ded60e732b1ce5513d054409f065e20cfde7a95c21c3c9c4dcf10d10b85eaeae",
+   "fpid": "Resistor_SMD:R_2512_6332Metric",
+   "pad_geometry_sha256": "3daee4fe2cfac3a747a9499bb2ba5690dc546bb388682a42317cfa0d10778bb4",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_PULLUP_MID",
+     "pad": "1",
+     "role": "n20"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_PULLUP",
+     "pad": "2",
+     "role": "n12"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -7689687,
+     2120313
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R120",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "620 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_DIODE_OUT",
+     "pad": "1",
+     "role": "n13"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_FILTERED",
+     "pad": "2",
+     "role": "n6"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     7140000,
+     470000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R121",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_FILTERED",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     6390000,
+     2930000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R122",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n17"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_THRESHOLD",
+     "pad": "2",
+     "role": "n5"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     1240000,
+     3680000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R123",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "56 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_THRESHOLD",
+     "pad": "1",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     8100000,
+     2930000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R124",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_OUT",
+     "pad": "1",
+     "role": "n7"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_THRESHOLD",
+     "pad": "2",
+     "role": "n5"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     8400000,
+     6140000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R125",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100 kohm 0.1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n17"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_OUT",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -1970000,
+     6890000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R126",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "4.7 kohm 1%"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_OUT",
+     "pad": "1",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/WHEEL_REAR_CAPTURE",
+     "pad": "2",
+     "role": "n21"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -1970000,
+     8600000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R127",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3700000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2460000
+       ],
+       [
+        3700000,
+        -2460000
+       ],
+       [
+        3700000,
+        2460000
+       ],
+       [
+        2200000,
+        2460000
+       ],
+       [
+        2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2460000
+       ],
+       [
+        -3700000,
+        2460000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "12acff2cf47a1c3fb5020188ffc4a44f85e0df59385dd33c418e13b789ba23dd",
+   "fpid": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+   "pad_geometry_sha256": "eefd5cce19af04f02b44c6b63db9719e6c5bc84a147c4ea6f4647289160dd488",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "open_collector",
+      "name": "OUT1"
+     },
+     "net": "/WHEEL_FRONT_OUT",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "IN1-"
+     },
+     "net": "/WHEEL_FRONT_FILTERED",
+     "pad": "2",
+     "role": "n2"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "IN1+"
+     },
+     "net": "/WHEEL_FRONT_THRESHOLD",
+     "pad": "3",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "GND"
+     },
+     "net": "/GND",
+     "pad": "4",
+     "role": "n4"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "IN2+"
+     },
+     "net": "/WHEEL_REAR_THRESHOLD",
+     "pad": "5",
+     "role": "n5"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "IN2-"
+     },
+     "net": "/WHEEL_REAR_FILTERED",
+     "pad": "6",
+     "role": "n6"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "open_collector",
+      "name": "OUT2"
+     },
+     "net": "/WHEEL_REAR_OUT",
+     "pad": "7",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VCC"
+     },
+     "net": "/PRE_6V3",
+     "pad": "8",
+     "role": "n8"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     0,
+     0
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "U26",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "LM2903BQDRQ1"
+   }
+  }
+ ],
+ "outline": {
+  "F": {
+   "box_nm": [
+    -9619687,
+    -9619687,
+    9560000,
+    9600313
+   ],
+   "courtyards": [
+    [
+     [
+      -5410000,
+      260000
+     ],
+     [
+      -5410000,
+      -2700000
+     ],
+     [
+      -3950000,
+      -2700000
+     ],
+     [
+      -3950000,
+      260000
+     ]
+    ],
+    [
+     [
+      5410000,
+      -260000
+     ],
+     [
+      5410000,
+      2700000
+     ],
+     [
+      3950000,
+      2700000
+     ],
+     [
+      3950000,
+      -260000
+     ]
+    ],
+    [
+     [
+      2200000,
+      -2950000
+     ],
+     [
+      -760000,
+      -2950000
+     ],
+     [
+      -760000,
+      -4410000
+     ],
+     [
+      2200000,
+      -4410000
+     ]
+    ],
+    [
+     [
+      5910000,
+      -3910000
+     ],
+     [
+      5910000,
+      -510000
+     ],
+     [
+      3950000,
+      -510000
+     ],
+     [
+      3950000,
+      -3910000
+     ]
+    ],
+    [
+     [
+      -5620000,
+      9400313
+     ],
+     [
+      -6650000,
+      9400313
+     ],
+     [
+      -6650000,
+      9600313
+     ],
+     [
+      -8450000,
+      9600313
+     ],
+     [
+      -8450000,
+      8450313
+     ],
+     [
+      -9480000,
+      8450313
+     ],
+     [
+      -9480000,
+      7350313
+     ],
+     [
+      -8450000,
+      7350313
+     ],
+     [
+      -8450000,
+      6200313
+     ],
+     [
+      -6650000,
+      6200313
+     ],
+     [
+      -6650000,
+      6400313
+     ],
+     [
+      -5620000,
+      6400313
+     ],
+     [
+      -5620000,
+      7510313
+     ],
+     [
+      -6650000,
+      7510313
+     ],
+     [
+      -6650000,
+      8290313
+     ],
+     [
+      -5620000,
+      8290313
+     ]
+    ],
+    [
+     [
+      6360000,
+      -510000
+     ],
+     [
+      6360000,
+      -1540000
+     ],
+     [
+      6160000,
+      -1540000
+     ],
+     [
+      6160000,
+      -3340000
+     ],
+     [
+      7310000,
+      -3340000
+     ],
+     [
+      7310000,
+      -4370000
+     ],
+     [
+      8410000,
+      -4370000
+     ],
+     [
+      8410000,
+      -3340000
+     ],
+     [
+      9560000,
+      -3340000
+     ],
+     [
+      9560000,
+      -1540000
+     ],
+     [
+      9360000,
+      -1540000
+     ],
+     [
+      9360000,
+      -510000
+     ],
+     [
+      8250000,
+      -510000
+     ],
+     [
+      8250000,
+      -1540000
+     ],
+     [
+      7470000,
+      -1540000
+     ],
+     [
+      7470000,
+      -510000
+     ]
+    ],
+    [
+     [
+      6160000,
+      -4620000
+     ],
+     [
+      6160000,
+      -5650000
+     ],
+     [
+      5960000,
+      -5650000
+     ],
+     [
+      5960000,
+      -7450000
+     ],
+     [
+      7110000,
+      -7450000
+     ],
+     [
+      7110000,
+      -8480000
+     ],
+     [
+      8210000,
+      -8480000
+     ],
+     [
+      8210000,
+      -7450000
+     ],
+     [
+      9360000,
+      -7450000
+     ],
+     [
+      9360000,
+      -5650000
+     ],
+     [
+      9160000,
+      -5650000
+     ],
+     [
+      9160000,
+      -4620000
+     ],
+     [
+      8050000,
+      -4620000
+     ],
+     [
+      8050000,
+      -5650000
+     ],
+     [
+      7270000,
+      -5650000
+     ],
+     [
+      7270000,
+      -4620000
+     ]
+    ],
+    [
+     [
+      -9619687,
+      -1959687
+     ],
+     [
+      -9619687,
+      -9619687
+     ],
+     [
+      -5759687,
+      -9619687
+     ],
+     [
+      -5759687,
+      -1959687
+     ]
+    ],
+    [
+     [
+      -1950000,
+      -9619687
+     ],
+     [
+      5710000,
+      -9619687
+     ],
+     [
+      5710000,
+      -5759687
+     ],
+     [
+      -1950000,
+      -5759687
+     ]
+    ],
+    [
+     [
+      -5410000,
+      3470000
+     ],
+     [
+      -5410000,
+      510000
+     ],
+     [
+      -3950000,
+      510000
+     ],
+     [
+      -3950000,
+      3470000
+     ]
+    ],
+    [
+     [
+      -5410000,
+      -2950000
+     ],
+     [
+      -5410000,
+      -5910000
+     ],
+     [
+      -3950000,
+      -5910000
+     ],
+     [
+      -3950000,
+      -2950000
+     ]
+    ],
+    [
+     [
+      -3660000,
+      5910000
+     ],
+     [
+      -3660000,
+      2950000
+     ],
+     [
+      -2200000,
+      2950000
+     ],
+     [
+      -2200000,
+      5910000
+     ]
+    ],
+    [
+     [
+      -490000,
+      2950000
+     ],
+     [
+      -490000,
+      5910000
+     ],
+     [
+      -1950000,
+      5910000
+     ],
+     [
+      -1950000,
+      2950000
+     ]
+    ],
+    [
+     [
+      -3660000,
+      -2950000
+     ],
+     [
+      -3660000,
+      -5910000
+     ],
+     [
+      -2200000,
+      -5910000
+     ],
+     [
+      -2200000,
+      -2950000
+     ]
+    ],
+    [
+     [
+      -5370000,
+      6680000
+     ],
+     [
+      -5370000,
+      3720000
+     ],
+     [
+      -3910000,
+      3720000
+     ],
+     [
+      -3910000,
+      6680000
+     ]
+    ],
+    [
+     [
+      -3660000,
+      -6160000
+     ],
+     [
+      -3660000,
+      -9120000
+     ],
+     [
+      -2200000,
+      -9120000
+     ],
+     [
+      -2200000,
+      -6160000
+     ]
+    ],
+    [
+     [
+      7420000,
+      8520000
+     ],
+     [
+      -240000,
+      8520000
+     ],
+     [
+      -240000,
+      4660000
+     ],
+     [
+      7420000,
+      4660000
+     ]
+    ],
+    [
+     [
+      -9619687,
+      5950313
+     ],
+     [
+      -9619687,
+      -1709687
+     ],
+     [
+      -5759687,
+      -1709687
+     ],
+     [
+      -5759687,
+      5950313
+     ]
+    ],
+    [
+     [
+      8620000,
+      1200000
+     ],
+     [
+      5660000,
+      1200000
+     ],
+     [
+      5660000,
+      -260000
+     ],
+     [
+      8620000,
+      -260000
+     ]
+    ],
+    [
+     [
+      7120000,
+      1450000
+     ],
+     [
+      7120000,
+      4410000
+     ],
+     [
+      5660000,
+      4410000
+     ],
+     [
+      5660000,
+      1450000
+     ]
+    ],
+    [
+     [
+      -240000,
+      2950000
+     ],
+     [
+      2720000,
+      2950000
+     ],
+     [
+      2720000,
+      4410000
+     ],
+     [
+      -240000,
+      4410000
+     ]
+    ],
+    [
+     [
+      8830000,
+      1450000
+     ],
+     [
+      8830000,
+      4410000
+     ],
+     [
+      7370000,
+      4410000
+     ],
+     [
+      7370000,
+      1450000
+     ]
+    ],
+    [
+     [
+      7670000,
+      7620000
+     ],
+     [
+      7670000,
+      4660000
+     ],
+     [
+      9130000,
+      4660000
+     ],
+     [
+      9130000,
+      7620000
+     ]
+    ],
+    [
+     [
+      -3450000,
+      6160000
+     ],
+     [
+      -490000,
+      6160000
+     ],
+     [
+      -490000,
+      7620000
+     ],
+     [
+      -3450000,
+      7620000
+     ]
+    ],
+    [
+     [
+      -490000,
+      9330000
+     ],
+     [
+      -3450000,
+      9330000
+     ],
+     [
+      -3450000,
+      7870000
+     ],
+     [
+      -490000,
+      7870000
+     ]
+    ],
+    [
+     [
+      -3700000,
+      -2460000
+     ],
+     [
+      -2200000,
+      -2460000
+     ],
+     [
+      -2200000,
+      -2700000
+     ],
+     [
+      2200000,
+      -2700000
+     ],
+     [
+      2200000,
+      -2460000
+     ],
+     [
+      3700000,
+      -2460000
+     ],
+     [
+      3700000,
+      2460000
+     ],
+     [
+      2200000,
+      2460000
+     ],
+     [
+      2200000,
+      2700000
+     ],
+     [
+      -2200000,
+      2700000
+     ],
+     [
+      -2200000,
+      2460000
+     ],
+     [
+      -3700000,
+      2460000
+     ]
+    ]
+   ]
+  }
+ },
+ "placer_judgment": {
+  "basis": "transformed-proposal-not-native",
+  "verdict": "pass"
+ },
+ "provenance": {
+  "citation": "agent-ee.blocks intra-block search over the captured board; no manufacturer or owner layout authority",
+  "class": "search-derived",
+  "enforcement": "advisory",
+  "method": "ranked-first-fit-backjump/1"
+ },
+ "schema": "agent-ee.block-candidate/2",
+ "search": {
+  "backjumps": 29,
+  "compaction": {
+   "box_area_nm2": 368633584140000,
+   "first_box_area_nm2": 721451400000000,
+   "objective": "outline-bisection-min-box-area/1",
+   "step_cap": 10000,
+   "steps_total": 50514,
+   "trials": [
+    {
+     "box_area_nm2": 594591600000000,
+     "family": "anchor-square",
+     "parameter": 15895000,
+     "status": "packed",
+     "steps_used": 32
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 8685000,
+     "status": "packing_budget_exhausted",
+     "steps_used": 10000
+    },
+    {
+     "box_area_nm2": 482131706250000,
+     "family": "anchor-square",
+     "parameter": 11177500,
+     "status": "packed",
+     "steps_used": 86
+    },
+    {
+     "box_area_nm2": 392309203125000,
+     "family": "anchor-square",
+     "parameter": 9931250,
+     "status": "packed",
+     "steps_used": 178
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 9308125,
+     "status": "packing_budget_exhausted",
+     "steps_used": 10000
+    },
+    {
+     "box_area_nm2": 368633584140000,
+     "family": "anchor-square",
+     "parameter": 9619687,
+     "status": "packed",
+     "steps_used": 186
+    },
+    {
+     "family": "box-scale",
+     "parameter": 694,
+     "status": "packing_infeasible",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 847,
+     "status": "packing_infeasible",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 923,
+     "status": "packing_budget_exhausted",
+     "steps_used": 10000
+    },
+    {
+     "family": "box-scale",
+     "parameter": 961,
+     "status": "packing_budget_exhausted",
+     "steps_used": 10000
+    },
+    {
+     "family": "box-scale",
+     "parameter": 980,
+     "status": "packing_budget_exhausted",
+     "steps_used": 10000
+    }
+   ]
+  },
+  "step_budget": 200000,
+  "steps_used": 186,
+  "strategy": "ranked-first-fit-backjump/1"
+ },
+ "sources": {
+  "allocation_sha256": "30ff53342642fb31505df3531a34198bb43780dbc738771650314acacea31f25",
+  "board_sha256": "21bbf8efdfaf848f1a9494846a6fb1bdf31d19581daaf2c5fb601a26ffba8ecc",
+  "derivation_sha256": "5fd3d9f6763bac0ce7e6e1c2d3db3f985e7a669982f18967afd67f2f5cd1ca8f",
+  "inventory_sha256": "7791d44380d40bb46b0dbe1cd7495ce59408e8691afe2bf360eaf70b3eab7556",
+  "policy_sha256": "5269061f6b0494d9e72e8143d3d643c89805a874751da140792e01688574dd22"
+ },
+ "status": "packed",
+ "witness": {
+  "below_gap": [],
+  "drilled_pad_conflicts": [],
+  "gap_nm": 250000,
+  "method": "exact-courtyard-separation/1",
+  "minimum": {
+   "F": {
+    "distance_squared_nm2": [
+     62500000000,
+     1
+    ],
+    "refs": [
+     "C95",
+     "R112"
+    ]
+   }
+  },
+  "pairs_checked": 325,
+  "status": "pass"
+ }
+}

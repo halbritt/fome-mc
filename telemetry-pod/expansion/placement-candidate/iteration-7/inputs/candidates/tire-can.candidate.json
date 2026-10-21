@@ -1,0 +1,2547 @@
+{
+ "block_id": "tire-can",
+ "block_policy": {
+  "fixed_refs": [
+   "U20"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "groups": [
+   {
+    "anchor": {
+     "reference": "U20"
+    },
+    "id": "u20-local-bypass",
+    "max_distance_nm": 5000000,
+    "references": [
+     "C79",
+     "C80"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U20"
+    },
+    "id": "u20-local-clock",
+    "max_distance_nm": 9000000,
+    "references": [
+     "Y1",
+     "C81",
+     "C82"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U21"
+    },
+    "id": "u21-local-bypass",
+    "max_distance_nm": 5000000,
+    "references": [
+     "C83",
+     "C84"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U22"
+    },
+    "id": "u22-local-bypass",
+    "max_distance_nm": 3500000,
+    "references": [
+     "C85"
+    ]
+   }
+  ],
+  "obstacles": [],
+  "priority_refs": [
+   "U21",
+   "U22",
+   "Y1",
+   "C79",
+   "C80",
+   "C81",
+   "C82",
+   "C84",
+   "C85",
+   "R66",
+   "R67",
+   "R68",
+   "R69",
+   "R71",
+   "R72",
+   "D101",
+   "C83",
+   "JP1",
+   "R70"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "deferred": {
+  "board_rule_areas": 0,
+  "groups": [],
+  "obligations": [],
+  "obstacles": 7
+ },
+ "frame": {
+  "anchor": "U20",
+  "convention": "anchor-origin-quarter-turn/1"
+ },
+ "grade": {
+  "electrical_locality": null,
+  "groups": {
+   "criterion": "placement-groups/1",
+   "defects": [],
+   "groups": [
+    {
+     "anchor": {
+      "reference": "U20"
+     },
+     "id": "u20-local-bypass",
+     "max_distance_nm": 5000000,
+     "references": [
+      "C79",
+      "C80"
+     ]
+    },
+    {
+     "anchor": {
+      "reference": "U20"
+     },
+     "id": "u20-local-clock",
+     "max_distance_nm": 9000000,
+     "references": [
+      "Y1",
+      "C81",
+      "C82"
+     ]
+    },
+    {
+     "anchor": {
+      "reference": "U21"
+     },
+     "id": "u21-local-bypass",
+     "max_distance_nm": 5000000,
+     "references": [
+      "C83",
+      "C84"
+     ]
+    },
+    {
+     "anchor": {
+      "reference": "U22"
+     },
+     "id": "u22-local-bypass",
+     "max_distance_nm": 3500000,
+     "references": [
+      "C85"
+     ]
+    }
+   ],
+   "measured": [
+    {
+     "distance_mm": 4.908442,
+     "group": "u20-local-bypass",
+     "max_distance_mm": 5.0,
+     "ref": "C79"
+    },
+    {
+     "distance_mm": 4.989519,
+     "group": "u20-local-bypass",
+     "max_distance_mm": 5.0,
+     "ref": "C80"
+    },
+    {
+     "distance_mm": 6.035078,
+     "group": "u20-local-clock",
+     "max_distance_mm": 9.0,
+     "ref": "Y1"
+    },
+    {
+     "distance_mm": 7.462775,
+     "group": "u20-local-clock",
+     "max_distance_mm": 9.0,
+     "ref": "C81"
+    },
+    {
+     "distance_mm": 8.605684,
+     "group": "u20-local-clock",
+     "max_distance_mm": 9.0,
+     "ref": "C82"
+    },
+    {
+     "distance_mm": 4.68,
+     "group": "u21-local-bypass",
+     "max_distance_mm": 5.0,
+     "ref": "C83"
+    },
+    {
+     "distance_mm": 3.966459,
+     "group": "u21-local-bypass",
+     "max_distance_mm": 5.0,
+     "ref": "C84"
+    },
+    {
+     "distance_mm": 2.739945,
+     "group": "u22-local-bypass",
+     "max_distance_mm": 3.5,
+     "ref": "C85"
+    }
+   ],
+   "status": "pass",
+   "unknown": []
+  }
+ },
+ "members": [
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4680000,
+     -1480000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C79",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100nF"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4680000,
+     1730000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C80",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "1uF"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_OSC1",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4680000,
+     5812969
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C81",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "18pF C0G"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_OSC2",
+     "pad": "1",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -8430000,
+     1730000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C82",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "18pF C0G"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+5V_CAN",
+     "pad": "1",
+     "role": "n15"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -6650000,
+     -1097031
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "C83",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100nF"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2970000,
+     -7257031
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C84",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100nF"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     2390000,
+     -6310000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C85",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100nF"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1930000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1500000
+       ],
+       [
+        -900000,
+        -1700000
+       ],
+       [
+        900000,
+        -1700000
+       ],
+       [
+        900000,
+        -550000
+       ],
+       [
+        1930000,
+        -550000
+       ],
+       [
+        1930000,
+        550000
+       ],
+       [
+        900000,
+        550000
+       ],
+       [
+        900000,
+        1700000
+       ],
+       [
+        -900000,
+        1700000
+       ],
+       [
+        -900000,
+        1500000
+       ],
+       [
+        -1930000,
+        1500000
+       ],
+       [
+        -1930000,
+        390000
+       ],
+       [
+        -900000,
+        390000
+       ],
+       [
+        -900000,
+        -390000
+       ],
+       [
+        -1930000,
+        -390000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e1330d4f0d1e1656bbbe80bfbb709c48a8ab1caf1080ad6b5cb87f20cb9cced5",
+   "fpid": "Package_TO_SOT_SMD:SOT-23",
+   "pad_geometry_sha256": "7e9f5e25288a736d841c9cc1a7d2c56153c02f5c8152edea6858dfa6c753e1fd",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K1"
+     },
+     "net": "/TIRE_CAN_H",
+     "pad": "1",
+     "role": "n16"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "K2"
+     },
+     "net": "/TIRE_CAN_L",
+     "pad": "2",
+     "role": "n17"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "CC"
+     },
+     "net": "/GND",
+     "pad": "3",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -7777031,
+     6262969
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "D101",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "PESD2CANFD24V-TR"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1650000,
+        -1250000
+       ],
+       [
+        -1650000,
+        1250000
+       ],
+       [
+        1650000,
+        1250000
+       ],
+       [
+        1650000,
+        -1250000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "e582c29e3bd1d7937e09a1d959de315967d7ba8a717ec6d82541fe8109723f98",
+   "fpid": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+   "pad_geometry_sha256": "6d87fb3f798318a5bf14e08d04ba1c4c62f6980de81cff63400b12ffd151971e",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "A"
+     },
+     "net": "/TIRE_CAN_TERM",
+     "pad": "1",
+     "role": "n18"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "B"
+     },
+     "net": "/TIRE_CAN_L",
+     "pad": "2",
+     "role": "n17"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -2450000,
+     6480000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "JP1",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "TIRE_TERM_CLOSE_ONLY_AT_BUS_END"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_CS",
+     "pad": "2",
+     "role": "n13"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4680000,
+     -4690000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R66",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_INT_N",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     6390000,
+     -1480000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R67",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_TX_ENABLE",
+     "pad": "1",
+     "role": "n9"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     1640000,
+     5560000
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "R68",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_TX",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     6390000,
+     -4690000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R69",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_H",
+     "pad": "1",
+     "role": "n16"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_TERM",
+     "pad": "2",
+     "role": "n18"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     530000,
+     7270000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R70",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "120 ohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/+3V3",
+     "pad": "1",
+     "role": "n14"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_SILENT",
+     "pad": "2",
+     "role": "n19"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4100000,
+     -7900000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R71",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/TIRE_CAN_GPIO1",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4680000,
+     4940000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R72",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3700000,
+        -4360000
+       ],
+       [
+        -2200000,
+        -4360000
+       ],
+       [
+        -2200000,
+        -4580000
+       ],
+       [
+        2200000,
+        -4580000
+       ],
+       [
+        2200000,
+        -4360000
+       ],
+       [
+        3700000,
+        -4360000
+       ],
+       [
+        3700000,
+        4360000
+       ],
+       [
+        2200000,
+        4360000
+       ],
+       [
+        2200000,
+        4580000
+       ],
+       [
+        -2200000,
+        4580000
+       ],
+       [
+        -2200000,
+        4360000
+       ],
+       [
+        -3700000,
+        4360000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "4df2c9038fd44a321625399f2ce49193428222184f2c0a86bba6fb008f142f22",
+   "fpid": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+   "pad_geometry_sha256": "7e74e94ee169d119ab6b6230d7a48064bf6ceda3f995987c7becd59d46b09a7d",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "output",
+      "name": "TXCAN"
+     },
+     "net": "/TIRE_CAN_TX",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "RXCAN"
+     },
+     "net": "/TIRE_CAN_RX",
+     "pad": "2",
+     "role": "n2"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "output",
+      "name": "CLKO_SOF"
+     },
+     "net": "unconnected-(U20-CLKO_SOF-Pad3)",
+     "pad": "3",
+     "role": "n3"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "output",
+      "name": "INT"
+     },
+     "net": "/TIRE_CAN_INT_N",
+     "pad": "4",
+     "role": "n4"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "output",
+      "name": "OSC2"
+     },
+     "net": "/TIRE_CAN_OSC2",
+     "pad": "5",
+     "role": "n5"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "OSC1"
+     },
+     "net": "/TIRE_CAN_OSC1",
+     "pad": "6",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VSS"
+     },
+     "net": "/GND",
+     "pad": "7",
+     "role": "n7"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "GPIO1"
+     },
+     "net": "/TIRE_CAN_GPIO1",
+     "pad": "8",
+     "role": "n8"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "GPIO0_XSTBY"
+     },
+     "net": "/TIRE_CAN_TX_ENABLE",
+     "pad": "9",
+     "role": "n9"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "SCK"
+     },
+     "net": "/SPI_SCK",
+     "pad": "10",
+     "role": "n10"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "SDI"
+     },
+     "net": "/SPI_MOSI",
+     "pad": "11",
+     "role": "n11"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "tri_state",
+      "name": "SDO"
+     },
+     "net": "/SPI_MISO",
+     "pad": "12",
+     "role": "n12"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "nCS"
+     },
+     "net": "/TIRE_CAN_CS",
+     "pad": "13",
+     "role": "n13"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VDD"
+     },
+     "net": "/+3V3",
+     "pad": "14",
+     "role": "n14"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     0,
+     0
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "U20",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "MCP2518FDT-E/SL"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3700000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2460000
+       ],
+       [
+        -2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2700000
+       ],
+       [
+        2200000,
+        -2460000
+       ],
+       [
+        3700000,
+        -2460000
+       ],
+       [
+        3700000,
+        2460000
+       ],
+       [
+        2200000,
+        2460000
+       ],
+       [
+        2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2700000
+       ],
+       [
+        -2200000,
+        2460000
+       ],
+       [
+        -3700000,
+        2460000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "12acff2cf47a1c3fb5020188ffc4a44f85e0df59385dd33c418e13b789ba23dd",
+   "fpid": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+   "pad_geometry_sha256": "eefd5cce19af04f02b44c6b63db9719e6c5bc84a147c4ea6f4647289160dd488",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "TXD"
+     },
+     "net": "/TIRE_CAN_TX",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "GND"
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VCC"
+     },
+     "net": "/+5V_CAN",
+     "pad": "3",
+     "role": "n15"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "output",
+      "name": "RXD"
+     },
+     "net": "/TIRE_CAN_RX",
+     "pad": "4",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VIO"
+     },
+     "net": "/+3V3",
+     "pad": "5",
+     "role": "n14"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "CANL"
+     },
+     "net": "/TIRE_CAN_L",
+     "pad": "6",
+     "role": "n17"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "bidirectional",
+      "name": "CANH"
+     },
+     "net": "/TIRE_CAN_H",
+     "pad": "7",
+     "role": "n16"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "S"
+     },
+     "net": "/TIRE_CAN_SILENT",
+     "pad": "8",
+     "role": "n19"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -6650000,
+     -5777031
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "U21",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "TJA1051T/3/1J"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2050000,
+        -1500000
+       ],
+       [
+        -1050000,
+        -1500000
+       ],
+       [
+        -1050000,
+        -1700000
+       ],
+       [
+        1050000,
+        -1700000
+       ],
+       [
+        1050000,
+        -1500000
+       ],
+       [
+        2050000,
+        -1500000
+       ],
+       [
+        2050000,
+        -390000
+       ],
+       [
+        1050000,
+        -390000
+       ],
+       [
+        1050000,
+        390000
+       ],
+       [
+        2050000,
+        390000
+       ],
+       [
+        2050000,
+        1500000
+       ],
+       [
+        1050000,
+        1500000
+       ],
+       [
+        1050000,
+        1700000
+       ],
+       [
+        -1050000,
+        1700000
+       ],
+       [
+        -1050000,
+        1500000
+       ],
+       [
+        -2050000,
+        1500000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "ff5eb015becb803c11d0d0db4e0d4d892b34aa3a853b0723764e3243683aa74d",
+   "fpid": "Package_TO_SOT_SMD:SOT-23-5",
+   "pad_geometry_sha256": "d0f07f4cdaf88eb576e2764b723ff4df54d40b98a5ac9d067d5dd72b8eea6ea7",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "A"
+     },
+     "net": "/MCU_EN",
+     "pad": "1",
+     "role": "n20"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "B"
+     },
+     "net": "/TIRE_CAN_TX_ENABLE",
+     "pad": "2",
+     "role": "n9"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "GND"
+     },
+     "net": "/GND",
+     "pad": "3",
+     "role": "n7"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "output",
+      "name": "Y"
+     },
+     "net": "/TIRE_CAN_SILENT",
+     "pad": "4",
+     "role": "n19"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VCC"
+     },
+     "net": "/+3V3",
+     "pad": "5",
+     "role": "n14"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -290000,
+     -6880000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "U22",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "SN74LVC1G132DBVR"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2100000,
+        -1750000
+       ],
+       [
+        2100000,
+        -1750000
+       ],
+       [
+        2100000,
+        1750000
+       ],
+       [
+        -2100000,
+        1750000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "7cf1ef313daea14b39cda30a771483c2f784a08c10ce64f0e300e033e601f331",
+   "fpid": "Crystal:Crystal_SMD_SeikoEpson_FA238-4Pin_3.2x2.5mm",
+   "pad_geometry_sha256": "ec361a5a2c191dce23559c2309dc5ef8ad54775f53756fd1ae21fd0bc1c18880",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "1"
+     },
+     "net": "/TIRE_CAN_OSC1",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "G"
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n7"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "3"
+     },
+     "net": "/TIRE_CAN_OSC2",
+     "pad": "3",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "G"
+     },
+     "net": "/GND",
+     "pad": "4",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -5700000,
+     1982969
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "Y1",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "X1E0003410031 20MHz 12pF"
+   }
+  }
+ ],
+ "outline": {
+  "F": {
+   "box_nm": [
+    -9477031,
+    -9477031,
+    7120000,
+    8192969
+   ],
+   "courtyards": [
+    [
+     [
+      5410000,
+      -2960000
+     ],
+     [
+      5410000,
+      0
+     ],
+     [
+      3950000,
+      0
+     ],
+     [
+      3950000,
+      -2960000
+     ]
+    ],
+    [
+     [
+      5410000,
+      250000
+     ],
+     [
+      5410000,
+      3210000
+     ],
+     [
+      3950000,
+      3210000
+     ],
+     [
+      3950000,
+      250000
+     ]
+    ],
+    [
+     [
+      -3950000,
+      4332969
+     ],
+     [
+      -3950000,
+      7292969
+     ],
+     [
+      -5410000,
+      7292969
+     ],
+     [
+      -5410000,
+      4332969
+     ]
+    ],
+    [
+     [
+      -7700000,
+      250000
+     ],
+     [
+      -7700000,
+      3210000
+     ],
+     [
+      -9160000,
+      3210000
+     ],
+     [
+      -9160000,
+      250000
+     ]
+    ],
+    [
+     [
+      -5170000,
+      -367031
+     ],
+     [
+      -8130000,
+      -367031
+     ],
+     [
+      -8130000,
+      -1827031
+     ],
+     [
+      -5170000,
+      -1827031
+     ]
+    ],
+    [
+     [
+      -2240000,
+      -8737031
+     ],
+     [
+      -2240000,
+      -5777031
+     ],
+     [
+      -3700000,
+      -5777031
+     ],
+     [
+      -3700000,
+      -8737031
+     ]
+    ],
+    [
+     [
+      1660000,
+      -4830000
+     ],
+     [
+      1660000,
+      -7790000
+     ],
+     [
+      3120000,
+      -7790000
+     ],
+     [
+      3120000,
+      -4830000
+     ]
+    ],
+    [
+     [
+      -6277031,
+      4332969
+     ],
+     [
+      -6277031,
+      5362969
+     ],
+     [
+      -6077031,
+      5362969
+     ],
+     [
+      -6077031,
+      7162969
+     ],
+     [
+      -7227031,
+      7162969
+     ],
+     [
+      -7227031,
+      8192969
+     ],
+     [
+      -8327031,
+      8192969
+     ],
+     [
+      -8327031,
+      7162969
+     ],
+     [
+      -9477031,
+      7162969
+     ],
+     [
+      -9477031,
+      5362969
+     ],
+     [
+      -9277031,
+      5362969
+     ],
+     [
+      -9277031,
+      4332969
+     ],
+     [
+      -8167031,
+      4332969
+     ],
+     [
+      -8167031,
+      5362969
+     ],
+     [
+      -7387031,
+      5362969
+     ],
+     [
+      -7387031,
+      4332969
+     ]
+    ],
+    [
+     [
+      -3700000,
+      4830000
+     ],
+     [
+      -1200000,
+      4830000
+     ],
+     [
+      -1200000,
+      8130000
+     ],
+     [
+      -3700000,
+      8130000
+     ]
+    ],
+    [
+     [
+      5410000,
+      -6170000
+     ],
+     [
+      5410000,
+      -3210000
+     ],
+     [
+      3950000,
+      -3210000
+     ],
+     [
+      3950000,
+      -6170000
+     ]
+    ],
+    [
+     [
+      7120000,
+      -2960000
+     ],
+     [
+      7120000,
+      0
+     ],
+     [
+      5660000,
+      0
+     ],
+     [
+      5660000,
+      -2960000
+     ]
+    ],
+    [
+     [
+      3120000,
+      6290000
+     ],
+     [
+      160000,
+      6290000
+     ],
+     [
+      160000,
+      4830000
+     ],
+     [
+      3120000,
+      4830000
+     ]
+    ],
+    [
+     [
+      7120000,
+      -6170000
+     ],
+     [
+      7120000,
+      -3210000
+     ],
+     [
+      5660000,
+      -3210000
+     ],
+     [
+      5660000,
+      -6170000
+     ]
+    ],
+    [
+     [
+      -950000,
+      6540000
+     ],
+     [
+      2010000,
+      6540000
+     ],
+     [
+      2010000,
+      8000000
+     ],
+     [
+      -950000,
+      8000000
+     ]
+    ],
+    [
+     [
+      3370000,
+      -6420000
+     ],
+     [
+      3370000,
+      -9380000
+     ],
+     [
+      4830000,
+      -9380000
+     ],
+     [
+      4830000,
+      -6420000
+     ]
+    ],
+    [
+     [
+      5410000,
+      3460000
+     ],
+     [
+      5410000,
+      6420000
+     ],
+     [
+      3950000,
+      6420000
+     ],
+     [
+      3950000,
+      3460000
+     ]
+    ],
+    [
+     [
+      -3700000,
+      -4360000
+     ],
+     [
+      -2200000,
+      -4360000
+     ],
+     [
+      -2200000,
+      -4580000
+     ],
+     [
+      2200000,
+      -4580000
+     ],
+     [
+      2200000,
+      -4360000
+     ],
+     [
+      3700000,
+      -4360000
+     ],
+     [
+      3700000,
+      4360000
+     ],
+     [
+      2200000,
+      4360000
+     ],
+     [
+      2200000,
+      4580000
+     ],
+     [
+      -2200000,
+      4580000
+     ],
+     [
+      -2200000,
+      4360000
+     ],
+     [
+      -3700000,
+      4360000
+     ]
+    ],
+    [
+     [
+      -9110000,
+      -2077031
+     ],
+     [
+      -9110000,
+      -3577031
+     ],
+     [
+      -9350000,
+      -3577031
+     ],
+     [
+      -9350000,
+      -7977031
+     ],
+     [
+      -9110000,
+      -7977031
+     ],
+     [
+      -9110000,
+      -9477031
+     ],
+     [
+      -4190000,
+      -9477031
+     ],
+     [
+      -4190000,
+      -7977031
+     ],
+     [
+      -3950000,
+      -7977031
+     ],
+     [
+      -3950000,
+      -3577031
+     ],
+     [
+      -4190000,
+      -3577031
+     ],
+     [
+      -4190000,
+      -2077031
+     ]
+    ],
+    [
+     [
+      -1790000,
+      -4830000
+     ],
+     [
+      -1790000,
+      -5830000
+     ],
+     [
+      -1990000,
+      -5830000
+     ],
+     [
+      -1990000,
+      -7930000
+     ],
+     [
+      -1790000,
+      -7930000
+     ],
+     [
+      -1790000,
+      -8930000
+     ],
+     [
+      -680000,
+      -8930000
+     ],
+     [
+      -680000,
+      -7930000
+     ],
+     [
+      100000,
+      -7930000
+     ],
+     [
+      100000,
+      -8930000
+     ],
+     [
+      1210000,
+      -8930000
+     ],
+     [
+      1210000,
+      -7930000
+     ],
+     [
+      1410000,
+      -7930000
+     ],
+     [
+      1410000,
+      -5830000
+     ],
+     [
+      1210000,
+      -5830000
+     ],
+     [
+      1210000,
+      -4830000
+     ]
+    ],
+    [
+     [
+      -7450000,
+      4082969
+     ],
+     [
+      -7450000,
+      -117031
+     ],
+     [
+      -3950000,
+      -117031
+     ],
+     [
+      -3950000,
+      4082969
+     ]
+    ]
+   ]
+  }
+ },
+ "placer_judgment": {
+  "basis": "transformed-proposal-not-native",
+  "verdict": "pass"
+ },
+ "provenance": {
+  "citation": "agent-ee.blocks intra-block search over the captured board; no manufacturer or owner layout authority",
+  "class": "search-derived",
+  "enforcement": "advisory",
+  "method": "ranked-first-fit-backjump/1"
+ },
+ "schema": "agent-ee.block-candidate/2",
+ "search": {
+  "backjumps": 0,
+  "compaction": {
+   "box_area_nm2": 293269537770000,
+   "first_box_area_nm2": 402167200000000,
+   "objective": "outline-bisection-min-box-area/1",
+   "step_cap": 10000,
+   "steps_total": 169,
+   "trials": [
+    {
+     "box_area_nm2": 320977800000000,
+     "family": "anchor-square",
+     "parameter": 9635000,
+     "status": "packed",
+     "steps_used": 41
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 7107500,
+     "status": "packing_infeasible",
+     "steps_used": 0
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 8371250,
+     "status": "packing_search_exhausted",
+     "steps_used": 0
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 9003125,
+     "status": "packing_search_exhausted",
+     "steps_used": 0
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 9319062,
+     "status": "packing_search_exhausted",
+     "steps_used": 24
+    },
+    {
+     "box_area_nm2": 293269537770000,
+     "family": "anchor-square",
+     "parameter": 9477031,
+     "status": "packed",
+     "steps_used": 37
+    },
+    {
+     "family": "box-scale",
+     "parameter": 796,
+     "status": "packing_infeasible",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 898,
+     "status": "packing_search_exhausted",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 949,
+     "status": "packing_search_exhausted",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 974,
+     "status": "packing_search_exhausted",
+     "steps_used": 12
+    }
+   ]
+  },
+  "step_budget": 200000,
+  "steps_used": 37,
+  "strategy": "ranked-first-fit-backjump/1"
+ },
+ "sources": {
+  "allocation_sha256": "30ff53342642fb31505df3531a34198bb43780dbc738771650314acacea31f25",
+  "board_sha256": "21bbf8efdfaf848f1a9494846a6fb1bdf31d19581daaf2c5fb601a26ffba8ecc",
+  "derivation_sha256": "5fd3d9f6763bac0ce7e6e1c2d3db3f985e7a669982f18967afd67f2f5cd1ca8f",
+  "inventory_sha256": "7791d44380d40bb46b0dbe1cd7495ce59408e8691afe2bf360eaf70b3eab7556",
+  "policy_sha256": "5269061f6b0494d9e72e8143d3d643c89805a874751da140792e01688574dd22"
+ },
+ "status": "packed",
+ "witness": {
+  "below_gap": [],
+  "drilled_pad_conflicts": [],
+  "gap_nm": 250000,
+  "method": "exact-courtyard-separation/1",
+  "minimum": {
+   "F": {
+    "distance_squared_nm2": [
+     62500000000,
+     1
+    ],
+    "refs": [
+     "C79",
+     "C80"
+    ]
+   }
+  },
+  "pairs_checked": 190,
+  "status": "pass"
+ }
+}
