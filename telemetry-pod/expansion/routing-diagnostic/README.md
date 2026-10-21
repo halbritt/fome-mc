@@ -144,6 +144,9 @@ its own copper; 2 rounds, 1200 s each, 4200 s total; receipts not published) did
 it: graded against its input the chains leave 51-52 nets open, disconnect 5-15 nets that were
 complete (`net_completion` FAIL) and add 1-4 dangling stubs. The open set is therefore a
 placement/density limit of this candidate for the builtin engine, not a budget limit.
+Freerouting on the same best candidate (1500 s, stall off, protect existing; receipts not
+published) closed none of the 53 nets usefully: 64 unconnected items in scope, and it broke
+/+3V3 (`net_completion` FAIL), so the builtin result stays the iteration-5 reference.
 
 Before iteration 5 the plateau was 136-145 nets with zero clearance violations. The open set is stable:
 analog front-end and ADC lines, the diagnostic I2C pair, the SPI bus, the TPS26625
