@@ -1,6 +1,6 @@
 # Placement candidate: cluster-anchored expanded pod (pending independent review)
 
-**Status: iteration 1 (this directory's root) was REJECTED by independent review (`review/independent-review.md`, 2026-10-20). The current candidate is `iteration-2/` (pending its own independent review).** Produced 2026-10-20 by agent-499 under the owner's
+**Status: iteration 1 (this directory's root) was REJECTED by independent review (`review/independent-review.md`, 2026-10-20). Iteration 2 was reviewed (conditional proceed). The current candidate is `iteration-3/` (pending its own independent review).** Produced 2026-10-20 by agent-499 under the owner's
 direction to decide and proceed autonomously. It is the first expanded-pod placement that
 meets the declared electrical bar; it still needs independent review, the J2 anchor
 correction (D-PCB-4), silkscreen relocation (AGENTEE-320), plane planning and routing

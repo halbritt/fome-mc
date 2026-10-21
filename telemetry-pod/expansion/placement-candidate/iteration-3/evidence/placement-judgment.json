@@ -1,0 +1,282 @@
+{
+  "advisories": [],
+  "associations": [],
+  "authority": "standalone-unsealed",
+  "board_sha256": "fc28ba79ac7e87a92bbfa3be712248868d02aaee004025789982a43f69a3660e",
+  "declared_overhangs": [
+    {
+      "overhang_area_mm2": 1780.015,
+      "ref": "J1",
+      "side": "F"
+    },
+    {
+      "overhang_area_mm2": 116.0754,
+      "ref": "J2",
+      "side": "B"
+    },
+    {
+      "overhang_area_mm2": 116.0754,
+      "ref": "J2",
+      "side": "F"
+    },
+    {
+      "overhang_area_mm2": 1012.875,
+      "ref": "U1",
+      "side": "F"
+    }
+  ],
+  "group_grading": {
+    "criterion": "placement-groups/1",
+    "defects": [],
+    "groups": [
+      {
+        "anchor": {
+          "reference": "U14"
+        },
+        "id": "u14-local-storage-bypass",
+        "max_distance_nm": 9000000,
+        "references": [
+          "C63",
+          "C64",
+          "C65",
+          "C66",
+          "C67"
+        ]
+      },
+      {
+        "anchor": {
+          "reference": "U20"
+        },
+        "id": "u20-local-bypass",
+        "max_distance_nm": 5000000,
+        "references": [
+          "C79",
+          "C80"
+        ]
+      },
+      {
+        "anchor": {
+          "reference": "U20"
+        },
+        "id": "u20-local-clock",
+        "max_distance_nm": 9000000,
+        "references": [
+          "Y1",
+          "C81",
+          "C82"
+        ]
+      },
+      {
+        "anchor": {
+          "reference": "U21"
+        },
+        "id": "u21-local-bypass",
+        "max_distance_nm": 5000000,
+        "references": [
+          "C83",
+          "C84"
+        ]
+      },
+      {
+        "anchor": {
+          "reference": "U22"
+        },
+        "id": "u22-local-bypass",
+        "max_distance_nm": 3500000,
+        "references": [
+          "C85"
+        ]
+      },
+      {
+        "anchor": {
+          "reference": "U3"
+        },
+        "id": "gnss-antenna-power",
+        "max_distance_nm": 15000000,
+        "references": [
+          "U10"
+        ]
+      }
+    ],
+    "measured": [
+      {
+        "distance_mm": 7.870407,
+        "group": "u14-local-storage-bypass",
+        "max_distance_mm": 9.0,
+        "ref": "C63"
+      },
+      {
+        "distance_mm": 8.738558,
+        "group": "u14-local-storage-bypass",
+        "max_distance_mm": 9.0,
+        "ref": "C64"
+      },
+      {
+        "distance_mm": 8.49787,
+        "group": "u14-local-storage-bypass",
+        "max_distance_mm": 9.0,
+        "ref": "C65"
+      },
+      {
+        "distance_mm": 8.980802,
+        "group": "u14-local-storage-bypass",
+        "max_distance_mm": 9.0,
+        "ref": "C66"
+      },
+      {
+        "distance_mm": 8.966387,
+        "group": "u14-local-storage-bypass",
+        "max_distance_mm": 9.0,
+        "ref": "C67"
+      },
+      {
+        "distance_mm": 4.980906,
+        "group": "u20-local-bypass",
+        "max_distance_mm": 5.0,
+        "ref": "C79"
+      },
+      {
+        "distance_mm": 4.916038,
+        "group": "u20-local-bypass",
+        "max_distance_mm": 5.0,
+        "ref": "C80"
+      },
+      {
+        "distance_mm": 7.565297,
+        "group": "u20-local-clock",
+        "max_distance_mm": 9.0,
+        "ref": "Y1"
+      },
+      {
+        "distance_mm": 8.444935,
+        "group": "u20-local-clock",
+        "max_distance_mm": 9.0,
+        "ref": "C81"
+      },
+      {
+        "distance_mm": 8.556321,
+        "group": "u20-local-clock",
+        "max_distance_mm": 9.0,
+        "ref": "C82"
+      },
+      {
+        "distance_mm": 4.908442,
+        "group": "u21-local-bypass",
+        "max_distance_mm": 5.0,
+        "ref": "C83"
+      },
+      {
+        "distance_mm": 4.982299,
+        "group": "u21-local-bypass",
+        "max_distance_mm": 5.0,
+        "ref": "C84"
+      },
+      {
+        "distance_mm": 2.708953,
+        "group": "u22-local-bypass",
+        "max_distance_mm": 3.5,
+        "ref": "C85"
+      },
+      {
+        "distance_mm": 12.595718,
+        "group": "gnss-antenna-power",
+        "max_distance_mm": 15.0,
+        "ref": "U10"
+      }
+    ],
+    "status": "pass",
+    "unknown": []
+  },
+  "hard_failures": [],
+  "off_board": [],
+  "outcome": "pass",
+  "overhangs": [
+    {
+      "edges": [
+        {
+          "end_nm": [
+            0,
+            65000000
+          ],
+          "max_nm": 22850000,
+          "name": "bottom",
+          "outward": "y+",
+          "start_nm": [
+            90000000,
+            65000000
+          ]
+        }
+      ],
+      "reference": "J1",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/0/courtyard_overhangs"
+      }
+    },
+    {
+      "edges": [
+        {
+          "end_nm": [
+            90000000,
+            65000000
+          ],
+          "max_nm": 9730000,
+          "name": "right",
+          "outward": "x+",
+          "start_nm": [
+            90000000,
+            0
+          ]
+        }
+      ],
+      "reference": "J2",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/1/courtyard_overhangs"
+      }
+    },
+    {
+      "edges": [
+        {
+          "end_nm": [
+            90000000,
+            0
+          ],
+          "max_nm": 21250000,
+          "name": "top",
+          "outward": "y-",
+          "start_nm": [
+            0,
+            0
+          ]
+        },
+        {
+          "end_nm": [
+            90000000,
+            65000000
+          ],
+          "max_nm": 6500000,
+          "name": "right",
+          "outward": "x+",
+          "start_nm": [
+            90000000,
+            0
+          ]
+        }
+      ],
+      "reference": "U1",
+      "source": {
+        "envelope_id": "expanded-pod-placement-candidate",
+        "envelope_sha256": "ad0a3597ad0a7d4e5b52288405c510fe60b92595b52350feb1e6ee89d537b685",
+        "pointer": "/fixed_footprints/2/courtyard_overhangs"
+      }
+    }
+  ],
+  "policy": null,
+  "schema": "agent-ee.placement-judgment/1",
+  "score": null,
+  "unknown": [],
+  "verdict": "pass"
+}
