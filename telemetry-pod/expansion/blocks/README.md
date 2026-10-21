@@ -1,3 +1,5 @@
+> **2026-10-21:** the eMMC was dropped for a microSD socket (`../storage-microsd/`): the `storage` block is now J3 + R46–R50, R55, C64, C65 anchored on J3, and the `storage-power` block (U15 cluster) is gone: 20 blocks. `derived-2b16feb-seed6f458cea.json` was derived from the eMMC source and is history until re-derived on the forward-annotated seed.
+
 # Block allocation for the expanded telemetry pod (AGENTEE-339 input)
 
 The expanded pod schematic is flat (one sheet, no hierarchy), so the two-level placer

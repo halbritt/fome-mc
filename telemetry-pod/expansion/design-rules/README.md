@@ -76,7 +76,11 @@ needs 0.20 mm and 0.30 mm is kept), and 22 silkscreen findings appear (text belo
 1.0 mm / 0.15 mm legibility minimum, overlaps) that the lax defaults had hidden. Those are
 real manufacturability findings for the silk relocation stage (AGENTEE-320), not copper.
 
-## D-PCB-3: eMMC interior fanout (decided v3, 2026-10-21)
+## D-PCB-3: eMMC interior fanout (RETIRED 2026-10-21: eMMC dropped for a microSD socket)
+
+**Retired.** The owner dropped the eMMC on 2026-10-21 (`../storage-microsd/`). The `BGA_EMMC`
+net class, the U14 via-in-pad rule and the patched `Package_BGA` footprint are withdrawn;
+what follows is the history of the decision and stays for the record.
 
 The first KRT routing diagnostic on this board (`~/.cache/agent499-route-diag`, run
 `cited-krt-norescue`) routed 142 of 194 nets and left every eMMC bus net open: U14 is a
@@ -109,9 +113,11 @@ the stock footprint and delete the U14 rule.
   NEO-M9L-01A has 0 stock and changes three pin functions.
 - **D-PCB-10 J1.** Stays TE 776228-1 vertical; the 12 mm limit that argued for the
   right-angle 776087-1 was owner-withdrawn on 2026-10-19.
-- **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the order form lacks filled-and-
-  capped vias on this stack, or the block-placed routing campaign leaves +3V3 plane pads
-  open or fails pour integrity on In2.
+- **D-PCB-11 layers.** Stay 4-layer. Go to 6 only if the block-placed routing campaign
+  leaves +3V3 plane pads open or fails pour integrity on In2 (the via-fill trigger went
+  with D-PCB-3).
+- **D-PCB-12 J3.** The microSD socket (−25 to +85 °C) is an 85 °C exception on the
+  owner's U1/U2/U4 terms; no 105 °C socket is stocked with a library footprint.
 
 Full text with reversal paths: `constraints.json` `decisions`.
 
@@ -139,8 +145,7 @@ it is not an adopted board.
 ## How this is applied and reversed
 
 - The next expanded-board import or placement run must use `footprints/` in place of the
-  three sources in `../released-source-migration/inputs/footprints/` and of the stock
-  `Package_BGA:LFBGA-153_11.5x13mm_Layout14x14_P0.5mm` (D-PCB-3 v3), run
+  three sources in `../released-source-migration/inputs/footprints/`, run
   `silk/apply-silk-policy.py` on the seed (D-PCB-8), carry
   `telemetry-pod.kicad_dru` as the project's rule file, and apply the board-setup values
   of `constraints.json` (as in `board-setup.kicad_pro`) to the generated project. Until the migration is

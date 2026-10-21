@@ -1,3 +1,5 @@
+> **2026-10-21:** the three U15 obligations (`u15-input-C70`, `u15-output-C68`, `u15-output-C69`) are withdrawn: the eMMC and its core regulator were dropped by owner decision (`../../storage-microsd/`). 12 obligations remain; the committed measurements below predate the change and keep their U15 rows as history.
+
 # Pad-level electrical locality declaration
 
 `electrical-locality.json` is an `agent-ee.electrical-locality/1` document declaring

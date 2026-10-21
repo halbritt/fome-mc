@@ -64,13 +64,14 @@ channels. Exact identities and captured sources are now present in the prepared 
 operating qualification remains open.
 The maximum tire workload is 800 received classic CAN frames/s. Size the
 controller receive buffers against worst-case SPI service latency, not average
-bus utilization. Configure SDMMC width explicitly to four bits; do not inherit
-an eight-bit eMMC default. Verify media I/O voltage and pull-ups at selection.
+bus utilization. Configure SDMMC width explicitly to four bits for the microSD socket
+(`storage-microsd/`, owner decision 2026-10-21: eMMC dropped). Verify card I/O voltage
+and pull-ups at selection.
 
 `allocation.json` maps GPIO numbers to module terminals. Factory UART, GNSS,
 IMU, ADC and existing CAN pins are retained. Strapping GPIOs are not repurposed.
-GPIO35 is only an optional storage reset for the selected N8 module variant;
-it must be reconsidered if the module's flash/PSRAM variant changes. The six
+GPIO35 is the microSD card-detect input (`SD_CD`, formerly the optional storage
+reset); it must be reconsidered if the module's flash/PSRAM variant changes. The six
 storage pins are reservations, not proof of timing or routing closure.
 
 ## Wheel sensor interface
