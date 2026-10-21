@@ -1,0 +1,281 @@
+[
+  {
+    "check": "project_files",
+    "status": "PASS",
+    "detail": "rules (.kicad_pro/.kicad_dru), schematics, library tables and local libraries are byte-identical to the input",
+    "differences": []
+  },
+  {
+    "check": "board_outline",
+    "status": "PASS",
+    "detail": "4 Edge.Cuts shapes",
+    "differences": []
+  },
+  {
+    "check": "layers",
+    "status": "PASS",
+    "detail": "4 copper layers",
+    "differences": []
+  },
+  {
+    "check": "stackup",
+    "status": "PASS",
+    "detail": "explicit stackup",
+    "differences": []
+  },
+  {
+    "check": "board_setup",
+    "status": "PASS",
+    "detail": "board-file (setup) settings other than the stackup",
+    "differences": []
+  },
+  {
+    "check": "nets_and_netclasses",
+    "status": "PASS",
+    "detail": "369 nets with their effective net classes",
+    "differences": []
+  },
+  {
+    "check": "pad_connectivity",
+    "status": "PASS",
+    "detail": "1257 pad-to-net assignments",
+    "differences": []
+  },
+  {
+    "check": "footprints",
+    "status": "PASS",
+    "detail": "331 footprints: library id, position, orientation, side, lock state and pad geometry",
+    "differences": []
+  },
+  {
+    "check": "zones",
+    "status": "PASS",
+    "detail": "2 copper zone definitions (outline, net, layers, priority, clearance, thermal and fill settings; fill polygons are regenerated)",
+    "differences": []
+  },
+  {
+    "check": "keepouts",
+    "status": "PASS",
+    "detail": "0 rule areas",
+    "differences": []
+  },
+  {
+    "check": "copper_graphics",
+    "status": "PASS",
+    "detail": "0 non-track copper graphics (shapes; text and other items with content and position)",
+    "differences": []
+  },
+  {
+    "check": "protected_copper",
+    "status": "PASS",
+    "detail": "0 tracks and 0 vias designated (all pre-existing copper); max deviation 0 nm",
+    "differences": []
+  },
+  {
+    "check": "new_copper_netclass_geometry",
+    "status": "PASS",
+    "detail": "3875 new tracks and 407 new vias checked against their net class width / via (microvia) diameter / drill (1 um quantisation tolerance)",
+    "differences": []
+  },
+  {
+    "check": "routing_scope",
+    "status": "PASS",
+    "detail": "new copper only on the 369 in-scope nets",
+    "differences": []
+  },
+  {
+    "check": "net_completion",
+    "differences": [
+      {
+        "net": "/ADC_AIN1",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/ADC_AIN5",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/ADC_AIN6",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/ADC_CS",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/AFE_DIV7",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U27_AIN1",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/DIAG_U27_AIN2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U28_AIN3",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U29_AIN0",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/DIAG_U29_AIN1",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/DIAG_U29_AIN2",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_CLK",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_CMD",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT0",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT3",
+        "unconnected_items": 2
+      },
+      {
+        "net": "/EMMC_DAT4",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT5",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT6",
+        "unconnected_items": 1
+      },
+      {
+        "net": "/EMMC_DAT7",
+        "unconnected_items": 1
+      }
+    ],
+    "status": "FAIL",
+    "detail": "32 of the 305 nets fully connected in the input lost connection: /ADC_AIN1, /ADC_AIN5, /ADC_AIN6, /ADC_CS, /AFE_DIV2, /AFE_DIV7, /DIAG_U27_AIN1, /DIAG_U27_AIN2, /DIAG_U28_AIN3, /DIAG_U29_AIN0",
+    "nets_connected_in_input": 305,
+    "nets_lost": [
+      "/ADC_AIN1",
+      "/ADC_AIN5",
+      "/ADC_AIN6",
+      "/ADC_CS",
+      "/AFE_DIV2",
+      "/AFE_DIV7",
+      "/DIAG_U27_AIN1",
+      "/DIAG_U27_AIN2",
+      "/DIAG_U28_AIN3",
+      "/DIAG_U29_AIN0",
+      "/DIAG_U29_AIN1",
+      "/DIAG_U29_AIN2",
+      "/EMMC_CLK",
+      "/EMMC_CMD",
+      "/EMMC_DAT0",
+      "/EMMC_DAT3",
+      "/EMMC_DAT4",
+      "/EMMC_DAT5",
+      "/EMMC_DAT6",
+      "/EMMC_DAT7",
+      "/EMMC_VDDi",
+      "/REF_DIV",
+      "/SENSOR_POWER_FRONT_DVDT",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_POWER_REAR_ILIM",
+      "/SPI_MOSI",
+      "/SPI_SCK",
+      "/SUP_U17_CT",
+      "/SUP_U17_SENSE",
+      "/SUP_U19_CT",
+      "/SUP_U19_SENSE",
+      "/WHEEL_REAR_CAPTURE"
+    ]
+  },
+  {
+    "check": "pour_integrity",
+    "status": "PASS",
+    "detail": "2 copper zones, 55 zone-connected pads compared on the refilled boards (min spokes 2); /+3V3@In2.Cu 4671.6 mm2 (-12.641 %), 1 polygons; /GND@In1.Cu 4682.9 mm2 (-12.919 %), 3 polygons",
+    "differences": [
+      {
+        "kind": "spokes_reduced",
+        "pad": "U1.41@In1.Cu",
+        "connection": "solid",
+        "position_mm": [
+          69.6,
+          8.26
+        ],
+        "touches_fill": [
+          true,
+          true
+        ],
+        "spokes": [
+          1,
+          1
+        ],
+        "solid": [
+          true,
+          false
+        ],
+        "track_spokes": [
+          0,
+          0
+        ],
+        "in_main": [
+          true,
+          true
+        ],
+        "polygons": [
+          "/GND@In1.Cu/agent-ee-plane/4066f5eb-5e74-5c98-b0f9-8bdce0926886#0"
+        ],
+        "other_path": true
+      },
+      {
+        "kind": "spokes_reduced",
+        "pad": "U12.9@In1.Cu",
+        "connection": "thermal",
+        "position_mm": [
+          48.49,
+          34.105
+        ],
+        "touches_fill": [
+          true,
+          true
+        ],
+        "spokes": [
+          4,
+          3
+        ],
+        "solid": [
+          false,
+          false
+        ],
+        "track_spokes": [
+          0,
+          0
+        ],
+        "in_main": [
+          true,
+          true
+        ],
+        "polygons": [
+          "/GND@In1.Cu/agent-ee-plane/4066f5eb-5e74-5c98-b0f9-8bdce0926886#0"
+        ],
+        "other_path": false
+      }
+    ]
+  }
+]

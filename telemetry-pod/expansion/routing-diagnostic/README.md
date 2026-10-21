@@ -64,6 +64,18 @@ hard-nets-first rounds finished worse (73 and 69 nets open), so net ordering is 
 limiter on this board. The open set is the same as before: eMMC bus (D-PCB-3), the
 TPS26625 control nets, and the plane nets GND / +3V3 / PRE_6V3 without zones (D-PCB-5).
 
+## Planed iteration-2 placement (D-PCB-5 planes, then KRT)
+
+`kicad-route planes --plan ../design-rules/planes.json` on the via-patched iteration-2
+candidate filled In1.Cu GND and In2.Cu +3V3 over the board outline (`planes-iter2.json`;
+exit 3 = production success that still needs the full electrical checks, as documented).
+`kicad-route run --backend krt --budget 1500`, net rescue off, on the planed board
+(`candidate/planed-krt/`): 143 of 194 nets, 3875 tracks, 407 vias, **6 new findings, all
+dangling-stub warnings**, net_completion FAIL for 32 nets. With the planes, 305 nets were
+already connected in the input (GND and +3V3 pads reach the pours). The open set is the
+same families as before and is addressed by iteration 3's placement (U14 under the MCU,
+L3 in the RF corridor).
+
 KRT is the stronger backend on this board (142 versus 110 nets in comparable budgets); the
 next routing step is `kicad-route campaign --backend krt` with `KICAD_NET_RESCUE=0` on a
 qualified placement, after plane planning.
