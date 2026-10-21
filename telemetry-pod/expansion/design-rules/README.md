@@ -3,10 +3,11 @@
 **Decision (design owner's agent, 2026-10-20, under the owner's standing direction that
 owner-reserved decisions are made autonomously and recorded):**
 
-1. **Thermal vias under exposed pads are 0.30 mm drill / 0.70 mm diameter (0.20 mm ring).** The 44
+1. **Thermal vias under exposed pads are 0.30 mm drill / 0.70 mm diameter (0.20 mm ring), a deliberate choice above the via minimum.** The 44
    vias in U1 (ESP32-S3-WROOM-1, 12), U5 and U7 (LMR36520 DDA0008B, 8 each) and U6 and
-   U12 (TPS7B4253 DDA0008J_C02, 8 each) were 0.20 / 0.40 mm (0.10 mm ring, below JLCPCB's
-   0.18 mm absolute minimum for 2-layer 1 oz). The project minimum hole
+   U12 (TPS7B4253 DDA0008J_C02, 8 each) were 0.20 / 0.40 mm: within JLCPCB via capability
+   (0.15 / 0.25 mm minimum) but carrying the small-hole surcharge and violating the project's
+   0.30 mm hole minimum. The project minimum hole
    of 0.30 mm is **kept**. The footprint sources are changed instead; patched copies are
    in `footprints/` (before/after hashes in `evidence/`).
 2. **Pad-to-pad clearance inside the fine-pitch footprints U2, U16, U17, U18 and U19 is
@@ -40,8 +41,9 @@ vias are same-net copper under exposed pads.
   manufacturing benefit.
 - 0.20 mm drills carry a small-hole surcharge at JLCPCB and offer no thermal advantage
   here; 0.30 mm is the ordinary thermal-via drill in TI PowerPAD guidance and the KiCad
-  library convention; 0.70 mm diameter gives the 0.20 mm ring JLCPCB recommends for
-  multilayer and exceeds its 0.18 mm 2-layer absolute minimum. Via pitch is 1.30 mm (DDA)
+  library convention; 0.70 mm diameter puts a 0.20 mm ring of thermal copper around each
+  hole. Signal vias keep the net-class 0.60 / 0.30 mm; the board minimum is 0.50 mm
+  diameter with a 0.10 mm ring, twice JLCPCB's published via minimum (0.25 / 0.15 mm). Via pitch is 1.30 mm (DDA)
   and 0.70 mm (ESP32): the DDA vias keep 0.60 mm copper gaps, the ESP32 vias become
   tangent same-net copper inside the exposed pad, and hole-to-hole gaps are 1.00 mm and
   0.40 mm against JLCPCB's 0.20 mm via hole-to-hole minimum.
@@ -58,9 +60,9 @@ which is what the scaffold generated. It is kept as a cited engineering decision
 default: the eMMC U14 is a 153-ball 0.5 mm BGA that cannot fan out on two layers, the
 LMR36520 layout guide asks for a middle-layer ground plane, and the GNSS 50-ohm line needs
 a defined reference. "Double-sided" in the owner's target means components on both sides.
-Annular-ring and trace figures in `constraints.json` are quoted for JLCPCB multilayer
-(recommended ring 0.20 mm, absolute 0.15 mm), and the chosen 0.20 mm ring meets the
-recommendation.
+Trace figures in `constraints.json` are quoted for JLCPCB multilayer. The PTH annular-ring
+figures (recommended 0.20 mm, absolute 0.15 mm) apply to component through-holes; vias
+have their own published minimum of 0.25 mm on a 0.15 mm hole.
 
 ## Constraint provenance (the structural fix)
 
@@ -73,6 +75,15 @@ the five copper-edge findings on J2 disappear (the 0.50 mm edge rule was a defau
 needs 0.20 mm and 0.30 mm is kept), and 22 silkscreen findings appear (text below the
 1.0 mm / 0.15 mm legibility minimum, overlaps) that the lax defaults had hidden. Those are
 real manufacturability findings for the silk relocation stage (AGENTEE-320), not copper.
+
+## Open design item D-PCB-3: eMMC interior fanout
+
+The first KRT routing diagnostic on this board (`~/.cache/agent499-route-diag`, run
+`cited-krt-norescue`) routed 142 of 194 nets and left every eMMC bus net open: U14 is a
+0.5 mm-pitch BGA-153 with ten connected interior balls, and a 0.60 mm via cannot dogbone
+between its balls. `constraints.json` records the two candidate answers (a BGA net class
+on JLCPCB's published BGA allowances, or filled via-in-pad). This is decided by a bounded
+routing experiment, not by relaxing the general rules.
 
 ## Evidence on the frozen diagnostic board
 

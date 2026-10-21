@@ -34,15 +34,15 @@
       "replaces_default": 0.3
     },
     "min_via_diameter": {
-      "value_mm": 0.7,
+      "value_mm": 0.5,
       "class": "engineering",
-      "basis": "0.30 mm drill plus 2 x 0.20 mm ring (JLCPCB multilayer recommended ring 0.20 mm)",
+      "basis": "JLCPCB published minimum via 0.25 mm diameter on a 0.15 mm hole (0.05 mm ring); 0.30 mm drill is standard cost; 0.50 mm gives a 0.10 mm ring, twice the published via minimum. The Default net class via stays 0.60/0.30 (0.15 mm ring)",
       "replaces_default": 0.5
     },
     "min_via_annular_width": {
-      "value_mm": 0.2,
+      "value_mm": 0.1,
       "class": "engineering",
-      "basis": "JLCPCB multilayer 1 oz: recommended 0.20 mm, absolute minimum 0.15 mm (2-layer: 0.25 / 0.18 mm)",
+      "basis": "JLCPCB via 0.15/0.25 implies a 0.05 mm via ring; 0.10 mm doubles it. The PTH annular-ring figures (recommended 0.20 mm, absolute 0.15 mm multilayer) apply to component through-holes and are met by every PTH pad on the board",
       "replaces_default": 0.1
     },
     "min_hole_to_hole": {
@@ -107,7 +107,7 @@
       "drill_mm": 0.3,
       "diameter_mm": 0.7,
       "class": "engineering",
-      "basis": "JLCPCB annular minimum 0.18 mm and standard-cost drill; same-net copper under exposed pads; TI PowerPAD thermal via guidance",
+      "basis": "Same-net heatsink vias under exposed pads: 0.30 mm drill is standard cost (JLCPCB charges extra for 0.20/0.25 mm holes under 0.45 mm via diameter); 0.70 mm diameter gives a 0.20 mm ring for thermal copper, a deliberate choice above the 0.10 mm via minimum. The original 0.20/0.40 mm vias were within JLCPCB via capability but carried the small-hole surcharge and violated the project's 0.30 mm hole minimum",
       "footprints": [
         "PodPower:DDA0008B",
         "PodPower:DDA0008J_C02",
@@ -119,8 +119,10 @@
   "net_class_default": {
     "clearance_mm": 0.2,
     "track_width_mm": 0.2,
+    "via_diameter_mm": 0.6,
+    "via_drill_mm": 0.3,
     "class": "engineering",
-    "basis": "general copper spacing and width above the 0.15 mm board minimum; unchanged",
+    "basis": "general copper spacing, width and via above the board minimums; unchanged from the generated project; the via (0.15 mm ring) sits above the 0.10 mm board minimum",
     "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"
   },
   "owner_authorization": "2026-10-20: relax the clearance rules if you must, as long as JLCPCB can manufacture it, and it doesn't affect electrical performance.",
@@ -144,5 +146,8 @@
     "class": "engineering",
     "basis": "D-PCB-2: U14 FEMDME008G eMMC is a 153-ball 0.5 mm BGA whose fanout needs inner layers; LMR36520 SNVSBF0C section 8.5.1 item 5 asks for a ground plane in a middle layer; GNSS RF_50 needs a defined reference; JLCPCB 4-layer is standard cost. The scaffold-generated stackup matches JLCPCB's published 4-layer 1.6 mm stackup, so it is adopted as a cited value, not a default. The owner's 'double-sided' target refers to component sides, not copper layer count.",
     "decided": "2026-10-20"
+  },
+  "open_items": {
+    "D-PCB-3 eMMC interior fanout": "U14 FEMDME008G (BGA-153, 0.5 mm pitch, 0.24 mm pads) has 10 connected interior balls (EMMC_VCC_3V3 x4, GND x5, EMMC_DS at H5). A 0.60 mm via does not fit a dogbone between 0.5 mm balls (0.467 mm pad-edge diagonal gap). Candidate answers, to be decided by a bounded routing experiment: a BGA net class with JLCPCB's published BGA allowances (0.09 mm pad-to-track, 0.10 mm track, 0.25/0.15 mm via, surcharge) or via-in-pad with filled vias (JLCPCB lists filled and capped vias as default for 6 layers and above; availability as a 4-layer option must be confirmed on the order form). The first KRT diagnostic left all eMMC bus nets unrouted."
   }
 }
