@@ -1,3 +1,5 @@
+> **2026-10-21 (second fix):** the supervision block lost C73/C74/R58/R59/U17 and the diagnostic block lost C113/R140-R143, which the microSD change removed (agent-449 found the stale entries from the 340 review). Every member is now checked against `../storage-microsd/native.xml`.
+
 > **2026-10-21:** the eMMC was dropped for a microSD socket (`../storage-microsd/`): the `storage` block is now J3 + R46–R50, R55, C64, C65 anchored on J3, and the `storage-power` block (U15 cluster) is gone: 20 blocks. `derived-2b16feb-seed6f458cea.json` was derived from the eMMC source and is history until re-derived on the forward-annotated seed.
 
 # Block allocation for the expanded telemetry pod (AGENTEE-339 input)
