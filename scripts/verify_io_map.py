@@ -510,6 +510,11 @@ def verify_project_io(cfg: dict) -> int:
     if missing or len(set(covered)) != len(covered):
         errors.append(f"io-map connector coverage: missing={sorted(missing)}, duplicate native bindings="
                       f"{len(covered) - len(set(covered))}")
+    # REQUIREMENTS.md requires Bluetooth LE (POD-IF-BLUETOOTH-LE). Its row has no pin
+    # to cover, so dropping it would otherwise pass unnoticed.
+    if cfg["name"] == "telemetry-pod" and wireless != ["BLE-RADIO"]:
+        errors.append("declared wireless obligation BLE-RADIO (POD-IF-BLUETOOTH-LE) is missing; "
+                      "it must stay as an unresolved, not_evaluated row")
     if errors:
         print(f"FAIL: project {cfg['name']} io-map / contract verification:")
         for error in errors:

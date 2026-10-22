@@ -4,5 +4,11 @@
   "sha256": "4da27afc8d9cd7ff3d1fd8e23f855747072c050d25601b89fb3909b688e49f23",
   "mcu": {"reference": "U1", "value": "ESP32-S3-WROOM-1-N8"},
   "generator": "telemetry-pod/pinout-checks/generate.py",
-  "note": "Rev-3 microSD source (expansion/storage-microsd, 305 references). The root telemetry-pod.kicad_sch remains the v9 pilot snapshot; verify-io evaluates this schematic instead."
+  "requirements": "telemetry-pod/REQUIREMENTS.md",
+  "spec_record": "telemetry-pod/expansion/requirements/rev3-microsd/spec-record.json",
+  "wireless": [
+    {"row": "BLE-RADIO", "v9_row": "BLE-RADIO",
+     "requirements": ["POD-IF-BLUETOOTH-LE", "POD-IF-PROGRAMMING-AND-DEBUG", "POD-AC-9"]}
+  ],
+  "note": "Rev-3 microSD source (expansion/storage-microsd, 305 references). The root telemetry-pod.kicad_sch remains the v9 pilot snapshot; verify-io evaluates this schematic instead. Wireless rows have no native pin; each cites Rev-3 spec-record requirements whose byte locators are checked against REQUIREMENTS.md."
 }

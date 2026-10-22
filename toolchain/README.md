@@ -151,7 +151,8 @@ native XML netlist and source geometry from a snapshot under
 `build/runs/verify-io/<project>/`. Unresolved terminals fail without a traceback.
 The pod's declared `BLE-RADIO:net` wireless obligation is printed by name as
 `NOT_EVALUATED`, excluded from the satisfied count, and permitted only for its
-`Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. Every other
+`Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. That row is also
+required: a pod map or contract without it fails. Every other
 non-satisfied invariant fails. Compiler CSV hash citations must match the current
 map; regenerate the contract after changing its input. The pod gate also recompiles
 its CSV, bindings and paths with AGENTEE-188 and requires byte identity with the

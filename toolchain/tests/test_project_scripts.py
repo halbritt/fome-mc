@@ -137,8 +137,8 @@ class ProjectScripts(unittest.TestCase):
     def test_landed_pod_map_reads_before_missing_root_contract(self):
         source = REPO / 'telemetry-pod/io-map.csv'
         pins = verify.read_project_map(source)
-        self.assertEqual(len(pins), 32)
-        self.assertEqual(pins['AMPSEAL-1'], '/POD_CAN_P')
+        self.assertEqual(len(pins), 55)
+        self.assertEqual(pins['J1-1'], '/POD_CAN_P')
         self.assertEqual(pins['BLE-RADIO'], 'N/A')
         project = self.root / 'telemetry-pod'
         project.mkdir()
@@ -214,33 +214,37 @@ class ProjectScripts(unittest.TestCase):
         result, output = run(original)
         self.assertEqual(result, 0, output)
         self.assertIn('NOT_EVALUATED: BLE-RADIO', output)
-        self.assertIn('81/82 invariants satisfied', output)
-        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap'):
+        self.assertIn('193/194 invariants satisfied', output)
+        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap', 'drop-wireless'):
             with self.subTest(mutation=mutation):
                 contract = copy.deepcopy(original)
                 terminals = contract['terminals']
                 if mutation == 'net':
                     contract['invariants'][0]['names'] = ['WRONG']
                 elif mutation == 'pin':
-                    terminals['AMPSEAL-1'], terminals['AMPSEAL-2'] = terminals['AMPSEAL-2'], terminals['AMPSEAL-1']
+                    terminals['J1-1'], terminals['J1-2'] = terminals['J1-2'], terminals['J1-1']
                 elif mutation == 'nc':
-                    terminals['AMPSEAL-17'], terminals['AMPSEAL-3'] = terminals['AMPSEAL-3'], terminals['AMPSEAL-17']
+                    terminals['J1-35'], terminals['J1-3'] = terminals['J1-3'], terminals['J1-35']
                 elif mutation == 'unresolved':
-                    terminals['AMPSEAL-1'] = {'unresolved': 'deliberate scratch mutation'}
+                    terminals['J1-1'] = {'unresolved': 'deliberate scratch mutation'}
                 elif mutation == 'unknown':
                     inv = contract['invariants'][0]
                     inv.pop('terminal'); inv.pop('names')
                     inv.update(kind='unresolved', reason='deliberate scratch unknown')
                 elif mutation == 'missing':
-                    del terminals['AMPSEAL-23']
-                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'AMPSEAL-23']
+                    del terminals['J1-35']
+                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'J1-35']
                 elif mutation == 'same-net-swap':
-                    terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+                    terminals['J1-5'], terminals['J1-8'] = terminals['J1-8'], terminals['J1-5']
+                elif mutation == 'drop-wireless':
+                    contract['invariants'] = [i for i in contract['invariants'] if i['id'] != 'BLE-RADIO:net']
                 result, output = run(contract)
                 self.assertEqual(result, 1, output)
                 self.assertIn('FAIL:', output)
                 if mutation == 'same-net-swap':
                     self.assertIn('differs from fresh AGENTEE-188 compile', output)
+                if mutation == 'drop-wireless':
+                    self.assertIn('declared wireless obligation BLE-RADIO (POD-IF-BLUETOOTH-LE) is missing', output)
         for source in (REPO / 'telemetry-pod').glob('*.kicad_*'):
             self.assertEqual(source.read_bytes(), (project / source.name).read_bytes())
 
@@ -262,7 +266,7 @@ class ProjectScripts(unittest.TestCase):
         raw_bindings = bindings_path.read_bytes()
         bindings = json.loads(raw_bindings)
         terminals = bindings['terminals']
-        terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+        terminals['J1-5'], terminals['J1-8'] = terminals['J1-8'], terminals['J1-5']
         bindings_path.write_text(json.dumps(bindings))
         result, output = run(original)
         self.assertEqual(result, 1, output)

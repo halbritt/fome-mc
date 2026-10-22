@@ -19,6 +19,16 @@ schematic. It writes no pin data by hand, and a rerun is byte-identical.
   pogo pads, 54 rows. `Connector_Pin` is `<ref>-<pin>`, `Net` is the native net name,
   and `Signal_Name` is that name without the leading `/`. A pin whose native net is a
   generated `unconnected-(...)` singleton is `N/C` / `NO_CONNECT` (only J1-35).
+- **Wireless row:** `BLE-RADIO` follows the 54 contact rows (55 rows in all). It is
+  declared in `source.json`, not read from the netlist: `Net`, `MCU_Ref`, `MCU_Pin` and
+  `MCU_Path` are `N/A`, and no native pin is invented for it. It cites
+  `POD-IF-BLUETOOTH-LE`, `POD-IF-PROGRAMMING-AND-DEBUG` (field updates over BLE) and
+  `POD-AC-9` from the Rev-3 spec record
+  `expansion/requirements/rev3-microsd/spec-record.json`. The generator checks that the
+  record's digest and byte locators match the current `REQUIREMENTS.md`. `Signal_Name`
+  and the three descriptive columns are carried from the v9 `BLE-RADIO` row, not
+  requalified. The compiler keeps it as one `unresolved` invariant, and `verify-io`
+  prints it as `NOT_EVALUATED` apart from the wired count.
 - **MCU pins (U1, ESP32-S3-WROOM-1-N8):**
   - *Direct:* the row's own net holds a U1 pin (`MCU_Path=direct`; J3 data/clock/detect, TP1/2/4/5).
   - *Rail:* rows on a net with any `power_in`/`power_out` pin declare no MCU pin.
@@ -38,13 +48,15 @@ schematic. It writes no pin data by hand, and a rerun is byte-identical.
   `bidirectional`. Undecided segments inherit through passive parts only.
 - **Descriptive columns:** `Direction_Class`, `Voltage_Current_Domain` and
   `External_Destination` are carried from the v9 row bound to the same native pin
-  when its net name is identical (24 rows: J1-1..16, J2-1/2, TP1..TP6). The Notes cell says so; these values were
-  not requalified for Rev-3. Every other row says `unknown`. No committed packet gives
+  when its net name is identical (24 rows: J1-1..16, J2-1/2, TP1..TP6). The v9 row's
+  `POD-IF-*` citations are carried with them, and each must exist in the Rev-3 spec
+  record. The Notes cell says so; these values were not requalified for Rev-3. Every other row says `unknown`. No committed packet gives
   per-cavity destinations for J1-17..34. The J1 mating-interface packet is mechanical
   only.
 
 The result has 11 direct rows, 16 indirect rows with 78 paths (CAN1 2×2, analog
-8×4, wheel 2×1, tire CAN 4×10) and 27 rows without an MCU pin. J1-3 (`POD_12V_IN`)
+8×4, wheel 2×1, tire CAN 4×10) and 28 rows without an MCU pin (27 contacts and
+`BLE-RADIO`). J1-3 (`POD_12V_IN`)
 and J2-1 (`POD_GNSS_RF`) are signal nets that no crossing rule takes to U1: the
 reverse-polarity FET and the GNSS receiver are not crossed.
 
@@ -80,13 +92,53 @@ make verify-io PROJECT=telemetry-pod
 ```
 
 The contract is generated, never hand-edited. Its `io_map` citations carry the CSV
-hash and each invariant binds `REQUIREMENTS.md` (revision 3) by SHA-256. The gate
-reports 54 connector pins and 193/193 invariants satisfied (78 indirect paths) on a
-fresh snapshot netlist. Logs are under `build/runs/verify-io/telemetry-pod/`.
+hash and the row's `POD-IF-*` IDs, and each invariant binds `REQUIREMENTS.md`
+(revision 3) by SHA-256. It has 194 invariants: 193 wired ones (78 indirect paths) and
+the unresolved `BLE-RADIO:net`. On a fresh snapshot netlist the gate verifies 54
+connector pins and reports `193/194 invariants satisfied ...; 1 declared wireless
+not_evaluated`, with `NOT_EVALUATED: BLE-RADIO` printed by name. Any other
+non-satisfied invariant fails. Logs are under `build/runs/verify-io/telemetry-pod/`.
 
 This is a topology gate only. It does not establish analog accuracy, CAN timing,
 firmware assignments, harness destinations, wireless behaviour or fabrication
-approval. The BLE radio has no electrical pin and no row, so the v9 `BLE-RADIO` row
-and its POD-IF-* traceability are not carried. Requirement traceability for Rev-3
-has not been recaptured. `verify_io_map.py` in this directory is the retired
-revision-2 checker; `io-map-cross-check.txt` and `IO_MAP_HISTORY.md` are historical.
+approval. `verify_io_map.py` in this directory is the retired revision-2 checker;
+`io-map-cross-check.txt` and `IO_MAP_HISTORY.md` are historical.
+
+## Interface requirement traceability
+
+One row per Rev-3 `Interfaces` entry (spec-record IDs). *Cited rows* carry the ID in
+their Notes cell, and the compiled contract repeats it in `io_map.requirements`. All are
+carried from v9 rows, except `BLE-RADIO`, which `source.json` declares. *Uncited rows*
+are this agent's reading of native net names and topology. That reading is not a
+requirement citation and gives no harness or electrical authority. A cited or uncited
+row shows only where the interface lands in the schematic. It does not show that the
+requirement is satisfied.
+
+| Interface (spec-record ID) | Cited rows | Uncited rows (agent reading of native names) | Open beyond topology |
+| --- | --- | --- | --- |
+| CAN1 (`POD-IF-CAN1`) | J1-1, J1-2 | none | timing, termination value, ESD qualification, firmware |
+| Bluetooth LE (`POD-IF-BLUETOOTH-LE`) | `BLE-RADIO` (no pin; NOT_EVALUATED) | none | radio range, GATT service, OTA; POD-AC-9 bench test |
+| Power in (`POD-IF-POWER-IN`) | J1-3, J1-4 | none | transients, reverse polarity, current budget; J1-3 has no MCU path |
+| Sensor supply (`POD-IF-SENSOR-SUPPLY`) | J1-5, 7, 8, 10, 11, 13, 14, 16 | J1-21 (`POD_5V_AUX`), J1-22 (`GND`) | 200 mA budget to be reassessed for Rev-3; reference error |
+| Analog inputs (`POD-IF-ANALOG-INPUTS`) | J1-6, 9, 12, 15 | J1-17..20 (`POD_AUX1..4_SIGNAL`) | range, protection, settling, calibration, rate |
+| Wheel speed (`POD-IF-WHEEL-SPEED`) | none | J1-23..28 (`POD_WHEEL_*`, `GND`) | sensor type and electrical compatibility |
+| Digital tire temperature (`POD-IF-DIGITAL-TIRE-TEMPERATURE`) | none | J1-29..34 (`TIRE_CAN_*`, `POD_TIRE_SUPPLY`, `GND`) | protocol, sensor and harness compatibility |
+| Standalone logging (`POD-IF-STANDALONE-LOGGING`) | none | J3-1..10, J3-SH (`SD_*`, `+3V3`, `GND`) | duration, power-loss, media and firmware |
+| GNSS antenna (`POD-IF-GNSS-ANTENNA`) | J2-1, J2-2 | none | antenna bias, RF; J2-1 has no MCU path |
+| Programming and debug (`POD-IF-PROGRAMMING-AND-DEBUG`) | TP1-1..TP6-1, `BLE-RADIO` (OTA) | none | fixture access, firmware load, OTA |
+| Harness connector (`POD-IF-HARNESS-CONNECTOR`) | J1-1..16 | J1-17..35 | plug, contacts, cavity plug and per-cavity harness destinations |
+
+`J1-35` is a proven native no-connect, and its cavity-plug selection is unknown.
+`J1-17..34` and `J3` have no committed per-pin source, so their descriptive columns stay
+`unknown` and they carry no citation.
+
+## Source packet integrity
+
+`source.json` points into `expansion/storage-microsd/`. That packet's `SHA256SUMS`
+lists `native.xml` and `project/telemetry-pod.kicad_prl`, but both match `.gitignore`
+patterns and were left out of b6ba9a0. AGENTEE-207 force-added them unchanged from the
+ignored copies in the authoring checkout. Those copies were written at
+2026-10-21 00:24–00:25 −0700, minutes before b6ba9a0 (00:28). Their bytes match the
+listed digests, so nothing was regenerated and the manifest is unchanged. Apart from
+its `<source>` path and `<date>`, `native.xml` is identical to a fresh kicad-cli 10.0.7
+export of the committed schematic. `sha256sum -c SHA256SUMS` passes in that directory.

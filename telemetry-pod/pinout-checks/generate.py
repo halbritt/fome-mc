@@ -19,7 +19,13 @@ Rows: every pin of every J<n> and TP<n> component, in reference/pin order.
                  (any power_in/power_out pin) declare no MCU pin.
   Direction_Class, Voltage_Current_Domain, External_Destination
                  carried from the retained v9 io-map row bound to the same native
-                 pin when its net name is identical; otherwise unknown.
+                 pin when its net name is identical; otherwise unknown. The v9 row's
+                 POD-IF-* interface citations are carried with them.
+
+Wireless rows: each source.json "wireless" entry adds one row with Net=N/A and no MCU
+pin, after the contact rows. It names no native pin; the compiler keeps it unresolved
+and verify-io reports it NOT_EVALUATED. Its requirement IDs must exist in the Rev-3
+spec record, whose source digest and byte locators must match REQUIREMENTS.md.
 """
 import argparse
 import csv
@@ -47,6 +53,7 @@ COLUMNS = ["Connector_Pin", "Signal_Name", "Net", "Direction_Class", "Voltage_Cu
            "MCU_Ref", "MCU_Pin", "External_Destination", "Notes", "MCU_Path"]
 CARRIED = ("Direction_Class", "Voltage_Current_Domain", "External_Destination")
 CONTACT_REF = re.compile(r"(J|TP)[0-9]+")
+INTERFACE_ID = re.compile(r"\bPOD-IF-[A-Z0-9-]+\b")
 RAIL_TYPES = {"power_in", "power_out"}
 DRIVERS = {"output", "tri_state", "open_collector", "open_emitter"}
 
@@ -216,17 +223,36 @@ def directions(nl, terminals, roles):
 
 
 def v9_rows():
-    """Retained v9 rows keyed by their bound native (reference, pin)."""
+    """Retained v9 rows keyed by their bound native (reference, pin), and all rows by Connector_Pin."""
     bindings = json.loads((V9_DIR / "bindings.json").read_text())
-    rows = {}
+    rows, by_id = {}, {}
     with (V9_DIR / "io-map.csv").open(newline="") as f:
         for row in csv.DictReader(f):
+            by_id[row["Connector_Pin"]] = row
             term = bindings["terminals"].get(row["Connector_Pin"])
             if term:
                 refs = [loc["reference"] for loc in bindings["components"][term["component"]]["locations"]]
                 if len(refs) == 1:
                     rows[(refs[0], term["pin"])] = row
-    return rows
+    return rows, by_id
+
+
+def spec_requirements(source: dict):
+    """Rev-3 spec-record entries by ID, after checking their bytes against REQUIREMENTS.md."""
+    record = json.loads((REPO / source["spec_record"]).read_text())
+    spec = REPO / source["requirements"]
+    if spec.name != record["spec"]["name"]:
+        sys.exit(f"{source['spec_record']} records {record['spec']['name']}, not {source['requirements']}")
+    data = spec.read_bytes()
+    if hashlib.sha256(data).hexdigest() != record["spec"]["sha256"]:
+        sys.exit(f"{spec.relative_to(REPO)} differs from the spec record {source['spec_record']}")
+    entries = {}
+    for entry in record["requirements"]:
+        loc = entry["locator"]
+        if data[loc["byte_start"]:loc["byte_end"]].decode() != entry["text"]:
+            sys.exit(f"{entry['id']}: spec-record locator does not match {spec.relative_to(REPO)}")
+        entries[entry["id"]] = dict(entry, path=str(spec.relative_to(REPO)), sha256=record["spec"]["sha256"])
+    return entries
 
 
 def generate(raw: bytes, source: dict):
@@ -234,7 +260,8 @@ def generate(raw: bytes, source: dict):
     mcu = source["mcu"]["reference"]
     if nl.comps[mcu]["value"] != source["mcu"]["value"]:
         sys.exit(f"{mcu} is {nl.comps[mcu]['value']!r}, source.json declares {source['mcu']['value']!r}")
-    carried = v9_rows()
+    carried, v9_by_id = v9_rows()
+    spec = spec_requirements(source)
     contacts = sorted((r for r in nl.comps if CONTACT_REF.fullmatch(r)), key=natural)
     components, terminals, paths, rows = {}, {}, {}, []
 
@@ -302,12 +329,36 @@ def generate(raw: bytes, source: dict):
                 row.update({k: old[k] for k in CARRIED})
                 note += (f"; Direction_Class, Voltage_Current_Domain and External_Destination carried from v9 row "
                          f"{old['Connector_Pin']} (same native pin, identical net; not requalified for Rev-3)")
+                ids = sorted(set(INTERFACE_ID.findall(old["Notes"])))
+                unknown = [i for i in ids if i not in spec]
+                if unknown:
+                    sys.exit(f"{rid}: v9 row {old['Connector_Pin']} cites {unknown}, absent from the Rev-3 spec record")
+                if ids:
+                    note += f"; v9 interface citations carried: {', '.join(ids)}"
             elif row["Net"] != "N/C":
                 row.update(Direction_Class="unknown", Voltage_Current_Domain="unknown",
                            External_Destination="unknown")
                 note += "; direction, domain and external destination unknown (no committed per-pin source)"
             row["Notes"] = f"Rev-3 source {short}; {note}"
             rows.append(row)
+    for decl in source.get("wireless", []):
+        old = v9_by_id[decl["v9_row"]]
+        if old["Net"] != "N/A" or old["Direction_Class"] != "Bidirectional_RF":
+            sys.exit(f"v9 row {decl['v9_row']} is not a wireless row")
+        missing = [i for i in decl["requirements"] if i not in spec]
+        if missing:
+            sys.exit(f"{decl['row']}: {missing} absent from the Rev-3 spec record")
+        cites = ", ".join(f"{i} (bytes {spec[i]['locator']['byte_start']}-{spec[i]['locator']['byte_end']})"
+                          for i in decl["requirements"])
+        row = dict.fromkeys(COLUMNS, "N/A")
+        row.update(Connector_Pin=decl["row"], Signal_Name=old["Signal_Name"], **{k: old[k] for k in CARRIED})
+        row["Notes"] = (f"Rev-3 source {short}; declared wireless obligation: no native pin, net or MCU pin "
+                        f"(none invented); not evaluated by the topology gate; requirements {cites} of "
+                        f"{source['requirements']} sha256 {spec[decl['requirements'][0]]['sha256'][:12]}, "
+                        f"via {source['spec_record']}; "
+                        f"Signal_Name, Direction_Class, Voltage_Current_Domain and External_Destination carried "
+                        f"from v9 row {old['Connector_Pin']} (not requalified for Rev-3)")
+        rows.append(row)
     out = io.StringIO()
     writer = csv.DictWriter(out, COLUMNS, lineterminator="\n")
     writer.writeheader()

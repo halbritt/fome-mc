@@ -80,6 +80,6 @@
 | `captured-symbols/`, `captured-footprints/` | KiCad-library-derived and project-authored symbols and footprints |
 | `kicad-libraries/` | Shared FOME AMPSEAL-23 footprint and 3D STEP model (`c-1-776228-1-e-3d.STEP`) |
 | `renders/` | 2D layer SVGs/PNGs/PDFs, schematic SVG/PNG/PDF, and 4K 3D ray-traced views (`renders/3d/`) |
-| `io-map.csv`, `IO_MAP.md`, `pinout-checks/` | Rev-3 connector/MCU map generated from the `expansion/storage-microsd/` netlist, its bindings, paths and generator; v9 inputs in `pinout-checks/v9-pilot/` |
+| `io-map.csv`, `IO_MAP.md`, `pinout-checks/` | Rev-3 connector/MCU map generated from the `expansion/storage-microsd/` netlist, plus the declared `BLE-RADIO` wireless row (no pin, `NOT_EVALUATED`); its bindings, paths and generator; v9 inputs in `pinout-checks/v9-pilot/` |
 | `verify_io_map.py`, `io-map-cross-check.txt`, `IO_MAP_HISTORY.md` | Retired revision-2 checker and historical cross-check |
 | `REQUIREMENTS.md` | Captured hardware requirements and owner design decisions |
