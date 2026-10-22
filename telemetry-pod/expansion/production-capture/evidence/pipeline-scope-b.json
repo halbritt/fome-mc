@@ -1,0 +1,405 @@
+{
+ "agent_ee": "/tmp/agent-ee-burndown-20261017/workers/pod-capture/scratch/agent-ee-014b349",
+ "authority": "Producer execution and declarations on a fresh capture copy; no placement, routing, campaign or model run. Diagnostics are scratch-only and never inputs.",
+ "budgets": {
+  "placement_timeout_s": 1500,
+  "review_budget_s": 3600,
+  "routing_budget_s": 900
+ },
+ "derived_request_policy_identity": "b07059a507047809fd24275d7b0273a6d0c2525a1806dc14a3225484854bd12f",
+ "diagnostics": {
+  "diagnostic.J3_transform": {
+   "anchor_mm": [
+    "8.9",
+    "32"
+   ],
+   "courtyard_bbox_mm": [
+    -20.145,
+    24.075,
+    17.765,
+    39.865
+   ],
+   "declared_max_mm": 20.3,
+   "iter8n_seed_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+   "left_overhang_mm": 20.145,
+   "pads_equal_iter8n_seed": true,
+   "right_edge_inside_outline": true,
+   "rotation_deg": "90",
+   "side": "back",
+   "status": "ok",
+   "within_declared_overhang": true
+  },
+  "diagnostic.binding_fill_without_J3": {
+   "as_is": "ValueError: writer binding mismatch: adc/Qualification",
+   "assembly_deviations": {
+    "J1": 0
+   },
+   "bound_components": 304,
+   "components_with_added_fields": {
+    "J1": [
+     "JLCPCB_Assembly"
+    ],
+    "TP1": [],
+    "TP2": [],
+    "TP3": [],
+    "TP4": [],
+    "TP5": [],
+    "TP6": []
+   },
+   "set_aside_field_counts": {
+    "AGENT_EE_Ratings": 98,
+    "Power": 43,
+    "Qualification": 173,
+    "Voltage": 55
+   },
+   "status": "ok"
+  },
+  "diagnostic.content_without_J3": {
+   "board_sha256": "1b970cd8cee8908c9718912b8b7f7d70412aff637a5b9d7980f3c032742905eb",
+   "footprints": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "J1",
+    "J2",
+    "U1",
+    "U2"
+   ],
+   "rule_areas": {
+    "D-PCB-6-RF-reference": {
+     "corrected_board": {
+      "layers": [
+       "In1.Cu",
+       "In2.Cu"
+      ],
+      "no_footprints": false,
+      "no_pads": false,
+      "no_pour": false,
+      "no_tracks": true,
+      "no_vias": true,
+      "polygon_nm": [
+       [
+        76000000,
+        26500000
+       ],
+       [
+        76000000,
+        30600000
+       ],
+       [
+        88000000,
+        26500000
+       ],
+       [
+        88000000,
+        30600000
+       ]
+      ]
+     },
+     "identical": true,
+     "produced": {
+      "layers": [
+       "In1.Cu",
+       "In2.Cu"
+      ],
+      "no_footprints": false,
+      "no_pads": false,
+      "no_pour": false,
+      "no_tracks": true,
+      "no_vias": true,
+      "polygon_nm": [
+       [
+        76000000,
+        26500000
+       ],
+       [
+        76000000,
+        30600000
+       ],
+       [
+        88000000,
+        26500000
+       ],
+       [
+        88000000,
+        30600000
+       ]
+      ]
+     }
+    },
+    "D-PCB-7v2-In1-no-tracks": {
+     "corrected_board": {
+      "layers": [
+       "In1.Cu"
+      ],
+      "no_footprints": false,
+      "no_pads": false,
+      "no_pour": false,
+      "no_tracks": true,
+      "no_vias": false,
+      "polygon_nm": [
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        65000000
+       ],
+       [
+        90000000,
+        0
+       ],
+       [
+        90000000,
+        65000000
+       ]
+      ]
+     },
+     "identical": true,
+     "produced": {
+      "layers": [
+       "In1.Cu"
+      ],
+      "no_footprints": false,
+      "no_pads": false,
+      "no_pour": false,
+      "no_tracks": true,
+      "no_vias": false,
+      "polygon_nm": [
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        65000000
+       ],
+       [
+        90000000,
+        0
+       ],
+       [
+        90000000,
+        65000000
+       ]
+      ]
+     }
+    }
+   },
+   "status": "ok",
+   "u1": {
+    "fpid": "RF_Module:ESP32-S3-WROOM-1",
+    "position_nm": [
+     72500000,
+     6500000
+    ],
+    "retention_verified": "verify_native_retention passed in the writer",
+    "zones": 1
+   }
+  }
+ },
+ "done": false,
+ "dry_run_record": null,
+ "inference": false,
+ "plan_sha256": "fe67471f41094404c02f49d4d74b8deacef3494bddcb2ea81c980514ff7aa8ff",
+ "prepared_output_exists": true,
+ "router_checkout": "/home/halbritt/git/agent-ee/build/kicad-route-pin-5f1c072",
+ "schema": "pod-capture.pipeline/1",
+ "scope": {
+  "path": "/tmp/agent-ee-burndown-20261017/workers/pod-capture/scratch/scope-b/telemetry-pod/expansion/requirements/rev3-microsd/compiled/scope.json",
+  "sha256": "6a74fee2930fa8764926e16949dd60d76d81488169082fa20beb3b00ce659ec5"
+ },
+ "stages": {
+  "add_planes.step": {
+   "status": "accepted"
+  },
+  "binding_fill.configuration": {
+   "detail": {
+    "writes": {
+     "composition/intent.bound.json": "out/intent.json"
+    }
+   },
+   "status": "accepted"
+  },
+  "binding_fill.fill": {
+   "error": "ValueError: part_ref coverage must equal all non-power components",
+   "status": "refused",
+   "where": "fill"
+  },
+  "engine.placement_adapter.blocks_request (AGENTEE-439 G1)": {
+   "error": "ValueError: expected agent-ee.placement-adapter/1 with exactly ['fixed_footprints', 'helper', 'policy', 'schema', 'timeout_s'] and optionally sublayout or targeted_plans",
+   "status": "refused",
+   "where": "validate_declaration"
+  },
+  "placement.block_candidates_repack": {
+   "error": "ValueError: 18 iter8n block candidates bind policy ['a8b2585ed4060bb5bd5efc1565af6b2f793c97744570c53f596c647f5e8bb563']; the derived request policy is b07059a507047809fd24275d7b0273a6d0c2525a1806dc14a3225484854bd12f: repack with the released AGENTEE-439 engine (not on agent-ee origin/main)",
+   "status": "refused",
+   "where": "iter8n_candidates"
+  },
+  "placement.envelope_overhangs": {
+   "detail": [
+    {
+     "edges": [
+      {
+       "end_nm": [
+        0,
+        65000000
+       ],
+       "max_nm": 22850000,
+       "name": "bottom",
+       "outward": "y+",
+       "start_nm": [
+        90000000,
+        65000000
+       ]
+      }
+     ],
+     "reference": "J1",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "96615a7932b83959cd3898cee1febe1a4737c7ebd25fdc4fde40a4951e471e84",
+      "pointer": "/fixed_footprints/0/courtyard_overhangs"
+     }
+    },
+    {
+     "edges": [
+      {
+       "end_nm": [
+        90000000,
+        65000000
+       ],
+       "max_nm": 9730000,
+       "name": "right",
+       "outward": "x+",
+       "start_nm": [
+        90000000,
+        0
+       ]
+      }
+     ],
+     "reference": "J2",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "96615a7932b83959cd3898cee1febe1a4737c7ebd25fdc4fde40a4951e471e84",
+      "pointer": "/fixed_footprints/1/courtyard_overhangs"
+     }
+    },
+    {
+     "edges": [
+      {
+       "end_nm": [
+        90000000,
+        0
+       ],
+       "max_nm": 21250000,
+       "name": "top",
+       "outward": "y-",
+       "start_nm": [
+        0,
+        0
+       ]
+      },
+      {
+       "end_nm": [
+        90000000,
+        65000000
+       ],
+       "max_nm": 6500000,
+       "name": "right",
+       "outward": "x+",
+       "start_nm": [
+        90000000,
+        0
+       ]
+      }
+     ],
+     "reference": "U1",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "96615a7932b83959cd3898cee1febe1a4737c7ebd25fdc4fde40a4951e471e84",
+      "pointer": "/fixed_footprints/2/courtyard_overhangs"
+     }
+    },
+    {
+     "edges": [
+      {
+       "end_nm": [
+        0,
+        0
+       ],
+       "max_nm": 20300000,
+       "name": "left",
+       "outward": "x-",
+       "start_nm": [
+        0,
+        65000000
+       ]
+      }
+     ],
+     "reference": "J3",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "96615a7932b83959cd3898cee1febe1a4737c7ebd25fdc4fde40a4951e471e84",
+      "pointer": "/fixed_footprints/4/courtyard_overhangs"
+     }
+    }
+   ],
+   "status": "accepted"
+  },
+  "placement.policy_vs_subjects": {
+   "status": "accepted"
+  },
+  "placement.refuse_policy_sources": {
+   "status": "accepted"
+  },
+  "placement.scope_envelope_binding": {
+   "error": "ValueError: the scope maps no placement check with params.envelope, so placement_adapter.envelope_fixed passes no envelope overhangs, fixed references or provenance to the packer",
+   "status": "refused",
+   "where": "envelope_reaches_placer"
+  },
+  "pod_driver.build(dry_run)": {
+   "error": "ValueError: stage step envelope-content failed; no output adopted or substituted",
+   "status": "refused",
+   "where": "adopt"
+  },
+  "pod_driver.validate_plan": {
+   "detail": {
+    "max_iterations": 10,
+    "max_seconds": 8400
+   },
+   "status": "accepted"
+  },
+  "routing_adapter.preflight": {
+   "detail": {
+    "commit": "5f1c072b86e0caee82c7656226c4d0e3ec580a58",
+    "pin": "5f1c072b86e0caee82c7656226c4d0e3ec580a58"
+   },
+   "status": "accepted"
+  },
+  "scaffold.content_step": {
+   "status": "accepted"
+  },
+  "scaffold.scaffold": {
+   "detail": {
+    "baseline_id": "5db8f2378e06c0c8eed18737d413e6fb38df491b952d8f368abb284029727247",
+    "candidate_id": "5d82c31ebc24518d5061eac69a545d99b16b936483bd926002acf9c21afa9602",
+    "status": "completed"
+   },
+   "status": "accepted"
+  },
+  "scaffold.write_envelope_content": {
+   "error": "ValueError: fixed footprints are not declared parts instances: J3",
+   "status": "refused",
+   "where": "write_envelope_content"
+  },
+  "schematic_stage.configuration": {
+   "detail": [
+    "emit-schematic",
+    "forward-annotate"
+   ],
+   "status": "accepted"
+  }
+ }
+}

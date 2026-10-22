@@ -1,0 +1,41 @@
+{
+ "schema": "pod-capture.hand-fit-policy/1",
+ "authority": "The owner statement (telemetry-pod/REQUIREMENTS.md line 139, POD-AC-5) is the only hand-fit authority and is quoted unchanged. The selection chain binds its category \"the AMPSEAL header\" to the captured selected J1 identity through the owner-ruled D-PCB-10 decision line and the captured part record and manifests (agent-509 notes/509-j1-handfit-chain.txt). Assembly disposition only: not mating or enclosure qualification and not purchase permission.",
+ "paths": "Relative to the planning root pipeline.py builds; telemetry-pod/... paths are byte copies of the fome-mc files at the same path; composition/parts.json is the production-capture manifest.",
+ "hand_fit_policy": {
+  "source": "telemetry-pod/REQUIREMENTS.md",
+  "sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7",
+  "line": 139,
+  "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+  "identities": [
+   {
+    "mpn": "1-776163-1",
+    "lcsc": "C596198"
+   }
+  ],
+  "selection": {
+   "category": "AMPSEAL",
+   "source": "telemetry-pod/expansion/design-rules/constraints.json",
+   "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+   "line": 175,
+   "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+   "records": [
+    {
+     "source": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+     "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+     "pointer": ""
+    },
+    {
+     "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json",
+     "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+     "pointer": "/parts/326"
+    },
+    {
+     "source": "composition/parts.json",
+     "sha256": "b89bc3e2eb2d37fcf4eef9989ba95b785e2f9a6e0ba36fcda6bb037275b52b6b",
+     "pointer": "/parts/303"
+    }
+   ]
+  }
+ }
+}
