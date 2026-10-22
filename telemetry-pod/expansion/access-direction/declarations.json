@@ -1,0 +1,179 @@
+{
+ "schema": "fome-mc.pod-access-declarations/1",
+ "ticket": "AGENTEE-379",
+ "consumer": "agent-ee src/agent_ee/access_direction.py (released main 1da27635)",
+ "frame_note": "Declared coordinates are board axes at zero rotation on the current mounting side. Measured on iter8n/iter8s: a B-side footprint's library y is negated (courtyard y 29.0 maps to local y -29.0), so the B declaration is the F declaration with y negated and outward y-.",
+ "parts": {
+  "J3": {
+   "status": "declared",
+   "class": "board",
+   "relaxes_outline": false,
+   "F_side": {
+    "schema": "agent-ee.access-direction/1",
+    "mouth_nm": [
+     -425000,
+     8880000
+    ],
+    "outward": "y+",
+    "lane_polygons_nm": [
+     [
+      [
+       -5925000,
+       8880000
+      ],
+      [
+       5075000,
+       8880000
+      ],
+      [
+       5075000,
+       29000000
+      ],
+      [
+       -5925000,
+       29000000
+      ]
+     ]
+    ],
+    "provenance": {
+     "class": "board",
+     "enforcement": "hard",
+     "citation": "fome-mc telemetry-pod/expansion/design-rules/constraints.json decisions 'D-PCB-13 microSD card envelope in the J3 courtyard' v2 and v3 (v3, owner 2026-10-21: 'obviously point the slot off the board edge' gives the direction; v2, class engineering, gives the 15 mm insertion lane to courtyard y=29.0). Lane width and card tip from footprint Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5 (design-rules/footprints, sha256 bf1f94e2549eb6fd9ed6e55848705c04155ecbfc077dfa8c7a0efc8e53f5799d): F.Fab card outline x -5.925..5.075 mm, tip y 13.725 mm. Hirose DM3AT drawing (footprint descr URL, doc_file_id 44099) is NOT in the repository: not a manufacturer-class source"
+    }
+   },
+   "B_side": {
+    "schema": "agent-ee.access-direction/1",
+    "mouth_nm": [
+     -425000,
+     -8880000
+    ],
+    "outward": "y-",
+    "lane_polygons_nm": [
+     [
+      [
+       -5925000,
+       -8880000
+      ],
+      [
+       5075000,
+       -8880000
+      ],
+      [
+       5075000,
+       -29000000
+      ],
+      [
+       -5925000,
+       -29000000
+      ]
+     ]
+    ],
+    "provenance": {
+     "class": "board",
+     "enforcement": "hard",
+     "citation": "fome-mc telemetry-pod/expansion/design-rules/constraints.json decisions 'D-PCB-13 microSD card envelope in the J3 courtyard' v2 and v3 (v3, owner 2026-10-21: 'obviously point the slot off the board edge' gives the direction; v2, class engineering, gives the 15 mm insertion lane to courtyard y=29.0). Lane width and card tip from footprint Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5 (design-rules/footprints, sha256 bf1f94e2549eb6fd9ed6e55848705c04155ecbfc077dfa8c7a0efc8e53f5799d): F.Fab card outline x -5.925..5.075 mm, tip y 13.725 mm. Hirose DM3AT drawing (footprint descr URL, doc_file_id 44099) is NOT in the repository: not a manufacturer-class source"
+    }
+   },
+   "unknown_for_manufacturer_class": "Original Hirose DM3AT-SF-PEJM5 drawing is still not archived (direct download 403), so the mouth plane and card travel cannot be cited to a manufacturer page or figure and no travel_nm is declared. The 15 mm lane stays a D-PCB-13 engineering value, distinct from the catalog positions. Thermal: the J3 manufacturer maximum temperature is still to be verified from an original; no thermal claim is made.",
+   "part_identity": {
+    "mpn": "Hirose DM3AT-SF-PEJM5",
+    "ejection": "PUSH-PUSH",
+    "footprint_description_error": "KiCad footprint Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5 describes push-pull; the Hirose DM3 catalog D49662_en lists this exact part as PUSH-PUSH.",
+    "source_class": "web_extracted_secondary",
+    "source": "https://www.hirose.com/ja/product/document?clcode=&documentid=D49662_en&documenttype=Catalog&lang=ja&productname=&series=DM3"
+   },
+   "catalog_common_datum_positions_mm": {
+    "overstroke": 16.75,
+    "lock": 17.55,
+    "eject": 21.55,
+    "derived_lock_to_eject_mm": 4.0,
+    "derived_lock_to_overstroke_mm": 0.8,
+    "source_class": "web_extracted_secondary (indexed catalog text, no original hash)",
+    "meaning": "Differences of manufacturer positions on a common drawing datum. NOT full card removal travel and NOT finger clearance; not used as travel_nm. The catalog may state that engineering drawings take precedence."
+   },
+   "mouth_datum_verification": {
+    "status": "unresolved",
+    "text": "The mouth datum (library y 8.88 declared, 8.90 probe) is NOT manufacturer-verified: the exact-part drawing endpoint (https://www.hirose.com/product/download/?distributor=chip1&lang=en&num=DM3AT-SF-PEJM5&type=2d, six pages stamped Oct.1.2026) gave 403 on direct download and only boilerplate through web extraction. The 0.02 mm claimed lane defect therefore stays an unresolved measurement; it is not authorization to move J3 and J3 stays fixed."
+   }
+  },
+  "J1": {
+   "status": "unknown",
+   "direction_source": "TE drawing 776163 rev K1 (telemetry-pod/expansion/connector-candidate/sources/776163-K1.pdf, sha256 7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7): sheet 1 section A-A and sheet 2 isometric 'AMPSEAL HEADER' / 'RECOMMENDED P.C. BOARD LAYOUT' show a right-angle header whose mating mouth is parallel to the board, toward the board edge past pin row 24-35. In the footprint frame (F, rotation 0; pad 1 y=51.5, pad 35 y=59.5 in iter8n/iter8s) that is outward y+.",
+   "unknown_reason": "Numerical mating/unmating stroke and approach-lane depth were not recovered from any source (spec and drawing were readable only as web-extracted text, no original hashes). The 66 mm Fig. 12 diameter is a pass-through opening, not travel, so no lane or travel_nm is declared. Direction (outward y+) from the 776163 K1 drawing is kept above.",
+   "part_identity": {
+    "mpn": "TE 776164-1 plug (black, keyed slots 6 and 20), mates header 1-776163-1 (black, code 1)",
+    "source_class": "web_extracted_secondary",
+    "sources": [
+     "TE customer drawing 2293782 E5 (two sheets), https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocFormat=pdf&DocLang=English&DocNm=2293782&DocType=Customer+Drawing&PartCntxt=776164-1",
+     "TE application specification 114-16016 S3 (13 pages), https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocFormat=pdf&DocLang=English&DocNm=114-16016&DocType=Specification+Or+Standard&PartCntxt=776164-1"
+    ]
+   },
+   "sourced_non_travel_facts": {
+    "spec_p8_sec3.5G_fig12": "diameter 66 mm opening to pass the completed 35-position plug assembly. This is a pass-through opening, NOT mating stroke and NOT a rectangular access-lane depth.",
+    "spec_p7": "CPA must be returned to the prestaged position before separation.",
+    "spec_p13_fig17": "latch-lifting screwdriver slot access is required; CPA/latch tool access is separate from the mating lane.",
+    "source_class": "web_extracted_secondary"
+   }
+  },
+  "J2": {
+   "status": "unknown",
+   "unknown_reason": "Mating-cable envelope, tightening-tool clearance and insertion stroke were not recovered, and no numerical mouth plane was assigned from an unviewed diagram. Cable and tool clearance stay unknown; no declaration is written.",
+   "part_identity": {
+    "mpn": "Molex SD-73251-115 rev B3 (1 sheet, approved 2026-05-04), edge-mount SMA jack",
+    "note": "The table covers 73251-1150 and 73251-1153 with different plating and shared geometry, so the footprint suffix 1153 versus board value 732511150 is not by itself proof of a mechanical footprint mismatch. Reference PCB thickness 1.57 mm; interface MIL-STD-348A Fig 310.2.",
+    "source": "https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/732/73251/732511150_sd.pdf",
+    "source_class": "web_extracted_secondary (direct download timed out repeatedly, no original hash)"
+   }
+  },
+  "U1": {
+   "status": "unknown",
+   "unknown_reason": "Manufacturer figure values are now sourced (see source_figure), but they are not a per-board access declaration: the mapping of the figure's feed/tip/non-feed sides onto U1's pose, the board outline and the enclosure has not been reviewed, and the figure is not a mouth/lane/travel. No declaration is written. The earlier note that the datasheet v1.8 Figure 3-1 has no dimensions still holds; D-PCB-16 is a board decision.",
+   "source_figure": {
+    "source_class": "manufacturer_original_hashed",
+    "html": {
+     "file": "esp32s3-pcb-layout.html",
+     "sha256": "c2b904ca2ae9eab138aead24cc97e081c2999294a9c9e93ea8110abc288af26e"
+    },
+    "revision_history": {
+     "file": "esp32s3-revision-history.html",
+     "sha256": "6e85f115f5ddfd064f082d33b5d3fdd5e322b1c983c4574cc73b0dd79d664f7c",
+     "note": "identifies current documentation; no immutable version pin for the latest HTML"
+    },
+    "figure": {
+     "file": "esp32s3-module-clearance.png",
+     "sha256": "ea84d1e439d2818ee4d9dc9a8578c433833409d69f77a24ce4c87b23b2f67d3d"
+    },
+    "other_figures": [
+     {
+      "file": "esp32s3-module-place-on-base-board-left.png",
+      "sha256": "c115a18ca7264e708f7267f13b1c432e74a0db392ade4e16bf82a64828a0a34b"
+     },
+     {
+      "file": "esp32s3-module-place-on-base-board-right.png",
+      "sha256": "9a4c887799ae1c10b77d76660138ea1f7d7fd335b44a77721cd349bf73846370"
+     }
+    ],
+    "figure_values_mm": {
+     "antenna_area_depth": 6,
+     "non_feed_side_min_lateral_clearance": 15,
+     "feed_side_max_baseboard_extent": 2,
+     "antenna_tip_side_max_baseboard_extent": 1
+    },
+    "orientation": "Preserve the figure's feed-point orientation when mapping to the board; this is NOT a symmetric 15 mm PCB blanket.",
+    "separate_recommendation": "Text separately recommends >= 15 mm housing clearance in all directions and final range/throughput tests. It is a manufacturer recommendation, not a board qualification.",
+    "board_application": "Applying these values to this board's U1 pose and feed orientation still needs review."
+   }
+  },
+  "U3": {
+   "status": "not_applicable",
+   "reason": "NEO-M9N has no on-board antenna; the GNSS antenna is external on SMA J2 (REQUIREMENTS.md), covered by the J2 entry."
+  }
+ },
+ "source_packet": {
+  "path": "~/.cache/agent509-access-sources/",
+  "report_sha256": "50bb450e2deea21287c98f027943006100867f10031b258c554874ff204ffc6b",
+  "sha256sums_file": "SHA256SUMS in the packet",
+  "provenance_note": "Hirose, TE and Molex content was retrieved through web-indexed or extracted text ONLY (class 'web_extracted_secondary'); direct PDF downloads returned 403 or timed out, so there are no original hashes and these are NOT manufacturer-original citations. Espressif HTML and PNG originals were retrieved and are hashed (class 'manufacturer_original_hashed'). Nothing here is promoted to a manufacturer-class declaration and no travel is inferred.",
+  "diagnostic_only_note": "The check.py runs are DIAGNOSTIC ONLY. The J3 mouth datum is not manufacturer-verified and the runner supplies no fixed-overhang policy, so the resulting hard_fail cannot establish design acceptance, design rejection or a compulsory move, and does not authorize moving J3."
+ }
+}
