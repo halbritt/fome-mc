@@ -1,0 +1,227 @@
+{
+  "schema": "fome-mc.pod-j1-mating-interface/1",
+  "ticket": "AGENTEE-207",
+  "scope": "Source-capture review of the J1 mechanical interface: the selected right-angle header TE 1-776163-1 (LCSC C596198), its mating plug, the panel interface and the board-thickness requirement. Evidence only: no design file, footprint, model pose or requirement is changed, and no physical fit is claimed.",
+  "status_values": {
+    "SOURCED": "Every stated value is bound to a cited, hashed source in this packet or in the existing connector-candidate packet.",
+    "PARTIAL": "Some facts are sourced; the item as a whole is not resolved. The unresolved remainder is listed.",
+    "UNRESOLVED": "No captured source proves the item. Nothing here may gate or pass work on it."
+  },
+  "header": {
+    "mpn": "1-776163-1",
+    "lcsc": "C596198",
+    "identity_record": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+    "drawing": "TE customer drawing 776163 rev K1 (16SEP2024, ECR-24-216938), 2 sheets",
+    "note": "K1 sheet 1 finish/color table: 1-776163-1 is the GOLD-finish BLACK header. 776163-1 is the TIN-finish BLACK header. REQUIREMENTS.md lines 43 and 58 name 776163-1; the selected part is 1-776163-1. That finish deviation is already tracked as POD-CD-HARNESS-CONNECTOR and is not decided here."
+  },
+  "sources": {
+    "K1": {
+      "file": "../sources/776163-K1.pdf",
+      "sha256": "7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7",
+      "bytes": 580370,
+      "document": "TE customer drawing 776163, HEADER ASSEMBLY, 35 POSITION, RIGHT ANGLE, AMPSEAL",
+      "revision": "K1 (16SEP2024)",
+      "class": "manufacturer_original",
+      "provenance": "existing capture, ../sources.json (TE DDEController, 2026-10-20)"
+    },
+    "D2293782": {
+      "file": "sources/TE-PCN-24-229857-2293782-E2-redline.pdf",
+      "sha256": "07c8c4466907c56b9d4def9fce0626ed5333728ad002c0aadd3aeb1c6292473c",
+      "bytes": 727530,
+      "url": "https://www.farnell.com/datasheets/4477147.pdf",
+      "captured_at_utc": "2026-10-22T12:59:04Z",
+      "document": "TE Product Change Notification PCN-24-229857 (PCN date 13-JAN-25, 5 pages). Page 1: PCN notice listing 776164-1/-2/-4 as affected (drawing note clarification only, no part change). Pages 2-3: TE drawing 2371886 rev A1 (reduced-wire-size plug family, NOT the 776164 family). Pages 4-5: TE customer drawing 2293782 rev E2, PLUG ASSEMBLY, AMPSEAL FAMILY DRAWING, sheets 1-2.",
+      "revision": "2293782 E2 (28JUN2023, ECR-23-179751) as a PCN redline attachment",
+      "class": "manufacturer_document_via_distributor",
+      "caveats": [
+        "The 2293782 sheets carry a PRELIMINARY watermark and a red-marked material note (HOUSING PBT + PC): they are the PCN redline, not a released print.",
+        "The current released revision after this PCN is not captured. AGENTEE-379 cites 2293782 E5 from web-extracted text only, without an original hash.",
+        "The PDF was assembled by the distributor (producer iLovePDF, 21 Jan 2025); its content is TE's."
+      ]
+    },
+    "AS114": {
+      "file": "sources/TE-114-16016-G.pdf",
+      "sha256": "245aa46bdc39c1e165b17526b5c246d866bc109257ce11c03018d9b73dd14ebd",
+      "bytes": 219005,
+      "url": "https://www.thierry-lequeu.fr/data/ENG-SS-114-16016-G.pdf",
+      "captured_at_utc": "2026-10-22T13:00:39Z",
+      "document": "TE application specification 114-16016, AMPSEAL Automotive Plug Connector and Header Assembly, 9 pages",
+      "revision": "G (14 MAR 11)",
+      "class": "manufacturer_document_superseded_third_party_mirror",
+      "caveats": [
+        "Superseded. AGENTEE-379 names revision S3 as current (web-extracted text, no original hash). Rev G cannot qualify against the current specification.",
+        "Rev G section 2.3 says customer drawings take priority over the specification when they conflict. K1 is the governing source wherever the two differ.",
+        "Third-party academic mirror, not a TE or distributor host."
+      ]
+    },
+    "PP776164": {
+      "file": "sources/TE-776164-1-product-page-print-20230705.pdf",
+      "sha256": "1ffe925281e8cc11b0344465d160458ea860ac9407e25cf337d4918335fd2d9e",
+      "bytes": 393272,
+      "url": "https://static.rapidonline.com/pdf/07-4898_v1.pdf",
+      "captured_at_utc": "2026-10-22T12:59:06Z",
+      "document": "TE.com product-page print for 776164-1 (German locale), printed 07/05/2023, 5 pages",
+      "revision": "none (web page print, 2023-07-05)",
+      "class": "manufacturer_web_attributes_secondary",
+      "caveats": [
+        "Catalog attributes, not a controlled drawing. Used only for corroboration and for the compatible-parts list. No value here gates work."
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "plug_identity_and_keying",
+      "status": "SOURCED",
+      "result": "The compatible mating plug for header 1-776163-1 is TE 776164-1: the 35-position AMPSEAL plug assembly, BLACK housing, key slots 6 and 20.",
+      "evidence": [
+        {"source": "K1", "page": 1, "figure": "note 5", "fact": "the header mates to plug assembly 776164, which uses reeled terminal 770520 or loose-piece terminal 770854"},
+        {"source": "K1", "page": 1, "figure": "note 3; finish/color table", "fact": "header colors are mechanically keyed to mate only with identically colored plugs; 1-776163-1 = gold finish, black"},
+        {"source": "K1", "page": 1, "figure": "front view, '776163-1 & 1-776163-1 KEY LOCATION AS SHOWN'", "fact": "key location for the black header is the drawn view; black is shared by tin 776163-1 and gold 1-776163-1"},
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 part table", "fact": "35-position plug part numbers 776164-1/-2/-4/-5/-6; mating right-angle headers 776180 and 776163, vertical headers 776230 and 776231; BLACK housing = 776164-1"},
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 note 2", "fact": "plug housing colors are mechanically keyed to mate with identically colored headers"},
+        {"source": "D2293782", "page": 5, "figure": "2293782 sheet 2, 35-POSITION CONNECTOR KEY SLOT LOCATIONS", "fact": "776164-1 black = key slots 6 and 20"},
+        {"source": "AS114", "page": 1, "figure": "section 1 and Figure 1", "fact": "plug and header assembly colors are a positive mating feature"},
+        {"source": "PP776164", "page": 2, "figure": "attributes", "fact": "connector and keying code 1, primary color black, 35 positions, 4 mm pitch (corroboration only)"}
+      ],
+      "not_resolved": [
+        "No captured source dimensions the header key ribs against plug key slots 6 and 20. The match rests on TE's color-keying statements, not on an independent geometric check.",
+        "Contacts: the 776164 plug takes the 770520 (reeled) or 770854 (loose) terminal families. 2293782 E2 Table 1 lists 770520-1 and 770520-3 with wire/insulation ranges. No dash number or plating is selected here (UNRESOLVED by assignment).",
+        "Cavity sealing: AS114 rev G section 3.5 says unused cavities stay sealed by the wire-seal diaphragm unless perforated, and names seal plug 770678-1 for pierced cavities. No seal plug is selected and rev G is superseded (UNRESOLVED).",
+        "The 2293782 copy is a PRELIMINARY-marked PCN redline at E2; the identity and keying table must be re-confirmed against the current released revision.",
+        "Drawing 2371886 (pages 2-3 of the same PDF) is the reduced-wire-size 2371885 plug family. It is NOT the selected mate and is recorded only so it is not mistaken for one."
+      ]
+    },
+    {
+      "id": "mated_height_envelope",
+      "status": "UNRESOLVED",
+      "result": "No captured source gives a mated-assembly drawing, plug engagement depth, or the plug's position relative to the header flange or PCB. A mated envelope cannot be stated. The plug STEP model (TE CVM_776164-1) could not be captured (403).",
+      "evidence": [
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 size table, 35-POSITION row", "fact": "reference dimensions A = 63.4, B = 66 (diameter of an opening the completed assembly passes through), C = 27.45 mm"},
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 side section and front view (23-position shown)", "fact": "38.29 +/- 1.40 overall plug length, 7.0 latch rise, (13.1), 8.0 and 9.8 shown on the 23-position view. The note 'see table below for alternate dimensions' implies these are common to all sizes. That is an inference: no 35-position-specific value is captured"},
+        {"source": "K1", "page": 1, "figure": "front view and section A-A", "fact": "header reference envelope (76.9) x (32.1), mating-housing width (59.4), section A-A extents (19.3)/(18.6). The header envelope is already bound in ../review/geometry.md and is not re-derived here"},
+        {"source": "PP776164", "page": 2, "figure": "Abmessungen", "fact": "connector height 34.6, product width 33.6, product length 63.4 mm. These are web attributes with axis naming that does not map unambiguously to the drawing (corroboration only)"}
+      ],
+      "not_resolved": [
+        "mated plug protrusion beyond the header mouth",
+        "latch-lever envelope when mated and during unmating",
+        "wire seal plus harness bundle envelope behind the plug",
+        "installed clearance to the enclosure and cowl (UNRESOLVED: installed enclosure)"
+      ]
+    },
+    {
+      "id": "panel_cutout_and_mounting",
+      "status": "PARTIAL",
+      "result": "The panel cutout, hole pattern, panel-thickness limit, sealing-surface requirement and screw recommendation are sourced from the current K1 drawing. The installed enclosure, screw choice and seal performance remain UNRESOLVED.",
+      "evidence": [
+        {"source": "K1", "page": 2, "figure": "RECOMMENDED MOUNTING HOLE LAYOUT FOR 5.0 MAX THICK PANEL", "fact": "4X hole 3.00-3.30 (position tolerance 0.25 at S); hole spacing 63.4 x 18.1; opening 60.0-60.5 wide x 24.2-25.2 high, corner R6.60-6.80; 66.4 overall hole extent; further located features 10.0, 1.5, 2.95, 5.0 as drawn"},
+        {"source": "K1", "page": 2, "figure": "SECTION Z-Z (two optional constructions)", "fact": "panel 5 max thick. For panels over 2.0 thick, an optional 2.0 x 2.0 step or a 45 degree relief leaving 1.0. Sealing-surface flatness 0.5, callout '4.7 Ra MAX 0.4' (the 4.7 term is not interpreted here)"},
+        {"source": "K1", "page": 2, "figure": "isometric and side views, scale 2:1", "fact": "the header mounts through a MOUNTING PANEL OR MODULE with four mounting screws torqued to 0.6-0.8 N-m; the header must be flush to the panel face all around before final torque"},
+        {"source": "K1", "page": 1, "figure": "note 1", "fact": "suggested screw: 2.50 mm self-tapping thread-forming (e.g. Delta PT), 0.6-0.8 N-m; the customer must test screw size and type. TE validates torque per 114-16016 with a 4.75 +/- 0.15 mm panel and 2.5 x 12 mm Delta PT"},
+        {"source": "K1", "page": 1, "figure": "section A-A", "fact": "the header carries a silicone GASKET at the flange (note 4 material)"},
+        {"source": "AS114", "page": 6, "figure": "section 3.9.B", "fact": "rev G limited the panel to 2 mm max and showed only a 23-position cutout. K1 (5.0 max, with optional constructions over 2.0) supersedes it under rev G's own section 2.3 drawing-priority rule"},
+        {"source": "AS114", "page": 7, "figure": "section 3.9.B (cont.)", "fact": "panel surface flat within 0.5 mm and roughness not over 0.4 micrometer; consistent with K1"}
+      ],
+      "not_resolved": [
+        "Enclosure wall material, thickness and location: no enclosure exists (UNRESOLVED: installed enclosure). No enclosure dimension is invented here.",
+        "Screw selection, boss design and torque test: K1 note 1 makes these customer qualification.",
+        "Relationship of the panel plane to the PCB edge (K1 board edge guide Y=+9.5 for a 1.57 board) in a real enclosure stack-up.",
+        "IP67 seal performance of the installed joint."
+      ]
+    },
+    {
+      "id": "pcb_thickness",
+      "status": "PARTIAL",
+      "result": "Captured TE statements: K1 (current drawing) titles its recommended layout for a 1.57 mm board and gives no thickness range. Superseded AS114 rev G page 6 section 3.9.A states 'The pc board thickness shall be 1.57 mm' with no local tolerance, so rev G page 1's opening NOTE general tolerance applies: +/-0.13 mm unless otherwise specified, i.e. 1.44-1.70 mm under rev G. That is a historical rev G statement only; rev G is superseded and K1 takes priority under rev G's own section 2.3, so it is not a current allowed range and does not accept the pod board. The pod's declared board is 1.6 mm (REQUIREMENTS.md line 59). The current allowed thickness range and board-lock retention at 1.6 mm plus fabrication tolerance are UNRESOLVED.",
+      "evidence": [
+        {"source": "K1", "page": 2, "figure": "RECOMMENDED P.C. BOARD LAYOUT FOR 1.57 THICK P.C. BOARD", "fact": "layout titled for a 1.57 mm board; the title is not a toleranced dimension and the sheet gives no board-thickness range. K1's title-block general tolerances are not applied to it here"},
+        {"source": "K1", "page": 1, "figure": "section A-A", "fact": "(3.0-4.0) reference dimension: exposed contact-tail length from the header seating plane to the tail tips. It is not a projection below the board's underside"},
+        {"source": "AS114", "page": 1, "figure": "opening NOTE (above section 1)", "fact": "rev G (14 MAR 11, superseded): 'Unless otherwise specified, dimensions have a tolerance of +/-0.13 and angles have a tolerance of +/-2 degrees' (the rendered page shows an underlined plus, i.e. +/-; pdftotext extracts it as '+')"},
+        {"source": "AS114", "page": 6, "figure": "section 3.9.A", "fact": "rev G (superseded): 'The pc board thickness shall be 1.57 mm.' with no local tolerance, so under rev G the page 1 general tolerance of +/-0.13 mm applies; header intended for wave soldering"}
+      ],
+      "derived_observation": "Arithmetic only, not qualification and not a fit claim. Datums: the existing model check (../README.md, 'Model placement and native convention') gives 3.50 mm from the rear support flats, which rest on the PCB top, to the tail tips. The residual projection below the board's underside is therefore 3.50 - 1.57 = 1.93 mm for a 1.57 mm board and 3.50 - 1.60 = 1.90 mm for a 1.60 mm board (rigid header, nominal values). K1 sheet 1 section A-A's (3.0-4.0) is a reference dimension from the header seating plane to the tail tips, not from the board underside, so the 1.90-1.93 mm below-board figures are not comparable to it. Whether K1's seating plane coincides exactly with the model's support flats is not established here, so no conformance of the 3.50 mm model value to that range is claimed either. Board-lock snap engagement on a thicker board and the fabricator's thickness tolerance are not established by any captured source.",
+      "not_resolved": [
+        "current allowed board thickness range (current 114-16016 S3 or product spec 108-1329 not captured; the rev G 1.57 +/-0.13 mm general-tolerance reading is historical and superseded)",
+        "board-lock retention at 1.6 mm nominal +/- fabricator tolerance",
+        "fabricator thickness tolerance (no captured fabricator source in this packet)"
+      ]
+    },
+    {
+      "id": "latch_cpa_and_tool_access",
+      "status": "PARTIAL",
+      "result": "The plug latches to the header; unmating lifts the latch through a screwdriver slot. Wedge-lock and contact service use flat-blade tools. CPA identity and procedure are not captured from a controlled source. Installed tool access is UNRESOLVED.",
+      "evidence": [
+        {"source": "AS114", "page": 9, "figure": "Figure 13 visual aid", "fact": "the locking latch must be securely fastened for mating; there is a screwdriver slot to lift the latch for unmating"},
+        {"source": "AS114", "page": "4-5", "figure": "section 3.4 and Figure 7", "fact": "contact removal: pry the wedge lock open with a 4.8 mm wide flat screwdriver blade (harness-side service, not board-side)"},
+        {"source": "AS114", "page": 7, "figure": "section 5; Figure 12 (page 8)", "fact": "a No. 1 jeweler's screwdriver may be used for contact removal; instruction sheet 408-3229"},
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 side section", "fact": "plug parts: locking wedge, housing, cover, mating seal and wire seal; latch rise 7.0 shown on the 23-position view"},
+        {"source": "PP776164", "page": 4, "figure": "compatible parts", "fact": "CPA, AMPSEAL 2373965-1 and SEAL PLUG 770678-1 are listed as compatible parts (corroboration only)"},
+        {"source": "PP776164", "page": 3, "figure": "attributes", "fact": "connector position assurance attribute 'Ja' (corroboration only)"}
+      ],
+      "not_resolved": [
+        "CPA part identity, fitment to 776164-1, and engage/disengage procedure from a controlled current source (AGENTEE-379 web text says the current 114-16016 S3 requires the CPA back at prestage before separation; no original captured)",
+        "screwdriver approach direction and clearance around the installed plug (UNRESOLVED: tool access)",
+        "latch-lift travel"
+      ]
+    },
+    {
+      "id": "harness_exit_direction",
+      "status": "PARTIAL",
+      "result": "Wires leave the plug axially, through the rear wire seal and away from the mating face (180 degree exit). On the pod this is along +Y in the footprint frame (the mating direction in ../README.md), outward from the board edge and through the panel. Installed routing, bend radius and strain relief are UNRESOLVED.",
+      "evidence": [
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 side section", "fact": "the wire seal and cover are at the end opposite the mating seal and locking wedge; contacts lie on the plug axis"},
+        {"source": "PP776164", "page": 2, "figure": "attributes", "fact": "wire exit angle 180 degrees; strain relief 'add with accessory' (corroboration only)"},
+        {"source": "D2293782", "page": 4, "figure": "2293782 sheet 1 Table 1", "fact": "insulation range 1.7-2.7 mm (0.5-1.5 mm2 TXL), 2.2-2.4 mm (1.5 FLRY) for 770520-1/-3"},
+        {"source": "AS114", "page": 3, "figure": "section 3.2 note", "fact": "insulation within 26 mm of the contact tip must be smooth (seal integrity; harness preparation)"},
+        {"source": "K1", "page": 1, "figure": "front view and section A-A", "fact": "the header mouth faces away from the PCB edge, parallel to the board"}
+      ],
+      "not_resolved": [
+        "harness bend radius and routing inside the cowl (UNRESOLVED: installed harness)",
+        "strain relief or backshell accessory (none selected)",
+        "harness clearance to the enclosure and frame"
+      ]
+    },
+    {
+      "id": "installed_enclosure_fit",
+      "status": "UNRESOLVED",
+      "result": "No enclosure or cowl geometry exists in a captured source. No physical fit is claimed.",
+      "evidence": [],
+      "not_resolved": ["enclosure", "cowl clearance", "frame mounting"]
+    },
+    {
+      "id": "installed_harness",
+      "status": "UNRESOLVED",
+      "result": "Harness routing, bundle size, bend radius and service loop are not sourced.",
+      "evidence": [],
+      "not_resolved": ["harness routing", "bend radius", "service loop"]
+    },
+    {
+      "id": "installed_tool_access",
+      "status": "UNRESOLVED",
+      "result": "Screwdriver access to the latch slot and to the panel screws in the installed pod is not sourced.",
+      "evidence": [],
+      "not_resolved": ["latch-lift tool lane", "panel-screw driver access"]
+    }
+  ],
+  "missing_captures": [
+    {"what": "TE customer drawing 2293782, current released revision (plug family)", "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=776164-1&DocFormat=pdf&DocNm=2293782&DocType=Customer+Drawing", "result": "HTTP 403 (Akamai Access Denied), 2026-10-22T12:58:34Z"},
+    {"what": "TE customer drawing 776164", "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=776164-1&DocFormat=pdf&DocNm=776164&DocType=Customer+Drawing", "result": "HTTP 403, 2026-10-22T12:58:34Z"},
+    {"what": "TE application specification 114-16016, current revision (S3 per AGENTEE-379)", "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=776164-1&DocFormat=pdf&DocNm=114-16016&DocType=Specification+Or+Standard", "result": "HTTP 403, 2026-10-22T12:58:34Z"},
+    {"what": "TE product specification 108-1329", "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=pdf&DocNm=108-1329&DocType=Specification+Or+Standard", "result": "HTTP 403, 2026-10-22T12:58:34Z"},
+    {"what": "TE 108-1329 rev D third-party mirror", "url": "https://ozauto.webgate.pro/default/amfile/file/download/file/31/product/66029", "result": "TLS handshake failure (tlsv1 alert internal error), 2026-10-22T13:00:40Z"},
+    {"what": "TE 776164-1 customer view model (STEP)", "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=776164-1&DocFormat=3d_stp.zip&DocNm=CVM_776164-1&DocType=Customer+View+Model", "result": "HTTP 403, 2026-10-22T13:00:40Z"},
+    {"what": "TE.com product pages for 1-776163-1 and 776164-1 (datasheet PDF)", "url": "https://www.te.com/usa-en/product-776164-1.datasheet.pdf", "result": "HTTP 403 (te.com) / 404 (te.com.cn), 2026-10-22T12:59:03Z"},
+    {"what": "Farnell 4494678 (AMPSEAL document found by search)", "url": "https://farnell.com/datasheets/4494678.pdf", "result": "TLS certificate verification failure; certificate checks were not bypassed, 2026-10-22T12:59:04Z"}
+  ],
+  "control": {
+    "what": "Re-fetch of the K1 URL that succeeded on 2026-10-20",
+    "result": "HTTP 403 on 2026-10-22T12:58Z: TE's document endpoint now blocks this host, so the 403s above are not specific to the requested documents."
+  },
+  "not_done_by_design": [
+    "header STEP pose, support flats and 35-tail alignment (covered by ../README.md, ../review/)",
+    "contact, seal-plug or CPA selection",
+    "header substitution",
+    "purchases",
+    "enclosure dimensions",
+    "GPS model and thermal work"
+  ]
+}
