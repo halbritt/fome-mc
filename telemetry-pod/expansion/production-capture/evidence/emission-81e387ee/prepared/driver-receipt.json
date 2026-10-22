@@ -25,14 +25,14 @@
       "timeout_s": 2100
     }
   },
-  "campaign_sha256": "760ed4c9189b7aedd380254eaa9a711e7232f9b4944391f113874582980b4df8",
+  "campaign_sha256": "c177330f6673f7c0ad151be6a507636fb4db67abbb01c2cd3c48de1b9397f547",
   "done": false,
   "envelope_content": {
     "binding": {
       "pre_receipt": 2
     },
     "path": "content-receipt/receipt.json",
-    "sha256": "e0732f40bd48407d374cb71864cfe6bfe8393d0b71179cbd1c0ae8cf32c2549a"
+    "sha256": "1505bbbea658f2fba8c724940e256b32f49184810bdbf2be2e175883e272d288"
   },
   "first_capture_binding": {
     "bound": true,
@@ -125,7 +125,7 @@
     "POD-ED-P1: NOT CHECKED: Accepted capabilities do not settle all implementation decisions; close each pre-layout decision with evidence rather than silently choosing.",
     "POD-ED-P3: NOT CHECKED: Regenerate expanded candidate and repeat placement/routing/review; v9 pilot schematic, PCB, BOM, IO map and compiled contract are historical evidence only.",
     "POD-AC-P1: NOT CHECKED: All eleven criteria require evidence. File checks alone do not close AC6 owner DFM/preview or AC8-11 built-board obligations; this scope has incomplete acceptance coverage.",
-    "Composed by production-capture/pipeline.py: assembly_readiness over assembly-stock/catalog.json (the captured stock named in scope-composition.json, as_of 2026-10-22T10:50:06.618194+00:00). It carries the binding-fill --ratings receipt into rating_provenance. Of 81 BOM LCSC ids: in_stock 80, zero_stock 1; 0 are older than 24 hours at composition (2026-10-22T19:01:51.973965+00:00) and the check re-grades age at its own run. The J1 owner_hand_fit deviation is cited by hand_fit_policy: the unchanged POD-AC-5 owner statement (REQUIREMENTS.md line 139, \"the AMPSEAL header\") with its category selection chain (D-PCB-10, the C596198 part record and both manifests). That is an assembly disposition only, not mating, enclosure or purchase qualification. Captured stock and bindings are not assembly qualification. POD-AC-5 remains NOT CHECKED.",
+    "Composed by production-capture/pipeline.py: assembly_readiness over assembly-stock/catalog.json (the captured stock named in scope-composition.json, as_of 2026-10-22T10:50:06.618194+00:00). It carries the binding-fill --ratings receipt into rating_provenance. Of 81 BOM LCSC ids: in_stock 80, zero_stock 1; 0 are older than 24 hours at composition (2026-10-22T21:08:50.911861+00:00) and the check re-grades age at its own run. The J1 owner_hand_fit deviation is cited by hand_fit_policy: the unchanged POD-AC-5 owner statement (REQUIREMENTS.md line 139, \"the AMPSEAL header\") with its category selection chain (D-PCB-10, the C596198 part record and both manifests). That is an assembly disposition only, not mating, enclosure or purchase qualification. Captured stock and bindings are not assembly qualification. POD-AC-5 remains NOT CHECKED.",
     "POD-DERIVED-BLOCK-PRE-6V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): The pre-6v3 library entry (U5) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
     "POD-DERIVED-BLOCK-PRE-6V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): Witness-pose equivalence between the generic pre-6v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
     "POD-DERIVED-BLOCK-BUCK-3V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): The buck-3v3 library entry (U7) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
@@ -139,10 +139,10 @@
       "pre_receipt": 1
     },
     "path": "scaffold-receipt/receipt.json",
-    "sha256": "03a9d7671825ff0ca44e28ffae3e8fcad025954a1394c41ab5392113ead4ffd9"
+    "sha256": "eff0623a578c98d5bda41334446e4d6e08090da0cbe218f6cf2043eb2ff625a2"
   },
   "schema": "agent-ee.pod-driver-receipt/1",
-  "scope_sha256": "0c6a2242c3a7a28ca4a91d880231a13f30b934b26bdde078c3d0d7582164bb18",
+  "scope_sha256": "4ecd4512b36656650c4375eb9d890a21e9517cb357796786309ee5a046b43224",
   "source_files": {
     "CANClock-capture.json": "9dd191be4cb7e8703fa6b7e53ee6457d8bf3f7282abcfa527419cd03fea5fab1",
     "CANJumper-capture.json": "6f5fde3c53923f867a7a9b024c7409db331cf75742efb3ea521e9c76ab04bbe8",
@@ -244,28 +244,29 @@
     "composition/binding-ledger.json": "87423ab71560512129bc59ae0a942d21c0f3b509794d495a70028d893e512ed6",
     "composition/binding-migration.json": "7f890ba77b2ee03533c019362ccb4f288a9d408b964219a008add7c874e0c464",
     "composition/block-obligations.json": "22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851",
-    "composition/captured-rule-areas.json": "5f9fd37e3a2a4aa293495e07774dd9f012c2f069e03384f01ba58bc437fc397a",
+    "composition/captured-rule-areas.json": "eb07e12bc43cf4d658a3f3ef7b5a327ca4eaeeae1a805bbb3173be3c2f3f1d8c",
     "composition/datasheet-source-selection.json": "ed8c72bd08ee91ce8fc93c1c9e933e8c77157e6d559fa48a973542bb61e542e0",
     "composition/declarations.json": "58b4af3a87df31463e1aad07b3c96fa6f03d62fc99c6a3e9d5d59644b0f99713",
     "composition/deviations.json": "e3726b94cd9878830430aa0ff90a43a6859b8d614613995f8748d276dad846fe",
     "composition/emitter-layout.json": "3514157baa02b30973607e2ab9975aa0fc0de147dbeb88aaa6867fc703323805",
     "composition/envelope.json": "ecc241ce98cd82ed6a0f8c3b48957cfe716ffaf36087945698f8f7f64ef549bc",
     "composition/fab-profile.json": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64",
-    "composition/footprints.json": "f8ebac5634bc50c71d732acad2f0a91fb5c93b6498a432d11ffd54c077e71571",
+    "composition/footprints.json": "840628f00ebe9a6f36b18130814db6de37a3d7a64094bb1d1ff91b0e35f90eab",
     "composition/intent.bound.json": "2d7837fa19c63a3d709ad4e7f0d5ea5a04e9836001013f9200e4511b015d7ccf",
     "composition/intent.json": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427",
     "composition/intent.writer.json": "2d7837fa19c63a3d709ad4e7f0d5ea5a04e9836001013f9200e4511b015d7ccf",
     "composition/j3-source.json": "9f4f49bbbdcea48e9569f455edd15cf7644b5efb8ec9b15d37338a469230b789",
-    "composition/library-updates.json": "8bdd5ca3fb810bca4f2e3615a5714366589c5c64fba509e5db665a2b24cf3975",
+    "composition/library-updates.json": "b181dfb21c106e207c48b4b26a9a2f3f1d7ce204a3795bd5881b471d4532fce2",
     "composition/part-refs.json": "a986ce18cc546db6f6ab6c1214b8ce8f5c4ba5d7c4d6d1c49e8dd1b4e4f4d27b",
-    "composition/parts.json": "b89bc3e2eb2d37fcf4eef9989ba95b785e2f9a6e0ba36fcda6bb037275b52b6b",
+    "composition/parts.json": "7fe076554c610a33b3f6fae6fdafb9f427f52d874a942adbc10d6782b2d5148e",
     "composition/placement-policy.json": "5fab430acae213aac94943c4183db8f8b44d18e9190ba22ca20218254e50f29d",
     "composition/planes.json": "9e592e3ee4bdf5b6042fd3a595235cc5425359f4a69f87787ce00fc3624779aa",
+    "composition/project-models.json": "0c176468c066e33c444297ff60dbc0599f6ddbd6a85fb3eb0edb7b9fe836736b",
     "composition/rating-comparison.json": "0e37742fe80bda9c56df537a8033d82e7fa84426ba9bc9f660734e3483c105bb",
     "composition/rating-facts.json": "ada69db9296e531e1a23f78cb199bab6c125413afe2051fc8f7c2cf31d311eb9",
     "composition/rating-sources.json": "3199fefabb1103d496baf2a7a189c647b9228c05157916b81c715304bd760664",
     "composition/refs.json": "61dfb7eaa18a072ca9a025c44a943d2ec7408110880369fcc7f6ca26f1e277bc",
-    "composition/scope-composition.json": "0aa82cd7812649bcf357e04a85cb57c0bf175838f209df2e21be0cc0ae485e14",
+    "composition/scope-composition.json": "3cff634cee373a3b83b634b67f19a08c0c2eae677cee169b4efc4d67383c6a9d",
     "composition/spec.md": "e71dcca744f4b520fc4698402202d7d9efff2d316f8ad3c5eb6403cdf9d036c6",
     "core/symbols/Analog_ADC.kicad_sym": "ca22792972b4233f5d9f9355b111ab8f1136a3f0b7d47e8ecf5436018c1c23f6",
     "core/symbols/RF_GPS.kicad_sym": "29381ed67fac5b68def2e817d93a97e0299bcf8c19c8b69731c0c8a272251c13",
@@ -305,7 +306,7 @@
     "footprints/PodPower.pretty/SRP7050WA.kicad_mod": "22929ebde83c7b07d4a6707d15d9ff8a8199324d2e690bacea37718b700be608",
     "footprints/PodStoragePower.pretty/SRP4020TA.kicad_mod": "7c4103c12854ef265604170a2fe87cd200715a6a7de5da9a6c4d5c386bda5d65",
     "footprints/PodSupervisor.pretty/DSE0006A.kicad_mod": "4712048032e41ac43528aad5a217b5b16085e3f586b48a6a530df195fc39785c",
-    "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod": "0864b907d97061cd5b98c0f71f1d1b94959be293a4597c2bd9a3f065e86083c6",
+    "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod": "04fd063c146fbcfa6f60482253bb34b2bf1c39215b6158dd5f099bc89a1671bf",
     "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod": "75e9786783af343c57cea4e5d097206481aad6949a08d3b086fd60e58f92ca49",
     "footprints/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": "09af4d167d89e09c925cbd78412ea6a58ab45b3322f5d9f6dcc2b06ce60cf987",
     "footprints/Resistor_SMD.pretty/R_0805_2012Metric.kicad_mod": "f050b6a50cc7e6f86291fb7aa8f87b0d02255e21cfbddf291cdccc87e5889794",
@@ -315,8 +316,9 @@
     "libraries/Block_63616e_446576696365.kicad_sym": "e210f6952a8a4713e098a0b0c340ee3dfe3d79f2d283ab76dcbe8c1a2b38a9f8",
     "libraries/Block_63616e_496e746572666163655f43414e5f4c494e.kicad_sym": "c2855f63887e1f72cb170ed6e11775bf48824e795d53f6ad315152ba45b8a64c",
     "microsd-symbol-capture.json": "e4a060e7f44df7303021f3de85d56737423aeb03ada3c2e52af1359c91c81a3b",
-    "models/c-1-776163-1-t-3d.stp": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
     "pre-thermistor-integration-receipt.json": "7b2886cbb543a56a0f179a44568d9b3d2361c0fe5a7f32ea1b8eab0caed1e61c",
+    "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9",
+    "project/inputs/models/c-1-776163-1-t-3d.stp": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
     "project/telemetry-pod.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
     "project/telemetry-pod.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74",
     "requirements-map/requirement-map.json": "d7cb8826e53f4a052ced36efdd376119f692b9911df9cec791aa65ead5e53459",
@@ -696,14 +698,14 @@
     "telemetry-pod/expansion/storage-microsd/stock/catalog.json": "19c90184e6ff70c3ecf23defcb46b3892102cf7b4c647e998df224ffa72eb6b7",
     "telemetry-pod/expansion/storage-microsd/stock/responses/C114218.json": "33053455254fcf15ac3e1b08c61028610052e18dfb83f1141d43bf75b2b20043"
   },
-  "source_scope_sha256": "ff4ad561006f548d0e3824926a0bdd212dfff41bf791263cf5d86d4deb2d5759",
+  "source_scope_sha256": "48cc60c65058d5e0425701c4b83caf4411038f3e32a90c519ed03f4da7f37b54",
   "status": "prepared",
   "tool": {
     "module_sha256": "c1fc290dd07fc75582fa7edd836017260efbd3298330b97e514edebaee7a912e",
     "python": "3.12.3"
   },
   "validation": {
-    "baseline_id": "38ffa0095a307382f66c00ab165f4b2b9dc642ebae2d879905a2065b0ca6139e",
+    "baseline_id": "92883e4e56f2420d1ab0e47c1db034bcaad72cfa6d80b92aec2e80112373ee46",
     "coordinator_outputs": [
       "composition/intent.bound.json",
       "project/telemetry-pod.kicad_pcb",

@@ -16,7 +16,9 @@ This script copies, never regenerates or edits:
 
 --install writes telemetry-pod/telemetry-pod.kicad_sch, .kicad_pcb, .kicad_pro and .kicad_dru as byte copies of
 the retained design/project files, and the project's sym-lib-table and fp-lib-table as the emitted candidate's
-tables with only their ${KIPRJMOD}/../ prefix relocated to the retained design root. --check verifies all of it.
+tables with only their ${KIPRJMOD}/../ prefix relocated to the retained design root, and the bound project-local
+3D models (FOMEMC-34) at telemetry-pod/inputs/models/, where the installed board's ${KIPRJMOD}/inputs/models/
+references resolve. --check verifies all of it.
 
 Usage (fome-mc root):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py PIPELINE_OUT [--install]
@@ -40,6 +42,7 @@ RELOCATE = ('${KIPRJMOD}/../', '${KIPRJMOD}/' + DEST.relative_to(POD).as_posix()
 PREPARED = ('driver-receipt.json', 'campaign.json', 'plan.json', 'scope.json', 'dry-run-record.json',
             'dry-run/result.json', 'dry-run/REPORT.md', 'dry-run/candidate.json')
 RECEIPT_SKIP = ('inputs', 'run/design', 'run/home')
+MODELS = 'inputs/models/'  # relative to the candidate project directory (composition/project-models.json)
 
 
 def sha(path):
@@ -101,7 +104,9 @@ def retain(out):
         **{name: {'source': 'design/project/' + name, 'sha256': sha(design / 'project' / name)} for name in sorted(PROJECT)},
         **{name: {'source': 'design/project/' + name, 'relocation': list(RELOCATE),
                   'sha256': hashlib.sha256(relocated((design / 'project' / name).read_bytes())).hexdigest()}
-           for name in TABLES}}
+           for name in TABLES},
+        **{MODELS + p.name: {'source': f'design/project/{MODELS}{p.name}', 'sha256': sha(p)}
+           for p in sorted((design / 'project' / MODELS).iterdir())}}
     (DEST / 'MANIFEST.json').write_text(json.dumps(manifest, indent=1, sort_keys=True) + '\n')
     sums = ''.join(f'{sha(DEST / rel)}  {rel}\n' for rel in files(DEST) if rel != 'SHA256SUMS')
     (DEST / 'SHA256SUMS').write_text(sums)
@@ -112,6 +117,7 @@ def install():
     manifest = json.loads((DEST / 'MANIFEST.json').read_text())
     for name, item in manifest['project_install'].items():
         data = (DEST / item['source']).read_bytes()
+        (POD / name).parent.mkdir(parents=True, exist_ok=True)
         (POD / name).write_bytes(relocated(data) if name in TABLES else data)
 
 
@@ -131,6 +137,9 @@ def check():
     for name, item in manifest['project_install'].items():
         if not (POD / name).is_file() or sha(POD / name) != item['sha256']:
             problems.append(f'installed telemetry-pod/{name} differs from the retained emission')
+    installed_models = {f'{MODELS}{p.name}' for p in (POD / MODELS).iterdir()} if (POD / MODELS).is_dir() else set()
+    if installed_models != {n for n in manifest['project_install'] if n.startswith(MODELS)}:
+        problems.append(f'telemetry-pod/{MODELS} holds other files than the retained project models')
     emitted = manifest['emission']
     for key in ('schematic', 'board'):
         if manifest['design'][emitted[key]['path']]['sha256'] != emitted[key]['sha256']:

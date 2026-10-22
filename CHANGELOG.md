@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-10-22 — Pod production preparation j6b: bound J1/U3 models, initial candidate, JP1-JP5 copper contract (`AGENTEE-207`, `FOMEMC-34`)
+
+- The prepared scope now carries two project-local 3D models at `${KIPRJMOD}/inputs/models/`, recorded in
+  `composition/project-models.json`:
+  - the exact-part J1 header STEP (TE 1-776163-1 rev T, `connector-candidate/sources/c-1-776163-1-t-3d.stp`),
+    with its sourced native pose;
+  - the U3 NEO-M9N datasheet-derived visualization, which the captured `RF_GPS:ublox_NEO` member now references
+    with zero transform.
+
+  The j6 candidate's J1 reference did not resolve (`missing`), and U3 had no model at all. The CVM_776164-1
+  rev F mating plug is not bound. These are visual/mechanical models only.
+- The pipeline records the initial candidate identity of iteration 1. Native checks on the emitted design
+  verify agent-509's JP1-JP5 ruling: on-board normally-open copper, not BOM, not DNP. They also rerun the
+  J1 drilling audit. `model_check.py` verifies the native STEP export of both models.
+- The production emission is regenerated (same agent-ee `81e387ee`, same plan bounds). It is reinstalled as
+  the telemetry-pod project, with the models at `telemetry-pod/inputs/models/`. No campaign was launched.
+
 ## 2026-10-22 — Telemetry pod production preparation and re-emitted schematic (`AGENTEE-207` j6, `AGENTEE-445`)
 
 - The production capture (`telemetry-pod/expansion/production-capture/`) runs on agent-ee `81e387ee`. The real

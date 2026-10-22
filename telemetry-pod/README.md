@@ -6,7 +6,8 @@
 > forward-annotated generation seed: the envelope's fixed parts (J1, J2, J3, U1, U2, H1-H4) posed, every other
 > footprint unplaced, nothing routed. Inputs, receipts and the bounded two-iteration preparation it came from
 > are retained in [`expansion/production-capture/evidence/emission-81e387ee/`](expansion/production-capture/evidence/emission-81e387ee/)
-> (`retain.py --check`); the library tables point at the retained captured libraries. This is generation
+> (`retain.py --check`); the library tables point at the retained captured libraries, and the bound J1 and U3
+> 3D models resolve from `inputs/models/` (j6b, FOMEMC-34). This is generation
 > input, not a design result: native DRC reports the unrouted connections and the unplaced-part overlaps as
 > findings, and no placement, routing, fabrication or bench acceptance exists.
 
@@ -86,6 +87,7 @@
 | `telemetry-pod.kicad_dru` | Production custom design rules (`expansion/design-rules/telemetry-pod.kicad_dru`) |
 | `telemetry-pod.net-constraints.record.json` | (v9 pilot, historical) Provenance record for assigned net classes and RF/differential constraints |
 | `sym-lib-table`, `fp-lib-table` | The emitted candidate's tables, relocated to the retained captured libraries under `expansion/production-capture/evidence/emission-81e387ee/design/` |
+| `inputs/models/` | (j6b, FOMEMC-34) The two bound project-local 3D models the board names as `${KIPRJMOD}/inputs/models/`: the J1 TE 1-776163-1 rev T header STEP and the U3 NEO-M9N datasheet-derived visualization, installed by `retain.py` and recorded in `expansion/production-capture/composition/project-models.json`. These are visual/mechanical models only |
 | `captured-symbols/`, `captured-footprints/` | (v9 pilot, historical) KiCad-library-derived and project-authored symbols and footprints |
 | `kicad-libraries/` | Shared FOME AMPSEAL-23 footprint and 3D STEP model (`c-1-776228-1-e-3d.STEP`) |
 | `renders/` | (v9 pilot, historical) 2D layer SVGs/PNGs/PDFs, schematic SVG/PNG/PDF, and 4K 3D ray-traced views (`renders/3d/`) |

@@ -18,6 +18,61 @@ placement, routing or model ran. Nothing here is acceptance: every check of the 
 `stage_not_reached` on the empty scaffold, the final guard blocks on the five staged envelope obligations,
 POD-AC-5 stays NOT CHECKED, and the four library-block obligations stay unresolved.
 
+## j6b: bound models, initial candidate and the JP1-JP5 copper contract
+
+This continues j6 on the same pin (`81e387ee`) and the same plan bounds. The evidence in
+`evidence/emission-81e387ee/` is regenerated from the new capture; the j6 run stays in history at `05783ce`.
+
+- **FOMEMC-34 model binding.** The two models are recorded in `composition/project-models.json` and are visual
+  or mechanical models only.
+  - Both sit in the capture at `project/inputs/models/`. That is `${KIPRJMOD}/inputs/models/`, because
+    KIPRJMOD is the candidate's `project/` directory.
+  - **J1** is the exact-part header STEP `connector-candidate/sources/c-1-776163-1-t-3d.stp` (TE 1-776163-1
+    rev T, `43ba1f80…`). It is checked to be the verbatim member of the captured TE archive recorded in
+    `connector-candidate/sources.json`. Its pose (offset `(0, -31.8, 11.72)`, rotation `(-90, 0, 0)`) is the
+    captured footprint's own and is quoted from the connector README.
+  - **U3** is the `neo-m9n-model` visualization (`8a7f1984…`, datasheet-derived, not mechanical
+    qualification). The captured `RF_GPS:ublox_NEO` member had no model. `build.py` derives the bound member
+    by inserting exactly one zero-transform model node, recorded in `library-updates.json` `model_bindings`.
+  - In j6 the J1 reference did not resolve: the file was at the candidate root `models/`, and agent-ee's
+    inventory reported it `missing`. U3 had no model at all. The unreferenced root copy is no longer carried.
+  - The CVM_776164-1 rev F file is the mating plug. It is recorded under `not_bound`, with agent-521's
+    correction quoted verbatim. A mated view stays OPEN, and no transform is inferred.
+- **Native checks on the candidate** (`candidate_checks.py`). Each is a `pipeline.py` stage that refuses on any
+  deviation:
+  - `models.candidate_resolution`: agent-ee's `models3d.inspect_models` resolves J1 on the initial scaffold
+    board, and J1 and U3 on the emitted board. Both resolve to the bound bytes, from the project, and pcbnew
+    reads the recorded poses.
+  - `fab.copper_features`: agent-509's JP1-JP5 ruling (below).
+  - `j1.native_inspection`: the iter8t J1 audit, rerun natively on this board.
+  - `campaign.initial_candidate`: agent-ee's `candidate.capture` of `prepared/scope.json`, which is what
+    campaign iteration 1 captures. It must equal the dry-run candidate's identity and file manifest. The
+    result is also in `pipeline.json` under `initial_candidate`.
+- **`model_check.py`** runs on the host. It exports J1 and U3 alone through `kicad-cli pcb export step`, so
+  KiCad itself must load each model, and then reads each export with CadQuery 2.8.0.
+  - **J1:** the `connector-candidate/check_model.py` criteria (35 tail axes on the drill coordinates, 35 tips,
+    two support flats, 3.50 mm projection, envelope), graded against this board's own exporter datum.
+  - **The fixture check, run unchanged:** `check_model.py` itself refuses on its absolute Z values. The
+    candidate stackup exports the board body at 0..1.5162 mm instead of the fixture's 0..1.48 mm, so the model
+    sits 0.0362 mm higher, with the same 0.085 mm body-to-support offset. That refusal is kept verbatim in
+    `model-check.json`.
+  - **U3:** 29 solids at the board's U3 pose, 24 castellation/pad overlaps and the pin-1 marker.
+  - Neither check is a fit, seating or mating claim.
+  - `evidence/model-check-j6b/` holds the result, its logs and the native facts for the installed board
+    `adfb7668…`. The native STEP exports are not retained; they carry export timestamps, and their hashes are
+    in `model-check.json`.
+- **JP1-JP5 (agent-509 source decision, coordinator notes 2026-10-22).** The composed `fab_package` check
+  declares `copper_features` JP1..JP5. These are on-board, normally-open copper: not BOM, not DNP, never dropped
+  or relabelled. On the emitted design, `fab.copper_features` verifies:
+  - agent-ee's own `fab_parts_manifests` cross-check (unsuppressed), which binds exactly JP1-JP5;
+  - agent-ee's board and schematic copper predicates, which return no problems;
+  - natively, for each jumper:
+    - one `Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm` footprint with two F.Cu SMD pads 0.3 mm apart;
+    - the pads on the two distinct declared nets (pcbnew, and the kicad-cli netlist);
+    - the footprint excluded from BOM and from position files, and not DNP;
+    - the schematic flags `in_bom no`, `on_board yes`, `dnp no`;
+    - no track, via or zone joining the two pads (the board is unrouted), so each jumper is open by default.
+
 ## j6: production preparation and emission at agent-ee `81e387ee`
 
 `evidence/emission-81e387ee/` holds the run (`pipeline.json`, the driver receipt, campaign, plan, scope,
@@ -359,6 +414,23 @@ contract (timeout at least 2 × budget + 300) and the review reserve.
   telemetry-pod/telemetry-pod.kicad_pro telemetry-pod/telemetry-pod.kicad_dru telemetry-pod/sym-lib-table
   telemetry-pod/fp-lib-table`.
 - **j6: the emitter `captures` root is the candidate root** (the declared libraries are root-relative).
+- **j6b: the models live in the candidate project, `project/inputs/models/`.** The J1 member was authored to
+  name `${KIPRJMOD}/inputs/models/`. agent-ee resolves KIPRJMOD to the board's directory and carries project
+  models into placement proposals from there. The alternative, rewriting the footprint path to
+  `${KIPRJMOD}/../models/`, would edit the reviewed connector footprint.
+  - Reverse: drop `project_models()` from `build.py`.
+- **j6b: the U3 footprint member gains one model node, and no other byte changes.** This follows
+  `neo-m9n-model/README.md` ("Bind U3 to `${KIPRJMOD}/inputs/models/<same STEP filename>` with zero
+  transform"). The captured member is otherwise unchanged; its pads, courtyard and fields are the same.
+  - **Hash ripple:** `footprints.json`, the `parts.json` CAD digest and `captured-rule-areas.json` follow. So
+    does the `composition/parts.json` digest cited in `assembly/hand-fit-policy.json`; its `/parts/303` J1
+    entry is byte-identical (checked).
+  - **Reverse:** drop the `U3_FOOTPRINT` branch in `libraries()`.
+- **j6b: J1 model checks use the candidate's exporter datum.** The pose is fixed by the footprint and verified
+  against the drill axes. A Z offset between two KiCad exports is an exporter datum, which the connector README
+  says is not a physical stand-off.
+  - **Alternative:** require the fixture's absolute Z. That would fail every real candidate whose stackup
+    differs, without saying anything about the model pose.
 
 ## Reproduce
 
@@ -373,6 +445,8 @@ AGENT_EE_GIT=AGENT_EE_CHECKOUT AGENT_EE_TOOL_SOURCE_CACHE=/abs/cache \
 # on the host, fome-mc root:
 /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py /new/pipeline-out --install
 /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py --check
+# j6b native STEP export and CadQuery 2.8.0 model checks (uv offline, cached cadquery):
+/usr/bin/python3 telemetry-pod/expansion/production-capture/model_check.py telemetry-pod/telemetry-pod.kicad_pcb /new/model-check
 /usr/bin/python3 telemetry-pod/expansion/production-capture/repack.py AGENT_EE_EXPORT ITER8N_DIR /new/repack-out
 # read-only stock refresh (network; one public request per id; no purchase, order or upload):
 PYTHONPATH=AGENT_EE_EXPORT/src /usr/bin/python3 -m agent_ee.jlc_stock_capture --allow-network \
@@ -387,8 +461,8 @@ netlist on a temporary copy; no design file is re-saved.
 
 ## Remaining
 
-- **Launch.** The prepared two-iteration campaign is not launched; agent-509 authorizes the single bounded
-  run separately. The stock capture (2026-10-22T10:50-10:57Z) is fresh until 2026-10-23T10:50Z; a later
+- **Launch.** The prepared two-iteration campaign is not launched. agent-521 (telemetry-pod lead since
+  2026-10-22, replacing agent-509) authorizes the single bounded run after review and integration. The stock capture (2026-10-22T10:50-10:57Z) is fresh until 2026-10-23T10:50Z; a later
   generation refreshes the stale ids read-only first.
 - **POD-AC-5 stays NOT CHECKED** until the assembly check runs on a native netlist in a campaign iteration.
   J1's zero stock keeps its owner hand-fit disposition; no purchase and no substitution.

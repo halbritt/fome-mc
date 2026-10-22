@@ -1,6 +1,6 @@
 """Phase B on the production capture: binding-fill, scaffold, envelope content, emitter and
 annotation declarations, the composed production scope, the derived request policy, the real
-pod_driver dry run of the bounded two-iteration plan and its receipt (j6, agent-ee 81e387ee).
+pod_driver dry run of the bounded two-iteration plan and its receipt (j6/j6b, agent-ee 81e387ee).
 
 Every stage runs the owned agent-ee producer on a fresh copy of the capture root; a refusal is
 kept verbatim and never substituted. The agent-ee export must be the exact tree of the pinned
@@ -43,6 +43,14 @@ driver-default plan and no compiled-only scope. No placement, routing, campaign 
 
 Producer declarations mount the export's src directory (the import root agent_ee's step builders
 expect); every declared module is imported from its actual mount source before preparation.
+
+j6b adds native checks on the prepared and emitted candidate (candidate_checks.py), each a stage that refuses on
+any deviation: the J1 header STEP and U3 NEO-M9N visualization bound by composition/project-models.json resolve
+through agent-ee's own model inventory at ${KIPRJMOD}/inputs/models/ with their recorded poses (FOMEMC-34); the
+fab_package copper_features JP1-JP5 are on-board, normally-open copper, not BOM and not DNP, with agent-ee's
+fab/parts cross-check kept (agent-509 ruling); the J1 drilling audit is rerun natively (AGENTEE-446); and the
+initial candidate identity iteration 1 starts from is recomputed with agent-ee's candidate.capture and recorded
+(initial_candidate). model_check.py adds the native STEP export checks on the host.
 
 One clearly labelled DIAGNOSTIC runs on a scratch copy only (it is never an input): the J3
 back-side transform.
@@ -108,6 +116,10 @@ sys.path[:0] = [str(A / 'src')]
 from agent_ee import (add_planes, assembly_readiness, binding_fill, board_envelope,  # noqa: E402
                       placement_adapter, pod_driver, routing_adapter, scaffold, schematic_stage)
 from agent_ee.storage import identity  # noqa: E402
+import importlib.util  # noqa: E402
+_spec = importlib.util.spec_from_file_location('candidate_checks', Path(__file__).resolve().parent / 'candidate_checks.py')
+candidate_checks = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(candidate_checks)
 
 ROOT = HERE.parents[2]
 X = ROOT / 'telemetry-pod/expansion'
@@ -170,7 +182,7 @@ shutil.copytree(CAPTURE, planning, symlinks=False)
 shutil.copyfile(X / 'design-rules/planes.json', planning / 'composition/planes.json')
 shutil.copyfile(COMPOSED / 'placement-policy.json', planning / 'composition/placement-policy.json')
 project = planning / 'project'
-project.mkdir()
+project.mkdir(exist_ok=True)  # the capture holds project/inputs/models/ (FOMEMC-34, build.py project_models)
 shutil.copyfile(X / 'design-rules/board-setup.kicad_pro', project / 'telemetry-pod.kicad_pro')
 shutil.copyfile(X / 'design-rules/telemetry-pod.kicad_dru', project / 'telemetry-pod.kicad_dru')
 shutil.copytree(SCOPE_DIR / 'requirements-map', planning / 'requirements-map')
@@ -1089,6 +1101,36 @@ def emit_schematic():
             'native_components': len(refs), 'native_nets': len(native.get('nets', {})),
             'intent': {'path': bound, 'sha256': after.get(bound)}}
 stage('emission.schematic_stage production (AGENTEE-445)', emit_schematic)
+MODELS = 'composition/project-models.json'
+
+
+def candidate_models():
+    """FOMEMC-34: the initial (scaffold) and emitted candidate boards resolve the bound J1 and U3 models."""
+    record = read(MODELS)
+    prepared, design = OUT / PREPARED / 'inputs', OUT / EMISSION / 'design'
+    for root in (prepared, design):
+        for m in record['models']:
+            if sha(root / m['candidate']['path']) != m['candidate']['sha256'] or sha(root / m['member']['path']) != m['member']['sha256']:
+                raise ValueError(f"{root.name}: {m['reference']} model or footprint member differs from {MODELS}")
+    return {'record': {'path': MODELS, 'sha256': sha(planning / MODELS)},
+            'initial_board': candidate_checks.model_resolution(prepared / scope['board'], record, ('J1',)),
+            'emitted_board': candidate_checks.model_resolution(design / scope['board'], record),
+            'emitted_native_pose': candidate_checks.native_pose(design / scope['board'], record),
+            'not_bound': record['not_bound'], 'open': record['open']}
+stage('models.candidate_resolution (FOMEMC-34)', candidate_models)
+
+
+def copper_contract():
+    """agent-509 JP1-JP5 ruling on the prepared scope and the emitted native design."""
+    prepared_scope = json.loads((OUT / PREPARED / 'scope.json').read_text())
+    files = json.loads((OUT / PREPARED / 'dry-run/candidate.json').read_text())['files']
+    return candidate_checks.copper_features(OUT / EMISSION / 'design', prepared_scope, files, inputs['parts'],
+                                            scope['board'], scope['schematic'], OUT / EMISSION / 'native.xml')
+stage('fab.copper_features JP1-JP5 (agent-509 ruling)', copper_contract)
+stage('j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)',
+      lambda: candidate_checks.j1_inspection(OUT / EMISSION / 'design' / scope['board']))
+stage('campaign.initial_candidate', lambda: candidate_checks.initial_candidate(
+    OUT / PREPARED, OUT / PREPARED / 'dry-run/candidate.json'))
 
 
 def review_obligations():
@@ -1211,7 +1253,7 @@ def record_of(directory):
     return json.loads(path.read_text()) if path.exists() else None
 
 
-result = dict(schema='pod-capture.pipeline/5', done=False, inference=False,
+result = dict(schema='pod-capture.pipeline/6', done=False, inference=False,
               authority='Producer execution and declarations on a fresh capture copy and the real pod_driver dry run '
                         'of the bounded plan; no placement, routing, campaign or model run. The diagnostic is '
                         'scratch-only and never an input.',
@@ -1226,6 +1268,7 @@ result = dict(schema='pod-capture.pipeline/5', done=False, inference=False,
                                                                     'routing_budget_s': budget},
                        'routing_timeout_s': route['timeout'], 'review_budget_s': review_budget,
                        'driver_max_seconds_minimum': 2 * (route['timeout'] + routing_adapter.STEP_MARGIN_S) + review_budget},
+              initial_candidate=stages['campaign.initial_candidate'].get('detail'),
               stages=stages, diagnostics=diagnostics,
               dry_run_records={'production (bounded plan)': record_of(PREPARED)})
 (OUT / 'pipeline.json').write_text(text(result))

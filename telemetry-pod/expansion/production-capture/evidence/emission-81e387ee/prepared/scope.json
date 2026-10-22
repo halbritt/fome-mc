@@ -563,7 +563,7 @@
               },
               {
                 "pointer": "/parts/303",
-                "sha256": "b89bc3e2eb2d37fcf4eef9989ba95b785e2f9a6e0ba36fcda6bb037275b52b6b",
+                "sha256": "7fe076554c610a33b3f6fae6fdafb9f427f52d874a942adbc10d6782b2d5148e",
                 "source": "composition/parts.json"
               }
             ],
@@ -641,10 +641,6 @@
     {
       "at": "microsd-symbol-capture.json",
       "path": "inputs/microsd-symbol-capture.json"
-    },
-    {
-      "at": "models",
-      "path": "inputs/models"
     },
     {
       "at": "pre-thermistor-integration-receipt.json",
@@ -768,7 +764,7 @@
     "POD-ED-P1: NOT CHECKED: Accepted capabilities do not settle all implementation decisions; close each pre-layout decision with evidence rather than silently choosing.",
     "POD-ED-P3: NOT CHECKED: Regenerate expanded candidate and repeat placement/routing/review; v9 pilot schematic, PCB, BOM, IO map and compiled contract are historical evidence only.",
     "POD-AC-P1: NOT CHECKED: All eleven criteria require evidence. File checks alone do not close AC6 owner DFM/preview or AC8-11 built-board obligations; this scope has incomplete acceptance coverage.",
-    "Composed by production-capture/pipeline.py: assembly_readiness over assembly-stock/catalog.json (the captured stock named in scope-composition.json, as_of 2026-10-22T10:50:06.618194+00:00). It carries the binding-fill --ratings receipt into rating_provenance. Of 81 BOM LCSC ids: in_stock 80, zero_stock 1; 0 are older than 24 hours at composition (2026-10-22T19:01:51.973965+00:00) and the check re-grades age at its own run. The J1 owner_hand_fit deviation is cited by hand_fit_policy: the unchanged POD-AC-5 owner statement (REQUIREMENTS.md line 139, \"the AMPSEAL header\") with its category selection chain (D-PCB-10, the C596198 part record and both manifests). That is an assembly disposition only, not mating, enclosure or purchase qualification. Captured stock and bindings are not assembly qualification. POD-AC-5 remains NOT CHECKED.",
+    "Composed by production-capture/pipeline.py: assembly_readiness over assembly-stock/catalog.json (the captured stock named in scope-composition.json, as_of 2026-10-22T10:50:06.618194+00:00). It carries the binding-fill --ratings receipt into rating_provenance. Of 81 BOM LCSC ids: in_stock 80, zero_stock 1; 0 are older than 24 hours at composition (2026-10-22T21:08:50.911861+00:00) and the check re-grades age at its own run. The J1 owner_hand_fit deviation is cited by hand_fit_policy: the unchanged POD-AC-5 owner statement (REQUIREMENTS.md line 139, \"the AMPSEAL header\") with its category selection chain (D-PCB-10, the C596198 part record and both manifests). That is an assembly disposition only, not mating, enclosure or purchase qualification. Captured stock and bindings are not assembly qualification. POD-AC-5 remains NOT CHECKED.",
     "POD-DERIVED-BLOCK-PRE-6V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): The pre-6v3 library entry (U5) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
     "POD-DERIVED-BLOCK-PRE-6V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): Witness-pose equivalence between the generic pre-6v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
     "POD-DERIVED-BLOCK-BUCK-3V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 22ef180ae719d1e409b73172d19eda3d8882e317a0864eeb1ba0f66623874851): The buck-3v3 library entry (U7) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
