@@ -1,0 +1,2683 @@
+{
+ "block_id": "pre-6v3",
+ "block_policy": {
+  "electrical_locality": {
+   "obligations": [
+    {
+     "id": "u5-input-hf-C3",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C3"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "2",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C3"
+      }
+     },
+     "switch": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_PRE",
+       "pad": "8",
+       "reference": "U5"
+      },
+      "max_distance_nm": 5500000,
+      "to": {
+       "net": "/SW_PRE",
+       "pad": "1",
+       "reference": "L1"
+      }
+     }
+    },
+    {
+     "id": "u5-input-bulk-C1",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C1"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U5"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C1"
+      }
+     }
+    },
+    {
+     "id": "u5-input-bulk-C2",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C2"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U5"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C2"
+      }
+     }
+    },
+    {
+     "id": "u5-vcc-C4",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 8500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C4"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/VCC_PRE",
+       "pad": "6",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/VCC_PRE",
+       "pad": "1",
+       "reference": "C4"
+      }
+     }
+    },
+    {
+     "id": "u5-boot-C5",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_PRE",
+       "pad": "8",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/SW_PRE",
+       "pad": "2",
+       "reference": "C5"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/BOOT_PRE",
+       "pad": "7",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/BOOT_PRE",
+       "pad": "1",
+       "reference": "C5"
+      }
+     }
+    }
+   ],
+   "schema": "agent-ee.electrical-locality/1"
+  },
+  "fixed_refs": [
+   "U5"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "obstacles": [],
+  "priority_refs": [
+   "C1",
+   "C2",
+   "C3",
+   "C4",
+   "C5",
+   "L1",
+   "R3",
+   "R27",
+   "C6",
+   "C7",
+   "R2"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "deferred": {
+  "board_rule_areas": 0,
+  "groups": [],
+  "obligations": [],
+  "obstacles": 7
+ },
+ "frame": {
+  "anchor": "U5",
+  "convention": "anchor-origin-quarter-turn/1"
+ },
+ "grade": {
+  "electrical_locality": {
+   "advisories": [
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 3.805160968999866,
+     "distance_squared_nm": 14479250000000,
+     "exceeded": true,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "2",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "C3",
+      "U5"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C3"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 4.328746931849909,
+     "distance_squared_nm": 18738050000000,
+     "exceeded": true,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "C3",
+      "U5"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C3"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 8.556314919403095,
+     "distance_squared_nm": 73210525000000,
+     "exceeded": true,
+     "from": {
+      "net": "/SW_PRE",
+      "pad": "8",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 655000,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 5500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "L1",
+      "U5"
+     ],
+     "role": "switch",
+     "severity": "defect",
+     "to": {
+      "net": "/SW_PRE",
+      "pad": "1",
+      "reference": "L1"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.908474686154239,
+     "distance_squared_nm": 8459225000000,
+     "exceeded": false,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "3",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 7000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C1",
+     "refs": [
+      "C1",
+      "U5"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C1"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.8751565174786573,
+     "distance_squared_nm": 8266525000000,
+     "exceeded": false,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 7000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C1",
+     "refs": [
+      "C1",
+      "U5"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C1"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 5.188855846908835,
+     "distance_squared_nm": 26924225000000,
+     "exceeded": false,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "3",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 9000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C2",
+     "refs": [
+      "C2",
+      "U5"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C2"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 3.815563523255772,
+     "distance_squared_nm": 14558525000000,
+     "exceeded": false,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 9000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C2",
+     "refs": [
+      "C2",
+      "U5"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C2"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.081736054354634,
+     "distance_squared_nm": 4333625000000,
+     "exceeded": false,
+     "from": {
+      "net": "/VCC_PRE",
+      "pad": "6",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-vcc-C4",
+     "refs": [
+      "C4",
+      "U5"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/VCC_PRE",
+      "pad": "1",
+      "reference": "C4"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 7.565482469743751,
+     "distance_squared_nm": 57236525000000,
+     "exceeded": false,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 8500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-vcc-C4",
+     "refs": [
+      "C4",
+      "U5"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C4"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.4340141741575785,
+     "distance_squared_nm": 5924425000000,
+     "exceeded": false,
+     "from": {
+      "net": "/BOOT_PRE",
+      "pad": "7",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-boot-C5",
+     "refs": [
+      "C5",
+      "U5"
+     ],
+     "role": "supply",
+     "severity": "defect",
+     "to": {
+      "net": "/BOOT_PRE",
+      "pad": "1",
+      "reference": "C5"
+     }
+    },
+    {
+     "below_floor": false,
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.603003073375058,
+     "distance_squared_nm": 6775625000000,
+     "exceeded": false,
+     "from": {
+      "net": "/SW_PRE",
+      "pad": "8",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "kind": "unsourced",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-boot-C5",
+     "refs": [
+      "C5",
+      "U5"
+     ],
+     "role": "return",
+     "severity": "defect",
+     "to": {
+      "net": "/SW_PRE",
+      "pad": "2",
+      "reference": "C5"
+     }
+    }
+   ],
+   "criterion": "electrical-locality/1",
+   "declaration": {
+    "obligations": [
+     {
+      "id": "u5-input-hf-C3",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U5"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C3"
+       }
+      },
+      "supply": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "2",
+        "reference": "U5"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "1",
+        "reference": "C3"
+       }
+      },
+      "switch": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/SW_PRE",
+        "pad": "8",
+        "reference": "U5"
+       },
+       "max_distance_nm": 5500000,
+       "to": {
+        "net": "/SW_PRE",
+        "pad": "1",
+        "reference": "L1"
+       }
+      }
+     },
+     {
+      "id": "u5-input-bulk-C1",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U5"
+       },
+       "max_distance_nm": 7000000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C1"
+       }
+      },
+      "supply": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U5"
+       },
+       "max_distance_nm": 7000000,
+       "to": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "1",
+        "reference": "C1"
+       }
+      }
+     },
+     {
+      "id": "u5-input-bulk-C2",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U5"
+       },
+       "max_distance_nm": 9000000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C2"
+       }
+      },
+      "supply": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U5"
+       },
+       "max_distance_nm": 9000000,
+       "to": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "1",
+        "reference": "C2"
+       }
+      }
+     },
+     {
+      "id": "u5-vcc-C4",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U5"
+       },
+       "max_distance_nm": 8500000,
+       "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C4"
+       }
+      },
+      "supply": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/VCC_PRE",
+        "pad": "6",
+        "reference": "U5"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/VCC_PRE",
+        "pad": "1",
+        "reference": "C4"
+       }
+      }
+     },
+     {
+      "id": "u5-boot-C5",
+      "metric": "pad-centre-to-centre",
+      "return": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/SW_PRE",
+        "pad": "8",
+        "reference": "U5"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/SW_PRE",
+        "pad": "2",
+        "reference": "C5"
+       }
+      },
+      "supply": {
+       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+       "from": {
+        "net": "/BOOT_PRE",
+        "pad": "7",
+        "reference": "U5"
+       },
+       "max_distance_nm": 3500000,
+       "to": {
+        "net": "/BOOT_PRE",
+        "pad": "1",
+        "reference": "C5"
+       }
+      }
+     }
+    ],
+    "schema": "agent-ee.electrical-locality/1"
+   },
+   "defects": [],
+   "measured": [
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 3.805160968999866,
+     "distance_squared_nm": 14479250000000,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "2",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "C3",
+      "U5"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C3"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 4.328746931849909,
+     "distance_squared_nm": 18738050000000,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "C3",
+      "U5"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C3"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 8.556314919403095,
+     "distance_squared_nm": 73210525000000,
+     "from": {
+      "net": "/SW_PRE",
+      "pad": "8",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 655000,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 5500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-hf-C3",
+     "refs": [
+      "L1",
+      "U5"
+     ],
+     "role": "switch",
+     "to": {
+      "net": "/SW_PRE",
+      "pad": "1",
+      "reference": "L1"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.908474686154239,
+     "distance_squared_nm": 8459225000000,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "3",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 7000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C1",
+     "refs": [
+      "C1",
+      "U5"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C1"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.8751565174786573,
+     "distance_squared_nm": 8266525000000,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 7000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C1",
+     "refs": [
+      "C1",
+      "U5"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C1"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 5.188855846908835,
+     "distance_squared_nm": 26924225000000,
+     "from": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "3",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 9000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C2",
+     "refs": [
+      "C2",
+      "U5"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/POD_12V_PROTECTED",
+      "pad": "1",
+      "reference": "C2"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 3.815563523255772,
+     "distance_squared_nm": 14558525000000,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 9000000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-input-bulk-C2",
+     "refs": [
+      "C2",
+      "U5"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C2"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.081736054354634,
+     "distance_squared_nm": 4333625000000,
+     "from": {
+      "net": "/VCC_PRE",
+      "pad": "6",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-vcc-C4",
+     "refs": [
+      "C4",
+      "U5"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/VCC_PRE",
+      "pad": "1",
+      "reference": "C4"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 7.565482469743751,
+     "distance_squared_nm": 57236525000000,
+     "from": {
+      "net": "/GND",
+      "pad": "1",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 8500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-vcc-C4",
+     "refs": [
+      "C4",
+      "U5"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/GND",
+      "pad": "2",
+      "reference": "C4"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.4340141741575785,
+     "distance_squared_nm": 5924425000000,
+     "from": {
+      "net": "/BOOT_PRE",
+      "pad": "7",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-boot-C5",
+     "refs": [
+      "C5",
+      "U5"
+     ],
+     "role": "supply",
+     "to": {
+      "net": "/BOOT_PRE",
+      "pad": "1",
+      "reference": "C5"
+     }
+    },
+    {
+     "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+     "constraint_provenance": {
+      "class": "default",
+      "enforcement": "advisory",
+      "reason": "unsourced numeric locality bound"
+     },
+     "distance_mm": 2.603003073375058,
+     "distance_squared_nm": 6775625000000,
+     "from": {
+      "net": "/SW_PRE",
+      "pad": "8",
+      "reference": "U5"
+     },
+     "geometry": "native copper-land centroid (before drill subtraction)",
+     "manufacturing_floor": {
+      "assembly": {
+       "reason": "package pair absent from captured JLCPCB spacing table",
+       "status": "unknown"
+      },
+      "different_net_clearance_nm": 150000,
+      "floor_nm": 0,
+      "kind": "necessary_copper_floor",
+      "limitation": "Native different-net inscribed disks only; exact whole-footprint minimum unknown",
+      "source": {
+       "bytes": 136932,
+       "captured_at": "2026-10-21T01:57:29.955447+00:00",
+       "resolved_url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+       "sha256": "0b94b018873d1616366e532dd5ce159560b68fa55527f1bc5726557670c749fb",
+       "url": "https://jlcpcb.com/capabilities/pcb-capabilities"
+      },
+      "status": "known"
+     },
+     "max_distance_nm": 3500000,
+     "metric": "pad-centre-to-centre",
+     "obligation": "u5-boot-C5",
+     "refs": [
+      "C5",
+      "U5"
+     ],
+     "role": "return",
+     "to": {
+      "net": "/SW_PRE",
+      "pad": "2",
+      "reference": "C5"
+     }
+    }
+   ],
+   "status": "info",
+   "unknown": []
+  },
+  "groups": null
+ },
+ "members": [
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        1600000
+       ],
+       [
+        -2300000,
+        1600000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "9c0ee7ae74d78e20140acf57815126b9ecbd4a109ac25c155714de754d644127",
+   "fpid": "Capacitor_SMD:C_1210_3225Metric",
+   "pad_geometry_sha256": "5a50621d694e5ddb4ea8988ae2dde326552d0768af9fa34c584ada686ce96aeb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_12V_PROTECTED",
+     "pad": "1",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -5575000,
+     -400000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C1",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "4.7 uF/100 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        1600000
+       ],
+       [
+        -2300000,
+        1600000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "9c0ee7ae74d78e20140acf57815126b9ecbd4a109ac25c155714de754d644127",
+   "fpid": "Capacitor_SMD:C_1210_3225Metric",
+   "pad_geometry_sha256": "5a50621d694e5ddb4ea8988ae2dde326552d0768af9fa34c584ada686ce96aeb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_12V_PROTECTED",
+     "pad": "1",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -1425000,
+     -4550000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "C2",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "4.7 uF/100 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1700000,
+        -980000
+       ],
+       [
+        1700000,
+        -980000
+       ],
+       [
+        1700000,
+        980000
+       ],
+       [
+        -1700000,
+        980000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "b068b38e8f8eb4596d91bad18549ceb806882ec930c4d8503407b17f31f047b7",
+   "fpid": "Capacitor_SMD:C_0805_2012Metric",
+   "pad_geometry_sha256": "80bed122979444e2bd6392260e894a1e34d98ea2918e620f3f224438c687da68",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/POD_12V_PROTECTED",
+     "pad": "1",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4955000,
+     -4650000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C3",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "220 nF/100 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/VCC_PRE",
+     "pad": "1",
+     "role": "n5"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4705000,
+     420000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C4",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "1 uF/16 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Capacitor_SMD:C_0603_1608Metric",
+   "pad_geometry_sha256": "0c696c0904fd786d348c2604f907e859aeef2c6d4e3408c47a79a6f85ab1b614",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/BOOT_PRE",
+     "pad": "1",
+     "role": "n6"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/SW_PRE",
+     "pad": "2",
+     "role": "n7"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     4705000,
+     -2790000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "C5",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "100 nF/50 V X7R"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        1600000
+       ],
+       [
+        -2300000,
+        1600000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "9c0ee7ae74d78e20140acf57815126b9ecbd4a109ac25c155714de754d644127",
+   "fpid": "Capacitor_SMD:C_1210_3225Metric",
+   "pad_geometry_sha256": "5a50621d694e5ddb4ea8988ae2dde326552d0768af9fa34c584ada686ce96aeb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/PRE_6V3",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -725000,
+     8118750
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "C6",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "22 uF/25 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        -1600000
+       ],
+       [
+        2300000,
+        1600000
+       ],
+       [
+        -2300000,
+        1600000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "9c0ee7ae74d78e20140acf57815126b9ecbd4a109ac25c155714de754d644127",
+   "fpid": "Capacitor_SMD:C_1210_3225Metric",
+   "pad_geometry_sha256": "5a50621d694e5ddb4ea8988ae2dde326552d0768af9fa34c584ada686ce96aeb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/PRE_6V3",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     -4875000,
+     7418750
+    ],
+    "rotation_deg": 180
+   },
+   "reference": "C7",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "22 uF/25 V"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -4450000,
+        -3700000
+       ],
+       [
+        4450000,
+        -3700000
+       ],
+       [
+        4450000,
+        3700000
+       ],
+       [
+        -4450000,
+        3700000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "6b58cf28b563a9b6dd4c4a00124449deeb1537fdb3795df4308828d85642e438",
+   "fpid": "PodPower:SRP7050TA",
+   "pad_geometry_sha256": "a2354599aef2362d9a2a08c940cd7aa47291f80739cf294f513ac1c322badb05",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "1"
+     },
+     "net": "/SW_PRE",
+     "pad": "1",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "2"
+     },
+     "net": "/PRE_6V3",
+     "pad": "2",
+     "role": "n8"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     5575000,
+     6650000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "L1",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "15 uH"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/PRE_6V3",
+     "pad": "1",
+     "role": "n8"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/FB_PRE_SERIES",
+     "pad": "2",
+     "role": "n9"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     8125000,
+     -490000
+    ],
+    "rotation_deg": 90
+   },
+   "reference": "R2",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "51 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/FB_PRE",
+     "pad": "1",
+     "role": "n4"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/GND",
+     "pad": "2",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     7165000,
+     1970000
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "R3",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "10 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -1480000,
+        -730000
+       ],
+       [
+        1480000,
+        -730000
+       ],
+       [
+        1480000,
+        730000
+       ],
+       [
+        -1480000,
+        730000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "cd2ff71ee00236aab998fa137a5a7b768451c324f97041d1f1b15eb276e1f18f",
+   "fpid": "Resistor_SMD:R_0603_1608Metric",
+   "pad_geometry_sha256": "558087afe5ef3e3b967e76f139062b32f4a69339bf814b070eff8867a05e83eb",
+   "pins": [
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/FB_PRE_SERIES",
+     "pad": "1",
+     "role": "n9"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": ""
+     },
+     "net": "/FB_PRE",
+     "pad": "2",
+     "role": "n4"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     6415000,
+     -490000
+    ],
+    "rotation_deg": 270
+   },
+   "reference": "R27",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "2 kohm"
+   }
+  },
+  {
+   "courtyard": {
+    "F": {
+     "polygons": [
+      [
+       [
+        -3725000,
+        -2700000
+       ],
+       [
+        3725000,
+        -2700000
+       ],
+       [
+        3725000,
+        2700000
+       ],
+       [
+        -3725000,
+        2700000
+       ]
+      ]
+     ],
+     "status": "proven"
+    }
+   },
+   "courtyard_sha256": "dade95dae20c1d8ebc62dcd8f1cedfdd6e5bb7ebfd86dfb0aaea589df024bcf4",
+   "fpid": "PodPower:DDA0008B",
+   "pad_geometry_sha256": "481ee113a7599a430fd7d8536d53b523ea55a8870a2909fe5eeee0200ed2f0d0",
+   "pins": [
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "PGND"
+     },
+     "net": "/GND",
+     "pad": "1",
+     "role": "n1"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "power_in",
+      "name": "VIN"
+     },
+     "net": "/POD_12V_PROTECTED",
+     "pad": "2",
+     "role": "n2"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "input",
+      "name": "EN"
+     },
+     "net": "/POD_12V_PROTECTED",
+     "pad": "3",
+     "role": "n2"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "open_collector",
+      "name": "PG"
+     },
+     "net": "unconnected-(U5-PG-Pad4)",
+     "pad": "4",
+     "role": "n3"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "input",
+      "name": "FB"
+     },
+     "net": "/FB_PRE",
+     "pad": "5",
+     "role": "n4"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "power_out",
+      "name": "VCC"
+     },
+     "net": "/VCC_PRE",
+     "pad": "6",
+     "role": "n5"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "passive",
+      "name": "BOOT"
+     },
+     "net": "/BOOT_PRE",
+     "pad": "7",
+     "role": "n6"
+    },
+    {
+     "boundary": false,
+     "function": {
+      "electrical_type": "power_out",
+      "name": "SW"
+     },
+     "net": "/SW_PRE",
+     "pad": "8",
+     "role": "n7"
+    },
+    {
+     "boundary": true,
+     "function": {
+      "electrical_type": "passive",
+      "name": "EP"
+     },
+     "net": "/GND",
+     "pad": "9",
+     "role": "n1"
+    }
+   ],
+   "pose": {
+    "position_nm": [
+     0,
+     0
+    ],
+    "rotation_deg": 0
+   },
+   "reference": "U5",
+   "side": "F",
+   "value": {
+    "rule": "exact",
+    "text": "LMR36520ADDAR"
+   }
+  }
+ ],
+ "outline": {
+  "F": {
+   "box_nm": [
+    -7175000,
+    -6350000,
+    10025000,
+    10418750
+   ],
+   "courtyards": [
+    [
+     [
+      -7175000,
+      1900000
+     ],
+     [
+      -7175000,
+      -2700000
+     ],
+     [
+      -3975000,
+      -2700000
+     ],
+     [
+      -3975000,
+      1900000
+     ]
+    ],
+    [
+     [
+      -3725000,
+      -6150000
+     ],
+     [
+      875000,
+      -6150000
+     ],
+     [
+      875000,
+      -2950000
+     ],
+     [
+      -3725000,
+      -2950000
+     ]
+    ],
+    [
+     [
+      -5935000,
+      -2950000
+     ],
+     [
+      -5935000,
+      -6350000
+     ],
+     [
+      -3975000,
+      -6350000
+     ],
+     [
+      -3975000,
+      -2950000
+     ]
+    ],
+    [
+     [
+      3975000,
+      1900000
+     ],
+     [
+      3975000,
+      -1060000
+     ],
+     [
+      5435000,
+      -1060000
+     ],
+     [
+      5435000,
+      1900000
+     ]
+    ],
+    [
+     [
+      3975000,
+      -1310000
+     ],
+     [
+      3975000,
+      -4270000
+     ],
+     [
+      5435000,
+      -4270000
+     ],
+     [
+      5435000,
+      -1310000
+     ]
+    ],
+    [
+     [
+      875000,
+      5818750
+     ],
+     [
+      875000,
+      10418750
+     ],
+     [
+      -2325000,
+      10418750
+     ],
+     [
+      -2325000,
+      5818750
+     ]
+    ],
+    [
+     [
+      -2575000,
+      9018750
+     ],
+     [
+      -7175000,
+      9018750
+     ],
+     [
+      -7175000,
+      5818750
+     ],
+     [
+      -2575000,
+      5818750
+     ]
+    ],
+    [
+     [
+      1125000,
+      2950000
+     ],
+     [
+      10025000,
+      2950000
+     ],
+     [
+      10025000,
+      10350000
+     ],
+     [
+      1125000,
+      10350000
+     ]
+    ],
+    [
+     [
+      7395000,
+      990000
+     ],
+     [
+      7395000,
+      -1970000
+     ],
+     [
+      8855000,
+      -1970000
+     ],
+     [
+      8855000,
+      990000
+     ]
+    ],
+    [
+     [
+      5685000,
+      1240000
+     ],
+     [
+      8645000,
+      1240000
+     ],
+     [
+      8645000,
+      2700000
+     ],
+     [
+      5685000,
+      2700000
+     ]
+    ],
+    [
+     [
+      7145000,
+      -1970000
+     ],
+     [
+      7145000,
+      990000
+     ],
+     [
+      5685000,
+      990000
+     ],
+     [
+      5685000,
+      -1970000
+     ]
+    ],
+    [
+     [
+      -3725000,
+      -2700000
+     ],
+     [
+      3725000,
+      -2700000
+     ],
+     [
+      3725000,
+      2700000
+     ],
+     [
+      -3725000,
+      2700000
+     ]
+    ]
+   ]
+  }
+ },
+ "placer_judgment": {
+  "basis": "transformed-proposal-not-native",
+  "verdict": "pass"
+ },
+ "provenance": {
+  "citation": "agent-ee.blocks intra-block search over the captured board; no manufacturer or owner layout authority",
+  "class": "search-derived",
+  "enforcement": "advisory",
+  "method": "ranked-first-fit-backjump/1"
+ },
+ "schema": "agent-ee.block-candidate/2",
+ "search": {
+  "backjumps": 0,
+  "compaction": {
+   "box_area_nm2": 288422500000000,
+   "first_box_area_nm2": 358170600000000,
+   "objective": "outline-bisection-min-box-area/1",
+   "step_cap": 10000,
+   "steps_total": 186,
+   "trials": [
+    {
+     "box_area_nm2": 322770000000000,
+     "family": "anchor-square",
+     "parameter": 11580000,
+     "status": "packed",
+     "steps_used": 11
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 7550000,
+     "status": "packing_search_exhausted",
+     "steps_used": 5
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 9462500,
+     "status": "packing_search_exhausted",
+     "steps_used": 5
+    },
+    {
+     "box_area_nm2": 288422500000000,
+     "family": "anchor-square",
+     "parameter": 10418750,
+     "status": "packed",
+     "steps_used": 11
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 9940625,
+     "status": "packing_search_exhausted",
+     "steps_used": 5
+    },
+    {
+     "family": "anchor-square",
+     "parameter": 10179687,
+     "status": "packing_search_exhausted",
+     "steps_used": 79
+    },
+    {
+     "family": "box-scale",
+     "parameter": 799,
+     "status": "packing_infeasible",
+     "steps_used": 0
+    },
+    {
+     "family": "box-scale",
+     "parameter": 899,
+     "status": "packing_search_exhausted",
+     "steps_used": 5
+    },
+    {
+     "family": "box-scale",
+     "parameter": 949,
+     "status": "packing_search_exhausted",
+     "steps_used": 17
+    },
+    {
+     "family": "box-scale",
+     "parameter": 974,
+     "status": "packing_search_exhausted",
+     "steps_used": 37
+    }
+   ]
+  },
+  "step_budget": 200000,
+  "steps_used": 11,
+  "strategy": "ranked-first-fit-backjump/1"
+ },
+ "sources": {
+  "allocation_sha256": "fbda9e28f8cada6fc26b9e9cdb8414650f85e1df8a44a694c82c019fb4e9ad47",
+  "board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+  "derivation_sha256": "0e6a4ed6f599ecd9a328e08a8e04f734532f0ed6b85004c2e291fca1d7eaf9c4",
+  "inventory_sha256": "7791d44380d40bb46b0dbe1cd7495ce59408e8691afe2bf360eaf70b3eab7556",
+  "policy_sha256": "b07059a507047809fd24275d7b0273a6d0c2525a1806dc14a3225484854bd12f"
+ },
+ "status": "packed",
+ "witness": {
+  "below_gap": [],
+  "drilled_pad_conflicts": [],
+  "gap_nm": 250000,
+  "method": "exact-courtyard-separation/1",
+  "minimum": {
+   "F": {
+    "distance_squared_nm2": [
+     62500000000,
+     1
+    ],
+    "refs": [
+     "C1",
+     "C3"
+    ]
+   }
+  },
+  "pairs_checked": 66,
+  "status": "pass"
+ }
+}

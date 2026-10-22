@@ -6,6 +6,14 @@ only full-footprint inputs that exist before a campaign's schematic stage, so ev
 that seed board's hash. This is preparation evidence for the bounded first placement run, not a
 placement: nothing is written to a design, and no campaign runs.
 
+When the released library engine refuses a library block entry (pre-6v3, buck-3v3: copper_unknown), the
+block is packed by the generic packer, which is geometry only. The refusal does not disappear: each such
+block gets a source-bound record in block-obligations.json (the library entry, the complete refusal
+output and the generic candidate, by hash) whose board-region copper/native-check and witness-pose
+obligations stay unresolved. pipeline.py carries that file into the scope limitations and the review
+packet inputs. A real placement repacks against its own emitted board and inherits neither the iter8n
+seed identity nor any qualification from these candidates.
+
 Usage (fome-mc root, system python with pcbnew):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/repack.py AGENT_EE_EXPORT ITER8N_DIR NEW_OUT_DIR
 """
@@ -83,8 +91,63 @@ for block in blocks:
                              'path': packed[block]['path'],
                              'policy_sha256': doc['sources'].get('policy_sha256'),
                              'board_sha256': doc['sources'].get('board_sha256')}
+
+
+def library_refusal(block):
+    """The complete library refusal (its retained stdout), never the 300-character summary tail."""
+    out = OUT / 'logs' / (block + '.library.out')
+    try:
+        doc = json.loads(out.read_text())
+    except ValueError:
+        doc = None
+    problems = doc.get('problems') if isinstance(doc, dict) and isinstance(doc.get('problems'), list) else None
+    return {'log': out.relative_to(OUT).as_posix(), 'sha256': sha(out), 'rc': packed[block]['library']['rc'],
+            'status': doc.get('status') if isinstance(doc, dict) else None,
+            'problems': problems if problems is not None else [{'kind': 'unparsed', 'reason': 'library refusal output '
+                                                                'is not a JSON refusal record; nothing is resolved'}]}
+
+
+obligations = []
+for block, reference in LIBRARY.items():
+    if packed.get(block, {}).get('path') != 'generic pack after library refusal':
+        continue
+    refusal = library_refusal(block)
+    candidate = OUT / 'cand' / f'{block}.candidate.json'
+    kinds = sorted({p.get('kind') for p in refusal['problems']})
+    reasons = [p.get('reason') for p in refusal['problems']]
+    obligations.append({
+        'block': block, 'reference': reference, 'status': 'unresolved', 'qualification': 'unknown',
+        'library_entry': {'path': f'{block}.v4.entry.json', 'sha256': sha(OUT / f'{block}.v4.entry.json'),
+                          'source': str(ITER8N / f'lib/{block}.v4.entry.json')},
+        'library_refusal': refusal,
+        'generic_candidate': {'path': candidate.relative_to(OUT).as_posix(),
+                              'sha256': sha(candidate) if candidate.exists() else None,
+                              'status': json.loads(candidate.read_text()).get('status') if candidate.exists() else None,
+                              'evidence': 'geometry only under the derived request policy',
+                              'board_sha256': sha(inputs['seed.kicad_pcb'])},
+        'obligations': [
+            {'id': f'{block}-board-region-copper-native-check', 'status': 'unresolved', 'refusal_kinds': kinds,
+             'statement': (f'The {block} library entry ({reference}) was refused by the released engine: '
+                           + '; '.join(f'{p.get("kind")}: {p.get("reason")}' for p in refusal['problems'])
+                           + '. Its board-region copper application and the native checks over it are not '
+                             'executed; the generic candidate is geometry only and closes neither.'),
+             'source_reasons': reasons},
+            {'id': f'{block}-witness-pose-equivalence', 'status': 'unresolved',
+             'statement': (f'Witness-pose equivalence between the generic {block} candidate and the library '
+                           'entry witness is not established; the generic pose is not the library pose.')}],
+        'real_placement': ('A real placement repacks this block against its own emitted board; it inherits neither '
+                           'the iter8n seed board identity nor any qualification from this candidate.')})
+(OUT / 'block-obligations.json').write_text(json.dumps({
+    'schema': 'pod-capture.block-obligations/1', 'agent_ee': str(A),
+    'seed_board_sha256': sha(inputs['seed.kicad_pcb']), 'blocks': obligations}, indent=1, sort_keys=True) + '\n')
+unresolved = {o['block']: [x['id'] for x in o['obligations']] for o in obligations}
+for block, ids in unresolved.items():
+    if block in candidates:
+        candidates[block].update(unresolved_obligations=ids, qualification='unknown',
+                                 obligations={'path': 'block-obligations.json',
+                                              'sha256': sha(OUT / 'block-obligations.json')})
 summary = {
-    'schema': 'pod-capture.block-repack/1', 'agent_ee': str(A),
+    'schema': 'pod-capture.block-repack/2', 'agent_ee': str(A),
     'authority': 'Block packing on the iter8n seed with the derived request policy; preparation only, no placement.',
     'inputs': {name: {'source': str(ITER8N / name), 'sha256': sha(path)} for name, path in inputs.items()} |
               {'policy': {'source': str(POLICY), 'sha256': sha(POLICY)},
@@ -97,7 +160,10 @@ summary = {
     'limitations': [
         'Every candidate binds the iter8n seed board; the campaign placement step needs candidates bound to its own '
         'placement source board, so they are repacked there in the bounded first run (agent-509 go required).',
-        'Packing is geometry under the policy; it is not electrical, DRC or mechanical acceptance.']}
+        'Packing is geometry under the policy; it is not electrical, DRC or mechanical acceptance.',
+        'all_packed counts geometry candidates only. Blocks in unresolved_obligations had their library entry '
+        'refused; their copper/native-check and witness-pose obligations stay unresolved (block-obligations.json).'],
+    'unresolved_obligations': unresolved, 'qualified': False}
 (OUT / 'repack.json').write_text(json.dumps(summary, indent=1, sort_keys=True) + '\n')
 print(json.dumps({k: summary[k] for k in ('blocks', 'all_packed')} |
-                 {'failed': sorted(b for b, r in packed.items() if r['rc'] != 0)}))
+                 {'failed': sorted(b for b, r in packed.items() if r['rc'] != 0), 'unresolved': sorted(unresolved)}))
