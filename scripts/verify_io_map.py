@@ -387,6 +387,34 @@ def check_pod_compilation(contract_path: Path) -> list[str]:
     return []
 
 
+POD_SOURCE = REPO / "telemetry-pod/pinout-checks/source.json"
+POD_GENERATOR = REPO / "telemetry-pod/pinout-checks/generate.py"
+
+
+def pod_source_config(cfg: dict) -> tuple[dict, list[str]]:
+    import json
+    source = json.loads(POD_SOURCE.read_text())
+    schematic = REPO / source["schematic"]
+    native_cfg = dict(cfg, path=schematic.parent.resolve(), schematic=schematic.name)
+    actual = hashlib.sha256(schematic.read_bytes()).hexdigest()
+    if actual != source["sha256"]:
+        return native_cfg, [f"{source['schematic']} sha256 {actual} differs from pinned {source['sha256']}"]
+    return native_cfg, []
+
+
+def check_pod_generation() -> list[str]:
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+    run_dir = REPO / "build/runs/verify-io/telemetry-pod" / stamp
+    run_dir.mkdir(parents=True)
+    proc = subprocess.run([sys.executable, str(POD_GENERATOR), "--check"], cwd=REPO, env=eda.tool_env(),
+                          capture_output=True, text=True, check=False)
+    (run_dir / "generate.log").write_text(proc.stdout + proc.stderr)
+    if proc.returncode != 0:
+        return [f"pod io-map does not reproduce from its source netlist (rc={proc.returncode}); "
+                f"see {run_dir / 'generate.log'}"]
+    return []
+
+
 def verify_project_io(cfg: dict) -> int:
     project_dir = cfg["path"]
     map_path = project_dir / "io-map.csv"
@@ -406,8 +434,13 @@ def verify_project_io(cfg: dict) -> int:
         if not contract_paths:
             raise ValueError(f"no interface contracts for project {cfg['name']}")
     contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
-    errors = check_pod_compilation(contract_path) if cfg["name"] == "telemetry-pod" else []
-    inventory = fresh_inventory(cfg, contracts)
+    errors, native_cfg = [], cfg
+    if cfg["name"] == "telemetry-pod":
+        # The map describes the Rev-3 source schematic named in source.json, not the
+        # v9 pilot snapshot at the project root; its pinned digest must still match.
+        native_cfg, source_errors = pod_source_config(cfg)
+        errors = source_errors + check_pod_generation() + check_pod_compilation(contract_path)
+    inventory = fresh_inventory(native_cfg, contracts)
     native_pins = {(comp["reference"], pin)
                    for comp in inventory["components"].values()
                    if re.fullmatch(r"J[0-9]+", comp["reference"])
@@ -484,6 +517,8 @@ def verify_project_io(cfg: dict) -> int:
         return 1
     for identity in wireless:
         print(f"NOT_EVALUATED: {identity}: declared wireless row (no electrical connector pin)")
+    if native_cfg is not cfg:
+        print(f"source schematic: {native_cfg['path'].relative_to(REPO) / native_cfg['schematic']}")
     print(f"PASS: project {cfg['name']}: verified {len(covered)} connector pins, "
           f"{len(contracts)} interface contracts, {satisfied}/{invariants} invariants satisfied "
           f"against fresh netlist; {len(wireless)} declared wireless not_evaluated")

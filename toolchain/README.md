@@ -122,8 +122,12 @@ firmware configuration in `~/git/fome-fw`, YAML connectors and sheet contracts.
 `make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv`, then
 requires exactly `contracts/telemetry-pod.interface.json` at the repository root.
 The committed contract is compiled by AGENTEE-188 from the pod map and its
-explicit terminal bindings and indirect MCU paths. Regeneration instructions and
-input hashes are in [the pod input notes](../telemetry-pod/IO_MAP.md).
+explicit terminal bindings and indirect MCU paths. The pod map describes the Rev-3
+source schematic named in `telemetry-pod/pinout-checks/source.json`, not the v9
+pilot at the project root. The gate checks that schematic's pinned SHA-256 and
+builds its native inventory from it. It requires `pinout-checks/generate.py --check`
+to reproduce the map, bindings and paths byte-identically from its netlist.
+Regeneration instructions are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
 including column order, with an optional final `MCU_Path` column:

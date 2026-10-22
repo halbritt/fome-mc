@@ -1,9 +1,9 @@
 {
   "schema": "agent-ee.io-map-paths/1",
   "paths": {
-    "AMPSEAL-1.twai-tx": {
+    "J1-1.U1-4": {
       "terminals": [
-        "AMPSEAL-1",
+        "J1-1",
         "U100:7",
         "U100:1",
         "U1:4"
@@ -16,9 +16,9 @@
       ],
       "devices": [
         {
-          "component": "can/U307",
+          "component": "U100",
           "value": "TJA1051T-3",
-          "role": "TJA1051T/3 CAN transceiver"
+          "role": "CAN transceiver bus to logic CANH->TXD"
         }
       ],
       "directions": [
@@ -26,9 +26,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-1.twai-rx": {
+    "J1-1.U1-5": {
       "terminals": [
-        "AMPSEAL-1",
+        "J1-1",
         "U100:7",
         "U100:4",
         "U1:5"
@@ -41,9 +41,9 @@
       ],
       "devices": [
         {
-          "component": "can/U307",
+          "component": "U100",
           "value": "TJA1051T-3",
-          "role": "TJA1051T/3 CAN transceiver"
+          "role": "CAN transceiver bus to logic CANH->RXD"
         }
       ],
       "directions": [
@@ -51,9 +51,9 @@
         "toward_mcu"
       ]
     },
-    "AMPSEAL-2.twai-tx": {
+    "J1-2.U1-4": {
       "terminals": [
-        "AMPSEAL-2",
+        "J1-2",
         "U100:6",
         "U100:1",
         "U1:4"
@@ -66,9 +66,9 @@
       ],
       "devices": [
         {
-          "component": "can/U307",
+          "component": "U100",
           "value": "TJA1051T-3",
-          "role": "TJA1051T/3 CAN transceiver"
+          "role": "CAN transceiver bus to logic CANL->TXD"
         }
       ],
       "directions": [
@@ -76,9 +76,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-2.twai-rx": {
+    "J1-2.U1-5": {
       "terminals": [
-        "AMPSEAL-2",
+        "J1-2",
         "U100:6",
         "U100:4",
         "U1:5"
@@ -91,9 +91,9 @@
       ],
       "devices": [
         {
-          "component": "can/U307",
+          "component": "U100",
           "value": "TJA1051T-3",
-          "role": "TJA1051T/3 CAN transceiver"
+          "role": "CAN transceiver bus to logic CANL->RXD"
         }
       ],
       "directions": [
@@ -101,9 +101,9 @@
         "toward_mcu"
       ]
     },
-    "AMPSEAL-6.adc-cs": {
+    "J1-6.U1-17": {
       "terminals": [
-        "AMPSEAL-6",
+        "J1-6",
         "R10:1",
         "R10:2",
         "U8:3",
@@ -111,7 +111,7 @@
         "R12:1",
         "R12:2",
         "U4:1",
-        "U4:8",
+        "U4:10",
         "U1:17"
       ],
       "pin_names": [
@@ -128,24 +128,24 @@
       ],
       "devices": [
         {
-          "component": "power/R10",
+          "component": "R10",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INA->OUTA"
         },
         {
-          "component": "power/R12",
+          "component": "R12",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH0->~{CS}/SHDN"
         }
       ],
       "directions": [
@@ -156,9 +156,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-6.adc-mosi": {
+    "J1-6.U1-19": {
       "terminals": [
-        "AMPSEAL-6",
+        "J1-6",
         "R10:1",
         "R10:2",
         "U8:3",
@@ -166,7 +166,7 @@
         "R12:1",
         "R12:2",
         "U4:1",
-        "U4:9",
+        "U4:11",
         "U1:19"
       ],
       "pin_names": [
@@ -183,24 +183,24 @@
       ],
       "devices": [
         {
-          "component": "power/R10",
+          "component": "R10",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INA->OUTA"
         },
         {
-          "component": "power/R12",
+          "component": "R12",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH0->Din"
         }
       ],
       "directions": [
@@ -211,9 +211,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-6.adc-sck": {
+    "J1-6.U1-20": {
       "terminals": [
-        "AMPSEAL-6",
+        "J1-6",
         "R10:1",
         "R10:2",
         "U8:3",
@@ -221,7 +221,7 @@
         "R12:1",
         "R12:2",
         "U4:1",
-        "U4:11",
+        "U4:13",
         "U1:20"
       ],
       "pin_names": [
@@ -238,24 +238,24 @@
       ],
       "devices": [
         {
-          "component": "power/R10",
+          "component": "R10",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INA->OUTA"
         },
         {
-          "component": "power/R12",
+          "component": "R12",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH0->CLK"
         }
       ],
       "directions": [
@@ -266,9 +266,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-6.adc-miso": {
+    "J1-6.U1-21": {
       "terminals": [
-        "AMPSEAL-6",
+        "J1-6",
         "R10:1",
         "R10:2",
         "U8:3",
@@ -276,7 +276,7 @@
         "R12:1",
         "R12:2",
         "U4:1",
-        "U4:10",
+        "U4:12",
         "U1:21"
       ],
       "pin_names": [
@@ -293,24 +293,24 @@
       ],
       "devices": [
         {
-          "component": "power/R10",
+          "component": "R10",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INA->OUTA"
         },
         {
-          "component": "power/R12",
+          "component": "R12",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH0->Dout"
         }
       ],
       "directions": [
@@ -321,9 +321,9 @@
         "toward_mcu"
       ]
     },
-    "AMPSEAL-9.adc-cs": {
+    "J1-9.U1-17": {
       "terminals": [
-        "AMPSEAL-9",
+        "J1-9",
         "R13:1",
         "R13:2",
         "U8:5",
@@ -331,7 +331,7 @@
         "R15:1",
         "R15:2",
         "U4:2",
-        "U4:8",
+        "U4:10",
         "U1:17"
       ],
       "pin_names": [
@@ -348,24 +348,24 @@
       ],
       "devices": [
         {
-          "component": "power/R13",
+          "component": "R13",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INB->OUTB"
         },
         {
-          "component": "power/R15",
+          "component": "R15",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH1->~{CS}/SHDN"
         }
       ],
       "directions": [
@@ -376,9 +376,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-9.adc-mosi": {
+    "J1-9.U1-19": {
       "terminals": [
-        "AMPSEAL-9",
+        "J1-9",
         "R13:1",
         "R13:2",
         "U8:5",
@@ -386,7 +386,7 @@
         "R15:1",
         "R15:2",
         "U4:2",
-        "U4:9",
+        "U4:11",
         "U1:19"
       ],
       "pin_names": [
@@ -403,24 +403,24 @@
       ],
       "devices": [
         {
-          "component": "power/R13",
+          "component": "R13",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INB->OUTB"
         },
         {
-          "component": "power/R15",
+          "component": "R15",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH1->Din"
         }
       ],
       "directions": [
@@ -431,9 +431,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-9.adc-sck": {
+    "J1-9.U1-20": {
       "terminals": [
-        "AMPSEAL-9",
+        "J1-9",
         "R13:1",
         "R13:2",
         "U8:5",
@@ -441,7 +441,7 @@
         "R15:1",
         "R15:2",
         "U4:2",
-        "U4:11",
+        "U4:13",
         "U1:20"
       ],
       "pin_names": [
@@ -458,24 +458,24 @@
       ],
       "devices": [
         {
-          "component": "power/R13",
+          "component": "R13",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INB->OUTB"
         },
         {
-          "component": "power/R15",
+          "component": "R15",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH1->CLK"
         }
       ],
       "directions": [
@@ -486,9 +486,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-9.adc-miso": {
+    "J1-9.U1-21": {
       "terminals": [
-        "AMPSEAL-9",
+        "J1-9",
         "R13:1",
         "R13:2",
         "U8:5",
@@ -496,7 +496,7 @@
         "R15:1",
         "R15:2",
         "U4:2",
-        "U4:10",
+        "U4:12",
         "U1:21"
       ],
       "pin_names": [
@@ -513,24 +513,24 @@
       ],
       "devices": [
         {
-          "component": "power/R13",
+          "component": "R13",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INB->OUTB"
         },
         {
-          "component": "power/R15",
+          "component": "R15",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH1->Dout"
         }
       ],
       "directions": [
@@ -541,9 +541,9 @@
         "toward_mcu"
       ]
     },
-    "AMPSEAL-12.adc-cs": {
+    "J1-12.U1-17": {
       "terminals": [
-        "AMPSEAL-12",
+        "J1-12",
         "R16:1",
         "R16:2",
         "U8:10",
@@ -551,7 +551,7 @@
         "R18:1",
         "R18:2",
         "U4:3",
-        "U4:8",
+        "U4:10",
         "U1:17"
       ],
       "pin_names": [
@@ -568,24 +568,24 @@
       ],
       "devices": [
         {
-          "component": "power/R16",
+          "component": "R16",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INC->OUTC"
         },
         {
-          "component": "power/R18",
+          "component": "R18",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH2->~{CS}/SHDN"
         }
       ],
       "directions": [
@@ -596,9 +596,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-12.adc-mosi": {
+    "J1-12.U1-19": {
       "terminals": [
-        "AMPSEAL-12",
+        "J1-12",
         "R16:1",
         "R16:2",
         "U8:10",
@@ -606,7 +606,7 @@
         "R18:1",
         "R18:2",
         "U4:3",
-        "U4:9",
+        "U4:11",
         "U1:19"
       ],
       "pin_names": [
@@ -623,24 +623,24 @@
       ],
       "devices": [
         {
-          "component": "power/R16",
+          "component": "R16",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INC->OUTC"
         },
         {
-          "component": "power/R18",
+          "component": "R18",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH2->Din"
         }
       ],
       "directions": [
@@ -651,9 +651,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-12.adc-sck": {
+    "J1-12.U1-20": {
       "terminals": [
-        "AMPSEAL-12",
+        "J1-12",
         "R16:1",
         "R16:2",
         "U8:10",
@@ -661,7 +661,7 @@
         "R18:1",
         "R18:2",
         "U4:3",
-        "U4:11",
+        "U4:13",
         "U1:20"
       ],
       "pin_names": [
@@ -678,24 +678,24 @@
       ],
       "devices": [
         {
-          "component": "power/R16",
+          "component": "R16",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INC->OUTC"
         },
         {
-          "component": "power/R18",
+          "component": "R18",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH2->CLK"
         }
       ],
       "directions": [
@@ -706,9 +706,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-12.adc-miso": {
+    "J1-12.U1-21": {
       "terminals": [
-        "AMPSEAL-12",
+        "J1-12",
         "R16:1",
         "R16:2",
         "U8:10",
@@ -716,7 +716,7 @@
         "R18:1",
         "R18:2",
         "U4:3",
-        "U4:10",
+        "U4:12",
         "U1:21"
       ],
       "pin_names": [
@@ -733,24 +733,24 @@
       ],
       "devices": [
         {
-          "component": "power/R16",
+          "component": "R16",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +INC->OUTC"
         },
         {
-          "component": "power/R18",
+          "component": "R18",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH2->Dout"
         }
       ],
       "directions": [
@@ -761,9 +761,9 @@
         "toward_mcu"
       ]
     },
-    "AMPSEAL-15.adc-cs": {
+    "J1-15.U1-17": {
       "terminals": [
-        "AMPSEAL-15",
+        "J1-15",
         "R19:1",
         "R19:2",
         "U8:12",
@@ -771,7 +771,7 @@
         "R21:1",
         "R21:2",
         "U4:4",
-        "U4:8",
+        "U4:10",
         "U1:17"
       ],
       "pin_names": [
@@ -788,24 +788,24 @@
       ],
       "devices": [
         {
-          "component": "power/R19",
+          "component": "R19",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +IND->OUTD"
         },
         {
-          "component": "power/R21",
+          "component": "R21",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH3->~{CS}/SHDN"
         }
       ],
       "directions": [
@@ -816,9 +816,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-15.adc-mosi": {
+    "J1-15.U1-19": {
       "terminals": [
-        "AMPSEAL-15",
+        "J1-15",
         "R19:1",
         "R19:2",
         "U8:12",
@@ -826,7 +826,7 @@
         "R21:1",
         "R21:2",
         "U4:4",
-        "U4:9",
+        "U4:11",
         "U1:19"
       ],
       "pin_names": [
@@ -843,24 +843,24 @@
       ],
       "devices": [
         {
-          "component": "power/R19",
+          "component": "R19",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +IND->OUTD"
         },
         {
-          "component": "power/R21",
+          "component": "R21",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH3->Din"
         }
       ],
       "directions": [
@@ -871,9 +871,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-15.adc-sck": {
+    "J1-15.U1-20": {
       "terminals": [
-        "AMPSEAL-15",
+        "J1-15",
         "R19:1",
         "R19:2",
         "U8:12",
@@ -881,7 +881,7 @@
         "R21:1",
         "R21:2",
         "U4:4",
-        "U4:11",
+        "U4:13",
         "U1:20"
       ],
       "pin_names": [
@@ -898,24 +898,24 @@
       ],
       "devices": [
         {
-          "component": "power/R19",
+          "component": "R19",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +IND->OUTD"
         },
         {
-          "component": "power/R21",
+          "component": "R21",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH3->CLK"
         }
       ],
       "directions": [
@@ -926,9 +926,9 @@
         "toward_connector"
       ]
     },
-    "AMPSEAL-15.adc-miso": {
+    "J1-15.U1-21": {
       "terminals": [
-        "AMPSEAL-15",
+        "J1-15",
         "R19:1",
         "R19:2",
         "U8:12",
@@ -936,7 +936,7 @@
         "R21:1",
         "R21:2",
         "U4:4",
-        "U4:10",
+        "U4:12",
         "U1:21"
       ],
       "pin_names": [
@@ -953,30 +953,2420 @@
       ],
       "devices": [
         {
-          "component": "power/R19",
+          "component": "R19",
           "value": "10 kohm",
-          "role": "input divider upper resistor"
+          "role": "series resistor"
         },
         {
-          "component": "power/U8",
+          "component": "U8",
           "value": "ADA4096-4ARUZ-R7",
-          "role": "op-amp buffer"
+          "role": "op-amp section +IND->OUTD"
         },
         {
-          "component": "power/R21",
+          "component": "R21",
           "value": "100 ohm",
-          "role": "ADC input series resistor"
+          "role": "series resistor"
         },
         {
-          "component": "adc",
-          "value": "MCP3204-BI/SL",
-          "role": "MCP3204 SPI ADC"
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH3->Dout"
         }
       ],
       "directions": [
         "toward_mcu",
         "toward_mcu",
         "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-17.U1-17": {
+      "terminals": [
+        "J1-17",
+        "R34:1",
+        "R34:2",
+        "U13:3",
+        "U13:1",
+        "R36:1",
+        "R36:2",
+        "U4:5",
+        "U4:10",
+        "U1:17"
+      ],
+      "pin_names": [
+        "Pin_17",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH4",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "devices": [
+        {
+          "component": "R34",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INA->OUTA"
+        },
+        {
+          "component": "R36",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH4->~{CS}/SHDN"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-17.U1-19": {
+      "terminals": [
+        "J1-17",
+        "R34:1",
+        "R34:2",
+        "U13:3",
+        "U13:1",
+        "R36:1",
+        "R36:2",
+        "U4:5",
+        "U4:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_17",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH4",
+        "Din",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "R34",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INA->OUTA"
+        },
+        {
+          "component": "R36",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH4->Din"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-17.U1-20": {
+      "terminals": [
+        "J1-17",
+        "R34:1",
+        "R34:2",
+        "U13:3",
+        "U13:1",
+        "R36:1",
+        "R36:2",
+        "U4:5",
+        "U4:13",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_17",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH4",
+        "CLK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "R34",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INA->OUTA"
+        },
+        {
+          "component": "R36",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH4->CLK"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-17.U1-21": {
+      "terminals": [
+        "J1-17",
+        "R34:1",
+        "R34:2",
+        "U13:3",
+        "U13:1",
+        "R36:1",
+        "R36:2",
+        "U4:5",
+        "U4:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_17",
+        "",
+        "",
+        "+INA",
+        "OUTA",
+        "",
+        "",
+        "CH4",
+        "Dout",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "R34",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INA->OUTA"
+        },
+        {
+          "component": "R36",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH4->Dout"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-18.U1-17": {
+      "terminals": [
+        "J1-18",
+        "R37:1",
+        "R37:2",
+        "U13:5",
+        "U13:7",
+        "R39:1",
+        "R39:2",
+        "U4:6",
+        "U4:10",
+        "U1:17"
+      ],
+      "pin_names": [
+        "Pin_18",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH5",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "devices": [
+        {
+          "component": "R37",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INB->OUTB"
+        },
+        {
+          "component": "R39",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH5->~{CS}/SHDN"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-18.U1-19": {
+      "terminals": [
+        "J1-18",
+        "R37:1",
+        "R37:2",
+        "U13:5",
+        "U13:7",
+        "R39:1",
+        "R39:2",
+        "U4:6",
+        "U4:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_18",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH5",
+        "Din",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "R37",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INB->OUTB"
+        },
+        {
+          "component": "R39",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH5->Din"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-18.U1-20": {
+      "terminals": [
+        "J1-18",
+        "R37:1",
+        "R37:2",
+        "U13:5",
+        "U13:7",
+        "R39:1",
+        "R39:2",
+        "U4:6",
+        "U4:13",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_18",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH5",
+        "CLK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "R37",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INB->OUTB"
+        },
+        {
+          "component": "R39",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH5->CLK"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-18.U1-21": {
+      "terminals": [
+        "J1-18",
+        "R37:1",
+        "R37:2",
+        "U13:5",
+        "U13:7",
+        "R39:1",
+        "R39:2",
+        "U4:6",
+        "U4:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_18",
+        "",
+        "",
+        "+INB",
+        "OUTB",
+        "",
+        "",
+        "CH5",
+        "Dout",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "R37",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INB->OUTB"
+        },
+        {
+          "component": "R39",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH5->Dout"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-19.U1-17": {
+      "terminals": [
+        "J1-19",
+        "R40:1",
+        "R40:2",
+        "U13:10",
+        "U13:8",
+        "R42:1",
+        "R42:2",
+        "U4:7",
+        "U4:10",
+        "U1:17"
+      ],
+      "pin_names": [
+        "Pin_19",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH6",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "devices": [
+        {
+          "component": "R40",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INC->OUTC"
+        },
+        {
+          "component": "R42",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH6->~{CS}/SHDN"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-19.U1-19": {
+      "terminals": [
+        "J1-19",
+        "R40:1",
+        "R40:2",
+        "U13:10",
+        "U13:8",
+        "R42:1",
+        "R42:2",
+        "U4:7",
+        "U4:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_19",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH6",
+        "Din",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "R40",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INC->OUTC"
+        },
+        {
+          "component": "R42",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH6->Din"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-19.U1-20": {
+      "terminals": [
+        "J1-19",
+        "R40:1",
+        "R40:2",
+        "U13:10",
+        "U13:8",
+        "R42:1",
+        "R42:2",
+        "U4:7",
+        "U4:13",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_19",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH6",
+        "CLK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "R40",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INC->OUTC"
+        },
+        {
+          "component": "R42",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH6->CLK"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-19.U1-21": {
+      "terminals": [
+        "J1-19",
+        "R40:1",
+        "R40:2",
+        "U13:10",
+        "U13:8",
+        "R42:1",
+        "R42:2",
+        "U4:7",
+        "U4:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_19",
+        "",
+        "",
+        "+INC",
+        "OUTC",
+        "",
+        "",
+        "CH6",
+        "Dout",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "R40",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +INC->OUTC"
+        },
+        {
+          "component": "R42",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH6->Dout"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-20.U1-17": {
+      "terminals": [
+        "J1-20",
+        "R43:1",
+        "R43:2",
+        "U13:12",
+        "U13:14",
+        "R45:1",
+        "R45:2",
+        "U4:8",
+        "U4:10",
+        "U1:17"
+      ],
+      "pin_names": [
+        "Pin_20",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH7",
+        "~{CS}/SHDN",
+        "IO9"
+      ],
+      "devices": [
+        {
+          "component": "R43",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +IND->OUTD"
+        },
+        {
+          "component": "R45",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH7->~{CS}/SHDN"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-20.U1-19": {
+      "terminals": [
+        "J1-20",
+        "R43:1",
+        "R43:2",
+        "U13:12",
+        "U13:14",
+        "R45:1",
+        "R45:2",
+        "U4:8",
+        "U4:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_20",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH7",
+        "Din",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "R43",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +IND->OUTD"
+        },
+        {
+          "component": "R45",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH7->Din"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-20.U1-20": {
+      "terminals": [
+        "J1-20",
+        "R43:1",
+        "R43:2",
+        "U13:12",
+        "U13:14",
+        "R45:1",
+        "R45:2",
+        "U4:8",
+        "U4:13",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_20",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH7",
+        "CLK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "R43",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +IND->OUTD"
+        },
+        {
+          "component": "R45",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH7->CLK"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-20.U1-21": {
+      "terminals": [
+        "J1-20",
+        "R43:1",
+        "R43:2",
+        "U13:12",
+        "U13:14",
+        "R45:1",
+        "R45:2",
+        "U4:8",
+        "U4:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_20",
+        "",
+        "",
+        "+IND",
+        "OUTD",
+        "",
+        "",
+        "CH7",
+        "Dout",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "R43",
+          "value": "10 kohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U13",
+          "value": "ADA4096-4ARUZ-R7",
+          "role": "op-amp section +IND->OUTD"
+        },
+        {
+          "component": "R45",
+          "value": "100 ohm",
+          "role": "series resistor"
+        },
+        {
+          "component": "U4",
+          "value": "MCP3208-BI/SL",
+          "role": "ADC channel to SPI CH7->Dout"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-24.U1-39": {
+      "terminals": [
+        "J1-24",
+        "D102:3",
+        "D102:2",
+        "R112:1",
+        "R112:2",
+        "U26:2",
+        "U26:1",
+        "R118:1",
+        "R118:2",
+        "U1:39"
+      ],
+      "pin_names": [
+        "Pin_24",
+        "K1_A2",
+        "K2",
+        "",
+        "",
+        "IN1-",
+        "OUT1",
+        "",
+        "",
+        "IO1"
+      ],
+      "devices": [
+        {
+          "component": "D102",
+          "value": "BAV199,215",
+          "role": "diode element 2"
+        },
+        {
+          "component": "R112",
+          "value": "10 kohm 0.1%",
+          "role": "series resistor"
+        },
+        {
+          "component": "U26",
+          "value": "LM2903BQDRQ1",
+          "role": "comparator section IN1-->OUT1"
+        },
+        {
+          "component": "R118",
+          "value": "100 ohm",
+          "role": "series resistor"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-27.U1-38": {
+      "terminals": [
+        "J1-27",
+        "D103:3",
+        "D103:2",
+        "R121:1",
+        "R121:2",
+        "U26:6",
+        "U26:7",
+        "R127:1",
+        "R127:2",
+        "U1:38"
+      ],
+      "pin_names": [
+        "Pin_27",
+        "K1_A2",
+        "K2",
+        "",
+        "",
+        "IN2-",
+        "OUT2",
+        "",
+        "",
+        "IO2"
+      ],
+      "devices": [
+        {
+          "component": "D103",
+          "value": "BAV199,215",
+          "role": "diode element 2"
+        },
+        {
+          "component": "R121",
+          "value": "10 kohm 0.1%",
+          "role": "series resistor"
+        },
+        {
+          "component": "U26",
+          "value": "LM2903BQDRQ1",
+          "role": "comparator section IN2-->OUT2"
+        },
+        {
+          "component": "R127",
+          "value": "100 ohm",
+          "role": "series resistor"
+        }
+      ],
+      "directions": [
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-29.U1-8.1": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-8.2": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-9.1": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-29.U1-9.2": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-29.U1-19.1": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-19.2": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-20.1": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-20.2": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-29.U1-21.1": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-29.U1-21.2": {
+      "terminals": [
+        "J1-29",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_29",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-30.U1-8.1": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-8.2": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-9.1": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-30.U1-9.2": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-30.U1-19.1": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-19.2": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-20.1": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-20.2": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-30.U1-21.1": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-30.U1-21.2": {
+      "terminals": [
+        "J1-30",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_30",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-33.U1-8.1": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-8.2": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-9.1": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-33.U1-9.2": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-33.U1-19.1": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-19.2": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-20.1": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-20.2": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-33.U1-21.1": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:1",
+        "U20:1",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "TXD",
+        "TXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-33.U1-21.2": {
+      "terminals": [
+        "J1-33",
+        "U21:7",
+        "U21:4",
+        "U20:2",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_33",
+        "CANH",
+        "RXD",
+        "RXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANH->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-34.U1-8.1": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-8.2": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:13",
+        "U1:8"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "nCS",
+        "IO15"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->nCS"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-9.1": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-34.U1-9.2": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:4",
+        "U1:9"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "INT",
+        "IO16"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->INT"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_mcu"
+      ]
+    },
+    "J1-34.U1-19.1": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-19.2": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:11",
+        "U1:19"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SDI",
+        "IO11"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDI"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-20.1": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-20.2": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:10",
+        "U1:20"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SCK",
+        "IO12"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SCK"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_mcu",
+        "toward_connector"
+      ]
+    },
+    "J1-34.U1-21.1": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:1",
+        "U20:1",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "TXD",
+        "TXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->TXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt TXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
+        "toward_connector",
+        "toward_mcu"
+      ]
+    },
+    "J1-34.U1-21.2": {
+      "terminals": [
+        "J1-34",
+        "U21:6",
+        "U21:4",
+        "U20:2",
+        "U20:12",
+        "U1:21"
+      ],
+      "pin_names": [
+        "Pin_34",
+        "CANL",
+        "RXD",
+        "RXCAN",
+        "SDO",
+        "IO13"
+      ],
+      "devices": [
+        {
+          "component": "U21",
+          "value": "TJA1051T/3/1J",
+          "role": "CAN transceiver bus to logic CANL->RXD"
+        },
+        {
+          "component": "U20",
+          "value": "MCP2518FDT-E/SL",
+          "role": "CAN controller to SPI/interrupt RXCAN->SDO"
+        }
+      ],
+      "directions": [
+        "bidirectional",
         "toward_mcu",
         "toward_mcu"
       ]
