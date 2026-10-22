@@ -1,6 +1,9 @@
 {
   "schema": "fome-mc.pod-j1-mating-interface/1",
   "ticket": "AGENTEE-207",
+  "amendments": [
+    {"ticket": "AGENTEE-446", "date": "2026-10-22", "change": "pcb_thickness set to SOURCED from the owner decision (sources OWNER20261022) plus the captured JLCPCB fab profile (FAB) and K1; the rev G 1.57 +/-0.13 mm interval kept as historical context only, not a gate. installed_enclosure_fit and installed_harness reworded as future team design deliverables (still UNRESOLVED). No other status changed."}
+  ],
   "scope": "Source-capture review of the J1 mechanical interface: the selected right-angle header TE 1-776163-1 (LCSC C596198), its mating plug, the panel interface and the board-thickness requirement. Evidence only: no design file, footprint, model pose or requirement is changed, and no physical fit is claimed.",
   "status_values": {
     "SOURCED": "Every stated value is bound to a cited, hashed source in this packet or in the existing connector-candidate packet.",
@@ -66,6 +69,24 @@
       "caveats": [
         "Catalog attributes, not a controlled drawing. Used only for corroboration and for the compatible-parts list. No value here gates work."
       ]
+    },
+    "OWNER20261022": {
+      "file": "sources/owner-decision-2026-10-22-board-thickness.txt",
+      "sha256": "2aae3f5e6ca08da60c83af56ab831478137c809548113a44d56016157489ed27",
+      "bytes": 1463,
+      "document": "Owner decision: J1 board thickness accepted (standard JLCPCB 4-layer 1.6 mm, published +/-10% finished tolerance); enclosure, panel and harness are team design deliverables",
+      "revision": "2026-10-22",
+      "class": "owner_stated",
+      "provenance": "owner -> agent-509 -> agent-449 (coordinator); Cairn records d162e001 and b706da93; tracker item AGENTEE-446"
+    },
+    "FAB": {
+      "file": "../../production-capture/sources/fab-profile/fab-profile.json",
+      "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632",
+      "bytes": 6629,
+      "document": "Captured agent-ee fab profile jlc04161h-7628 (JLCPCB 4-layer, 1.6 mm nominal), finished_thickness_tolerance entry citing sources/jlcpcb-thickness.txt (sha256 fae784b6527c2b2e641fddb26a09b7d93d3ae126c130a84ba2351f9470cbb25e)",
+      "revision": "as_of 2026-10-18",
+      "class": "manufacturer_published_capability",
+      "provenance": "existing capture, ../../production-capture/SHA256SUMS (./sources/fab-profile/fab-profile.json)"
     }
   },
   "items": [
@@ -130,20 +151,28 @@
     },
     {
       "id": "pcb_thickness",
-      "status": "PARTIAL",
-      "result": "Captured TE statements: K1 (current drawing) titles its recommended layout for a 1.57 mm board and gives no thickness range. Superseded AS114 rev G page 6 section 3.9.A states 'The pc board thickness shall be 1.57 mm' with no local tolerance, so rev G page 1's opening NOTE general tolerance applies: +/-0.13 mm unless otherwise specified, i.e. 1.44-1.70 mm under rev G. That is a historical rev G statement only; rev G is superseded and K1 takes priority under rev G's own section 2.3, so it is not a current allowed range and does not accept the pod board. The pod's declared board is 1.6 mm (REQUIREMENTS.md line 59). The current allowed thickness range and board-lock retention at 1.6 mm plus fabrication tolerance are UNRESOLVED.",
+      "status": "SOURCED",
+      "result": "ACCEPTED by owner decision (2026-10-22): the pod board is the standard JLCPCB four-layer board, 1.6 mm nominal, with JLCPCB's published +/-10% finished-thickness tolerance for nominal >= 1.0 mm (1.44-1.76 mm at 1.6 mm). J1 1-776163-1 is a through-hole soldered header with a mechanical retention pin; its leads may protrude several mm and are trimmed after soldering (seat, tack one pin, re-seat/align, solder the rest, trim excess stickout). K1 titles its recommended layout for a 1.57 mm board; the 0.03 mm nominal difference is not a thickness gate, and interval arithmetic is not an actionable release uncertainty. No special tolerance, TE confirmation, enclosure CAD or owner harness is required for placement, routing or bare-board fab readiness. A narrower requirement needs a concrete source or an observed failure.",
       "evidence": [
+        {"source": "OWNER20261022", "page": 1, "figure": "Decision", "fact": "owner-stated: standard JLCPCB four-layer, nominal 1.6 mm board with its published +/-10% finished-thickness tolerance (1.44-1.76 mm) is ACCEPTED for J1; TE's 1.57 mm recommendation is not a thickness gate; leads are trimmed after soldering; normal footprint, finished-hole/pad, retention and solder-joint checks remain"},
+        {"source": "FAB", "page": 1, "figure": "finished_thickness_tolerance (fab-profile.json lines 138-149)", "fact": "JLCPCB finished-thickness tolerance +/-10% for nominal >= 1.0 mm (percent 10, min_nominal_thickness_mm 1), source sources/jlcpcb-thickness.txt as of 2026-10-18; stackup jlc04161h-7628 nominal_thickness_mm 1.6"},
         {"source": "K1", "page": 2, "figure": "RECOMMENDED P.C. BOARD LAYOUT FOR 1.57 THICK P.C. BOARD", "fact": "layout titled for a 1.57 mm board; the title is not a toleranced dimension and the sheet gives no board-thickness range. K1's title-block general tolerances are not applied to it here"},
-        {"source": "K1", "page": 1, "figure": "section A-A", "fact": "(3.0-4.0) reference dimension: exposed contact-tail length from the header seating plane to the tail tips. It is not a projection below the board's underside"},
-        {"source": "AS114", "page": 1, "figure": "opening NOTE (above section 1)", "fact": "rev G (14 MAR 11, superseded): 'Unless otherwise specified, dimensions have a tolerance of +/-0.13 and angles have a tolerance of +/-2 degrees' (the rendered page shows an underlined plus, i.e. +/-; pdftotext extracts it as '+')"},
-        {"source": "AS114", "page": 6, "figure": "section 3.9.A", "fact": "rev G (superseded): 'The pc board thickness shall be 1.57 mm.' with no local tolerance, so under rev G the page 1 general tolerance of +/-0.13 mm applies; header intended for wave soldering"}
+        {"source": "K1", "page": 1, "figure": "section A-A", "fact": "(3.0-4.0) reference dimension: exposed contact-tail length from the header seating plane to the tail tips. It is not a projection below the board's underside"}
       ],
-      "derived_observation": "Arithmetic only, not qualification and not a fit claim. Datums: the existing model check (../README.md, 'Model placement and native convention') gives 3.50 mm from the rear support flats, which rest on the PCB top, to the tail tips. The residual projection below the board's underside is therefore 3.50 - 1.57 = 1.93 mm for a 1.57 mm board and 3.50 - 1.60 = 1.90 mm for a 1.60 mm board (rigid header, nominal values). K1 sheet 1 section A-A's (3.0-4.0) is a reference dimension from the header seating plane to the tail tips, not from the board underside, so the 1.90-1.93 mm below-board figures are not comparable to it. Whether K1's seating plane coincides exactly with the model's support flats is not established here, so no conformance of the 3.50 mm model value to that range is claimed either. Board-lock snap engagement on a thicker board and the fabricator's thickness tolerance are not established by any captured source.",
-      "not_resolved": [
-        "current allowed board thickness range (current 114-16016 S3 or product spec 108-1329 not captured; the rev G 1.57 +/-0.13 mm general-tolerance reading is historical and superseded)",
-        "board-lock retention at 1.6 mm nominal +/- fabricator tolerance",
-        "fabricator thickness tolerance (no captured fabricator source in this packet)"
-      ]
+      "historical_context": {
+        "gate": false,
+        "note": "Historical context only; NOT a gate and NOT an open item (superseded by the 2026-10-22 owner decision). Superseded AS114 rev G (14 MAR 11) page 6 section 3.9.A states 'The pc board thickness shall be 1.57 mm' with no local tolerance; rev G page 1's opening NOTE general tolerance of +/-0.13 mm would read as 1.44-1.70 mm under rev G. Comparing that interval with the JLCPCB 1.44-1.76 mm finished range was earlier recorded as an open uncertainty; the owner ruled that interval arithmetic is not an actionable release uncertainty.",
+        "evidence": [
+          {"source": "AS114", "page": 1, "figure": "opening NOTE (above section 1)", "fact": "rev G (superseded): 'Unless otherwise specified, dimensions have a tolerance of +/-0.13 and angles have a tolerance of +/-2 degrees'"},
+          {"source": "AS114", "page": 6, "figure": "section 3.9.A", "fact": "rev G (superseded): 'The pc board thickness shall be 1.57 mm.' with no local tolerance; header intended for wave soldering"}
+        ]
+      },
+      "derived_observation": "Arithmetic only, recorded for the solder-tail check; not a fit limit. Datums: the existing model check (../README.md, 'Model placement and native convention') gives 3.50 mm from the rear support flats, which rest on the PCB top, to the tail tips, so about 1.9 mm of tail remains below the underside of a nominal 1.6 mm board (rigid header, nominal values). Lead stickout is not a fit limit: through-hole leads are trimmed after soldering per the owner's assembly sequence. K1 sheet 1 section A-A's (3.0-4.0) runs from the header seating plane to the tail tips, not from the board underside, and is not compared with the below-board figure.",
+      "retained_checks": [
+        "J1 footprint, finished-hole and pad sizes against K1 for the 1.6 mm board (normal board-side check, AGENTEE-446)",
+        "retention-pin / board-lock engagement and solder-joint fillet inspection on the 1.6 mm board (normal board-side check, AGENTEE-446)"
+      ],
+      "not_resolved": []
     },
     {
       "id": "latch_cpa_and_tool_access",
@@ -183,16 +212,16 @@
     {
       "id": "installed_enclosure_fit",
       "status": "UNRESOLVED",
-      "result": "No enclosure or cowl geometry exists in a captured source. No physical fit is claimed.",
+      "result": "Future design deliverable: the enclosure and panel are team-designed (owner direction 2026-10-22); the only existing external constraint is the seat cowl. Installed fit is verified after the enclosure is designed. No enclosure CAD exists yet, and its absence does not block placement, routing or bare-board fab readiness. No physical fit is claimed.",
       "evidence": [],
-      "not_resolved": ["enclosure", "cowl clearance", "frame mounting"]
+      "not_resolved": ["enclosure design (team deliverable)", "seat-cowl clearance, verified after the enclosure design", "frame mounting"]
     },
     {
       "id": "installed_harness",
       "status": "UNRESOLVED",
-      "result": "Harness routing, bundle size, bend radius and service loop are not sourced.",
+      "result": "Future design deliverable: the harness is team-designed (owner direction 2026-10-22); the only existing external constraint is the seat cowl. Routing, bundle size, bend radius and service loop are verified after the harness is designed. Its absence does not block placement, routing or bare-board fab readiness.",
       "evidence": [],
-      "not_resolved": ["harness routing", "bend radius", "service loop"]
+      "not_resolved": ["harness design (team deliverable): routing", "bend radius", "service loop"]
     },
     {
       "id": "installed_tool_access",
