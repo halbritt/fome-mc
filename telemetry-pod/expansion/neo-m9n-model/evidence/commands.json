@@ -1,0 +1,42 @@
+{
+  "working_directory": "telemetry-pod/expansion/neo-m9n-model",
+  "commands": [
+    [
+      "kicad-cli",
+      "pcb",
+      "export",
+      "step",
+      "--no-board-body",
+      "--component-filter",
+      "U3",
+      "--force",
+      "-o",
+      "evidence/native-u3.step",
+      "/home/halbritt/.cache/agent449-pod/iter8t/candidate/candidate.kicad_pcb"
+    ],
+    [
+      "kicad-cli",
+      "pcb",
+      "render",
+      "--side",
+      "top",
+      "--rotate",
+      "-35,0,25",
+      "--zoom",
+      "3.2",
+      "--pivot",
+      "2.65,-0.25,0",
+      "--quality",
+      "high",
+      "--width",
+      "1600",
+      "--height",
+      "1200",
+      "--background",
+      "opaque",
+      "-o",
+      "evidence/native-u3-closeup.png",
+      "/home/halbritt/.cache/agent449-pod/iter8t/candidate/candidate.kicad_pcb"
+    ]
+  ]
+}
