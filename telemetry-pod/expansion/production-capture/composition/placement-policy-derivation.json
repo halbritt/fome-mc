@@ -1,0 +1,34 @@
+{
+ "kept": [
+  "capacity_proof",
+  "electrical_locality",
+  "fixed_refs",
+  "gap_nm",
+  "ground_nets",
+  "groups",
+  "min_courtyard_edge_mm",
+  "obstacles",
+  "priority_refs",
+  "schema",
+  "step_budget"
+ ],
+ "output_sha256": "5fab430acae213aac94943c4183db8f8b44d18e9190ba22ca20218254e50f29d",
+ "removed": {
+  "fixed_overhangs": {
+   "count": 4,
+   "reason": "placement_adapter.refuse_policy_sources: fixed_overhangs come only from a captured envelope; composition/envelope.json declares J1, J2, U1 and J3 courtyard_overhangs",
+   "references": [
+    "J1",
+    "J2",
+    "U1",
+    "J3"
+   ],
+   "stale_source": "every entry cites envelope ad0a3597 (placement-inputs/envelope.json); its J3 pointer /fixed_footprints/3 names U2 there"
+  }
+ },
+ "schema": "pod-capture.policy-derivation/1",
+ "source": {
+  "path": "~/.cache/agent449-pod/iter8n/policy.json (agent-449 iter8n packing policy, latest microSD policy)",
+  "sha256": "63138a34d197485673ac8a5615f3d8f39a5a0e50bab95f2e09ff71af5a81c5fb"
+ }
+}

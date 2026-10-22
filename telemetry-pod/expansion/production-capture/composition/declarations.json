@@ -1,0 +1,54 @@
+{
+ "footprints": [
+  {
+   "assembly": null,
+   "custom_pads": [],
+   "footprint": "RF_Module:ESP32-S3-WROOM-1",
+   "mechanical_pads": [],
+   "rationale": "ESP32-S3-WROOM-1 exposed ground pad 41 has one F.Cu SMD pad and twelve thru-hole thermal vias sharing pad number 41; nine unnumbered F.Paste apertures are paste-only. Thermal vias are 0.30 mm drill / 0.70 mm diameter after design-rules D-PCB-1 (footprints/ patched copy; KiCad/library original 0.20 mm).",
+   "thermal_via_pads": [
+    "41"
+   ]
+  },
+  {
+   "assembly": null,
+   "custom_pads": [],
+   "footprint": "PodPower:DDA0008B",
+   "mechanical_pads": [],
+   "rationale": "Manufacturer land drawing: exposed ground pad9 with eight copper-connected thermal holes. Paste/fill process remains unqualified. Thermal vias are 0.30 mm drill / 0.70 mm diameter after design-rules D-PCB-1 (footprints/ patched copy; KiCad/library original 0.20 mm).",
+   "thermal_via_pads": [
+    "9"
+   ]
+  },
+  {
+   "assembly": null,
+   "custom_pads": [],
+   "footprint": "PodPower:DDA0008J_C02",
+   "mechanical_pads": [],
+   "rationale": "Manufacturer land drawing: exposed ground pad9 with eight copper-connected thermal holes. Paste/fill process remains unqualified. Thermal vias are 0.30 mm drill / 0.70 mm diameter after design-rules D-PCB-1 (footprints/ patched copy; KiCad/library original 0.20 mm).",
+   "thermal_via_pads": [
+    "9"
+   ]
+  },
+  {
+   "assembly": null,
+   "custom_pads": [],
+   "footprint": "Connector_Coaxial:SMA_Molex_73251-1153_EdgeMount_Horizontal",
+   "mechanical_pads": [],
+   "rationale": "Two native0.46mm plated ground stitching vias share electrical pad2 with top/bottom SMD ground lands; they are not connector through-hole leads. Existing thermal_via_pads schema names this shared-number via handling; no thermal-performance claim.",
+   "thermal_via_pads": [
+    "2"
+   ]
+  },
+  {
+   "assembly": "smd",
+   "custom_pads": [],
+   "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+   "mechanical_pads": [],
+   "rationale": "Explicit surface-pad classification for the captured stock solder jumper: two SMD pads on F.Cu/F.Mask, no drilled electrical leads. Native attr excludes BOM and position files but omits smd/through_hole. This declaration describes pad technology only; it does not make the copper feature a purchased or pick-and-place component, qualify paste/assembly processing, or resolve parts-manifest membership.",
+   "thermal_via_pads": []
+  }
+ ],
+ "pinless_symbols": [],
+ "schema": "agent-ee.footprint-declarations/1"
+}

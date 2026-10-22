@@ -1,0 +1,33 @@
+{
+ "deviations": [
+  {
+   "assembly": "hand_soldered",
+   "evidence_refs": [
+    {
+     "locator": "Acceptance criteria item 5",
+     "path": "composition/spec.md"
+    },
+    {
+     "locator": "mpn/lcsc/manufacturer/stock",
+     "path": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+    },
+    {
+     "locator": "parts/C596198",
+     "path": "telemetry-pod/expansion/part-bindings/connector-stock/catalog.json"
+    }
+   ],
+   "original": {
+    "lcsc": "C596198",
+    "mpn": "1-776163-1"
+   },
+   "policy": "owner_hand_fit",
+   "purchase_source": "TE Connectivity 1-776163-1 (LCSC C596198 identity, captured stock 0); availability unverified. No purchase made or authorized.",
+   "reason": "POD-AC-5 names the AMPSEAL harness header as hand-fitted after delivery; J1 is the selected AMPSEAL 1-776163-1 and its captured JLCPCB row reports stock 0 and assemblyComponentFlag false.",
+   "requirement_id": "POD-AC-5",
+   "stock_deviation": {
+    "reason": "Requirement-named hand-fit part with zero captured stock; generation-day stock evidence is still required for release."
+   }
+  }
+ ],
+ "schema": "agent-ee.part-deviations/1"
+}

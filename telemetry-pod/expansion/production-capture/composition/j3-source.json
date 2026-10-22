@@ -1,0 +1,64 @@
+{
+ "assembly_component_flag": false,
+ "catalog": {
+  "fetched_at": "2026-10-21T07:21:36.620611+00:00",
+  "path": "telemetry-pod/expansion/storage-microsd/stock/catalog.json",
+  "response": {
+   "path": "telemetry-pod/expansion/storage-microsd/stock/responses/C114218.json",
+   "sha256": "33053455254fcf15ac3e1b08c61028610052e18dfb83f1141d43bf75b2b20043"
+  },
+  "sha256": "19c90184e6ff70c3ecf23defcb46b3892102cf7b4c647e998df224ffa72eb6b7"
+ },
+ "catalog_attributes": {
+  "Additional Card Detection Pins": "No",
+  "Card Connection Mode": "Push-Push",
+  "Card Type": "MicroSD Card (TF Card)",
+  "Connector Type": "Connector and Ejector",
+  "Height Above Board": "1.68mm",
+  "Length": "15.95mm",
+  "Operating Temperature": "-25\u2103~+85\u2103",
+  "Supplementary Features": "-",
+  "Width": "13.85mm"
+ },
+ "component": "storage/J3",
+ "datasheet": {
+  "attempt": {
+   "fetched_at": "2026-10-21T07:22:11.085119+00:00",
+   "outcome": "missing",
+   "path": "telemetry-pod/expansion/production-capture/sources/j3-capture-attempt/manifest.json",
+   "reason": "response is not a complete PDF envelope",
+   "sha256": "5793532fc8bc9f3fe73eeda550f383a99d9bb602059b1487ed1571fb2d738e19"
+  },
+  "blocks": [
+   "agent-ee.parts/1 named J3 entry",
+   "binding-fill (part_ref coverage)",
+   "envelope content (J3 fixed footprint)",
+   "pod_driver dry run past the scaffold"
+  ],
+  "facts_needed": [
+   "Exact PDF bytes for the agent-ee acquisition producer (agent-ee.datasheet-capture/1) and a canonical part record (part_record.prepare_record) for C114218.",
+   "Pin map: CLK/CMD/DAT0-3/VDD/VSS, card-detect switch (intent pins 9 and 10) and shell; the catalog row says \"Additional Card Detection Pins: No\", which conflicts with the wired detect.",
+   "Recommended land pattern and the card insertion/ejection stroke (D-PCB-13 lane 15 mm).",
+   "Operating temperature (catalog row -25 to +85 C; D-PCB-12 exception basis).",
+   "Card-side contact ratings and mating cycles."
+  ],
+  "offline_search": "No PDF with DM3A text exists in local repositories, caches or /tmp (scratch search 2026-10-22); network capture is outside this lane.",
+  "status": "missing",
+  "urls": {
+   "KiCad footprint descr (Hirose 2D drawing)": "https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=",
+   "catalog dataManualUrl": "https://www.lcsc.com/datasheet/lcsc_datasheet_2410121938_HRS-Hirose-DM3AT-SF-PEJM5_C114218.pdf",
+   "intent Datasheet field": "https://www.lcsc.com/datasheet/lcsc_datasheet_2410121938_HRS-Hirose-DM3AT-SF-PEJM5_C114218.pdf"
+  }
+ },
+ "footprint": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
+ "identity": {
+  "lcsc": "C114218",
+  "mfr": "HRS(Hirose)",
+  "mpn": "DM3AT-SF-PEJM5",
+  "package": "SMD",
+  "stock": 16060
+ },
+ "reference": "J3",
+ "schema": "pod-capture.missing-capture/1",
+ "symbol": "Connector:Micro_SD_Card_Det_Hirose_DM3AT"
+}

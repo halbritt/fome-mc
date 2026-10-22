@@ -19,6 +19,9 @@ The [expanded endpoint contract](interface-contract/README.md) checks all 35
 connector cavities and 15 expansion GPIO allocations against that source and
 native netlist, with explicit tire CAN/eMMC aliases and unused reset state.
 The full compiled interface and firmware contract remain outstanding.
+The [production capture](production-capture/README.md) binds the microSD source's parts manifest,
+deviations, patched CAD closure and revised envelope for a pod run. J3's datasheet is its one
+exact missing capture.
 
 ## Connector and buses
 
