@@ -185,9 +185,11 @@ Before binding the replacement footprint:
    engineering choice subject to the measured enclosure and harness geometry.
 5. Check the J1 footprint, finished-hole/pad sizes, retention pin/board-lock and
    solder joints for the 1.6 mm board. Board thickness itself is owner-accepted
-   ([decision, 2026-10-22](connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): the standard JLCPCB
-   four-layer 1.6 mm board with its published ±10% finished tolerance is
-   accepted; TE's 1.57 mm recommendation is not a thickness gate, and through-hole
+   ([decision, 2026-10-22](connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): J1 fits by the owner's component-side through-hole rule (at least ±10%
+   of TE's recommended 1.57 mm, band 1.413–1.727 mm; the 1.6 mm board is inside,
+   AGENTEE-448), and the standard JLCPCB four-layer 1.6 mm board is accepted
+   (its published ±10% finished tolerance is a separate board-side fact, not
+   the J1 fit basis); TE's 1.57 mm recommendation is not a thickness gate, and through-hole
    leads are trimmed after soldering.
 
 Neither library footprint is copied into the candidate merely to clear an ERC

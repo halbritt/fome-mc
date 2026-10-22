@@ -2,7 +2,7 @@
   "schema": "fome-mc.pod-j1-mating-interface/1",
   "ticket": "AGENTEE-207",
   "amendments": [
-    {"ticket": "AGENTEE-446", "date": "2026-10-22", "change": "pcb_thickness set to SOURCED from the owner decision (sources OWNER20261022) plus the captured JLCPCB fab profile (FAB) and K1; the rev G 1.57 +/-0.13 mm interval kept as historical context only, not a gate. installed_enclosure_fit and installed_harness reworded as future team design deliverables (still UNRESOLVED). No other status changed."}
+    {"ticket": "AGENTEE-446", "date": "2026-10-22", "change": "pcb_thickness set to SOURCED from the owner decision (sources OWNER20261022) plus the captured JLCPCB fab profile (FAB) and K1; the rev G 1.57 +/-0.13 mm interval kept as historical context only, not a gate. installed_enclosure_fit and installed_harness reworded as future team design deliverables (still UNRESOLVED). The basis is the owner's component-side through-hole fit rule (at least +/-10% of TE's recommended 1.57 mm, band 1.413-1.727 mm, AGENTEE-448); the JLCPCB finished tolerance is recorded separately as a board-side fact (coordinator correction, Cairn 9561cd0c). No other status changed."}
   ],
   "scope": "Source-capture review of the J1 mechanical interface: the selected right-angle header TE 1-776163-1 (LCSC C596198), its mating plug, the panel interface and the board-thickness requirement. Evidence only: no design file, footprint, model pose or requirement is changed, and no physical fit is claimed.",
   "status_values": {
@@ -72,18 +72,18 @@
     },
     "OWNER20261022": {
       "file": "sources/owner-decision-2026-10-22-board-thickness.txt",
-      "sha256": "2aae3f5e6ca08da60c83af56ab831478137c809548113a44d56016157489ed27",
-      "bytes": 1463,
-      "document": "Owner decision: J1 board thickness accepted (standard JLCPCB 4-layer 1.6 mm, published +/-10% finished tolerance); enclosure, panel and harness are team design deliverables",
+      "sha256": "89681afd9897bffb288f7e77d5d6eb10f9287a18ef1bc7f4ce8b3853f0e279d1",
+      "bytes": 2316,
+      "document": "Owner decision: J1 board thickness accepted (component-side through-hole fit: at least +/-10% of TE's recommended 1.57 mm, band 1.413-1.727 mm, 1.6 mm inside; standard JLCPCB 4-layer 1.6 mm board accepted, its +/-10% finished tolerance being a separate board-side fact); enclosure, panel and harness are team design deliverables",
       "revision": "2026-10-22",
       "class": "owner_stated",
-      "provenance": "owner -> agent-509 -> agent-449 (coordinator); Cairn records d162e001 and b706da93; tracker item AGENTEE-446"
+      "provenance": "owner -> agent-509 -> agent-449 (coordinator); Cairn records d162e001, b706da93 and 9561cd0c; tracker items AGENTEE-446 and AGENTEE-448"
     },
     "FAB": {
       "file": "../../production-capture/sources/fab-profile/fab-profile.json",
       "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632",
       "bytes": 6629,
-      "document": "Captured agent-ee fab profile jlc04161h-7628 (JLCPCB 4-layer, 1.6 mm nominal), finished_thickness_tolerance entry citing sources/jlcpcb-thickness.txt (sha256 fae784b6527c2b2e641fddb26a09b7d93d3ae126c130a84ba2351f9470cbb25e)",
+      "document": "Captured agent-ee fab profile jlc04161h-7628 (JLCPCB 4-layer, 1.6 mm nominal), finished_thickness_tolerance entry citing sources/jlcpcb-thickness.txt (sha256 fae784b6527c2b2e641fddb26a09b7d93d3ae126c130a84ba2351f9470cbb25e) (board-side fabricator tolerance only; not the J1 component-fit basis)",
       "revision": "as_of 2026-10-18",
       "class": "manufacturer_published_capability",
       "provenance": "existing capture, ../../production-capture/SHA256SUMS (./sources/fab-profile/fab-profile.json)"
@@ -152,10 +152,10 @@
     {
       "id": "pcb_thickness",
       "status": "SOURCED",
-      "result": "ACCEPTED by owner decision (2026-10-22): the pod board is the standard JLCPCB four-layer board, 1.6 mm nominal, with JLCPCB's published +/-10% finished-thickness tolerance for nominal >= 1.0 mm (1.44-1.76 mm at 1.6 mm). J1 1-776163-1 is a through-hole soldered header with a mechanical retention pin; its leads may protrude several mm and are trimmed after soldering (seat, tack one pin, re-seat/align, solder the rest, trim excess stickout). K1 titles its recommended layout for a 1.57 mm board; the 0.03 mm nominal difference is not a thickness gate, and interval arithmetic is not an actionable release uncertainty. No special tolerance, TE confirmation, enclosure CAD or owner harness is required for placement, routing or bare-board fab readiness. A narrower requirement needs a concrete source or an observed failure.",
+      "result": "ACCEPTED by owner decision (2026-10-22). Component-side fit (the J1 basis): for ordinary soldered through-hole parts the owner uses at least +/-10% of the manufacturer's recommended nominal board thickness as an inclusive fit-screening default, often wider (AGENTEE-448). For J1, TE's recommended 1.57 mm (K1 sheet 2 layout title) gives 1.413-1.727 mm; the 1.6 mm nominal board is inside (about 1.9% from nominal), so J1 screens as fitting. Explicit manufacturer functional limits would override; outside the band alone is advisory, not a defect. Board side, separately: the pod board is the standard JLCPCB four-layer 1.6 mm board, accepted with JLCPCB's published +/-10% finished-thickness tolerance (1.44-1.76 mm); that fabricator tolerance is not the component-fit basis and the two are not conflated. J1 1-776163-1 is a through-hole soldered header with a mechanical retention pin; its leads are trimmed after soldering (seat, tack one pin, re-seat/align, solder the rest, trim excess stickout). Interval arithmetic between fab and TE tolerances is not an actionable release uncertainty. No special tolerance, TE confirmation, enclosure CAD or owner harness is required for placement, routing or bare-board fab readiness. A narrower requirement needs a concrete source or an observed failure.",
       "evidence": [
-        {"source": "OWNER20261022", "page": 1, "figure": "Decision", "fact": "owner-stated: standard JLCPCB four-layer, nominal 1.6 mm board with its published +/-10% finished-thickness tolerance (1.44-1.76 mm) is ACCEPTED for J1; TE's 1.57 mm recommendation is not a thickness gate; leads are trimmed after soldering; normal footprint, finished-hole/pad, retention and solder-joint checks remain"},
-        {"source": "FAB", "page": 1, "figure": "finished_thickness_tolerance (fab-profile.json lines 138-149)", "fact": "JLCPCB finished-thickness tolerance +/-10% for nominal >= 1.0 mm (percent 10, min_nominal_thickness_mm 1), source sources/jlcpcb-thickness.txt as of 2026-10-18; stackup jlc04161h-7628 nominal_thickness_mm 1.6"},
+        {"source": "OWNER20261022", "page": 1, "figure": "Decision", "fact": "owner-stated: component-side through-hole fit screen of at least +/-10% around the manufacturer's recommended nominal (J1: TE 1.57 mm, band 1.413-1.727 mm, 1.6 mm inside); separately, the standard JLCPCB four-layer 1.6 mm board is accepted with its published finished tolerance as a board-side fact; TE's 1.57 mm is not a thickness gate; leads are trimmed after soldering; normal footprint, finished-hole/pad, retention and solder-joint checks remain"},
+        {"source": "FAB", "page": 1, "figure": "finished_thickness_tolerance (fab-profile.json lines 138-149)", "fact": "JLCPCB finished-thickness tolerance +/-10% for nominal >= 1.0 mm (percent 10, min_nominal_thickness_mm 1), source sources/jlcpcb-thickness.txt as of 2026-10-18; stackup jlc04161h-7628 nominal_thickness_mm 1.6 (board-side fabricator tolerance; context only, NOT the J1 component-fit basis)"},
         {"source": "K1", "page": 2, "figure": "RECOMMENDED P.C. BOARD LAYOUT FOR 1.57 THICK P.C. BOARD", "fact": "layout titled for a 1.57 mm board; the title is not a toleranced dimension and the sheet gives no board-thickness range. K1's title-block general tolerances are not applied to it here"},
         {"source": "K1", "page": 1, "figure": "section A-A", "fact": "(3.0-4.0) reference dimension: exposed contact-tail length from the header seating plane to the tail tips. It is not a projection below the board's underside"}
       ],

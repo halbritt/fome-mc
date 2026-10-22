@@ -68,8 +68,11 @@ This is not complete-board DRC, routing or manufacturing acceptance.
 
 Before adoption: bind the exact connector to the expanded intent and verify all
 board/enclosure clearances. Board thickness is owner-accepted
-([decision, 2026-10-22](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): the standard JLCPCB four-layer 1.6 mm board with
-its published ±10% finished tolerance is accepted, and TE's 1.57 mm layout title
+([decision, 2026-10-22](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): J1 fits by the owner's component-side through-hole rule (at least ±10%
+of TE's recommended 1.57 mm, band 1.413–1.727 mm; the 1.6 mm board is inside,
+AGENTEE-448), and the standard JLCPCB four-layer 1.6 mm board is accepted
+(its published ±10% finished tolerance is a separate board-side fact, not
+the J1 fit basis), and TE's 1.57 mm layout title
 is not a thickness gate. The normal footprint, finished-hole/pad, retention and
 solder-joint checks remain. Panel seal, screw selection/torque and installed cowl
 clearance are verified once the team-designed enclosure exists. The prior
