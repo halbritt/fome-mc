@@ -1,4 +1,4 @@
-"""Regression probes for the blocks layer of pipeline.py (review-pod-capture-j5 H1/H2).
+"""Regression probes for the blocks layer of pipeline.py (review-pod-capture-j5 H1/H2, review-pod-capture-j5b H1-H3).
 
 They execute pipeline.py's own block_obligations, compose_blocks, production_scope_obligations and
 review_obligations (extracted unchanged from its source) on a scratch copy of a repack output. No
@@ -30,6 +30,9 @@ FUNCTIONS = ('block_obligations', 'block_obligation_ids', 'block_limitation_prob
              'production_scope_obligations', 'review_obligations')
 BLOCKS = ('pre-6v3', 'buck-3v3')
 OBLIGATIONS = [f'{b}-{kind}' for b in BLOCKS for kind in ('board-region-copper-native-check', 'witness-pose-equivalence')]
+MEANING_MODES = ('meaning', 'source-hash', 'duplicate-resolved', 'resolved-in-place', 'statement',
+                 'id-mentioned-elsewhere', 'reserved-prefix-elsewhere', 'reduced-set')
+BLOCK_ID_MENTION = 'buck-3v3-witness-pose-equivalence: closed by the generic candidate (qualified).'
 
 
 def sha(path):
@@ -215,7 +218,7 @@ class Probes(unittest.TestCase):
         for block in BLOCKS:
             repack['inputs'][f'{block}.v4.entry.json']['sha256'] = sha(self.root / f'{block}.v4.entry.json')
         dump(self.root / 'repack.json', repack)
-        self.assertIn('is not the pod-', self.refuses('swapped and rehashed'))
+        self.assertIn('captured iter8n entry', self.refuses('swapped and rehashed'))
 
     def test_library_entry_source_elsewhere_refuses(self):
         self.edit_record(lambda d: d['blocks'][0]['library_entry'].update(source='/elsewhere/lib/pre-6v3.v4.entry.json'))
@@ -268,15 +271,20 @@ class Probes(unittest.TestCase):
                     env['production_scope_obligations']()
 
     def test_compose_blocks_uses_expected_set(self):
-        # Even if the verified record object were altered after verification, composition follows the expected set.
+        # Composition renders the canonical lines of the expected set; the record's own text is never used.
         env = self.accepted()
+        nominal = env['compose_blocks']({'limitations': [], 'schematic': 's', 'board': 'b'})
         env['obligation_doc']['blocks'][0]['obligations'].pop()
+        env['obligation_doc']['blocks'][1]['obligations'][1]['statement'] = 'Witness pose equivalent.'
+        self.assertEqual(env['compose_blocks']({'limitations': [], 'schematic': 's', 'board': 'b'}), nominal)
+        self.assertEqual(nominal['limitations'], list(env['obligation_record']['limitations'].values()))
+        env['obligation_record']['limitations'] = {}
         with self.assertRaises(ValueError):
             env['compose_blocks']({'limitations': [], 'schematic': 's', 'board': 'b'})
 
     # The candidate and actual-packet guard, on a stub dry run whose packet loses or repeats one line.
     def review(self, change_packet=None, change_candidate=None):
-        env = self.accepted()
+        env = self.env_for_lines = self.accepted()
         out, planning = Path(self.tmp.name) / 'out', Path(self.tmp.name) / 'planning'
         run, probe = out / 'prepared-probe-scope/dry-run', planning / 'probe'
         for path in (run / 'inputs/composition', probe, planning / 'composition'):
@@ -319,6 +327,193 @@ class Probes(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.review(**change)
 
+
+    # review-pod-capture-j5b H1: complete source-bound meaning, digest and disposition, through one validator.
+    def tampered_lines(self, env, mode, lines):
+        """The review's reproductions, applied to the last block line (or appended) of a list of lines."""
+        at = max(i for i, l in enumerate(lines) if l.startswith('POD-DERIVED-BLOCK-'))
+        line = lines[at]
+        if mode == 'meaning':
+            lines[at] = line.split('unresolved; ')[0] + 'unresolved; irrelevant): FULLY QUALIFIED'
+        elif mode == 'source-hash':
+            lines[at] = line.replace(env['obligation_record']['sha256'], '0' * 64)
+        elif mode == 'duplicate-resolved':
+            lines.append(line.replace('NOT CHECKED (unresolved;', 'RESOLVED (qualified;'))
+        elif mode == 'resolved-in-place':
+            lines[at] = line.replace('NOT CHECKED (unresolved;', 'RESOLVED (qualified;')
+        elif mode == 'statement':
+            lines[at] = line.replace('is not established', 'is established')
+        elif mode == 'id-mentioned-elsewhere':
+            lines.append(BLOCK_ID_MENTION)
+        elif mode == 'reserved-prefix-elsewhere':
+            lines.append('Note: pod-derived-block limitations waived (qualified).')
+        elif mode == 'reduced-set':  # H2's erased block, as the three consumers would see it
+            lines[:] = [l for l in lines if 'PRE-6V3' not in l]
+        else:
+            raise AssertionError(mode)
+
+    def test_production_scope_source_bound_meaning(self):
+        for mode in MEANING_MODES:
+            with self.subTest(mode=mode):
+                env = self.accepted()
+                self.tampered_lines(env, mode, env['scope']['limitations'])
+                with self.assertRaises(ValueError):
+                    env['production_scope_obligations']()
+
+    def test_compose_rejects_inherited_block_lines(self):
+        env = self.accepted()
+        canonical = list(env['obligation_record']['limitations'].values())
+        resolved = canonical[0].replace('NOT CHECKED (unresolved;', 'RESOLVED (qualified;')
+        for name, inherited in {'duplicate-resolved': [resolved], 'canonical-duplicate': [canonical[1]],
+                                'mention': [BLOCK_ID_MENTION]}.items():
+            with self.subTest(inherited=name):
+                with self.assertRaises(ValueError):
+                    env['compose_blocks']({'limitations': inherited, 'schematic': 's', 'board': 'b'})
+
+    def test_review_packet_and_candidate_source_bound_meaning(self):
+        for mode in MEANING_MODES:
+            for where in ('change_packet', 'change_candidate'):
+                with self.subTest(mode=mode, consumer=where):
+                    with self.assertRaises(ValueError):
+                        self.review(**{where: lambda lines, env=None, mode=mode: self.tampered_lines(
+                            self.env_for_lines, mode, lines)})
+
+    def test_validator_reports_each_problem(self):
+        env = self.accepted()
+        check = env['block_limitation_problems']
+        lines = list(env['scope']['limitations'])
+        self.assertTrue(check(lines)['ok'])
+        changed = [l.replace(env['obligation_record']['sha256'], '0' * 64) if 'WITNESS' in l else l for l in lines]
+        self.assertEqual(check(changed)['changed'], [i for i in OBLIGATIONS if 'pose' in i])
+        self.assertEqual(check(lines + [lines[-1].replace('NOT CHECKED', 'RESOLVED')])['duplicate'], [OBLIGATIONS[-1]])
+        self.assertEqual(check([l for l in lines if 'PRE-6V3' not in l])['missing'], OBLIGATIONS[:2])
+        self.assertFalse(check(lines + ['POD-DERIVED-BLOCK-PRE-6V3-WAIVED: x'])['ok'])
+        env['obligation_record']['limitations'] = {}
+        self.assertFalse(check([])['ok'])
+
+    # review-pod-capture-j5b H2: unknown, malformed, missing-status, failed or claimed-materialized output refuses.
+    def relabel(self, output, rc=None):
+        """The review's prepare_unknown.py: pre-6v3 relabelled as packed from its library entry, its obligations and
+        repack.json lists removed and every surviving digest rebound; the library output replaced."""
+        self.edit_record(lambda d: d.update(blocks=[b for b in d['blocks'] if b['block'] != 'pre-6v3']))
+        repack = load(self.root / 'repack.json')
+        repack['packed']['pre-6v3']['path'] = 'library entry'
+        if rc is not None:
+            repack['packed']['pre-6v3'].update(rc=rc, stdout=output.strip()[-300:])
+            repack['packed']['pre-6v3'].pop('library', None)
+        dump(self.root / 'repack.json', repack)
+        (self.root / 'logs/pre-6v3.library.out').write_text(output)
+
+    def test_unknown_library_output_relabelled_refuses(self):
+        self.relabel('not JSON; missing execution result')  # the original nonzero library rc is kept
+        self.assertIn('not a verified refusal', self.refuses('non-JSON output relabelled as library entry'))
+
+    def test_library_output_variants_refuse(self):
+        claimed = json.dumps({'status': 'materialized', 'out': 'cand/pre-6v3.candidate.json', 'id': 'pod-pre-6v3',
+                              'version': 4, 'block': 'pre-6v3'})
+        variants = {'empty': ('', None), 'json-list': ('[]', None), 'missing-status': ('{"block": "pre-6v3"}', None),
+                    'failed': ('{"status": "failed", "block": "pre-6v3"}', None),
+                    'materialized-claim-rc0': (claimed, 0), 'materialized-claim-rc1': (claimed, 1)}
+        for name, (output, rc) in variants.items():
+            with self.subTest(output=name):
+                self.reset()
+                self.relabel(output, rc)
+                self.refuses(name)
+        with self.subTest(output='unrelabelled-unknown'):
+            self.reset()
+            (self.root / 'logs/buck-3v3.library.out').write_text('Traceback (most recent call last):\n')
+            self.refuses('unknown output, record untouched')
+
+    def test_three_consumers_refuse_the_reduced_set(self):
+        # Whatever produced it, a scope, candidate or packet without pre-6v3's two obligations refuses.
+        env = self.accepted()
+        self.tampered_lines(env, 'reduced-set', env['scope']['limitations'])
+        with self.assertRaises(ValueError):
+            env['production_scope_obligations']()
+        for where in ('change_packet', 'change_candidate'):
+            with self.subTest(consumer=where):
+                with self.assertRaises(ValueError):
+                    self.review(**{where: lambda lines: self.tampered_lines(self.env_for_lines, 'reduced-set', lines)})
+
+    # review-pod-capture-j5b H3: candidate schema/block identity, and the seed by its captured bytes.
+    def test_swapped_candidates_rebound_refuses(self):
+        a, b = self.root / 'cand/pre-6v3.candidate.json', self.root / 'cand/buck-3v3.candidate.json'
+        x, y = a.read_bytes(), b.read_bytes()
+        a.write_bytes(y)
+        b.write_bytes(x)
+        self.rebind_candidates()
+        self.assertIn('block_id buck-3v3', self.refuses('candidates swapped, digests rebound'))
+
+    def rebind_candidates(self):
+        def rehash(d):
+            for block in d['blocks']:
+                block['generic_candidate']['sha256'] = sha(self.root / block['generic_candidate']['path'])
+        doc = load(self.root / 'block-obligations.json')
+        rehash(doc)
+        dump(self.root / 'block-obligations.json', doc)
+        repack = load(self.root / 'repack.json')
+        for block in BLOCKS:
+            repack['candidates'][block]['sha256'] = sha(self.root / f'cand/{block}.candidate.json')
+        dump(self.root / 'repack.json', repack)
+        rebind(self.root)
+
+    def test_candidate_identity_refuses(self):
+        def block_id(c): c['block_id'] = 'buck-3v3'
+        def schema(c): c['schema'] = 'agent-ee.block-candidate/1'
+        def reference(c): c['members'] = [m for m in c['members'] if m['reference'] != 'U5']
+        def allocation(c): c['sources']['allocation_sha256'] = '0' * 64
+        def netlist(c): c['sources']['inventory_sha256'] = '0' * 64
+        def not_object(c): c.clear()
+        for change in (block_id, schema, reference, allocation, netlist, not_object):
+            with self.subTest(change=change.__name__):
+                self.reset()
+                path = self.root / 'cand/pre-6v3.candidate.json'
+                doc = load(path)
+                change(doc)
+                dump(path, doc)
+                self.rebind_candidates()
+                self.refuses(change.__name__)
+
+    def test_changed_retained_seed_refuses(self):
+        path = self.root / 'seed.kicad_pcb'
+        path.write_bytes(path.read_bytes() + b'\nTAMPER')
+        self.assertIn('captured iter8n seed', self.refuses('seed bytes changed, every digest untouched'))
+
+    def test_changed_retained_seed_rehashed_everywhere_refuses(self):
+        # The seed changed and every supplied digest (repack.json, record, candidates) rewritten to match.
+        path = self.root / 'seed.kicad_pcb'
+        path.write_bytes(path.read_bytes() + b'\nTAMPER')
+        new = sha(path)
+        for c in BLOCKS:
+            cand = self.root / f'cand/{c}.candidate.json'
+            doc = load(cand)
+            doc['sources']['board_sha256'] = new
+            dump(cand, doc)
+        def seed(d):
+            d['seed_board_sha256'] = new
+            for block in d['blocks']:
+                block['generic_candidate']['board_sha256'] = new
+        self.edit_record(seed, consistent=False)
+        repack = load(self.root / 'repack.json')
+        repack['inputs']['seed.kicad_pcb']['sha256'] = new
+        for block in repack['candidates'].values():
+            block['board_sha256'] = new
+        dump(self.root / 'repack.json', repack)
+        self.rebind_candidates()
+        self.assertIn('captured iter8n seed', self.refuses('seed changed and rehashed everywhere'))
+
+    def test_missing_retained_seed_refuses(self):
+        (self.root / 'seed.kicad_pcb').unlink()
+        self.assertIn('seed board is missing', self.refuses('seed removed'))
+
+    def test_repack_inputs_not_captured_refuse(self):
+        for name in ('native.xml', 'allocation.json', 'seed.kicad_pcb'):
+            with self.subTest(input=name):
+                self.reset()
+                repack = load(self.root / 'repack.json')
+                repack['inputs'][name]['sha256'] = '0' * 64
+                dump(self.root / 'repack.json', repack)
+                self.refuses(name)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

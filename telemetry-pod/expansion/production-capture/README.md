@@ -23,7 +23,9 @@ mount (the export root, the old declaration, fails as the control). H3: the libr
 source-bound obligations through candidate provenance, both scopes and the actual review packet.
 H2 waits on agent-ee AGENTEE-197u. **j5b** (review-pod-capture-j5 HOLD): the obligation
 identities are derived from the verified library refusals, and the cited library entry is verified by
-bytes (Blocks layer, below). Assembly: a fresh read-only JLC capture of all 81 BOM LCSC ids
+bytes. **j5c** (review-pod-capture-j5b HOLD): one validator compares every block limitation with
+its canonical source-bound line; any library output other than a verified refusal refuses; the
+candidate's block identity and the seed board's captured bytes are verified (Blocks layer, below). Assembly: a fresh read-only JLC capture of all 81 BOM LCSC ids
 (2026-10-22) and the J1 hand-fit source chain (`assembly/hand-fit-policy.json`), which agent-ee
 `a9dac2f3` cannot express (a narrow agent-ee change is reported separately). POD-AC-5 stays NOT
 CHECKED.
@@ -104,11 +106,12 @@ each candidate (AGENTEE-256). This connects the provenance; it does not qualify 
 
 ## Phase B (`pipeline.py`), on a fresh copy of the capture
 
-`evidence/pipeline-a9dac2f-j5b-image.json` holds the exact results of this version, run in the pinned
+`evidence/pipeline-a9dac2f-j5c-image.json` holds the exact results of this version, run in the pinned
 agent-ee CI image (`ae-ci-exec` on an a9dac2f3 checkout, network none; container paths under
 `/opt/agent-ee/build`) on the default repack. Its 28 stage statuses equal j5's host run
-`evidence/pipeline-a9dac2f-j5.json` (21 accepted, 7 refused); the blocks record now also names the
-verified seed board, candidate policy and library entry hashes and the expected obligations. Each
+`evidence/pipeline-a9dac2f-j5.json` and j5b's image run `evidence/pipeline-a9dac2f-j5b-image.json` (21
+accepted, 7 refused); the blocks record names the verified seed board, candidate policy and library entry
+hashes, the expected obligations and (j5c) their canonical limitation lines. Each
 records each stage verbatim, including every refusal. `evidence/pipeline-a9dac2f-bounded.json` (j4) and
 `evidence/pipeline-a9dac2f.json` (j3) are earlier runs, kept as history; their producer
 declarations mount the export root, which cannot import `agent_ee` (review H1).
@@ -156,23 +159,38 @@ pipeline files are the run on agent-ee 014b349.
    incomplete for the same reason.
 3. **Blocks layer.** `block-obligations.json` from the repack (REPACK_DIR, default
    `evidence/repack-a9dac2f-j5/`) is verified before it is copied or used (j5b, review-pod-capture-j5
-   H1/H2). The expected obligations are not read from the record: the library-refused block set comes
-   from the retained `logs/<block>.library.out` refusals (each naming its block, its tail equal to
-   repack.json's) and must equal repack.json's generic-after-refusal set. Each refused block must carry
+   H1/H2; j5c, review-pod-capture-j5b H1-H3). The expected obligations are not read from the record.
+   Both iter8n library blocks are expected: their entries are pinned by bytes to the iter8n capture,
+   and both are `board-region/1`, which agent-ee `a9dac2f3` never materializes (`copper_unknown`). Each
+   retained `logs/<block>.library.out` must be a JSON refusal naming its block, its tail equal to
+   repack.json's for a generic pack with a nonzero rc. Unknown, non-JSON, missing-status, failed or
+   materialized output refuses, whatever path label repack.json gives, so no output can drop a block
+   (a future engine that materializes an entry needs its own verified success path). Each refused block must carry
    exactly `<block>-board-region-copper-native-check` and `<block>-witness-pose-equivalence`, unresolved,
    rebuilt from that refusal as `repack.py` writes them; a missing, duplicate, substituted, changed or
-   empty obligation, block or status refuses. The library entry is read at `<block>.v4.entry.json` and its
-   bytes must match the record and repack.json's input hash and name `pod-<block>`, from the iter8n
-   `lib/` of the recorded seed; the refusal record, generic candidate (bytes, status, seed board, policy)
-   and repack.json's record hash and lists are checked the same way, and the candidates' policy must be
-   the derived request policy's identity. Missing, changed or swapped entries refuse.
-   `obligation_probes.py` holds the regression probes (19 tests). The record is then copied to
+   empty obligation, block or status refuses. The retained `seed.kicad_pcb` is read and its bytes must
+   be the captured iter8n seed `0365485e…` (iter8n `SHA256SUMS`); the default repack retains a verified
+   copy, and a missing or changed seed refuses even when every recorded digest is rewritten to match.
+   repack.json's seed, netlist and allocation inputs must be the captured ones. The library entry is read
+   at `<block>.v4.entry.json`. Its bytes must be the captured iter8n entry and match the record and
+   repack.json's input hash. It must be the `pod-<block>` `board-region/1` entry, from the iter8n `lib/` of
+   the recorded seed. The refusal record and repack.json's record hash and lists are checked the same way.
+   The generic candidate is checked by bytes and status, and must be an `agent-ee.block-candidate/2`
+   whose `block_id` is the block and whose members hold its library reference. It must bind the captured
+   seed board, allocation and netlist and repack.json's policy. The candidates' policy must be the
+   derived request policy's identity. Missing, changed or swapped entries or candidates refuse.
+   `obligation_probes.py` holds the regression probes (32 tests). The record is then copied to
    `composition/block-obligations.json` and declared as a scope `packet_inputs` entry. Each expected
-   obligation becomes a `POD-DERIVED-BLOCK-…: NOT CHECKED
-   (unresolved; …)` limitation on both scopes. Stage `review.packet_obligations probe scope` builds the
+   obligation becomes its canonical `POD-DERIVED-BLOCK-…: NOT CHECKED (unresolved; <record> sha256
+   <digest>): <statement> …` limitation on both scopes, rendered from the rebuilt obligation and carried in
+   the verified record (`limitations`). One validator, `block_limitation_problems`, is used by composition
+   and by every consumer. It counts every line naming a reserved obligation id, in any case and with any
+   status prefix, as an occurrence. Each expected obligation must occur exactly once, as its canonical
+   line. Any other `POD-DERIVED-BLOCK` line refuses, so a changed meaning, record digest or disposition, a
+   contradictory duplicate (also one inherited from the base scope) and an extra line all refuse. Stage
+   `review.packet_obligations probe scope` builds the
    actual packet with agent-ee's `reviewers.build_packet` over the prepared dry run and refuses unless
-   each expected limitation exactly once (no other block limitation, in the packet and the candidate
-   scope), `copper_unknown`, the record (byte-equal, cited and excerpted) and the
+   the validator accepts the packet and the candidate scope, `copper_unknown`, the record (byte-equal, cited and excerpted) and the
    174-entry ledger are present, and the driver's campaign scope differs from the probe scope only in
    its own `inputs`/`mutable_inputs`. Stage `scope.block_obligations production scope` checks the same
    expected set, exactly once each, on the production scope, which still cannot be prepared.
