@@ -4,19 +4,37 @@ real pod_driver dry run.
 
 Every stage runs the owned agent-ee producer on a fresh copy of the capture root; a refusal is
 kept verbatim and never substituted. The production scope is composed here from the compiled
-Rev-3 scope: a scope envelope declaration over composition/envelope.json with one check per
-derived envelope obligation (connector-edge/1 for each fixed footprint, outline-containment/1
-carrying the declared overhangs to the packer) and the electrical-locality/1 check over the
-captured pad obligations the packing policy embeds. The producers' own obligation coverage and
-validate_configuration grade that composition. One clearly labelled DIAGNOSTIC runs on a scratch
-copy only (it is never an input): the J3 back-side transform. No placement, routing, campaign or
-model runs here.
+Rev-3 scope in two layers:
+
+- assembly: one assembly_readiness check over a captured JLC stock capture, the writer-owned
+  deviations and the passive ratings, so the binding-fill --ratings receipt reaches the
+  coordinator rating_provenance (AGENTEE-256). Captured bindings are not assembly qualification:
+  the stock coverage and age, and the J1 hand-fit citation, are graded unknowns kept explicit;
+- envelope: a scope envelope declaration over composition/envelope.json with one check per
+  derived envelope obligation (connector-edge/1 for each fixed footprint, outline-containment/1
+  carrying the declared overhangs to the packer) and the electrical-locality/1 check over the
+  captured pad obligations the packing policy embeds.
+
+The production scope is both layers. The PREPARATION PROBE scope is the compiled scope plus the
+assembly layer only; it is never the production scope and exists to show what preparation does
+without the envelope layer, which still refuses on obligations no agent-ee criterion binds.
+
+The plan of record carries the authorized bounded budget (max_iterations 2, placement timeout_s
+900-1500 s; ROUTE.md R2). The pod driver at this agent-ee pin refuses it; that refusal is kept. The
+probe plan omits the budget fields and therefore prepares with the driver defaults; its campaign
+is checked against the authorized budget, refused, and set aside as not launchable.
+
+One clearly labelled DIAGNOSTIC runs on a scratch copy only (it is never an input): the J3
+back-side transform. No placement, routing, campaign or model runs here.
 
 Usage (fome-mc root, system python with pcbnew):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/pipeline.py \
-      AGENT_EE_EXPORT ROUTER_CHECKOUT SCOPE_DIR CAPTURE_ROOT NEW_OUT_DIR
-SCOPE_DIR is a compiled Rev-3 scope directory (scope.json plus requirements-map/). Set
-AGENT_EE_TOOL_SOURCE_CACHE to an absolute directory you own.
+      AGENT_EE_EXPORT ROUTER_CHECKOUT SCOPE_DIR CAPTURE_ROOT NEW_OUT_DIR [STOCK_CAPTURE_DIR]
+SCOPE_DIR is a compiled Rev-3 scope directory (scope.json plus requirements-map/).
+STOCK_CAPTURE_DIR is an agent-ee.jlc-catalog/1 producer capture (catalog.json plus responses/);
+it defaults to the retained v9 pilot capture sources/pilot-assembly-stock. A day-of-generation
+capture (POD-AC-5) replaces it at launch. Set AGENT_EE_TOOL_SOURCE_CACHE to an absolute
+directory you own.
 """
 import copy
 import hashlib
@@ -27,12 +45,13 @@ import traceback
 from pathlib import Path
 
 A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
+HERE = Path(__file__).resolve().parent
+STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/pilot-assembly-stock'
 sys.path[:0] = [str(A / 'src')]
 from agent_ee import (add_planes, binding_fill, board_envelope, placement_adapter, pod_driver,  # noqa: E402
                       routing_adapter, scaffold, schematic_stage)
 from agent_ee.storage import identity  # noqa: E402
 
-HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 X = ROOT / 'telemetry-pod/expansion'
 COMPOSED = HERE / 'composition'
@@ -43,6 +62,11 @@ LOCALITY = 'telemetry-pod/expansion/electrical-locality/pad-obligations/electric
 PROFILE = 'sources/fab-profile.json'
 CONSTRAINTS = 'telemetry-pod/expansion/design-rules/constraints.json'
 CONTAINMENT_LOCATOR = 'D-PCB-13 microSD card envelope in the J3 courtyard (2026-10-21)'
+STOCK_AT = 'assembly-stock'
+# The bounded first run (agent-509 ruling 2026-10-22; ROUTE.md R2): two campaign iterations,
+# iteration 2 one placement turn with the placement adapter timeout_s between 900 and 1500 s.
+AUTHORIZED = {'max_iterations': 2, 'placement_timeout_s': [900, 1500]}
+PLACEMENT_TIMEOUT_S = 1500
 
 
 def sha(path):
@@ -78,6 +102,7 @@ project.mkdir()
 shutil.copyfile(X / 'design-rules/board-setup.kicad_pro', project / 'telemetry-pod.kicad_pro')
 shutil.copyfile(X / 'design-rules/telemetry-pod.kicad_dru', project / 'telemetry-pod.kicad_dru')
 shutil.copytree(SCOPE_DIR / 'requirements-map', planning / 'requirements-map')
+shutil.copytree(STOCK, planning / STOCK_AT, symlinks=False)
 compiled = json.loads((SCOPE_DIR / 'scope.json').read_text())
 writer, bound = 'composition/intent.writer.json', 'composition/intent.bound.json'
 inputs = {k: 'composition/' + v for k, v in (
@@ -91,7 +116,56 @@ facts = read(inputs['facts'])['facts']
 rating_dependencies = sorted({inputs['facts'], inputs['selection'], *(f['source']['path'] for f in facts)})
 
 
-# 0. The production scope: compiled Rev-3 scope + envelope declaration, obligation checks and locality.
+# 0a. The assembly layer: one assembly_readiness check, so --ratings reaches rating_provenance.
+def stock_coverage():
+    """What the captured stock can and cannot show for the bound BOM; nothing here is graded as a pass."""
+    from agent_ee.jlc_stock_capture import validate_capture
+    doc = read(STOCK_AT + '/catalog.json')
+    info = validate_capture(doc, lambda rel: (planning / STOCK_AT / rel).read_bytes())
+    lcsc = {p['lcsc'] for p in read(inputs['parts'])['parts'] if p.get('lcsc')}
+    observed = set(doc['parts']) | set(info['not_found'])
+    deviated = sorted(d['original']['lcsc'] for d in read(inputs['deviations'])['deviations'])
+    key = lambda c: int(c[1:])  # noqa: E731
+    return {'capture': {'path': STOCK_AT + '/catalog.json', 'sha256': sha(planning / STOCK_AT / 'catalog.json'),
+                        'source': STOCK.relative_to(ROOT).as_posix() if STOCK.is_relative_to(ROOT) else str(STOCK), 'as_of': info['as_of'], 'completed_at': info['completed_at'],
+                        'requested': len(info['requested']), 'not_found': info['not_found'], 'failed': info['failed']},
+            'bom_lcsc': len(lcsc), 'observed': len(lcsc & observed),
+            'unobserved': sorted(lcsc - observed, key=key), 'outside_bom': sorted(observed - lcsc, key=key),
+            'deviated': deviated}
+
+
+def compose_assembly(base):
+    """Add one assembly_readiness check (verification stage) and its POD-AC-5-derived requirement."""
+    record = next(r for r in read('requirements-map/spec-record.json')['requirements'] if r['id'] == 'POD-AC-5')
+    check = dict(id='assembly', kind='assembly_readiness', stage='verification',
+                 params=dict(catalog=STOCK_AT + '/catalog.json', boards=1, deviations=inputs['deviations'],
+                             require_passive_ratings=True, max_age_hours=24))
+    requirement = {'id': 'POD-DERIVED-AC-5-ASSEMBLY', 'intent': 'acceptance',
+                   'statement': ('Purchased BOM components carry LCSC binding and BOM properties, captured passive '
+                                 'ratings with the binding-fill receipt as rating provenance, and JLC stock captured '
+                                 'within 24 hours of generation for one board (POD-AC-5 "on the day of generation"). '
+                                 'Hand-fit exclusions and owner obligations stay separate.'),
+                   'source': {'path': 'requirements-map/spec.md', 'locator': json.dumps(record['locator'], sort_keys=True)},
+                   'checks': ['assembly']}
+    if 'intent' not in base['baseline']['requirements'][0]:
+        requirement.pop('intent')
+    done = base['generation']['done_check']
+    checks = list(base['checks'])
+    checks.insert(next(i for i, c in enumerate(checks) if c['id'] == done), check)
+    composed = copy.deepcopy(base)
+    composed['checks'] = checks
+    composed['baseline']['requirements'] = [*base['baseline']['requirements'], requirement]
+    composed['limitations'] = [*base['limitations'],
+        'Composed by production-capture/pipeline.py: assembly_readiness over ' + STOCK_AT + '/catalog.json (the '
+        'captured stock named in scope-composition.json). It carries the binding-fill --ratings receipt into '
+        'rating_provenance. The stock it names is older than the 24-hour day-of-generation bound and does not '
+        'observe every BOM LCSC id, and the J1 owner_hand_fit deviation has no scope hand_fit_policy citation '
+        '(POD-AC-5 names "the AMPSEAL header", not the exact MPN): until a day-of-generation capture and that '
+        'citation exist this check cannot pass. POD-AC-5 remains NOT CHECKED.']
+    return composed
+
+
+# 0b. The production scope: assembly layer + envelope declaration, obligation checks and locality.
 def compose_scope(base):
     """Add the scope envelope, one check per derived obligation, overhang containment and locality."""
     files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
@@ -175,7 +249,14 @@ def write_scope(root, base):
     return scope_
 
 
-composed, derivation, coverage_inputs = compose_scope(compiled)
+coverage = stock_coverage()
+assembled = compose_assembly(compiled)
+composed, derivation, coverage_inputs = compose_scope(assembled)
+derivation = {**derivation, 'schema': 'pod-capture.scope-composition/2',
+              'layers': ['assembly', 'envelope'], 'added_checks': ['assembly', *derivation['added_checks']],
+              'added_requirements': ['POD-DERIVED-AC-5-ASSEMBLY', *derivation['added_requirements']],
+              'assembly': {'check': next(c for c in assembled['checks'] if c['id'] == 'assembly'),
+                           'stock': coverage}}
 (planning / 'composition/scope-composition.json').write_text(text(derivation))
 scope = write_scope(planning, composed)
 
@@ -252,8 +333,8 @@ def production_content(scaffold_out, work):
     return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
             'fixed': sorted(f.GetReference() for f in board.GetFootprints()
                             if f.GetReference() in {'J1', 'J2', 'J3', 'U1', 'U2', 'H1', 'H2', 'H3', 'H4'})}
-stage('scaffold.scaffold composed scope', lambda: run_scaffold(planning, OUT / 'scaffold'))
-stage('scaffold.write_envelope_content composed scope', lambda: production_content(OUT / 'scaffold', OUT / 'content'))
+stage('scaffold.scaffold production scope', lambda: run_scaffold(planning, OUT / 'scaffold'))
+stage('scaffold.write_envelope_content production scope', lambda: production_content(OUT / 'scaffold', OUT / 'content'))
 stage('scaffold.content_step', lambda: steps.update(content=scaffold.content_step(
     A, inputs['envelope'], inputs['parts'], BOARD, intent=writer, layout=inputs['layout'],
     antenna_facts=inputs['antenna'], captured_rule_areas=inputs['retention'])) or None)
@@ -291,13 +372,13 @@ def engine_g1():
                    'candidates': ['composition/blocks/adc.candidate.json']}}) and 'declaration shape accepted (paths not captured)'
 stage('engine.placement_adapter.blocks_request (AGENTEE-439 G1)', engine_g1)
 
-# 5. The plan and the real dry run.
+# 5. The plans and the real dry run.
 profile = json.loads((A / 'profiles/pod-review.json').read_text())
 iter7 = json.loads(ITER7_CAMPAIGN.read_text())
 budget = int(iter7['settings']['per_run'][iter7['settings']['per_run'].index('--budget') + 1])
 review_budget = sum(r['timeout_s'] for r in profile['reviewers']) + profile['adjudicator']['timeout_s']
 adapter = {'schema': 'agent-ee.placement-adapter/1', 'helper': 'agent-ee.placer/1', 'policy': inputs['policy'],
-           'fixed_footprints': [], 'timeout_s': 1500}
+           'fixed_footprints': [], 'timeout_s': PLACEMENT_TIMEOUT_S}
 route = {'schema': 'agent-ee.routing-adapter/1', 'project': 'project', 'board': 'telemetry-pod.kicad_pcb',
          'schematic': 'telemetry-pod.kicad_sch', 'name': 'telemetry-pod', 'label': 'campaign',
          'checkout': str(R), 'budget': budget, 'timeout': 2 * budget + 300}
@@ -305,43 +386,95 @@ stage('routing_adapter.preflight', lambda: (lambda p: p['problems'] and (_ for _
     ValueError('; '.join(p['problems']))) or {k: p[k] for k in ('commit', 'pin')})(routing_adapter.preflight(R)))
 implementation = [s for s in (steps.get('fill'), *(steps.get('schematic', {}).get('implementation_steps', [])),
                               steps.get('planes')) if s is not None]
-plan = dict(schema=pod_driver.SCHEMA, scope='scope.json', envelope=inputs['envelope'], parts=inputs['parts'],
-            spec='requirements-map/spec.md', spec_record='requirements-map/spec-record.json',
-            writer_inputs={'intent': writer, 'deviations': inputs['deviations']}, implementation_steps=implementation,
-            placement_adapter=adapter, routing_adapter=route,
-            envelope_content={'intent': writer, 'layout': inputs['layout'], 'antenna_facts': inputs['antenna'],
-                              'captured_rule_areas': inputs['retention']},
-            review_profile=profile, implementation=profile['adjudicator'],
-            routing_budget_s=budget, review_budget_s=review_budget)
-stage('pod_driver.validate_plan', lambda: dict(zip(('max_iterations', 'max_seconds'), pod_driver.validate_plan(plan))))
+# The probe plan carries no budget fields, so the driver applies its own defaults (max_iterations 10;
+# max_seconds its minimum, two routing receipts plus review). It is a preparation probe only.
+probe_plan = dict(schema=pod_driver.SCHEMA, scope='scope.json', envelope=inputs['envelope'], parts=inputs['parts'],
+                  spec='requirements-map/spec.md', spec_record='requirements-map/spec-record.json',
+                  writer_inputs={'intent': writer, 'deviations': inputs['deviations']},
+                  implementation_steps=implementation, placement_adapter=adapter, routing_adapter=route,
+                  envelope_content={'intent': writer, 'layout': inputs['layout'], 'antenna_facts': inputs['antenna'],
+                                    'captured_rule_areas': inputs['retention']},
+                  review_profile=profile, implementation=profile['adjudicator'],
+                  routing_budget_s=budget, review_budget_s=review_budget)
+# The plan of record carries the authorized bound explicitly; it is never raised to the driver floor.
+plan = {**probe_plan, 'max_iterations': AUTHORIZED['max_iterations']}
+if not AUTHORIZED['placement_timeout_s'][0] <= adapter['timeout_s'] <= AUTHORIZED['placement_timeout_s'][1]:
+    raise SystemExit('placement timeout_s outside the authorized 900-1500 s')
 (planning / 'plan.json').write_text(text(plan))
-stage('pod_driver.build(dry_run) composed scope', lambda: {k: v for k, v in pod_driver.build(
+(planning / 'plan.probe-driver-defaults.json').write_text(text(probe_plan))
+stage('pod_driver.validate_plan bounded plan', lambda: dict(zip(('max_iterations', 'max_seconds'),
+                                                                pod_driver.validate_plan(plan))))
+stage('pod_driver.validate_plan probe plan (driver defaults)', lambda: dict(zip(
+    ('max_iterations', 'max_seconds'), pod_driver.validate_plan(probe_plan))))
+stage('pod_driver.build(dry_run) production scope, bounded plan', lambda: {k: v for k, v in pod_driver.build(
     planning / 'plan.json', OUT / 'prepared', dry_run=True).items() if k in ('status', 'done')})
+stage('pod_driver.build(dry_run) production scope, probe plan', lambda: {k: v for k, v in pod_driver.build(
+    planning / 'plan.probe-driver-defaults.json', OUT / 'prepared-production-probe-plan', dry_run=True).items()
+    if k in ('status', 'done')})
 
-# The same plan on the compiled scope as-is (no envelope declaration, no added checks): shows which
-# refusal the composition itself adds. Its own copy; never an input to the composed run.
-plain = OUT / 'planning-compiled-scope'
-shutil.copytree(planning, plain)
-(plain / 'composition/scope-composition.json').unlink()
-write_scope(plain, compiled)
-(plain / 'plan.json').write_text(text(plan))
-stage('scaffold.scaffold compiled scope', lambda: run_scaffold(plain, OUT / 'scaffold-compiled-scope'))
-stage('scaffold.write_envelope_content compiled scope', lambda: production_content(
-    OUT / 'scaffold-compiled-scope', OUT / 'content-compiled-scope'))
-stage('pod_driver.build(dry_run) compiled scope', lambda: {k: v for k, v in pod_driver.build(
-    plain / 'plan.json', OUT / 'prepared-compiled-scope', dry_run=True).items() if k in ('status', 'done')})
+
+def rating_provenance():
+    """Which scope lets pod_driver hand the binding-fill --ratings receipt to assembly_readiness."""
+    from agent_ee import stage_receipts
+    normalized = [stage_receipts.validate_step(s) for s in implementation]
+    return {'production scope': pod_driver._rating_provenance(scope, normalized),
+            'probe scope (compiled + assembly)': pod_driver._rating_provenance(assembled, normalized),
+            'compiled scope as-is': pod_driver._rating_provenance(compiled, normalized),
+            'binding_fill_ratings_step': any('--ratings' in s['argv'] for s in normalized if s['step'] == 'binding-fill')}
+stage('pod_driver.rating_provenance', rating_provenance)
+
+# PREPARATION PROBE: the compiled scope plus the assembly layer only (no envelope layer). It shows
+# which refusal the envelope layer adds and lets preparation run; it is NOT the production scope.
+# Its own copy; never an input to the production run.
+probe = OUT / 'planning-probe-scope'
+shutil.copytree(planning, probe)
+(probe / 'composition/scope-composition.json').unlink()
+write_scope(probe, assembled)
+stage('scaffold.scaffold probe scope', lambda: run_scaffold(probe, OUT / 'scaffold-probe-scope'))
+stage('scaffold.write_envelope_content probe scope', lambda: production_content(
+    OUT / 'scaffold-probe-scope', OUT / 'content-probe-scope'))
+stage('pod_driver.build(dry_run) probe scope, probe plan', lambda: {k: v for k, v in pod_driver.build(
+    probe / 'plan.probe-driver-defaults.json', OUT / 'prepared-probe-scope', dry_run=True).items()
+    if k in ('status', 'done')})
+
+
+def authorized_budget():
+    """The prepared campaign against the authorized bound. A campaign outside it is set aside unlaunchable."""
+    out = OUT / 'prepared-probe-scope'
+    receipt = json.loads((out / 'driver-receipt.json').read_text())
+    config = json.loads((out / 'campaign.json').read_text())
+    held = {'max_iterations': config['max_iterations'], 'max_seconds': config['max_seconds'],
+            'placement_timeout_s': config['placement_adapter']['timeout_s'],
+            'rating_provenance': config.get('rating_provenance')}
+    within = (held['max_iterations'] == AUTHORIZED['max_iterations'] and
+              AUTHORIZED['placement_timeout_s'][0] <= held['placement_timeout_s'] <= AUTHORIZED['placement_timeout_s'][1])
+    if within:
+        return held
+    if sha(out / 'campaign.json') != receipt['campaign_sha256']:
+        raise ValueError('prepared campaign differs from its driver receipt')
+    (out / 'campaign.json').rename(out / 'campaign.NOT-AUTHORIZED.json')
+    raise ValueError(f'prepared campaign {json.dumps(held, sort_keys=True)} is outside the authorized bound '
+                     f'{json.dumps(AUTHORIZED, sort_keys=True)}; renamed to campaign.NOT-AUTHORIZED.json '
+                     f"(sha256 {receipt['campaign_sha256']}, equal to the driver receipt) and not launchable")
+stage('campaign.authorized_budget probe scope', authorized_budget)
 
 
 def block_candidates():
+    """The repack gate. 'preparation_not_refused' names the pod_driver.build(dry_run) calls that returned
+    status prepared: the scaffold and content receipts ran and the campaign configuration validated. It is
+    NOT a native check pass: every dry-run check record is kept verbatim in dry_run_records."""
     cache = ITER8N / 'cand'
     bound_ids = sorted({json.loads(p.read_text())['sources'].get('policy_sha256') for p in cache.glob('*.candidate.json')})
-    passed = [n for n in ('pod_driver.build(dry_run) composed scope', 'pod_driver.build(dry_run) compiled scope')
-              if stages[n]['status'] == 'accepted']
-    if not passed:
+    names = [n for n in stages if n.startswith('pod_driver.build(dry_run)')]
+    prepared = [n for n in names if stages[n]['status'] == 'accepted']
+    if not prepared:
         raise ValueError(f'{len(list(cache.glob("*.candidate.json")))} iter8n block candidates bind policy {bound_ids}; '
-                         f'the derived request policy is {identity(policy)}. The repack waits on a passing dry run '
-                         '(none passed), per the coordinator instruction; nothing was repacked.')
-    return {'dry_runs_passed': passed, 'iter8n_candidates_bind': bound_ids, 'derived_policy': identity(policy),
+                         f'the derived request policy is {identity(policy)}. The repack waits on a preparation '
+                         'that is not refused (none), per the coordinator instruction; nothing was repacked.')
+    return {'preparation_not_refused': prepared,
+            'meaning': 'pod_driver.build(dry_run) returned status prepared; not a native check pass',
+            'preparation_refused': [n for n in names if n not in prepared],
+            'iter8n_candidates_bind': bound_ids, 'derived_policy': identity(policy),
             'repack': 'production-capture/repack.py (evidence/repack-a9dac2f/repack.json)'}
 stage('placement.block_candidates_repack', block_candidates)
 
@@ -386,15 +519,21 @@ def record_of(directory):
     return json.loads(path.read_text()) if path.exists() else None
 
 
-result = dict(schema='pod-capture.pipeline/2', done=False, inference=False,
+result = dict(schema='pod-capture.pipeline/3', done=False, inference=False,
               authority='Producer execution and declarations on a fresh capture copy; no placement, routing, '
                         'campaign or model run. The diagnostic is scratch-only and never an input.',
               agent_ee=str(A), router_checkout=str(R), scope={'path': str(SCOPE_DIR / 'scope.json'),
                                                              'sha256': sha(SCOPE_DIR / 'scope.json')},
-              composed_scope_sha256=sha(planning / 'scope.json'), scope_composition=derivation,
-              plan_sha256=sha(planning / 'plan.json'), derived_request_policy_identity=identity(policy),
-              budgets={'routing_budget_s': budget, 'review_budget_s': review_budget, 'placement_timeout_s': 1500,
-                       'max_iterations': 2},
+              composed_scope_sha256=sha(planning / 'scope.json'), probe_scope_sha256=sha(probe / 'scope.json'),
+              scope_composition=derivation,
+              plan_sha256=sha(planning / 'plan.json'), probe_plan_sha256=sha(planning / 'plan.probe-driver-defaults.json'),
+              derived_request_policy_identity=identity(policy),
+              budgets={'authorized': AUTHORIZED, 'plan_of_record': {'max_iterations': plan['max_iterations'],
+                                                                    'placement_timeout_s': adapter['timeout_s']},
+                       'routing_budget_s': budget, 'routing_timeout_s': route['timeout'], 'review_budget_s': review_budget,
+                       'driver_max_seconds_minimum': 2 * (route['timeout'] + routing_adapter.STEP_MARGIN_S) + review_budget},
               stages=stages, diagnostics=diagnostics,
-              dry_run_records={'composed': record_of('prepared'), 'compiled': record_of('prepared-compiled-scope')})
+              dry_run_records={'production (bounded plan)': record_of('prepared'),
+                               'production (probe plan)': record_of('prepared-production-probe-plan'),
+                               'probe scope (probe plan)': record_of('prepared-probe-scope')})
 (OUT / 'pipeline.json').write_text(text(result))

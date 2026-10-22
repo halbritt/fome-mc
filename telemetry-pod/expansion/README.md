@@ -21,7 +21,8 @@ native netlist, with explicit tire CAN/eMMC aliases and unused reset state.
 The full compiled interface and firmware contract remain outstanding.
 The [production capture](production-capture/README.md) binds the microSD source's parts manifest
 (all 305 references, J3 included), deviations, patched CAD closure, revised envelope, writer intent
-with its Qualification ledger and source-derived ratings for a pod run. The real dry run prepares.
+with its Qualification ledger and source-derived ratings for a pod run. Only its preparation probe
+prepares; the production scope and the bounded two-iteration plan are still refused (see its README).
 
 ## Connector and buses
 
