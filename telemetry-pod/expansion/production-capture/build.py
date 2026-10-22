@@ -77,7 +77,7 @@ GENERATED = ['refs.json', 'parts.json', 'footprints.json', 'assignments.json', '
              'part-refs.json', 'deviations.json', 'j3-source.json', 'envelope.json', 'antenna-facts.json',
              'captured-rule-areas.json', 'library-updates.json', 'intent.writer.json', 'binding-ledger.json',
              'binding-migration.json', 'rating-comparison.json', 'rating-sources.json', 'rating-facts.json',
-             'datasheet-source-selection.json']
+             'datasheet-source-selection.json', 'fab-profile.json']
 D_PCB_1 = ('Thermal vias are 0.30 mm drill / 0.70 mm diameter after design-rules D-PCB-1 '
            '(footprints/ patched copy; KiCad/library original 0.20 mm).')
 
@@ -199,6 +199,80 @@ def j1_deviation(spec_ref, j1_part):
     }
 
 
+# j6: the five generic envelope obligations staged for candidate generation (agent-509 decision
+# 2026-10-22, notes/509-envelope-obligations-20261022.txt) under agent-ee's reviewed source contract
+# telemetry-pod-expanded/1 (board_envelope.OBLIGATION_CONTRACTS, agent-ee 81e387ee). Witnesses are
+# concrete envelope locators; open items are text only and add no numeric limit. Nothing here closes
+# an item: board_envelope.require_final keeps every one blocking final acceptance. Owner direction
+# 2026-10-22: the enclosure and harness are open design deliverables, not blockers to generation.
+PHYSICAL, CANDIDATE = 'physical_qualification', 'candidate_assessment'
+ENCLOSURE = ('The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to '
+             'candidate generation; ')
+HARNESS = ('The harness is an open design deliverable (owner direction 2026-10-22), not a blocker to '
+           'candidate generation; ')
+OPEN_ITEMS = {
+    'corner-holes': [
+        ('hole-authority', PHYSICAL, 'H1-H4 drill, plating, inset and coordinates are generator-selected values '
+         'carried from placement-inputs/envelope.json (POD-ME-HOLES); no owner, manufacturer or standard source '
+         'fixes them. ' + ENCLOSURE + 'the mounting interface is sourced from it once designed.'),
+        ('fabricated-holes', PHYSICAL, 'Fabricated hole position, drill and plating are not verified; generation '
+         'witnesses only the declared holes on the candidate board.')],
+    'height': [
+        ('candidate-heights', CANDIDATE, 'Component heights of a generated candidate are assessed from captured '
+         'part heights; no height cap is adopted.'),
+        ('cowl-fit', PHYSICAL, ENCLOSURE + 'fit under the tail cowl is verified against it.'),
+        ('underside-fit', PHYSICAL, ENCLOSURE + 'back-side clearance, J3 included, is verified against it.'),
+        ('connector-fit', PHYSICAL, ENCLOSURE + 'J1 and J2 installed height and access are verified against it.'),
+        ('mating-plug-fit', PHYSICAL, 'The mated AMPSEAL plug envelope against the enclosure is not established '
+         '(connector-candidate/mating-interface records it as unresolved).'),
+        ('harness-fit', PHYSICAL, HARNESS + 'its routing and bend clearance are verified against it.')],
+    'harness-edge': [
+        ('panel-cutout', PHYSICAL, ENCLOSURE + 'the J1 panel cutout is verified against it.'),
+        ('mating-plug', PHYSICAL, 'Engagement of the mating plug and the mated envelope are not established '
+         '(connector-candidate/mating-interface).'),
+        ('retention', PHYSICAL, 'Board-lock and plug retention are not established; no PCB retention is inferred '
+         'from contact retention.'),
+        ('thickness-tolerance', PHYSICAL, 'Owner decision 2026-10-22: the standard JLCPCB 4-layer 1.6 mm board '
+         'with its published finished-thickness tolerance is accepted, and its interval against TE 114-16016 is a '
+         'documented uncertainty, not an incompatibility. The J1 footprint, finished-hole, pad, board-lock and '
+         'solder-tail checks against the TE drawing for that board stay open. This fabrication tolerance is '
+         'distinct from the component-side through-hole fit screening of AGENTEE-448.'),
+        ('harness-clearance', PHYSICAL, HARNESS + 'clearance at the J1 edge is verified against it.')],
+    'antenna': [
+        ('feed-point-side', PHYSICAL, 'The antenna feed-point side relative to the installed orientation is not '
+         'qualified.'),
+        ('housing-pocket', PHYSICAL, ENCLOSURE + 'the non-metallic antenna pocket (D-PCB-16) is verified against it.'),
+        ('nearby-metal', PHYSICAL, 'Metal near the installed antenna (frame, cowl fixings, harness) is not assessed.'),
+        ('support', PHYSICAL, 'Mechanical support of the overhanging module in the enclosure is not established.'),
+        ('rf-performance', PHYSICAL, 'Installed RF performance needs a bench measurement (POD-AC-9).')],
+    'imu-separation': [
+        ('placement-assessment', CANDIDATE, 'The generated candidate is assessed for tall or heavy parts near U2 '
+         '(J1, the SMA, electrolytic capacitors and L1); no numeric keep-apart threshold is adopted, and L1 near '
+         'U2 stays an unresolved concern, not a pass.'),
+        ('vibration-coupling', PHYSICAL, 'Vibration coupling into the IMU on the installed pod needs bench or '
+         'installed evidence.')]}
+
+
+def stage_obligations(record, index):
+    """Coverage records for the contracted obligations; contract fields stay verbatim."""
+    holes = {h['id']: i for i, h in enumerate(record['mounting_holes'])}
+    keepouts = {k['id']: i for i, k in enumerate(record['keepouts'])}
+    j1, u1 = f"/fixed_footprints/{index['J1']}", f"/fixed_footprints/{index['U1']}"
+    generation = {
+        'corner-holes': [{'locator': f'/mounting_holes/{holes[h]}'} for h in ('H1', 'H2', 'H3', 'H4')],
+        'height': [],
+        'harness-edge': [{'locator': j1}, {'locator': j1, 'criterion': 'outline-containment/1'},
+                         {'locator': j1, 'criterion': 'part-identity/1'}],
+        'antenna': [{'locator': u1}, {'locator': u1, 'criterion': 'outline-containment/1'},
+                    {'locator': f"/keepouts/{keepouts['radio-antenna']}"}],
+        'imu-separation': []}
+    if sorted(o['id'] for o in record['obligations']) != sorted(generation):
+        raise ValueError('envelope obligations differ from the five staged ones')
+    for item in record['obligations']:
+        item['coverage'] = {'generation': generation[item['id']],
+                            'open': [{'id': i, 'stage': s, 'statement': t} for i, s, t in OPEN_ITEMS[item['id']]]}
+
+
 def envelope(constraints_blob):
     """The placement envelope revised with the microSD-era decisions; nothing else changes."""
     record = json.loads(ENVELOPE.read_text())
@@ -224,6 +298,7 @@ def envelope(constraints_blob):
                 'and RF performance remain unqualified.')
     source = {'path': constraints_blob['path'], 'sha256': constraints_blob['sha256']}
     index = {f['reference']: i for i, f in enumerate(record['fixed_footprints'])}
+    stage_obligations(record, index)
 
     def fact(quote):
         if quote not in CONSTRAINTS.read_text():
@@ -699,14 +774,33 @@ def build(out, agent_ee):
     # Envelope: microSD decisions, antenna facts (AGENTEE-211) and captured antenna CAD retention.
     for name in ('jlcpcb-capabilities.txt', 'jlcpcb-stackup.txt', 'jlcpcb-thickness.txt'):
         root.copy(FAB / 'sources' / name, 'sources/' + name)
-    profile_blob = root.copy(FAB / 'fab-profile.json', 'sources/fab-profile.json')
+    source_profile = root.copy(FAB / 'fab-profile.json', 'sources/fab-profile.json')
     revised = envelope(constraints_blob)
-    if revised['fab_profile']['sha256'] != profile_blob['sha256']:
+    if revised['fab_profile']['sha256'] != source_profile['sha256']:
         raise ValueError('envelope fab profile differs from the captured profile')
+    # j6: each fab-profile/1 limit names the requirement its check binds, and agent-ee requires that to be
+    # this envelope's derived fab-profile requirement (routing_rules.validate_mappings). The captured profile
+    # was written for envelope id telemetry-pod; the production copy relabels only that field. Values, tiers,
+    # stackup, tolerance and every source citation stay byte-identical (checked below).
+    profile = json.loads((FAB / 'fab-profile.json').read_text())
+    relabel = {'from': 'R-envelope-telemetry-pod-fab-profile', 'to': f"R-envelope-{revised['id']}-fab-profile"}
+    if {limit['requirement'] for limit in profile['limits']} != {relabel['from']}:
+        raise ValueError('captured fab profile limits name another requirement')
+    production = copy.deepcopy(profile)
+    for limit in production['limits']:
+        limit['requirement'] = relabel['to']
+    if [{k: v for k, v in l.items() if k != 'requirement'} for l in production['limits']] != [
+            {k: v for k, v in l.items() if k != 'requirement'} for l in profile['limits']] or (
+            {k: v for k, v in production.items() if k != 'limits'} != {k: v for k, v in profile.items() if k != 'limits'}):
+        raise ValueError('fab profile relabel changed more than the requirement mapping')
+    profile_blob = root.write('composition/fab-profile.json', production)
+    revised['fab_profile']['sha256'] = profile_blob['sha256']
     envelope_blob = root.write('composition/envelope.json', revised)
     files = {p.relative_to(out).as_posix(): sha(p) for p in out.rglob('*') if p.is_file()}
     record = board_envelope.validate((out / envelope_blob['path']).read_bytes(),
                                      profile=(out / profile_blob['path']).read_bytes(), captured=(files, out))
+    if record['fab_profile'].get('status') != 'referenced':
+        raise ValueError(f"production fab profile not referenced: {record['fab_profile']}")
     datasheet = root.copy(ESP32_DATASHEET, rel(ESP32_DATASHEET))
     facts = esp32_s3_wroom_1_datasheet_facts(pdf_path=datasheet['path'], pdf_sha256=datasheet['sha256'])
     root.write('composition/antenna-facts.json', facts)
@@ -789,6 +883,8 @@ def build(out, agent_ee):
                      'keepouts': [k['id'] for k in revised['keepouts']],
                      'provenance_status': record['constraint_provenance']['status']},
         'retention': sorted(retained['items']), 'binding_fill': fill,
+        'fab_profile': {'source': source_profile, 'production': profile_blob, 'relabel': relabel,
+                        'limits': len(production['limits'])},
         'ledger': migration['qualification']['classes']}
     root.copied = dict(sorted(root.copied.items()))
     (out / 'reconstruction.json').write_text(text({'copied': root.copied, 'summary': summary}))

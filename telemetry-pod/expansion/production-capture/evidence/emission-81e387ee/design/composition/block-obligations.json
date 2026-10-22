@@ -1,0 +1,105 @@
+{
+ "agent_ee": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j5/scratch/agent-ee-a9dac2f",
+ "blocks": [
+  {
+   "block": "pre-6v3",
+   "generic_candidate": {
+    "board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+    "evidence": "geometry only under the derived request policy",
+    "path": "cand/pre-6v3.candidate.json",
+    "sha256": "4ef29e4cf85a7a1931803310093d75f6e1a6ba30d906e8de915b604dadc36d48",
+    "status": "packed"
+   },
+   "library_entry": {
+    "path": "pre-6v3.v4.entry.json",
+    "sha256": "1c913acb67d87af9b2b0e1be57cc6bae9e54b48248138a081f7453dc85a652d9",
+    "source": "/home/halbritt/.cache/agent449-pod/iter8n/lib/pre-6v3.v4.entry.json"
+   },
+   "library_refusal": {
+    "log": "logs/pre-6v3.library.out",
+    "problems": [
+     {
+      "kind": "copper_unknown",
+      "reason": "board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry"
+     }
+    ],
+    "rc": 1,
+    "sha256": "70b84a6373d80b8fc79f8dcc540a69518ef226da24d27bfb7920ec72a0da1e78",
+    "status": "refused"
+   },
+   "obligations": [
+    {
+     "id": "pre-6v3-board-region-copper-native-check",
+     "refusal_kinds": [
+      "copper_unknown"
+     ],
+     "source_reasons": [
+      "board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry"
+     ],
+     "statement": "The pre-6v3 library entry (U5) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither.",
+     "status": "unresolved"
+    },
+    {
+     "id": "pre-6v3-witness-pose-equivalence",
+     "statement": "Witness-pose equivalence between the generic pre-6v3 candidate and the library entry witness is not established; the generic pose is not the library pose.",
+     "status": "unresolved"
+    }
+   ],
+   "qualification": "unknown",
+   "real_placement": "A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+   "reference": "U5",
+   "status": "unresolved"
+  },
+  {
+   "block": "buck-3v3",
+   "generic_candidate": {
+    "board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+    "evidence": "geometry only under the derived request policy",
+    "path": "cand/buck-3v3.candidate.json",
+    "sha256": "7fb75261f2f2e3dc12535934307756569440b7cba9f18936e8a176da963f83e5",
+    "status": "packed"
+   },
+   "library_entry": {
+    "path": "buck-3v3.v4.entry.json",
+    "sha256": "146d735c22734a13c2b933a5008307b8c91a841e28aff5099223dd87fa0daa24",
+    "source": "/home/halbritt/.cache/agent449-pod/iter8n/lib/buck-3v3.v4.entry.json"
+   },
+   "library_refusal": {
+    "log": "logs/buck-3v3.library.out",
+    "problems": [
+     {
+      "kind": "copper_unknown",
+      "reason": "board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry"
+     }
+    ],
+    "rc": 1,
+    "sha256": "deb91c87f04b6a1fcabb289d7399e47b5c4d8c003f907a1e7a35e8a89ad4d351",
+    "status": "refused"
+   },
+   "obligations": [
+    {
+     "id": "buck-3v3-board-region-copper-native-check",
+     "refusal_kinds": [
+      "copper_unknown"
+     ],
+     "source_reasons": [
+      "board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry"
+     ],
+     "statement": "The buck-3v3 library entry (U7) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither.",
+     "status": "unresolved"
+    },
+    {
+     "id": "buck-3v3-witness-pose-equivalence",
+     "statement": "Witness-pose equivalence between the generic buck-3v3 candidate and the library entry witness is not established; the generic pose is not the library pose.",
+     "status": "unresolved"
+    }
+   ],
+   "qualification": "unknown",
+   "real_placement": "A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+   "reference": "U7",
+   "status": "unresolved"
+  }
+ ],
+ "schema": "pod-capture.block-obligations/1",
+ "seed_board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c"
+}

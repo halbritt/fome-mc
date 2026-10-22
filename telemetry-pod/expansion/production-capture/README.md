@@ -5,6 +5,69 @@ current microSD source (`../storage-microsd/`, 305 references). Phase B then run
 agent-ee producers on the capture and stops at the real `pod_driver` dry run. It is capture and
 composition evidence. No placement, routing, campaign or model ran, and nothing is accepted.
 
+**Status (j6, agent-ee main `81e387ee`; AGENTEE-197 landed with 197s/t/v, the hand-fit chain `08ddaa17`
+and the emitter field order `41e91eca`).** The authentic two-iteration production preparation exists. The
+production scope (compiled Rev-3 microSD scope plus the assembly, blocks, envelope and requirement-source
+layers) prepares with the plan of record: the real `pod_driver.build(dry_run)` returns `prepared` and its
+driver receipt and campaign carry `max_iterations` 2 (source `plan`), routing backend budget 900 s, routing
+timeout 2100 s, placement `timeout_s` 1500 s and the derived watchdog `max_seconds` 8400 s (source
+`derived`, `2 * (2100 + 300) + 3600`; it changes none of the budgets). The production schematic is then
+emitted and forward-annotated by the campaign's own schematic-stage steps with stage receipts (AGENTEE-445):
+305 components and 235 nets, now the telemetry-pod project (`retain.py`). No campaign was launched; no
+placement, routing or model ran. Nothing here is acceptance: every check of the checks-only dry run is
+`stage_not_reached` on the empty scaffold, the final guard blocks on the five staged envelope obligations,
+POD-AC-5 stays NOT CHECKED, and the four library-block obligations stay unresolved.
+
+## j6: production preparation and emission at agent-ee `81e387ee`
+
+`evidence/emission-81e387ee/` holds the run (`pipeline.json`, the driver receipt, campaign, plan, scope,
+dry-run record and result under `prepared/`), the three emission receipts, the emitted design with every
+emitter input (`design/`, `MANIFEST.json`), and `SHA256SUMS`. It was produced in the pinned agent-ee CI image
+(`ae-ci-exec` on an `81e387ee` checkout, network none); `pipeline.py` first verifies that the agent-ee export
+is exactly the tree of `81e387ee` (every blob by its git hash). What changed against the a9dac2f-era
+pipeline, each found by running the integrated producers:
+
+- **Plan schema.** `requirement_source` is now required. The plan selects `telemetry-pod-rev3`, whose pinned
+  capture fome-mc keeps at `../requirements/compiled/requirements-map/` (spec `e71dcca7…`, record
+  `1d978fc1…`); it is added to the scope as baseline sources (`requirements-source/`). The scope itself is
+  compiled from the current microSD spec (`0f52e0ae…`), which is not a pinned source (its own selection
+  refuses `unapproved-source`, kept in `scope-composition.json`). `pipeline.py` checks that the two records
+  are equal in every requirement and prose entry except the added `POD-CD-STORAGE` decision row, and that
+  the acceptance sets (POD-AC-1..11) are identical. The receipt's `requirement_set` binds Revision 3 and the
+  four bench obligations.
+- **Staged envelope obligations.** The five generic obligations (corner holes, height, harness edge, antenna,
+  IMU separation) carry `coverage` records under agent-ee's reviewed source contract
+  `telemetry-pod-expanded/1` (`build.py` `stage_obligations`): the four explicit H1-H4 hole witnesses, J1
+  fixed, J1 containment and J1 `part-identity/1`, U1 fixed, U1 containment and the U1 antenna keepout, and
+  every named open item (20 in all) as text. `scope.envelope_obligation_coverage` reports all five `staged`
+  with every witness `bound`, and `require_qualified` refuses, naming every open item. Enclosure and harness
+  fit are recorded as open design deliverables (owner direction 2026-10-22), not blockers; the JLC 1.6 mm
+  board is accepted and its thickness tolerance is kept separate from the AGENTEE-448 component-side fit
+  screening.
+- **Parts membership.** A `parts_subset` check over `composition/parts.json` (requirement
+  `POD-DERIVED-PARTS-MEMBERSHIP` at the manifest's declaration source) binds the J1 identity witness. The
+  `fab_package` done check therefore declares the manifest's copper features (JP1-JP5), its bare-copper
+  probes (`probe_manifest`, TP1-TP6) and the `JLCPCB_Assembly=not_assembled` exclusion binding-fill writes
+  for the hand-fitted J1.
+- **Antenna facts.** The `radio-antenna` keepout names an earlier `datasheet_facts` check `antenna-facts`
+  (informational requirement `POD-DERIVED-ANTENNA-FACTS`); agent-ee grades that legacy dynamic keepout
+  unknown, never pass.
+- **Fab profile.** `composition/fab-profile.json` is the captured profile `02e48472…` with only each limit's
+  `requirement` relabelled to this envelope's derived `R-envelope-expanded-pod-microsd-production-fab-profile`
+  (agent-ee requires the profile's mapping to equal the scope's); values, tiers, stackup, tolerance and source
+  citations are checked unchanged.
+- **Hand-fit chain.** The scope's assembly check carries the declared J1 citation (`assembly/hand-fit-policy.json`),
+  which `81e387ee` verifies (`category_selection`, both part-record links). The a9dac2f pipeline passed the
+  validator's normalized output instead, which the scaffold refuses.
+- **Emitter declaration.** `captures` is the candidate root. The a9dac2f-era `footprints` made
+  emit-schematic fail on every library (`resolution_library_coverage`), so the first campaign iteration
+  would have failed.
+- **No surrogate.** The driver-default (10-iteration) probe plan and the compiled+assembly probe scope are gone.
+  Stock is graded per id at generation: any id older than 24 hours, unobserved or failed refuses before
+  composition (refresh it read-only; never substitute).
+
+## History: a9dac2f (j3-j5c)
+
 **Status (agent-ee main `a9dac2f3`, AGENTEE-439 released).** All 305 references are declared, J3
 included. The genuine binding-fill accepts the writer intent with source-derived ratings. The
 production scope (compiled Rev-3 scope plus the assembly and envelope layers) still refuses, on
@@ -274,46 +337,69 @@ contract (timeout at least 2 × budget + 300) and the review reserve.
 - **J1 hand-fit is a source chain, not a new owner approval.** The POD-AC-5 quote is used verbatim;
   D-PCB-10 and the captured records supply the exact identity. Reverse by deleting
   `assembly/hand-fit-policy.json` (the pipeline then refuses to start).
-- **The probe campaign is set aside, not edited.** Raising the plan to 8 iterations or editing the
-  driver's `campaign.json` were both rejected: the first exceeds the ruling, and the second would break
-  the driver receipt. Reverse once the driver accepts the bounded plan.
-- **The fab profile stays `02e48472…`.** It needs an applicability check against agent-ee's `00e3e2fc…`
-  before any manufacturing qualification claim.
+- **The probe campaign is set aside, not edited** (j4-j5c). At `81e387ee` the driver accepts the bounded
+  plan, so j6 removes the probe plan and probe scope entirely; the a9dac2f evidence keeps them as history.
+- **The fab profile values stay `02e48472…`.** It needs an applicability check against agent-ee's
+  `00e3e2fc…` (they differ in `small-drill` and `small-via`) before any manufacturing qualification claim.
+- **j6: the requirement source is the pinned Revision 3 capture.** The microSD spec only adds the
+  POD-CD-STORAGE decision row (checked mechanically), so every acceptance criterion and bench obligation the
+  driver binds is the same. The alternative, refusing preparation until agent-ee admits the microSD capture
+  to `pod_driver.SOURCES`, would block the authorized dry run on a component-decision row that no acceptance
+  criterion depends on. Reverse: once a reviewed agent-ee commit admits the microSD capture, select it and
+  drop `requirements-source/`.
+- **j6: the fab profile's requirement mapping is relabelled for the production envelope** (only the
+  `requirement` field; values and citations are checked unchanged). The alternative, the old envelope id
+  `telemetry-pod`, is refused by the reviewed source contract, which names `expanded-pod-microsd-production`.
+  Reverse: author a profile mapped to the production envelope at the source.
+- **j6: the emitted schematic and annotated board replace the v9 pilot as the telemetry-pod project**
+  (AGENTEE-445: "the next real pod schematic comes from the production run (j6)"; the v9 emitter inputs are
+  lost). The v9 pilot files stay a historical snapshot at commit `13c0bfb` and in its renders. The board is the
+  generation seed: fixed parts posed by the envelope content, the rest unplaced and unrouted. Reverse:
+  `git checkout 243b17d -- telemetry-pod/telemetry-pod.kicad_sch telemetry-pod/telemetry-pod.kicad_pcb
+  telemetry-pod/telemetry-pod.kicad_pro telemetry-pod/telemetry-pod.kicad_dru telemetry-pod/sym-lib-table
+  telemetry-pod/fp-lib-table`.
+- **j6: the emitter `captures` root is the candidate root** (the declared libraries are root-relative).
 
 ## Reproduce
 
 ```sh
+# inside the pinned agent-ee CI image (ae-ci-exec on an 81e387ee checkout; the host pdftotext has drifted):
 /usr/bin/python3 telemetry-pod/expansion/production-capture/build.py AGENT_EE_EXPORT --check
 /usr/bin/python3 telemetry-pod/expansion/production-capture/build.py AGENT_EE_EXPORT --out /new/capture
-AGENT_EE_TOOL_SOURCE_CACHE=/abs/cache /usr/bin/python3 telemetry-pod/expansion/production-capture/pipeline.py \
+AGENT_EE_GIT=AGENT_EE_CHECKOUT AGENT_EE_TOOL_SOURCE_CACHE=/abs/cache \
+  /usr/bin/python3 telemetry-pod/expansion/production-capture/pipeline.py \
   AGENT_EE_EXPORT ROUTER_CHECKOUT COMPILED_SCOPE_DIR /new/capture /new/pipeline-out \
   telemetry-pod/expansion/production-capture/sources/assembly-stock-20261022 [REPACK_DIR]
+# on the host, fome-mc root:
+/usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py /new/pipeline-out --install
+/usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py --check
 /usr/bin/python3 telemetry-pod/expansion/production-capture/repack.py AGENT_EE_EXPORT ITER8N_DIR /new/repack-out
 # read-only stock refresh (network; one public request per id; no purchase, order or upload):
 PYTHONPATH=AGENT_EE_EXPORT/src /usr/bin/python3 -m agent_ee.jlc_stock_capture --allow-network \
   --ids-file BOM_IDS.json --out /new/stock
 ```
 
-`AGENT_EE_EXPORT` is `git archive` of agent-ee `a9dac2f3`. `COMPILED_SCOPE_DIR` is
+`AGENT_EE_EXPORT` is `git archive` of agent-ee `81e387ee` (pipeline.py refuses any other tree; the
+history sections used `a9dac2f3`). `COMPILED_SCOPE_DIR` is
 `requirements/rev3-microsd/compiled/` from fome-mc main (scope-b, `6a74fee2…`). `ITER8N_DIR` is the
 coordinator's iter8n cache (seed, netlist, allocation, library entries). The build exports the microSD
 netlist on a temporary copy; no design file is re-saved.
 
 ## Remaining
 
-- Five envelope generator obligations need agent-ee criteria (AGENTEE-177/179) before the production
-  scope can compile. The probe scope carries no envelope binding to the packer and is not the
-  production scope.
-- The pod driver must accept the authorized `max_iterations` 2 (agent-ee AGENTEE-197u, not on agent-ee
-  main at j5) before a bounded campaign can be prepared from a real receipt. No campaign within the
-  authorized bound exists yet.
-- The AGENTEE-197s/t staged-coverage and consumer guards are not on agent-ee main; no production scope
-  run happens before they are.
-- The assembly check is not yet runnable: it needs native emission (no BOM netlist exists), the
-  agent-ee hand-fit chain change, and a stock capture within 24 hours of that generation.
-- The two library blocks' copper/native-check and witness-pose obligations stay unresolved until a
-  real placement repacks them on its own board and native checks run.
-- The first genuine placement run stays bounded (2 iterations, placement `timeout_s` 900-1500 s) and
-  needs agent-509's go after the dry run and binding reviews. The repacked candidates bind the seed
-  board and are repacked on the campaign's placement source board in that run.
-- The structural envelope validity, retention and J3 transform are not mechanical qualification.
+- **Launch.** The prepared two-iteration campaign is not launched; agent-509 authorizes the single bounded
+  run separately. The stock capture (2026-10-22T10:50-10:57Z) is fresh until 2026-10-23T10:50Z; a later
+  generation refreshes the stale ids read-only first.
+- **POD-AC-5 stays NOT CHECKED** until the assembly check runs on a native netlist in a campaign iteration.
+  J1's zero stock keeps its owner hand-fit disposition; no purchase and no substitution.
+- **Final qualification.** The five staged obligations keep 20 open items (enclosure and harness fit are open
+  design deliverables), and the final guard blocks acceptance on them. The radio-antenna keepout stays
+  unknown by design.
+- **Library blocks.** The four pre-6v3/buck-3v3 copper/native-check and witness-pose obligations stay
+  unresolved until a real placement repacks those blocks on its own board and native checks run.
+- **Requirement source.** Admit the microSD spec capture to agent-ee `pod_driver.SOURCES` (a coordinator
+  action) to bind the current spec directly.
+- **Emitted board.** It is the generation seed, not a design result: DRC reports the unrouted connections,
+  overlaps among the unplaced parts and `lib_footprint_mismatch` on the posed J1/J2/J3 as findings.
+- The structural envelope validity, retention and J3 transform are not mechanical qualification. The fab
+  profile needs its applicability check before any manufacturing claim.

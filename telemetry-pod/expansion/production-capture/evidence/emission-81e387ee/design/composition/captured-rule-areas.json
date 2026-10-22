@@ -1,0 +1,185 @@
+{
+ "envelope": {
+  "path": "composition/envelope.json",
+  "sha256": "ecc241ce98cd82ed6a0f8c3b48957cfe716ffaf36087945698f8f7f64ef549bc"
+ },
+ "items": [
+  {
+   "context": {
+    "canonical_sha256": "66e50cf97103b7b43bb5e706799bcaa4c0ea03cc6953231fb3a67ba875af987d",
+    "coverage": "missing",
+    "execution": "ok",
+    "housing_clearance": {
+     "minimum_mm": "15",
+     "scope": "inside end-product housing; not base-board copper clearance",
+     "source": {
+      "locator": "Section 1.4.7 RF: end-product housing clearance",
+      "page": 33,
+      "path": "telemetry-pod/expansion/production-capture/sources/esp32-guidelines/3dc09a979cf612db0754f966d180b22f05896ad220cece362d62cb0d0eb1d400.pdf",
+      "sha256": "057f6df63e10a2dfc155cf19d942adf5780127d839626e2beb4c1a61efeaf3a5"
+     }
+    },
+    "limitations": [
+     "Source applicability is bound to the declared case and captured snapshot only.",
+     "Module pose, feed-point side, board edge/cutout and housing geometry remain unqualified.",
+     "Retained footprint rule-area geometry is CAD evidence, not a manufacturer-derived minimum.",
+     "Final RF range and throughput testing remain required."
+    ],
+    "outcome": "unknown",
+    "part_number": "ESP32-S3-WROOM-1",
+    "placement_case": "outside_board",
+    "policy": "Place the module PCB antenna beyond the base board with its feed point close to the edge; corner selection depends on feed-point side.",
+    "schema": "agent-ee.antenna-placement-context/1",
+    "source": {
+     "locator": "Section 1.4.7 RF: module antenna outside the base board",
+     "page": 33,
+     "path": "telemetry-pod/expansion/production-capture/sources/esp32-guidelines/3dc09a979cf612db0754f966d180b22f05896ad220cece362d62cb0d0eb1d400.pdf",
+     "sha256": "057f6df63e10a2dfc155cf19d942adf5780127d839626e2beb4c1a61efeaf3a5"
+    },
+    "source_derived_minimum": null
+   },
+   "footprint": "RF_Module:ESP32-S3-WROOM-1",
+   "keepout_id": "radio-antenna",
+   "policy": {
+    "part_number": "ESP32-S3-WROOM-1",
+    "placement_case": "outside_board",
+    "schema": "agent-ee.antenna-placement-policy/1",
+    "source": {
+     "locator": "Section 1.4.7 RF: module antenna outside the base board",
+     "page": 33,
+     "path": "telemetry-pod/expansion/production-capture/sources/esp32-guidelines/3dc09a979cf612db0754f966d180b22f05896ad220cece362d62cb0d0eb1d400.pdf",
+     "sha256": "057f6df63e10a2dfc155cf19d942adf5780127d839626e2beb4c1a61efeaf3a5"
+    }
+   },
+   "pose": {
+    "anchor_mm": [
+     "72.5",
+     "6.5"
+    ],
+    "rotation_deg": "0",
+    "side": "front"
+   },
+   "reference": "U1",
+   "rule_areas": {
+    "canonical_sha256": "ca4f0378dbce3826c9a972cbedba2260493ff6b2c2c749c36720656732cae2c6",
+    "lib_id": "RF_Module:ESP32-S3-WROOM-1",
+    "name": "ESP32-S3-WROOM-1",
+    "rule_areas": [
+     {
+      "bounds_mm": {
+       "max": [
+        "24",
+        "-6.75"
+       ],
+       "min": [
+        "-24",
+        "-27.75"
+       ]
+      },
+      "forbid": [
+       "footprints",
+       "tracks",
+       "vias",
+       "pads",
+       "copper_pours"
+      ],
+      "keepout": {
+       "copperpour": "not_allowed",
+       "footprints": "not_allowed",
+       "pads": "not_allowed",
+       "tracks": "not_allowed",
+       "vias": "not_allowed"
+      },
+      "layers": [
+       "F.Cu",
+       "B.Cu",
+       "In1.Cu",
+       "In2.Cu",
+       "In3.Cu",
+       "In4.Cu",
+       "In5.Cu",
+       "In6.Cu",
+       "In7.Cu",
+       "In8.Cu",
+       "In9.Cu",
+       "In10.Cu",
+       "In11.Cu",
+       "In12.Cu",
+       "In13.Cu",
+       "In14.Cu",
+       "In15.Cu",
+       "In16.Cu",
+       "In17.Cu",
+       "In18.Cu",
+       "In19.Cu",
+       "In20.Cu",
+       "In21.Cu",
+       "In22.Cu",
+       "In23.Cu",
+       "In24.Cu",
+       "In25.Cu",
+       "In26.Cu",
+       "In27.Cu",
+       "In28.Cu",
+       "In29.Cu",
+       "In30.Cu"
+      ],
+      "name": "",
+      "polygon_mm": [
+       [
+        "-24",
+        "-6.75"
+       ],
+       [
+        "24",
+        "-6.75"
+       ],
+       [
+        "24",
+        "-27.75"
+       ],
+       [
+        "-24",
+        "-27.75"
+       ]
+      ],
+      "polygon_nm": [
+       [
+        -24000000,
+        -6750000
+       ],
+       [
+        24000000,
+        -6750000
+       ],
+       [
+        24000000,
+        -27750000
+       ],
+       [
+        -24000000,
+        -27750000
+       ]
+      ],
+      "uuid": "18bbecf2-2977-41e2-b949-929efe1bdbf7"
+     }
+    ],
+    "schema": "agent-ee.footprint-rule-areas/1",
+    "source": {
+     "path": "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+     "sha256": "75e9786783af343c57cea4e5d097206481aad6949a08d3b086fd60e58f92ca49"
+    }
+   },
+   "source": {
+    "path": "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+    "sha256": "75e9786783af343c57cea4e5d097206481aad6949a08d3b086fd60e58f92ca49"
+   }
+  }
+ ],
+ "parts": {
+  "path": "composition/parts.json",
+  "sha256": "b89bc3e2eb2d37fcf4eef9989ba95b785e2f9a6e0ba36fcda6bb037275b52b6b"
+ },
+ "purpose": "retain-captured-cad-only",
+ "schema": "agent-ee.captured-rule-areas/1"
+}

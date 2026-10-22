@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-22 — Telemetry pod production preparation and re-emitted schematic (`AGENTEE-207` j6, `AGENTEE-445`)
+
+- The production capture (`telemetry-pod/expansion/production-capture/`) runs on agent-ee `81e387ee`. The real
+  `pod_driver` dry run prepares the bounded plan of record: 2 iterations, routing budget 900 s, placement
+  timeout 1500 s and a derived watchdog of 8400 s. The production scope stages the five generic envelope
+  obligations under agent-ee's reviewed source contract. No campaign was launched.
+- `telemetry-pod/telemetry-pod.kicad_sch` and `.kicad_pcb` are now the production schematic emitted from the
+  bound intent (305 components, 235 nets) and its forward-annotated, unplaced generation seed. The emitter
+  inputs and stage receipts are retained in `evidence/emission-81e387ee/`. `make check PROJECT=telemetry-pod`
+  passes all five steps. The v9 pilot snapshot (`13c0bfb`) stays in history and in its renders.
+
 ## 2026-10-18 — Telemetry Pod Document Reconciliation & 12 V Power Source Decision (`FOMEMC-31`)
 
 Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification ([`telemetry-pod/REQUIREMENTS.md`](telemetry-pod/REQUIREMENTS.md), revision 2, 2026-10-18, sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):

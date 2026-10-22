@@ -62,7 +62,7 @@
  },
  "fab_profile": {
   "name": "jlc04161h-7628",
-  "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632"
+  "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
  },
  "fixed_footprints": [
   {
@@ -268,6 +268,34 @@
  ],
  "obligations": [
   {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/mounting_holes/0"
+     },
+     {
+      "locator": "/mounting_holes/1"
+     },
+     {
+      "locator": "/mounting_holes/2"
+     },
+     {
+      "locator": "/mounting_holes/3"
+     }
+    ],
+    "open": [
+     {
+      "id": "hole-authority",
+      "stage": "physical_qualification",
+      "statement": "H1-H4 drill, plating, inset and coordinates are generator-selected values carried from placement-inputs/envelope.json (POD-ME-HOLES); no owner, manufacturer or standard source fixes them. The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; the mounting interface is sourced from it once designed."
+     },
+     {
+      "id": "fabricated-holes",
+      "stage": "physical_qualification",
+      "statement": "Fabricated hole position, drill and plating are not verified; generation witnesses only the declared holes on the candidate board."
+     }
+    ]
+   },
    "id": "corner-holes",
    "owner_items": [
     "AGENTEE-177",
@@ -280,6 +308,41 @@
    "statement": "Provide four corner mounting holes; generator selects drill, plating, inset and coordinates."
   },
   {
+   "coverage": {
+    "generation": [],
+    "open": [
+     {
+      "id": "candidate-heights",
+      "stage": "candidate_assessment",
+      "statement": "Component heights of a generated candidate are assessed from captured part heights; no height cap is adopted."
+     },
+     {
+      "id": "cowl-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; fit under the tail cowl is verified against it."
+     },
+     {
+      "id": "underside-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; back-side clearance, J3 included, is verified against it."
+     },
+     {
+      "id": "connector-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; J1 and J2 installed height and access are verified against it."
+     },
+     {
+      "id": "mating-plug-fit",
+      "stage": "physical_qualification",
+      "statement": "The mated AMPSEAL plug envelope against the enclosure is not established (connector-candidate/mating-interface records it as unresolved)."
+     },
+     {
+      "id": "harness-fit",
+      "stage": "physical_qualification",
+      "statement": "The harness is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; its routing and bend clearance are verified against it."
+     }
+    ]
+   },
    "id": "height",
    "owner_items": [
     "AGENTEE-177",
@@ -291,6 +354,48 @@
    "statement": "No 12 mm height limit is adopted. Actual cowl, underside, connector, mating-plug and harness clearances require enclosure validation for the expanded pod."
   },
   {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/fixed_footprints/0"
+     },
+     {
+      "criterion": "outline-containment/1",
+      "locator": "/fixed_footprints/0"
+     },
+     {
+      "criterion": "part-identity/1",
+      "locator": "/fixed_footprints/0"
+     }
+    ],
+    "open": [
+     {
+      "id": "panel-cutout",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; the J1 panel cutout is verified against it."
+     },
+     {
+      "id": "mating-plug",
+      "stage": "physical_qualification",
+      "statement": "Engagement of the mating plug and the mated envelope are not established (connector-candidate/mating-interface)."
+     },
+     {
+      "id": "retention",
+      "stage": "physical_qualification",
+      "statement": "Board-lock and plug retention are not established; no PCB retention is inferred from contact retention."
+     },
+     {
+      "id": "thickness-tolerance",
+      "stage": "physical_qualification",
+      "statement": "Owner decision 2026-10-22: the standard JLCPCB 4-layer 1.6 mm board with its published finished-thickness tolerance is accepted, and its interval against TE 114-16016 is a documented uncertainty, not an incompatibility. The J1 footprint, finished-hole, pad, board-lock and solder-tail checks against the TE drawing for that board stay open. This fabrication tolerance is distinct from the component-side through-hole fit screening of AGENTEE-448."
+     },
+     {
+      "id": "harness-clearance",
+      "stage": "physical_qualification",
+      "statement": "The harness is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; clearance at the J1 edge is verified against it."
+     }
+    ]
+   },
    "id": "harness-edge",
    "owner_items": [
     "AGENTEE-177",
@@ -303,6 +408,47 @@
    "statement": "Place selected TE 1-776163-1 35-position harness connector at the board edge using its captured K1 drawing and exact footprint. Panel cutout, mating plug, retention, board thickness tolerance and harness clearance remain unqualified."
   },
   {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/fixed_footprints/2"
+     },
+     {
+      "criterion": "outline-containment/1",
+      "locator": "/fixed_footprints/2"
+     },
+     {
+      "locator": "/keepouts/0"
+     }
+    ],
+    "open": [
+     {
+      "id": "feed-point-side",
+      "stage": "physical_qualification",
+      "statement": "The antenna feed-point side relative to the installed orientation is not qualified."
+     },
+     {
+      "id": "housing-pocket",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to candidate generation; the non-metallic antenna pocket (D-PCB-16) is verified against it."
+     },
+     {
+      "id": "nearby-metal",
+      "stage": "physical_qualification",
+      "statement": "Metal near the installed antenna (frame, cowl fixings, harness) is not assessed."
+     },
+     {
+      "id": "support",
+      "stage": "physical_qualification",
+      "statement": "Mechanical support of the overhanging module in the enclosure is not established."
+     },
+     {
+      "id": "rf-performance",
+      "stage": "physical_qualification",
+      "statement": "Installed RF performance needs a bench measurement (POD-AC-9)."
+     }
+    ]
+   },
    "id": "antenna",
    "owner_items": [
     "AGENTEE-177",
@@ -315,6 +461,21 @@
    "statement": "ESP32-S3-WROOM-1 antenna overhangs the top edge (D-PCB-16, owner 2026-10-21: outside-board placement case, Espressif hardware design guidelines Section 1.4.7, page 33). The module-owned keepout rule area is retained from the captured footprint; datasheet Figure 11-1 module dimensions define no base-board clearance (AGENTEE-211). Feed-point side, housing clearance and RF performance remain unqualified."
   },
   {
+   "coverage": {
+    "generation": [],
+    "open": [
+     {
+      "id": "placement-assessment",
+      "stage": "candidate_assessment",
+      "statement": "The generated candidate is assessed for tall or heavy parts near U2 (J1, the SMA, electrolytic capacitors and L1); no numeric keep-apart threshold is adopted, and L1 near U2 stays an unresolved concern, not a pass."
+     },
+     {
+      "id": "vibration-coupling",
+      "stage": "physical_qualification",
+      "statement": "Vibration coupling into the IMU on the installed pod needs bench or installed evidence."
+     }
+    ]
+   },
    "id": "imu-separation",
    "owner_items": [
     "AGENTEE-177",
