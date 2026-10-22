@@ -1,11 +1,16 @@
 """Phase B on the production capture: binding-fill, scaffold, envelope content, emitter and
-annotation declarations, derived request policy and the real pod_driver dry run.
+annotation declarations, the composed production scope, the derived request policy and the
+real pod_driver dry run.
 
 Every stage runs the owned agent-ee producer on a fresh copy of the capture root; a refusal is
-kept verbatim and never substituted. Two clearly labelled DIAGNOSTICS run on scratch copies
-only (they are never inputs): the envelope content without the uncaptured J3 fixed part, to
-check the U1 retention and the D-PCB-6/7v2 rule areas against the corrected-policy board, and
-the J3 back-side transform on its own. No placement, routing, campaign or model runs here.
+kept verbatim and never substituted. The production scope is composed here from the compiled
+Rev-3 scope: a scope envelope declaration over composition/envelope.json with one check per
+derived envelope obligation (connector-edge/1 for each fixed footprint, outline-containment/1
+carrying the declared overhangs to the packer) and the electrical-locality/1 check over the
+captured pad obligations the packing policy embeds. The producers' own obligation coverage and
+validate_configuration grade that composition. One clearly labelled DIAGNOSTIC runs on a scratch
+copy only (it is never an input): the J3 back-side transform. No placement, routing, campaign or
+model runs here.
 
 Usage (fome-mc root, system python with pcbnew):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/pipeline.py \
@@ -32,9 +37,12 @@ ROOT = HERE.parents[2]
 X = ROOT / 'telemetry-pod/expansion'
 COMPOSED = HERE / 'composition'
 ITER7_CAMPAIGN = X / 'routing-diagnostic/iteration-7/campaign.json'
-CORRECTED = X / 'routing-diagnostic/corrected-policy-iter7/ca2.kicad_pcb'
-ITER8N_SEED = Path('/home/halbritt/.cache/agent449-pod/iter8n/seed.kicad_pcb')
+ITER8N = Path('/home/halbritt/.cache/agent449-pod/iter8n')
 BOARD, SCHEMATIC = 'project/telemetry-pod.kicad_pcb', 'project/telemetry-pod.kicad_sch'
+LOCALITY = 'telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json'
+PROFILE = 'sources/fab-profile.json'
+CONSTRAINTS = 'telemetry-pod/expansion/design-rules/constraints.json'
+CONTAINMENT_LOCATOR = 'D-PCB-13 microSD card envelope in the J3 courtyard (2026-10-21)'
 
 
 def sha(path):
@@ -55,7 +63,7 @@ def stage(name, fn):
     except Exception as exc:  # retained verbatim, never converted into a pass
         stages[name] = {'status': 'refused', 'error': f'{type(exc).__name__}: {exc}',
                         'where': traceback.extract_tb(exc.__traceback__)[-1].name}
-    print(f"{stages[name]['status']:9} {name}" + (f": {stages[name]['error']}" if 'error' in stages[name] else ''),
+    print(f"{stages[name]['status']:9} {name}" + (f": {stages[name]['error'][:400]}" if 'error' in stages[name] else ''),
           flush=True)
 
 
@@ -71,52 +79,183 @@ shutil.copyfile(X / 'design-rules/board-setup.kicad_pro', project / 'telemetry-p
 shutil.copyfile(X / 'design-rules/telemetry-pod.kicad_dru', project / 'telemetry-pod.kicad_dru')
 shutil.copytree(SCOPE_DIR / 'requirements-map', planning / 'requirements-map')
 compiled = json.loads((SCOPE_DIR / 'scope.json').read_text())
-scope = {**compiled, 'inputs': [{'path': p.name, 'at': p.name} for p in sorted(planning.iterdir())]}
-(planning / 'scope.json').write_text(text(scope))
-intent, bound = 'composition/intent.json', 'composition/intent.bound.json'
+writer, bound = 'composition/intent.writer.json', 'composition/intent.bound.json'
 inputs = {k: 'composition/' + v for k, v in (
     ('parts', 'parts.json'), ('refs', 'part-refs.json'), ('deviations', 'deviations.json'),
     ('envelope', 'envelope.json'), ('layout', 'emitter-layout.json'), ('footprints', 'footprints.json'),
     ('antenna', 'antenna-facts.json'), ('retention', 'captured-rule-areas.json'), ('planes', 'planes.json'),
-    ('policy', 'placement-policy.json'))}
+    ('policy', 'placement-policy.json'), ('ratings', 'rating-sources.json'), ('facts', 'rating-facts.json'),
+    ('selection', 'datasheet-source-selection.json'), ('ledger', 'binding-ledger.json'))}
 read = lambda rel: json.loads((planning / rel).read_text())  # noqa: E731
+facts = read(inputs['facts'])['facts']
+rating_dependencies = sorted({inputs['facts'], inputs['selection'], *(f['source']['path'] for f in facts)})
 
-# 1. Binding-fill: a distinct produced bound projection; the writer intent keeps its valid bindings.
+
+# 0. The production scope: compiled Rev-3 scope + envelope declaration, obligation checks and locality.
+def compose_scope(base):
+    """Add the scope envelope, one check per derived obligation, overhang containment and locality."""
+    files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+    record = board_envelope.validate((planning / inputs['envelope']).read_bytes(),
+                                     profile=(planning / PROFILE).read_bytes(), captured=(files, planning))
+    derived = board_envelope.derive_requirements(record, inputs['envelope'])
+    env, drc = inputs['envelope'], 'placement-drc'
+    placement, routing, requirements, unmapped = [], [], [], []
+    for item in derived['requirements']:
+        field, suffix = board_envelope.field_of(item), item['id'].split(record['envelope_id'] + '-', 1)[1]
+        cid = 'envelope-' + suffix.lower()  # scope check IDs are lowercase
+        if field == 'outline':
+            specs = [dict(id=cid, kind='board_envelope', stage='placement', params=dict(criterion='outline/1', envelope=env))]
+        elif field == 'layer_count':
+            specs = [dict(id=cid, kind='board_envelope', stage='placement', params=dict(criterion='layers/1', envelope=env))]
+        elif field == 'stackup':
+            specs = [dict(id=cid, kind='board_envelope', stage='placement', params=dict(criterion='stackup/1', envelope=env))]
+        elif field == 'fab_profile':
+            specs = [dict(id=cid, kind='fab_profile', stage='routing', params=dict(fab_profile=PROFILE))]
+        elif field == 'mounting_holes':
+            hole = record['mounting_holes'][int(item['source']['locator'].rsplit('/', 1)[1])]['id']
+            specs = [dict(id=cid, kind='board_envelope', stage='placement',
+                          params=dict(criterion='mounting-holes/1', envelope=env, id=hole))]
+        elif field == 'keepouts':
+            keepout = record['keepouts'][int(item['source']['locator'].rsplit('/', 1)[1])]['id']
+            specs = [dict(id=cid, kind='board_envelope', stage='placement',
+                          params=dict(criterion='keepouts/1', envelope=env, id=keepout))]
+        elif field == 'fixed_footprints':
+            reference = record['fixed_footprints'][int(item['source']['locator'].rsplit('/', 1)[1])]['reference']
+            specs = [dict(id=cid, kind='placement', stage='placement',
+                          params=dict(criterion='connector-edge/1', envelope=env, reference=reference, drc_check=drc))]
+        else:  # no registered criterion binds this field; it stays visible as unmapped
+            unmapped.append({'id': item['id'], 'field': field, 'reason': board_envelope.UNBOUND[field]})
+            continue
+        for spec in specs:
+            (routing if spec['stage'] == 'routing' else placement).append(spec)
+        requirements.append({k: item[k] for k in ('id', 'statement', 'source', 'intent')} |
+                            {'checks': [s['id'] for s in specs]})
+    # Courtyard containment with the envelope's declared overhangs; every requirement citing the
+    # envelope must be one of its derived obligations, so this one cites the overhang decisions.
+    placement.append(dict(id='envelope-containment', kind='placement', stage='placement',
+                          params=dict(criterion='outline-containment/1', envelope=env, drc_check=drc)))
+    requirements.append({'id': 'POD-DERIVED-OVERHANG-CONTAINMENT', 'intent': 'acceptance',
+                         'statement': ('Every footprint courtyard lies inside the board outline except within the '
+                                       f'courtyard_overhangs {env} declares for its fixed footprints (J3 card lane '
+                                       'D-PCB-13 v3, U1 antenna D-PCB-16).'),
+                         'source': {'path': CONSTRAINTS, 'locator': CONTAINMENT_LOCATOR}, 'checks': ['envelope-containment']})
+    placement.append(dict(id='electrical-locality', kind='placement', stage='placement',
+                          params=dict(criterion='electrical-locality/1', locality=LOCALITY, drc_check=drc)))
+    requirements.append({'id': 'POD-DERIVED-ELECTRICAL-LOCALITY', 'intent': 'acceptance',
+                         'statement': ('Every declared pad-centre electrical locality obligation of '
+                                       f'{LOCALITY} holds on the placed board (bounds advisory per its README).'),
+                         'source': {'path': LOCALITY, 'locator': '/obligations'}, 'checks': ['electrical-locality']})
+    checks = list(base['checks'])
+    at = max(i for i, c in enumerate(checks) if c['stage'] == 'placement') + 1
+    checks[at:at] = placement
+    at = max(i for i, c in enumerate(checks) if c['stage'] == 'routing') + 1
+    checks[at:at] = routing
+    if 'intent' not in base['baseline']['requirements'][0]:
+        requirements = [{k: v for k, v in r.items() if k != 'intent'} for r in requirements]
+    composed = copy.deepcopy(base)
+    composed['envelope'] = {'path': env, 'profile': PROFILE, 'dialog': None}
+    composed['checks'] = checks
+    composed['baseline']['requirements'] = [*base['baseline']['requirements'], *requirements]
+    composed['limitations'] = [*base['limitations'],
+        'Composed by production-capture/pipeline.py: the scope envelope, one check per derived envelope '
+        'obligation and the electrical-locality check. Structural envelope validity is not mechanical '
+        'qualification; obligations no registered criterion binds stay unmapped and visible.']
+    derivation = {'schema': 'pod-capture.scope-composition/1',
+                  'base': {'path': str(SCOPE_DIR / 'scope.json'), 'sha256': sha(SCOPE_DIR / 'scope.json')},
+                  'envelope': {'path': env, 'sha256': files[env], 'envelope_id': record['envelope_id'],
+                               'complete': derived['complete'], 'unresolved': derived['unresolved']},
+                  'added_checks': [c['id'] for c in placement + routing],
+                  'added_requirements': [r['id'] for r in requirements], 'unmapped': unmapped}
+    return composed, derivation, (derived, record, files)
+
+
+def write_scope(root, base):
+    scope_ = {**base, 'inputs': [{'path': p.name, 'at': p.name} for p in sorted(root.iterdir()) if p.name != 'scope.json']}
+    (root / 'scope.json').write_text(text(scope_))
+    return scope_
+
+
+composed, derivation, coverage_inputs = compose_scope(compiled)
+(planning / 'composition/scope-composition.json').write_text(text(derivation))
+scope = write_scope(planning, composed)
+
+
+def obligations():
+    derived, record, _ = coverage_inputs
+    files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+    report = board_envelope.obligation_coverage(scope, derived, record, files)
+    summary = {s: sorted(r['id'].split(record['envelope_id'] + '-', 1)[1] for r in report if r['status'] == s)
+               for s in sorted({r['status'] for r in report})}
+    reasons = {r['id'].split(record['envelope_id'] + '-', 1)[1]: r['reason'] for r in report if r['status'] not in ('bound',)}
+    if any(r['status'] not in ('bound', 'soft') for r in report) or not derived['complete']:
+        raise ValueError(f'envelope obligations not all bound: {json.dumps(summary)}; reasons {json.dumps(reasons)}; '
+                         f"complete={derived['complete']} unresolved={derived['unresolved']}")
+    return summary
+stage('scope.envelope_obligation_coverage', obligations)
+
+
+def envelope_reaches_placer():
+    files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+    found = placement_adapter.envelope_fixed({'scope': scope, 'files': files}, planning, [])
+    return [{k: e.get(k) for k in ('path', 'envelope_id', 'references')} |
+            {'overhangs': [o['reference'] for o in e.get('overhangs', [])],
+             'provenance_fixed': sorted(e.get('provenance', {}).get('fixed', {}))} for e in found]
+stage('placement.scope_envelope_binding', envelope_reaches_placer)
+
+
+def locality_reaches_placer():
+    files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+    policy_ = read(inputs['policy'])
+    source = placement_adapter.bind_locality(policy_, {'scope': scope, 'files': files}, planning, [])
+    return {'binding': source, 'obligations': len(policy_['electrical_locality']['obligations'])}
+stage('placement.scope_locality_binding', locality_reaches_placer)
+
+# 1. Binding-fill: a distinct produced bound projection from the writer intent, with ratings.
 steps = {}
 stage('binding_fill.configuration', lambda: steps.update(fill=binding_fill.configuration(
-    A, intent=intent, manifest=inputs['parts'], part_refs=inputs['refs'], deviations=inputs['deviations'],
-    captures='.', dependencies=[], output=bound, source_migration=True)) or {'writes': steps['fill']['writes']})
+    A, intent=writer, manifest=inputs['parts'], part_refs=inputs['refs'], deviations=inputs['deviations'],
+    captures='.', dependencies=rating_dependencies, output=bound, ratings=inputs['ratings'],
+    source_migration=True)) or {'writes': steps['fill']['writes'], 'argv_ratings': '--ratings' in steps['fill']['argv']})
 
 
 def run_fill():
-    _, report = binding_fill.fill(planning, read(intent), read(inputs['parts']), read(inputs['refs']),
-                                  read(inputs['deviations']), captures='.', source_migration=True)
-    return {'components': len(report['components'])}
+    output, report = binding_fill.fill(planning, read(writer), read(inputs['parts']), read(inputs['refs']),
+                                       read(inputs['deviations']), captures='.', ratings=read(inputs['ratings']),
+                                       source_migration=True)
+    ledger = read(inputs['ledger'])
+    missing = sorted(c for c in ledger['qualification'] if not any(x['id'] == c for x in output['components']))
+    if missing:
+        raise ValueError('ledger names components absent from the bound intent: ' + ', '.join(missing))
+    return {'components': len(report['components']), 'ratings_derived': len(report['ratings']['derived']),
+            'ratings_missing': report['ratings']['missing'], 'probe_migrations': len(report['probe_migrations']),
+            'output_identity': identity(output), 'ledger_qualification': len(ledger['qualification'])}
 stage('binding_fill.fill', run_fill)
 
 # 2. Scaffold (stage one, the driver's own call) and envelope content on its output.
-scaffold_out = OUT / 'scaffold'
-stage('scaffold.scaffold', lambda: {k: v for k, v in scaffold.scaffold(
-    planning / inputs['envelope'], planning / inputs['parts'], scaffold_out,
-    scope_path=planning / 'scope.json').items() if k in ('status', 'candidate_id', 'baseline_id')})
-content_kwargs = dict(intent_rel=intent, layout_rel=inputs['layout'], antenna_facts_rel=inputs['antenna'],
+content_kwargs = dict(intent_rel=writer, layout_rel=inputs['layout'], antenna_facts_rel=inputs['antenna'],
                       captured_rule_areas_rel=inputs['retention'])
 
 
-def content(root, envelope_rel):
-    scaffold.write_envelope_content(root, envelope_rel, inputs['parts'], BOARD, **content_kwargs)
-    return {'board_sha256': sha(root / BOARD)}
+def run_scaffold(root, out):
+    return {k: v for k, v in scaffold.scaffold(root / inputs['envelope'], root / inputs['parts'], out,
+                                               scope_path=root / 'scope.json').items()
+            if k in ('status', 'candidate_id', 'baseline_id')}
 
 
-def production_content():
+def production_content(scaffold_out, work):
     if not scaffold_out.exists():
         raise ValueError('scaffold not available')
-    work = OUT / 'content'
     shutil.copytree(scaffold_out / 'inputs', work)
-    return content(work, inputs['envelope'])
-stage('scaffold.write_envelope_content', production_content)
+    scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs)
+    import pcbnew
+    board = pcbnew.LoadBoard(str(work / BOARD))
+    return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
+            'fixed': sorted(f.GetReference() for f in board.GetFootprints()
+                            if f.GetReference() in {'J1', 'J2', 'J3', 'U1', 'U2', 'H1', 'H2', 'H3', 'H4'})}
+stage('scaffold.scaffold composed scope', lambda: run_scaffold(planning, OUT / 'scaffold'))
+stage('scaffold.write_envelope_content composed scope', lambda: production_content(OUT / 'scaffold', OUT / 'content'))
 stage('scaffold.content_step', lambda: steps.update(content=scaffold.content_step(
-    A, inputs['envelope'], inputs['parts'], BOARD, intent=intent, layout=inputs['layout'],
+    A, inputs['envelope'], inputs['parts'], BOARD, intent=writer, layout=inputs['layout'],
     antenna_facts=inputs['antenna'], captured_rule_areas=inputs['retention'])) or None)
 
 # 3. Emitter, annotation and planes: owned declarations over the bound projection.
@@ -144,28 +283,12 @@ def subjects():
 stage('placement.policy_vs_subjects', subjects)
 
 
-def envelope_reaches_placer():
-    checks = [c for c in scope['checks'] if c['kind'] == 'placement' and 'envelope' in c.get('params', {})]
-    if not checks:
-        raise ValueError('the scope maps no placement check with params.envelope, so placement_adapter.envelope_fixed '
-                         'passes no envelope overhangs, fixed references or provenance to the packer')
-stage('placement.scope_envelope_binding', envelope_reaches_placer)
-
-
-def iter8n_candidates():
-    cache = Path('/home/halbritt/.cache/agent449-pod/iter8n/cand')
-    bound_ids = sorted({json.loads(p.read_text())['sources'].get('policy_sha256')
-                        for p in cache.glob('*.candidate.json')})
-    raise ValueError(f'{len(list(cache.glob("*.candidate.json")))} iter8n block candidates bind policy {bound_ids}; '
-                     f'the derived request policy is {identity(policy)}: repack with the released AGENTEE-439 '
-                     'engine (not on agent-ee origin/main)')
-stage('placement.block_candidates_repack', iter8n_candidates)
-
-
 def engine_g1():
-    placement_adapter.validate_declaration({'schema': 'agent-ee.placement-adapter/1', 'helper': 'agent-ee.placer/1',
-                                            'policy': inputs['policy'], 'fixed_footprints': [], 'timeout_s': 1500,
-                                            'blocks': 'composition/blocks.json'})
+    return placement_adapter.validate_declaration({
+        'schema': 'agent-ee.placement-adapter/1', 'helper': 'agent-ee.placer/1', 'policy': inputs['policy'],
+        'fixed_footprints': [], 'timeout_s': 1500,
+        'blocks': {'netlist': 'composition/blocks/native.xml', 'arrangement': 'composition/blocks/arrangement.json',
+                   'candidates': ['composition/blocks/adc.candidate.json']}}) and 'declaration shape accepted (paths not captured)'
 stage('engine.placement_adapter.blocks_request (AGENTEE-439 G1)', engine_g1)
 
 # 5. The plan and the real dry run.
@@ -184,73 +307,54 @@ implementation = [s for s in (steps.get('fill'), *(steps.get('schematic', {}).ge
                               steps.get('planes')) if s is not None]
 plan = dict(schema=pod_driver.SCHEMA, scope='scope.json', envelope=inputs['envelope'], parts=inputs['parts'],
             spec='requirements-map/spec.md', spec_record='requirements-map/spec-record.json',
-            writer_inputs={'intent': intent, 'deviations': inputs['deviations']}, implementation_steps=implementation,
+            writer_inputs={'intent': writer, 'deviations': inputs['deviations']}, implementation_steps=implementation,
             placement_adapter=adapter, routing_adapter=route,
-            envelope_content={'intent': intent, 'layout': inputs['layout'], 'antenna_facts': inputs['antenna'],
+            envelope_content={'intent': writer, 'layout': inputs['layout'], 'antenna_facts': inputs['antenna'],
                               'captured_rule_areas': inputs['retention']},
             review_profile=profile, implementation=profile['adjudicator'],
             routing_budget_s=budget, review_budget_s=review_budget)
-(planning / 'plan.json').write_text(text(plan))
 stage('pod_driver.validate_plan', lambda: dict(zip(('max_iterations', 'max_seconds'), pod_driver.validate_plan(plan))))
-stage('pod_driver.build(dry_run)', lambda: {k: v for k, v in pod_driver.build(
+(planning / 'plan.json').write_text(text(plan))
+stage('pod_driver.build(dry_run) composed scope', lambda: {k: v for k, v in pod_driver.build(
     planning / 'plan.json', OUT / 'prepared', dry_run=True).items() if k in ('status', 'done')})
-dry = OUT / 'prepared/dry-run-record.json'
 
-# DIAGNOSTICS (scratch only, never inputs).
+# The same plan on the compiled scope as-is (no envelope declaration, no added checks): shows which
+# refusal the composition itself adds. Its own copy; never an input to the composed run.
+plain = OUT / 'planning-compiled-scope'
+shutil.copytree(planning, plain)
+(plain / 'composition/scope-composition.json').unlink()
+write_scope(plain, compiled)
+(plain / 'plan.json').write_text(text(plan))
+stage('scaffold.scaffold compiled scope', lambda: run_scaffold(plain, OUT / 'scaffold-compiled-scope'))
+stage('scaffold.write_envelope_content compiled scope', lambda: production_content(
+    OUT / 'scaffold-compiled-scope', OUT / 'content-compiled-scope'))
+stage('pod_driver.build(dry_run) compiled scope', lambda: {k: v for k, v in pod_driver.build(
+    plain / 'plan.json', OUT / 'prepared-compiled-scope', dry_run=True).items() if k in ('status', 'done')})
+
+
+def block_candidates():
+    cache = ITER8N / 'cand'
+    bound_ids = sorted({json.loads(p.read_text())['sources'].get('policy_sha256') for p in cache.glob('*.candidate.json')})
+    passed = [n for n in ('pod_driver.build(dry_run) composed scope', 'pod_driver.build(dry_run) compiled scope')
+              if stages[n]['status'] == 'accepted']
+    if not passed:
+        raise ValueError(f'{len(list(cache.glob("*.candidate.json")))} iter8n block candidates bind policy {bound_ids}; '
+                         f'the derived request policy is {identity(policy)}. The repack waits on a passing dry run '
+                         '(none passed), per the coordinator instruction; nothing was repacked.')
+    return {'dry_runs_passed': passed, 'iter8n_candidates_bind': bound_ids, 'derived_policy': identity(policy),
+            'repack': 'production-capture/repack.py (evidence/repack-a9dac2f/repack.json)'}
+stage('placement.block_candidates_repack', block_candidates)
+
+# DIAGNOSTIC (scratch only, never an input).
 diagnostics = {}
-
-
-def diagnostic_content():
-    """Content without J3 only, to check retention and the native rule areas exactly."""
-    import pcbnew
-    work = OUT / 'diagnostic-content'
-    shutil.copytree(scaffold_out / 'inputs', work)
-    env = json.loads((work / inputs['envelope']).read_text())
-    env['fixed_footprints'] = [f for f in env['fixed_footprints'] if f['reference'] != 'J3']
-    env['constraint_provenance'] = {k: v for k, v in env['constraint_provenance'].items()
-                                    if not k.startswith('/fixed_footprints/')}
-    variant = 'composition/diagnostic-envelope-without-J3.json'
-    (work / variant).write_text(text(env))
-    retention = json.loads((work / inputs['retention']).read_text())
-    retention['envelope'] = {'path': variant, 'sha256': sha(work / variant)}
-    retention['items'][0]['pose'] = {k: v for k, v in retention['items'][0]['pose'].items()}
-    (work / 'composition/diagnostic-retention.json').write_text(text(retention))
-    scaffold.write_envelope_content(work, variant, inputs['parts'], BOARD,
-                                    **{**content_kwargs, 'captured_rule_areas_rel': 'composition/diagnostic-retention.json'})
-    board = pcbnew.LoadBoard(str(work / BOARD))
-    corrected = pcbnew.LoadBoard(str(CORRECTED))
-
-    def areas(b):
-        found = {}
-        for zone in b.Zones():
-            if zone.GetIsRuleArea():
-                outline = zone.Outline().Outline(0)
-                found[zone.GetZoneName()] = {
-                    'layers': sorted(pcbnew.LayerName(layer) for layer in zone.GetLayerSet().Seq()),
-                    'polygon_nm': sorted((outline.CPoint(i).x, outline.CPoint(i).y) for i in range(outline.PointCount())),
-                    'no_tracks': zone.GetDoNotAllowTracks(), 'no_vias': zone.GetDoNotAllowVias(),
-                    'no_pads': zone.GetDoNotAllowPads(), 'no_pour': zone.GetDoNotAllowZoneFills(),
-                    'no_footprints': zone.GetDoNotAllowFootprints()}
-        return found
-    produced, reference = areas(board), areas(corrected)
-    pairs = {'D-PCB-7v2-In1-no-tracks': 'D-PCB-7v2 In1.Cu no tracks (board outline)',
-             'D-PCB-6-RF-reference': 'D-PCB-6 RF reference keep-out'}
-    comparison = {ours: {'produced': produced.get(ours), 'corrected_board': reference.get(theirs),
-                         'identical': produced.get(ours) == reference.get(theirs)} for ours, theirs in pairs.items()}
-    u1 = next(f for f in board.GetFootprints() if f.GetReference() == 'U1')
-    return {'board_sha256': sha(work / BOARD), 'rule_areas': comparison,
-            'u1': {'fpid': u1.GetFPIDAsString(), 'position_nm': [u1.GetPosition().x, u1.GetPosition().y],
-                   'zones': len(list(u1.Zones())), 'retention_verified': 'verify_native_retention passed in the writer'},
-            'footprints': sorted(f.GetReference() for f in board.GetFootprints())}
 
 
 def diagnostic_j3():
     """The envelope's J3 pose through the writer's own native operations, versus the iter8n seed."""
     import pcbnew
     from agent_ee.symbol_library import nanometres
-    record = board_envelope.validate((planning / inputs['envelope']).read_bytes())
-    j3 = next(f for f in record['fixed_footprints'] if f['reference'] == 'J3')
-    board = pcbnew.LoadBoard(str(scaffold_out / 'inputs' / BOARD))
+    j3 = next(f for f in envelope_record['fixed_footprints'] if f['reference'] == 'J3')
+    board = pcbnew.BOARD()
     path = planning / 'footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod'
     fp = pcbnew.FootprintLoad(str(path.parent), path.stem)
     board.Add(fp)
@@ -259,7 +363,7 @@ def diagnostic_j3():
     fp.SetPosition(pcbnew.VECTOR2I(*(nanometres(v) for v in j3['anchor_mm'])))
     box = fp.GetCourtyard(pcbnew.B_CrtYd).BBox()
     pads = sorted((p.GetNumber(), p.GetPosition().x, p.GetPosition().y) for p in fp.Pads())
-    seed = pcbnew.LoadBoard(str(ITER8N_SEED))
+    seed = pcbnew.LoadBoard(str(ITER8N / 'seed.kicad_pcb'))
     other = next(f for f in seed.GetFootprints() if f.GetReference() == 'J3')
     seed_pads = sorted((p.GetNumber(), p.GetPosition().x, p.GetPosition().y) for p in other.Pads())
     return {'anchor_mm': j3['anchor_mm'], 'side': j3['side'], 'rotation_deg': j3['rotation_deg'],
@@ -267,61 +371,30 @@ def diagnostic_j3():
             'left_overhang_mm': -box.GetLeft() / 1e6, 'declared_max_mm': 20.3,
             'within_declared_overhang': -box.GetLeft() <= 20300000,
             'right_edge_inside_outline': box.GetRight() <= 90000000 and box.GetTop() >= 0 and box.GetBottom() <= 65000000,
-            'pads_equal_iter8n_seed': pads == seed_pads, 'iter8n_seed_sha256': sha(ITER8N_SEED)}
+            'pads_equal_iter8n_seed': pads == seed_pads, 'iter8n_seed_sha256': sha(ITER8N / 'seed.kicad_pcb')}
 
 
-def diagnostic_fill():
-    """The genuine fill on an intent copy without J3 only: do the other 304 bindings revalidate?"""
-    source = read(intent)
-    j3 = next(c['id'] for c in source['components'] if c['reference'] == 'J3')
-    variant = copy.deepcopy(source)
-    variant['components'] = [c for c in variant['components'] if c['id'] != j3]
-    for net in variant['nets']:
-        net['terminals'] = [t for t in net['terminals'] if t['component'] != j3]
-    variant['no_connects'] = [n for n in variant.get('no_connects', []) if n.get('component') != j3]
-    # A net left with one terminal (/SD_CLK: U1 only) becomes that terminal's no-connect, here only.
-    orphaned = [n for n in variant['nets'] if len(n['terminals']) == 1]
-    variant['no_connects'] += [n['terminals'][0] for n in orphaned]
-    variant['nets'] = [n for n in variant['nets'] if len(n['terminals']) > 1]
-    args = (read(inputs['parts']), read(inputs['refs']), read(inputs['deviations']))
-    try:
-        binding_fill.fill(planning, variant, *args, captures='.', source_migration=True)
-        as_is = 'ok'
-    except ValueError as exc:
-        as_is = f'ValueError: {exc}'
-    # Second pass: set aside the fields binding-fill does not produce without --ratings (and never
-    # produces: Qualification), to see whether every canonical identity binding revalidates.
-    aside = ('Qualification', 'AGENT_EE_Ratings', 'Voltage', 'Power')
-    counts = {k: sum(k in c.get('part_binding', {}) for c in variant['components']) for k in aside}
-    for comp in variant['components']:
-        for key in aside:
-            comp.get('part_binding', {}).pop(key, None)
-    output, report = binding_fill.fill(planning, variant, *args, captures='.', source_migration=True)
-    before = {c['reference']: {k: v for k, v in c.get('part_binding', {}).items() if k not in aside}
-              for c in source['components']}
-    changed = {c['reference']: sorted(set(c.get('part_binding', {})) - set(before[c['reference']]))
-               for c in output['components'] if c.get('part_binding', {}) != before[c['reference']]}
-    return {'as_is': as_is, 'set_aside_field_counts': counts,
-            'bound_components': len(report['components']), 'components_with_added_fields': changed,
-            'assembly_deviations': {r['reference']: r['assembly_deviation'] for r in report['components']
-                                    if r.get('assembly_deviation') is not None}}
+try:
+    diagnostics['diagnostic.J3_transform'] = {'status': 'ok', **diagnostic_j3()}
+except Exception as exc:
+    diagnostics['diagnostic.J3_transform'] = {'status': 'failed', 'error': f'{type(exc).__name__}: {exc}'}
+print('diagnostic.J3_transform', json.dumps(diagnostics['diagnostic.J3_transform'], sort_keys=True)[:600], flush=True)
 
 
-for name, fn in (('diagnostic.binding_fill_without_J3', diagnostic_fill),
-                 ('diagnostic.content_without_J3', diagnostic_content), ('diagnostic.J3_transform', diagnostic_j3)):
-    try:
-        diagnostics[name] = {'status': 'ok', **fn()}
-    except Exception as exc:
-        diagnostics[name] = {'status': 'failed', 'error': f'{type(exc).__name__}: {exc}'}
-    print(name, json.dumps(diagnostics[name], sort_keys=True)[:600], flush=True)
+def record_of(directory):
+    path = OUT / directory / 'dry-run-record.json'
+    return json.loads(path.read_text()) if path.exists() else None
 
-result = dict(schema='pod-capture.pipeline/1', done=False, inference=False,
+
+result = dict(schema='pod-capture.pipeline/2', done=False, inference=False,
               authority='Producer execution and declarations on a fresh capture copy; no placement, routing, '
-                        'campaign or model run. Diagnostics are scratch-only and never inputs.',
+                        'campaign or model run. The diagnostic is scratch-only and never an input.',
               agent_ee=str(A), router_checkout=str(R), scope={'path': str(SCOPE_DIR / 'scope.json'),
                                                              'sha256': sha(SCOPE_DIR / 'scope.json')},
+              composed_scope_sha256=sha(planning / 'scope.json'), scope_composition=derivation,
               plan_sha256=sha(planning / 'plan.json'), derived_request_policy_identity=identity(policy),
-              budgets={'routing_budget_s': budget, 'review_budget_s': review_budget, 'placement_timeout_s': 1500},
-              stages=stages, diagnostics=diagnostics, prepared_output_exists=(OUT / 'prepared').exists(),
-              dry_run_record=json.loads(dry.read_text()) if dry.exists() else None)
+              budgets={'routing_budget_s': budget, 'review_budget_s': review_budget, 'placement_timeout_s': 1500,
+                       'max_iterations': 2},
+              stages=stages, diagnostics=diagnostics,
+              dry_run_records={'composed': record_of('prepared'), 'compiled': record_of('prepared-compiled-scope')})
 (OUT / 'pipeline.json').write_text(text(result))

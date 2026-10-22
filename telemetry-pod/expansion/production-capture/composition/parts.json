@@ -2,7 +2,7 @@
  "cad": {
   "assignments": {
    "path": "composition/assignments.json",
-   "sha256": "d84ea5edcd65d8f5e1525ebe4b75ba6080d6cc376ed7f89933845aad51537642"
+   "sha256": "88d7aabdbc3b1dbc623b6c45aaa9f2399d3c471cf3c5631010bed55e207eeda0"
   },
   "declarations": {
    "path": "composition/declarations.json",
@@ -2054,6 +2054,11 @@
      "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
     },
     "required": true,
+    "source_selection": {
+     "part_key": "C452751",
+     "path": "composition/datasheet-source-selection.json",
+     "sha256": "ed8c72bd08ee91ce8fc93c1c9e933e8c77157e6d559fa48a973542bb61e542e0"
+    },
     "status": "captured"
    },
    "footprint": "Capacitor_SMD:C_0603_1608Metric",
@@ -13030,6 +13035,49 @@
    },
    "selection_id": "connector/J1",
    "stock": 0
+  },
+  {
+   "datasheet": {
+    "artifact": {
+     "path": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/7059663a2a7162b7315ebf55be1a1d3dcffa2066e159a59e5c75b234466d1207.pdf",
+     "sha256": "ab978e9d023b8b2d3a5acfe31ead6e9bf1d63b439d21f7f4db662a1e4e3b56af"
+    },
+    "provenance": {
+     "locator": "parts[id=J3]",
+     "path": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/manifest.json",
+     "sha256": "795abc9d002046f9fe50eb9cc2140cab44ccfab0f7ec6deb5a2b0b25bd39869a"
+    },
+    "required": true,
+    "status": "captured"
+   },
+   "footprint": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
+   "id": "storage/J3",
+   "instances": [
+    {
+     "reference": "J3",
+     "sheet": "/"
+    }
+   ],
+   "lcsc": "C114218",
+   "lib_id": "Connector:Micro_SD_Card_Det_Hirose_DM3AT",
+   "manufacturer": "HRS(Hirose)",
+   "mpn": "DM3AT-SF-PEJM5",
+   "package": "SMD",
+   "required": true,
+   "role": "Expanded pod J3 DM3AT-SF-PEJM5",
+   "selection": {
+    "decision_ref": {
+     "locator": "components[reference=J3]",
+     "path": "composition/intent.json",
+     "sha256": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427"
+    },
+    "kind": "named",
+    "lcsc": "C114218",
+    "part_record": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json",
+    "part_record_sha256": "1f590e541bfa547720eeb38b33bd53b3d1aade4431ec768548159d5096d6e6ab"
+   },
+   "selection_id": "storage/J3",
+   "stock": 16060
   }
  ],
  "population": "native-dnp-optional-only/1",

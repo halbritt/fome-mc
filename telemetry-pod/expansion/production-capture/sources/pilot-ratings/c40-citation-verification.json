@@ -1,0 +1,42 @@
+{
+  "extractor": {
+    "path": "/usr/bin/pdftotext",
+    "sha256": "88263e2333fa712d6eadfc69dd2daf826792a67abb14f4d2110673d5f195b154",
+    "version": "pdftotext version 24.02.0"
+  },
+  "fact": {
+    "conditions": "Nominal rated DC voltage decoded from manufacturer ordering information: C / 0603 / C / 471 / J / 5 / G / A / C / TU. Voltage code5=50VDC; page6 Table1A shows470pF code471 available for C0603C at50V with J tolerance. No derating or installed-circuit suitability claim.",
+    "id": "C452751-rated-voltage",
+    "kind": "voltage_rating",
+    "part_number": "C0603C471J5GACTU",
+    "source": {
+      "locator": "Ordering Information / Rated Voltage (VDC), code5",
+      "page": 1,
+      "path": "power-source/acquisition-passives-1/e171be81af1fd58fcb06f260ba912d6d565041a69a7e6dd28d81f471710e97b2.pdf",
+      "quote": "5 = 50",
+      "sha256": "4746ff205f5df05b8703d29c99a31aba2dfbc8e9ec679fb47b59d08985496ef5"
+    },
+    "unit": "V",
+    "value": "50"
+  },
+  "limits": [
+    "Direct existing-verifier invocation, not a sealed native board acceptance check",
+    "233 rating derivation and native propagation remain pending reviewedrelease",
+    "No derating/effectiveC/suffix/105C acceptance"
+  ],
+  "page_support": [
+    "verified",
+    "exact_quote_and_value_supported"
+  ],
+  "selected_source": {
+    "id": "kemet-commercial-c0g-c1003",
+    "provenance": {
+      "locator": "parts[id=C452751]",
+      "path": "power-source/acquisition-passives-1/manifest.json",
+      "sha256": "e327c13795cfc9ac81b8666a9a29295b1fe375b02cfc695c8733d1b8bc2b47be"
+    },
+    "sha256": "4746ff205f5df05b8703d29c99a31aba2dfbc8e9ec679fb47b59d08985496ef5"
+  },
+  "semantic_review": "Root inspected manufacturer ordering tablepage1 and product range rowpage6 for exact C0603C471J5GACTU; voltage code5=50VDC",
+  "status": "fact schema, selected PDF hash, exact page quote and value token verified"
+}

@@ -8,13 +8,19 @@ generated declarations into it:
   ``assignments.json`` and ``declarations.json`` (the patched D-PCB-1/13 CAD closure);
 - ``composition/part-refs.json`` (``agent-ee.part-refs/1``) and
   ``composition/deviations.json`` (``agent-ee.part-deviations/1``);
-- ``composition/j3-source.json``: J3 C114218 catalog capture and its exact missing datasheet capture;
+- ``composition/j3-source.json``: J3 C114218's captured catalog row, datasheet acquisition,
+  failed attempts, detect-switch mapping evidence and limitations;
+- ``composition/intent.writer.json``, ``binding-ledger.json`` and ``binding-migration.json``:
+  the writer intent binding-fill reads, with the 174 project-authored ``Qualification``
+  limitations moved into a ledger (agent-509 binding composition decision, 2026-10-22);
+- ``composition/rating-sources.json`` and ``rating-comparison.json``: the captured
+  ``--ratings`` declaration and the comparison of every original rating with the producer's;
 - ``composition/envelope.json`` with ``antenna-facts.json`` and ``captured-rule-areas.json``;
 - ``composition/library-updates.json`` and ``reconstruction.json``.
 
 Every manifest entry is an existing captured record re-verified against the microSD intent;
-nothing is selected, rated or measured here. J3 has no captured datasheet, so it cannot be a
-named part (``parts_manifest`` requires one) and stays an explicit gap, never an exclusion.
+nothing is selected, rated or measured here. The original intent stays byte-identical as
+``composition/intent.json`` (provenance and the parts declaration source).
 
 Usage (from the fome-mc root; agent-ee is an origin/main export, pcbnew on the system python):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/build.py AGENT_EE_EXPORT --out NEW_DIR
@@ -47,11 +53,31 @@ SOURCES = HERE / 'sources'
 GUIDELINES = SOURCES / 'esp32-guidelines'
 FAB = SOURCES / 'fab-profile'
 J3_ATTEMPT = SOURCES / 'j3-capture-attempt'
+J3_SOURCE = SOURCES / 'j3-datasheet'
+J3_RECORD = J3_SOURCE / 'C114218.part-record.json'
+J3_ORIGIN_RECORD = J3_SOURCE / 'origin-record/C114218.part-record.json'
+J3_FAILED = ('acquisition', 'acquisition-direct', 'acquisition-legacy', 'acquisition-mirror')
+J3_FOOTPRINT = 'footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod'
+RATINGS = SOURCES / 'rating-sources.json'
+CATALOG_ONLY = {'schema': 'agent-ee.passive-rating-sources/1', 'catalog': True, 'facts': None, 'extractor': None}
+PILOT = SOURCES / 'pilot-ratings'
+RECOVERED = X / 'parts-closure/recovered-pilot'
+LOCALITY = X / 'electrical-locality/pad-obligations/electrical-locality.json'
+# The project-authored Qualification statements (part-bindings/prepare.py:52-58 and later
+# lanes), each an exact text; any other text refuses.
+QUALIFICATION_CLASSES = {
+    'Identity metadata only; assembly and operating qualification pending': 'identity-only',
+    'Identity and package selection only; assembly and operating qualification pending': 'package-selection',
+    'Identity and series-divider selection only; assembly and operating qualification pending': 'series-divider',
+}
+QUALIFICATION_COUNTS = {'identity-only': 166, 'package-selection': 5, 'series-divider': 2, 'historical-j3': 1}
 ESP32_DATASHEET = X / ('parts-closure/recovered-pilot/core/datasheets-core/'
                        'bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf')
 GENERATED = ['refs.json', 'parts.json', 'footprints.json', 'assignments.json', 'declarations.json',
              'part-refs.json', 'deviations.json', 'j3-source.json', 'envelope.json', 'antenna-facts.json',
-             'captured-rule-areas.json', 'library-updates.json']
+             'captured-rule-areas.json', 'library-updates.json', 'intent.writer.json', 'binding-ledger.json',
+             'binding-migration.json', 'rating-comparison.json', 'rating-sources.json', 'rating-facts.json',
+             'datasheet-source-selection.json']
 D_PCB_1 = ('Thermal vias are 0.30 mm drill / 0.70 mm diameter after design-rules D-PCB-1 '
            '(footprints/ patched copy; KiCad/library original 0.20 mm).')
 
@@ -227,6 +253,306 @@ def envelope(constraints_blob):
     return record
 
 
+def j3_part(root, comp, sheet, intent_blob, qualify_record):
+    """J3 as a named part from the path-bound C114218 record (part_record.prepare_record output)."""
+    record = json.loads(J3_RECORD.read_text())
+    binding = comp['part_binding']
+    if ((record['lcsc'], record['mpn'], record['manufacturer']) !=
+            (binding['LCSC'], binding['Partnumber'], binding['Manufacturer'])):
+        raise ValueError('J3 binding differs from the C114218 record')
+    origin = json.loads(J3_ORIGIN_RECORD.read_text())
+    moved = {k for k in ('catalog', 'datasheets', 'artifact') if record[k]['path'] != origin[k]['path']}
+    if ({k: v for k, v in record.items() if k not in moved} != {k: v for k, v in origin.items() if k not in moved}
+            or any(record[k]['sha256'] != origin[k]['sha256'] for k in moved)):
+        raise ValueError('relocated J3 record differs from the origin record beyond its paths')
+    root.copy(J3_RECORD, rel(J3_RECORD))
+    for path in qualify_record(record, ROOT):
+        root.copy(ROOT / path, path)
+    return {
+        'id': comp['id'], 'role': 'Expanded pod J3 ' + record['mpn'], 'required': True,
+        'instances': [{'sheet': sheet, 'reference': 'J3'}], 'lib_id': comp['lib_id'], 'footprint': comp['footprint'],
+        'selection_id': comp['id'], 'lcsc': record['lcsc'], 'mpn': record['mpn'],
+        'manufacturer': record['manufacturer'], 'package': record['package'], 'stock': record['stock'],
+        'datasheet': {'status': 'captured', 'required': True, 'artifact': record['artifact'],
+                      'provenance': {**record['datasheets'], 'locator': 'parts[id=' + record['datasheet_id'] + ']'}},
+        'selection': {'kind': 'named', 'lcsc': record['lcsc'], 'part_record': rel(J3_RECORD),
+                      'part_record_sha256': sha(J3_RECORD),
+                      'decision_ref': {**intent_blob, 'locator': 'components[reference=J3]'}}}
+
+
+def writer_intent(intent, intent_blob, j3_record):
+    """The writer intent and its ledger: Qualification moves out; nothing else changes except J3's
+    historical Datasheet URL, which the captured record supersedes (recorded, never silently dropped)."""
+    from agent_ee.storage import identity
+    writer, entries, migrations = copy.deepcopy(intent), {}, []
+    for comp in writer['components']:
+        binding = comp.get('part_binding', {})
+        if 'Qualification' in binding:
+            text_ = binding.pop('Qualification')
+            kind = 'historical-j3' if comp['id'] == 'storage/J3' else QUALIFICATION_CLASSES.get(text_)
+            if kind is None:
+                raise ValueError('unclassified Qualification text: ' + comp['id'])
+            entries[comp['id']] = {'reference': comp['reference'], 'field': 'Qualification', 'class': kind,
+                                   'text': text_, 'text_sha256': hashlib.sha256(text_.encode()).hexdigest()}
+        if 'AGENT_EE_Ratings' in binding:
+            migrations.append({
+                'component': comp['id'], 'reference': comp['reference'], 'field': 'AGENT_EE_Ratings',
+                'original': binding.pop('AGENT_EE_Ratings'),
+                'producer_value': 'binding-fill --ratings (composition/rating-sources.json)',
+                'reason': ('The field pins the v9 pilot rating record by hash; that record names the pilot part id '
+                           'and pilot-root response path. Its rating values stay in the writer intent and must be '
+                           'regenerated exactly; the record difference is explained in rating-comparison.json.')})
+        if comp['id'] == 'storage/J3':
+            previous = binding.pop('Datasheet')
+            if previous == j3_record['datasheet_url'] or 'PARAM_Datasheet' in binding:
+                raise ValueError('J3 datasheet binding is not the historical uncaptured URL')
+            migrations.append({
+                'component': comp['id'], 'reference': comp['reference'], 'field': 'Datasheet', 'original': previous,
+                'producer_value': j3_record['datasheet_url'],
+                'producer_source': {'path': rel(J3_RECORD), 'sha256': sha(J3_RECORD), 'locator': 'datasheet_url'},
+                'reason': ('The historical URL served no PDF (sources/j3-capture-attempt, outcome missing; '
+                           'sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and '
+                           'PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.')})
+    counts = {k: sum(e['class'] == k for e in entries.values()) for k in QUALIFICATION_COUNTS}
+    if sum(m['field'] == 'AGENT_EE_Ratings' for m in migrations) != 98:
+        raise ValueError('expected the 98 original AGENT_EE_Ratings fields')
+    if counts != QUALIFICATION_COUNTS:
+        raise ValueError(f'Qualification classes differ from the reviewed 174: {counts}')
+    ledger = {
+        'schema': 'pod-capture.binding-ledger/1',
+        'source_intent': {**intent_blob, 'identity': identity(intent)},
+        'authority': ('agent-509 binding composition decision 2026-10-22 '
+                      '(sources/j3-datasheet/review/509-binding-composition-20261022.txt): project-authored '
+                      'limitations, not producer bindings. They stay visible here and in the review inputs; '
+                      'none is waived or satisfied by this move.'),
+        'qualification': dict(sorted(entries.items())),
+        'field_migrations': migrations,
+        'annotations': [{
+            'component': 'storage/J3', 'annotates': 'qualification[storage/J3]',
+            'date': '2026-10-22',
+            'statement': ('The historical statement above is retained verbatim. Since it was written, the J3 '
+                          'datasheet has been captured: the DigiKey mirror of the Hirose DM3 Series MicroSD '
+                          '2010.6 reference catalog (sha256 ' + j3_record['artifact']['sha256'] + '), canonical record '
+                          + rel(J3_RECORD) + '. It is not the latest engineering drawing. Assembly and operating '
+                          'qualification remain pending.'),
+            'limitations': J3_LIMITATIONS}]}
+    restored = copy.deepcopy(writer)
+    for comp in restored['components']:
+        if comp['id'] in entries:
+            comp['part_binding']['Qualification'] = entries[comp['id']]['text']
+        for m in migrations:
+            if m['component'] == comp['id']:
+                comp['part_binding'][m['field']] = m['original']
+        if 'part_binding' in comp:  # restore the original field order too
+            original = next(c for c in intent['components'] if c['id'] == comp['id'])['part_binding']
+            comp['part_binding'] = {k: comp['part_binding'][k] for k in original}
+    if restored != intent or json.dumps(restored) != json.dumps(intent):
+        raise ValueError('writer intent plus ledger does not restore the original intent')
+    changed = sorted(c['id'] for c, o in zip(writer['components'], intent['components']) if c != o)
+    migration = {
+        'schema': 'pod-capture.binding-migration/1', 'source_intent': ledger['source_intent'],
+        'writer_intent_identity': identity(writer),
+        'components_changed': len(changed), 'changed': changed,
+        'qualification': {'fields': len(entries), 'classes': counts,
+                          'texts': {t: sum(e['text'] == t for e in entries.values())
+                                    for t in sorted({e['text'] for e in entries.values()})}},
+        'field_migrations': {f: sorted(m['component'] for m in migrations if m['field'] == f)
+                             for f in sorted({m['field'] for m in migrations})},
+        'unchanged': ('Every other component, net, no-connect, library and binding field (Power and Voltage '
+                      'included) is identical; '
+                      'restoring the ledger texts and migrated fields reproduces the source intent exactly '
+                      '(checked by build.py, including field order).')}
+    if set(changed) != set(entries) | {m['component'] for m in migrations}:
+        raise ValueError('writer intent changes components outside the ledger')
+    return writer, ledger, migration
+
+
+J3_LIMITATIONS = [
+    'Source is the DigiKey mirror of the Hirose DM3 Series MicroSD 2010.6 reference catalog, not the latest '
+    'engineering drawing; the official Hirose site returned HTTP 403 (retained failed acquisitions).',
+    'PDF page 3 names DM3AT-SF-PEJM5 with code 609-0031-0.',
+    'The card detection switches A/B are normally open and close on card insertion; the JLCPCB attribute '
+    '"Additional Card Detection Pins: No" is contradicted by this manufacturer evidence and does not override it.',
+    'Detect mapping verified by agent-509\'s delegated reviewer for these sources: manufacturer B is pad 9 '
+    '(DET_B, SD_CD), manufacturer A is pad 10 (DET_A, GND).',
+    'PDF page 2 operating temperature -25 to +85 C includes current-induced temperature rise. This shows the '
+    'source exists; it does not qualify the actual board thermal or DFM.',
+]
+
+
+def j3_source(root, intent, physical, catalog, item, record):
+    """J3's captured identity, datasheet acquisition, failed attempts and detect-mapping evidence."""
+    attempt = json.loads((J3_ATTEMPT / 'manifest.json').read_text())
+    failed = []
+    for name in J3_FAILED:
+        manifest = J3_SOURCE / name / 'manifest.json'
+        root.copy(manifest, rel(manifest))
+        doc = json.loads(manifest.read_text())
+        if doc['outcome'] != 'missing':
+            raise ValueError('retained failed J3 acquisition is not missing: ' + name)
+        failed.append({'path': rel(manifest), 'sha256': sha(manifest), 'outcome': doc['outcome'],
+                       'attempts': [{k: p[k] for k in ('id', 'url', 'reason')} for p in doc['parts']]})
+    for path in sorted(J3_SOURCE.glob('bindings*.json')) + sorted((J3_SOURCE / 'review').glob('*.txt')):
+        root.copy(path, rel(path))
+    origin = root.copy(J3_ORIGIN_RECORD, rel(J3_ORIGIN_RECORD))
+    # Detect mapping: the footprint pads, symbol pins and intent nets the reviewer cited, re-read here.
+    footprint = (root.out / J3_FOOTPRINT).read_text()
+    pads = {n: footprint.split(f'(pad "{n}" ', 1)[1].split('(at ', 1)[1].split(')', 1)[0] for n in ('9', '10')}
+    symbols = (MICROSD / 'inputs/symbols/Connector.kicad_sym').read_text()
+    base = symbols.split('(symbol "Micro_SD_Card_Det2"', 1)[1].split('(symbol "Micro_SD_Card_Det_Hirose_DM3AT"', 1)[0]
+    pins = {}
+    for chunk in base.split('(pin ')[1:]:
+        name, number = chunk.split('(name "', 1)[1].split('"', 1)[0], chunk.split('(number "', 1)[1].split('"', 1)[0]
+        pins[number] = name
+    nets = {t['pin']['number']: n['name'] for n in intent['nets'] for t in n['terminals']
+            if t['component'] == physical['J3']['id']}
+    mapping = {'9': {'manufacturer': 'B', 'pad_at_mm': pads['9'], 'symbol_pin': pins['9'], 'net': nets['9']},
+               '10': {'manufacturer': 'A', 'pad_at_mm': pads['10'], 'symbol_pin': pins['10'], 'net': nets['10']}}
+    expected = {'9': ('-5.875 -7.725', 'DET_B', 'SD_CD'), '10': ('-6.825 2.775', 'DET_A', 'GND')}
+    if any((m['pad_at_mm'], m['symbol_pin'], m['net']) != expected[n] for n, m in mapping.items()):
+        raise ValueError('J3 detect mapping differs from the reviewed evidence: ' + json.dumps(mapping))
+    return {
+        'schema': 'pod-capture.j3-source/2', 'reference': 'J3', 'component': physical['J3']['id'],
+        'status': 'captured',
+        'identity': {k: catalog['parts']['C114218'][k] for k in ('lcsc', 'mpn', 'mfr', 'package', 'stock')},
+        'catalog': {'path': rel(J3_CATALOG), 'sha256': sha(J3_CATALOG), 'fetched_at': catalog['requests'][0]['fetched_at'],
+                    'response': {'path': rel(MICROSD / 'stock/responses/C114218.json'),
+                                 'sha256': sha(MICROSD / 'stock/responses/C114218.json')}},
+        'catalog_attributes': {a['attribute_name_en']: a['attribute_value_name'] for a in item['attributes']},
+        'assembly_component_flag': item['assemblyComponentFlag'],
+        'symbol': physical['J3']['lib_id'], 'footprint': physical['J3']['footprint'],
+        'datasheet': {
+            'record': {'path': rel(J3_RECORD), 'sha256': sha(J3_RECORD),
+                       'producer': 'agent_ee.part_record (prepare_record), --root fome-mc'},
+            'origin_record': {**origin, 'note': ('agent-509 sourcing record generated at the volatile root '
+                                                 '/tmp/pod-acceptance-j3-source; it differs from the record above '
+                                                 'only in the catalog, datasheets and artifact paths')},
+            'acquisition': {**record['datasheets'], 'outcome': 'captured', 'url': record['datasheet_url'],
+                            'artifact': record['artifact'], 'fetched_at': record['acquisition']['fetched_at']},
+            'failed_acquisitions': [
+                {'path': rel(J3_ATTEMPT / 'manifest.json'), 'sha256': sha(J3_ATTEMPT / 'manifest.json'),
+                 'outcome': attempt['outcome'],
+                 'attempts': [{k: p[k] for k in ('id', 'url', 'reason')} for p in attempt['parts']]}, *failed],
+        },
+        'detect_mapping': {
+            'status': 'verified',
+            'review': {'path': rel(J3_SOURCE / 'review/509-j3-detect-mapping-20261022.txt'),
+                       'sha256': sha(J3_SOURCE / 'review/509-j3-detect-mapping-20261022.txt')},
+            'pdf_page': 3, 'pins': mapping,
+            'switch': 'normally open; A-B closed with a card inserted. R55 10k pulls SD_CD to 3V3; insertion grounds it.',
+            'reread': 'pad positions from ' + J3_FOOTPRINT + ', pin names from Micro_SD_Card_Det2, nets from the intent'},
+        'limitations': J3_LIMITATIONS,
+    }
+
+
+def rating_inputs(root):
+    """The pilot's documented C40 fact and source selection, rebased onto the retained recovered-pilot bytes.
+
+    Only the path locators move (pilot root -> repository path); quote, page, value and hashes are the
+    pilot's (sources/pilot-ratings). The extractor is the pilot's pinned pdftotext."""
+    if json.loads(RATINGS.read_text()) != CATALOG_ONLY:
+        raise ValueError('captured catalog rating declaration differs')
+    for path in sorted(PILOT.glob('*.json')):
+        root.copy(path, rel(path))
+
+    def moved(path, sha256):
+        target = RECOVERED / path
+        if sha(target) != sha256:
+            raise ValueError('pilot path does not resolve to the retained bytes: ' + path)
+        return rel(target)
+    facts = json.loads((PILOT / 'passive-rating-facts.json').read_text())
+    for fact in facts['facts']:
+        fact['source']['path'] = moved(fact['source']['path'], fact['source']['sha256'])
+        root.copy(ROOT / fact['source']['path'], fact['source']['path'])
+    facts_blob = root.write('composition/rating-facts.json', facts)
+    selection = json.loads((RECOVERED / 'passive-source-selection.json').read_text())
+    for entry in selection['parts'].values():
+        for item in entry['selected']:
+            item['provenance']['path'] = moved(item['provenance']['path'], item['provenance']['sha256'])
+            root.copy(ROOT / item['provenance']['path'], item['provenance']['path'])
+    selection_blob = root.write('composition/datasheet-source-selection.json', selection)
+    pilot = json.loads((PILOT / 'passive-ratings.json').read_text())
+    declaration = {**CATALOG_ONLY, 'facts': facts_blob, 'extractor': pilot['extractor']}
+    blob = root.write('composition/rating-sources.json', declaration)
+    return blob, selection_blob, declaration
+
+
+def rating_comparison(intent, writer, output, report, catalog_only):
+    """Every original rating record and field against the producer's regenerated value.
+
+    The original records are the v9 pilot's receipted binding-fill report (sources/pilot-ratings); each
+    must differ from its regenerated record only by the part id and source path/hash migration
+    explained here, and every native value must be equal. Anything else refuses."""
+    names = ('AGENT_EE_Ratings', 'Power', 'Voltage')
+    pilot = json.loads((PILOT / 'binding-fill.json').read_text())['ratings']['derived']
+    by_hash = {v['record_sha256']: v['record'] for v in pilot.values()}
+    produced = {c['id']: c.get('part_binding', {}) for c in output['components']}
+    written = {c['id']: c.get('part_binding', {}) for c in writer['components']}
+    rows = {}
+    for comp in intent['components']:
+        fields = {k: v for k, v in comp.get('part_binding', {}).items() if k in names}
+        if not fields:
+            continue
+        original_hash = json.loads(fields['AGENT_EE_Ratings'])['record_sha256']
+        old, new = by_hash[original_hash], report['ratings']['derived'][comp['reference']]
+        record = new['record']
+        values = {k: produced[comp['id']].get(k) for k in fields if k != 'AGENT_EE_Ratings'}
+        if values != {k: v for k, v in fields.items() if k != 'AGENT_EE_Ratings'} or any(
+                written[comp['id']].get(k) != v for k, v in values.items()):
+            raise ValueError('regenerated rating value differs: ' + comp['id'])
+        if json.loads(fields['AGENT_EE_Ratings'])['ratings'] != json.loads(produced[comp['id']]['AGENT_EE_Ratings'])['ratings']:
+            raise ValueError('regenerated rating field values differ: ' + comp['id'])
+        sources = []
+        for field, rating in old['ratings'].items():
+            other = record['ratings'][field]
+            if {k: rating[k] for k in ('value', 'si', 'unit')} != {k: other[k] for k in ('value', 'si', 'unit')}:
+                raise ValueError('regenerated rating record value differs: ' + comp['id'])
+            for a, b in zip(rating['sources'], other['sources'], strict=True):
+                keep = {k: v for k, v in a.items() if k not in ('path', 'sha256')}
+                if keep != {k: v for k, v in b.items() if k not in ('path', 'sha256')}:
+                    raise ValueError('regenerated rating source differs beyond its path: ' + comp['id'])
+                if rel(RECOVERED / a['path']) != b['path']:
+                    retained = RECOVERED / a['path']
+                    if sha(retained) != a['sha256'] or a['kind'] != 'catalog':
+                        raise ValueError('pilot rating source is not retained: ' + a['path'])
+                    rows_ = [[x for x in json.loads(Path(p).read_text())['data']['componentPageInfo']['list']
+                              if x['componentCode'] == a['id']][0] for p in (retained, ROOT / b['path'])]
+                    attrs = [{x['attribute_name_en']: x['attribute_value_name'] for x in r['attributes']}[a['attribute']]
+                             for r in rows_]
+                    if attrs[0] != attrs[1] or attrs[0] != rating['value']:
+                        raise ValueError('pilot and current catalog attributes differ: ' + comp['id'])
+                    kind = 'other captured response with the same attribute'
+                else:
+                    kind = 'same bytes, repository path'
+                    if a['sha256'] != b['sha256']:
+                        raise ValueError('rating source hash differs at the same retained path: ' + comp['id'])
+                sources.append({'field': field, 'kind': a['kind'], 'pilot': {'path': a['path'], 'sha256': a['sha256']},
+                                'regenerated': {'path': b['path'], 'sha256': b['sha256']}, 'migration': kind})
+        if {k: v for k, v in old['part'].items() if k != 'id'} != {k: v for k, v in record['part'].items() if k != 'id'} \
+                or old['limitations'] != record['limitations']:
+            raise ValueError('regenerated rating record part differs beyond its id: ' + comp['id'])
+        rows[comp['id']] = {'reference': comp['reference'], 'fields': sorted(fields), 'values': values,
+                            'original_record_sha256': original_hash, 'regenerated_record_sha256': new['record_sha256'],
+                            'part_id': {'pilot': old['part']['id'], 'regenerated': record['part']['id']},
+                            'sources': sources}
+    added = {c: sorted(k for k in f if k in names) for c, f in produced.items()
+             if any(k in f for k in names) and c not in rows}
+    return {'schema': 'pod-capture.rating-comparison/1',
+            'pilot_report': {'path': rel(PILOT / 'binding-fill.json'), 'sha256': sha(PILOT / 'binding-fill.json'),
+                             'origin': '/tmp/agent469-coordination/pod-campaign-v1/driver-preparation-v9-90x65/'
+                                       'inputs/binding-fill.json (v9 pilot binding-fill report)'},
+            'sources_sha256': report['ratings']['sources_sha256'],
+            'catalog_only': catalog_only,
+            'counts': {k: sum(k in r['fields'] for r in rows.values()) for k in names},
+            'components': len(rows), 'values_equal': len(rows),
+            'record_migrations': {kind: sum(any(x['migration'] == kind for x in r['sources']) for r in rows.values())
+                                  for kind in ('same bytes, repository path', 'other captured response with the same attribute')},
+            'datasheet_sourced': sorted(c for c, r in rows.items() if any(x['kind'] == 'datasheet' for x in r['sources'])),
+            'added': {'components': len(added), 'note': 'catalog ratings derived for parts the pilot left unrated; '
+                                                        'new producer fields, not changes', 'fields': added},
+            'missing': report['ratings']['missing'], 'rows': dict(sorted(rows.items()))}
+
+
 def build(out, agent_ee):
     sys.path[:0] = [str(Path(agent_ee).resolve() / 'src')]
     from agent_ee import binding_fill, board_envelope
@@ -252,9 +578,6 @@ def build(out, agent_ee):
     updates = libraries(root)
     intent_blob = root.copy(MICROSD / 'inputs/intent.json', 'composition/intent.json')
     root.copy(MICROSD / 'inputs/emitter-layout.json', 'composition/emitter-layout.json')
-    # binding_fill.configuration(output=...) needs a captured projection; it starts as the current
-    # bound intent and the binding-fill step replaces it before emission (pod_driver.STEPS order).
-    root.copy(MICROSD / 'inputs/intent.json', 'composition/intent.bound.json')
     intent = json.loads((out / intent_blob['path']).read_text())
     physical = {c['reference']: c for c in intent['components'] if not c['reference'].startswith('#')}
     if set(physical) != set(native['components']) or len(physical) != 305:
@@ -299,8 +622,11 @@ def build(out, agent_ee):
             part['selection']['decision_ref'] = {**intent_blob, 'locator': f'components[reference={ref}]'}
         parts.append(part)
         kept[ref] = part['id']
+    j3 = j3_part(root, physical['J3'], native['components']['J3']['sheet'], intent_blob, qualify_record)
+    parts.append(j3)
+    kept['J3'] = j3['id']
     gaps = sorted(set(physical) - set(kept))
-    if gaps != ['J3']:
+    if gaps:
         raise ValueError('unexpected undeclared references: ' + ', '.join(gaps))
     for part in parts:  # probe/copper symbol and footprint pins must match the capture root
         feature = part.get('probe') or part.get('copper')
@@ -308,11 +634,20 @@ def build(out, agent_ee):
             if sha(out / blob['path']) != blob['sha256']:
                 raise ValueError('feature CAD differs from the capture: ' + part['id'])
 
+    ratings_blob, selection_blob, rating_declaration = rating_inputs(root)
+    c40 = next(p for p in parts if p['id'] == 'power/C40')
+    if c40['lcsc'] != 'C452751' or 'source_selection' in c40['datasheet']:
+        raise ValueError('C40 is not the pilot-selected C452751 source')
+    c40['datasheet']['source_selection'] = {**selection_blob, 'part_key': 'C452751'}
     manifest = footprint_manifest(root, updates)
     manifest_blob = root.write('composition/footprints.json', manifest)
     old_assignments = {c['reference']: c for c in json.loads(OLD_ASSIGNMENTS.read_text())['components']}
     assignments = {'schema': 'agent-ee.footprint-assignments-input/1', 'libraries': intent['libraries'],
-                   'components': [old_assignments[p['id']] for p in parts]}
+                   'components': [old_assignments.get(p['id']) or {
+                       'reference': p['id'], 'lib_id': p['lib_id'], 'footprint': p['footprint'],
+                       'assembly': 'smd', 'connector': None} for p in parts]}
+    if sum(p['id'] not in old_assignments for p in parts) != 1:
+        raise ValueError('only J3 may lack an earlier footprint assignment')
     assignments_blob = root.write('composition/assignments.json', assignments)
     declared = declarations()
     validate_declarations(declared)
@@ -330,7 +665,7 @@ def build(out, agent_ee):
     parts_blob = root.write('composition/parts.json', document)
     qualification = qualify_manifest(document, out)
 
-    # Part refs: every non-power component except J3, which has no declarable part.
+    # Part refs: every non-power component.
     refs = {'schema': 'agent-ee.part-refs/1',
             'components': {physical[r]['id']: {'part_ref': kept[r]} for r in sorted(kept)}}
     if {p['id'] for p in parts} != {v['part_ref'] for v in refs['components'].values()}:
@@ -348,44 +683,17 @@ def build(out, agent_ee):
                 root.copy(ROOT / ref['path'], ref['path'])
     root.write('composition/deviations.json', deviations)
 
-    # J3: captured catalog identity; the datasheet stays an exact missing capture.
-    catalog_blob = root.copy(J3_CATALOG, rel(J3_CATALOG))
+    # J3: captured catalog identity, datasheet acquisition, failed attempts and detect mapping.
+    root.copy(J3_CATALOG, rel(J3_CATALOG))
     response = MICROSD / 'stock/responses/C114218.json'
-    response_blob = root.copy(response, rel(response))
+    root.copy(response, rel(response))
     catalog = json.loads(J3_CATALOG.read_text())
     validate_capture(catalog, lambda name: (J3_CATALOG.parent / name).read_bytes())
     item = json.loads(response.read_text())['data']['componentPageInfo']['list'][0]
-    attempt = json.loads((J3_ATTEMPT / 'manifest.json').read_text())
-    j3 = {
-        'schema': 'pod-capture.missing-capture/1', 'reference': 'J3', 'component': physical['J3']['id'],
-        'identity': {k: catalog['parts']['C114218'][k] for k in ('lcsc', 'mpn', 'mfr', 'package', 'stock')},
-        'catalog': {**catalog_blob, 'fetched_at': catalog['requests'][0]['fetched_at'],
-                    'response': response_blob},
-        'catalog_attributes': {a['attribute_name_en']: a['attribute_value_name'] for a in item['attributes']},
-        'assembly_component_flag': item['assemblyComponentFlag'],
-        'symbol': physical['J3']['lib_id'], 'footprint': physical['J3']['footprint'],
-        'datasheet': {
-            'status': 'missing',
-            'urls': {'catalog dataManualUrl': item['dataManualUrl'],
-                     'intent Datasheet field': physical['J3']['part_binding']['Datasheet'],
-                     'KiCad footprint descr (Hirose 2D drawing)':
-                         'https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/'
-                         'Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series='},
-            'attempt': {'path': rel(J3_ATTEMPT / 'manifest.json'), 'sha256': sha(J3_ATTEMPT / 'manifest.json'),
-                        'outcome': attempt['outcome'], 'reason': attempt['parts'][0]['reason'],
-                        'fetched_at': attempt['parts'][0]['fetched_at']},
-            'offline_search': 'No PDF with DM3A text exists in local repositories, caches or /tmp '
-                              '(scratch search 2026-10-22); network capture is outside this lane.',
-            'facts_needed': [
-                'Exact PDF bytes for the agent-ee acquisition producer (agent-ee.datasheet-capture/1) '
-                'and a canonical part record (part_record.prepare_record) for C114218.',
-                'Pin map: CLK/CMD/DAT0-3/VDD/VSS, card-detect switch (intent pins 9 and 10) and shell; the '
-                'catalog row says "Additional Card Detection Pins: No", which conflicts with the wired detect.',
-                'Recommended land pattern and the card insertion/ejection stroke (D-PCB-13 lane 15 mm).',
-                'Operating temperature (catalog row -25 to +85 C; D-PCB-12 exception basis).',
-                'Card-side contact ratings and mating cycles.'],
-            'blocks': ['agent-ee.parts/1 named J3 entry', 'binding-fill (part_ref coverage)',
-                       'envelope content (J3 fixed footprint)', 'pod_driver dry run past the scaffold']}}
+    j3_record = json.loads(J3_RECORD.read_text())
+    root.copy(J3_ATTEMPT / 'manifest.json', rel(J3_ATTEMPT / 'manifest.json'))
+    root.copy(J3_ATTEMPT / 'bindings.json', rel(J3_ATTEMPT / 'bindings.json'))
+    j3 = j3_source(root, intent, physical, catalog, item, j3_record)
     root.write('composition/j3-source.json', j3)
 
     # Envelope: microSD decisions, antenna facts (AGENTEE-211) and captured antenna CAD retention.
@@ -427,9 +735,8 @@ def build(out, agent_ee):
                    'count': len(physical),
                    'references': {r: {'id': c['id'], 'lib_id': c['lib_id'], 'footprint': c['footprint'],
                                       'value': c['value'], 'sheet': native['components'][r]['sheet'],
-                                      'declaration': ('gap: no captured datasheet (j3-source.json)' if r == 'J3'
-                                                      else next(p.get('kind', 'named') for p in parts
-                                                                if p['instances'][0]['reference'] == r))}
+                                      'declaration': next(p.get('kind', 'named') for p in parts
+                                                          if p['instances'][0]['reference'] == r)}
                                   for r, c in sorted(physical.items())}}
     root.write('composition/refs.json', refs_record)
     root.write('composition/library-updates.json', {
@@ -437,13 +744,38 @@ def build(out, agent_ee):
         'decisions': ['D-PCB-1 (thermal-via drills)', 'D-PCB-13 v2 (J3 card-lane courtyard)'],
         'decision_source': constraints_blob, 'updates': updates})
 
-    # Binding-fill on the writer-owned intent: the genuine producer, its refusal retained verbatim.
-    try:
-        _, report = binding_fill.fill(out, json.loads((out / 'composition/intent.json').read_text()), document,
-                                      refs, deviations, captures='.', source_migration=True)
-        fill = {'execution': 'ok', 'components': len(report['components'])}
-    except (ValueError, KeyError, TypeError) as exc:
-        fill = {'execution': 'refused', 'error': f'{type(exc).__name__}: {exc}'}
+    # Writer intent: Qualification into the ledger; the bound projection is seeded with its bytes
+    # (binding_fill.configuration(output=...) needs a captured output; the step replaces it).
+    writer, ledger, migration = writer_intent(intent, intent_blob, j3_record)
+    writer_blob = root.write('composition/intent.writer.json', writer)
+    root.write('composition/intent.bound.json', writer)
+    root.write('composition/binding-ledger.json', ledger)
+    root.write('composition/binding-migration.json', migration)
+    root.copy(LOCALITY, rel(LOCALITY))
+
+    # Binding-fill on the writer intent with the captured catalog rating declaration: the genuine
+    # producer. Every original binding, rating included, must equal its regenerated value.
+    root.copy(RATINGS, rel(RATINGS))
+    try:  # the captured catalog-only declaration first: C40's catalog row has null attributes
+        binding_fill.fill(out, writer, document, refs, deviations, captures='.', ratings=CATALOG_ONLY,
+                          source_migration=True)
+        catalog_only = {'declaration': rel(RATINGS), 'execution': 'ok'}
+    except ValueError as exc:
+        catalog_only = {'declaration': rel(RATINGS), 'execution': 'refused', 'error': str(exc)}
+    output, report = binding_fill.fill(out, writer, document, refs, deviations, captures='.',
+                                       ratings=rating_declaration, source_migration=True)
+    comparison = rating_comparison(intent, writer, output, report, catalog_only)
+    root.write('composition/rating-comparison.json', comparison)
+    fill = {'execution': 'ok', 'components': len(report['components']), 'writer_intent': writer_blob['path'],
+            'ratings': {k: len(report['ratings'][k]) for k in ('derived', 'missing')},
+            'probe_migrations': len(report['probe_migrations']),
+            'assembly_deviations': sorted(r['reference'] for r in report['components']
+                                          if r.get('assembly_deviation') is not None),
+            'rating_fields': comparison['counts'], 'newly_rated': comparison['added']['components'],
+            'catalog_only': comparison['catalog_only']['execution'],
+            'added_fields': {c['reference']: sorted(added) for c, w in zip(output['components'], writer['components'])
+                             if (added := set(c.get('part_binding', {})) - set(w.get('part_binding', {})) -
+                                 {'AGENT_EE_Ratings', 'Power', 'Voltage'})}}
     summary = {
         'references': len(physical), 'declared': len(kept), 'gaps': gaps,
         'parts': {'named': sum('selection' in p for p in parts),
@@ -456,7 +788,8 @@ def build(out, agent_ee):
                      'fixed': [f['reference'] for f in record['fixed_footprints']],
                      'keepouts': [k['id'] for k in revised['keepouts']],
                      'provenance_status': record['constraint_provenance']['status']},
-        'retention': sorted(retained['items']), 'binding_fill': fill}
+        'retention': sorted(retained['items']), 'binding_fill': fill,
+        'ledger': migration['qualification']['classes']}
     root.copied = dict(sorted(root.copied.items()))
     (out / 'reconstruction.json').write_text(text({'copied': root.copied, 'summary': summary}))
     return summary

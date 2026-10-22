@@ -56,10 +56,6 @@
    "sha256": "3514157baa02b30973607e2ab9975aa0fc0de147dbeb88aaa6867fc703323805",
    "source": "telemetry-pod/expansion/storage-microsd/inputs/emitter-layout.json"
   },
-  "composition/intent.bound.json": {
-   "sha256": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427",
-   "source": "telemetry-pod/expansion/storage-microsd/inputs/intent.json"
-  },
   "composition/intent.json": {
    "sha256": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427",
    "source": "telemetry-pod/expansion/storage-microsd/inputs/intent.json"
@@ -840,6 +836,10 @@
    "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
    "source": "telemetry-pod/expansion/design-rules/constraints.json"
   },
+  "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json": {
+   "sha256": "576a0115e4f66841fa36381f82ec201f954ed221e5e1e89dc8ee332f73773e74",
+   "source": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json"
+  },
   "telemetry-pod/expansion/interface-preparation/sensor-power/stock/catalog.json": {
    "sha256": "247f17069c0b867947426bbdede2e416cb29122fc2f62e7e52e584f9ca8361c0",
    "source": "telemetry-pod/expansion/interface-preparation/sensor-power/stock/catalog.json"
@@ -1604,6 +1604,102 @@
    "sha256": "5b2505ba5d5f8f1faf6df8f6260a4938251c19b274e00e95ed57ffdf9a3f8532",
    "source": "telemetry-pod/expansion/production-capture/sources/esp32-guidelines/manifest.json"
   },
+  "telemetry-pod/expansion/production-capture/sources/j3-capture-attempt/bindings.json": {
+   "sha256": "0b31232a75e62b128f00c10c08512cfd3b9010987918945ccd2fe564c921378b",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-capture-attempt/bindings.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-capture-attempt/manifest.json": {
+   "sha256": "5793532fc8bc9f3fe73eeda550f383a99d9bb602059b1487ed1571fb2d738e19",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-capture-attempt/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json": {
+   "sha256": "1f590e541bfa547720eeb38b33bd53b3d1aade4431ec768548159d5096d6e6ab",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/7059663a2a7162b7315ebf55be1a1d3dcffa2066e159a59e5c75b234466d1207.pdf": {
+   "sha256": "ab978e9d023b8b2d3a5acfe31ead6e9bf1d63b439d21f7f4db662a1e4e3b56af",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/7059663a2a7162b7315ebf55be1a1d3dcffa2066e159a59e5c75b234466d1207.pdf"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/manifest.json": {
+   "sha256": "795abc9d002046f9fe50eb9cc2140cab44ccfab0f7ec6deb5a2b0b25bd39869a",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-direct/manifest.json": {
+   "sha256": "649378ee984ecce9d893cc0e9d2619e718a460f9b0fb81b47971223df8ca3793",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-direct/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-legacy/manifest.json": {
+   "sha256": "d3e01ecd269ddffc1037b81146cccee64bf2c1fca86934b36b144012e4145d48",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-legacy/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-mirror/manifest.json": {
+   "sha256": "b4cdb88db3a79bf4651ceea78f198642fe10915b3233a2ad48ac45e48b7a7c02",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-mirror/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition/manifest.json": {
+   "sha256": "923649f83f0bf1e5fcbf40aa376c2105b70974e37c15f531e375329bbde03103",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition/manifest.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-digikey.json": {
+   "sha256": "182823ae54885217456f77c6f872291be02865808fed2904b23a96a3a50582e0",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-digikey.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-direct.json": {
+   "sha256": "8a514893939db0549751333975d0611675c718c8f60196fd8cbf81375e862f50",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-direct.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-legacy.json": {
+   "sha256": "829980c8a863db6195e423729acea5087fb2ee79be6f708fd3f540bd5618cb07",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-legacy.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-mirror.json": {
+   "sha256": "b2ea25358d58d52f07827171178cca616941839e08a00d1e7a9ee8415bc140a5",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings-mirror.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings.json": {
+   "sha256": "ea0ebb4516d689dbae4933135ecfa14945e4fff03acc19b7c2d942a241264790",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/bindings.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/origin-record/C114218.part-record.json": {
+   "sha256": "70525df32e51363cd5061b7ea09cf5fec93831cf46b82fab9ba34a90f6d81819",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/origin-record/C114218.part-record.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-binding-composition-20261022.txt": {
+   "sha256": "c24ef56ac7c5ff2f427b074824141163d2c9f48d57abdc313744f0ca94e604c1",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-binding-composition-20261022.txt"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-j3-detect-mapping-20261022.txt": {
+   "sha256": "8d32a0caf180b23feb7ef79dd4d89dc31eba12d4776ae3aa20a4d8b9a6c428c3",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-j3-detect-mapping-20261022.txt"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-j3-source-20261022.txt": {
+   "sha256": "d1f967a10efe3d60e0bd8017a26ed25376f760cda946b7fd7746d58d3990b99b",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-j3-source-20261022.txt"
+  },
+  "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-podcapture-audit-20261022.txt": {
+   "sha256": "4699f85c4a2d75ec9a5e06c7807cd5970c86dff36382119f367f2466f4d8d8a6",
+   "source": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/review/509-podcapture-audit-20261022.txt"
+  },
+  "telemetry-pod/expansion/production-capture/sources/pilot-ratings/binding-fill.json": {
+   "sha256": "c7da999dc6eeea0fa64ad96ee8e65920c18cac534d30d1a04e5f7d6a749ea660",
+   "source": "telemetry-pod/expansion/production-capture/sources/pilot-ratings/binding-fill.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/pilot-ratings/c40-citation-verification.json": {
+   "sha256": "359d16b80aa834d5e9e4f8bc65aa33ce5ec416669f148175ddc6e579118c2ed8",
+   "source": "telemetry-pod/expansion/production-capture/sources/pilot-ratings/c40-citation-verification.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/pilot-ratings/passive-rating-facts.json": {
+   "sha256": "b34a421d77054127947e53de28d78ae6ccdffa3de395ed114257a14fdb5fba71",
+   "source": "telemetry-pod/expansion/production-capture/sources/pilot-ratings/passive-rating-facts.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/pilot-ratings/passive-ratings.json": {
+   "sha256": "ea5ffb3e898bb9d54807624ca1b8b339b2d0767441753addc1123bb7ec52662f",
+   "source": "telemetry-pod/expansion/production-capture/sources/pilot-ratings/passive-ratings.json"
+  },
+  "telemetry-pod/expansion/production-capture/sources/rating-sources.json": {
+   "sha256": "61cb6025b3cf7fd63cb759e25dbbd4703bece010f7d1fe5d797e716756b162bd",
+   "source": "telemetry-pod/expansion/production-capture/sources/rating-sources.json"
+  },
   "telemetry-pod/expansion/series-divider/stock/catalog.json": {
    "sha256": "194d2227758bd544a07d2168d9fb6af5b4406790b616005607eae7ff2d8dfd5d",
    "source": "telemetry-pod/expansion/series-divider/stock/catalog.json"
@@ -1647,10 +1743,35 @@
  },
  "summary": {
   "binding_fill": {
-   "error": "ValueError: part_ref coverage must equal all non-power components",
-   "execution": "refused"
+   "added_fields": {
+    "J1": [
+     "JLCPCB_Assembly"
+    ],
+    "J3": [
+     "Datasheet",
+     "PARAM_Datasheet"
+    ]
+   },
+   "assembly_deviations": [
+    "J1"
+   ],
+   "catalog_only": "refused",
+   "components": 305,
+   "execution": "ok",
+   "newly_rated": 150,
+   "probe_migrations": 6,
+   "rating_fields": {
+    "AGENT_EE_Ratings": 98,
+    "Power": 43,
+    "Voltage": 55
+   },
+   "ratings": {
+    "derived": 248,
+    "missing": 0
+   },
+   "writer_intent": "composition/intent.writer.json"
   },
-  "declared": 304,
+  "declared": 305,
   "envelope": {
    "fixed": [
     "J1",
@@ -1668,13 +1789,17 @@
    "provenance_status": "unknown",
    "structural": "pass"
   },
-  "gaps": [
-   "J3"
-  ],
+  "gaps": [],
+  "ledger": {
+   "historical-j3": 1,
+   "identity-only": 166,
+   "package-selection": 5,
+   "series-divider": 2
+  },
   "parts": {
    "bare_copper_probe": 6,
    "copper_feature": 5,
-   "named": 293
+   "named": 294
   },
   "qualify_manifest": {
    "cad": {
@@ -1682,7 +1807,7 @@
     "execution": "ok",
     "outcome": "pass"
    },
-   "dependencies": 394,
+   "dependencies": 400,
    "missing_provenance": []
   },
   "references": 305,
