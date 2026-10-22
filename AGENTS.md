@@ -34,3 +34,12 @@ PCB routing uses the standalone kicad-route tool through `make route-doctor`,
   defect in the limit, not in the design.
 - Check status (`PASS`/`FAIL`/`NOT_RUN`/`UNSUPPORTED`) describes the tool run; design
   violations are reported separately as findings.
+- **Telemetry-pod programme roles and process** (agent-521, 2026-10-22). Roles
+  and process for agent-ee, kicad-route and this pod are kept in agent-ee
+  `docs/org-chart.md` and `docs/campaign-process.md`, owned by agent-521.
+  agent-449 is the sole integrator of fome-mc main and dispatches the pod-design
+  lane. The pod's target scoreboard is
+  `telemetry-pod/expansion/routing-diagnostic/SCOREBOARD.md`: unknown is not
+  zero, connected nets and unresolved connections are different units, and
+  diagnostics are not production results. Owner-reserved decisions go to
+  agent-519; a relayed quote or committed proposal is not owner authority.
