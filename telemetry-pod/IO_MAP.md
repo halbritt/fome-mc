@@ -10,7 +10,7 @@ contract are kept unchanged in [`pinout-checks/v9-pilot/`](pinout-checks/v9-pilo
 ## Derivation
 
 `pinout-checks/generate.py` writes `io-map.csv`, `pinout-checks/bindings.json`,
-`pinout-checks/paths.json` and `pinout-checks/citations.json` from a kicad-cli XML netlist of the schematic named in
+`pinout-checks/paths.json` and `pinout-checks/history.json` from a kicad-cli XML netlist of the schematic named in
 `pinout-checks/source.json`. It exports that netlist from a temporary copy of the
 schematic. It writes no pin data by hand, and a rerun is byte-identical.
 
@@ -50,8 +50,9 @@ schematic. It writes no pin data by hand, and a rerun is byte-identical.
   `External_Destination` are carried from the v9 row bound to the same native pin
   when its net name is identical (24 rows: J1-1..16, J2-1/2, TP1..TP6). The v9 row's
   `POD-IF-*` citations are carried with them, and each must exist in the Rev-3 spec
-  record. The Notes cell says so, and `citations.json` records it in machine-readable
-form (see *Citation status* below); these values were not requalified for Rev-3. Every other row says `unknown`. No committed packet gives
+  record. The Notes cell says so, and the compiled contract and its qualification
+  record carry it (see *Qualification record* below). These values were not
+  requalified for Rev-3. Every other row says `unknown`. No committed packet gives
   per-cavity destinations for J1-17..34. The J1 mating-interface packet is mechanical
   only.
 
@@ -83,76 +84,165 @@ reverse-polarity FET and the GNSS receiver are not crossed.
 
 ## Regenerate and verify
 
-From the repository root, with agent-ee's `io_map.py`/`hardware_interface.py` as at
-release `ca15c9237c0f230cff2cea189710eae63099ba37` (unchanged through main `a8a1bee1`):
+agent-ee is pinned once, in `toolchain/versions.toml` `[upstream.agent-ee]`.
+`scripts/agent_ee_pin.py` exports exactly that commit's `src/` with `git archive` from
+the local checkout into `build/agent-ee/<commit>/src` and prints the path.
+`verify_io_map.py` imports from there and never from the live checkout. The pin is
+`e906c9c7546043e75e45009de5bc08990c470e93`, the AGENTEE-188 compiler and
+qualification-record loader that agent-521 accepted (35ff0e93). **This is a
+development pin.** e906c9c7 is not on agent-ee main yet. Before fome-mc lands, the pin
+must move to the landed agent-ee main commit that contains e906c9c7.
+
+From the repository root:
 
 ```sh
 python3 telemetry-pod/pinout-checks/generate.py            # or --check to compare only
-PYTHONPATH=$HOME/git/agent-ee/src python3 -m agent_ee.io_map telemetry-pod/io-map.csv --csv-path telemetry-pod/io-map.csv --requirement POD-AC-1-pinout --source telemetry-pod/REQUIREMENTS.md --locator 'Acceptance criteria / item 1' --bindings telemetry-pod/pinout-checks/bindings.json --paths telemetry-pod/pinout-checks/paths.json --out contracts/telemetry-pod.interface.json
+PYTHONPATH=$(python3 scripts/agent_ee_pin.py) python3 -m agent_ee.io_map telemetry-pod/io-map.csv \
+  --csv-path telemetry-pod/io-map.csv --requirement POD-AC-1-pinout \
+  --source telemetry-pod/REQUIREMENTS.md --locator 'Acceptance criteria / item 1' --require-source-sha256 \
+  --bindings telemetry-pod/pinout-checks/bindings.json --paths telemetry-pod/pinout-checks/paths.json \
+  --history telemetry-pod/pinout-checks/history.json \
+  --history-source telemetry-pod/pinout-checks/v9-pilot/io-map.csv \
+  --record-path contracts/telemetry-pod.qualification.json \
+  --record-out contracts/telemetry-pod.qualification.json --out contracts/telemetry-pod.interface.json
 make verify-io PROJECT=telemetry-pod
 ```
 
-The contract is generated, never hand-edited. Its `io_map` citations carry the CSV
-hash and the row's `POD-IF-*` IDs, and each invariant binds `REQUIREMENTS.md`
-(revision 3) by SHA-256. It has 194 invariants: 193 wired ones (78 indirect paths) and
-the unresolved `BLE-RADIO:net`. On a fresh snapshot netlist the gate verifies 54
-connector pins and reports `193/194 invariants satisfied ...; 1 declared wireless
-not_evaluated`, with `NOT_EVALUATED: BLE-RADIO` printed by name. Any other
-non-satisfied invariant fails. Logs are under `build/runs/verify-io/telemetry-pod/`.
+The contract and its record are generated, never hand-edited. The contract has 194
+invariants: 193 wired ones (78 indirect paths) and the unresolved `BLE-RADIO:net`.
+Their predicates, terminals and components are unchanged from the earlier bare-ID
+contract. Only the `io_map` citations (now typed) and the `qualification_record`
+declaration changed. Each invariant binds `REQUIREMENTS.md` (revision 3) by SHA-256.
+
+`make verify-io PROJECT=telemetry-pod` fails on any of these:
+
+- the source digest differs, or `generate.py --check` does not reproduce;
+- a fresh compile with the pinned compiler does not reproduce both the contract and
+  the record byte for byte;
+- the contract is not accepted by agent-ee's `capability()` under a scope that pins
+  `contracts/telemetry-pod.qualification.json`;
+- the history checks below fail;
+- either native grading run below has a non-satisfied invariant other than
+  `NOT_EVALUATED: BLE-RADIO`.
+
+The native grading runs twice. It runs on a fresh netlist of the canonical source, and
+on the actual candidate pinned in `source.json` `candidate`. Each run must report
+`193/194 invariants satisfied ...; 1 declared wireless not_evaluated`. Logs are under
+`build/runs/verify-io/telemetry-pod/`.
 
 This is a topology gate only. It does not establish analog accuracy, CAN timing,
 firmware assignments, harness destinations, wireless behaviour or fabrication
 approval. `verify_io_map.py` in this directory is the retired revision-2 checker;
 `io-map-cross-check.txt` and `IO_MAP_HISTORY.md` are historical.
 
-## Citation status (machine-readable)
+## Qualification record (AGENTEE-188)
 
-The AGENTEE-188 compiler can only emit a row's `POD-IF-*` IDs as bare strings in
-`io_map.requirements`; its citation schema has no status field. So the generator also
-writes `pinout-checks/citations.json` (`fome-mc.pod-io-map-citations/1`). It is bound
-to the `io-map.csv` SHA-256 that every contract citation carries. For each cited or
-carried row it records the CSV row number, each cited ID and each carried descriptive
-value, all with `rev3_qualified: false`, a status and an origin:
+`generate.py` writes `pinout-checks/history.json` (`agent-ee.io-map-history/1`), the
+compiler's history input:
 
-- `v9-historical-unqualified`: carried from the v9 pilot row on the same native pin and
-  net. The origin gives the v9 `io-map.csv` path, its SHA-256, row number and v9
-  `Connector_Pin`. This applies to the 24 carried rows (J1-1..16, J2-1/2, TP1..TP6),
-  and to `BLE-RADIO`'s `Signal_Name` and descriptive columns.
-- `rev3-declared-obligation`: `BLE-RADIO`'s `POD-IF-BLUETOOTH-LE` and
-  `POD-IF-PROGRAMMING-AND-DEBUG`, declared in `source.json`. The origin gives the
-  Rev-3 spec-record locator. The row is not evaluated.
+- **Origin:** the v9 io-map. Its path is the retained
+  `pinout-checks/v9-pilot/io-map.csv`, and its sha256 is
+  `be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea`. Its revision
+  is `36b19506e22a3d59e14b325f64c16e14e12ba3f1`: those bytes were committed there as
+  `telemetry-pod/io-map.csv` (FOMEMC-32), then moved unchanged by `72b18901`. The
+  generator checks that the bytes at that revision equal the retained file.
+- **Per-row locators:** each of the 25 carried rows (J1-1..16, J2-1/2, TP1..TP6 and
+  `BLE-RADIO`) gets its own locator, for example `row 2 (AMPSEAL-1): carried
+  Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not
+  requalified for Rev-3`.
+- **Other rows:** the compiler gives every compiled row an origin, so the other 30
+  rows get the origin's default locator. It states that no v9 row was carried, so the
+  origin supplies nothing to those rows.
+- **`sourced` is empty:** no ID is promoted.
 
-Neither status is Rev-3 harness or electrical qualification. `verify-io` joins the
-record with every contract citation. It fails if a cited ID has no record entry, if
-the entry is stripped or does not match the citation exactly, or if the status is
-missing or upgraded, or `rev3_qualified` is not `false`. It also fails if a v9 origin
-row does not reproduce (file digest, row, `Connector_Pin`, the cited ID in its Notes,
-or the value), if a Rev-3 locator differs from the spec record, or if the record is
-stale or missing. Any descriptive value that is not `unknown` must be recorded.
+The compiler writes every cited ID as `{"id": ..., "qualification":
+"unqualified-carryover"}`. It emits `contracts/telemetry-pod.qualification.json`
+(`agent-ee.io-map-qualification/1`) and declares that record's path and sha256 in the
+contract. The 8 carried IDs are `POD-IF-ANALOG-INPUTS`, `-BLUETOOTH-LE`, `-CAN1`,
+`-GNSS-ANTENNA`, `-HARNESS-CONNECTOR`, `-POWER-IN`, `-PROGRAMMING-AND-DEBUG` and
+`-SENSOR-SUPPLY`.
 
-The gate's requirement-coverage line counts only statuses in
-`REV3_QUALIFIED_STATUSES` (`scripts/verify_io_map.py`) as Rev-3 evidence. That set is
-empty because no Rev-3 qualification record exists. The gate therefore prints
-`REQUIREMENT_COVERAGE: 0/11 Rev-3 POD-IF requirements have Rev-3-qualified row evidence;
-24 rows carry only v9-historical-unqualified citations; declared, not evaluated:
-POD-IF-BLUETOOTH-LE, POD-IF-PROGRAMMING-AND-DEBUG`. The pod compile is run without
-`--spec-record`, so the compiler's own coverage count, which reads the bare strings,
-is not used. `toolchain/tests/test_project_scripts.py` shows that a consumer reading
-the bare strings counts J1-1/J1-2 as `POD-IF-CAN1` coverage, while this consumer does
-not. It also checks each strip, upgrade and origin mutation.
+`verify-io` reads the contract only through agent-ee's `capability()`, with a scope
+that pins the record. That runs the one loader (`load_qualification_record` and
+`bind_qualification_record`), which:
 
-*Agent decision (AGENTEE-207, fm-iomap-rev3c), not an owner decision.* **Alternatives:**
-extend the agent-ee citation schema (outside this repository, and every interface/1
-consumer would change) or drop the inherited IDs (this loses traceability that the
-earlier review asked to keep). **Reverse:** delete `citations.json`, its generator
-block and `check_pod_citations`; the contract bytes do not depend on them.
+- refuses a contract that does not declare the pinned record, or a record whose
+  bytes differ from the pin;
+- refuses a citation that differs from its record row (status, IDs, signal,
+  destination), and a record row that differs from the captured CSV;
+- refuses v9 origin bytes that differ from the declared sha256, and reports the
+  origin `verified` only when they match.
+
+The gate prints `QUALIFICATION: ... bound to 55 io-map rows; v9 origin ... verified`
+and `REQUIREMENT_AUTHORITY: sourced: none; unqualified-carryover (reported, never
+authority): ...`.
+
+Two fome-mc checks stay on top of the loader, because the loader authenticates the
+origin bytes but does not open the origin row:
+
+1. Every located row must reproduce its v9 row: the row number and `Connector_Pin`,
+   each carried column value, and every cited ID present in that row's Notes.
+2. A row under the default locator may carry no ID, and may have no descriptive value
+   other than `unknown`, `N/A` or the N/C template.
+
+Separately, any `sourced` ID fails. No Rev-3 qualification source is committed, so
+`sourced` would be an upgrade.
+
+`toolchain/tests/test_project_scripts.py` builds a consistent bundle (contract,
+record and pin all agree) that promotes `POD-IF-CAN1` on J1-1/J1-2 to `sourced`.
+agent-ee's loader accepts that bundle, and its authority lists `POD-IF-CAN1` as
+sourced. This verifier refuses it. A fresh compile would also differ. The tests also
+check these cases:
+
+- the rev3c bare-ID contract cannot stand in for the bound one;
+- citation loss, a contract-only upgrade, a record-only upgrade, a stripped record
+  row, a stripped declaration, a deleted record and a rewritten origin digest each
+  refuse in the loader;
+- a moved or removed v9 locator refuses in the fome-mc history check.
+
+*Retired from rev3c (fm-iomap-rev3c, bb58520):* `pinout-checks/citations.json` and its
+`fome-mc.pod-io-map-citations/1` schema, the `v9-historical-unqualified` and
+`rev3-declared-obligation` statuses, the `rev3_qualified` flag, `check_pod_citations`,
+`pod_requirement_coverage`, `REV3_QUALIFIED_STATUSES` and the `REQUIREMENT_COVERAGE`
+line. The accepted record, loader and `requirement_authority` replace them. BLE-RADIO's
+two IDs are now `unqualified-carryover`, the same as the v9 `BLE-RADIO` row that cites
+them. This is not an upgrade.
+
+## Decision note: candidate-bound verification
+
+*Agent decision (AGENTEE-207, fm-iomap-rev3c round 4), not an owner decision.*
+
+- **What:** `source.json` `candidate` pins the actual emitted pod candidate. That is
+  pod-capture-j6b2 commit `5d923c5412d3659638c67c9cfa9f097e24620518`, project
+  schematic `telemetry-pod/telemetry-pod.kicad_sch` with sha256
+  `f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2`, and
+  `candidate_id` `3688390f4b30506f2c32af4550c10c53bd9f0205433d8126b012702939704928`.
+  The pin is bound to that emission's `MANIFEST.json` digest, its candidate id and
+  its installed schematic digest. verify-io grades the same contract on a fresh
+  netlist of that candidate. It reads the candidate in place once the project root
+  holds those bytes, and otherwise snapshots the commit (`eda.make_snapshot` with
+  `rev`). The snapshot's schematic must equal the pinned digest.
+- **Why:** canonical-source agreement does not show that the emitted candidate
+  consumes the intent. The candidate has the same 305 references, sheet paths,
+  symbols and values as the canonical source, and identical nets on all 931 pins.
+- **Also changed:** `fresh_inventory` now parses only the design's own sheet
+  hierarchy (`schematic_files`), as agent-ee's native check does (`verified_hierarchy`).
+  Before, it parsed every `*.kicad_sch` under the snapshot. The candidate project keeps
+  retained copies of the same emitted schematic under `expansion/`, so J1's symbol UUID
+  was ambiguous and J1-35's no-connect stayed unknown. The ECU result is unchanged.
+- **Not claimed:** this is topology agreement of the candidate's schematic with the
+  intent. It is not j6 electrical acceptance or production qualification. The
+  AGENTEE-188 software acceptance is not that either.
+- **Reverse:** drop `candidate` and `pod_candidate_config`. When j6 lands, keep the
+  pin: the root then holds the candidate and verification runs in place.
 
 ## Interface requirement traceability
 
 One row per Rev-3 `Interfaces` entry (spec-record IDs). *Cited rows* carry the ID in
 their Notes cell, and the compiled contract repeats it in `io_map.requirements`. All are
-carried from v9 rows (`v9-historical-unqualified` in `citations.json`), except
-`BLE-RADIO`, which `source.json` declares (`rev3-declared-obligation`). *Uncited rows*
+carried from v9 rows and compiled as `unqualified-carryover`, bound to their v9 rows
+through the qualification record. `BLE-RADIO`'s two IDs are declared in
+`source.json` and are also cited by the v9 `BLE-RADIO` row. *Uncited rows*
 are this agent's reading of native net names and topology. That reading is not a
 requirement citation and gives no harness or electrical authority. A cited or uncited
 row shows only where the interface lands in the schematic. It does not show that the

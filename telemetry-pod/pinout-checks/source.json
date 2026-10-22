@@ -6,6 +6,17 @@
   "generator": "telemetry-pod/pinout-checks/generate.py",
   "requirements": "telemetry-pod/REQUIREMENTS.md",
   "spec_record": "telemetry-pod/expansion/requirements/rev3-microsd/spec-record.json",
+  "v9_origin": {"path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+                "original_path": "telemetry-pod/io-map.csv",
+                "commit": "36b19506e22a3d59e14b325f64c16e14e12ba3f1",
+                "moved_by": "72b189012f03c534a10efa793ce77cb18e1bae63"},
+  "candidate": {"commit": "5d923c5412d3659638c67c9cfa9f097e24620518",
+                "schematic": "telemetry-pod/telemetry-pod.kicad_sch",
+                "sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2",
+                "candidate_id": "3688390f4b30506f2c32af4550c10c53bd9f0205433d8126b012702939704928",
+                "emission_manifest": {"path": "telemetry-pod/expansion/production-capture/evidence/emission-81e387ee/MANIFEST.json",
+                                       "sha256": "cff19152fecc2238e306f3cf45e48fbf60505189cd78fe9ed195f9600ed24709"},
+                "note": "pod-capture-j6b2 head (AGENTEE-207/445, not on main): the emitted Rev-3 project. verify-io evaluates the contract on it in place once the project root holds these bytes, otherwise from this commit."},
   "wireless": [
     {"row": "BLE-RADIO", "v9_row": "BLE-RADIO",
      "requirements": ["POD-IF-BLUETOOTH-LE", "POD-IF-PROGRAMMING-AND-DEBUG", "POD-AC-9"]}

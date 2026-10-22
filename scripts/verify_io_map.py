@@ -9,6 +9,7 @@ for the input contract and contract locations.
 import argparse
 import csv
 import hashlib
+import json
 import re
 import shutil
 import subprocess
@@ -17,13 +18,16 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-AGENT_EE_SRC = Path.home() / "git/agent-ee/src"
-if AGENT_EE_SRC.exists() and str(AGENT_EE_SRC) not in sys.path:
-    sys.path.insert(0, str(AGENT_EE_SRC))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from agent_ee_pin import pinned_src  # noqa: E402
+
+# The pinned agent-ee (toolchain/versions.toml [upstream.agent-ee]), never the live checkout.
+AGENT_EE_SRC = pinned_src()
+sys.path.insert(0, str(AGENT_EE_SRC))
 
 from agent_ee.hardware_interface import (  # noqa: E402
-    atom, declared_pins, evaluate, load_contract, qualify_global_names, read_inventory,
-    resolve_components,
+    atom, capability, declared_pins, evaluate, qualify_global_names, read_inventory,
+    resolve_components, strict_json, verify_contract,
 )
 from agent_ee.symbol_library import children, field, parse_sexpr  # noqa: E402
 
@@ -311,11 +315,23 @@ def _find_kicad_cli() -> str:
     raise FileNotFoundError("kicad-cli not found in ~/.local/opt/kicad-10.0.7/bin or PATH")
 
 
-def fresh_inventory(cfg: dict, contracts=()) -> dict:
+def load_contract(root: Path, rel: str) -> dict:
+    """A contract that declares no qualification record (the ECU's legacy contracts).
+
+    A qualification-bound contract cannot load here: verify_contract refuses it without
+    its record and captured inputs. The pod goes through capability() instead."""
+    return verify_contract(strict_json((Path(root) / rel).read_bytes(), f"interface contract {rel}"))[0]
+
+
+def fresh_inventory(cfg: dict, contracts=(), expect_sha256=None) -> dict:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     run_dir = REPO / "build/runs/verify-io" / cfg["name"] / stamp
     run_dir.mkdir(parents=True)
     snap, metadata = eda.make_snapshot(cfg, run_dir)
+    if expect_sha256 is not None:
+        actual = hashlib.sha256((snap / cfg["schematic"]).read_bytes()).hexdigest()
+        if actual != expect_sha256:
+            raise ValueError(f"snapshot {cfg['schematic']} sha256 {actual} differs from pinned {expect_sha256}")
     if metadata["missing_sheets"] or metadata["sheet_case_aliases"]:
         raise ValueError(f"invalid schematic hierarchy; see {run_dir / 'snapshot.json'}")
     xml_path = run_dir / "design.xml"
@@ -329,8 +345,11 @@ def fresh_inventory(cfg: dict, contracts=()) -> dict:
         raise ValueError(f"kicad-cli sch export netlist failed (rc={proc.returncode}); see {run_dir / 'netlist.log'}")
     inventory = read_inventory(xml_path)
     if contracts:
-        schematics = {p.relative_to(snap).as_posix(): parse_sexpr(p.read_bytes())
-                      for p in snap.rglob("*.kicad_sch")}
+        # Only the design's own sheet hierarchy, as agent-ee's native check does. Other
+        # schematics under the project (retained copies of the same design) would make
+        # its symbol UUIDs ambiguous.
+        schematics = {Path(rel).as_posix(): parse_sexpr((snap / rel).read_bytes())
+                      for rel in metadata["schematic_files"]}
         pins = set().union(*(declared_pins(c, inventory) for c in contracts))
         qualify_global_names(inventory, schematics, atom(schematics[cfg["schematic"]], "uuid"), pins)
     return inventory
@@ -368,25 +387,38 @@ def check_pod_compilation(contract_path: Path) -> list[str]:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     run_dir = REPO / "build/runs/verify-io/telemetry-pod" / stamp
     run_dir.mkdir(parents=True)
-    compiled = run_dir / "compiled.interface.json"
+    compiled, record = run_dir / "compiled.interface.json", run_dir / "compiled.qualification.json"
     proc = subprocess.run(
         [sys.executable, "-m", "agent_ee.io_map", "telemetry-pod/io-map.csv",
          "--csv-path", "telemetry-pod/io-map.csv", "--requirement", "POD-AC-1-pinout",
          "--source", "telemetry-pod/REQUIREMENTS.md", "--locator", "Acceptance criteria / item 1",
          "--bindings", "telemetry-pod/pinout-checks/bindings.json",
-         "--paths", "telemetry-pod/pinout-checks/paths.json", "--out", str(compiled)],
+         "--paths", "telemetry-pod/pinout-checks/paths.json", "--require-source-sha256",
+         "--history", "telemetry-pod/pinout-checks/history.json",
+         "--history-source", POD_V9_ORIGIN, "--record-path", POD_RECORD,
+         "--record-out", str(record), "--out", str(compiled)],
         cwd=REPO, env={**eda.tool_env(), "PYTHONPATH": str(AGENT_EE_SRC)},
         capture_output=True, text=True, check=False,
     )
     (run_dir / "compile.log").write_text(proc.stdout + proc.stderr)
     if proc.returncode != 0 or not compiled.is_file():
         return [f"pod contract compile failed (rc={proc.returncode}); see {run_dir / 'compile.log'}"]
+    errors = []
     if compiled.read_bytes() != contract_path.read_bytes():
-        return ["telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; "
-                "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)"]
-    return []
+        errors.append("telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; "
+                      "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)")
+    committed = REPO / POD_RECORD
+    if not committed.is_file() or record.read_bytes() != committed.read_bytes():
+        errors.append(f"{POD_RECORD} differs from fresh AGENTEE-188 compile; "
+                      "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)")
+    return errors
 
 
+POD_CONTRACT = "contracts/telemetry-pod.interface.json"
+POD_RECORD = "contracts/telemetry-pod.qualification.json"
+POD_CSV = "telemetry-pod/io-map.csv"
+POD_V9_ORIGIN = "telemetry-pod/pinout-checks/v9-pilot/io-map.csv"
+POD_REQUIREMENTS = "telemetry-pod/REQUIREMENTS.md"
 POD_SOURCE = REPO / "telemetry-pod/pinout-checks/source.json"
 POD_GENERATOR = REPO / "telemetry-pod/pinout-checks/generate.py"
 
@@ -415,208 +447,102 @@ def check_pod_generation() -> list[str]:
     return []
 
 
-# Citation statuses in telemetry-pod/pinout-checks/citations.json. None of them is
-# Rev-3 harness or electrical qualification, so REV3_QUALIFIED is empty: no committed
-# Rev-3 qualification record exists. Adding a status here is a reviewed change.
-POD_HISTORICAL = "v9-historical-unqualified"
-POD_DECLARED = "rev3-declared-obligation"
-POD_CITATION_STATUSES = {POD_HISTORICAL, POD_DECLARED}
-REV3_QUALIFIED_STATUSES = frozenset()
-POD_CARRIED = ("Signal_Name", "Direction_Class", "Voltage_Current_Domain", "External_Destination")
+POD_LOCATOR = re.compile(r"row ([0-9]+) \(([^)]+)\): carried (.+); not requalified for Rev-3")
+POD_DESCRIPTIVE = ("Signal_Name", "Direction_Class", "Voltage_Current_Domain", "External_Destination")
 
 
-def load_pod_citations() -> dict:
-    import json
-    path = REPO / "telemetry-pod/pinout-checks/citations.json"
-    if not path.is_file():
-        raise ValueError(f"missing citation-status record {path.relative_to(REPO)}")
-    return json.loads(path.read_text())
+def pod_capability() -> dict:
+    """The pod contract through agent-ee's scope consumer and its one record loader.
+
+    The scope pins the record path; capability() refuses a contract that does not declare
+    that record, a record whose bytes differ from the pin, and any citation the record does
+    not bind. It also verifies the v9 origin bytes and returns the requirement authority
+    and history."""
+    record = REPO / POD_RECORD
+    if not record.is_file():
+        raise ValueError(f"missing qualification record {POD_RECORD}")
+    pin = {"path": POD_RECORD, "sha256": hashlib.sha256(record.read_bytes()).hexdigest()}
+    scope = {"baseline": {"requirements": [{
+        "id": "POD-AC-1-pinout", "checks": ["interface"],
+        "source": {"path": POD_REQUIREMENTS, "locator": "Acceptance criteria / item 1"}}]}}
+    files = {POD_CONTRACT, POD_RECORD, POD_CSV, POD_V9_ORIGIN, POD_REQUIREMENTS}
+    return capability({"contract": POD_CONTRACT, "netlist_check": "netlist", "qualification_record": pin},
+                      scope, files, REPO, "interface")
 
 
-def check_pod_citations(contract: dict, rows: dict, digest: str, record: dict) -> list[str]:
-    """Join every contract io_map citation with its recorded status and origin.
+def check_pod_history(descriptor: dict, rows: dict) -> list[str]:
+    """What the loader does not prove: each carried value and ID really is in its v9 row.
 
-    The compiled contract carries POD-IF-* IDs as bare strings; their status lives
-    only in the bound record. A citation or carried value that is unrecorded,
-    stripped, upgraded or whose origin does not reproduce fails."""
-    import json
+    The loader authenticates the v9 origin bytes and binds every citation to the record.
+    It does not open the origin row. Here every row located in a v9 row must reproduce
+    that row's carried columns and POD-IF IDs. Every other row must carry no ID and no
+    descriptive value beyond the generated ones (unknown, N/A, the N/C template)."""
     errors = []
-    if record.get("schema") != "fome-mc.pod-io-map-citations/1":
-        return ["citations.json: expected schema fome-mc.pod-io-map-citations/1"]
-    if record.get("io_map") != {"path": "telemetry-pod/io-map.csv", "sha256": digest}:
-        errors.append("citations.json: not bound to the current telemetry-pod/io-map.csv digest")
-    entries = record.get("rows") or {}
-    cited = {}
-    for inv in contract["invariants"]:
-        citation = inv.get("io_map")
-        if citation:
-            cited.setdefault(citation["connector_pin"], citation)
-    files, specs = {}, {}
-
-    def origin_row(origin, where):
-        path = origin.get("path", "")
-        if path not in files:
-            data = (REPO / path).read_bytes() if path and (REPO / path).is_file() else None
-            files[path] = data
-        data = files[path]
-        if data is None or hashlib.sha256(data).hexdigest() != origin.get("sha256"):
-            errors.append(f"citations.json: {where}: v9 origin {path!r} is missing or its sha256 differs")
-            return None
-        reader = csv.DictReader(data.decode().splitlines(True))
-        for row in reader:
-            if reader.line_num == origin.get("row"):
-                if row["Connector_Pin"] == origin.get("connector_pin"):
-                    return row
-                break
-        errors.append(f"citations.json: {where}: v9 row {origin.get('row')} is not {origin.get('connector_pin')!r}")
-        return None
-
-    def check_entry(entry, where):
-        if entry.get("rev3_qualified") is not False:
-            errors.append(f"citations.json: {where}: rev3_qualified must be false")
-        if entry.get("status") not in POD_CITATION_STATUSES:
-            errors.append(f"citations.json: {where}: status {entry.get('status')!r} is not a recorded "
-                          f"citation status {sorted(POD_CITATION_STATUSES)}")
-            return False
-        return True
-
-    for pin, citation in sorted(cited.items()):
-        ids = citation["requirements"]
-        entry = entries.get(pin)
-        if not ids:
-            continue
-        if entry is None:
-            errors.append(f"citations.json: {pin} cites {ids} without a recorded status")
-            continue
-        if entry.get("row") != citation["row"] or [r.get("id") for r in entry.get("requirements", [])] != ids:
-            errors.append(f"citations.json: {pin} does not record exactly the contract citation {ids} "
-                          f"(row {citation['row']})")
-            continue
-        for req in entry["requirements"]:
-            where = f"{pin} {req['id']}"
-            if not check_entry(req, where):
-                continue
-            origin = req.get("origin") or {}
-            if req["status"] == POD_HISTORICAL:
-                old = origin_row(origin, where)
-                if old is not None and req["id"] not in re.findall(r"\bPOD-IF-[A-Z0-9-]+\b", old["Notes"]):
-                    errors.append(f"citations.json: {where}: v9 row {old['Connector_Pin']} does not cite it")
-            else:
-                key = (origin.get("path"), origin.get("requirements"))
-                if key not in specs:
-                    try:
-                        spec = json.loads((REPO / key[0]).read_text())
-                        specs[key] = ({r["id"]: r["locator"] for r in spec["requirements"]}, spec["spec"]["sha256"],
-                                      hashlib.sha256((REPO / key[1]).read_bytes()).hexdigest())
-                    except (OSError, TypeError, KeyError, ValueError):
-                        specs[key] = None
-                found = specs[key]
-                loc = found and found[0].get(req["id"])
-                if (not loc or found[1] != found[2] or origin.get("sha256") != found[1]
-                        or (origin.get("byte_start"), origin.get("byte_end")) != (loc["byte_start"], loc["byte_end"])):
-                    errors.append(f"citations.json: {where}: declared obligation does not match its Rev-3 spec record")
-    for pin, entry in sorted(entries.items()):
+    history = descriptor["requirement_history"]
+    if history.get("origin_verification") != {POD_V9_ORIGIN: "verified"}:
+        return [f"qualification record origin is not the verified v9 io-map: {history.get('origin_verification')}"]
+    if descriptor["requirement_authority"]["sourced"]:
+        errors.append("sourced requirement in the pod contract: "
+                      f"{descriptor['requirement_authority']['sourced']} (no Rev-3 qualification source is committed)")
+    v9 = {}
+    reader = csv.DictReader((REPO / POD_V9_ORIGIN).read_text().splitlines(True))
+    for row in reader:
+        v9[reader.line_num] = row
+    record = json.loads((REPO / POD_RECORD).read_bytes())
+    for entry in record["rows"]:
+        pin, ids = entry["connector_pin"], [r["id"] for r in entry["requirements"]]
         row = rows.get(pin)
-        if row is None or (not cited.get(pin, {}).get("requirements") and not entry.get("descriptive")):
-            errors.append(f"citations.json: {pin} is not a cited or carried io-map row")
-            continue
-        for key, value in (entry.get("descriptive") or {}).items():
-            where = f"{pin} {key}"
-            if key not in POD_CARRIED:
-                errors.append(f"citations.json: {where}: not a carried descriptive column")
-                continue
-            if not check_entry(value, where):
-                continue
-            if value["status"] != POD_HISTORICAL:
-                errors.append(f"citations.json: {where}: carried values can only be {POD_HISTORICAL}")
-                continue
-            old = origin_row(value.get("origin") or {}, where)
-            if old is not None and not (old[key] == value.get("value") == row[key]):
-                errors.append(f"citations.json: {where}: value differs from its v9 origin or the io-map row")
-            if key == "External_Destination" and pin in cited and cited[pin]["external_destination"] != row[key]:
-                errors.append(f"citations.json: {where}: contract external_destination disagrees")
-    # Every descriptive value not written by the generator itself must be recorded.
-    for pin, row in rows.items():
-        if row["Net"] == "N/C":
-            continue
-        recorded = (entries.get(pin) or {}).get("descriptive") or {}
-        for key in POD_CARRIED[1:]:
-            if row[key] not in ("unknown", "N/A") and key not in recorded:
-                errors.append(f"citations.json: {pin} {key} {row[key]!r} has no recorded status")
+        match = POD_LOCATOR.fullmatch(entry["origin"]["locator"])
+        if row is None:
+            errors.append(f"qualification record row {pin} is not an io-map row")
+        elif match is None:
+            values = [k for k in POD_DESCRIPTIVE[1:] if row[k] not in ("unknown", "N/A")]
+            if ids or (row["Net"] != "N/C" and values):
+                errors.append(f"{pin}: {ids or values} without a located v9 origin row")
+        else:
+            old = v9.get(int(match.group(1)))
+            carried = [c for c in match.group(3).split(", ") if c != "POD-IF citations"]
+            if old is None or old["Connector_Pin"] != match.group(2):
+                errors.append(f"{pin}: v9 origin row {match.group(1)} is not {match.group(2)}")
+            elif any(c not in POD_DESCRIPTIVE or old[c] != row[c] for c in carried):
+                errors.append(f"{pin}: carried values differ from v9 row {match.group(2)}")
+            elif not set(ids) <= set(re.findall(r"\bPOD-IF-[A-Z0-9-]+\b", old["Notes"])):
+                errors.append(f"{pin}: cites IDs that v9 row {match.group(2)} does not")
     return errors
 
 
-def pod_requirement_coverage(contract: dict, record: dict, interface_ids) -> dict[str, dict[str, list[str]]]:
-    """Rows per interface requirement, split by recorded status.
-
-    Only a status in REV3_QUALIFIED_STATUSES counts as Rev-3 evidence; the bare
-    io_map.requirements strings never do. Unrecorded citations raise."""
-    coverage = {rid: {"qualified": [], "historical": [], "declared": []} for rid in interface_ids}
-    seen = set()
-    for inv in contract["invariants"]:
-        citation = inv.get("io_map")
-        if not citation or citation["connector_pin"] in seen:
-            continue
-        pin = citation["connector_pin"]
-        seen.add(pin)
-        status = {r["id"]: r for r in (record.get("rows", {}).get(pin) or {}).get("requirements", [])}
-        for rid in citation["requirements"]:
-            entry = status.get(rid)
-            if entry is None or entry.get("status") not in POD_CITATION_STATUSES | REV3_QUALIFIED_STATUSES:
-                raise ValueError(f"{pin} cites {rid} without a recorded citation status")
-            bucket = ("qualified" if entry["status"] in REV3_QUALIFIED_STATUSES and entry.get("rev3_qualified") is True
-                      else "historical" if entry["status"] == POD_HISTORICAL else "declared")
-            coverage.setdefault(rid, {"qualified": [], "historical": [], "declared": []})[bucket].append(pin)
-    return coverage
-
-
-def verify_project_io(cfg: dict) -> int:
-    project_dir = cfg["path"]
-    map_path = project_dir / "io-map.csv"
-    if not map_path.is_file():
-        raise ValueError(f"no io-map for project {cfg['name']}: {map_path}")
-    rows = read_project_rows(map_path)
-    pins = {identity: row["Net"] for identity, row in rows.items()}
-    if cfg["name"] == "telemetry-pod":
-        contract_root = REPO
-        contract_path = REPO / "contracts/telemetry-pod.interface.json"
-        if not contract_path.is_file():
-            raise ValueError(f"missing interface contract: {contract_path}")
-        contract_paths = [contract_path]
+def pod_candidate_config(cfg: dict) -> tuple[dict, str, dict]:
+    """The candidate pinned in source.json: in place once the project holds it, else its commit."""
+    candidate = json.loads(POD_SOURCE.read_text())["candidate"]
+    root = REPO / candidate["schematic"]
+    cand_cfg = dict(cfg, path=root.parent.resolve(), schematic=root.name)
+    manifest_path = REPO / candidate["emission_manifest"]["path"]
+    if root.is_file() and hashlib.sha256(root.read_bytes()).hexdigest() == candidate["sha256"]:
+        manifest = manifest_path.read_bytes() if manifest_path.is_file() else b""
     else:
-        contract_root = project_dir
-        contract_paths = sorted((project_dir / "contracts").glob("*.interface.json"))
-        if not contract_paths:
-            raise ValueError(f"no interface contracts for project {cfg['name']}")
-    contracts = [load_contract(contract_root, p.relative_to(contract_root).as_posix()) for p in contract_paths]
-    errors, native_cfg = [], cfg
-    if cfg["name"] == "telemetry-pod":
-        # The map describes the Rev-3 source schematic named in source.json, not the
-        # v9 pilot snapshot at the project root; its pinned digest must still match.
-        native_cfg, source_errors = pod_source_config(cfg)
-        errors = source_errors + check_pod_generation() + check_pod_compilation(contract_path)
-    inventory = fresh_inventory(native_cfg, contracts)
+        cand_cfg["rev"] = candidate["commit"]
+        manifest = subprocess.run(["git", "-C", str(REPO), "show",
+                                   f"{candidate['commit']}:{candidate['emission_manifest']['path']}"],
+                                  capture_output=True, check=False).stdout
+    # The pin must be the emission's own identity: manifest bytes, candidate id and installed schematic.
+    if hashlib.sha256(manifest).hexdigest() != candidate["emission_manifest"]["sha256"]:
+        raise ValueError(f"candidate emission manifest differs from pinned {candidate['emission_manifest']['sha256']}")
+    emitted = json.loads(manifest)
+    if (emitted["emission"]["candidate_id"] != candidate["candidate_id"]
+            or emitted["project_install"][root.name]["sha256"] != candidate["sha256"]):
+        raise ValueError("candidate pin disagrees with its emission manifest")
+    return cand_cfg, candidate["sha256"], candidate
+
+
+def grade(cfg: dict, rows: dict, contract_paths, contracts, inventory, digest: str) -> tuple[list, list, list, int, int]:
+    """Native structural grading of every contract against one fresh inventory."""
+    pins = {identity: row["Net"] for identity, row in rows.items()}
+    errors, wireless, covered = [], [], []
+    invariants = satisfied = 0
     native_pins = {(comp["reference"], pin)
                    for comp in inventory["components"].values()
                    if re.fullmatch(r"J[0-9]+", comp["reference"])
                    for pin in comp["pins"]}
-    wireless, covered = [], []
-    invariants = satisfied = 0
-    digest = hashlib.sha256(map_path.read_bytes()).hexdigest()
-    coverage = None
-    if cfg["name"] == "telemetry-pod":
-        try:
-            record = load_pod_citations()
-            citation_errors = check_pod_citations(contracts[0], rows, digest, record)
-            errors += citation_errors
-            if not citation_errors:
-                import json
-                spec = json.loads((REPO / "telemetry-pod/expansion/requirements/rev3-microsd/spec-record.json")
-                                  .read_text())
-                coverage = pod_requirement_coverage(
-                    contracts[0], record, [r["id"] for r in spec["requirements"] if r["id"].startswith("POD-IF-")])
-        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
-            errors.append(f"citation status: {exc}")
     bindings = {}
     for path, contract in zip(contract_paths, contracts):
         resolved = resolve_components(contract, inventory)
@@ -684,6 +610,51 @@ def verify_project_io(cfg: dict) -> int:
     if cfg["name"] == "telemetry-pod" and wireless != ["BLE-RADIO"]:
         errors.append("declared wireless obligation BLE-RADIO (POD-IF-BLUETOOTH-LE) is missing; "
                       "it must stay as an unresolved, not_evaluated row")
+    return errors, covered, wireless, satisfied, invariants
+
+
+def verify_project_io(cfg: dict) -> int:
+    project_dir = cfg["path"]
+    map_path = project_dir / "io-map.csv"
+    if not map_path.is_file():
+        raise ValueError(f"no io-map for project {cfg['name']}: {map_path}")
+    rows = read_project_rows(map_path)
+    digest = hashlib.sha256(map_path.read_bytes()).hexdigest()
+    errors, native_cfg, descriptor = [], cfg, None
+    if cfg["name"] == "telemetry-pod":
+        contract_path = REPO / POD_CONTRACT
+        if not contract_path.is_file():
+            raise ValueError(f"missing interface contract: {contract_path}")
+        contract_paths = [contract_path]
+        # The map describes the Rev-3 source schematic named in source.json, not the
+        # v9 pilot snapshot at the project root; its pinned digest must still match.
+        native_cfg, source_errors = pod_source_config(cfg)
+        errors = source_errors + check_pod_generation() + check_pod_compilation(contract_path)
+        try:
+            descriptor = pod_capability()
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            print(f"FAIL: project {cfg['name']} io-map / contract verification:")
+            for error in errors + [f"qualification-bound contract refused by agent-ee capability: {exc}"]:
+                print(f"  [ERROR] {error}")
+            return 1
+        contracts = [descriptor["contract"]]
+        errors += check_pod_history(descriptor, rows)
+    else:
+        contract_paths = sorted((project_dir / "contracts").glob("*.interface.json"))
+        if not contract_paths:
+            raise ValueError(f"no interface contracts for project {cfg['name']}")
+        contracts = [load_contract(project_dir, p.relative_to(project_dir).as_posix()) for p in contract_paths]
+    inventory = fresh_inventory(native_cfg, contracts)
+    graded, covered, wireless, satisfied, invariants = grade(cfg, rows, contract_paths, contracts, inventory, digest)
+    errors += graded
+    candidate = None
+    if cfg["name"] == "telemetry-pod":
+        # The same contract against the actual emitted candidate, bound by its pinned digest.
+        cand_cfg, cand_sha, pinned = pod_candidate_config(cfg)
+        cand_inventory = fresh_inventory(cand_cfg, contracts, expect_sha256=cand_sha)
+        cand_errors, *candidate = grade(cfg, rows, contract_paths, contracts, cand_inventory, digest)
+        errors += [f"candidate {pinned['candidate_id'][:12]}: {e}" for e in cand_errors]
+        candidate.append(pinned)
     if errors:
         print(f"FAIL: project {cfg['name']} io-map / contract verification:")
         for error in errors:
@@ -691,18 +662,24 @@ def verify_project_io(cfg: dict) -> int:
         return 1
     for identity in wireless:
         print(f"NOT_EVALUATED: {identity}: declared wireless row (no electrical connector pin)")
+    if descriptor is not None:
+        authority, history = descriptor["requirement_authority"], descriptor["requirement_history"]
+        print(f"QUALIFICATION: record {history['record']['path']} sha256 {history['record']['sha256']} bound "
+              f"to {len(history['rows'])} io-map rows; v9 origin {POD_V9_ORIGIN} "
+              f"{history['origin_verification'][POD_V9_ORIGIN]}")
+        print(f"REQUIREMENT_AUTHORITY: sourced: {', '.join(authority['sourced']) or 'none'}; "
+              f"unqualified-carryover (reported, never authority): {', '.join(authority['unqualified-carryover'])}")
     if native_cfg is not cfg:
         print(f"source schematic: {native_cfg['path'].relative_to(REPO) / native_cfg['schematic']}")
-    if coverage is not None:
-        qualified = [rid for rid, c in coverage.items() if c["qualified"]]
-        historical = sorted({p for c in coverage.values() for p in c["historical"]})
-        declared = sorted(rid for rid, c in coverage.items() if c["declared"])
-        print(f"REQUIREMENT_COVERAGE: {len(qualified)}/{len(coverage)} Rev-3 POD-IF requirements have "
-              f"Rev-3-qualified row evidence; {len(historical)} rows carry only v9-historical-unqualified "
-              f"citations; declared, not evaluated: {', '.join(declared) or 'none'}")
     print(f"PASS: project {cfg['name']}: verified {len(covered)} connector pins, "
           f"{len(contracts)} interface contracts, {satisfied}/{invariants} invariants satisfied "
           f"against fresh netlist; {len(wireless)} declared wireless not_evaluated")
+    if candidate is not None:
+        c_covered, c_wireless, c_satisfied, c_invariants, pinned = candidate
+        where = "project root" if "rev" not in cand_cfg else f"commit {pinned['commit']}"
+        print(f"PASS: candidate {pinned['candidate_id']} ({pinned['schematic']} sha256 {pinned['sha256']}, "
+              f"{where}): verified {len(c_covered)} connector pins, {c_satisfied}/{c_invariants} invariants "
+              f"satisfied against fresh netlist; {len(c_wireless)} declared wireless not_evaluated")
     return 0
 
 

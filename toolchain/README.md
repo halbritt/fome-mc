@@ -126,12 +126,16 @@ explicit terminal bindings and indirect MCU paths. The pod map describes the Rev
 source schematic named in `telemetry-pod/pinout-checks/source.json`, not the v9
 pilot at the project root. The gate checks that schematic's pinned SHA-256 and
 builds its native inventory from it. It requires `pinout-checks/generate.py --check`
-to reproduce the map, bindings, paths and `pinout-checks/citations.json`
-byte-identically from its netlist. Every contract `io_map.requirements` ID must be
-joined with a `citations.json` status (`v9-historical-unqualified` or
-`rev3-declared-obligation`, `rev3_qualified: false`) and an origin that reproduces;
-a missing, stripped or upgraded status fails. The `REQUIREMENT_COVERAGE` line counts
-neither status as Rev-3 qualified evidence.
+to reproduce the map, bindings, paths and `pinout-checks/history.json`
+byte-identically from its netlist. The pod contract is qualification-bound
+(AGENTEE-188): a fresh compile with the pinned agent-ee must reproduce both the
+contract and `contracts/telemetry-pod.qualification.json`. The contract is read only
+through agent-ee's `capability()` with a scope that pins that record. Carried
+`POD-IF-*` citations stay `unqualified-carryover`, and a `sourced` one fails. The
+same contract is also graded on the actual candidate pinned in `source.json`
+`candidate`. The agent-ee used by verify-io is pinned once, in `versions.toml`
+`[upstream.agent-ee]`, and exported by `scripts/agent_ee_pin.py` (see the pod notes
+for the development-pin status).
 Regeneration instructions are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
@@ -163,8 +167,8 @@ map; regenerate the contract after changing its input. The pod gate also recompi
 its CSV, bindings and paths with AGENTEE-188 and requires byte identity with the
 committed contract. A compiler failure or any byte difference fails verification;
 fresh JSON and compiler logs are retained under `build/runs/verify-io/telemetry-pod/`. This command checks
-connectivity using the existing `agent-ee.hardware_interface` evaluator from
-`~/git/agent-ee`; it does not generate design content.
+connectivity using the `agent-ee.hardware_interface` evaluator at the pinned commit,
+exported from `~/git/agent-ee`; it does not generate design content.
 
 `make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
 project directories and native filenames from `toolchain/versions.toml`. Packaging

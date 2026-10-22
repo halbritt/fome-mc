@@ -27,12 +27,12 @@ pin, after the contact rows. It names no native pin; the compiler keeps it unres
 and verify-io reports it NOT_EVALUATED. Its requirement IDs must exist in the Rev-3
 spec record, whose source digest and byte locators must match REQUIREMENTS.md.
 
-Citation status (citations.json): the compiled contract can only carry bare
-POD-IF-* IDs in io_map.requirements, so every cited ID and every value carried
-from v9 is also recorded here with an explicit status, rev3_qualified=false and
-its origin (the v9 row, or the Rev-3 spec-record locator), bound to the io-map
-digest. verify-io joins it with every contract citation and refuses a citation
-that is missing, stripped or upgraded.
+History (history.json, agent-ee.io-map-history/1): the AGENTEE-188 compiler input
+that binds carried citations to their original provenance. Its origin is the v9 io-map
+(path, revision and sha256 from source.json "v9_origin"; the revision's bytes at the
+original path must equal the retained file). Each carried row gets its own locator:
+the v9 row number, v9 Connector_Pin and the carried columns. "sourced" is empty: no
+cited ID is promoted, so the compiler emits every one as unqualified-carryover.
 """
 import argparse
 import csv
@@ -55,7 +55,7 @@ OUTPUTS = {
     "io-map": REPO / "telemetry-pod/io-map.csv",
     "bindings": HERE / "bindings.json",
     "paths": HERE / "paths.json",
-    "citations": HERE / "citations.json",
+    "history": HERE / "history.json",
 }
 COLUMNS = ["Connector_Pin", "Signal_Name", "Net", "Direction_Class", "Voltage_Current_Domain",
            "MCU_Ref", "MCU_Pin", "External_Destination", "Notes", "MCU_Path"]
@@ -78,9 +78,8 @@ CROSSINGS = {
     "PodCAN:MCP2518FD_SL": ("CAN controller to SPI/interrupt", r"(TX|RX)CAN", ["SCK", "SDI", "SDO", "nCS", "INT"]),
 }
 DIODE_TOKEN = re.compile(r"([AK])([0-9]*)")
-# The only citation statuses. Neither is Rev-3 harness or electrical qualification.
-HISTORICAL = "v9-historical-unqualified"
-DECLARED = "rev3-declared-obligation"
+UNCARRIED = ("none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are "
+             "generated (unknown, N/C or N/A)")
 
 
 def natural(text):
@@ -250,6 +249,21 @@ def v9_rows():
     return rows, by_id
 
 
+def v9_origin(source: dict):
+    """The v9 io-map origin: retained path, original revision and digest, checked against git."""
+    declared = source["v9_origin"]
+    path = REPO / declared["path"]
+    data = path.read_bytes()
+    sha = hashlib.sha256(data).hexdigest()
+    original = subprocess.run(["git", "-C", str(REPO), "show", f"{declared['commit']}:{declared['original_path']}"],
+                              capture_output=True, check=False).stdout
+    if hashlib.sha256(original).hexdigest() != sha:
+        sys.exit(f"{declared['path']} differs from {declared['original_path']} at {declared['commit']}")
+    revision = (f"{declared['commit']} (original path {declared['original_path']}; "
+                f"moved byte-identical to {declared['path']} by {declared['moved_by']})")
+    return {"path": declared["path"], "revision": revision, "sha256": sha}
+
+
 def spec_requirements(source: dict):
     """Rev-3 spec-record entries by ID, after checking their bytes against REQUIREMENTS.md."""
     record = json.loads((REPO / source["spec_record"]).read_text())
@@ -277,16 +291,12 @@ def generate(raw: bytes, source: dict):
     spec = spec_requirements(source)
     contacts = sorted((r for r in nl.comps if CONTACT_REF.fullmatch(r)), key=natural)
     components, terminals, paths, rows = {}, {}, {}, []
-    v9_path = (V9_DIR / "io-map.csv").relative_to(REPO).as_posix()
-    v9_sha = hashlib.sha256((V9_DIR / "io-map.csv").read_bytes()).hexdigest()
-    status = {}
+    origin = v9_origin(source)
+    located = {}
 
-    def v9_origin(old):
-        return {"path": v9_path, "sha256": v9_sha, "row": old["_line"], "connector_pin": old["Connector_Pin"]}
-
-    def historical(old, keys):
-        return {k: {"value": old[k], "status": HISTORICAL, "rev3_qualified": False, "origin": v9_origin(old)}
-                for k in keys}
+    def locate(rid, old, keys):
+        located[rid] = (f"row {old['_line']} ({old['Connector_Pin']}): carried {', '.join(keys)}; "
+                        "not requalified for Rev-3")
 
     def bind(tid, ref, pin):
         comp = nl.comps[ref]
@@ -358,8 +368,7 @@ def generate(raw: bytes, source: dict):
                     sys.exit(f"{rid}: v9 row {old['Connector_Pin']} cites {unknown}, absent from the Rev-3 spec record")
                 if ids:
                     note += f"; v9 interface citations carried: {', '.join(ids)}"
-                status[rid] = {"row": len(rows) + 2, "descriptive": historical(old, CARRIED), "requirements": [
-                    {"id": i, "status": HISTORICAL, "rev3_qualified": False, "origin": v9_origin(old)} for i in ids]}
+                locate(rid, old, CARRIED + (("POD-IF citations",) if ids else ()))
             elif row["Net"] != "N/C":
                 row.update(Direction_Class="unknown", Voltage_Current_Domain="unknown",
                            External_Destination="unknown")
@@ -383,36 +392,21 @@ def generate(raw: bytes, source: dict):
                         f"via {source['spec_record']}; "
                         f"Signal_Name, Direction_Class, Voltage_Current_Domain and External_Destination carried "
                         f"from v9 row {old['Connector_Pin']} (not requalified for Rev-3)")
-        loc = {i: spec[i]["locator"] for i in decl["requirements"]}
-        status[decl["row"]] = {
-            "row": len(rows) + 2, "descriptive": historical(old, ("Signal_Name",) + CARRIED),
-            "requirements": [{"id": i, "status": DECLARED, "rev3_qualified": False,
-                              "origin": {"path": source["spec_record"], "requirements": source["requirements"],
-                                         "sha256": spec[i]["sha256"], "byte_start": loc[i]["byte_start"],
-                                         "byte_end": loc[i]["byte_end"]}}
-                             for i in sorted(set(INTERFACE_ID.findall(row["Notes"])))]}
+        if not set(INTERFACE_ID.findall(row["Notes"])) <= set(INTERFACE_ID.findall(old["Notes"])):
+            sys.exit(f"{decl['row']}: cites POD-IF IDs that v9 row {old['Connector_Pin']} does not")
+        locate(decl["row"], old, ("Signal_Name",) + CARRIED + ("POD-IF citations",))
         rows.append(row)
     out = io.StringIO()
     writer = csv.DictWriter(out, COLUMNS, lineterminator="\n")
     writer.writeheader()
     writer.writerows(rows)
     for row in rows:
-        # The compiler emits exactly these IDs; each must have a recorded status.
-        cited = sorted(set(INTERFACE_ID.findall(row["Notes"])))
-        recorded = [r["id"] for r in status.get(row["Connector_Pin"], {}).get("requirements", [])]
-        if cited != recorded:
-            sys.exit(f"{row['Connector_Pin']}: cited {cited} but recorded status for {recorded}")
-    citations = {
-        "schema": "fome-mc.pod-io-map-citations/1",
-        "note": ("Status of every POD-IF-* ID the compiled contract carries in io_map.requirements, and of "
-                 "every descriptive value carried from v9. v9-historical-unqualified: a v9 pilot association "
-                 "on the same native pin and net, not requalified for Rev-3. rev3-declared-obligation: a "
-                 "Rev-3 spec-record requirement declared in source.json, not evaluated. Neither status is "
-                 "Rev-3 harness or electrical qualification; rev3_qualified is false throughout."),
-        "io_map": {"path": "telemetry-pod/io-map.csv", "sha256": hashlib.sha256(out.getvalue().encode()).hexdigest()},
-        "source": {"path": source["schematic"], "sha256": source["sha256"]},
-        "rows": status,
-    }
+        # Every cited ID must come from a located v9 row; nothing else may carry one.
+        cited = set(INTERFACE_ID.findall(row["Notes"]))
+        if cited and row["Connector_Pin"] not in located:
+            sys.exit(f"{row['Connector_Pin']}: cites {sorted(cited)} without a v9 origin row")
+    history = {"schema": "agent-ee.io-map-history/1", "origin": dict(origin, locator=UNCARRIED),
+               "rows": located, "sourced": {}}
     used = {t for p in paths.values() for t in p["terminals"]} | {r["Connector_Pin"] for r in rows} | {
         f"{r['MCU_Ref']}:{r['MCU_Pin']}" for r in rows if r["MCU_Path"] == "direct"}
     bindings = {"schema": "agent-ee.interface/1",
@@ -430,7 +424,7 @@ def generate(raw: bytes, source: dict):
         "io-map": out.getvalue().encode(),
         "bindings": (json.dumps(bindings, indent=2) + "\n").encode(),
         "paths": (json.dumps({"schema": "agent-ee.io-map-paths/1", "paths": paths}, indent=2) + "\n").encode(),
-        "citations": (json.dumps(citations, indent=2) + "\n").encode(),
+        "history": (json.dumps(history, indent=2) + "\n").encode(),
     }
 
 
@@ -452,7 +446,7 @@ def main(argv=None):
             print("FAIL: regenerated " + ", ".join(str(OUTPUTS[k].relative_to(REPO)) for k in stale)
                   + " differ from the committed files")
             return 1
-        print(f"PASS: io-map, bindings, paths and citations reproduce byte-identically from {source['schematic']}")
+        print(f"PASS: io-map, bindings, paths and history reproduce byte-identically from {source['schematic']}")
         return 0
     for key, data in files.items():
         OUTPUTS[key].write_bytes(data)
