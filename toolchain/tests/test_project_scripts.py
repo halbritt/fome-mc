@@ -281,6 +281,90 @@ class ProjectScripts(unittest.TestCase):
         self.assertIn('pod contract compile failed (rc=2)', output)
         paths_path.write_bytes(raw_paths)
 
+        # An upgraded citation status fails the gate itself, not only the helper.
+        citations_path = project / 'pinout-checks/citations.json'
+        raw_citations = citations_path.read_bytes()
+        upgraded = json.loads(raw_citations)
+        upgraded['rows']['J1-1']['requirements'][0]['status'] = 'rev3-qualified'
+        citations_path.write_text(json.dumps(upgraded))
+        result, output = run(original)
+        self.assertEqual(result, 1, output)
+        self.assertIn("status 'rev3-qualified' is not a recorded citation status", output)
+        self.assertNotIn('REQUIREMENT_COVERAGE', output)
+        citations_path.unlink()
+        result, output = run(original)
+        self.assertEqual(result, 1, output)
+        self.assertIn('missing citation-status record', output)
+        citations_path.write_bytes(raw_citations)
+
+    def test_pod_v9_citations_never_count_as_rev3_qualified(self):
+        contract = json.loads((REPO / 'contracts/telemetry-pod.interface.json').read_bytes())
+        record = json.loads((REPO / 'telemetry-pod/pinout-checks/citations.json').read_bytes())
+        rows = verify.read_project_rows(REPO / 'telemetry-pod/io-map.csv')
+        digest = verify.hashlib.sha256((REPO / 'telemetry-pod/io-map.csv').read_bytes()).hexdigest()
+        self.assertEqual(verify.check_pod_citations(contract, rows, digest, record), [])
+
+        # A consumer of the bare compiled strings would count v9 rows as coverage.
+        naive = {}
+        for inv in contract['invariants']:
+            for rid in inv['io_map']['requirements']:
+                naive.setdefault(rid, set()).add(inv['io_map']['connector_pin'])
+        self.assertEqual(naive['POD-IF-CAN1'], {'J1-1', 'J1-2'})
+        coverage = verify.pod_requirement_coverage(contract, record, ['POD-IF-CAN1', 'POD-IF-WHEEL-SPEED'])
+        self.assertEqual(coverage['POD-IF-CAN1'], {'qualified': [], 'historical': ['J1-1', 'J1-2'], 'declared': []})
+        self.assertEqual(coverage['POD-IF-WHEEL-SPEED'], {'qualified': [], 'historical': [], 'declared': []})
+        historical = {p for c in coverage.values() for p in c['historical']}
+        full = verify.pod_requirement_coverage(contract, record, [])
+        self.assertFalse([rid for rid, c in full.items() if c['qualified']])
+        self.assertEqual(len({p for c in full.values() for p in c['historical']}), 24)
+        self.assertEqual(full['POD-IF-BLUETOOTH-LE']['declared'], ['BLE-RADIO'])
+        self.assertTrue(historical <= set(record['rows']))
+
+        # A record claiming qualification still counts nothing as qualified.
+        claimed = copy.deepcopy(record)
+        claimed['rows']['J1-1']['requirements'][0]['rev3_qualified'] = True
+        self.assertEqual(verify.pod_requirement_coverage(contract, claimed, [])['POD-IF-CAN1']['qualified'], [])
+        upgraded = copy.deepcopy(record)
+        upgraded['rows']['J1-1']['requirements'][0]['status'] = 'rev3-qualified'
+        with self.assertRaisesRegex(ValueError, 'J1-1 cites POD-IF-CAN1 without a recorded citation status'):
+            verify.pod_requirement_coverage(contract, upgraded, [])
+
+        def mutate(change):
+            mutated = copy.deepcopy(record)
+            change(mutated)
+            return '\n'.join(verify.check_pod_citations(contract, rows, digest, mutated))
+
+        cases = {
+            'upgraded status': (lambda r: r['rows']['J1-1']['requirements'][0].update(status='rev3-qualified'),
+                                "status 'rev3-qualified' is not a recorded"),
+            'qualified flag': (lambda r: r['rows']['J1-1']['requirements'][0].update(rev3_qualified=True),
+                               'J1-1 POD-IF-CAN1: rev3_qualified must be false'),
+            'missing flag': (lambda r: r['rows']['J1-1']['requirements'][0].pop('rev3_qualified'),
+                             'rev3_qualified must be false'),
+            'stripped citation': (lambda r: r['rows']['J1-1']['requirements'].pop(),
+                                  'J1-1 does not record exactly the contract citation'),
+            'stripped row': (lambda r: r['rows'].pop('TP1-1'),
+                             "TP1-1 cites ['POD-IF-PROGRAMMING-AND-DEBUG'] without a recorded status"),
+            'stripped value': (lambda r: r['rows']['J1-3']['descriptive'].pop('Voltage_Current_Domain'),
+                               'J1-3 Voltage_Current_Domain'),
+            'upgraded value': (lambda r: r['rows']['J1-3']['descriptive']['External_Destination']
+                               .update(status='rev3-declared-obligation'),
+                               'carried values can only be v9-historical-unqualified'),
+            'wrong v9 origin': (lambda r: r['rows']['J1-1']['requirements'][0]['origin'].update(row=4),
+                                'v9 row 4 is not'),
+            'uncited v9 origin': (lambda r: r['rows']['J1-1']['requirements'][0]['origin'].update(
+                                      row=4, connector_pin='AMPSEAL-3'),
+                                  'v9 row AMPSEAL-3 does not cite it'),
+            'stale io-map': (lambda r: r['io_map'].update(sha256='0' * 64), 'not bound to the current'),
+            'wrong locator': (lambda r: r['rows']['BLE-RADIO']['requirements'][0]['origin'].update(byte_start=0),
+                              'declared obligation does not match its Rev-3 spec record'),
+            'extra row': (lambda r: r['rows'].update({'J1-20': r['rows']['J1-1']}),
+                          'J1-20'),
+        }
+        for name, (change, message) in cases.items():
+            with self.subTest(mutation=name):
+                self.assertIn(message, mutate(change))
+
 
 if __name__ == '__main__':
     unittest.main()

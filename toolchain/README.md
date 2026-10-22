@@ -126,7 +126,12 @@ explicit terminal bindings and indirect MCU paths. The pod map describes the Rev
 source schematic named in `telemetry-pod/pinout-checks/source.json`, not the v9
 pilot at the project root. The gate checks that schematic's pinned SHA-256 and
 builds its native inventory from it. It requires `pinout-checks/generate.py --check`
-to reproduce the map, bindings and paths byte-identically from its netlist.
+to reproduce the map, bindings, paths and `pinout-checks/citations.json`
+byte-identically from its netlist. Every contract `io_map.requirements` ID must be
+joined with a `citations.json` status (`v9-historical-unqualified` or
+`rev3-declared-obligation`, `rev3_qualified: false`) and an origin that reproduces;
+a missing, stripped or upgraded status fails. The `REQUIREMENT_COVERAGE` line counts
+neither status as Rev-3 qualified evidence.
 Regeneration instructions are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,

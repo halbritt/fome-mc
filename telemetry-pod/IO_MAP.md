@@ -9,8 +9,8 @@ contract are kept unchanged in [`pinout-checks/v9-pilot/`](pinout-checks/v9-pilo
 
 ## Derivation
 
-`pinout-checks/generate.py` writes `io-map.csv`, `pinout-checks/bindings.json` and
-`pinout-checks/paths.json` from a kicad-cli XML netlist of the schematic named in
+`pinout-checks/generate.py` writes `io-map.csv`, `pinout-checks/bindings.json`,
+`pinout-checks/paths.json` and `pinout-checks/citations.json` from a kicad-cli XML netlist of the schematic named in
 `pinout-checks/source.json`. It exports that netlist from a temporary copy of the
 schematic. It writes no pin data by hand, and a rerun is byte-identical.
 
@@ -50,7 +50,8 @@ schematic. It writes no pin data by hand, and a rerun is byte-identical.
   `External_Destination` are carried from the v9 row bound to the same native pin
   when its net name is identical (24 rows: J1-1..16, J2-1/2, TP1..TP6). The v9 row's
   `POD-IF-*` citations are carried with them, and each must exist in the Rev-3 spec
-  record. The Notes cell says so; these values were not requalified for Rev-3. Every other row says `unknown`. No committed packet gives
+  record. The Notes cell says so, and `citations.json` records it in machine-readable
+form (see *Citation status* below); these values were not requalified for Rev-3. Every other row says `unknown`. No committed packet gives
   per-cavity destinations for J1-17..34. The J1 mating-interface packet is mechanical
   only.
 
@@ -104,11 +105,54 @@ firmware assignments, harness destinations, wireless behaviour or fabrication
 approval. `verify_io_map.py` in this directory is the retired revision-2 checker;
 `io-map-cross-check.txt` and `IO_MAP_HISTORY.md` are historical.
 
+## Citation status (machine-readable)
+
+The AGENTEE-188 compiler can only emit a row's `POD-IF-*` IDs as bare strings in
+`io_map.requirements`; its citation schema has no status field. So the generator also
+writes `pinout-checks/citations.json` (`fome-mc.pod-io-map-citations/1`). It is bound
+to the `io-map.csv` SHA-256 that every contract citation carries. For each cited or
+carried row it records the CSV row number, each cited ID and each carried descriptive
+value, all with `rev3_qualified: false`, a status and an origin:
+
+- `v9-historical-unqualified`: carried from the v9 pilot row on the same native pin and
+  net. The origin gives the v9 `io-map.csv` path, its SHA-256, row number and v9
+  `Connector_Pin`. This applies to the 24 carried rows (J1-1..16, J2-1/2, TP1..TP6),
+  and to `BLE-RADIO`'s `Signal_Name` and descriptive columns.
+- `rev3-declared-obligation`: `BLE-RADIO`'s `POD-IF-BLUETOOTH-LE` and
+  `POD-IF-PROGRAMMING-AND-DEBUG`, declared in `source.json`. The origin gives the
+  Rev-3 spec-record locator. The row is not evaluated.
+
+Neither status is Rev-3 harness or electrical qualification. `verify-io` joins the
+record with every contract citation. It fails if a cited ID has no record entry, if
+the entry is stripped or does not match the citation exactly, or if the status is
+missing or upgraded, or `rev3_qualified` is not `false`. It also fails if a v9 origin
+row does not reproduce (file digest, row, `Connector_Pin`, the cited ID in its Notes,
+or the value), if a Rev-3 locator differs from the spec record, or if the record is
+stale or missing. Any descriptive value that is not `unknown` must be recorded.
+
+The gate's requirement-coverage line counts only statuses in
+`REV3_QUALIFIED_STATUSES` (`scripts/verify_io_map.py`) as Rev-3 evidence. That set is
+empty because no Rev-3 qualification record exists. The gate therefore prints
+`REQUIREMENT_COVERAGE: 0/11 Rev-3 POD-IF requirements have Rev-3-qualified row evidence;
+24 rows carry only v9-historical-unqualified citations; declared, not evaluated:
+POD-IF-BLUETOOTH-LE, POD-IF-PROGRAMMING-AND-DEBUG`. The pod compile is run without
+`--spec-record`, so the compiler's own coverage count, which reads the bare strings,
+is not used. `toolchain/tests/test_project_scripts.py` shows that a consumer reading
+the bare strings counts J1-1/J1-2 as `POD-IF-CAN1` coverage, while this consumer does
+not. It also checks each strip, upgrade and origin mutation.
+
+*Agent decision (AGENTEE-207, fm-iomap-rev3c), not an owner decision.* **Alternatives:**
+extend the agent-ee citation schema (outside this repository, and every interface/1
+consumer would change) or drop the inherited IDs (this loses traceability that the
+earlier review asked to keep). **Reverse:** delete `citations.json`, its generator
+block and `check_pod_citations`; the contract bytes do not depend on them.
+
 ## Interface requirement traceability
 
 One row per Rev-3 `Interfaces` entry (spec-record IDs). *Cited rows* carry the ID in
 their Notes cell, and the compiled contract repeats it in `io_map.requirements`. All are
-carried from v9 rows, except `BLE-RADIO`, which `source.json` declares. *Uncited rows*
+carried from v9 rows (`v9-historical-unqualified` in `citations.json`), except
+`BLE-RADIO`, which `source.json` declares (`rev3-declared-obligation`). *Uncited rows*
 are this agent's reading of native net names and topology. That reading is not a
 requirement citation and gives no harness or electrical authority. A cited or uncited
 row shows only where the interface lands in the schematic. It does not show that the
