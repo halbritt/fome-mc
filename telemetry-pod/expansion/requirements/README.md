@@ -5,6 +5,13 @@ This is the Revision 3 input inventory for the expanded-pod campaign. It capture
 It does not replace the historical Revision 2 fixture in agent-ee and does not
 establish design acceptance.
 
+**Superseded for campaign use by [rev3-microsd/](rev3-microsd/README.md)** (AGENTEE-197,
+AGENTEE-310). That directory recaptures the spec record after the Storage row was added
+and recompiles the scope against the microSD source. Its stage order is the four pod-driver
+stages, it embeds the existing RF review profile, and it records actual-limit temperature
+obligations. The files below remain as the historical verification-only preparation; the
+spec record here no longer verifies against the current `REQUIREMENTS.md`.
+
 The capture contains **58 requirements and 20 prose entries**: 29 table rows,
 18 bullets and 11 numbered acceptance criteria. Prose must also be mapped: it
 contains obligations such as thermal validation and power-disturbance testing.
