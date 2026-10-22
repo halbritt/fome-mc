@@ -1,0 +1,239 @@
+{
+ "schema": "corrected-policy-iter7/fixtures/1",
+ "drc_command": "kicad-cli pcb drc --format json --severity-all --units mm --refill-zones (in memory, on a copy)",
+ "bases": {
+  "base-source": {
+   "kicad_version": "10.0.7",
+   "board_sha256": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+   "violations": {
+    "lib_footprint_issues": 199,
+    "isolated_copper": 13
+   },
+   "unconnected": 499,
+   "rule_area": []
+  },
+  "base-corrected": {
+   "kicad_version": "10.0.7",
+   "board_sha256": "fe533602777dfbccea8ac9a94cc1fa99e2ce4a8b9a35dea45628f6f55b85ffc2",
+   "violations": {
+    "lib_footprint_issues": 199,
+    "isolated_copper": 13
+   },
+   "unconnected": 499,
+   "rule_area": []
+  }
+ },
+ "bases_identical": true,
+ "fixtures": {
+  "f01": {
+   "base": "base-corrected",
+   "added": "In1.Cu track (15,50)-(20,50), outside the corridor",
+   "expect_items_not_allowed": 1,
+   "why": "D-PCB-7 v2: In1 no tracks anywhere",
+   "got_items_not_allowed": 1,
+   "delta_vs_base": {
+    "items_not_allowed": 1
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In1.Cu, length 5.0000 mm"
+     ]
+    }
+   ],
+   "board_sha256": "be7acfdeed70630740c0534592c803ba8fb32d440cc447cdfdebeff39546c24b",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f02": {
+   "base": "base-corrected",
+   "added": "In1.Cu track (82.5,27.2)-(82.5,29.4), inside the corridor",
+   "expect_items_not_allowed": 2,
+   "why": "both rule areas cover it",
+   "got_items_not_allowed": 2,
+   "delta_vs_base": {
+    "items_not_allowed": 2
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In1.Cu, length 2.2000 mm"
+     ]
+    },
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In1.Cu, length 2.2000 mm"
+     ]
+    }
+   ],
+   "board_sha256": "4bc728a6e56f09d0ba6f287fb0b05f1de0502de6880c50eae924d31f65bda3e7",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f03": {
+   "base": "base-corrected",
+   "added": "In2.Cu track (82.5,27.2)-(82.5,29.4), inside the corridor",
+   "expect_items_not_allowed": 1,
+   "why": "D-PCB-6 spatial no-tracks on In2",
+   "got_items_not_allowed": 1,
+   "delta_vs_base": {
+    "items_not_allowed": 1,
+    "track_dangling": 1
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In2.Cu, length 2.2000 mm"
+     ]
+    }
+   ],
+   "board_sha256": "22e9cde6a40bec0504dc84047c374dfe384e19296140fd8b2baa6b0f97728a1c",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f04": {
+   "base": "base-corrected",
+   "added": "through via (82.5,28.4), inside the corridor",
+   "expect_items_not_allowed": 1,
+   "why": "D-PCB-6 spatial no-vias",
+   "got_items_not_allowed": 1,
+   "delta_vs_base": {
+    "items_not_allowed": 1,
+    "via_dangling": 1
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed (keepout area 'D-PCB-6 RF reference keep-out')",
+     "severity": "error",
+     "items": [
+      "Via [/GND] on F.Cu - B.Cu"
+     ]
+    }
+   ],
+   "board_sha256": "f551b3d6518a621a03bbc4c7adfecf14b0e1d2c5ddb9582fa53a0e6cbec44943",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f05": {
+   "base": "base-corrected",
+   "added": "through via (20,55), outside the corridor",
+   "expect_items_not_allowed": 0,
+   "why": "vias allowed on In1 outside D-PCB-6",
+   "got_items_not_allowed": 0,
+   "delta_vs_base": {
+    "via_dangling": 1
+   },
+   "rule_area_findings": [],
+   "board_sha256": "9aa5416c02020c9e519269a6b3fa4eb5fa110b09475af7139f5d7480d6da765c",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f06": {
+   "base": "base-corrected",
+   "added": "In2.Cu track (15,50)-(20,50), outside the corridor",
+   "expect_items_not_allowed": 0,
+   "why": "D-PCB-7 v2: In2 open to signals",
+   "got_items_not_allowed": 0,
+   "delta_vs_base": {
+    "track_dangling": 1
+   },
+   "rule_area_findings": [],
+   "board_sha256": "6d4073b65c75135ce112ffd376f138464ed9b5ae95a271bab7a3e6ade230a24e",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f07": {
+   "base": "base-source",
+   "added": "In1.Cu track as f01, on the uncorrected source",
+   "expect_items_not_allowed": 0,
+   "why": "control: the source has no rule areas",
+   "got_items_not_allowed": 0,
+   "delta_vs_base": {},
+   "rule_area_findings": [],
+   "board_sha256": "fc071a83ed7af8a6f5f5519ef85983c14421375a310f635550cd30d0bd21a6c8",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f08": {
+   "base": "base-source",
+   "added": "via as f04, on the uncorrected source",
+   "expect_items_not_allowed": 0,
+   "why": "control",
+   "got_items_not_allowed": 0,
+   "delta_vs_base": {
+    "via_dangling": 1
+   },
+   "rule_area_findings": [],
+   "board_sha256": "e596bf2277559a0d34e1767abc076337c50bd146c6b38fc8831e32445a802801",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f09": {
+   "base": "base-source",
+   "added": "In2.Cu track as f03, on the uncorrected source",
+   "expect_items_not_allowed": 0,
+   "why": "control",
+   "got_items_not_allowed": 0,
+   "delta_vs_base": {
+    "track_dangling": 1
+   },
+   "rule_area_findings": [],
+   "board_sha256": "c5d5eb434af8669dd52fd6ac2733efe1acfc1daaa40456b7ead6f43dabd7cc9e",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f10": {
+   "base": "base-corrected",
+   "added": "f02 with the D-PCB-7v2 area removed",
+   "expect_items_not_allowed": 1,
+   "why": "attribution: D-PCB-6 alone flags an In1 corridor track",
+   "got_items_not_allowed": 1,
+   "delta_vs_base": {
+    "items_not_allowed": 1
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In1.Cu, length 2.2000 mm"
+     ]
+    }
+   ],
+   "board_sha256": "1bdd773466956468abeb0f6061144ca53d673f335543279bfe5857213d824273",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  },
+  "f11": {
+   "base": "base-corrected",
+   "added": "f02 with the D-PCB-6 area removed",
+   "expect_items_not_allowed": 1,
+   "why": "attribution: D-PCB-7v2 alone flags it",
+   "got_items_not_allowed": 1,
+   "delta_vs_base": {
+    "items_not_allowed": 1
+   },
+   "rule_area_findings": [
+    {
+     "description": "Items not allowed",
+     "severity": "error",
+     "items": [
+      "Track [/GND] on In1.Cu, length 2.2000 mm"
+     ]
+    }
+   ],
+   "board_sha256": "6679012a453d7d4f39326fb83847fb56119780e765a33774316211f0b0131600",
+   "kicad_version": "10.0.7",
+   "verdict": "PASS"
+  }
+ },
+ "verdict": "PASS"
+}

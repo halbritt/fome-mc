@@ -1,0 +1,388 @@
+{
+ "schema": "corrected-policy-iter7/policy-receipt/1",
+ "label": "corrected-policy diagnostic input, not a production placement",
+ "item": "KICADROUTE-91 (M1b), corrected-policy diagnostic input slice only; the item is not complete",
+ "authority": "coordinator agent-509 ruling 2026-10-21 (plan M1): immutable corrected-policy diagnostic input from the archived iteration-7 microSD routing input; agent-507 owns baseline identity and routing acceptance",
+ "claims_not_made": [
+  "not a production or adopted placement",
+  "no routing was run on this input; no routed-success or optimisation claim",
+  "no routability comparison is made or supported: no sidecar versioning, effective-configuration binding or mismatch refusal exists for this input",
+  "the historical 203/235 result and the 55/32 and 51/30 counts are measurements on the historical source 67782a5d, not defects in themselves; none is a current-policy qualification of this input or of any route, and nothing here regrades them (see superseding_annotation)",
+  "allowed_trace_layers and allowed_via_spans are summaries; the native rule areas are the enforcement"
+ ],
+ "open_items": [
+  "G1: remaining M1b work: effective-configuration/build/budget identity binding, comparison refusal, argument-difference exposure and agent-ee boundary integration",
+  "G2: the corrected PCB fe533602 needs fresh current-policy grading; the historical routes are not current-policy qualification and the KICADROUTE-98 partition proof covers the historical source 67782a5d only",
+  "G3: the single corrected-policy route (900-second backend ceiling plus measured grade/grace) has not been run"
+ ],
+ "source": {
+  "role": "iteration-7 microSD routing input: the planed board kicad-route campaign iter8d-campaign r0 routed; the historical 203-of-235 count belongs to that campaign and is not a result of this fixture",
+  "original_path": "/home/halbritt/.cache/agent499-microsd/iter8d/route/planes-1/candidate",
+  "files_sha256": {
+   "ca2.kicad_pcb": "67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f",
+   "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74",
+   "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d"
+  },
+  "retained_copy": {
+   "source/ca2.kicad_pcb.gz": "af0c5652236881bd1812bbc26301cfdc75c78d36fb8158568e53a93bb69da6bd",
+   "note": "gzip -9n of the archived board; .kicad_pro/.kicad_dru are byte-identical to ../ca2.kicad_pro/.kicad_dru"
+  },
+  "identity_chain": [
+   {
+    "file": "telemetry-pod/expansion/routing-diagnostic/SHA256SUMS",
+    "check": "sha256sum -c of its 30 ./iteration-7/ entries: all OK (commit 7c6c678; iteration-7/ has no README or SHA256SUMS of its own)"
+   },
+   {
+    "file": "telemetry-pod/expansion/routing-diagnostic/iteration-7/candidate/iter8d-campaign-r0/snapshot.json",
+    "sha256": "e4d94dd796e750ab85d5c2edce4d3757103687f8815d18757fa39f1a8d276f6b",
+    "binds": "ca2.kicad_pcb/.kicad_pro/.kicad_dru hashes of the campaign r0 input and its source_dir"
+   },
+   {
+    "file": "telemetry-pod/expansion/routing-diagnostic/iteration-7/campaign.json",
+    "sha256": "b437654d3929d6209ae5df21a15f9c2fbf2b5a30b777492fec504085d8ee1092",
+    "binds": "input.dir /home/halbritt/.cache/agent499-microsd/iter8d/route/planes-1/candidate"
+   },
+   {
+    "file": "telemetry-pod/expansion/routing-diagnostic/iteration-7/planes/result.json",
+    "sha256": "8b9d49404459a0bd197c7c946b0c1cd88cbfba8ef95b5e546fd80cb72a33cbd0",
+    "binds": "kicad-route planes input board 2c1ac9444885f168aa4a62335bb0b6e6ad3cca67a16396fa3f1270d9da4a54a1 -> output 67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f"
+   }
+  ],
+  "origin": {
+   "placement_board": {
+    "file": "telemetry-pod/expansion/placement-candidate/iteration-7/candidate-silk-policy.kicad_pcb.gz",
+    "gz_sha256": "e15883ebd520bc6194fd81e1da7480685b24d883a7900218f33ff5c4a20398dd",
+    "sha256": "2c1ac9444885f168aa4a62335bb0b6e6ad3cca67a16396fa3f1270d9da4a54a1",
+    "equals_planes_input": true
+   },
+   "project": {
+    "file": "telemetry-pod/expansion/design-rules/board-setup.kicad_pro",
+    "sha256": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74",
+    "equals_source_pro": true
+   },
+   "rules": {
+    "file": "telemetry-pod/expansion/design-rules/telemetry-pod.kicad_dru",
+    "sha256": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+    "equals_source_dru": true
+   },
+   "plane_plan": {
+    "file": "telemetry-pod/expansion/design-rules/planes.json",
+    "sha256": "9e592e3ee4bdf5b6042fd3a595235cc5425359f4a69f87787ce00fc3624779aa",
+    "equals_planes_receipt": true
+   }
+  }
+ },
+ "output": {
+  "files_sha256": {
+   "ca2.kicad_pcb": "fe533602777dfbccea8ac9a94cc1fa99e2ce4a8b9a35dea45628f6f55b85ffc2",
+   "ca2.kicad_pro": "7c7933bf09fad1617887d95dce24ae2b994737bf4cc46c20662e447561515b74",
+   "ca2.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d"
+  },
+  "pro_dru_unchanged": true,
+  "board_change": "evidence/source-to-corrected.diff: one insertion of two (zone ...) rule areas, 62 lines added, 0 removed; every footprint, net, net class, track/via setting, copper zone and fill is byte-identical",
+  "diff_sha256": "5d20795fe439651580d71afcdbeb507d22a3ea9d62dbdf735ee4870364350721",
+  "built_by": "tools/build_corrected.py (pcbnew, one SaveBoard; deterministic UUIDs, rebuild is byte-identical)"
+ },
+ "decisions": {
+  "file": "telemetry-pod/expansion/design-rules/constraints.json",
+  "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+  "key": "decisions_pending_next_seed",
+  "D-PCB-6": "Under the GNSS line from the U3 RF pad (77.5, 29.1) to the J2 pin (86.96, 28.0), keep In1.Cu (GND plane) unbroken and keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm: a native rule area (no tracks, no vias, layers In1.Cu and In2.Cu) added to the board before routing. Basis: 50-ohm microstrip referenced to the In1 plane (RF_50 net class), reviewer condition on iteration 3. Applied at the next routing pass of iteration 3.",
+  "D-PCB-7": "In1.Cu (GND) and In2.Cu (+3V3) are plane layers: native rule areas over the board outline with no-tracks on both layers (vias allowed, so fan-out and layer changes still pass through). Basis: the planed iteration-3 route placed signal tracks on In1.Cu (blocked-by top entries TIRE_CAN_TX_ENABLE, TWAI_RX, MCU_BOOT46, TWAI_TX on In1.Cu), which cuts the GND reference the RF_50 line and the bucks depend on (LMR36520 SNVSBF0C \u00a78.5.1 item 5). Signal routing is F.Cu and B.Cu only; if two signal layers prove insufficient, the owner decision is a 6-layer stack, not tracks in the planes. Applied with D-PCB-6 before the next routing pass. REVISION v2 (2026-10-21): closing both inner layers starved routing (full pass on the D-PCB-3 board: 114 of 194 nets, versus 143-145 with four routable layers) and the kicad-route builtin engine ignored the inner-layer rule areas anyway (64 layer-change stubs placed inside them, reported to the kicad-route owner). Decision: In1.Cu stays a pure GND reference (no-tracks rule area over the outline; D-PCB-6 keeps vias out under the GNSS line); In2.Cu is opened to signal routing with the +3V3 pour filling around tracks (stack SIG / GND / PWR+SIG / SIG). If In2 routing still leaves power-distribution gaps, the owner decision is a 6-layer stack."
+ },
+ "geometry_binding": {
+  "captured_for": "D-PCB-6: GNSS line from the U3 RF pad (77.5, 29.1) to the J2 pin (86.96, 28.0)",
+  "archived_board": {
+   "U3": "RF_GPS:ublox_NEO at (71.5, 35.0) rot 180, locked; pad 11 /POD_GNSS_RF at (77.5, 29.1)",
+   "J2": "SMA_Molex_73251-1153_EdgeMount_Horizontal at (85.24, 28.0) rot 180, locked; pad 1 /POD_GNSS_RF at (86.96, 28.0)",
+   "board_outline": "Edge.Cuts rectangle (0,0)-(90,65) mm, 4 lines"
+  },
+  "match": true,
+  "corridor_used": "x 76..88, y 26.5..30.6 mm, unchanged from constraints.json"
+ },
+ "rule_areas": [
+  {
+   "name": "D-PCB-7v2 In1.Cu no tracks (board outline)",
+   "uuid": "b8cd1a0e-bfa3-582c-a8c8-734b10734769",
+   "layers": [
+    "In1.Cu"
+   ],
+   "tracks_not_allowed": true,
+   "vias_not_allowed": false,
+   "pads_not_allowed": false,
+   "copperpour_not_allowed": false,
+   "footprints_not_allowed": false,
+   "outlines": 1,
+   "holes": 0,
+   "polygon_mm": [
+    [
+     90.0,
+     65.0
+    ],
+    [
+     0.0,
+     65.0
+    ],
+    [
+     0.0,
+     0.0
+    ],
+    [
+     90.0,
+     0.0
+    ]
+   ],
+   "area_mm2": 5850.0
+  },
+  {
+   "name": "D-PCB-6 RF reference keep-out",
+   "uuid": "f6e5e400-11eb-5c5a-850c-0ab6ca475b54",
+   "layers": [
+    "In1.Cu",
+    "In2.Cu"
+   ],
+   "tracks_not_allowed": true,
+   "vias_not_allowed": true,
+   "pads_not_allowed": false,
+   "copperpour_not_allowed": false,
+   "footprints_not_allowed": false,
+   "outlines": 1,
+   "holes": 0,
+   "polygon_mm": [
+    [
+     76.0,
+     26.5
+    ],
+    [
+     88.0,
+     26.5
+    ],
+    [
+     88.0,
+     30.6
+    ],
+    [
+     76.0,
+     30.6
+    ]
+   ],
+   "area_mm2": 49.2
+  }
+ ],
+ "inspection": {
+  "method": "pcbnew reload of a copy (tools/inspect_rule_areas.py); reload+SaveBoard is byte-identical to ca2.kicad_pcb",
+  "file": "evidence/rule-area-inspection.json",
+  "sha256": "5b5a2e3eb038837be4cb10bfd8b2379ae5522b682af65aa69148c9d6859c628e"
+ },
+ "native_enforcement": {
+  "fixtures": "evidence/fixtures.json",
+  "sha256": "15a288018e34bbcae966fcd3a84407146018ebfa7d08200640ae2a6a54935662",
+  "verdict": "PASS",
+  "bases_identical": true,
+  "summary": {
+   "f01": {
+    "added": "In1.Cu track (15,50)-(20,50), outside the corridor",
+    "items_not_allowed": 1,
+    "verdict": "PASS"
+   },
+   "f02": {
+    "added": "In1.Cu track (82.5,27.2)-(82.5,29.4), inside the corridor",
+    "items_not_allowed": 2,
+    "verdict": "PASS"
+   },
+   "f03": {
+    "added": "In2.Cu track (82.5,27.2)-(82.5,29.4), inside the corridor",
+    "items_not_allowed": 1,
+    "verdict": "PASS"
+   },
+   "f04": {
+    "added": "through via (82.5,28.4), inside the corridor",
+    "items_not_allowed": 1,
+    "verdict": "PASS"
+   },
+   "f05": {
+    "added": "through via (20,55), outside the corridor",
+    "items_not_allowed": 0,
+    "verdict": "PASS"
+   },
+   "f06": {
+    "added": "In2.Cu track (15,50)-(20,50), outside the corridor",
+    "items_not_allowed": 0,
+    "verdict": "PASS"
+   },
+   "f07": {
+    "added": "In1.Cu track as f01, on the uncorrected source",
+    "items_not_allowed": 0,
+    "verdict": "PASS"
+   },
+   "f08": {
+    "added": "via as f04, on the uncorrected source",
+    "items_not_allowed": 0,
+    "verdict": "PASS"
+   },
+   "f09": {
+    "added": "In2.Cu track as f03, on the uncorrected source",
+    "items_not_allowed": 0,
+    "verdict": "PASS"
+   },
+   "f10": {
+    "added": "f02 with the D-PCB-7v2 area removed",
+    "items_not_allowed": 1,
+    "verdict": "PASS"
+   },
+   "f11": {
+    "added": "f02 with the D-PCB-6 area removed",
+    "items_not_allowed": 1,
+    "verdict": "PASS"
+   }
+  }
+ },
+ "tools": {
+  "kicad_cli": "10.0.7",
+  "pcbnew": "10.0.7",
+  "pinned": "toolchain/versions.toml kicad_cli_version 10.0.7"
+ },
+ "routability_policy": {
+  "schema": "routability-policy/1",
+  "experiment_class": "current-policy",
+  "allowed_trace_layers": [
+   "F.Cu",
+   "In2.Cu",
+   "B.Cu"
+  ],
+  "allowed_via_spans": [
+   [
+    "F.Cu",
+    "B.Cu"
+   ]
+  ],
+  "allowed_via_spans_basis": "the input defines only through vias (Default net class 0.6/0.3 mm; no blind, buried or micro via class)",
+  "trace_layer_restriction_enforced_by": {
+   "rule_area": "D-PCB-7v2 In1.Cu no tracks (board outline)",
+   "uuid": "b8cd1a0e-bfa3-582c-a8c8-734b10734769"
+  },
+  "spatial_exclusions": [
+   {
+    "name": "D-PCB-6 RF reference keep-out",
+    "uuid": "f6e5e400-11eb-5c5a-850c-0ab6ca475b54",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "forbids": [
+     "tracks",
+     "vias"
+    ],
+    "polygon_mm": [
+     [
+      76.0,
+      26.5
+     ],
+     [
+      88.0,
+      26.5
+     ],
+     [
+      88.0,
+      30.6
+     ],
+     [
+      76.0,
+      30.6
+     ]
+    ],
+    "enforced_by": "native KiCad rule area in ca2.kicad_pcb"
+   }
+  ],
+  "statement": "The spatial RF exclusion (D-PCB-6) is enforced by the native rule area, not by allowed_via_spans: allowed_via_spans is a summary of layer pairs only and cannot express a region. Through vias are allowed on In1.Cu everywhere outside the D-PCB-6 polygon. allowed_trace_layers is a summary of the native D-PCB-7v2 rule area, which is what KiCad DRC grades."
+ },
+ "disclosed_limits": [
+  "RF_50 rule 'agent_ee_netclass_RF_50' is inactive: it matches no net on this input",
+  "historical results (203/235, 55/32, 51/30) are measurements on source 67782a5d; they are not current-policy qualification, and the changed policy requires new grading on fe533602",
+  "the kicad-route builtin engine was reported not to honour inner-layer rule areas; any route must be graded by native DRC",
+  "fixture DRC runs use an empty KICAD_CONFIG_HOME, so the bases include 199 lib_footprint_issues, 13 isolated-copper findings and 499 unconnected items; verdicts are deltas against each fixture's base, not a clean or connected design result"
+ ],
+ "receipt_history": [
+  {
+   "commit": "7e6fb02",
+   "note": "first version; wording of README, this receipt and make_receipt.py was stale (baseline/routability framing, historical counts not marked unresolved, allowed_via_spans not called a summary)",
+   "sha256_at_that_commit": {
+    "README.md": "32bbbfc7d79814ce8cf1c95d010c3b0e23e7eaef9f131d737ac5c4e3c11ad3b6",
+    "policy-receipt.json": "0df61bbeed1521c5eea23e4f13745160358b5e889ca93f11f269bdb7794f7d32",
+    "tools/make_receipt.py": "8134b7496009d5336ba2da8fd0187f16ef197936df6adfc76b378ab5255ffbbd",
+    "SHA256SUMS": "ced10d96ab144aab5707fe4a6a3a1ecd8c417facf369e2c2fe44339db5a207d5"
+   }
+  },
+  {
+   "commit": "c0e811e",
+   "note": "first wording correction; its text called the 55/32, 51/30 counts and the ten lost nets unresolved and ineligible for promotion, an inference superseded by superseding_annotation. Its receipt is preserved in git history and is not rewritten",
+   "sha256_at_that_commit": {
+    "README.md": "3976552305d9ac005d9ca94b451d32f50e17787824bd17cf6f68fb39c6670f8d",
+    "policy-receipt.json": "b96fb490fac183a9b590e51250531b6166bcc6f950a29c39d26bc5d9300c449b",
+    "tools/make_receipt.py": "b036cf1a87453aa69531c1955509b62e2fe046465d039234f09ca030aab1a00d",
+    "SHA256SUMS": "e0b6d15ee4471cb1efe971f43055079ab2ee20225a5e853118ac162d3a3cd424"
+   }
+  },
+  {
+   "commit": "this commit (KICADROUTE-98 reconciliation)",
+   "note": "wording and receipt metadata only; ca2.kicad_pcb, ca2.kicad_pro, ca2.kicad_dru, source/, evidence/ are byte-identical to 7e6fb02; adds superseding_annotation and corrects the rule-area statement in preserved_as_found"
+  }
+ ],
+ "preserved_as_found": [
+  "ca2.kicad_dru rule 'agent_ee_netclass_RF_50' (track_width min 0.335 mm for net class RF_50) is unchanged; this input's .kicad_pro defines only the Default class, so /POD_GNSS_RF is Default and that rule matches nothing. Not altered: width and net-class changes are out of scope.",
+  "the source (67782a5d) has 0 BOARD-owned rule areas and 6 FOOTPRINT-owned keepouts (U1 ESP32-S3-WROOM-1: 1; J3 microSD: 5), counted from the decompressed source/ca2.kicad_pcb.gz; their original bytes remain in ca2.kicad_pcb. The two rule areas added here are the only BOARD-owned rule areas; the source does not have zero rule areas globally (the planes receipt's 'keepouts: 0 rule areas' counted board zones only)"
+ ],
+ "superseding_annotation": {
+  "supersedes": "the capped-report inference in earlier receipts and in the c0e811e wording: that the ten lost nets and the 55/32, 51/30 counts were unresolved because the native DRC unconnected list is capped at 499 and so could not show completion. Only that inference is superseded; the receipts containing it are preserved unchanged in git history (7e6fb02, c0e811e)",
+  "superseded_by": {
+   "repository": "kicad-route",
+   "commit": "367578e4c303c02580d338af5ae829a39495ab57",
+   "report": "reports/routability-m1-20261021/krt98/README.md",
+   "report_sha256": "0a77dac66214348736ec297af32da32a64b8dd13da8fcfd3b64042b383e3b93b",
+   "evidence_archive": "reports/routability-m1-20261021/krt98/evidence.tar.gz",
+   "evidence_archive_sha256": "f7d030f6d15347f4aae2a5aa5e93cbf72e475d773b4b463f3be7fcfc583ae779",
+   "evidence_index": "reports/routability-m1-20261021/krt98/evidence-index.json",
+   "evidence_index_sha256": "818113e264a9a42420e7bb793aca4c5e9dea30246a5b94373edf8a2661be91ef",
+   "historical_verification": "reports/routability-m1-20261021/krt98/historical-verification.json",
+   "historical_verification_sha256": "974e3e65a9bc1c7e75e3bf1bf8e50abe1d6aaeb0ccc76cde8955fd3902049f0b",
+   "members_under_independent_verification": {
+    "origin-production-terminals.json": "2aeacb0eef3cc15a2d23fc534eb774b6b9adf07a3c6d6258f7591557532b2b12",
+    "production-ratchet-verification.json": "d13ab416c85d63e101d7e395a2bf92c18c9d95b85fe1ccbb930214deed535b03",
+    "independent-equivalence-expectations.json": "6355b5c2f31144fa0a4d607128e8d469fc52b10e867e9b87e76fcd831eabed6c"
+   },
+   "hashes_recomputed": "sha256sum of the files at that commit (git show 367578e4:<path>) and of the members extracted from evidence.tar.gz"
+  },
+  "input_identity_report": {
+   "repository": "kicad-route",
+   "commit": "967891c9408047eb5106f4fc3303b8fecb5b19c1",
+   "path": "reports/routability-m1-20261021/krt91-input-identity/identity.json",
+   "sha256": "2ecccfae2b7a3b4cf2cdcc05f78a96f83ff7134d69c80102e2f42bad579e166a",
+   "confirms": "source 67782a5d, pro 7c7933bf, dru ff622083 agree across the gzip, live archive, committed snapshot, campaign and planes output; corrected fe533602 is a pure 62-line insertion with pro/dru identical"
+  },
+  "partition_findings": {
+   "scope": "historical source 67782a5d8ff7ce3c21dbe90b6f50c2735e4827231f3f474c9db4522de43ca73f and its two archived routed results; 235 terminal-net UUID partitions each",
+   "origin_complete_nets": 53,
+   "origin_terminal_deficit": 686,
+   "result_complete_nets": [
+    203,
+    205
+   ],
+   "result_terminal_deficits": [
+    55,
+    51
+   ],
+   "all_53_complete_origin_nets_preserved": true,
+   "partial_groups_on_incomplete_nets_preserved": 5,
+   "ten_alleged_lost_nets": "all ten were already incomplete in the origin; none was a net that was complete and then lost",
+   "earlier_inferred_origin_complete_count": "155, from absence in the capped report; superseded by 53",
+   "historical_counts_status": "the 55/32 and 51/30 figures are measurements, not defects in themselves"
+  },
+  "remaining_ineligibility": [
+   "the changed policy (current layer policy, native rule areas) requires new grading: this input has had none",
+   "historical routes are not current-policy qualification",
+   "the KICADROUTE-98 partition proof covers the historical source 67782a5d only; the corrected PCB fe533602 (a pure 62-line insertion) still needs fresh policy grading",
+   "no genuine native or policy finding is cleared by this annotation (including the DRC findings in disclosed_limits and the inactive RF_50 rule)",
+   "KICADROUTE-91 remains unreleased; G1 and G3 stay open"
+  ]
+ }
+}
