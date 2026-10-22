@@ -67,7 +67,7 @@ contact placement. The temporary board is a connector-only 90 × 65 mm fixture.
 This is not complete-board DRC, routing or manufacturing acceptance.
 
 Before adoption: bind the exact connector to the expanded intent and verify all
-board/enclosure clearances. Board thickness is owner-accepted
+board/enclosure clearances. Board thickness is owner-accepted as relayed by agent-509 (agent-drafted record, not owner-confirmed) as relayed by agent-509 (agent-drafted record, not owner-confirmed)
 ([decision, 2026-10-22](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): J1 fits by the owner's component-side through-hole rule (at least ±10%
 of TE's recommended 1.57 mm, band 1.413–1.727 mm; the 1.6 mm board is inside,
 AGENTEE-448), and the standard JLCPCB four-layer 1.6 mm board is accepted
@@ -102,7 +102,7 @@ flats at Z1.565. That exporter datum includes its copper/nominal offset behavior
 it is not a physical stand-off specification. KiCad documents a0.05mm model
 board offset in its [STEP exporter source](https://docs.kicad.org/doxygen/step__pcb__model_8cpp.html).
 Do not silently subtract it from the source model or use the nominal exported
-gap to certify mechanical seating. Board thickness is owner-accepted
+gap to certify mechanical seating. Board thickness is owner-accepted as relayed by agent-509 (agent-drafted record, not owner-confirmed) as relayed by agent-509 (agent-drafted record, not owner-confirmed)
 ([decision](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)); physical seating, retention and solder joints are checked as
 normal board-side checks. The model path assumes it is copied to
 `${KIPRJMOD}/inputs/models/c-1-776163-1-t-3d.stp` during project generation.
