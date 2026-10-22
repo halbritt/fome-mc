@@ -11,6 +11,10 @@ Order matters and is fail-closed:
    is built, so acceptance cannot depend on item order); every required item is
    present; every status is known; every citation names a known source with a
    page and figure; the installed enclosure/harness/tool items stay UNRESOLVED.
+4. The 2026-10-22 TE drop (AGENTEE-446): every drop file is a captured source
+   or a byte duplicate of one; zip sources hold exactly their recorded members
+   (no absolute or '..' paths); TE sources never carry an owner class; every
+   lead-claim verdict is known and cites a known source with a page.
 
 `--self-test` also runs negative controls that must be rejected.
 
@@ -22,6 +26,7 @@ import json
 import pathlib
 import re
 import sys
+import zipfile
 
 HERE = pathlib.Path(__file__).resolve().parent
 STATUSES = {"SOURCED", "PARTIAL", "UNRESOLVED"}
@@ -31,6 +36,7 @@ REQUIRED_ITEMS = {
     "pcb_thickness", "latch_cpa_and_tool_access", "harness_exit_direction",
 } | MUST_STAY_UNRESOLVED
 CORE_FILES = {"README.md", "check.py", "interface.json"}
+CLAIM_VERDICTS = {"VERIFIED", "PARTIAL", "UNVERIFIED"}
 MANIFEST_LINE = re.compile(r"([0-9a-f]{64})  (\S.*)")
 
 
@@ -135,6 +141,50 @@ def check_record(record):
     return errors
 
 
+def check_drop(record):
+    errors = []
+    drop = record.get("te_drop_2026_10_22")
+    if not isinstance(drop, dict):
+        return ["te_drop_2026_10_22: missing"]
+    sources = record["sources"]
+    for f in drop["files"]:
+        key = f.get("captured_as") or f.get("duplicate_of")
+        if key not in sources:
+            errors.append(f"drop {f['name']}: not captured and not a duplicate of a source")
+        elif sources[key]["sha256"] != f["sha256"] or sources[key]["bytes"] != f["bytes"]:
+            errors.append(f"drop {f['name']}: sha256/size differs from source {key}")
+    captured = {f.get("captured_as") for f in drop["files"]}
+    for key in captured - {None}:
+        if key in sources and sources[key]["class"].startswith("owner"):
+            errors.append(f"{key}: a TE source must not carry an owner class")
+    for key, src in sources.items():
+        if "members" not in src:
+            continue
+        path = (HERE / src["file"]).resolve()
+        if not path.is_file():
+            continue  # reported by check_files
+        with zipfile.ZipFile(path) as zf:
+            infos = zf.infolist()
+            names = [i.filename for i in infos]
+            if names != [m["name"] for m in src["members"]]:
+                errors.append(f"{key}: zip members {names} differ from the record")
+                continue
+            for info, member in zip(infos, src["members"]):
+                parts = info.filename.replace("\\", "/").split("/")
+                if info.filename.startswith("/") or ".." in parts:
+                    errors.append(f"{key}: unsafe zip member {info.filename}")
+                data = zf.read(info)
+                if len(data) != member["bytes"] or hashlib.sha256(data).hexdigest() != member["sha256"]:
+                    errors.append(f"{key}: zip member {info.filename} sha256/size mismatch")
+    for claim in drop["lead_claims"]:
+        if claim.get("verdict") not in CLAIM_VERDICTS:
+            errors.append(f"lead claim {claim.get('id')}: unknown verdict {claim.get('verdict')}")
+        if claim.get("verdict") != "UNVERIFIED" and (
+                claim.get("source") not in sources or not claim.get("page") or not claim.get("figure")):
+            errors.append(f"lead claim {claim.get('id')}: verdict without a known source, page and figure")
+    return errors
+
+
 def self_test(record, manifest_text):
     def mutated(fn):
         rec = copy.deepcopy(record)
@@ -166,6 +216,20 @@ def self_test(record, manifest_text):
         "duplicate id, identical copy": mutated(
             lambda r: duplicate(r, "pcb_thickness", False)),
     }
+    drop_controls = {
+        "446: drop file not captured": mutated(
+            lambda r: r["te_drop_2026_10_22"]["files"][0].update(captured_as="NOPE")),
+        "446: drop hash differs from capture": mutated(
+            lambda r: r["te_drop_2026_10_22"]["files"][2].update(sha256="0" * 64)),
+        "446: TE source labelled owner": mutated(
+            lambda r: r["sources"]["AS114S3"].update(**{"class": "owner_stated"})),
+        "446: zip member hash altered": mutated(
+            lambda r: r["sources"]["CVM776164F"]["members"][0].update(sha256="0" * 64)),
+        "446: unknown lead-claim verdict": mutated(
+            lambda r: r["te_drop_2026_10_22"]["lead_claims"][0].update(verdict="PASS")),
+        "446: verdict without a source": mutated(
+            lambda r: r["te_drop_2026_10_22"]["lead_claims"][1].update(source="NOPE")),
+    }
     lines = manifest_text.splitlines()
     manifest_controls = {
         "empty SHA256SUMS": "",
@@ -176,6 +240,7 @@ def self_test(record, manifest_text):
     }
     results = {name: check_record(rec) for name, rec in record_controls.items()}
     results.update({name: check_manifest(record, text)[1] for name, text in manifest_controls.items()})
+    results.update({name: check_drop(rec) for name, rec in drop_controls.items()})
     failed = [name for name, errors in results.items() if not errors]
     for name in results:
         print(f"negative control {name}: {'NOT REJECTED' if name in failed else 'rejected'}")
@@ -187,7 +252,7 @@ def main():
     manifest_text = (HERE / "SHA256SUMS").read_text()
     entries, errors = check_manifest(record, manifest_text)
     if not errors:
-        errors = check_files(record, entries) + check_record(record)
+        errors = check_files(record, entries) + check_record(record) + check_drop(record)
     for err in errors:
         print("ERROR", err)
     if "--self-test" in sys.argv and self_test(record, manifest_text):
@@ -197,6 +262,12 @@ def main():
         counts[item.get("status")] = counts.get(item.get("status"), 0) + 1
     print(f"items: {dict(sorted(counts.items(), key=str))}; sources: {len(record['sources'])}; "
           f"missing captures: {len(record['missing_captures'])}")
+    drop = record.get("te_drop_2026_10_22") or {}
+    verdicts = {}
+    for claim in drop.get("lead_claims", []):
+        verdicts[claim.get("verdict")] = verdicts.get(claim.get("verdict"), 0) + 1
+    print(f"te drop 2026-10-22: files {len(drop.get('files', []))}; "
+          f"lead claims {dict(sorted(verdicts.items(), key=str))}")
     print("mating-interface: " + ("FAIL" if errors else "PASS"))
     return 1 if errors else 0
 
