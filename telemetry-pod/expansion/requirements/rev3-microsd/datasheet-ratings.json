@@ -1,0 +1,67 @@
+{
+  "schema": "pod-datasheet-temperature-ratings/1",
+  "note": "Manufacturer operating-temperature ratings for the selected parts whose captured rating is below the 105 degC part-selection criterion. Each datasheet is the one named by the part's agent-ee.datasheet-binding/1 in storage-microsd/inputs/intent.json; page numbers are 1-based PDF pages. Values are facts only; no vendor text is reproduced beyond the parameter name.",
+  "parts": {
+    "U1": {
+      "mpn": "ESP32-S3-WROOM-1-N8",
+      "datasheet": {
+        "sha256": "27d71971da07c280c6068d08c74720d1a25b8f20cf8494dc1765bdd28d40d435",
+        "url": "https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+        "repository_path": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf",
+        "page": 27,
+        "locator": "Recommended operating conditions table, TA operating ambient temperature, 85 degC version",
+        "match": ["Operating ambient temperature", "85 °C version"],
+        "min_c": -40,
+        "max_c": 85,
+        "metric": "ambient"
+      }
+    },
+    "U2": {
+      "mpn": "LSM6DSO32TR",
+      "datasheet": {
+        "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
+        "url": "https://datasheet.lcsc.com/datasheet/pdf/42dbf8f1db60fe30e78762665e95b0db.pdf?productCode=C1864162",
+        "repository_path": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+        "page": 26,
+        "locator": "Mechanical characteristics table, Top operating temperature range",
+        "match": ["Top", "Operating temperature range"],
+        "min_c": -40,
+        "max_c": 85,
+        "metric": "operating"
+      }
+    },
+    "U3": {
+      "mpn": "NEO-M9N-00B",
+      "datasheet": {
+        "sha256": "e21b35c1a4fd04f353e298a3c3c411c08e683a318d87ad3af9f570da40a40150",
+        "url": "https://content.u-blox.com/sites/default/files/NEO-M9N-00B_DataSheet_UBX-19014285.pdf",
+        "repository_path": null,
+        "page": 11,
+        "locator": "Operating conditions table, Topr operating temperature",
+        "match": ["Operating temperature", "Topr"],
+        "min_c": -40,
+        "max_c": 85,
+        "metric": "operating"
+      }
+    },
+    "U4": {
+      "mpn": "MCP3208-BI/SL",
+      "datasheet": {
+        "sha256": "89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20",
+        "url": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21298e.pdf",
+        "repository_path": "telemetry-pod/expansion/canonical-parts/acquisition/cd66a8a0c408b52e69dc5463f5e6634df10108915a6b48a1fcde536cf9b73a17.pdf",
+        "page": 37,
+        "locator": "Product identification system, temperature range I (industrial)",
+        "match": ["Temperature Range", "I = -40°C to +85°C"],
+        "min_c": -40,
+        "max_c": 85,
+        "metric": "ambient"
+      }
+    },
+    "J3": {
+      "mpn": "DM3AT-SF-PEJM5",
+      "datasheet": null,
+      "datasheet_gap": "No datasheet bytes are captured: the binding names only the LCSC URL without a hash (storage-microsd/README.md). The rating below comes from the captured LCSC catalog record only and must be confirmed against the Hirose datasheet."
+    }
+  }
+}
