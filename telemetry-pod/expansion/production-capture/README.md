@@ -21,7 +21,9 @@ unresolved copper/native-check and witness-pose obligations into the scope and t
 declarations now mount the export's `src`, and each declared module is imported from its actual
 mount (the export root, the old declaration, fails as the control). H3: the library refusals are
 source-bound obligations through candidate provenance, both scopes and the actual review packet.
-H2 waits on agent-ee AGENTEE-197u. Assembly: a fresh read-only JLC capture of all 81 BOM LCSC ids
+H2 waits on agent-ee AGENTEE-197u. **j5b** (review-pod-capture-j5 HOLD): the obligation
+identities are derived from the verified library refusals, and the cited library entry is verified by
+bytes (Blocks layer, below). Assembly: a fresh read-only JLC capture of all 81 BOM LCSC ids
 (2026-10-22) and the J1 hand-fit source chain (`assembly/hand-fit-policy.json`), which agent-ee
 `a9dac2f3` cannot express (a narrow agent-ee change is reported separately). POD-AC-5 stays NOT
 CHECKED.
@@ -102,8 +104,12 @@ each candidate (AGENTEE-256). This connects the provenance; it does not qualify 
 
 ## Phase B (`pipeline.py`), on a fresh copy of the capture
 
-`evidence/pipeline-a9dac2f-j5.json` holds the exact results of this version. It records each
-stage verbatim, including every refusal. `evidence/pipeline-a9dac2f-bounded.json` (j4) and
+`evidence/pipeline-a9dac2f-j5b-image.json` holds the exact results of this version, run in the pinned
+agent-ee CI image (`ae-ci-exec` on an a9dac2f3 checkout, network none; container paths under
+`/opt/agent-ee/build`) on the default repack. Its 28 stage statuses equal j5's host run
+`evidence/pipeline-a9dac2f-j5.json` (21 accepted, 7 refused); the blocks record now also names the
+verified seed board, candidate policy and library entry hashes and the expected obligations. Each
+records each stage verbatim, including every refusal. `evidence/pipeline-a9dac2f-bounded.json` (j4) and
 `evidence/pipeline-a9dac2f.json` (j3) are earlier runs, kept as history; their producer
 declarations mount the export root, which cannot import `agent_ee` (review H1).
 `evidence/DIAGNOSTIC-pipeline-agent-ee-bf8a2836-handfit-patch.json` is a diagnostic only: the same
@@ -149,15 +155,27 @@ pipeline files are the run on agent-ee 014b349.
    `-harness-edge`, `-height` and `-imu-separation` (AGENTEE-177/179). The envelope's requirements are
    incomplete for the same reason.
 3. **Blocks layer.** `block-obligations.json` from the repack (REPACK_DIR, default
-   `evidence/repack-a9dac2f-j5/`) is re-verified against the candidate, library entry and full
-   refusal output it names, copied to `composition/block-obligations.json` and declared as a scope
-   `packet_inputs` entry. Each of its four obligations becomes a `POD-DERIVED-BLOCK-…: NOT CHECKED
+   `evidence/repack-a9dac2f-j5/`) is verified before it is copied or used (j5b, review-pod-capture-j5
+   H1/H2). The expected obligations are not read from the record: the library-refused block set comes
+   from the retained `logs/<block>.library.out` refusals (each naming its block, its tail equal to
+   repack.json's) and must equal repack.json's generic-after-refusal set. Each refused block must carry
+   exactly `<block>-board-region-copper-native-check` and `<block>-witness-pose-equivalence`, unresolved,
+   rebuilt from that refusal as `repack.py` writes them; a missing, duplicate, substituted, changed or
+   empty obligation, block or status refuses. The library entry is read at `<block>.v4.entry.json` and its
+   bytes must match the record and repack.json's input hash and name `pod-<block>`, from the iter8n
+   `lib/` of the recorded seed; the refusal record, generic candidate (bytes, status, seed board, policy)
+   and repack.json's record hash and lists are checked the same way, and the candidates' policy must be
+   the derived request policy's identity. Missing, changed or swapped entries refuse.
+   `obligation_probes.py` holds the regression probes (19 tests). The record is then copied to
+   `composition/block-obligations.json` and declared as a scope `packet_inputs` entry. Each expected
+   obligation becomes a `POD-DERIVED-BLOCK-…: NOT CHECKED
    (unresolved; …)` limitation on both scopes. Stage `review.packet_obligations probe scope` builds the
    actual packet with agent-ee's `reviewers.build_packet` over the prepared dry run and refuses unless
-   all four limitations, `copper_unknown`, the record (byte-equal, cited and excerpted) and the
+   each expected limitation exactly once (no other block limitation, in the packet and the candidate
+   scope), `copper_unknown`, the record (byte-equal, cited and excerpted) and the
    174-entry ledger are present, and the driver's campaign scope differs from the probe scope only in
    its own `inputs`/`mutable_inputs`. Stage `scope.block_obligations production scope` checks the same
-   declarations on the production scope, which still cannot be prepared.
+   expected set, exactly once each, on the production scope, which still cannot be prepared.
 4. **Binding-fill.** `binding_fill.configuration` (writer intent, `--ratings`, distinct output) and `fill`
    are accepted: 305 components, 248 derived ratings, `ratings_missing` `{}`, 6 probe migrations, and
    the ledger's 174 Qualification entries all bound.

@@ -27,7 +27,9 @@ is checked against the authorized budget, refused, and set aside as not launchab
 A third layer, blocks, carries the library refusals of the 18-block repack (repack.py
 block-obligations.json): the pre-6v3 and buck-3v3 board-region copper/native-check and witness-pose
 obligations stay unresolved, as NOT CHECKED scope limitations and as a packet input, and the actual
-review packet of the prepared probe is checked to expose them. The J1 hand-fit source chain
+review packet of the prepared probe is checked to expose them. The expected obligations come from the
+verified library refusals, not from the record, and the record's library entry, refusal and candidate are
+verified by bytes before it is copied (block_obligations; obligation_probes.py). The J1 hand-fit source chain
 (assembly/hand-fit-policy.json) is verified link by link and declared in the assembly check only when
 the agent-ee export can express it; otherwise its refusal is kept.
 
@@ -130,7 +132,6 @@ for rel in HAND_FIT_CHAIN:  # byte copies at their fome-mc paths; the capture al
         raise SystemExit(f'capture copy of {rel} differs from fome-mc')
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ROOT / rel, target)
-shutil.copyfile(REPACK / 'block-obligations.json', planning / BLOCK_OBLIGATIONS)
 compiled = json.loads((SCOPE_DIR / 'scope.json').read_text())
 writer, bound = 'composition/intent.writer.json', 'composition/intent.bound.json'
 inputs = {k: 'composition/' + v for k, v in (
@@ -288,35 +289,164 @@ def compose_assembly(base):
 
 # 0c. The blocks layer: library refusals of the repack stay unresolved obligations, never acceptance.
 def block_obligations():
-    """Re-verify the repack's obligation record against the repack outputs it names."""
-    doc = read(BLOCK_OBLIGATIONS)
+    """Verify the repack's obligation record against the retained repack outputs before it is copied or used.
+
+    The expected obligations are not read from the record. The library-refused block set is derived from
+    the retained library materialize outputs (logs/<block>.library.out, each a JSON refusal naming its block)
+    and must equal repack.json's generic-after-refusal set. For each such block exactly two obligations are
+    expected, rebuilt from that refusal exactly as repack.py writes them: <block>-board-region-copper-native-check
+    and <block>-witness-pose-equivalence, status unresolved. The record must hold exactly those (missing,
+    duplicate, substituted, changed, resolved or empty refuses). Its library entry, refusal log and generic
+    candidate are read at their expected paths and checked by hash against the record and repack.json, and the
+    entry, refusal and candidate must name the block and bind the seed board and policy repack.json records."""
+    library = {'pre-6v3': 'U5', 'buck-3v3': 'U7'}  # repack.py LIBRARY: the iter8n library blocks and references
+    generic, real_placement = 'generic pack after library refusal', (
+        'A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed '
+        'board identity nor any qualification from this candidate.')
+    path = REPACK / 'block-obligations.json'
+    doc, repack = json.loads(path.read_text()), json.loads((REPACK / 'repack.json').read_text())
+    record_sha, seed = sha(path), repack['inputs']['seed.kicad_pcb']['sha256']
+    iter8n_lib = repack['inputs']['seed.kicad_pcb']['source'].rsplit('/', 1)[0] + '/lib/'
+
+    def refuse(block, why):
+        raise SystemExit(f'block obligations for {block}: {why}')
+
+    refused, refusals = [], {}
+    for block in library:
+        log = REPACK / f'logs/{block}.library.out'
+        if not log.is_file():
+            refuse(block, f'the library materialize output {log.name} is missing; the refusal is not source-bound')
+        raw = log.read_text()
+        try:
+            out = json.loads(raw)
+        except ValueError:
+            out = None
+        packed = repack['packed'].get(block, {})
+        if not isinstance(out, dict) or out.get('status') != 'refused':
+            if packed.get('path') != 'library entry':
+                refuse(block, f'not a library refusal and not packed from its library entry ({packed.get("path")})')
+            continue
+        problems = out.get('problems')
+        if (out.get('block') != block or out.get('id') != f'pod-{block}' or not isinstance(problems, list) or not problems
+                or not all(isinstance(p, dict) and p.get('kind') and p.get('reason') for p in problems)):
+            refuse(block, 'the retained library refusal does not name this block with its refusal problems')
+        library_run = packed.get('library', {})
+        if (packed.get('path') != generic or not library_run.get('rc')
+                or library_run.get('stdout') != raw.strip()[-300:]):
+            refuse(block, 'repack.json does not record this retained library refusal for a generic pack')
+        refused.append(block)
+        refusals[block] = {'log': f'logs/{block}.library.out', 'sha256': sha(log), 'rc': library_run['rc'],
+                           'status': 'refused', 'problems': problems}
+    if sorted(refused) != sorted(b for b, r in repack['packed'].items() if r.get('path') == generic):
+        raise SystemExit(f'library-refused blocks {sorted(refused)} and repack.json generic-after-refusal blocks differ')
+
+    expected = {}
+    for block in refused:
+        reference, problems = library[block], refusals[block]['problems']
+        expected[block] = [
+            {'id': f'{block}-board-region-copper-native-check', 'status': 'unresolved',
+             'refusal_kinds': sorted({p['kind'] for p in problems}),
+             'statement': (f'The {block} library entry ({reference}) was refused by the released engine: '
+                           + '; '.join(f'{p["kind"]}: {p["reason"]}' for p in problems)
+                           + '. Its board-region copper application and the native checks over it are not '
+                             'executed; the generic candidate is geometry only and closes neither.'),
+             'source_reasons': [p['reason'] for p in problems]},
+            {'id': f'{block}-witness-pose-equivalence', 'status': 'unresolved',
+             'statement': (f'Witness-pose equivalence between the generic {block} candidate and the library '
+                           'entry witness is not established; the generic pose is not the library pose.')}]
+
+    names = [b.get('block') for b in doc.get('blocks', [])]
+    if doc.get('schema') != 'pod-capture.block-obligations/1' or sorted(names) != sorted(expected):
+        raise SystemExit(f'block obligation record blocks {names} differ from the library-refused blocks {sorted(expected)}')
+    if doc.get('seed_board_sha256') != seed:
+        raise SystemExit('block obligation record seed board differs from repack.json')
     for block in doc['blocks']:
-        cand = REPACK / block['generic_candidate']['path']
-        refusal = REPACK / block['library_refusal']['log']
-        if sha(cand) != block['generic_candidate']['sha256'] or sha(refusal) != block['library_refusal']['sha256']:
-            raise SystemExit(f"block obligations for {block['block']} do not match the repack outputs")
-        if block['status'] != 'unresolved' or any(o['status'] != 'unresolved' for o in block['obligations']):
-            raise SystemExit('a library-refused block obligation is marked resolved; only a native check may do that')
-    repack = json.loads((REPACK / 'repack.json').read_text())
-    refused = sorted(b for b, r in repack['packed'].items() if r['path'] == 'generic pack after library refusal')
-    if refused != sorted(b['block'] for b in doc['blocks']):
-        raise SystemExit(f'library-refused blocks {refused} and block obligations differ')
-    return doc, {'path': BLOCK_OBLIGATIONS, 'sha256': sha(planning / BLOCK_OBLIGATIONS),
+        b = block['block']
+        ids = [o.get('id') for o in block.get('obligations') or []]
+        want = [o['id'] for o in expected[b]]
+        if ids != want or block['obligations'] != expected[b]:
+            refuse(b, f'obligations {ids} are not exactly the source-bound unresolved {want} '
+                      f'(missing {sorted(set(want) - set(ids))}, duplicate {sorted({i for i in ids if ids.count(i) > 1})}, '
+                      f'substituted {sorted(set(ids) - set(want))}, or changed status/meaning)')
+        if (block.get('status') != 'unresolved' or block.get('qualification') != 'unknown'
+                or block.get('reference') != library[b] or block.get('real_placement') != real_placement):
+            refuse(b, 'the block is not unresolved/unknown at its library reference; only a native check may resolve it')
+        # H2: the cited library entry, at its expected path, by bytes against the record and repack.json.
+        entry, name = block.get('library_entry', {}), f'{b}.v4.entry.json'
+        if entry.get('path') != name or entry.get('source') != iter8n_lib + name:
+            refuse(b, f'library entry {entry.get("path")} ({entry.get("source")}) is not {name} from {iter8n_lib}')
+        if not (REPACK / name).is_file():
+            refuse(b, f'the retained library entry {name} is missing')
+        entry_sha = sha(REPACK / name)
+        if entry_sha != entry.get('sha256') or entry_sha != repack['inputs'].get(name, {}).get('sha256'):
+            refuse(b, f'library entry {name} bytes ({entry_sha}) differ from the record or the repack.json input')
+        try:
+            entry_id = json.loads((REPACK / name).read_text()).get('id')
+        except (ValueError, AttributeError):
+            entry_id = None
+        if entry_id != f'pod-{b}':
+            refuse(b, f'library entry {name} is not the pod-{b} entry ({entry_id})')
+        if block.get('library_refusal') != refusals[b]:
+            refuse(b, 'the recorded library refusal differs from the retained refusal output')
+        # The generic candidate: expected path, bytes, block, seed board and policy, as repack.json records them.
+        cand, rel = block.get('generic_candidate', {}), f'cand/{b}.candidate.json'
+        listed = repack['candidates'].get(b, {})
+        if cand.get('path') != rel or not (REPACK / rel).is_file():
+            refuse(b, f'generic candidate {cand.get("path")} is not the retained {rel}')
+        cand_sha, cand_doc = sha(REPACK / rel), json.loads((REPACK / rel).read_text())
+        sources = cand_doc.get('sources', {})
+        if (cand_sha != cand.get('sha256') or cand_sha != listed.get('sha256') or listed.get('path') != generic
+                or cand_doc.get('status') != cand.get('status') or cand.get('status') != listed.get('status')
+                or not {cand.get('board_sha256'), sources.get('board_sha256'), listed.get('board_sha256')} <= {seed}
+                or not sources.get('policy_sha256') or sources.get('policy_sha256') != listed.get('policy_sha256')):
+            refuse(b, 'the generic candidate differs from the record or repack.json, or binds another board or policy')
+        if (listed.get('unresolved_obligations') != [o['id'] for o in expected[b]]
+                or listed.get('obligations') != {'path': 'block-obligations.json', 'sha256': record_sha}
+                or repack.get('unresolved_obligations', {}).get(b) != [o['id'] for o in expected[b]]):
+            refuse(b, 'repack.json does not carry this obligation record and its expected obligations')
+    if repack.get('qualified') is not False or sorted(repack.get('unresolved_obligations', {})) != sorted(expected):
+        raise SystemExit('repack.json claims qualification or a different unresolved block set')
+    policies = sorted({repack['candidates'][b]['policy_sha256'] for b in expected})
+    return doc, {'path': BLOCK_OBLIGATIONS, 'sha256': record_sha,
                  'repack': {'path': str(REPACK / 'repack.json'), 'sha256': sha(REPACK / 'repack.json')},
-                 'blocks': {b['block']: [o['id'] for o in b['obligations']] for b in doc['blocks']}}
+                 'seed_board_sha256': seed, 'candidate_policy_sha256': policies,
+                 'library_entries': {b: sha(REPACK / f'{b}.v4.entry.json') for b in expected},
+                 'blocks': {b: [o['id'] for o in obligations] for b, obligations in expected.items()}}
+
+
+def block_obligation_ids():
+    """The expected obligation ids, from the verified library-refused block set (never the record's own list)."""
+    return [i for ids in obligation_record['blocks'].values() for i in ids]
+
+
+def block_limitation_problems(lines):
+    """Each expected obligation exactly once as a NOT CHECKED limitation, and no other block limitation."""
+    lines = list(lines)
+    ids = block_obligation_ids()
+    counts = {i: sum(l.startswith(f'POD-DERIVED-BLOCK-{i.upper()}: NOT CHECKED (unresolved; ') for l in lines)
+              for i in ids}
+    extra = [l[:80] for l in lines if l.startswith('POD-DERIVED-BLOCK-')
+             and not any(l.startswith(f'POD-DERIVED-BLOCK-{i.upper()}: ') for i in ids)]
+    return {'missing': [i for i, n in counts.items() if n == 0], 'duplicate': [i for i, n in counts.items() if n > 1],
+            'unexpected': extra, 'expected': len(ids)}
 
 
 def compose_blocks(base):
     """NOT CHECKED limitations per unresolved obligation, and the record as a review packet input."""
     composed = copy.deepcopy(base)
-    lines = []
-    for block in obligation_doc['blocks']:
-        for o in block['obligations']:
+    lines, verified = [], {b['block']: b for b in obligation_doc['blocks']}
+    for name, ids in obligation_record['blocks'].items():  # the expected set, never the record's own list
+        block = verified[name]
+        for i in ids:
+            (o,) = [o for o in block['obligations'] if o['id'] == i]
             lines.append(f"POD-DERIVED-BLOCK-{o['id'].upper()}: NOT CHECKED (unresolved; {BLOCK_OBLIGATIONS} sha256 "
                          f"{obligation_record['sha256']}): {o['statement']} Generic packing is geometry only. "
                          f"{block['real_placement']}")
     composed['limitations'] = [*base['limitations'], *lines]
     composed['packet_inputs'] = [*base.get('packet_inputs', [base['schematic'], base['board']]), BLOCK_OBLIGATIONS]
+    problems = block_limitation_problems(composed['limitations'])
+    if problems['missing'] or problems['duplicate'] or problems['unexpected']:
+        raise ValueError(f'composed scope block limitations differ from the expected obligations: {json.dumps(problems)}')
     return composed
 
 
@@ -407,6 +537,14 @@ def write_scope(root, base):
 coverage = stock_coverage()
 hand_fit, hand_fit_policy = hand_fit_chain()
 obligation_doc, obligation_record = block_obligations()
+# Copied only after verification; the copy, the derived request policy and the repack policy input must agree.
+shutil.copyfile(REPACK / 'block-obligations.json', planning / BLOCK_OBLIGATIONS)
+if sha(planning / BLOCK_OBLIGATIONS) != obligation_record['sha256']:
+    raise SystemExit('the copied block obligation record differs from the verified record')
+repack_policy = json.loads((REPACK / 'repack.json').read_text())['inputs']['policy']['sha256']
+if (repack_policy != sha(planning / inputs['policy'])
+        or set(obligation_record['candidate_policy_sha256']) - {identity(read(inputs['policy']))}):
+    raise SystemExit('the repack policy input or the refused-block candidates do not bind the derived request policy')
 assembled = compose_blocks(compose_assembly(compiled))
 composed, derivation, coverage_inputs = compose_scope(assembled)
 derivation = {**derivation, 'schema': 'pod-capture.scope-composition/3',
@@ -655,8 +793,10 @@ def review_obligations():
     paths = {c['path'] for c in packet['citation_files']}
     record, ledger = 'inputs/' + BLOCK_OBLIGATIONS, 'inputs/' + inputs['ledger']
     limitations = '\n'.join(packet['declared_limitations'])
-    ids = [o['id'] for b in obligation_doc['blocks'] for o in b['obligations']]
-    missing = [i for i in ids if f'POD-DERIVED-BLOCK-{i.upper()}: NOT CHECKED' not in limitations]
+    ids = block_obligation_ids()  # expected from the verified library-refused blocks, not the record's list
+    in_packet = block_limitation_problems(packet['declared_limitations'])
+    in_candidate = block_limitation_problems(candidate['scope']['limitations'])
+    missing = in_packet['missing']
     excerpt = any(a.get('path') == record for a in packet['artifacts'])
     # The driver writes the campaign scope (prepared-probe-scope/scope.json); it owns only inputs and
     # mutable_inputs. Every other field, limitations and packet_inputs included, must be the probe scope's.
@@ -665,16 +805,18 @@ def review_obligations():
     differ = sorted(k for k in set(ours) | set(theirs) if ours.get(k) != theirs.get(k))
     found = {'candidate_scope_sha256': candidate['scope_sha256'], 'driver_scope_sha256': sha(driver_scope),
              'probe_scope_sha256': sha(probe / 'scope.json'), 'driver_scope_differs_in': differ,
-             'candidate_carries_limitations': all(f'POD-DERIVED-BLOCK-{i.upper()}' in l for i in ids
-                                                  for l in [' '.join(candidate['scope']['limitations'])]),
+             'candidate_carries_limitations': not any(in_candidate[k] for k in ('missing', 'duplicate', 'unexpected')),
+             'candidate_block_limitations': in_candidate, 'packet_block_limitations': in_packet,
              'packet_obligation_limitations': len(ids) - len(missing), 'obligations': len(ids),
+             'expected_obligations': obligation_record['blocks'],
              'packet_copper_unknown': 'copper_unknown' in limitations,
              'record_in_citation_files': record in paths,
-             'record_bytes_equal': (run / record).read_bytes() == (planning / BLOCK_OBLIGATIONS).read_bytes(),
+             'record_bytes_equal': ((run / record).read_bytes() == (planning / BLOCK_OBLIGATIONS).read_bytes()
+                                    and sha(run / record) == obligation_record['sha256']),
              'record_in_packet_artifacts': excerpt,
              'ledger_in_citation_files': ledger in paths,
              'ledger_qualification': len(json.loads((run / ledger).read_text())['qualification'])}
-    if (missing or not found['packet_copper_unknown'] or not found['record_in_citation_files'] or not excerpt
+    if (missing or in_packet['duplicate'] or in_packet['unexpected'] or not ids or not found['packet_copper_unknown'] or not found['record_in_citation_files'] or not excerpt
             or not found['record_bytes_equal'] or not found['candidate_carries_limitations']
             or found['candidate_scope_sha256'] != found['driver_scope_sha256']
             or not set(differ) <= {'inputs', 'mutable_inputs'} or not found['ledger_in_citation_files']
@@ -686,12 +828,13 @@ stage('review.packet_obligations probe scope', review_obligations)
 
 def production_scope_obligations():
     """The production scope (which still refuses preparation) declares the same obligations and packet input."""
-    ids = [o['id'] for b in obligation_doc['blocks'] for o in b['obligations']]
-    text_ = '\n'.join(scope['limitations'])
-    missing = [i for i in ids if f'POD-DERIVED-BLOCK-{i.upper()}: NOT CHECKED' not in text_]
-    if missing or BLOCK_OBLIGATIONS not in scope.get('packet_inputs', []):
-        raise ValueError(f'production scope omits block obligations {missing}')
-    return {'obligations': len(ids), 'packet_inputs': scope['packet_inputs']}
+    ids = block_obligation_ids()  # expected from the verified library-refused blocks, not the record's list
+    found = block_limitation_problems(scope['limitations'])
+    if (not ids or found['missing'] or found['duplicate'] or found['unexpected']
+            or scope.get('packet_inputs', []).count(BLOCK_OBLIGATIONS) != 1):
+        raise ValueError(f'production scope block obligations differ from the expected set: {json.dumps(found)}')
+    return {'obligations': len(ids), 'expected_obligations': obligation_record['blocks'],
+            'packet_inputs': scope['packet_inputs']}
 stage('scope.block_obligations production scope', production_scope_obligations)
 
 
