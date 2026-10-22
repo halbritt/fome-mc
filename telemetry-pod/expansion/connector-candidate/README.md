@@ -67,9 +67,16 @@ contact placement. The temporary board is a connector-only 90 × 65 mm fixture.
 This is not complete-board DRC, routing or manufacturing acceptance.
 
 Before adoption: bind the exact connector to the expanded intent and verify all
-board/enclosure clearances. The exact board thickness/tolerance, connector
-retention, panel seal, screw selection/torque and installed cowl clearance remain
-qualification work. The prior arbitrary 12 mm height limit is not reinstated.
+board/enclosure clearances. Board thickness is owner-accepted
+([decision, 2026-10-22](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)): J1 fits by the owner's component-side through-hole rule (at least ±10%
+of TE's recommended 1.57 mm, band 1.413–1.727 mm; the 1.6 mm board is inside,
+AGENTEE-448), and the standard JLCPCB four-layer 1.6 mm board is accepted
+(its published ±10% finished tolerance is a separate board-side fact, not
+the J1 fit basis), and TE's 1.57 mm layout title
+is not a thickness gate. The normal footprint, finished-hole/pad, retention and
+solder-joint checks remain. Panel seal, screw selection/torque and installed cowl
+clearance are verified once the team-designed enclosure exists. The prior
+arbitrary 12 mm height limit is not reinstated.
 
 ## Model placement and native convention
 
@@ -95,8 +102,9 @@ flats at Z1.565. That exporter datum includes its copper/nominal offset behavior
 it is not a physical stand-off specification. KiCad documents a0.05mm model
 board offset in its [STEP exporter source](https://docs.kicad.org/doxygen/step__pcb__model_8cpp.html).
 Do not silently subtract it from the source model or use the nominal exported
-gap to certify mechanical seating. Board thickness/tolerance and physical fit
-still need validation. The model path assumes it is copied to
+gap to certify mechanical seating. Board thickness is owner-accepted
+([decision](mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt)); physical seating, retention and solder joints are checked as
+normal board-side checks. The model path assumes it is copied to
 `${KIPRJMOD}/inputs/models/c-1-776163-1-t-3d.stp` during project generation.
 
 Run both native drilling and exported-model checks with `bash verify-all.sh`.

@@ -1,0 +1,48 @@
+OWNER DECISION: J1 board thickness (telemetry pod)
+Date: 2026-10-22
+Decided by: the owner
+Relay chain: owner -> agent-509 -> agent-449 (coordinator)
+Cairn records: d162e001, b706da93, 9561cd0c (component-side fit clarification)
+Tracker item: AGENTEE-446
+Class: owner-stated (AGENTS.md provenance class)
+
+Decision
+
+J1 TE AMPSEAL 1-776163-1 is a through-hole soldered header with a mechanical
+retention pin. Its leads may protrude several mm. Assembly: seat the
+connector, tack one pin, re-seat/align, solder the rest, trim the excess lead
+stickout.
+
+The standard JLCPCB four-layer, nominal 1.6 mm board is ACCEPTED as the
+board choice, with JLCPCB's published +/-10% finished-thickness tolerance
+(1.44-1.76 mm). That fabricator tolerance is a BOARD-SIDE fact only; it is
+not the basis for J1 fit.
+
+Component-side fit rule (owner clarification, Cairn 9561cd0c): for ordinary
+soldered through-hole parts the owner uses AT LEAST +/-10% of the
+manufacturer's recommended nominal board thickness as an inclusive
+fit-screening default (often wider). This is independent of, and must not
+be conflated with, the fabricator's finished-thickness tolerance. For J1,
+TE's recommended nominal 1.57 mm gives a screening band of 1.413-1.727 mm;
+the 1.6 mm nominal board is inside it (about 1.9% from nominal), so J1
+screens as fitting. Explicit manufacturer functional limits override the
+default; being outside the heuristic band alone is advisory, not a defect.
+The reusable agent-ee policy is AGENTEE-448.
+
+The TE 1.57 mm recommendation (0.03 mm nominal difference) is NOT a thickness
+gate, and interval arithmetic is NOT an actionable release uncertainty.
+
+No special tolerance, TE confirmation, enclosure CAD or owner harness is
+required for placement, routing or bare-board fab readiness.
+
+Normal footprint, finished-hole/pad, retention and solder-joint checks remain.
+
+A narrower requirement needs a concrete source or an observed failure.
+
+Related owner direction (same day, same relay)
+
+The ECU and telemetry pod are built from the ground up. The enclosure, panel
+and harness are team design deliverables; no CAD exists yet, and that is not a
+blocker. The only existing external constraint is the large seat cowl.
+Installed fit against the seat cowl and the designed enclosure/harness is
+verified once those designs exist.
