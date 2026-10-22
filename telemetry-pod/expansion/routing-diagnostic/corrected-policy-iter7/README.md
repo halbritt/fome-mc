@@ -1,15 +1,22 @@
 # Corrected-policy diagnostic input, not a production placement
 
 The iteration-7 microSD routing input with the current layer policy added as native KiCad rule
-areas, for the KICADROUTE-91 (M1b) corrected-policy baseline. It is an algorithm diagnostic
+areas. It is a native corrected-policy **diagnostic input only**, a slice of KICADROUTE-91 (M1b),
 built under the coordinator ruling of 2026-10-21 (agent-509; plan M1). It is not an adopted or
-production placement, no routing has been run on it, and it makes no routed-success claim.
-The historical evidence in `../iteration-7/` is unchanged; this is a separate copy.
+production placement. No routing has been run on it, and it supports no routability comparison
+and no routed-success claim. The historical evidence in `../iteration-7/` is unchanged; this is
+a separate copy.
 
-## Source (baseline identity, agent-507)
+Open (not done here): the remaining M1b work (effective-configuration binding, sidecar
+versioning, comparison refusal, agent-ee boundary integration) and the single corrected-policy
+route. The historical 55/32 and 51/30 counts, the ten lost nets and the 203/235 campaign result
+are unresolved and ineligible for promotion. See "Open items" and "Known limits" below.
+
+## Source identity (agent-507 owns baseline identity)
 
 `source/ca2.kicad_pcb.gz` is the board that `kicad-route campaign iter8d-campaign` round 0
-routed (203 of 235 nets, `../iteration-7/`). Its hashes are:
+routed (the historical 203-of-235 count, `../iteration-7/`; unresolved, not a result of this
+fixture). Its hashes are:
 
 | File | SHA-256 |
 | --- | --- |
@@ -71,7 +78,8 @@ insertion of the two `(zone …)` blocks, 62 lines added and none removed.
   rule-area geometry, the KiCad 10.0.7 version and the `routability-policy/1` fields. The fields
   are `experiment_class: current-policy`, `allowed_trace_layers: F.Cu, In2.Cu, B.Cu` and
   `allowed_via_spans: [F.Cu, B.Cu]`. The spatial RF exclusion is enforced by the native rule
-  area, not by `allowed_via_spans`, which can only list layer pairs.
+  area, not by `allowed_via_spans`. That field is only a summary of layer pairs, and
+  `allowed_trace_layers` likewise summarises the native D-PCB-7v2 rule area.
 
 ## Reproduce
 
@@ -86,6 +94,16 @@ cp /tmp/some-empty-dir/out/source-to-corrected.diff evidence/
 The tools only open copies under the scratch directory and never write here.
 `make_receipt.py` writes only `policy-receipt.json`.
 
+## Open items
+
+- **G1.** The remaining M1b work: effective-configuration/build/budget identity binding, sidecar
+  versioning, refusing mismatched comparisons, exposing argument differences, and the agent-ee
+  boundary integration. None of it is in this directory.
+- **G2.** The historical 55/32 and 51/30 counts and the ten lost nets are unreconciled. They need
+  complete native terminal/pad UUID evidence (KICADROUTE-98) or stay ineligible for promotion.
+- **G3.** The single corrected-policy route (900-second backend ceiling plus measured
+  grade/grace) has not been run.
+
 ## Known limits
 
 - The `.kicad_dru` rule `agent_ee_netclass_RF_50` is preserved as found. This input's project
@@ -94,6 +112,16 @@ The tools only open copies under the scratch directory and never write here.
 - Native DRC grades these rule areas. The kicad-route builtin engine was reported not to
   honour inner-layer rule areas (see `../README.md`). Any route on this input must be graded
   by native DRC against it, unchanged.
-- The historical connectivity discrepancies are not reconciled here. These are iteration 7's
-  `net_completion` list, and the ticket's 55/32 and 51/30 counts and ten lost nets. They remain
-  explicit ineligibility for promotion.
+- The historical results are unresolved and ineligible for promotion: iteration 7's
+  `net_completion` list (10 nets), the 203/235 campaign count, and the ticket's 55/32 and 51/30
+  counts and ten lost nets. Nothing here reconciles them.
+- The `RF_50` rule above is inactive, so no width rule applies to `/POD_GNSS_RF`.
+- Fixture DRC runs with an empty `KICAD_CONFIG_HOME`. Both bases show 199 `lib_footprint_issues`,
+  13 isolated-copper findings and 499 unconnected items; the verdicts are deltas against each
+  fixture's own base, not a clean or connected design result.
+
+## History
+
+`policy-receipt.json` → `receipt_history` records the wording correction after commit 7e6fb02,
+including the hashes of the README, receipt, `make_receipt.py` and `SHA256SUMS` at that commit.
+Native inputs and evidence did not change.

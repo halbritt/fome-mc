@@ -33,18 +33,28 @@ assert source == {"pcb": snap["files"]["ca2.kicad_pcb"], "pro": snap["files"]["c
 receipt = {
     "schema": "corrected-policy-iter7/policy-receipt/1",
     "label": "corrected-policy diagnostic input, not a production placement",
-    "item": "KICADROUTE-91 (M1b)",
+    "item": "KICADROUTE-91 (M1b), corrected-policy diagnostic input slice only; the item is not complete",
     "authority": "coordinator agent-509 ruling 2026-10-21 (plan M1): immutable corrected-policy diagnostic input "
                  "from the archived iteration-7 microSD routing input; agent-507 owns baseline identity and routing acceptance",
     "claims_not_made": [
         "not a production or adopted placement",
         "no routing was run on this input; no routed-success or optimisation claim",
-        "historical connectivity discrepancies are not reconciled here (iteration-7 net_completion lists 10 nets the grader "
-        "counted as connected on the unrouted input; the ticket's 55/32 and 51/30 counts and ten lost nets); they remain "
-        "explicit ineligibility for promotion",
+        "no routability comparison is made or supported: no sidecar versioning, effective-configuration binding or "
+        "mismatch refusal exists for this input",
+        "the historical 203/235 result and the ticket's historical 55/32 and 51/30 counts and ten lost nets are unresolved "
+        "and ineligible for promotion; they are not reconciled here (native terminal/pad UUID evidence, KICADROUTE-98, "
+        "has not been applied)",
+        "allowed_trace_layers and allowed_via_spans are summaries; the native rule areas are the enforcement",
+    ],
+    "open_items": [
+        "G1: remaining M1b work: effective-configuration/build/budget identity binding, comparison refusal, "
+        "argument-difference exposure and agent-ee boundary integration",
+        "G2: reconcile the historical 55/32 and 51/30 counts and the ten lost nets by native terminal/pad UUID evidence "
+        "(KICADROUTE-98 prerequisite), or keep them ineligible",
+        "G3: the single corrected-policy route (900-second backend ceiling plus measured grade/grace) has not been run",
     ],
     "source": {
-        "role": "iteration-7 microSD routing input: the planed board kicad-route campaign iter8d-campaign r0 routed (203 of 235 nets)",
+        "role": "iteration-7 microSD routing input: the planed board kicad-route campaign iter8d-campaign r0 routed; the historical 203-of-235 count belongs to that campaign, is unresolved, and is not a result of this fixture",
         "original_path": snap["source_dir"],
         "files_sha256": {"ca2.kicad_pcb": source["pcb"], "ca2.kicad_pro": source["pro"], "ca2.kicad_dru": source["dru"]},
         "retained_copy": {"source/ca2.kicad_pcb.gz": fsha(here / "source/ca2.kicad_pcb.gz"),
@@ -118,10 +128,24 @@ receipt = {
                                 "polygon_mm": areas["D-PCB-6 RF reference keep-out"]["polygon_mm"],
                                 "enforced_by": "native KiCad rule area in ca2.kicad_pcb"}],
         "statement": "The spatial RF exclusion (D-PCB-6) is enforced by the native rule area, not by allowed_via_spans: "
-                     "allowed_via_spans lists layer pairs only and cannot express a region. Through vias are allowed on "
+                     "allowed_via_spans is a summary of layer pairs only and cannot express a region. Through vias are allowed on "
                      "In1.Cu everywhere outside the D-PCB-6 polygon. allowed_trace_layers is a summary of the native "
                      "D-PCB-7v2 rule area, which is what KiCad DRC grades.",
     },
+    "disclosed_limits": [
+        "RF_50 rule 'agent_ee_netclass_RF_50' is inactive: it matches no net on this input",
+        "historical results (203/235, 55/32, 51/30, ten lost nets) are unresolved and ineligible for promotion",
+        "the kicad-route builtin engine was reported not to honour inner-layer rule areas; any route must be graded by native DRC",
+        "fixture DRC runs use an empty KICAD_CONFIG_HOME, so the bases include 199 lib_footprint_issues, 13 isolated-copper findings and 499 unconnected items; verdicts are deltas against each fixture's base, not a clean or connected design result",
+    ],
+    "receipt_history": [
+        {"commit": "7e6fb02", "note": "first version; wording of README, this receipt and make_receipt.py was stale (baseline/routability framing, historical counts not marked unresolved, allowed_via_spans not called a summary)",
+         "sha256_at_that_commit": {"README.md": "32bbbfc7d79814ce8cf1c95d010c3b0e23e7eaef9f131d737ac5c4e3c11ad3b6",
+                                   "policy-receipt.json": "0df61bbeed1521c5eea23e4f13745160358b5e889ca93f11f269bdb7794f7d32",
+                                   "tools/make_receipt.py": "8134b7496009d5336ba2da8fd0187f16ef197936df6adfc76b378ab5255ffbbd",
+                                   "SHA256SUMS": "ced10d96ab144aab5707fe4a6a3a1ecd8c417facf369e2c2fe44339db5a207d5"}},
+        {"commit": "this commit (wording correction)", "note": "wording and receipt metadata only; ca2.kicad_pcb, ca2.kicad_pro, ca2.kicad_dru, source/, evidence/ are byte-identical to 7e6fb02; the receipt, README, make_receipt.py and SHA256SUMS hashes changed because their text changed"},
+    ],
     "preserved_as_found": [
         "ca2.kicad_dru rule 'agent_ee_netclass_RF_50' (track_width min 0.335 mm for net class RF_50) is unchanged; "
         "this input's .kicad_pro defines only the Default class, so /POD_GNSS_RF is Default and that rule matches nothing. "
