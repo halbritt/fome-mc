@@ -1,0 +1,27 @@
+++ git rev-parse '2bd0f5c^{commit}'
+2bd0f5c71abfce9a7a1a116edd5c1648521dd34a
+++ git merge-base --is-ancestor 2bd0f5c HEAD
++++ git rev-parse HEAD
+++ echo '2bd0f5c is an ancestor of HEAD 72983bd5afdc6f1e5e1692e86cb4c2cb297d3b3a'
+2bd0f5c is an ancestor of HEAD 72983bd5afdc6f1e5e1692e86cb4c2cb297d3b3a
+++ sha256sum
+++ git show 2bd0f5c71abfce9a7a1a116edd5c1648521dd34a:telemetry-pod/telemetry-pod.kicad_sch
+f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2  -
+++ sha256sum telemetry-pod/telemetry-pod.kicad_sch
+f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2  telemetry-pod/telemetry-pod.kicad_sch
+++ sha256sum
+++ git show 2bd0f5c71abfce9a7a1a116edd5c1648521dd34a:telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json
+161f71b0b1438830885a9f0badb0c913e17b55083f8216113483efe186b6d81f  -
+++ sha256sum telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json
+161f71b0b1438830885a9f0badb0c913e17b55083f8216113483efe186b6d81f  telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json
+++ git log --oneline -1 '--format=%H %s' -- telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json
+b6db57715199b92ce49bf995b12ea8114bfd9d82 AGENTEE-207: j6b2 single preparation run on agent-ee 7d5b0d4d (AGENTEE-466 image): regenerated evidence and runtime receipt
+++ python3 -c 'import json,subprocess;m=json.loads(subprocess.run(['\''git'\'','\''show'\'','\''2bd0f5c71abfce9a7a1a116edd5c1648521dd34a:telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json'\''],capture_output=True,check=True).stdout);print('\''emission.candidate_id'\'', m['\''emission'\'']['\''candidate_id'\'']);print('\''project_install telemetry-pod.kicad_sch'\'', m['\''project_install'\'']['\''telemetry-pod.kicad_sch'\'']['\''sha256'\'']);print('\''emission.schematic'\'', m['\''emission'\'']['\''schematic'\''])'
+emission.candidate_id 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba
+project_install telemetry-pod.kicad_sch f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2
+emission.schematic {'path': 'project/telemetry-pod.kicad_sch', 'sha256': 'f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2'}
+++ python3 -c 'import json,subprocess;p=json.loads(subprocess.run(['\''git'\'','\''show'\'','\''2bd0f5c71abfce9a7a1a116edd5c1648521dd34a:telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/pipeline.json'\''],capture_output=True,check=True).stdout);print('\''pipeline initial_candidate'\'', p['\''initial_candidate'\'']['\''candidate_id'\''])'
+pipeline initial_candidate 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba
+++ python3 -c 'import json,subprocess;c=json.loads(subprocess.run(['\''git'\'','\''show'\'','\''2bd0f5c71abfce9a7a1a116edd5c1648521dd34a:telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/prepared/dry-run/candidate.json'\''],capture_output=True,check=True).stdout);print('\''dry-run candidate.json candidate_id'\'', c['\''candidate_id'\''])'
+dry-run candidate.json candidate_id 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba
+++ set +x

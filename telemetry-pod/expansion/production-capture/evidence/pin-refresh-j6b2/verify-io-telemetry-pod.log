@@ -1,0 +1,14 @@
+fome-mc commit b35d113dea2dd519240b8f95258252a6f48f8cd9 (pin refresh on 72983bd, which contains the merge 9baf184 of candidate 2bd0f5c + landed main a78ea124); candidate 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba; producer agent-ee 7d5b0d4d; image config d96f8e00; verifier agent-ee on PATH d04b51219e0d3381352d135c2b935af9cd4f1754
+start 2026-10-23T01:41:29Z
+native-admit: waiting: budget 4+4 > 4 (weight 4, 0s; `native-admit status`)
+native-admit: admitted after 110s (lease 2347d77a64e6, weight 4)
+/usr/bin/python3 scripts/verify_io_map.py --project telemetry-pod
+NOT_EVALUATED: BLE-RADIO: declared wireless row (no electrical connector pin)
+QUALIFICATION: record contracts/telemetry-pod.qualification.json sha256 2a3ce44f6c0e8c992c44b5304f584c732322f76f88f5c35ff9c8b2dab7596043 bound to 55 io-map rows; v9 origin telemetry-pod/pinout-checks/v9-pilot/io-map.csv verified
+REQUIREMENT_AUTHORITY: sourced: none; unqualified-carryover (reported, never authority): POD-IF-ANALOG-INPUTS, POD-IF-BLUETOOTH-LE, POD-IF-CAN1, POD-IF-GNSS-ANTENNA, POD-IF-HARNESS-CONNECTOR, POD-IF-POWER-IN, POD-IF-PROGRAMMING-AND-DEBUG, POD-IF-SENSOR-SUPPLY
+source schematic: telemetry-pod/expansion/storage-microsd/project/telemetry-pod.kicad_sch
+PASS: project telemetry-pod: verified 54 connector pins, 1 interface contracts, 193/194 invariants satisfied against fresh netlist; 1 declared wireless not_evaluated
+PASS: candidate 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba (telemetry-pod/telemetry-pod.kicad_sch sha256 f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2, project root): verified 54 connector pins, 193/194 invariants satisfied against fresh netlist; 1 declared wireless not_evaluated
+
+exit=0
+end 2026-10-23T01:43:23Z
