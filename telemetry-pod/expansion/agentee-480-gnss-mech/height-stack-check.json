@@ -1,0 +1,42 @@
+{
+  "schema": "agentee-480.height-stack-assessment/1",
+  "status": "UNKNOWN",
+  "provisional": true,
+  "fit_acceptance": false,
+  "cowl": {
+    "estimate_mm": 90,
+    "dimension": "available vertical height under rear cowl",
+    "axis": "Z",
+    "measured": false,
+    "hard_cap": false,
+    "provisional_envelope_height_mm": 90,
+    "length_width": "well over90mm;90x65mm board outline is not cowl-constrained",
+    "measurement_task": false,
+    "source": "b1987334-6363-413b-b1a4-d2666284142b@1 relays owner to519 via27c51f73",
+    "assembly_requirement": "Entire installed vertical stack must fit provisional90mm height: enclosure floor/lid, M3 stack, board, both-face components, J1 body plus harness, J2 SMA plus cable bend. Unknown terms cannot pass."
+  },
+  "required_terms": [
+    "enclosure floor and lid",
+    "M3 standoff/washer/support stack",
+    "board thickness",
+    "top and bottom assembled component heights",
+    "J1 body about27.8mm above support plane plus mated plug and harness",
+    "J2 SMA plus installed cable bend"
+  ],
+  "sourced_inputs": [
+    "keepouts.json (selected hardware dimensions; face/outwardZ)",
+    "heights.json (sourced package maxima, nominal-only and UNKNOWN rows)",
+    "native-observation.json (board thickness/poses)"
+  ],
+  "missing": [
+    "enclosure floor/lid geometry",
+    "283 component body heights and assembly/tolerance qualification",
+    "J1 mated transform/harness bend/swept envelope",
+    "J2 installed cable bend/swept envelope"
+  ],
+  "installed_stack_upper_bound_mm": null,
+  "headroom_mm": null,
+  "evaluation_rule": "Map all terms into one installed Z datum and evaluate union of physical extents, including floor/lid. Do not add J1 support-plane dimension twice or sum top and bottom maxima without support datum. Missing terms => UNKNOWN, neverPASS. Exceeding90mm flags provisional envelope conflict;90mm is not a measured qualification cap.",
+  "source_notice": "b1987334-6363-413b-b1a4-d2666284142b@1",
+  "source_notice_body_sha256": "648775fad6c92e5b618580e04801c63ab12a479cd5bc2db27f57a7fe4893a584"
+}

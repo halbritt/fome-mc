@@ -13,7 +13,8 @@
     "heights.json",
     "owner-answers.json",
     "existing-antenna-card-rules.json",
-    "legacy-rule-baseline.json"
+    "legacy-rule-baseline.json",
+    "height-stack-check.json"
   ],
   "source_observation": "native-observation.json",
   "rf_scope": {
@@ -41,18 +42,31 @@
     "derive component/edge-relative GNSS proposal; verify part UUID/libID/pad UUID/net/shape and actual source files",
     "regenerate hardware/probe/iron face geometry; do not transform these frozen world coordinates by hand",
     "requalify height evidence against MPN/LCSC,UUID,footprint and original source bindings; otherwise height stays UNKNOWN",
-    "grade final same-byte board: native rules, RF terminal/layer/reference witnesses, mechanical/contact/access/height and thermal/RF qualification separately"
+    "grade final same-byte board: native rules, RF terminal/layer/reference witnesses, mechanical/contact/access/height and thermal/RF qualification separately",
+    "Evaluate complete installed vertical stack against provisional90mm owner-estimated HEIGHT; retain missing floor/lid/harness/cable/assembly heights as UNKNOWN; no fit PASS from known subset."
   ],
   "unknown_policy": "UNKNOWN remains explicit in provisional output; never coerced to zero,PASS or placement acceptance",
   "conflict_policy": "return named affected refs and move/reshape/re-side eligible blocks through479; do not change sourced geometry/margins to clear the report",
   "mechanical_acceptance": false,
   "production_integration": "NOT_PERFORMED;449 combines with disjoint478 data for479",
   "prohibited_assumptions": [
-    "90mm cowl estimate as hard cap",
+    "90mm provisional vertical envelope treated as measured hard cap or as width/length",
     "12mm height cap",
     "equal side counts",
     "hole courtyard as screw envelope",
     "292loadable models as mechanical qualification",
     "synthetic controls as native candidate proof"
-  ]
+  ],
+  "provisional_cowl_height": {
+    "estimate_mm": 90,
+    "dimension": "available vertical height under rear cowl",
+    "axis": "Z",
+    "measured": false,
+    "hard_cap": false,
+    "provisional_envelope_height_mm": 90,
+    "length_width": "well over90mm;90x65mm board outline is not cowl-constrained",
+    "measurement_task": false,
+    "source": "b1987334-6363-413b-b1a4-d2666284142b@1 relays owner to519 via27c51f73",
+    "assembly_requirement": "Entire installed vertical stack must fit provisional90mm height: enclosure floor/lid, M3 stack, board, both-face components, J1 body plus harness, J2 SMA plus cable bend. Unknown terms cannot pass."
+  }
 }

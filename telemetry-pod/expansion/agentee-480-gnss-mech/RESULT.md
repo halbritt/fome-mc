@@ -54,7 +54,7 @@ The checker is an artifact verifier, not an installed producer feature. Its poly
 
 ## Mechanical selections and status of the P constraints
 
-`keepouts.json` has **40 per-face reservations**, anchored to footprint/pad references with source/class/phase/Z fields. Z is outward from each face. No arbitrary edge margin was added, and the prior 0.5 mm courtyard-edge / 0.25 mm courtyard-gap defaults are unchanged. The cowl's “~90 mm or more” is an **owner estimate**, not a measurement, cap or measurement task. No 12 mm height cap returns.
+`keepouts.json` has **40 per-face reservations**, anchored to footprint/pad references with source/class/phase/Z fields. Z is outward from each face. No arbitrary edge margin was added, and the prior 0.5 mm courtyard-edge / 0.25 mm courtyard-gap defaults are unchanged. Correction b1987334@1 relays the owner: **“90mm height, the length and width are quite a bit more than that”**. Use **~90 mm as the provisional available vertical envelope**, an owner estimate rather than a measured hard cap; no measurement task. Length/width exceed90mm, so the90×65 outline is not cowl-constrained. No12mm height cap returns. The entire installed vertical stack—including floor/lid, M3 supports, board, both-face parts, J1 body plus harness and J2 SMA plus cable bend—must fit that provisional height. `height-stack-check.json` remains **UNKNOWN** with no stack upper bound/headroom because material terms are absent; the known subset cannot prove fit.
 
 | Constraint | Closed definition/data | Still open or failing |
 | --- | --- | --- |
@@ -64,7 +64,7 @@ The checker is an artifact verifier, not an installed producer feature. Its poly
 | C21 solder jumpers | Owner's one-time bare-board workflow applied. F pad-relative approach polygons use a sourced **1.3×0.4 mm** chisel tip; no post-seal opening. | **OPEN/provisional:** full hot taper/barrel and solder-feed/hand envelope not sourced. Tip-only data must not pass complete iron-access qualification. |
 | C19 heights | Per-reference table for all **309** footprints; nine sourced package maxima, two nominal-only entries, 15 no-component-body features | **283 body heights UNKNOWN**; all final assembly heights/tolerances require qualification. Unknown never means zero or PASS. |
 | C09–C13 connectors/card/antenna | Existing 474/477 source evidence retained, including six footprint-owned U1/J3 native rule areas and component-relative refresh requirements | Antenna feed/case mapping and installed metal/housing checks remain OPEN. J1 mating/tool, SMA cable/tool, and complete card/hand swept volumes remain provisional where they affect packing. No guessed numeric lane is promoted to MFR. |
-| C22 cowl/enclosure | Estimate correctly classified; enclosure/harness remain engineering deliverables; bench-only access replaces unnecessary post-seal access | Installed fit, sealing, temperature/vibration and RF performance remain release obligations; absent CAD does not prohibit provisional candidate generation |
+| C22 cowl/enclosure | ~90mm provisional vertical envelope;90×65 outline not cowl-constrained; complete installed stack must fit; bench-only service access | Installed fit, sealing, temperature/vibration and RF performance remain release obligations; absent CAD does not prohibit provisional candidate generation |
 
 The selected hardware dimensions are published values, **not owner-chosen dimensions**:
 
@@ -117,3 +117,5 @@ The final command exits **2 for this documented design failure**; malformed/stal
 C08 remains OPEN: the later agent-449 coordination note e360ae17@1 reports a J1 mating-plug model/drawings forwarded for transform/harness work. That queued follow-up is not performed or claimed closed in this bounded package; the mated transform, full plug/tool sweep and harness bend envelope remain provisional. No STEP bytes are committed.
 
 No new owner question is needed. Material OPEN items are engineer/source/consumer work listed above; any concrete future owner-reserved change goes through 449→519. Unknowns are retained only in provisional output and cannot receive placement/mechanical/release acceptance. Source hashes, doctrine provenance, task clock and `SHA256SUMS` accompany the package.
+
+Post-delivery source correction: notice b1987334-6363-413b-b1a4-d2666284142b@1 was delivered after the initial25283560 package had been integrated by449. This correction updates only provisional envelope data/prose and the mechanical data materializer; original checks remain scoped to the same unchanged PCB. No second Cairn response is sent. The correction is retained as an unmerged follow-up for449.

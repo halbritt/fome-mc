@@ -58,8 +58,7 @@ def materialize(obs):
                                 "TP": "handheld pogo clip, bare board before enclosure; bottom TPs allowed; BLE OTA after",
                                 "JP": "set once with soldering iron on bare board before enclosure",
                                 "hardware": "agents choose standard M3 hardware; no purchase",
-                                "cowl": {"estimate_mm": 90, "or_more": True, "measured": False, "hard_cap": False,
-                                         "measurement_task": False}})
+                                "cowl": {'estimate_mm': 90, 'dimension': 'available vertical height under rear cowl', 'axis': 'Z', 'measured': False, 'hard_cap': False, 'provisional_envelope_height_mm': 90, 'length_width': 'well over90mm;90x65mm board outline is not cowl-constrained', 'measurement_task': False, 'source': 'b1987334-6363-413b-b1a4-d2666284142b@1 relays owner to519 via27c51f73', 'assembly_requirement': 'Entire installed vertical stack must fit provisional90mm height: enclosure floor/lid, M3 stack, board, both-face components, J1 body plus harness, J2 SMA plus cable bend. Unknown terms cannot pass.'}})
     body_limits = {
         "L1": (4.8, 5.0, "BournsSRP7050TA-150M", source477, "4.8+0.2; reused477 capture5a7926dd, not reacquired"),
         "L2": (5.2, 5.4, "BournsSRP7050WA-6R8M", source477, "5.2+0.2; reused477 capture3f16305b, not reacquired"),
