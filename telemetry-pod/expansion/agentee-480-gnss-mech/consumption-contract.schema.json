@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGENTEE480 provisional consumption manifest",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "source_board_sha256",
+    "data_files",
+    "unknown_policy",
+    "mechanical_acceptance",
+    "production_integration"
+  ],
+  "properties": {
+    "schema": {
+      "const": "agentee-480.packing-inputs/1"
+    },
+    "status": {
+      "const": "PROVISIONAL"
+    },
+    "source_board_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "data_files": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "string"
+      }
+    },
+    "unknown_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mechanical_acceptance": {
+      "const": false
+    },
+    "production_integration": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true,
+  "$comment": "Initial proposed schema for479, not an installed agent-ee contract. Each referenced data schema has a versioned schema field and explicit statuses; full production schema integration remains479."
+}

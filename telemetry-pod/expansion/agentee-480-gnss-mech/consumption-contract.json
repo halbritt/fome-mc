@@ -1,0 +1,58 @@
+{
+  "schema": "agentee-480.packing-inputs/1",
+  "status": "PROVISIONAL",
+  "source_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+  "source_commits": {
+    "474_frozen": "7be86549",
+    "477_models": "fa41e4b9",
+    "worktree_base": "fa41e4b93ab03d88c2f0d17320016371325a3726"
+  },
+  "data_files": [
+    "gnss-corridor.json",
+    "keepouts.json",
+    "heights.json",
+    "owner-answers.json",
+    "existing-antenna-card-rules.json",
+    "legacy-rule-baseline.json"
+  ],
+  "source_observation": "native-observation.json",
+  "rf_scope": {
+    "terminals": [
+      "U3.11",
+      "D3.1",
+      "L3.2",
+      "J2.1"
+    ],
+    "bias": [
+      "C42.1->L3.1 ANT_BIAS",
+      "C42.2->GND",
+      "D3.2->GND"
+    ],
+    "required_signal_layer": "F.Cu",
+    "required_reference_layer": "In1.Cu",
+    "inherited_track_min_mm": 0.335,
+    "required_effective_rule_binding": "direct net selector /POD_GNSS_RF or explicitly bound RF_50 class; current project has only Default, so the RF_50-only rule is inert",
+    "plane_rule": "In1 no tracks over current outline; vias allowed outside local exclusions",
+    "local_rule": "In1+In2 no tracks/vias over union of pose proposal and actual savedRF copper projection"
+  },
+  "pose_change_protocol": [
+    "invalidate prior materialized geometry and check receipts",
+    "extract from actual saved board through native-admit; supply same-board native terminal-equivalence receipt",
+    "derive component/edge-relative GNSS proposal; verify part UUID/libID/pad UUID/net/shape and actual source files",
+    "regenerate hardware/probe/iron face geometry; do not transform these frozen world coordinates by hand",
+    "requalify height evidence against MPN/LCSC,UUID,footprint and original source bindings; otherwise height stays UNKNOWN",
+    "grade final same-byte board: native rules, RF terminal/layer/reference witnesses, mechanical/contact/access/height and thermal/RF qualification separately"
+  ],
+  "unknown_policy": "UNKNOWN remains explicit in provisional output; never coerced to zero,PASS or placement acceptance",
+  "conflict_policy": "return named affected refs and move/reshape/re-side eligible blocks through479; do not change sourced geometry/margins to clear the report",
+  "mechanical_acceptance": false,
+  "production_integration": "NOT_PERFORMED;449 combines with disjoint478 data for479",
+  "prohibited_assumptions": [
+    "90mm cowl estimate as hard cap",
+    "12mm height cap",
+    "equal side counts",
+    "hole courtyard as screw envelope",
+    "292loadable models as mechanical qualification",
+    "synthetic controls as native candidate proof"
+  ]
+}

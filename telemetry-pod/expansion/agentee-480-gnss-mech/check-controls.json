@@ -1,0 +1,468 @@
+{
+  "schema": "agentee-480.check-controls/1",
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "actual_ROUTE3_is_not_RF_qualified",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": false,
+          "RF_net_has_no_vias_or_non_F_tracks": false,
+          "native_RF_terminal_equivalence": false,
+          "native_U3_J2_D3_C42_returns_one_group": false,
+          "In1_reference_touches_that_native_return_group": false,
+          "inherited_RF_min_width": false,
+          "one_saved_GND_In1_component_covers_actual_RF": false,
+          "pose_bound_reference_rule_covers_proposal": false,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": false,
+          "protected_region_has_no_inner_tracks": false,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [
+          "c5e65d06-b89e-40a2-8685-b79dc01ef5c6",
+          "d38855b1-ec2f-41c4-be69-2c49bf1512fc",
+          "08c4d012-faf5-49d6-8747-f64a1b823c5e",
+          "0ec78b50-f0e9-4590-b54f-cba28ed9b245",
+          "1bda7ed3-831f-461a-bd5c-46a31066da4c",
+          "52ef9d56-1d53-4fb6-8a31-3bfea0f75fa8",
+          "7387098e-0400-40b9-bcf6-078e5cfb464f",
+          "7a77d77e-1224-45c8-ad6a-db87bc046d39",
+          "a4f79603-37d6-4fe3-b737-c1a41a4564b1",
+          "af4389d4-67ad-47d7-8055-402566fe35b2",
+          "c3167025-832e-48ba-bd30-c2a7d5d6640a",
+          "fb66a084-3a38-47bd-8749-3fa555133564"
+        ],
+        "narrow_F_tracks": [
+          "08f27456-a6c1-4f88-8165-a225675c20de",
+          "109b0b58-f476-4c24-90dd-fbaf83728482",
+          "1ce329d6-27a8-459b-a98d-15ea2c85a87a",
+          "2e722bc3-0bc3-4907-b071-ec6087302b44",
+          "6d9d85fe-1ac6-4336-888c-a96c4be67eb4",
+          "96e89067-a3da-444c-ac42-3471fa72db41",
+          "c6eefb85-f1a5-46a2-9293-2567faddf641",
+          "d51ad5d2-f8b8-461d-9d1b-50d9f692f4e5",
+          "ef3d6c02-581a-4418-86da-18b4f8e7a43a"
+        ],
+        "reference_uncovered_area_mm2": null,
+        "unknowns": [
+          "NO_SAVED_GND_IN1_FILL: reference continuity cannot be proven"
+        ],
+        "via_incursions": [
+          "72a0ecb2-9569-4173-818a-4db0be44dfda",
+          "b638c9c5-3239-43fb-8ac8-bf20139f1fbc",
+          "b01f04f4-df61-4984-b76b-68fab498b3c8",
+          "c5e65d06-b89e-40a2-8685-b79dc01ef5c6",
+          "d38855b1-ec2f-41c4-be69-2c49bf1512fc",
+          "ef89543b-b75d-4de1-beff-b81bfc446370",
+          "d2b0e0ee-85d5-4770-80e2-e473f06e11b9",
+          "e6b14103-51b5-418c-bfbf-babfd43a58e2"
+        ],
+        "inner_track_incursions": [
+          "28377634-0fef-4923-866d-4e381126af1d",
+          "2d4735d1-3402-4f3b-af77-0c2a1375169b",
+          "7591997f-90b4-4100-8e9d-cc61b601a0bf",
+          "8577ca89-b297-4198-b2c9-e68573551cf0",
+          "f31a8ceb-88bd-4e20-9caa-bb98177e278b",
+          "d3c762a3-3398-478b-b784-031a82f21c28",
+          "fc9eb08f-b505-4381-828e-485b6f1ee1c4",
+          "12f7bb99-62f3-499a-b154-c883aebe0ad4",
+          "8c8a39ae-5028-433f-9e4c-752847ac2fdd",
+          "e740bfcc-b2f0-4509-a18c-48d5871cccb9",
+          "c3f61f4e-048e-41b7-b377-cf8198c171d4",
+          "310e8541-c305-49bf-a94f-14cb7bf88c2a",
+          "b6069d76-1707-455b-82e8-168cea7f3d27",
+          "8fd3c9fa-27df-48c9-9088-87e85d910c93",
+          "b47e6d0b-c4e2-4f95-bb04-6a8637ee5221",
+          "018d50de-4c2a-47ec-8f40-16bd7c22a884",
+          "69360cd5-d6fd-430c-9790-48c84266fcae",
+          "19311fc3-2e46-49ca-ba1c-9cb77d843686",
+          "c9b86539-4356-495c-9974-56d1ffe945c0",
+          "c7325c5e-0e96-4d47-bab9-82f88768b2e7",
+          "912ac92a-17e3-404c-bb34-804589a69560"
+        ],
+        "F_copper_component_count": 3,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "actual saved-board observation"
+    },
+    {
+      "case": "one_bound_pad_moved",
+      "result": {
+        "status": "FAIL",
+        "code": "STALE_BINDING",
+        "geometry_check": "NOT_RUN"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "edge_moved",
+      "result": {
+        "status": "FAIL",
+        "code": "STALE_BINDING",
+        "geometry_check": "NOT_RUN"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "definition_width_tamper",
+      "result": {
+        "status": "FAIL",
+        "code": "DEFINITION_CHANGED_REDERIVE_REQUIRED",
+        "geometry_check": "NOT_RUN"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "bias_bypass_relabelled_as_RF",
+      "result": {
+        "exception": "topology mismatch on C42.1: /POD_GNSS_RF"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "explicit_rebind_follows_common_translation",
+      "result": {
+        "translated_geometry_matches": true,
+        "j2_edge_error_mm": 0.0
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "idealized_predicates_can_pass",
+      "result": {
+        "status": "PASS",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "native_RF_split_overrides_geometric_picture",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": false,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "floating_reference_return_group_rejected",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": false,
+          "In1_reference_touches_that_native_return_group": false,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "missing_F_bridge_rejected",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": false,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 2,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "B_layer_bridge_rejected",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": false,
+          "RF_net_has_no_vias_or_non_F_tracks": false,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [
+          "SYNTHETIC-0-1"
+        ],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 2,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "reference_void_rejected",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": false,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": false,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.04000000000000114,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "unknown_reference_never_passes",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": false,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": false,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": null,
+        "unknowns": [
+          "NO_SAVED_GND_IN1_FILL: reference continuity cannot be proven"
+        ],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "distinct_net_name_not_silently_normalized",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": false,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": false,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": null,
+        "unknowns": [
+          "NO_SAVED_GND_IN1_FILL: reference continuity cannot be proven"
+        ],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "synthetic_control_refused_by_real_source_gate",
+      "result": {
+        "exception": "SYNTHETIC_CONTROL_IS_NOT_SAVED_BOARD_EVIDENCE"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "foreign_reference_via_rejected",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": true,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": false,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [
+          "SYNTHETIC-FOREIGN-VIA"
+        ],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    },
+    {
+      "case": "plane_rule_via_semantics_not_conflated",
+      "result": {
+        "status": "FAIL",
+        "checks": {
+          "F_only_RF_connectivity": true,
+          "RF_net_has_no_vias_or_non_F_tracks": true,
+          "native_RF_terminal_equivalence": true,
+          "native_U3_J2_D3_C42_returns_one_group": true,
+          "In1_reference_touches_that_native_return_group": true,
+          "inherited_RF_min_width": true,
+          "one_saved_GND_In1_component_covers_actual_RF": true,
+          "pose_bound_reference_rule_covers_proposal": true,
+          "In1_no_tracks_vias_allowed_rule_covers_outline": false,
+          "In1_has_no_tracks": true,
+          "protected_region_has_no_vias": true,
+          "protected_region_has_no_inner_tracks": true,
+          "J2_edge_datum_matches": true
+        },
+        "wrong_layer_objects": [],
+        "narrow_F_tracks": [],
+        "reference_uncovered_area_mm2": 0.0,
+        "unknowns": [],
+        "via_incursions": [],
+        "inner_track_incursions": [],
+        "F_copper_component_count": 1,
+        "scope": "saved geometry/continuity only; not impedance, RF performance, native DRC or release qualification"
+      },
+      "control_expectation": "PASS",
+      "scope": "synthetic data control only"
+    }
+  ],
+  "physical_acceptance": false,
+  "warning": "Synthetic controls are predicate tests only, never routed/native/physical candidate evidence."
+}

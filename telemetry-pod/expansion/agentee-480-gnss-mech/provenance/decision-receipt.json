@@ -1,0 +1,236 @@
+{
+  "schema_version": "decision-receipt/2",
+  "receipt_id": "agentee-480-provisional-data",
+  "question": "How should an artifact-only GNSS pose binding and per-face mechanical reservation fail closed on stale or incomplete physical evidence without changing the board?",
+  "scope": [
+    "fome-mc AGENTEE-480 data-only provisional package"
+  ],
+  "status": "recommended",
+  "authority_boundary": {
+    "owner": "agent-449 integration; owner authorization relayed through 529/519",
+    "authority_source": "Cairn 5bfc7b7a-9520-4e85-a94f-ee53caa5e630@1",
+    "authorized_scope": [
+      "artifact-only data/checks; source PCB unchanged; no production integration"
+    ]
+  },
+  "evidence": [
+    {
+      "schema_version": "evidence-record/1",
+      "id": "authority",
+      "evidence_class": "evidence-explicit-user-requirements",
+      "summary": "Exact native task 5bfc7b7a@1 authorizes only a bounded data package. 449 integrates; 479 consumes. No board/code/routing/orders/uploads/cloud/new agents. Proposed data may be provisional; unknown never passes. RESULT scopes every claim and preserved source set.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/RESULT.md",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "1fec5b5b2451676704a405d8d8b552a2af6268ee6f93ad4cebfc4aeb75a5ea4b"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/source-manifest.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "e449f3084157ddc6854deddbc88b7a37aa023d5f0ce8cb47adb31701d7b81c43"
+        }
+      ],
+      "satisfies": [
+        "affected behavior and state",
+        "decision owner",
+        "explicit task authority",
+        "task scope and authority statement",
+        "expected behavior and authority to observe",
+        "expected contract",
+        "accepted policy or current relied-upon constraint",
+        "identified authoritative owner",
+        "accepted desired behavior and semantic authority",
+        "target repository and task scope",
+        "user instruction and authority"
+      ]
+    },
+    {
+      "schema_version": "evidence-record/1",
+      "id": "source-contract",
+      "evidence_class": "evidence-repository-contracts",
+      "summary": "AGENTS.md and immutable source manifest apply native-admit and native authority. Exact PCB/project/rules/terminal receipt hashes are preserved; new files confined to the assignment directory. No production code or source mutation. Consumption is only proposed.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/source-manifest.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "e449f3084157ddc6854deddbc88b7a37aa023d5f0ce8cb47adb31701d7b81c43"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/consumption-contract.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "2accc31d2ae65586d5ce25e9c7049f120cdfa8b99c00a71651211dc592d40124"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/legacy-rule-baseline.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "045cb471d90cbb29ee9d6021751ef6a5ad5899a3c0426a7823ed14f5ed0d69e0"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/native-operations.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "900346cb475c57063d9a954f1360bc0c8a54b63fbd31ebcaa9e6e2ef0eeafc53"
+        }
+      ],
+      "satisfies": [
+        "repository contract",
+        "repository instructions from root through target path",
+        "current source, configuration, and relevant runtime state",
+        "accepted ADR, RFC, API, compatibility, generation, build, and test contracts",
+        "all mutation/creation paths and authority",
+        "preservation matrix and consumers",
+        "proc-establish-preservation-boundaries"
+      ]
+    },
+    {
+      "schema_version": "evidence-record/1",
+      "id": "actual-evidence",
+      "evidence_class": "evidence-generated-artifacts",
+      "summary": "The saved PCB is the authoritative geometry input, linked by native load and complete pad inventory to its existing terminal receipt. Saved fill absent makes ground reference UNKNOWN and actual RF FAIL. Mechanical unknowns are provisional. Gate reads actual source hashes; reports do not grant native/physical acceptance.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/rf-check.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "4b62b852eebdf5dfa553ef367c328d96e5acd5b1768642b761c72848d3f1449d"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/mechanical-check.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "78a4924cba745fa1b56d0e9c16bee4ad23c67390d69879e230064fc6757f61d5"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/native-operations.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "900346cb475c57063d9a954f1360bc0c8a54b63fbd31ebcaa9e6e2ef0eeafc53"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/RESULT.md",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "1fec5b5b2451676704a405d8d8b552a2af6268ee6f93ad4cebfc4aeb75a5ea4b"
+        }
+      ],
+      "satisfies": [
+        "inventory of gates and the signals they observe",
+        "proof the check reads that signal rather than a derived view",
+        "the authoritative signal named for each gate",
+        "eval-versus-serving configuration parity",
+        "observations",
+        "a bounded decision question",
+        "alternatives including no change where viable",
+        "claim-relative observation such as accepted requirement, reproduction, incident, recurring change, operational constraint, or representative measurement",
+        "evidence connecting the proposed action to the condition"
+      ]
+    },
+    {
+      "schema_version": "evidence-record/1",
+      "id": "predicate-controls",
+      "evidence_class": "evidence-tests",
+      "summary": "Seventeen retained adversarial controls test stale binding, RF topology/F-only width/ground continuity and rule distinctions. Positive synthetic data are explicitly excluded from actual CLI acceptance. Actual board failure is preserved, not repaired. Read-only native retries are bounded and logged.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/check-controls.json",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "8b721cfeb85331d8df8727ae0ee1ce437392c4e2edcc119a542f45300cdeacf2"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/check_constraints.py",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "12705390bf09560ee9593d7bc1c3bfb4e65c7beb6738acb1b022ca51ea1f8766"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/check_controls.py",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "24b01409b274cc6c0ba590f1bd71fea9b2eed65ea3a0f48f1d1734185a9fbf5a"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/RESULT.md",
+          "method": "read retained artifact and its implementation",
+          "content_sha256": "1fec5b5b2451676704a405d8d8b552a2af6268ee6f93ad4cebfc4aeb75a5ea4b"
+        }
+      ],
+      "satisfies": [
+        "discriminating checks",
+        "stable reproduction or explicit inability",
+        "reversibility and verification",
+        "failure and recovery requirements",
+        "tests, characterization, probes, or explicit residual risk"
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "id": "observed-source",
+      "type": "observation",
+      "text": "Actual saved RF board fails and mechanical candidate is unqualified; unknowns remain explicit.",
+      "evidence": [
+        "actual-evidence",
+        "predicate-controls"
+      ]
+    },
+    {
+      "id": "provisional-only",
+      "type": "recommendation",
+      "text": "Consume pose-bound definitions only as provisional data and invalidate on changed source; keep native/physical acceptance separate.",
+      "depends_on": [
+        "observed-source"
+      ],
+      "alternatives": [
+        "leave inputs unchanged",
+        "modify source board outside this task"
+      ],
+      "tradeoffs": [
+        "Allows candidate exploration while retaining unresolved physical/tool/height evidence."
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "publish explicit provisional input/check package",
+      "disposition": "selected",
+      "evidence": [
+        "actual-evidence",
+        "authority"
+      ]
+    },
+    {
+      "option": "leave existing PCB/project/rules untouched",
+      "disposition": "selected",
+      "evidence": [
+        "authority",
+        "source-contract"
+      ]
+    },
+    {
+      "option": "claim RF/mechanical acceptance or modify PCB",
+      "disposition": "rejected",
+      "evidence": [
+        "actual-evidence",
+        "authority"
+      ]
+    }
+  ],
+  "source_locators": [
+    "RESULT.md",
+    "rf-check.json",
+    "mechanical-check.json",
+    "source-manifest.json"
+  ],
+  "corpus_version": "corpus-2026-07-12-a11702cc9217",
+  "retriever_version": "retriever-ec995ecdd083b2c8",
+  "verification_criteria": [
+    "Actual CLI reads saved source identities",
+    "17 predicate controls pass while actual RF remains FAIL",
+    "Immutable source manifest unchanged",
+    "All unknowns provisional only"
+  ],
+  "reopening_conditions": [
+    "new board pose/source bytes",
+    "new qualified manufacturer/assembly/tool evidence",
+    "479 proposes production integration"
+  ],
+  "residual_risk": [
+    "283 unknown body heights",
+    "driver and full iron envelope provisional",
+    "C08 transform/harness and installed RF/enclosure qualification OPEN"
+  ]
+}

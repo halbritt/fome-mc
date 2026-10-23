@@ -1,0 +1,36 @@
+{
+  "schema": "agentee-480.native-operations/1",
+  "host": "proximal",
+  "admission": {
+    "class": "suite",
+    "weight": 4,
+    "max_wait_seconds": 60
+  },
+  "operations": [
+    {
+      "label": "agentee-480-inspect",
+      "exit": 75,
+      "status": "NOT_ADMITTED",
+      "reason": "existing weight1 test plus requested4 exceeded host4;60s bounded wait, no inspection ran"
+    },
+    {
+      "label": "agentee-480-extract",
+      "exit": 0,
+      "status": "PASS",
+      "wait_seconds": 20,
+      "lease": "55d95528bad9",
+      "scope": "read-only saved board shapes"
+    },
+    {
+      "label": "agentee-480-bound-read",
+      "exit": 0,
+      "status": "PASS",
+      "scope": "read-only native shapes afterBuildConnectivity; exact serialized-verified prior native terminal receipt and complete pad inventory matched"
+    }
+  ],
+  "runtime": "pcbnew10.0.7 / Python3.12 / shapely2.2.0",
+  "board_write_operations": 0,
+  "native_DRC_runs": 0,
+  "routing_runs": 0,
+  "note": "load printed existing pcbnew enum-choice assertions; process completed and source hashes matched; no new native graph receipt or PCB save was produced"
+}

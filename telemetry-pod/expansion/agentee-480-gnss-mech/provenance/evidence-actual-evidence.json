@@ -1,0 +1,39 @@
+{
+  "schema_version": "evidence-record/1",
+  "id": "actual-evidence",
+  "evidence_class": "evidence-generated-artifacts",
+  "summary": "The saved PCB is the authoritative geometry input, linked by native load and complete pad inventory to its existing terminal receipt. Saved fill absent makes ground reference UNKNOWN and actual RF FAIL. Mechanical unknowns are provisional. Gate reads actual source hashes; reports do not grant native/physical acceptance.",
+  "provenance": [
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/rf-check.json",
+      "method": "read retained artifact and its implementation",
+      "content_sha256": "4b62b852eebdf5dfa553ef367c328d96e5acd5b1768642b761c72848d3f1449d"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/mechanical-check.json",
+      "method": "read retained artifact and its implementation",
+      "content_sha256": "78a4924cba745fa1b56d0e9c16bee4ad23c67390d69879e230064fc6757f61d5"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/native-operations.json",
+      "method": "read retained artifact and its implementation",
+      "content_sha256": "900346cb475c57063d9a954f1360bc0c8a54b63fbd31ebcaa9e6e2ef0eeafc53"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-480/telemetry-pod/expansion/agentee-480-gnss-mech/RESULT.md",
+      "method": "read retained artifact and its implementation",
+      "content_sha256": "1fec5b5b2451676704a405d8d8b552a2af6268ee6f93ad4cebfc4aeb75a5ea4b"
+    }
+  ],
+  "satisfies": [
+    "inventory of gates and the signals they observe",
+    "proof the check reads that signal rather than a derived view",
+    "the authoritative signal named for each gate",
+    "eval-versus-serving configuration parity",
+    "observations",
+    "a bounded decision question",
+    "alternatives including no change where viable",
+    "claim-relative observation such as accepted requirement, reproduction, incident, recurring change, operational constraint, or representative measurement",
+    "evidence connecting the proposed action to the condition"
+  ]
+}
