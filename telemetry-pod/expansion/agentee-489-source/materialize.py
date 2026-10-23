@@ -20,7 +20,8 @@ Rules kept here (agent-ee docs/mechanical-reservations.md):
 - cylinders become circumscribed regular 16-gons, vertices rounded outward to integer nm, so the
   per-face projection covers the cylinder (conservative-per-face);
 - JP custom-pad access uses the qualified native copper outer bound plus the existing chisel
-  rectangle in the pad-local frame. Unknown iron height/access stays unknown after carriage.
+  rectangle in the pad-local frame, plus the explicitly selected finite tool/approach/feed.
+  Missing height or incomplete declared access coverage remains unknown.
 Usage (native KiCad environment, via native-admit):
   PYTHONPATH=<frozen-agent-ee>/src python3 -B materialize.py <repo-root>
 """
@@ -88,7 +89,7 @@ def native_capture():
 
 
 def iron_row(r, capture):
-    """Conservative pad-copper AABB Minkowski sum with the recipe's chisel rectangle."""
+    """Conservative pad-copper landing locus plus selected nominal tool/operation."""
     from agent_ee.mechanical_reservations import _custom_geometry
     from agent_ee.placer import rotate
     g = r['geometry']
@@ -111,20 +112,59 @@ def iron_row(r, capture):
     tip = [Decimal(str(v)) * NM / 2 for v in g['tip_width_thickness_mm']]
     if len(tip) != 2 or any(not v.is_finite() or v <= 0 for v in tip):
         raise ValueError('iron chisel needs two positive finite dimensions')
-    x0, y0 = [math.floor(min(v[i] for v in local) - tip[i]) for i in (0, 1)]
-    x1, y1 = [math.ceil(max(v[i] for v in local) + tip[i]) for i in (0, 1)]
+    lower, upper = [-v for v in tip], list(tip)
+    access = g.get('soldering_access')
+    if access is not None:
+        # This selected nominal operation is an engineering declaration. Derive
+        # its conservative projection from the actual declared body/feed bounds.
+        if access['classification'] != 'AGENT engineering default':
+            raise ValueError('soldering operation must retain engineering-default classification')
+        sections = access['tool_sections']
+        if not sections:
+            raise ValueError('soldering operation needs tool sections')
+        bounds = [(Decimal(str(section['radius_mm'])),
+                   [Decimal(str(v)) for v in section['z_mm']]) for section in sections]
+        if any(not radius.is_finite() or radius <= 0 or len(z) != 2
+               or any(not v.is_finite() for v in z) or z[0] < 0 or z[1] <= z[0]
+               for radius, z in bounds):
+            raise ValueError('soldering tool sections need positive finite ordered bounds')
+        radius = max(radius for radius, z in bounds)
+        travel = Decimal(str(access['withdrawal_travel_mm']))
+        feed = access['solder_feed']
+        feed_radius = Decimal(str(feed['radius_mm']))
+        centres = [[Decimal(str(v)) for v in p] for p in feed['centreline_mm']]
+        if (not radius.is_finite() or radius <= 0 or not travel.is_finite() or travel < 0
+                or not feed_radius.is_finite() or feed_radius <= 0
+                or len(centres) != 2 or any(len(p) != 3 or any(not v.is_finite() for v in p) for p in centres)):
+            raise ValueError('soldering operation needs finite positive body/feed dimensions')
+        ceiling = max(Decimal(str(section['z_mm'][1])) for section in sections) + travel
+        floor = min(Decimal(str(section['z_mm'][0])) for section in sections)
+        feed_low = min(p[2] for p in centres) - feed_radius
+        feed_high = max(p[2] for p in centres) + feed_radius
+        z = [Decimal(str(v)) if v is not None else None for v in g['z_outward_from_face_mm']]
+        if z[1] is not None and (z[0] > min(floor, feed_low) or z[1] < max(ceiling, feed_high)):
+            raise ValueError('soldering height does not cover the declared tool/approach/feed')
+        for i in (0, 1):
+            lower[i] = min(lower[i], -radius * NM, (min(p[i] for p in centres) - feed_radius) * NM)
+            upper[i] = max(upper[i], radius * NM, (max(p[i] for p in centres) + feed_radius) * NM)
+    x0, y0 = [math.floor(min(v[i] for v in local) + lower[i]) for i in (0, 1)]
+    x1, y1 = [math.ceil(max(v[i] for v in local) + upper[i]) for i in (0, 1)]
     h = interval(g['z_outward_from_face_mm'])
+    covered = h is not None and access is not None and access['coverage'] == 'complete'
     return {'id': r['id'], 'required': True, 'kind': 'access', 'frame': 'pad',
             'owner': {'ref': r['reference'], 'uuid': r['uuid'],
                       'pad': {'number': pad['number'], 'uuid': pad['uuid']}},
             'geometry': {'polygons_nm': [[[x0, y0], [x1, y0], [x1, y1], [x0, y1]]]},
             'faces': ['same'], 'height_nm': h, 'phases': [PHASE[r['phase']]], 'self_exclusion': True,
             'coverage': {'projection': 'conservative-per-face', 'height': 'covered' if h else 'unknown',
-                         'access': 'unknown',
+                         'access': 'covered' if covered else 'unknown',
                          'basis': 'Qualified native custom-pad copper bounding box, inverse native pad rotation, '
                                   'Minkowski sum with source chisel rectangle '
                                   + str(g['tip_width_thickness_mm']) + ' mm; outward integer-nm rounding; '
-                                  'tip-only projection, not complete iron/hand access.'},
+                                  + ('selected nominal normal-head/carrier/withdrawal/feed projection; AGENT default, '
+                                     'not a manufacturer maximum or physical access acceptance. '
+                                     + json.dumps(access, sort_keys=True) if access is not None else
+                                     'tip-only projection, incomplete soldering operation.')},
             'uncertainty': [r['unknown'], r['qualification'], r['phase_gate'],
                             'one-time bare-board soldering per ' + OWNER_CITE]}
 

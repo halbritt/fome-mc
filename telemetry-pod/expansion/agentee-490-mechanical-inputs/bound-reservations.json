@@ -1229,15 +1229,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1246,8 +1312,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1278,15 +1344,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1295,8 +1427,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1327,15 +1459,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1344,8 +1542,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1376,15 +1574,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1393,8 +1657,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1425,15 +1689,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1442,8 +1772,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1474,15 +1804,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1491,8 +1887,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1523,15 +1919,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1540,8 +2002,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1572,15 +2034,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1589,8 +2117,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1621,15 +2149,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1638,8 +2232,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1670,15 +2264,81 @@
         "captured_pad_orientation_deg": 0.0,
         "z_outward_from_face_mm": [
           0,
-          null
+          60
         ],
-        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices"
+        "materialization": "native final pad copper outer bound or explicit conservative size/orientation bound plus physical chisel rectangle;do not transfer480 world vertices",
+        "soldering_access": {
+          "id": "agent535-JP-normal-head-feed-60mm",
+          "classification": "AGENT engineering default",
+          "author": "agent-535, AGENTEE-485 B-JP2",
+          "coverage": "complete",
+          "source": {
+            "path": "telemetry-pod/expansion/agentee-490-mechanical-inputs/sources/weller-rtm-013-s.html",
+            "sha256": "2862173d7822a02e15e508868202e6242e2b313ea38a2e09422ce709116e2077",
+            "url": "https://www.weller-tools.com/nocompromise/rtm-013-s",
+            "manufacturer_nominal_only": "Weller RTM 013 S, T0054460399N: chisel 1.3 x 0.4 mm; technical length 20 mm; diameter 3.0 mm; WXMP/WMRP compatible. Nominal dimensions, not a maximum profile."
+          },
+          "frame": "native-pad-local;u/v in pad plane,w outward from actual pad face",
+          "pose": "Chisel centred on a selected copper landing point, 1.3 mm width along local u and 0.4 mm thickness along v; shaft along outward w; normal contact and withdrawal. The native copper bbox is the allowed landing locus.",
+          "tool_sections": [
+            {
+              "name": "chisel-contact-and-nominal-cartridge-taper",
+              "radius_mm": 1.5,
+              "z_mm": [
+                0,
+                20
+              ],
+              "classification": "Manufacturer nominal 20 mm length and 3 mm diameter; cylindrical taper working model is an AGENT approximation, not a measured maximum."
+            },
+            {
+              "name": "nominal-carrier-barrel",
+              "radius_mm": 4,
+              "z_mm": [
+                20,
+                40
+              ],
+              "classification": "AGENT default: nominal compatible carrier specification; not a Weller WXMP manufacturer maximum."
+            }
+          ],
+          "withdrawal_travel_mm": 20,
+          "solder_feed": {
+            "radius_mm": 0.25,
+            "centreline_mm": [
+              [
+                0,
+                0,
+                0.25
+              ],
+              [
+                6,
+                0,
+                3.25
+              ]
+            ],
+            "classification": "AGENT default: 0.5 mm diameter local solder wire, 6 mm in-plane reach and 3 mm rise; no whole-hand volume."
+          },
+          "z_outward_from_face_mm": [
+            0,
+            60
+          ],
+          "procedure": [
+            "Once on the bare board, before enclosure or hardware installation. Support or invert to reach the own pad face without a fixture requirement.",
+            "Pre-tin or feed 0.5 mm solder along the declared local +u segment. Contact the selected landing point normally with the chisel, then withdraw 20 mm normally.",
+            "Hold the tool beyond the declared 40 mm hot head/carrier. Position the hand and grip in the open space beyond this local declaration; no complete hand or grip envelope is claimed.",
+            "Inspect bridge, wetting and continuity. Final native coordinates must demonstrate this tool-body and solder-feed access against neighbouring components."
+          ],
+          "limitations": [
+            "A nominal tool and operation selected for planning: not manufacturer maxima, an owner-specified tool, measured physical access, heating qualification or every possible iron/hand pose.",
+            "Schema/1 uses one 2D projection and common height, so this conservatively overprojects upper barrel and solder feed against native courtyards. Report additional JP overlaps; do not shrink geometry for a pass.",
+            "Use the qualified native custom-pad outer copper bound as the landing locus, not the 1 x 0.5 mm anchor rectangle. Preserve pad/owner UUID, side, rotation and complete required inventory."
+          ]
+        }
       },
-      "class": "sourced chisel+engineering-selected normal approach",
+      "class": "manufacturer nominal tip/cartridge + explicit AGENT engineering-default carrier/approach/feed",
       "source": "owner-answers+iron",
       "phase": "bare-board-one-time-soldering",
-      "status": "PROVISIONAL_TIP_ONLY",
-      "unknown": "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+      "status": "FINITE_NOMINAL_TOOL_OPERATION_DECLARED",
+      "unknown": "Actual manufacturing maxima, operator hand and physical/thermal access remain unqualified. The declaration covers one specified nominal tool and operation.",
       "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
       "binding_status": "REBOUND UUID/FPID;final pose materialization required",
       "captured_pose_mm_deg": [
@@ -1687,8 +2347,8 @@
         0.0
       ],
       "selected_anchor_mm_deg": null,
-      "phase_gate": "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
-      "qualification": "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+      "phase_gate": "Rebind and probe native pad/owner after final pose or side changes. Follow the normal tool and solder-feed path once on the bare board; no fixture or enclosure gate.",
+      "qualification": "DECLARATION_COMPLETE_ONLY; final regenerated coordinates must demonstrate access; no physical qualification is claimed.",
       "captured_side": "F.Cu",
       "follows_actual_face": true,
       "face_policy": "derive from final actual pad/footprint face;this captured face is not eligibility authority"
@@ -1807,7 +2467,7 @@
     "mateJ1externalharnessandSMAwithfiniteaccess",
     "installedboard/antenna/harnessvolumesonly;benchtoolsnotinfullstack"
   ],
-  "JP_TP": "Base40itemrecipesinclude10JPfaceaccess+6TPtips; reuseexactpadUUID/finalface, notoldworldpositions. RetainedWeller1.3x.4tiponlyismanufacturergeometry;barrelR4/gripR15andfeedR.25areexplicitAGENTrecipeswithmaximumprofileunqualified. Pogo oncebenchperowner; notinstalledaccessgate.",
+  "JP_TP": "JP1..5: agent-535 finite nominal RTM 013 S-size head/carrier/withdrawal/feed declaration on the own pad face, once on the bare board. Weller 1.3 x 0.4 mm and 20 x 3 mm are nominal manufacturer data; carrier, approach and feed values are explicit reversible AGENT defaults. TP columns and other declarations remain unchanged.",
   "antenna_cable": "Retain486exactcandidate/verifiedfamilydistinction; exact457mmSMAvariantdrawing,minbend andtorqueunqualified. Finite40x40x15AGENTcase+R30bend remainadvisory, orretainexisting50bendproposalwithsupplier-qualifiedcable. Do notcallfamilyUFLdrawingtheSMAvariant.",
   "thermal_height": {
     "J3_operating_limit_C": 85,
