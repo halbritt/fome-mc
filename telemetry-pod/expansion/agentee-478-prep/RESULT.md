@@ -168,7 +168,7 @@ Anything else on the opposite face is lost cohesion. The regression contract is 
 - **Fixed parts (corrected in 478c):** each records its sourced restrictions (474 entry and class), its AGENT engineering anchor (reconsiderable, chosen before packing) and its R5/emitted starting poses (start state only), plus adjacent blocks, support relationships and access rules.
   - U3 is **staged off-board in the emitted board**. Its anchor pose is placement-derived (MECH-DERIVED, C15), not sourced.
   - J1, J2, J3, U1, U2 and H1–H4 match between the emitted board and R5.
-- **Shared parts:** the TP common-face and access rules; JP parts follow their blocks.
+- **Shared parts:** the TP bench pogo-clip approach rules (either face per pad; a common face is only an optional convenience, 478b); JP parts follow their blocks.
 - **Rails:** these are nets, not memberships; they never merge blocks.
 - **No flat fallback:** an unlisted footprint is a refusal.
 
