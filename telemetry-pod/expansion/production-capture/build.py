@@ -1042,14 +1042,14 @@ def build(out, agent_ee, mechanical=False, materials=False):
                 raise ValueError('mechanical reservations are stale against ' + rel(source))
         revised['mechanical_reservations'] = root.copy(MECHANICAL / 'reservations.json', 'mechanics/reservations.json')
     if materials:
-        declared = json.loads(STACKUP_MATERIALS.read_text())
-        if declared.get('schema') != 'agentee-489.stackup-materials/1':
+        stackup_materials = json.loads(STACKUP_MATERIALS.read_text())
+        if stackup_materials.get('schema') != 'agentee-489.stackup-materials/1':
             raise ValueError('stackup materials are not agentee-489.stackup-materials/1')
         dielectrics = [l for l in revised['stackup']['layers'] if l['kind'] == 'dielectric']
         if [(l['name'], l['thickness_mm']) for l in dielectrics] != [
-                (l['name'], l['thickness_mm']) for l in declared['layers']]:
+                (l['name'], l['thickness_mm']) for l in stackup_materials['layers']]:
             raise ValueError('stackup materials name other dielectric layers or thicknesses than the envelope')
-        for layer, material in zip(dielectrics, declared['layers']):
+        for layer, material in zip(dielectrics, stackup_materials['layers']):
             layer.update({k: material[k] for k in ('dielectric_type', 'epsilon_r', 'loss_tangent')})
         root.copy(STACKUP_MATERIALS, 'mechanics/stackup-materials.json')
     envelope_blob = root.write('composition/envelope.json', revised)
