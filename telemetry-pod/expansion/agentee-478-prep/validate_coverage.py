@@ -12,7 +12,7 @@ D = Path(sys.argv[1])
 load = lambda n: json.loads((D / n).read_text())
 alloc, elig, rb, xf, fx = (load(n) for n in ('allocation-v2.json', 'side-eligibility.json', 'relationship-bounds.json',
                                              'cross-face-templates.json', 'fixed-shared-rules.json'))
-board = load('extract/emitted-2f1c9557.json')
+board = load(alloc.get('inventory', {}).get('board_extract', 'extract/emitted-2f1c9557.json'))
 inv = alloc.get('inventory', {})
 sch = load(inv.get('schematic_netlist', 'extract/emitted-schematic-netlist.json'))['components']
 # Inventory = emitted-board footprints plus schematic symbols not yet on a board (AGENTEE-484 additions).

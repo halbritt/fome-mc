@@ -218,3 +218,16 @@ python3 -I validate_coverage.py . coverage-report.json
 3. 449 to decide whether the agent-ee `b7c72f6e` owner answers to the 474 unknowns rebind the D2 UNKNOWN entries.
 4. Agreement with agent-524 on `block-candidate-set/1`.
 5. The numeric bounds are labelled engineering judgement and untested for feasibility; AGENTEE-479 stage A will test them.
+
+## AGENTEE-484: rebinding to the decoupling-repaired design
+
+The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../agentee-484-decoupling/dispositions.json`).
+- **Inventory:** the regenerated emission, board `0b68a0ac…` with 313 footprints (`extract/emitted-0b68a0ac.json`) and schematic `cef8e4c7…` (`extract/emitted-schematic-netlist-cef8e4c7.json`). The 2f1c9557 extract stays for the R5/ROUTE-3 baselines.
+- **Coverage:** PASS. 313 footprints: 297 block members in 26 blocks, 10 fixed, 6 shared; 0 unassigned, 0 duplicates.
+- **Relationships:** 214, of which 3 are UNRESOLVED (the RF line, C15).
+- **Allocation changes:**
+  - new blocks `imu-support` (C38, C41) and `gnss-receiver-support` (C44);
+  - C43 moves to `gnss-antenna-supply`, C18 to `supplies-5v`;
+  - C130–C133 join `adc`, `afe`, `sensor-ref` and `can`;
+  - the U7 output bank keeps C13–C15.
+- **Tooling:** `validate_coverage.py` and `d1_verify.py` now read the board extract and netlist declared in `allocation-v2.json` → `inventory`. Schematic-only parts are allowed only when declared.

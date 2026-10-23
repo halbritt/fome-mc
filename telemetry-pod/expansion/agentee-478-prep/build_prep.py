@@ -15,7 +15,8 @@ SCH, NETS = net['components'], net['nets']
 ALLOC_PATH = EXP / 'blocks/allocation.json'
 ALLOC = json.loads(ALLOC_PATH.read_text())
 EXTRACT = {k: json.loads((OUT / 'extract' / f).read_text()) for k, f in
-           [('emitted', 'emitted-2f1c9557.json'), ('r5', 'r5-8f3bc234.json'), ('route3', 'route3-08066170.json')]}
+           [('emitted', 'emitted-0b68a0ac.json'),  # AGENTEE-484 regenerated emission (was emitted-2f1c9557.json)
+             ('r5', 'r5-8f3bc234.json'), ('route3', 'route3-08066170.json')]}
 BOARD = dict(EXTRACT['emitted']['footprints'])
 # AGENTEE-484: parts added by the source repair exist in the regenerated schematic but on no board yet.
 SCHEMATIC_ONLY = sorted(set(SCH) - set(BOARD))
@@ -574,7 +575,7 @@ def anchor_of(b):
 alloc2 = {'schema': 'agent-ee.block-allocation/2 (proposed; /1 consumers ignore fixed/shared)',
           'derived_from': {'path': 'telemetry-pod/expansion/blocks/allocation.json', 'sha256': sha(ALLOC_PATH)},
           'board_sha256': EXTRACT['emitted']['sha256'],
-          'inventory': {'board_sha256': EXTRACT['emitted']['sha256'], 'schematic_netlist': 'extract/' + NETLIST.name,
+          'inventory': {'board_sha256': EXTRACT['emitted']['sha256'], 'board_extract': 'extract/emitted-0b68a0ac.json', 'schematic_netlist': 'extract/' + NETLIST.name,
                         'schematic_netlist_sha256': sha(NETLIST), 'schematic_only_not_yet_on_board': SCHEMATIC_ONLY},
           'blocks': [{'id': b, 'references': sorted(rs, key=nat), 'anchor': anchor_of(b),
                       'interfaces_to_fixed': FIXED_ANCHOR.get(b)} for b, rs in sorted(blocks.items())],
