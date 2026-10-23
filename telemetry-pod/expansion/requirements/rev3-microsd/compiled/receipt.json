@@ -1,5 +1,5 @@
 {
-  "baseline_id": "8020c3708c487987ab24d41ffbf8ef1a42901dc893e39216f6df20278a7ada5a",
+  "baseline_id": "cbe3c6c09ba9da7a5daaea468a6f01c94d63cbcecc5a2f53646c65ff66aa40cb",
   "compiler": {
     "module": "agent_ee.requirement_map",
     "source_sha256": "f796fd7328f975f7586ca6a52bcff58cda57995c40e59a26472be9b138bd77df",
@@ -9,7 +9,7 @@
   "limitations": [
     "No expanded placed or routed PCB exists for this scope. The pod driver scaffold supplies scaffold/project; never substitute the historical v9 pilot, a diagnostic placement (iteration-7, iter8n) or a historical route.",
     "Stage order is schematic, placement, routing, verification, as pod_driver requires. Fab stays outside stages.order until AGENTEE-146-compatible pod step wiring exists; the fab_package done check grades the verification stage.",
-    "Stage subjects are the 309 native references of the current microSD schematic (telemetry-pod/expansion/storage-microsd/project/telemetry-pod.kicad_sch sha256 6395930bbb8bdbd0fd7d3527db276bfc1bda05e5a9994b20ddd02159dc56519f). The placement subject also expects the four board-only corner mounting holes H1-H4 (313 footprints; POD-ME-HOLES). No other board-only footprint is an expected subject.",
+    "Stage subjects are the 309 native references of the current microSD schematic (telemetry-pod/expansion/storage-microsd/project/telemetry-pod.kicad_sch sha256 fe6a0211988b8d08acd6b6a83e26aca606dffb07e6d97dc1c50e83d7449da600). The placement subject also expects the four board-only corner mounting holes H1-H4 (313 footprints; POD-ME-HOLES). No other board-only footprint is an expected subject.",
     "Review profile pod-rf-review-v1 (agent-ee profiles/pod-review.json sha256 885e17074b9c367f296eb6acc4c2a2f65fb29108f332f0a55fb622a38ae858da) declares the rf reviewer that the pod RF applicability gate requires. A declared reviewer is not an RF review result; a fresh RF review of a routed current-placement candidate is still owed.",
     "Routing-stage copper geometry reports facts only. No pod-wide numeric track-width gate is declared here because none has a cited source in this scope; net-class widths are graded by native DRC from the captured project rules.",
     "POD-AC-6: NOT CHECKED beyond the fab_package done gate: the owner uploads the sealed Gerber package to JLCPCB once and binds the saved DFM report to the package hash, and confirms every PREVIEW_REQUIRED CPL rotation in the placement preview before ordering. Local geometry and package checks do not replace either; this scope authorizes no upload or order.",
@@ -92,7 +92,7 @@
     "POD-ED-P3: NOT CHECKED: Regenerate expanded candidate and repeat placement/routing/review; v9 pilot schematic, PCB, BOM, IO map and compiled contract are historical evidence only.",
     "POD-AC-P1: NOT CHECKED: All eleven criteria require evidence. File checks alone do not close AC6 owner DFM/preview or AC8-11 built-board obligations; this scope has incomplete acceptance coverage."
   ],
-  "map_sha256": "1e5e8505c22966017bb6be47f33cf06ac370122c23727a71f52fe26a1001f000",
+  "map_sha256": "c2a9e1833de185692bba4e701e3f96bbf4a1c7b7c1624908f1c204b8ffd398b6",
   "requirements": [
     {
       "id": "POD-FN-LATERAL-LONGITUDINAL-VERTICAL-ACCELERATION",
@@ -1063,7 +1063,7 @@
     {
       "id": "POD-ME-1",
       "locator": {
-        "byte_end": 11703,
+        "byte_end": 12026,
         "byte_start": 10840,
         "cells": {},
         "heading_path": [
@@ -1079,13 +1079,13 @@
         "reason": "Validate actual cowl/enclosure envelope, four corner mounting holes, double-sided clearance, antenna keepout, F.Cu/In1.Cu GNSS path and connector constraints. 90x65 mm is a target, not proven fit; neither 80x50 mm nor the withdrawn 12 mm height is an owner limit. Corner holes H1-H4 are expected placement subjects; their declared positions and drills are stated in POD-ME-HOLES and are not yet executably bound."
       },
       "mode": "limitation",
-      "text_sha256": "d865a76d53f44c1c275964a9dbcd98585cf70d6ac68af5e44e66767713c3b9bb"
+      "text_sha256": "09c89ce3dad63794da060b1d81d8aff112fc199ce8ad06ed144ad3430590fc36"
     },
     {
       "id": "POD-ME-2",
       "locator": {
-        "byte_end": 12139,
-        "byte_start": 11706,
+        "byte_end": 12462,
+        "byte_start": 12029,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1105,8 +1105,8 @@
     {
       "id": "POD-ME-3",
       "locator": {
-        "byte_end": 12330,
-        "byte_start": 12142,
+        "byte_end": 12653,
+        "byte_start": 12465,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1126,8 +1126,8 @@
     {
       "id": "POD-ME-4",
       "locator": {
-        "byte_end": 12610,
-        "byte_start": 12333,
+        "byte_end": 12933,
+        "byte_start": 12656,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1147,8 +1147,8 @@
     {
       "id": "POD-ME-5",
       "locator": {
-        "byte_end": 12781,
-        "byte_start": 12613,
+        "byte_end": 13104,
+        "byte_start": 12936,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1168,8 +1168,8 @@
     {
       "id": "POD-ME-6",
       "locator": {
-        "byte_end": 13022,
-        "byte_start": 12784,
+        "byte_end": 13345,
+        "byte_start": 13107,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1189,20 +1189,20 @@
     {
       "id": "POD-TE-U1",
       "locator": {
-        "byte_end": 13381,
-        "byte_start": 13317,
+        "byte_end": 13704,
+        "byte_start": 13640,
         "cells": {
           "Exact selected part": [
-            13324,
-            13343
+            13647,
+            13666
           ],
           "Exception scope": [
-            13346,
-            13379
+            13669,
+            13702
           ],
           "Reference": [
-            13319,
-            13321
+            13642,
+            13644
           ]
         },
         "heading_path": [
@@ -1223,20 +1223,20 @@
     {
       "id": "POD-TE-U2",
       "locator": {
-        "byte_end": 13427,
-        "byte_start": 13382,
+        "byte_end": 13750,
+        "byte_start": 13705,
         "cells": {
           "Exact selected part": [
-            13389,
-            13400
+            13712,
+            13723
           ],
           "Exception scope": [
-            13403,
-            13425
+            13726,
+            13748
           ],
           "Reference": [
-            13384,
-            13386
+            13707,
+            13709
           ]
         },
         "heading_path": [
@@ -1257,20 +1257,20 @@
     {
       "id": "POD-TE-U4",
       "locator": {
-        "byte_end": 13562,
-        "byte_start": 13428,
+        "byte_end": 13885,
+        "byte_start": 13751,
         "cells": {
           "Exact selected part": [
-            13435,
-            13448
+            13758,
+            13771
           ],
           "Exception scope": [
-            13451,
-            13560
+            13774,
+            13883
           ],
           "Reference": [
-            13430,
-            13432
+            13753,
+            13755
           ]
         },
         "heading_path": [
@@ -1291,8 +1291,8 @@
     {
       "id": "POD-PI-1",
       "locator": {
-        "byte_end": 15816,
-        "byte_start": 15537,
+        "byte_end": 16139,
+        "byte_start": 15860,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1312,8 +1312,8 @@
     {
       "id": "POD-PI-2",
       "locator": {
-        "byte_end": 16069,
-        "byte_start": 15819,
+        "byte_end": 16392,
+        "byte_start": 16142,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1333,8 +1333,8 @@
     {
       "id": "POD-PI-3",
       "locator": {
-        "byte_end": 16335,
-        "byte_start": 16072,
+        "byte_end": 16658,
+        "byte_start": 16395,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1354,8 +1354,8 @@
     {
       "id": "POD-PI-4",
       "locator": {
-        "byte_end": 16540,
-        "byte_start": 16338,
+        "byte_end": 16863,
+        "byte_start": 16661,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1375,8 +1375,8 @@
     {
       "id": "POD-PI-5",
       "locator": {
-        "byte_end": 16796,
-        "byte_start": 16543,
+        "byte_end": 17119,
+        "byte_start": 16866,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1396,8 +1396,8 @@
     {
       "id": "POD-PI-6",
       "locator": {
-        "byte_end": 17102,
-        "byte_start": 16799,
+        "byte_end": 17425,
+        "byte_start": 17122,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1417,8 +1417,8 @@
     {
       "id": "POD-ED-1",
       "locator": {
-        "byte_end": 18241,
-        "byte_start": 17955,
+        "byte_end": 18564,
+        "byte_start": 18278,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1438,8 +1438,8 @@
     {
       "id": "POD-ED-2",
       "locator": {
-        "byte_end": 18515,
-        "byte_start": 18244,
+        "byte_end": 18838,
+        "byte_start": 18567,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1459,8 +1459,8 @@
     {
       "id": "POD-ED-3",
       "locator": {
-        "byte_end": 18662,
-        "byte_start": 18518,
+        "byte_end": 18985,
+        "byte_start": 18841,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1480,8 +1480,8 @@
     {
       "id": "POD-ED-4",
       "locator": {
-        "byte_end": 18832,
-        "byte_start": 18665,
+        "byte_end": 19155,
+        "byte_start": 18988,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1501,8 +1501,8 @@
     {
       "id": "POD-ED-5",
       "locator": {
-        "byte_end": 19020,
-        "byte_start": 18835,
+        "byte_end": 19343,
+        "byte_start": 19158,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1522,8 +1522,8 @@
     {
       "id": "POD-ED-6",
       "locator": {
-        "byte_end": 19328,
-        "byte_start": 19023,
+        "byte_end": 19651,
+        "byte_start": 19346,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1543,8 +1543,8 @@
     {
       "id": "POD-AC-1",
       "locator": {
-        "byte_end": 20303,
-        "byte_start": 20065,
+        "byte_end": 20626,
+        "byte_start": 20388,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1564,8 +1564,8 @@
     {
       "id": "POD-AC-2",
       "locator": {
-        "byte_end": 20433,
-        "byte_start": 20307,
+        "byte_end": 20756,
+        "byte_start": 20630,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1637,8 +1637,8 @@
       ],
       "id": "POD-AC-3",
       "locator": {
-        "byte_end": 20729,
-        "byte_start": 20437,
+        "byte_end": 21052,
+        "byte_start": 20760,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1683,8 +1683,8 @@
     {
       "id": "POD-AC-4",
       "locator": {
-        "byte_end": 20940,
-        "byte_start": 20733,
+        "byte_end": 21263,
+        "byte_start": 21056,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1704,8 +1704,8 @@
     {
       "id": "POD-AC-5",
       "locator": {
-        "byte_end": 21393,
-        "byte_start": 20944,
+        "byte_end": 21716,
+        "byte_start": 21267,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1780,8 +1780,8 @@
       ],
       "id": "POD-AC-6",
       "locator": {
-        "byte_end": 21919,
-        "byte_start": 21397,
+        "byte_end": 22242,
+        "byte_start": 21720,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1820,8 +1820,8 @@
     {
       "id": "POD-AC-7",
       "locator": {
-        "byte_end": 22124,
-        "byte_start": 21923,
+        "byte_end": 22447,
+        "byte_start": 22246,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1841,8 +1841,8 @@
     {
       "id": "POD-AC-8",
       "locator": {
-        "byte_end": 22340,
-        "byte_start": 22128,
+        "byte_end": 22663,
+        "byte_start": 22451,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1863,8 +1863,8 @@
     {
       "id": "POD-AC-9",
       "locator": {
-        "byte_end": 22453,
-        "byte_start": 22344,
+        "byte_end": 22776,
+        "byte_start": 22667,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1885,8 +1885,8 @@
     {
       "id": "POD-AC-10",
       "locator": {
-        "byte_end": 22740,
-        "byte_start": 22459,
+        "byte_end": 23063,
+        "byte_start": 22782,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -1907,8 +1907,8 @@
     {
       "id": "POD-AC-11",
       "locator": {
-        "byte_end": 23011,
-        "byte_start": 22745,
+        "byte_end": 23334,
+        "byte_start": 23068,
         "cells": {},
         "heading_path": [
           "Telemetry pod requirements",
@@ -2064,8 +2064,8 @@
     {
       "id": "POD-TE-P1",
       "locator": {
-        "byte_end": 13241,
-        "byte_start": 13076,
+        "byte_end": 13564,
+        "byte_start": 13399,
         "heading_path": [
           "Telemetry pod requirements",
           "Owner-approved component-temperature exceptions"
@@ -2081,8 +2081,8 @@
     {
       "id": "POD-TE-P2",
       "locator": {
-        "byte_end": 13973,
-        "byte_start": 13564,
+        "byte_end": 14296,
+        "byte_start": 13887,
         "heading_path": [
           "Telemetry pod requirements",
           "Owner-approved component-temperature exceptions"
@@ -2098,8 +2098,8 @@
     {
       "id": "POD-TE-P3",
       "locator": {
-        "byte_end": 14574,
-        "byte_start": 13975,
+        "byte_end": 14897,
+        "byte_start": 14298,
         "heading_path": [
           "Telemetry pod requirements",
           "Owner-approved component-temperature exceptions"
@@ -2115,8 +2115,8 @@
     {
       "id": "POD-TE-P4",
       "locator": {
-        "byte_end": 15208,
-        "byte_start": 14576,
+        "byte_end": 15531,
+        "byte_start": 14899,
         "heading_path": [
           "Telemetry pod requirements",
           "Owner-approved component-temperature exceptions"
@@ -2132,8 +2132,8 @@
     {
       "id": "POD-PI-P1",
       "locator": {
-        "byte_end": 15533,
-        "byte_start": 15243,
+        "byte_end": 15856,
+        "byte_start": 15566,
         "heading_path": [
           "Telemetry pod requirements",
           "Power integrity and recovery"
@@ -2149,8 +2149,8 @@
     {
       "id": "POD-PI-P2",
       "locator": {
-        "byte_end": 17554,
-        "byte_start": 17104,
+        "byte_end": 17877,
+        "byte_start": 17427,
         "heading_path": [
           "Telemetry pod requirements",
           "Power integrity and recovery"
@@ -2167,8 +2167,8 @@
     {
       "id": "POD-PI-P3",
       "locator": {
-        "byte_end": 17744,
-        "byte_start": 17556,
+        "byte_end": 18067,
+        "byte_start": 17879,
         "heading_path": [
           "Telemetry pod requirements",
           "Power integrity and recovery"
@@ -2184,8 +2184,8 @@
     {
       "id": "POD-ED-P1",
       "locator": {
-        "byte_end": 17951,
-        "byte_start": 17799,
+        "byte_end": 18274,
+        "byte_start": 18122,
         "heading_path": [
           "Telemetry pod requirements",
           "Expanded-design decisions required before layout"
@@ -2201,8 +2201,8 @@
     {
       "id": "POD-ED-P2",
       "locator": {
-        "byte_end": 19567,
-        "byte_start": 19330,
+        "byte_end": 19890,
+        "byte_start": 19653,
         "heading_path": [
           "Telemetry pod requirements",
           "Expanded-design decisions required before layout"
@@ -2218,8 +2218,8 @@
     {
       "id": "POD-ED-P3",
       "locator": {
-        "byte_end": 19848,
-        "byte_start": 19569,
+        "byte_end": 20171,
+        "byte_start": 19892,
         "heading_path": [
           "Telemetry pod requirements",
           "Expanded-design decisions required before layout"
@@ -2235,8 +2235,8 @@
     {
       "id": "POD-AC-P1",
       "locator": {
-        "byte_end": 20060,
-        "byte_start": 19874,
+        "byte_end": 20383,
+        "byte_start": 20197,
         "heading_path": [
           "Telemetry pod requirements",
           "Acceptance criteria"
@@ -2252,8 +2252,8 @@
     {
       "id": "POD-AC-P2",
       "locator": {
-        "byte_end": 23261,
-        "byte_start": 23013,
+        "byte_end": 23584,
+        "byte_start": 23336,
         "heading_path": [
           "Telemetry pod requirements",
           "Acceptance criteria"
@@ -2268,7 +2268,7 @@
     }
   ],
   "schema": "agent-ee.requirement-map-receipt/1",
-  "scope_sha256": "534b9223bae6d48f7f770a23f01796e2ca81442ab0736340de5ee6b080db34f5",
-  "spec_record_sha256": "33234dd75666f9fd5722df813cd18990d3947461b6d68b5ac09fb1c6ee65c9de",
-  "spec_sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7"
+  "scope_sha256": "a7a4c9542c563ec04855f184b3070955bef526475643ddd03504390fc3f9defe",
+  "spec_record_sha256": "21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5",
+  "spec_sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
 }

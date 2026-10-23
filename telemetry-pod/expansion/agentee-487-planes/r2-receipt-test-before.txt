@@ -1,0 +1,36 @@
+PASS default evidence is retain.py DEST
+PASS default receipt dir is the historical j6b receipt
+PASS configure resolves evidence and receipt dir
+PASS write refuses an existing receipt (history kept)
+PASS parse: repeated --contract, authority, source commit
+PASS no hard-coded retained-evidence or receipt binding paths remain
+PASS receipt authority is the neutral parameter (no agent-521 text in the receipt body)
+PASS H3 rust: any actual binary + its JSON install receipt is accepted
+PASS H3 rust: wrong field (previous_binary_sha256 correct) is rejected
+PASS H3 rust: malformed non-JSON containing the digest is rejected
+PASS H3 rust: wrong schema is rejected
+PASS H3 rust: missing receipt file is rejected
+PASS H3 rust: binary without receipt (missing input) is rejected
+PASS H3 full check: good pair accepted
+PASS H3 full check: wrong-field receipt rejected
+PASS H3 full check: binary mismatch rejected
+PASS rust: no hard-coded 5261cb13 binary identity
+PASS H4: no implicit runtime (selection required)
+PASS H4: current runtime manifest selected and hash-bound
+PASS H4: malformed runtime manifest refused
+PASS H4: --source-commit that is not a fome-mc commit refused
+PASS H4: --source-commit validated against the run copy (empty run copy refused)
+PASS H4: historical receipt without explicit selection is refused
+PASS H4: receipt bound to an AGREEING manifest checks OK
+FAIL H4: contradictory selected agent_ee_commit vs unchanged receipt FAILS
+FAIL H4: contradictory selected router_commit vs unchanged receipt FAILS
+FAIL H4: contradictory selected source_sha256 vs unchanged receipt FAILS
+FAIL H4: contradictory selected extension_sha256 vs unchanged receipt FAILS
+PASS H4: contradictory selected config vs unchanged receipt FAILS
+FAIL H4: unknown selection kind rejected
+FAIL H4: legacy receipt checked with a manifest selection is refused (explicit historical only)
+Traceback (most recent call last):
+  File "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-487/telemetry-pod/expansion/production-capture/test_runtime_receipt_params.py", line 150, in <module>
+    case('H4: pre-launch command passes the selected runtime', pre[pre.index('--runtime') + 1] == '/pod/runtime-manifest.json')
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: '--runtime' is not in list

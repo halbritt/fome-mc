@@ -34,9 +34,12 @@ production scope is composed here from the compiled Rev-3 microSD scope in three
 
 The plan selects requirement_source telemetry-pod-rev3, whose pinned capture fome-mc keeps at
 requirements/compiled/requirements-map; it is added to the scope as baseline sources
-(requirements-source/). Its requirements and prose equal the microSD spec's, which only adds the
-POD-CD-STORAGE decision row (checked here); the microSD spec itself is not a pinned source and its
-refusal is kept. The plan of record carries the authorized bound (max_iterations 2, routing backend
+(requirements-source/). Against the pinned baseline the current spec may differ only by the accepted
+revision (requirement_revision.py, requirements/rev3-microsd/revision-delta.json; checked here): the added
+POD-CD-STORAGE decision row, and the POD-ME-1 cowl correction (owner relay a13a1ba8 v2: ~90 mm provisional
+available HEIGHT for the full stack, an owner estimate and not a measured cap), text sha256 d865a76d... ->
+09c89ce3... with id/kind/section/cells unchanged, REQUIREMENTS.md dd6555f7..., spec record 21288e01....
+Any other difference refuses; the microSD spec itself is not a pinned source and its refusal is kept. The plan of record carries the authorized bound (max_iterations 2, routing backend
 budget at most 900 s, placement timeout_s 900-1500 s; ROUTE.md R2): the driver's derived campaign wall
 clock is checked never to change the routing budget, timeout or iteration count. There is no
 driver-default plan and no compiled-only scope. No placement, routing, campaign or model runs here.
@@ -78,7 +81,7 @@ from pathlib import Path
 
 A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
 HERE = Path(__file__).resolve().parent
-STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261023'  # refreshed (agent-529 a57b675c)
+STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261023-491b'  # AGENTEE-491: 81 ids + C723587/C861219, one capture
 REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-a9dac2f-j5'
 # agent-ee main 7d5b0d4d, the AGENTEE-466 qualified runtime (contains the AGENTEE-454 read-once fix, the AGENTEE-450
 # router pin b5774496 and everything of the earlier 81e387ee pin): explicitly repinned by agent-449 for the j6b2
@@ -138,7 +141,7 @@ BLOCK_OBLIGATIONS = 'composition/block-obligations.json'
 HAND_FIT = HERE / 'assembly/hand-fit-policy.json'
 # agent-509 notes/509-j1-handfit-chain.txt: the four chain sources and their recorded SHA-256.
 HAND_FIT_CHAIN = {
-    'telemetry-pod/REQUIREMENTS.md': '0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7',
+    'telemetry-pod/REQUIREMENTS.md': 'dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208',
     'telemetry-pod/expansion/design-rules/constraints.json': 'e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4',
     'telemetry-pod/expansion/j1-historical-source/C596198.json': 'f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5',
     'telemetry-pod/expansion/complete-parts-manifest/parts.json': '759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff'}
@@ -701,8 +704,10 @@ def compose_requirement_source(base):
 
     The pod driver binds the campaign baseline to a pinned registry source (pod_driver.SOURCES); the microSD
     spec the scope is compiled from is not one. The pinned capture (fome-mc requirements/compiled) must equal
-    the registry pins, and its requirements and prose must equal the microSD spec's except the one added
-    POD-CD-STORAGE decision row; anything else refuses. The microSD spec's own refusal is kept verbatim."""
+    the registry pins (the historical telemetry-pod-rev3 source is kept unchanged). The microSD spec may differ from it
+    ONLY by the explicit accepted revision delta in requirement_revision.py (AGENTEE-488c): the adopted POD-CD-STORAGE
+    addition and the exact accepted POD-ME-1 height-estimate correction, bound to the accepted REQUIREMENTS.md and
+    spec-record identities. Anything else refuses. The microSD spec's own refusal is kept verbatim."""
     from agent_ee.spec_record import sha256 as record_digest, verify
     rule = pod_driver.SOURCES[REQUIREMENT_SOURCE]
     (planning / REQUIREMENTS_AT).mkdir()
@@ -724,9 +729,12 @@ def compose_requirement_source(base):
              'changed': sorted(i for i in set(a) & set(b) if a[i] != b[i]), 'prose_differ': prose,
              'acceptance_equal': sorted(i for i, r in a.items() if r['kind'] == 'acceptance') ==
                                  sorted(i for i, r in b.items() if r['kind'] == 'acceptance')}
-    if (delta['added'] != ['POD-CD-STORAGE'] or b['POD-CD-STORAGE']['kind'] == 'acceptance' or delta['removed']
-            or delta['changed'] or prose or not delta['acceptance_equal']):
-        raise SystemExit(f'the microSD spec differs from {REQUIREMENT_SOURCE} beyond the POD-CD-STORAGE row: {delta}')
+    _rs = importlib.util.spec_from_file_location('requirement_revision', Path(__file__).resolve().parent / 'requirement_revision.py')
+    revision = importlib.util.module_from_spec(_rs)
+    _rs.loader.exec_module(revision)
+    refused = revision.problems(pinned, current, sha(planning / 'requirements-map/spec.md'), sha(planning / 'requirements-map/spec-record.json'))
+    if refused:
+        raise SystemExit(f'the microSD spec differs from {REQUIREMENT_SOURCE} beyond the accepted revision delta: {refused}; {delta}')
     try:
         pod_driver.requirement_set(REQUIREMENT_SOURCE, current, record_digest(current_raw), base)
         microsd = {'status': 'accepted'}
@@ -739,9 +747,11 @@ def compose_requirement_source(base):
         f'Composed by production-capture/pipeline.py: the plan selects requirement_source {REQUIREMENT_SOURCE}, the '
         f'pinned Revision 3 capture ({spec_rel} sha256 {rule["spec_sha256"]}, {record_rel} sha256 '
         f'{rule["record_sha256"]}). The scope is compiled from the microSD spec (requirements-map/spec.md sha256 '
-        f'{sha(planning / "requirements-map/spec.md")}), which equals it in every requirement and prose entry and '
-        'adds only the POD-CD-STORAGE decision row; the microSD spec is not a pinned source. Carrying every '
-        'criterion is not acceptance.']
+        f'{sha(planning / "requirements-map/spec.md")}), which differs from it ONLY by the explicit accepted revision '
+        'delta (requirement_revision.py): the adopted POD-CD-STORAGE decision row and the accepted POD-ME-1 height-'
+        'ESTIMATE correction (owner-relayed a13a1ba8@2, accepted AGENTEE-486 / 27c51f73; not a measured 90 mm cap). '
+        'The current POD-ME-1 text is the governing mechanical obligation; the same ID transfers no earlier acceptance. '
+        'The microSD spec is not a pinned source. Carrying every criterion is not acceptance.']
     return composed, {'source': REQUIREMENT_SOURCE, 'spec': {'path': spec_rel, 'sha256': rule['spec_sha256']},
                       'record': {'path': record_rel, 'sha256': rule['record_sha256']},
                       'captured_from': PINNED_SPEC.relative_to(ROOT).as_posix(),

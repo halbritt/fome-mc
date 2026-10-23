@@ -1,0 +1,144 @@
+{
+ "spec_stage": "routing",
+ "spec_step": "add-planes",
+ "plan_sha256": "fe93b046081bfb2b1711b1cf993aad62634008ceb8a4ecca04ad85cd57549e41",
+ "plan": {
+  "schema": "agent-ee.plane-plan/1",
+  "zones": [
+   {
+    "net": "/GND",
+    "layer": "In1.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "always"
+   },
+   {
+    "net": "/+3V3",
+    "layer": "In2.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "never"
+   }
+  ]
+ },
+ "r5-placed": {
+  "input_board_sha256": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+  "zones_before": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "exit": 0,
+  "adopted": true,
+  "output_board_sha256": "0b011bd15bbb0c431369ffa595dafc57773e39d4bebd7be5119fead7f3a62b61",
+  "zones_after": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   },
+   {
+    "rule_area": false,
+    "net": "/GND",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "agent-ee-plane/bcd9d1aa-f203-5a42-9fc6-369071ca6ee5"
+   },
+   {
+    "rule_area": false,
+    "net": "/+3V3",
+    "layers": [
+     "In2.Cu"
+    ],
+    "name": "agent-ee-plane/cad61cc2-fbd3-535f-bc90-68c2453a64c1"
+   }
+  ],
+  "receipt_sha256": "5d2e508b85bf8a7a5c055e9e022151478753d7fc42281a65c654e905013b5d8f"
+ },
+ "emitted-unplaced": {
+  "input_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "zones_before": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "exit": 1,
+  "adopted": "ValueError: stage step add-planes failed; no output adopted or substituted",
+  "output_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "zones_after": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "receipt_sha256": "a1aeb8aea06aa406a7c29b5a3516aab121bc31e50fca20b6c7215402537d8f13"
+ }
+}

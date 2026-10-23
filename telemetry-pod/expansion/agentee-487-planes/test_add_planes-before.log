@@ -1,0 +1,27 @@
+FE
+======================================================================
+ERROR: test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never (tests.test_add_planes.AddPlanesTests.test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never) (policy='never')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/agent-ee/tests/test_add_planes.py", line 157, in test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never
+    self.assertEqual(report['deferred_connectivity'], [])
+                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'deferred_connectivity'
+
+======================================================================
+FAIL: test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never (tests.test_add_planes.AddPlanesTests.test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never) (policy='always')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/agent-ee/tests/test_add_planes.py", line 151, in test_wholly_unconnected_zone_defers_connectivity_under_always_and_preserves_never
+    self.assert_ok(report)
+  File "/opt/agent-ee/tests/test_add_planes.py", line 72, in assert_ok
+    self.assertEqual(report['execution'],'ok',report)
+AssertionError: 'failed' != 'ok'
+- failed
++ ok
+ : {'schema': 'agent-ee.add-planes/1', 'execution': 'failed', 'outcome': 'unknown', 'plan_sha256': '1adba03abacd9661a451c1a1e79ae2d16be6afe996c38167c760464004e2a816', 'board_before': '5bc90caf16ede2a853aeefa44f87bf0e577633069ec00ed27f53179cb2eda805', 'planned_zone_ids': ['a67e776f-879a-58a7-a72c-68f88e7edf15'], 'findings': [{'code': 'plane_production_refused', 'message': 'native DRC found an error involving planned zones: a67e776f-879a-58a7-a72c-68f88e7edf15'}], 'pcbnew_version': '10.0.7', 'zones': [{'fill_polygons': 1, 'filled_area_mm2': 265.989897070304, 'layer': 'In1.Cu', 'net': 'GND', 'uuid': 'a67e776f-879a-58a7-a72c-68f88e7edf15'}], 'drc': {'violations': 4, 'planned_zone_errors': [{'description': 'Isolated copper fill', 'items': [{'description': "Zone 'agent-ee-plane/a67e776f-879a-58a7-a72c-68f88e7edf15' [GND] on In1.Cu, priority 0", 'pos': {'x': 35.0, 'y': 11.0}, 'uuid': 'a67e776f-879a-58a7-a72c-68f88e7edf15'}], 'severity': 'warning', 'type': 'isolated_copper'}], 'classified_findings': [{'description': "The current configuration does not include the footprint library 'Owned'", 'items': [{'description': 'Footprint J2', 'pos': {'x': 20.0, 'y': 40.0}, 'uuid': '13b167d9-b5c7-43b9-aff0-b602a919dcb0'}], 'severity': 'warning', 'type': 'lib_footprint_issues', 'constraint_provenance': {'class': 'default', 'citation': None, 'reason': 'No unambiguous captured source for the native limit', 'enforcement': 'advisory'}}, {'description': "The current configuration does not include the footprint library 'Owned'", 'items': [{'description': 'Footprint J1', 'pos': {'x': 20.0, 'y': 20.0}, 'uuid': '2d7ce980-9dad-4f14-b306-9cd6dd59e501'}], 'severity': 'warning', 'type': 'lib_footprint_issues', 'constraint_provenance': {'class': 'default', 'citation': None, 'reason': 'No unambiguous captured source for the native limit', 'enforcement': 'advisory'}}, {'description': "The current configuration does not include the footprint library 'Owned'", 'items': [{'description': 'Footprint J3', 'pos': {'x': 40.0, 'y': 40.0}, 'uuid': '57b03bbd-80ff-4f7d-a25c-046cfe76ef78'}], 'severity': 'warning', 'type': 'lib_footprint_issues', 'constraint_provenance': {'class': 'default', 'citation': None, 'reason': 'No unambiguous captured source for the native limit', 'enforcement': 'advisory'}}, {'description': 'Isolated copper fill', 'items': [{'description': "Zone 'agent-ee-plane/a67e776f-879a-58a7-a72c-68f88e7edf15' [GND] on In1.Cu, priority 0", 'pos': {'x': 35.0, 'y': 11.0}, 'uuid': 'a67e776f-879a-58a7-a72c-68f88e7edf15'}], 'severity': 'warning', 'type': 'isolated_copper', 'constraint_provenance': {'class': 'default', 'citation': None, 'reason': 'No unambiguous captured source for the native limit', 'enforcement': 'advisory'}}], 'report_sha256': '8221d09ce4222ba82489332879e8c3206410948650b65ad8a81bcfa694094fd0'}}
+
+----------------------------------------------------------------------
+Ran 1 test in 2.904s
+
+FAILED (failures=1, errors=1)

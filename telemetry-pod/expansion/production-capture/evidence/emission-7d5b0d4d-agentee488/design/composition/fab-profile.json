@@ -1,0 +1,206 @@
+{
+ "as_of": "2026-10-18",
+ "finished_thickness_tolerance": {
+  "min_nominal_thickness_mm": 1,
+  "percent": 10,
+  "source": {
+   "as_of": "2026-10-18",
+   "page": 1,
+   "path": "sources/jlcpcb-thickness.txt",
+   "quote": "nominal >= 1.0 mm / finished thickness: +/-10 %",
+   "sha256": "fae784b6527c2b2e641fddb26a09b7d93d3ae126c130a84ba2351f9470cbb25e",
+   "source": "https://jlcpcb.com/capabilities/pcb-capabilities"
+  }
+ },
+ "limits": [
+  {
+   "id": "trace",
+   "key": "min_trace_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "trace / spacing: 0.09 / 0.09 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.09
+  },
+  {
+   "id": "clearance",
+   "key": "min_clearance_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "trace / spacing: 0.09 / 0.09 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.09
+  },
+  {
+   "id": "via-drill",
+   "key": "min_via_drill_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "via / drill / diameter: 0.15 / 0.25 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.15
+  },
+  {
+   "id": "via-pad",
+   "key": "min_via_pad_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "via / drill / diameter: 0.15 / 0.25 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.25
+  },
+  {
+   "id": "edge",
+   "key": "min_edge_clearance_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "routed / copper / edge: 0.2 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.2
+  },
+  {
+   "id": "holes",
+   "key": "min_hole_to_hole_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "pad / hole / hole: 0.45 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": 0.45
+  },
+  {
+   "id": "layers",
+   "key": "max_layers",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-stackup.txt",
+    "quote": "layers: 4",
+    "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/impedance"
+   },
+   "tier": "minimum",
+   "unit": "count",
+   "value": 4
+  },
+  {
+   "id": "size",
+   "key": "max_board_mm",
+   "requirement": "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "source": {
+    "as_of": "2026-10-18",
+    "page": 1,
+    "path": "sources/jlcpcb-capabilities.txt",
+    "quote": "FR4 / 4-layer / maximum: 663 / 593 mm",
+    "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+    "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities"
+   },
+   "tier": "minimum",
+   "unit": "mm",
+   "value": [
+    663,
+    593
+   ]
+  }
+ ],
+ "name": "jlc04161h-7628",
+ "schema": "agent-ee.fab-profile/2",
+ "stackup": {
+  "layer_count": 4,
+  "layer_thickness_tolerance_mm": 0,
+  "layers": [
+   {
+    "copper_weight_oz": 1,
+    "kind": "copper",
+    "name": "F.Cu",
+    "thickness_mm": 0.035
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 1",
+    "thickness_mm": 0.2104
+   },
+   {
+    "copper_weight_oz": 0.5,
+    "kind": "copper",
+    "name": "In1.Cu",
+    "thickness_mm": 0.0152
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 2",
+    "thickness_mm": 1.065
+   },
+   {
+    "copper_weight_oz": 0.5,
+    "kind": "copper",
+    "name": "In2.Cu",
+    "thickness_mm": 0.0152
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 3",
+    "thickness_mm": 0.2104
+   },
+   {
+    "copper_weight_oz": 1,
+    "kind": "copper",
+    "name": "B.Cu",
+    "thickness_mm": 0.035
+   }
+  ],
+  "name": "jlc04161h-7628",
+  "nominal_thickness_mm": 1.6,
+  "source": {
+   "as_of": "2026-10-18",
+   "page": 1,
+   "path": "sources/jlcpcb-stackup.txt",
+   "quote": "layers: 4\nnominal: 1.6 mm\nF.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+   "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+   "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+  },
+  "thickness_mm": 1.5862
+ }
+}

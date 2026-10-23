@@ -1,0 +1,47 @@
+diff --git a/src/agent_ee/add_planes.py b/src/agent_ee/add_planes.py
+index 012091ca..0883c421 100644
+--- a/src/agent_ee/add_planes.py
++++ b/src/agent_ee/add_planes.py
+@@ -170,6 +170,18 @@ def _planned_zone_errors(checks, planned, always_ids=(), sources=None):
+     return errors
+ 
+ 
++def wholly_unconnected(zone_errors, zones, always_ids):
++    """Planned 'always' zones whose isolated_copper findings cover every filled polygon (pre-routing, no connection)."""
++    counts = {}
++    for violation in zone_errors:
++        if violation['type'] == 'isolated_copper':
++            for item in violation['items']:
++                if item['uuid'] in always_ids:
++                    counts[item['uuid']] = counts.get(item['uuid'], 0) + 1
++    polygons = {z.get('uuid'): z.get('fill_polygons') for z in zones}
++    return {uid for uid, n in counts.items() if isinstance(polygons.get(uid), int) and polygons[uid] > 0 and n == polygons[uid]}
++
++
+ def generate(candidate, board, plan_path, out):
+     candidate, out = Path(candidate).resolve(), Path(out).absolute()
+     for path in (board, plan_path):
+@@ -203,6 +215,13 @@ def generate(candidate, board, plan_path, out):
+         sources = finding_sources(verified/board, checks['violations'])
+         require_evaluated_limits(checks, sources)
+         zone_errors = _planned_zone_errors(checks, planned, always_ids, sources)
++        # AGENTEE-487: before routing an inner-layer zone can have no connection yet. A planned 'always' zone whose
++        # EVERY filled polygon is reported isolated is wholly unconnected: its definition is kept with the final
++        # 'always' policy and its connectivity becomes an explicit post-routing obligation, not a refusal. Partial
++        # isolation (some fill connected) and every other planned-zone error still refuse.
++        deferred = wholly_unconnected(zone_errors, facts['zones'], always_ids)
++        zone_errors = [v for v in zone_errors if not (v['type'] == 'isolated_copper' and
++                                                      {i['uuid'] for i in v['items']} & deferred)]
+         classified = [classify_finding(dict(v), sources) for v in checks['violations']]
+         write_json(out/'drc/constraints.json', {'sources': sources, 'violations': classified})
+         report.update(pcbnew_version=facts['pcbnew_version'], zones=facts['zones'],
+@@ -219,6 +238,9 @@ def generate(candidate, board, plan_path, out):
+             raise ValueError('captured plane inputs changed during production')
+         (out/'board.kicad_pcb').write_bytes(proposed.encode('utf-8'))
+         report.update(execution='ok', outcome='info', board_after=digest(out/'board.kicad_pcb'),
++                      deferred_connectivity=[dict(zone=uid, island_removal='always',
++                                                  obligation='connected fill under island_removal always after routing')
++                                             for uid in sorted(deferred)],
+                       limitation='Plane production is not electrical acceptance; full post-routing DRC and pour integrity remain required.')
+     except (OSError, ValueError) as exc:
+         report['findings'].append(dict(code='plane_production_refused', message=str(exc)))

@@ -1,0 +1,26 @@
+(version 1)
+(rule "agent_ee_netclass_RF_50"
+  (condition "A.NetClass == 'RF_50' || A.NetName == '/POD_GNSS_RF'")
+  (constraint track_width (min 0.293mm) (opt 0.293mm) (max 0.293mm)))
+(rule "agent_ee_RF_50_cpw_gap"
+  (condition "(A.NetClass == 'RF_50' || A.NetName == '/POD_GNSS_RF') && B.NetName != A.NetName")
+  (layer "F.Cu")
+  (constraint clearance (min 0.2032mm)))
+(rule "agent_ee_RF_50_launch_transition_REVIEW"
+  (condition "(A.NetClass == 'RF_50' || A.NetName == '/POD_GNSS_RF') && (A.intersectsCourtyard('U3') || A.intersectsCourtyard('J2'))")
+  (constraint track_width (min 0.293mm) (opt 0.293mm) (max 0.293mm)))
+(rule "fine-pitch intra-footprint pad clearance (D-PCB-1)"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U2') && B.memberOfFootprint('U2')")
+  (constraint clearance (min 0.15mm)))
+(rule "supervisor intra-footprint pad clearance U16 (D-PCB-1)"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U16') && B.memberOfFootprint('U16')")
+  (constraint clearance (min 0.15mm)))
+(rule "supervisor intra-footprint pad clearance U17 (D-PCB-1)"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U17') && B.memberOfFootprint('U17')")
+  (constraint clearance (min 0.15mm)))
+(rule "supervisor intra-footprint pad clearance U18 (D-PCB-1)"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U18') && B.memberOfFootprint('U18')")
+  (constraint clearance (min 0.15mm)))
+(rule "supervisor intra-footprint pad clearance U19 (D-PCB-1)"
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U19') && B.memberOfFootprint('U19')")
+  (constraint clearance (min 0.15mm)))

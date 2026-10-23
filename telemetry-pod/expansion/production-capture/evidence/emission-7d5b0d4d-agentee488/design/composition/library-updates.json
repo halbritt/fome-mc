@@ -1,0 +1,73 @@
+{
+ "decision_source": {
+  "path": "telemetry-pod/expansion/design-rules/constraints.json",
+  "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+ },
+ "decisions": [
+  "D-PCB-1 (thermal-via drills)",
+  "D-PCB-13 v2 (J3 card-lane courtyard)"
+ ],
+ "model_bindings": [
+  {
+   "after": {
+    "derivation": "inserted model node only",
+    "sha256": "04fd063c146fbcfa6f60482253bb34b2bf1c39215b6158dd5f099bc89a1671bf"
+   },
+   "before": {
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+    "sha256": "0864b907d97061cd5b98c0f71f1d1b94959be293a4597c2bd9a3f065e86083c6"
+   },
+   "inserted": "\t(model \"${KIPRJMOD}/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step\"\n\t\t(offset\n\t\t\t(xyz 0 0 0)\n\t\t)\n\t\t(scale\n\t\t\t(xyz 1 1 1)\n\t\t)\n\t\t(rotate\n\t\t\t(xyz 0 0 0)\n\t\t)\n\t)\n",
+   "member": "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+   "reference": "U3"
+  }
+ ],
+ "model_bindings_source": "FOMEMC-34 (composition/project-models.json)",
+ "schema": "pod-capture.library-updates/1",
+ "updates": [
+  {
+   "after": {
+    "path": "telemetry-pod/expansion/design-rules/footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod",
+    "sha256": "bf1f94e2549eb6fd9ed6e55848705c04155ecbfc077dfa8c7a0efc8e53f5799d"
+   },
+   "before": {
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod",
+    "sha256": "cc0efdbdb9b21e7cc31a577ea45e753c8985b1c67cf1f58d39e352018f0cb938"
+   },
+   "member": "footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod"
+  },
+  {
+   "after": {
+    "path": "telemetry-pod/expansion/design-rules/footprints/PodPower.pretty/DDA0008B.kicad_mod",
+    "sha256": "9fe57c5eca79efe3e3254de711437d79c867d6b58c2b6bfd45e579b5c6d1139e"
+   },
+   "before": {
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/PodPower.pretty/DDA0008B.kicad_mod",
+    "sha256": "e20ab57f09ea33ccdb57bbef22f3e39348be0a363d76159974d2eda5aad68f63"
+   },
+   "member": "footprints/PodPower.pretty/DDA0008B.kicad_mod"
+  },
+  {
+   "after": {
+    "path": "telemetry-pod/expansion/design-rules/footprints/PodPower.pretty/DDA0008J_C02.kicad_mod",
+    "sha256": "7ddabcacf3c8bd3bbc5b98f6e6f07d490aeca160fb6ab169c01d1f19a466c725"
+   },
+   "before": {
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/PodPower.pretty/DDA0008J_C02.kicad_mod",
+    "sha256": "352df7b3997da948305fb1fc4236298323b5e4b012a383244a6d9487fed20453"
+   },
+   "member": "footprints/PodPower.pretty/DDA0008J_C02.kicad_mod"
+  },
+  {
+   "after": {
+    "path": "telemetry-pod/expansion/design-rules/footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+    "sha256": "75e9786783af343c57cea4e5d097206481aad6949a08d3b086fd60e58f92ca49"
+   },
+   "before": {
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+    "sha256": "ac6a7a523fb3a978b7cc02e3322822bca2a1671cdfe31d438223a51224f587ef"
+   },
+   "member": "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod"
+  }
+ ]
+}

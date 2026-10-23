@@ -197,3 +197,27 @@ the rule name and width; this section records the selector.
 
 The binding enforces a minimum width. It does **not** prove 50-ohm impedance, which needs the fabricator stackup
 and a reference-plane check (AGENTEE-480).
+
+## RF rule: AGENTEE-186 adopted CAD nominal (agent-529 4cf9d43d v2)
+
+`telemetry-pod.kicad_dru` keeps the 484r exact-net selector `A.NetName == '/POD_GNSS_RF'`.
+- **Width:** min = opt = max = **0.293 mm**, replacing the 0.335 mm minimum. This is the CAD nominal lower/drawn width: the exact inverse W1 0.29286522460874 mm (W2 0.28016522460874 mm is taper metadata only), AGENT-selected and CONDITIONAL.
+- **`agent_ee_RF_50_cpw_gap`:** clearance min **0.2032 mm** from other nets on F.Cu. This is the coplanar gap lower bound on both flanks. KiCad has no maximum-clearance constraint, so a gap above nominal is not a DRC finding; the measured two-flank gap belongs to the agent-ee `rf_geometry` cpw check.
+- **`agent_ee_RF_50_launch_transition_REVIEW`:** an explicit exception SCOPE for segments intersecting the U3 or J2 courtyard. Its values equal nominal until a reviewed relaxation exists. It is never a net-wide waiver.
+- **Basis:** Z 50.0087997251 ohm, eff Er 3.1696914377 at T1 0.04064 mm (JLC calculator 1.6 mil basis), H1 0.2104 mm, Er1 4.4, mask C1 1.2 / C2 0.6 mil, CEr 3.8, taper 0.5 mil (client config; the JLC guide's 0.7 mil is recorded as a difference, not merged). The guide is https://jlcpcb.com/help/article/user-guide-to-the-jlcpcb-impedance-calculator (529-read).
+  - The historical forward point is 47.394 ohm at 0.335 mm, T1 0.035 mm, with its own inputs. No width sensitivity is derived from the pair.
+- **Not claimed:** no tolerance band and no impedance verification.
+- **Unchanged:** calculator parameters stay distinct from the fab stackup; the board's layer thicknesses and its 1.6 mm thickness are unchanged.
+
+## Plane plan island policy (AGENTEE-487)
+
+The final policy is `island_removal: "always"` for both `/GND` (In1.Cu) and `/+3V3` (In2.Cu).
+
+Checkpoint `e780472` had changed `/+3V3` to `never`. agent-529 rejected that (76150ac4), and it is reverted here.
+
+The underlying defect was that the declared routing-turn `add-planes` producer refused a wholly unconnected `always` zone. Before routing, In2 `/+3V3` has no connection, because every `/+3V3` load is SMD. This is repaired in the producer:
+- **Change:** agent-ee `add_planes` (AGENTEE-487 branch) keeps such a zone's definition and its `always` policy, and reports it as `deferred_connectivity`.
+- **Obligation:** connected fill under `always` after routing.
+- **Still refused:** partial isolation, missing nets and unplanned zones.
+
+Evidence and the before/after regression are in `../agentee-487-planes/`.
