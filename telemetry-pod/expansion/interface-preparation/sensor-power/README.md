@@ -26,7 +26,7 @@ pins5/11 and its threshold/current/ramp components share an isolated RTN net;
 pin6 connects to system ground. FLT9 and SHDN4 are explicitly NC. Do not connect
 FLT directly to SENSOR_FAULT_N: a reverse wiring fault can move RTN negative.
 
-Each branch has a shared 1.05 Mohm / 68.1 kohm / 215 kohm ladder from input through
+Each branch has a shared 1.05 Mohm / 75 kohm / 208 kohm ladder (AGENTEE-491; was 68.1 kohm / 215 kohm) from input through
 UVLO and OVP to RTN, specified initially at 0.1%, 25 ppm/K. Each also has 1 uF
 50 V 0805 input and 100 nF 50 V output MLCC bypass to system ground and 10 nF 50 V C0G, 10%, ramp
 capacitance to RTN. Exact passive bindings remain open.
@@ -39,7 +39,7 @@ actual transient pin voltages remain explicit release checks.
 
 ## Independent bounds
 
-The review gives UVLO re-enable 5.342–6.009 V, disable 4.920–5.560 V, OVP cutoff
+SUPERSEDED (68.1 k / 215 k ladder): the review gave UVLO re-enable 5.342–6.009 V, disable 4.920–5.560 V, OVP cutoff
 7.058–7.889 V and re-enable 6.503–7.297 V. With the provisional PRE_6V3 range
 6.111–6.489 V, OVP recovery has only 13.9 mV margin. No added life drift is included.
 These values are preparation bounds, not a frozen tolerance budget. Exact rail
@@ -91,3 +91,31 @@ PYTHONPATH=/home/halbritt/git/agent-ee/src python3 verify.py
 This parses all captured libraries and footprints, verifies library hashes,
 reproduces the prepared files and runs the independent graph checker. It does
 not substitute for native KiCad emission or ERC.
+
+
+## AGENTEE-491 OVP ladder repair (agent-529 110afb4e v1 / 74db43f0 v1; agent-522 packet 58040048…)
+
+**Change:** R74/R78/R82 (middle) become 75 kOhm, YAGEO RT0603BRD0775KL (C723587). R75/R79/R83 (bottom) become 208 kOhm, RT0603BRD07208KL (C861219). R73/R77/R81 stay 1.05 MOhm, RT0805BRD071M05L. The footprints and nets are unchanged.
+- The TPS2662 >= 1 MOhm top rule and UVLO hysteresis are kept.
+- The 5 V +/-1% aux remains a separate OPEN item.
+
+**Post-stress screen, under agent-522's CONDITIONAL model (`calculations.json`, findings.md):**
+- rail 6.11746–6.55068 V;
+- UV re-enable 5.30367–6.05557 V; UV disable 4.88537–5.60206 V;
+- OV trip 7.23898–**8.21606 V**; OV recovery 6.67040–7.59843 V;
+- minimum settled OVP recovery margin +119.72 mV.
+
+The post-stress / typical-PFM model is a SCREEN, not guaranteed 9–16 V regulation.
+
+**AGENT-DERIVED, not owner-stated:** the repair raises the maximum static OV trip from 7.889 V to 8.216 V post-stress.
+- Any wheel or tire sensor must tolerate at least **8.3 V continuous** on its supply. This is a STATIC screen only.
+- A 5–8 V sensor is excluded.
+- OVP is not a clamp (see above), so this screen does NOT qualify transient survival. Transient amplitude, duration and protective response stay UNQUALIFIED, to be bounded against the selected sensor's published ratings before release.
+
+**Example only:** Izze IRTS-60-V3 is cited with 8.216 V inside its 5–10 V OPERATING range; its sheet publishes NO absolute-maximum supply rating. Its 120 mA harness figure is the sourced basis for the 150 mA pair allocation.
+- The Honeywell and Izze examples are ENGINEERING PROPOSALS. No sensor and no CAN2 protocol/node proposal is adopted.
+- The 650 mA / 210 mA / 1.487 A figures stay CONDITIONAL, tied to the example allocation.
+
+**Stock:** generation-day stock must be refreshed at generation, notably for the 208 k part (1,901 in stock at 2026-10-23T13:43Z, `production-capture/sources/assembly-stock-20261023-491`).
+
+**Not authorized here:** no new footprint, height or membership; no SHDN sequencing; no pre-fab gate.
