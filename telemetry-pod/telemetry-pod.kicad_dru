@@ -1,6 +1,6 @@
 (version 1)
 (rule "agent_ee_netclass_RF_50"
-  (condition "A.NetClass == 'RF_50'")
+  (condition "A.NetClass == 'RF_50' || A.NetName == '/POD_GNSS_RF'")
   (constraint track_width (min 0.335mm)))
 (rule "fine-pitch intra-footprint pad clearance (D-PCB-1)"
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('U2') && B.memberOfFootprint('U2')")

@@ -1,0 +1,38 @@
+=== build-out: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/build.py /work/export --out /work/cap
+build-out-exit=0
+=== build-check: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/build.py /work/export --check
+production capture reproduces byte for byte
+build-check-exit=0
+=== pipeline: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/pipeline.py /work/export /opt/kicad-route /work/fome/telemetry-pod/expansion/requirements/rev3-microsd/compiled /work/cap /work/pipe
+accepted  scope.envelope_obligation_coverage
+accepted  placement.scope_envelope_binding
+accepted  placement.scope_locality_binding
+accepted  binding_fill.configuration
+accepted  binding_fill.fill
+accepted  scaffold.scaffold production scope
+accepted  scaffold.write_envelope_content production scope
+accepted  scaffold.content_step
+accepted  schematic_stage.configuration
+accepted  add_planes.step
+accepted  producers.import_from_declared_mount
+accepted  placement.refuse_policy_sources
+accepted  placement.envelope_overhangs
+accepted  placement.policy_vs_subjects
+accepted  engine.placement_adapter.blocks_request (AGENTEE-439 G1)
+accepted  routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)
+accepted  pod_driver.validate_plan
+accepted  pod_driver.build(dry_run) production scope
+accepted  pod_driver.rating_provenance
+accepted  campaign.authorized_budget production scope
+accepted  emission.schematic_stage production (AGENTEE-445)
+accepted  models.candidate_resolution (FOMEMC-34)
+accepted  fab.copper_features JP1-JP5 (agent-509 ruling)
+accepted  j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)
+accepted  campaign.initial_candidate
+accepted  review.packet_obligations production scope
+accepted  scope.block_obligations production scope
+accepted  placement.block_candidates_repack
+pipeline-exit=0
+=== observe: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/runtime_receipt.py observe /work/pipe/prepared /work/observation.json /work/export
+observe-exit=0
+exit=0
