@@ -91,3 +91,60 @@ My AGENTEE-484 and 484r retention commits did not force-add files matching `*.xm
 | agent-ee `src/agent_ee/add_planes.py` | 35e4e7ce7b44f8dae22de940dd783da407b0b838f5d40551902d7dc5553ea126 |
 | agent-ee `tests/test_add_planes.py` | ddb9afbfdd3530ef1c116d3f8705f902a0b3bc23d3f111341a8da78da0709798 |
 | agent-ee `docs/add-planes.md` | af1f6bbb178c89ff39ec848e2386378d8ee8b7f0df2b0cb52bed1343ff71047a |
+
+## Review fixes R (Astra HIGH HOLD, H1 to H4), 2026-10-23T11:19Z to 11:28Z
+
+### H1 and H2: agent-ee `wt/agentee-487-planes` commit `259b3eecf27b9771286687db7c627e2f009fd0f1` (on top of 2c2d99f7, not merged)
+
+**Stable phase interface (for agent-522's post-routing consumer):**
+- **Producer call:** `add_planes.step(source_root, board=..., plan=..., phase='pre-routing')`. The declared argv adds `--phase pre-routing`. `add_planes.PRE_ROUTING == 'pre-routing'` is the ONLY accepted phase value; any other value raises ValueError. The CLI `--phase` choices are `('pre-routing',)`.
+- **Default:** `phase=None`, for any other caller and every post-routing use. It NEVER defers: a wholly isolated planned `always` zone refuses exactly as before.
+- **Report (`out/planes.json`, schema `agent-ee.add-planes/1`):**
+  - `phase`: `'pre-routing'` or `null`;
+  - `deferred_connectivity`: a list, always present, of `{zone: <planned zone uuid>, net: <exact native net>, layer: <layer name>, island_removal: 'always', obligation: 'connected fill under island_removal always after routing'}`. It is empty unless phase is pre-routing and the zone is proven wholly unconnected.
+- **Native evidence:** `out/native/islands.json`, per planned zone `{layer, polygons, islands: [bool per fill polygon], method}`.
+- **Not done here:** the post-routing consumer that discharges each entry (saved final zone identity, `always` policy, connected fill after routing and refill, and 480 In1 continuity) belongs to agent-522 (`agentee-487c`).
+
+**H2 contract.** Deferral requires both of these:
+- **Native per-polygon connectivity of the fresh fill** (fill child): a fill polygon is connected iff a same-net pad present on the zone layer, or a same-net via or track endpoint on that layer, lies inside that polygon's outline. EVERY polygon must be an island.
+- **One-to-one attribution:** the `isolated_copper` findings for the zone have distinct positions, and their count equals the saved polygon count.
+
+Duplicate attribution, a position-less item, or a missing native record **fails closed** (ValueError, so a refusal). Partial isolation is not deferred, and every other planned-zone error still refuses.
+
+**Evidence:**
+- `tests.test_add_planes` passes **21/21** in the CI image (native-admit + ae-ci-exec; `r-test_add_planes-after.log`). The new cases:
+  - phase-bound native deferral: always plus no phase refuses; always plus pre-routing defers with islands.json all true; never does not defer;
+  - `_phase_argv` declaration;
+  - no-phase and post-routing never defer;
+  - duplicate and position-less findings and a missing native record fail closed;
+  - partial isolation and a count mismatch are not deferred.
+- **Fails before / passes after** (`review_probe_h1h2.py` in the CI image):
+  - **2c2d99f7 producer:** `H1_NO_PHASE_ALWAYS_ISOLATED ok deferred [...]` and `H2_DUPLICATE_FINDINGS deferred` (both defects).
+  - **259b3eec:** `H1_NO_PHASE_ALWAYS_ISOLATED failed deferred []` and `H2_DUPLICATE_FINDINGS FAIL-CLOSED`.
+- **Integration for 449:** fome-mc `pipeline.py:897` must pass `phase='pre-routing'` once production is repinned to an agent-ee containing 259b3eec. Passing it to the current 7d5b0d4d pin would raise, so it is NOT changed here. No conditional fallback was added.
+
+### H3 and H4: fome-mc `runtime_receipt.py`
+
+- **H3:**
+  - `rust_receipt_problem()` parses the installation receipt as JSON, requires schema `agent-ee.placement-engine-install/1`, and compares `binary_sha256` with the recomputed binary digest. This is the agent-ee `placement_rust_runtime.py` contract.
+  - It is used in `write` (`rust_pair`) and in `check`.
+  - Missing inputs fail closed.
+- **H4:**
+  - The fixed identities are now `HISTORICAL_J6B`, reachable only by the explicit `--runtime historical-j6b`.
+  - A current run selects an immutable `pod-capture.runtime-manifest/1` file (`--runtime`); its path and sha256 are bound in the receipt as `runtime_selection`.
+  - No runtime is implicit. `check` re-selects the bound manifest and refuses if its hash differs. A historical receipt without a selection needs the explicit `historical-j6b`.
+  - `--source-commit` is required for `write` and VALIDATED: every production-capture and design-rules file in the run's `fome/` copy must equal that commit's blob.
+  - The current manifest `production-capture/runtime/agentee-484r2.json` is passed to `observe` by `production_steps.py`.
+- **Test:** `test_runtime_receipt_params.py` passes **24/24** (`r-receipt-test-after.txt`). New probes:
+  - H3: good pair accepted; wrong field (previous_binary_sha256 correct, binary_sha256 wrong) rejected; non-JSON containing the digest rejected; wrong schema rejected; missing receipt rejected; binary without receipt rejected; full `check()` with good, wrong-field and binary-mismatch pairs;
+  - H4: no implicit runtime; manifest selected and hash-bound; malformed manifest refused; a non-commit refused; a run copy differing from the source commit refused; historical receipt without selection refused, and with explicit selection OK.
+- **Before the fix,** the test stops at the missing contract attribute (`r-receipt-test-before.txt`). The reviewer's probe on 8204a29 also recorded `FULL_CHECK wrong_field ACCEPTED`.
+
+**agent-ee file hashes (259b3eec):**
+
+| File | sha256 |
+|---|---|
+| `add_planes.py` | c00ccfd202a23754ebccbec41bc2a20bd881c8097b07f4f12c820e6412485778 |
+| `add_planes_probe.py` | 07c4755d9fae6905356d2f68ce3cf90a06977add297f082533aa0a5bf1f7a8a3 |
+| `tests/test_add_planes.py` | a5f2839acbd59df08e553c5889c3416abe2e7ea5b67a984d137bab9a08fb2095 |
+| `docs/add-planes.md` | 6bf8b18bbec2091250a9465e00cd2bb13a6a829c4e4d0ebbec6353cd142d63f9 |
