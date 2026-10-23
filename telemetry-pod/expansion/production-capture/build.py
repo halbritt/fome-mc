@@ -59,7 +59,9 @@ ENVELOPE = X / 'placement-inputs/envelope.json'
 # production agent-ee pin carries the consumer (agent-ee 1177cbc2+); 7d5b0d4d does not know the field.
 MECHANICAL = X / 'agentee-489-source'
 MECHANICAL_SOURCES = {'mechanics/agentee-490-bound-reservations.json': X / 'agentee-490-mechanical-inputs/bound-reservations.json',
-                      'mechanics/original-board.kicad_pcb': ROOT / 'telemetry-pod/telemetry-pod.kicad_pcb'}
+                      # AGENTEE-485 correction: the board the reservations were measured on (fa7c2ca6, bound in
+                      # reservations.json), from its retained emission; the installed project is now the 485 emission.
+                      'mechanics/original-board.kicad_pcb': HERE / 'evidence/emission-7d5b0d4d-agentee491/design/project/telemetry-pod.kicad_pcb'}
 # AGENTEE-485 G3: the 489 per-dielectric material declaration (agent-529 1f09c567@1), opt-in. It enters the sourced
 # envelope stackup (agent-ee.envelope/2 dielectric_type/epsilon_r/loss_tangent); thickness, copper and every layer
 # source stay byte-identical, and a declaration that names another layer or thickness is refused.
