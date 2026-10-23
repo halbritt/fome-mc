@@ -2,7 +2,7 @@
 1. blocks.derive on the EMITTED board + its native netlist WITHOUT an allocation (what the flat emitted schematic
    yields) and WITH fome-mc blocks/allocation.json (434a9984...): block count, residual count and reasons.
 2. For each board (emitted input, R5 placed, ROUTE-3 routed), final-coordinate per-block report from the captured
-   probe: member count, side split, courtyard-centre spread (bbox diagonal, mm), whether the block is split across
+   probe: member count, side split, footprint-origin spread (bounding-box diagonal of footprint origins, mm; not courtyard centres, not internal connection length), whether the block is split across
    sides, and the board-level side counts.
 Usage: a473_repro.py NETLIST ALLOCATION OUT_JSON BOARD_LABEL=PATH ...
 """
