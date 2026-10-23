@@ -1,0 +1,360 @@
+[
+  {
+    "id": "U27.12-C118-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "12",
+          "reference": "U27"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C118"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "5",
+          "reference": "U27"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C118"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 25.338, \"supply_leg_mm\": 21.892, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 25.338, \"supply_leg_mm\": 21.892, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"12\", \"pin_function\": \"AVDD_12\", \"ref\": \"U27\"}, \"id\": \"U27.12-C118-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C118\"}}",
+    "source": {
+      "locator": "/relationships/U27.12-C118-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U27.12-C118-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U27.13-C119-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "13",
+          "reference": "U27"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C119"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "4",
+          "reference": "U27"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C119"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 38.084, \"supply_leg_mm\": 31.942, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 38.084, \"supply_leg_mm\": 31.942, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"13\", \"pin_function\": \"DVDD_13\", \"ref\": \"U27\"}, \"id\": \"U27.13-C119-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C119\"}}",
+    "source": {
+      "locator": "/relationships/U27.13-C119-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U27.13-C119-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U28.12-C120-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "12",
+          "reference": "U28"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C120"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "5",
+          "reference": "U28"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C120"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 36.21, \"supply_leg_mm\": 40.034, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 36.21, \"supply_leg_mm\": 40.034, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"12\", \"pin_function\": \"AVDD_12\", \"ref\": \"U28\"}, \"id\": \"U28.12-C120-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C120\"}}",
+    "source": {
+      "locator": "/relationships/U28.12-C120-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U28.12-C120-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U28.13-C121-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "13",
+          "reference": "U28"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C121"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "4",
+          "reference": "U28"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C121"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 38.053, \"supply_leg_mm\": 41.285, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 38.053, \"supply_leg_mm\": 41.285, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"13\", \"pin_function\": \"DVDD_13\", \"ref\": \"U28\"}, \"id\": \"U28.13-C121-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C121\"}}",
+    "source": {
+      "locator": "/relationships/U28.13-C121-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U28.13-C121-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U29.12-C122-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "12",
+          "reference": "U29"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C122"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "5",
+          "reference": "U29"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C122"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 41.741, \"supply_leg_mm\": 38.203, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 41.741, \"supply_leg_mm\": 38.203, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"12\", \"pin_function\": \"AVDD_12\", \"ref\": \"U29\"}, \"id\": \"U29.12-C122-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C122\"}}",
+    "source": {
+      "locator": "/relationships/U29.12-C122-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U29.12-C122-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U29.13-C123-hf-decoupler",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/+3V3",
+          "pad": "13",
+          "reference": "U29"
+        },
+        "to": {
+          "net": "/+3V3",
+          "pad": "1",
+          "reference": "C123"
+        }
+      },
+      {
+        "from": {
+          "net": "/GND",
+          "pad": "4",
+          "reference": "U29"
+        },
+        "to": {
+          "net": "/GND",
+          "pad": "2",
+          "reference": "C123"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 40.126, \"supply_leg_mm\": 36.273, \"verdict\": \"exceeds\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": 40.126, \"supply_leg_mm\": 36.273, \"verdict\": \"exceeds\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": 5.0, \"same_face_required\": true, \"supply_leg_max_mm\": 3.0}, \"device\": {\"net\": \"/+3V3\", \"pin\": \"13\", \"pin_function\": \"DVDD_13\", \"ref\": \"U29\"}, \"id\": \"U29.13-C123-hf-decoupler\", \"kind\": \"hf-decoupler\", \"membership\": {\"device\": \"diagnostic\", \"support\": \"diagnostic\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 37, \"requirement\": \"qualitative\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins\"}, {\"class\": \"MFR\", \"page\": 38, \"requirement\": \"same-face\", \"sha256\": \"32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7\", \"source\": \"telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf\", \"text\": \"Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device\"}, {\"class\": \"TOPOLOGY\", \"text\": \"single-pin HF decoupler\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/+3V3\", \"ref\": \"C123\"}}",
+    "source": {
+      "locator": "/relationships/U29.13-C123-hf-decoupler",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U29.13-C123-hf-decoupler\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U20.5-Y1-crystal",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/TIRE_CAN_OSC2",
+          "pad": "5",
+          "reference": "U20"
+        },
+        "to": {
+          "net": "/TIRE_CAN_OSC2",
+          "pad": "3",
+          "reference": "Y1"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": null, \"supply_leg_mm\": 5.798, \"verdict\": \"within\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": null, \"supply_leg_mm\": 5.798, \"verdict\": \"within\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": null, \"same_face_required\": true, \"supply_leg_max_mm\": 6.0}, \"device\": {\"net\": \"/TIRE_CAN_OSC2\", \"pin\": \"5\", \"pin_function\": \"OSC2_5\", \"ref\": \"U20\"}, \"id\": \"U20.5-Y1-crystal\", \"kind\": \"crystal\", \"membership\": {\"device\": \"tire-can\", \"support\": \"tire-can\"}, \"provenance\": [{\"class\": \"TOPOLOGY\", \"text\": \"oscillator loop kept on one face, no vias\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/TIRE_CAN_OSC2\", \"ref\": \"Y1\"}}",
+    "source": {
+      "locator": "/relationships/U20.5-Y1-crystal",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U20.5-Y1-crystal\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U20.6-Y1-crystal",
+    "kind": "no-via",
+    "pairs": [
+      {
+        "from": {
+          "net": "/TIRE_CAN_OSC1",
+          "pad": "6",
+          "reference": "U20"
+        },
+        "to": {
+          "net": "/TIRE_CAN_OSC1",
+          "pad": "1",
+          "reference": "Y1"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": null, \"supply_leg_mm\": 4.136, \"verdict\": \"within\"}, \"route3\": {\"faces\": [\"F\", \"F\"], \"return_leg_mm\": null, \"supply_leg_mm\": 4.136, \"verdict\": \"within\"}}, \"bound\": {\"metric\": \"pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)\", \"return_leg_max_mm\": null, \"same_face_required\": true, \"supply_leg_max_mm\": 6.0}, \"device\": {\"net\": \"/TIRE_CAN_OSC1\", \"pin\": \"6\", \"pin_function\": \"OSC1_6\", \"ref\": \"U20\"}, \"id\": \"U20.6-Y1-crystal\", \"kind\": \"crystal\", \"membership\": {\"device\": \"tire-can\", \"support\": \"tire-can\"}, \"provenance\": [{\"class\": \"TOPOLOGY\", \"text\": \"oscillator loop kept on one face, no vias\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/TIRE_CAN_OSC1\", \"ref\": \"Y1\"}}",
+    "source": {
+      "locator": "/relationships/U20.6-Y1-crystal",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U20.6-Y1-crystal\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U3.11-L3-rf-line",
+    "kind": "controlled-impedance",
+    "pairs": [
+      {
+        "from": {
+          "net": "/POD_GNSS_RF",
+          "pad": "11",
+          "reference": "U3"
+        },
+        "to": {
+          "net": "/POD_GNSS_RF",
+          "pad": "2",
+          "reference": "L3"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"supply_leg_mm\": 5.369, \"verdict\": \"n/a\"}, \"route3\": {\"supply_leg_mm\": 5.369, \"verdict\": \"n/a\"}}, \"bound\": {\"reason\": \"474 C15: the RF path /POD_GNSS_RF (U3.11 - L3/D3 - J2.1) and its F-over-In1 reference corridor are not reconciled with the actual U3/J2 locations; no pin bound can be set before that reconciliation\", \"status\": \"UNRESOLVED\"}, \"device\": {\"net\": \"/POD_GNSS_RF\", \"pin\": \"11\", \"pin_function\": \"RF_IN_11\", \"ref\": \"U3\"}, \"id\": \"U3.11-L3-rf-line\", \"kind\": \"rf-line\", \"membership\": {\"device\": \"fixed:U3\", \"support\": \"gnss-rf-feed\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 80, \"requirement\": \"qualitative\", \"sha256\": \"fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b\", \"source\": \"telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf\", \"text\": \"RF input co-planar waveguide referenced to layer 2, matched to 50 ohm\"}, {\"class\": \"TOPOLOGY\", \"text\": \"\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/POD_GNSS_RF\", \"ref\": \"L3\"}}",
+    "source": {
+      "locator": "/relationships/U3.11-L3-rf-line",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U3.11-L3-rf-line\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "U3.11-D3-rf-line",
+    "kind": "controlled-impedance",
+    "pairs": [
+      {
+        "from": {
+          "net": "/POD_GNSS_RF",
+          "pad": "11",
+          "reference": "U3"
+        },
+        "to": {
+          "net": "/POD_GNSS_RF",
+          "pad": "1",
+          "reference": "D3"
+        }
+      }
+    ],
+    "requirement": "{\"baseline\": {\"r5\": {\"supply_leg_mm\": 2.003, \"verdict\": \"n/a\"}, \"route3\": {\"supply_leg_mm\": 2.003, \"verdict\": \"n/a\"}}, \"bound\": {\"reason\": \"474 C15: the RF path /POD_GNSS_RF (U3.11 - L3/D3 - J2.1) and its F-over-In1 reference corridor are not reconciled with the actual U3/J2 locations; no pin bound can be set before that reconciliation\", \"status\": \"UNRESOLVED\"}, \"device\": {\"net\": \"/POD_GNSS_RF\", \"pin\": \"11\", \"pin_function\": \"RF_IN_11\", \"ref\": \"U3\"}, \"id\": \"U3.11-D3-rf-line\", \"kind\": \"rf-line\", \"membership\": {\"device\": \"fixed:U3\", \"support\": \"gnss-rf-feed\"}, \"provenance\": [{\"class\": \"MFR\", \"page\": 80, \"requirement\": \"qualitative\", \"sha256\": \"fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b\", \"source\": \"telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf\", \"text\": \"RF input co-planar waveguide referenced to layer 2, matched to 50 ohm\"}, {\"class\": \"TOPOLOGY\", \"text\": \"\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": {\"pin_net\": \"/POD_GNSS_RF\", \"ref\": \"D3\"}}",
+    "source": {
+      "locator": "/relationships/U3.11-D3-rf-line",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"U3.11-D3-rf-line\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  },
+  {
+    "id": "J2.1-none-rf-line",
+    "kind": "controlled-impedance",
+    "pairs": [
+      {
+        "from": {
+          "net": "/POD_GNSS_RF",
+          "pad": "1",
+          "reference": "J2"
+        },
+        "to": {
+          "net": "/POD_GNSS_RF",
+          "pad": "11",
+          "reference": "U3"
+        }
+      }
+    ],
+    "requirement": "{\"bound\": {\"reason\": \"474 C15 (as above); J2 to U3.11 RF length bound UNKNOWN\", \"status\": \"UNRESOLVED\"}, \"device\": {\"net\": \"/POD_GNSS_RF\", \"pin\": \"1\", \"pin_function\": \"In_1\", \"ref\": \"J2\"}, \"id\": \"J2.1-none-rf-line\", \"kind\": \"rf-line\", \"membership\": {\"device\": \"fixed:J2\", \"support\": null}, \"provenance\": [{\"class\": \"MFR\", \"page\": 80, \"requirement\": \"qualitative\", \"sha256\": \"fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b\", \"source\": \"telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf\", \"text\": \"RF input co-planar waveguide referenced to layer 2, matched to 50 ohm\"}, {\"class\": \"TOPOLOGY\", \"text\": \"\"}, {\"class\": \"ENGINEERING-JUDGEMENT\", \"text\": \"ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound\"}], \"support\": null}",
+    "source": {
+      "locator": "/relationships/J2.1-none-rf-line",
+      "path": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+      "quote": "\"id\": \"J2.1-none-rf-line\"",
+      "sha256": "1af2bb38622aa855900892286a6e8cc528c8a3583424313f667e25b1fa09c35f"
+    },
+    "stage": "routing"
+  }
+]

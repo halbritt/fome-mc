@@ -1,87 +1,79 @@
 {
-  "verdict": "SUPPORTED INCREMENT IMPLEMENTED; full acceptance UNRESOLVED and consumer refuses pass by required unknowns",
-  "consumer_head": "8e3b382b0f48525742cfd520e3f306b12e78a468",
-  "real_consumer_declaration_positive": "PASS",
-  "real_consumer_full_check_status": "unknown",
-  "native_endpoint_resolutions": 236,
-  "all_source_primary_endpoint_resolutions": 428,
-  "source_rows": 214,
-  "cross_face_rows": 211,
-  "source_rows_with_supported_bindings": 68,
-  "unresolved_source_rows": 154,
-  "required_unknown_guards": 154,
-  "full_check_unknown_counts": {
-    "eligibility_requirement_unresolved": 23,
-    "required_numeric_authority_missing": 118,
-    "block_pin_relationships_missing": 23
+  "verdict": "143 SINGLE LEGS ADOPTED; 11 ROUTING CLAUSES PENDING; FULL NATIVE CONTRACT STILL HAS EXPLICIT FINDINGS",
+  "consumer_head": "8ab3b0b95dd3ece043e67fff6bd226c36427ff22",
+  "declaration_positive": "PASS",
+  "single_leg_positive": {
+    "status": "info",
+    "measured": 143,
+    "unknown": 0,
+    "defects": 0,
+    "advisories": 143,
+    "exceeded": 142
+  },
+  "counts": {
+    "single_legs": 143,
+    "coverage_rows": 214,
+    "placement_source_rows": 211,
+    "obligations": 201,
+    "role_pairs": 261,
+    "native_endpoint_resolutions": 522,
+    "routing_pending": 11,
+    "material_guards_remaining": 0,
+    "pin_coverage_unknown_groups": 17,
+    "pin_coverage_unknown_references": 72,
+    "internal_net_geometry_unknowns": 6
+  },
+  "full_report_status": "defect",
+  "full_report_defects": 3,
+  "full_report_unknown_counts": {
+    "internal_net_geometry_missing": 6,
+    "block_pin_relationships_missing": 17
   },
   "negative_controls": [
     {
-      "control": "omitted adopted VIO relationship against authenticated full corrected policy",
+      "control": "omitted single leg",
+      "result": "REFUSE",
+      "reason": "single-leg locality needs exactly id, metric, kind and leg"
+    },
+    {
+      "control": "omitted source relationship against complete effective policy",
       "result": "REFUSE",
       "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "same-net wrong physical EN3 instead of VIN2 against corrected policy",
-      "result": "REFUSE",
-      "reason": "contract relationships differ from effective policy electrical_locality"
-    },
-    {
-      "control": "stale cA 12-obligation effective policy",
-      "result": "REFUSE",
-      "reason": "contract relationships differ from effective policy electrical_locality"
-    },
-    {
-      "control": "unauthorized named VIO-to-VCC return relaxed to generic GND",
-      "result": "REFUSE",
-      "reason": "contract relationships differ from effective policy electrical_locality"
-    },
-    {
-      "control": "wrong physical native PG4 claimed as protected supply",
+      "control": "wrong physical native pin in single leg",
       "result": "REFUSE",
       "reason": "native pad net differs from declaration"
     },
     {
-      "control": "unauthorized opposite-side support: U6.8-C16-ldo-cap",
-      "result": "DEFECT",
-      "reason": "same_face_required"
+      "control": "stale A2 effective policy",
+      "result": "REFUSE",
+      "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "unauthorized opposite-side support: U12.8-C20-ldo-cap",
-      "result": "DEFECT",
-      "reason": "same_face_required"
+      "control": "claimed routing pass",
+      "result": "REFUSE",
+      "reason": "routing obligation needs id, routing stage, supported kind, pairs, requirement and source"
     },
     {
-      "control": "unauthorized opposite-side support: U27.12-C118-hf-decoupler",
-      "result": "DEFECT",
-      "reason": "same_face_required"
+      "control": "changed routing source hash",
+      "result": "REFUSE",
+      "reason": "routing obligation source is not verified: source record sha256 mismatch"
     },
     {
-      "control": "unauthorized opposite-side support: U28.12-C120-hf-decoupler",
-      "result": "DEFECT",
-      "reason": "same_face_required"
+      "control": "wrong routing terminal pin",
+      "result": "REFUSE",
+      "reason": "pad missing or duplicated"
     },
     {
-      "control": "unauthorized opposite-side support: U29.12-C122-hf-decoupler",
+      "control": "illegal opposite face for source single leg",
       "result": "DEFECT",
       "reason": "same_face_required"
-    }
-  ],
-  "gap_controls": [
-    {
-      "gap": "G1_SINGLE_LEG_SCHEMA",
-      "result": "UNSUPPORTED_REFUSAL",
-      "reason": "locality obligation needs id, metric, supply and return; optional switch"
-    },
-    {
-      "gap": "G2_NO_VIA_EVIDENCE",
-      "result": "UNSUPPORTED_REFUSAL",
-      "reason": "locality obligation needs id, metric, supply and return; optional switch"
     }
   ],
   "limitations": [
-    "Full check does not pass; all numeric maxima remain ADVISORY.",
-    "Equality negatives compare against the authenticated corrected effective policy; consumer does not independently interpret primary datasheets.",
-    "Side fault controls mutate only in-memory capture copies; no native board/schematic edits or routed-via qualification."
+    "Full native contract is not accepted; J3/C65 and C64 under-device findings and remaining pin/internal-net unknowns are preserved.",
+    "The genuine retained native board capture is used; side fault is an in-memory mutation, no board file is changed.",
+    "Pending routing clauses are declarations, not routed evidence or impedance qualification."
   ]
 }
