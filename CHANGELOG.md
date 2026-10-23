@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-10-23 — Pod production preparation j6b2: AGENTEE-466 runtime, binding receipt, relayed-decision labels (`AGENTEE-207`)
+
+- The pod preparation is repinned to agent-ee `7d5b0d4d`, the AGENTEE-466 qualified runtime with the AGENTEE-454
+  read-once fix. This is a coordinator decision by agent-449, not owner-stated. It ran once in that runtime's
+  own image, addressed by its proximal config digest `d96f8e00…` (c4 `agent-ee:ci-b29cead1…`, OCI index
+  `6dd73b15…`), under native-admit. The 81e387ee runs b4/b5 were TERMINATED-SUPERSEDED by the coordinators.
+- `production-capture/evidence/production-runtime-j6b/receipt.json` binds:
+  - that image (config recomputed on proximal; the c4 relation from the AGENTEE-466 evidence);
+  - the agent-ee source;
+  - router `b5774496` with its source, extension and interpreter identities, measured in the image;
+  - the exact invocation, behind a pre-launch identity check;
+  - the plan, scope, campaign, driver receipt, retained prepared tree and initial candidate.
+- The board-thickness, enclosure and harness open items are labelled `owner-relayed, agent-drafted, unconfirmed`.
+  They cite the committed relay record and the verbatim Cairn relays; the fix is in the generator. Evidence is
+  `evidence/emission-7d5b0d4d/`. The schematic is byte-identical to j6's, and the board equals the reviewed
+  head's except UUIDs and node order. No campaign was launched.
+
 ## 2026-10-22 — Pod production preparation j6b: bound J1/U3 models, initial candidate, JP1-JP5 copper contract (`AGENTEE-207`, `FOMEMC-34`)
 
 - The prepared scope now carries two project-local 3D models at `${KIPRJMOD}/inputs/models/`, recorded in

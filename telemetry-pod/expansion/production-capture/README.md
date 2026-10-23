@@ -5,8 +5,8 @@ current microSD source (`../storage-microsd/`, 305 references). Phase B then run
 agent-ee producers on the capture and stops at the real `pod_driver` dry run. It is capture and
 composition evidence. No placement, routing, campaign or model ran, and nothing is accepted.
 
-**Status (j6, agent-ee main `81e387ee`; AGENTEE-197 landed with 197s/t/v, the hand-fit chain `08ddaa17`
-and the emitter field order `41e91eca`).** The authentic two-iteration production preparation exists. The
+**Status (j6b2, agent-ee main `7d5b0d4d`, the AGENTEE-466 runtime, run in its own image; j6 and j6b ran on
+`81e387ee`, which predates the AGENTEE-454 read-once fix).** The authentic two-iteration production preparation exists. The
 production scope (compiled Rev-3 microSD scope plus the assembly, blocks, envelope and requirement-source
 layers) prepares with the plan of record: the real `pod_driver.build(dry_run)` returns `prepared` and its
 driver receipt and campaign carry `max_iterations` 2 (source `plan`), routing backend budget 900 s, routing
@@ -18,10 +18,66 @@ placement, routing or model ran. Nothing here is acceptance: every check of the 
 `stage_not_reached` on the empty scaffold, the final guard blocks on the five staged envelope obligations,
 POD-AC-5 stays NOT CHECKED, and the four library-block obligations stay unresolved.
 
+## j6b2: the AGENTEE-466 runtime, its binding receipt (review H1) and relayed-decision labels (review H2)
+
+The independent review of `5d923c5` held two items. The coordinators then superseded the producer: the
+81e387ee runs b4 and b5 were TERMINATED-SUPERSEDED, because 81e387ee predates the AGENTEE-454 read-once fix.
+Following the corrected order (agent-449 relaying agent-521 a9cb03ad/2fbe5f08, Cairn 154cc9f6; coordinator
+decisions, not owner-stated), every source change was committed first (`338fbd7`). Then ONE preparation ran.
+No campaign is launched.
+
+- **Producer and runtime: agent-ee `7d5b0d4d` in its own image.**
+  - `pipeline.py` pins `7d5b0d4d`, which contains the AGENTEE-454 read-once fix and the router pin
+    `b5774496`.
+  - The run used the AGENTEE-466 gate image, addressed by its proximal config digest `d96f8e00…`. Its c4 tag
+    is `agent-ee:ci-b29cead1…`, its OCI index `6dd73b15…`, and its linux/amd64 manifest `85fc188c…`.
+  - The run was `production_run.sh` under `native-admit --class suite --weight 4`. It executed
+    `production_steps.py`, stopping at the first failure:
+    1. `build.py --out`;
+    2. the composition copied into the run's own fome-mc copy, then `build.py --check` (byte for byte);
+    3. `pipeline.py` (28/28 stages accepted);
+    4. `runtime_receipt.py observe`.
+  - `ROUTER_CHECKOUT` is the image's own `/opt/kicad-route`.
+- **H1 receipt.** `evidence/production-runtime-j6b/receipt.json` binds four things:
+  - **the image**, by:
+    - its config blob, recomputed from a `docker save` stream on proximal;
+    - the proximal OCI manifest's config;
+    - the layer tars equal to the config `rootfs.diff_ids`;
+    - the c4 index → manifest → config relation, taken from the AGENTEE-466 evidence and its independent
+      review (c4 itself is not contacted).
+  - **the agent-ee source**: the image's `/opt/agent-ee` equals `git archive 7d5b0d4d`, file for file.
+  - **the router**, as measured in the image: preflight, the source digest recomputed with the router's own
+    `engine.source_sha256`, the extension bytes and the interpreter.
+  - **the prepared plan, scope, campaign, driver receipt, prepared tree and initial candidate.** The campaign
+    is validated by the runtime without launching.
+
+  It also records the exact invocation, with its pre-launch identity check. `runtime_receipt.py check`
+  re-verifies every binding.
+- **Launchable prepared tree.** `retain.py` keeps the complete prepared directory (inputs, pre-receipts, dry
+  run) as `prepared-tree.json`, with content-addressed `prepared-blobs/`. `--materialize-prepared OUT`
+  rebuilds it; the rebuilt tree equals, file for file, the tree the runtime observed in the image.
+- **Evidence naming.** The retention is `evidence/emission-7d5b0d4d/`. The superseded `emission-81e387ee/` is
+  removed and stays in git history (`05783ce`, `5d923c5`).
+- **H2, provenance, fixed in the generator.** The thickness, enclosure and harness open items were generated
+  agent prose; j6 wrote them as "Owner decision 2026-10-22" and "(owner direction 2026-10-22)".
+  - They now carry `owner-relayed, agent-drafted, unconfirmed` and cite the committed record
+    `connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt` by sha256.
+    That record is copied into the candidate.
+  - They quote the Cairn relays verbatim wherever authority is used: `b706da93…`, `d162e001…` and
+    `9561cd0c…`. `build.py` refuses unless each quote occurs in its own relay section.
+  - Agent reasoning is labelled as such. The fabricator tolerance stays separate from the AGENTEE-448
+    component-side fit. No thickness limit is adopted, and the 1.6 mm board choice is not reopened.
+  - At `7d5b0d4d`, agent-ee's contract screens J1 board thickness itself (`tht_thickness_fit`) and no longer
+    requires `thickness-tolerance`. The item stays as an extra open item for the relayed board-side checks.
+    Dropping it is a reviewed decision.
+  - The antenna obligation statement is agent-ee's contract text, which must match verbatim. It cites D-PCB-16,
+    whose `design-rules/constraints.json` entry quotes the owner's 2026-10-21 wording; it is unchanged.
+- **Count attribution** (report-only, `count_attribution.py`): `evidence/count-attribution-j6b2/`.
+
 ## j6b: bound models, initial candidate and the JP1-JP5 copper contract
 
-This continues j6 on the same pin (`81e387ee`) and the same plan bounds. The evidence in
-`evidence/emission-81e387ee/` is regenerated from the new capture; the j6 run stays in history at `05783ce`.
+This continued j6 on the same pin (`81e387ee`) and the same plan bounds; its evidence (`evidence/emission-81e387ee/`)
+is superseded by j6b2 and stays in history at `5d923c5`. Everything below is carried by the j6b2 run.
 
 - **FOMEMC-34 model binding.** The two models are recorded in `composition/project-models.json` and are visual
   or mechanical models only.
@@ -75,7 +131,7 @@ This continues j6 on the same pin (`81e387ee`) and the same plan bounds. The evi
 
 ## j6: production preparation and emission at agent-ee `81e387ee`
 
-`evidence/emission-81e387ee/` holds the run (`pipeline.json`, the driver receipt, campaign, plan, scope,
+(History, superseded by j6b2.) `evidence/emission-81e387ee/` held the run (`pipeline.json`, the driver receipt, campaign, plan, scope,
 dry-run record and result under `prepared/`), the three emission receipts, the emitted design with every
 emitter input (`design/`, `MANIFEST.json`), and `SHA256SUMS`. It was produced in the pinned agent-ee CI image
 (`ae-ci-exec` on an `81e387ee` checkout, network none); `pipeline.py` first verifies that the agent-ee export
@@ -96,9 +152,10 @@ pipeline, each found by running the integrated producers:
   fixed, J1 containment and J1 `part-identity/1`, U1 fixed, U1 containment and the U1 antenna keepout, and
   every named open item (20 in all) as text. `scope.envelope_obligation_coverage` reports all five `staged`
   with every witness `bound`, and `require_qualified` refuses, naming every open item. Enclosure and harness
-  fit are recorded as open design deliverables (owner direction 2026-10-22), not blockers; the JLC 1.6 mm
-  board is accepted and its thickness tolerance is kept separate from the AGENTEE-448 component-side fit
-  screening.
+  fit are recorded as open design deliverables, not blockers, and the JLC 1.6 mm board choice is recorded with
+  its thickness tolerance kept separate from the AGENTEE-448 component-side fit screening. Since j6b2 (review H2)
+  these texts are labelled `owner-relayed, agent-drafted, unconfirmed` and cite the committed relay record with
+  verbatim Cairn quotes (below); j6 had written "Owner decision 2026-10-22".
 - **Parts membership.** A `parts_subset` check over `composition/parts.json` (requirement
   `POD-DERIVED-PARTS-MEMBERSHIP` at the manifest's declaration source) binds the J1 identity witness. The
   `fab_package` done check therefore declares the manifest's copper features (JP1-JP5), its bare-copper
@@ -435,7 +492,7 @@ contract (timeout at least 2 × budget + 300) and the review reserve.
 ## Reproduce
 
 ```sh
-# inside the pinned agent-ee CI image (ae-ci-exec on an 81e387ee checkout; the host pdftotext has drifted):
+# inside the pinned agent-ee image (since j6b2 the AGENTEE-466 image; the host pdftotext has drifted):
 /usr/bin/python3 telemetry-pod/expansion/production-capture/build.py AGENT_EE_EXPORT --check
 /usr/bin/python3 telemetry-pod/expansion/production-capture/build.py AGENT_EE_EXPORT --out /new/capture
 AGENT_EE_GIT=AGENT_EE_CHECKOUT AGENT_EE_TOOL_SOURCE_CACHE=/abs/cache \
@@ -445,6 +502,13 @@ AGENT_EE_GIT=AGENT_EE_CHECKOUT AGENT_EE_TOOL_SOURCE_CACHE=/abs/cache \
 # on the host, fome-mc root:
 /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py /new/pipeline-out --install
 /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py --check
+# j6b2: the single preparation run in the AGENTEE-466 image (RUN_DIR layout in production_run.sh), then on the host:
+~/.local/bin/native-admit run --class suite --weight 4 --label LABEL -- \
+  bash telemetry-pod/expansion/production-capture/production_run.sh RUN_DIR
+/usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py RUN_DIR/pipe --install
+/usr/bin/python3 telemetry-pod/expansion/production-capture/runtime_receipt.py write RUN_DIR/observation.json IMAGE_DIR RUN_DIR
+/usr/bin/python3 telemetry-pod/expansion/production-capture/runtime_receipt.py check
+/usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py --materialize-prepared /new/prepared
 # j6b native STEP export and CadQuery 2.8.0 model checks (uv offline, cached cadquery):
 /usr/bin/python3 telemetry-pod/expansion/production-capture/model_check.py telemetry-pod/telemetry-pod.kicad_pcb /new/model-check
 /usr/bin/python3 telemetry-pod/expansion/production-capture/repack.py AGENT_EE_EXPORT ITER8N_DIR /new/repack-out
@@ -453,8 +517,8 @@ PYTHONPATH=AGENT_EE_EXPORT/src /usr/bin/python3 -m agent_ee.jlc_stock_capture --
   --ids-file BOM_IDS.json --out /new/stock
 ```
 
-`AGENT_EE_EXPORT` is `git archive` of agent-ee `81e387ee` (pipeline.py refuses any other tree; the
-history sections used `a9dac2f3`). `COMPILED_SCOPE_DIR` is
+`AGENT_EE_EXPORT` is `git archive` of agent-ee `7d5b0d4d` (pipeline.py refuses any other tree; j6 and j6b used
+`81e387ee`, the history sections `a9dac2f3`). `IMAGE_DIR` holds the `docker save` probe of the image. `COMPILED_SCOPE_DIR` is
 `requirements/rev3-microsd/compiled/` from fome-mc main (scope-b, `6a74fee2…`). `ITER8N_DIR` is the
 coordinator's iter8n cache (seed, netlist, allocation, library entries). The build exports the microSD
 netlist on a temporary copy; no design file is re-saved.

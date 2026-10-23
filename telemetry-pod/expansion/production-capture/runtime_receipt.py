@@ -221,7 +221,8 @@ def invocation(run_dir, producer_mount):
                 'RUNTIME_RECEIPT_PY': 'this script at the integrated fome-mc commit',
                 'NEW_OUTPUT_PARENT': 'a new, empty directory', 'UID:GID': 'the launching user',
                 '$NATIVE_ADMISSION_*': 'the admitted native-admit lease the launch runs in'},
-            'preparation_run': {'script': 'evidence/production-runtime-j6b/run.sh', 'run_dir': str(run_dir)},
+            'preparation_run': {'script': 'evidence/production-runtime-j6b/production_run.sh',
+                                'steps': 'evidence/production-runtime-j6b/production_steps.py', 'run_dir': str(run_dir)},
             'router': "the image's own /opt/kicad-route (no override, no legacy /tool/kicad-route mount)",
             'open': ("Network and inference-provider credentials for the review profile belong to the launcher's "
                      'environment (agent-521 authorizes the single bounded run); this receipt does not choose them. '
@@ -255,7 +256,10 @@ def write(observation, image_dir, run_dir):
         shutil.copyfile(f, OUT / 'image' / f.name)
         kept['image/' + f.name] = sha(f)
     shutil.copyfile(observation, OUT / 'observation.json')
-    shutil.copyfile(Path(run_dir) / 'run.sh', OUT / 'run.sh')
+    for name in ('production_run.sh', 'production_steps.py'):  # the committed harness of the single run
+        if sha(HERE / name) != sha(Path(run_dir) / 'fome' / HERE.relative_to(ROOT) / name):
+            raise SystemExit(f'{name} differs from the copy the run executed')
+        shutil.copyfile(HERE / name, OUT / name)
     receipt = {
         'schema': 'pod-capture.production-runtime-receipt/2',
         'authority': ('Coordinator decision (agent-449, relaying agent-521 a9cb03ad/2fbe5f08; corrected order Cairn '
