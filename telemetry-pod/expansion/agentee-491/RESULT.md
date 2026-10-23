@@ -81,3 +81,9 @@
 1. Complete or redo the 83-id capture.
 2. Point `pipeline.py` STOCK at it, then commit.
 3. Run `production_run.sh`, then `/tmp/a491b/post.sh`-style retain (DEST `evidence/emission-7d5b0d4d-agentee491`, which does not yet exist) + `--install`, `--check`, the archive proof, and the checks.
+- **Addendum 14:24Z:** the 83-id capture completed: `sources/assembly-stock-20261023-491b`, as_of 14:08:02Z, completed_at 14:15:27Z, 83/83 found.
+  - C723587: stock 182779.
+  - C861219: stock 1901.
+  - `pipeline.py` STOCK now defaults to it.
+  - It goes stale 24 h after capture (2026-10-24 14:08Z).
+  - Production was not launched: it could not finish inside the bound.
