@@ -78,7 +78,7 @@ from pathlib import Path
 
 A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
 HERE = Path(__file__).resolve().parent
-STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261022'
+STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261023'  # refreshed (agent-529 a57b675c)
 REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-a9dac2f-j5'
 # agent-ee main 7d5b0d4d, the AGENTEE-466 qualified runtime (contains the AGENTEE-454 read-once fix, the AGENTEE-450
 # router pin b5774496 and everything of the earlier 81e387ee pin): explicitly repinned by agent-449 for the j6b2

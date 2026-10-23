@@ -541,3 +541,15 @@ netlist on a temporary copy; no design file is re-saved.
   overlaps among the unplaced parts and `lib_footprint_mismatch` on the posed J1/J2/J3 as findings.
 - The structural envelope validity, retention and J3 transform are not mechanical qualification. The fab
   profile needs its applicability check before any manufacturing claim.
+
+## Stock refresh 2026-10-23 (agent-529 a57b675c)
+
+`sources/assembly-stock-20261023/` is a fresh read-only capture through the same agent-ee `jlc_stock_capture` producer
+(agent-ee 7d5b0d4d export, `--allow-network`), one public search per id.
+- **Ids:** the 81 LCSC ids of the current `composition/parts.json` (`2e9afa70…`, which includes the AGENTEE-484 additions). These are the same 81 ids as before.
+- **Timing:** as_of 2026-10-23T11:14:36Z, completed 11:21:50Z.
+- **Result:** 81 found (HTTP 200), 0 failed, 0 unavailable. J1 C596198 stock is 0, the hand-fit part, unchanged.
+- **Responses:** retained byte for byte with sha256 and UTC in `catalog.json`.
+- **Constraints:** no account, cart, purchase, upload or credential.
+
+`pipeline.py` now defaults to this capture. The 20261022 capture stays as history. The AGENTEE-488 part changes are not adopted; refresh their ids after adoption.
