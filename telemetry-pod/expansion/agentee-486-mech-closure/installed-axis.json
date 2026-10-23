@@ -41,5 +41,12 @@
   "required_negative_controls": [
     "uncompensated Bflip must failZup",
     "90degree rotation without changed installationdatum must failXYmapping"
+  ],
+  "assembly_assumption": "Engineering assembly assumption: board F-side outward normal faces UP; derived eligibility, not owner-mandated F-only.",
+  "derivation_status": "OPEN: selected F0 is provisional; manufacturer package axes must be explicitly composed with board-to-bike transform and verified physically. Captured rot0 is not authority and XY is not frozen.",
+  "frame_change_obligations": [
+    "rederive face and rotation from manufacturer package axes",
+    "rebind board-to-bike transform and verify native Xforward/Yleft/Zup without software rotation",
+    "recheck eligibility, transformed keepouts and silkscreen"
   ]
 }
