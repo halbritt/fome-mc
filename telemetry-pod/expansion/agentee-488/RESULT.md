@@ -46,7 +46,7 @@ The stock was the fresh slice-A capture. C694521 was already in the BOM (C13), s
   - dru `2769902a…` (unchanged, the 484r selector).
 - **ERC (`erc-new.json`):** 0 violations.
 - **Correspondence (`correspondence-new.json`):** 309 schematic / 313 board; H1–H4 are board-only. Only the 2 inherited U3 pad 18/19 net-name escaping findings remain.
-- **Board delta vs 484r2:** EXACTLY the three changes (C133.2 and C84.2 /GND → /+5V_CAN; C18 0603 1 uF → 1210 22 uF).
+- **Board delta vs 484r2:** exactly three ELECTRICAL changes (C133.2 and C84.2 /GND → /+5V_CAN; C18 0603 1 uF → 1210 22 uF). The geometry is NOT unchanged: see the correction below.
 
 ## Relationships (`agentee-478-prep`)
 
@@ -65,3 +65,55 @@ The stock was the fresh slice-A capture. C694521 was already in the BOM (C13), s
 
 - **486 / 480 height table:** C18 is now 1210 (2.80 mm package maximum) instead of 0603. agent-507's height/reservation data must update the C18 row.
 - **479 / 524:** the named-return obligations (`electrical-locality-named-returns.json`) are ready for the effective-policy `electrical_locality`. The contract relationships must equal the policy entries. No agent-ee code was changed here.
+
+
+## Correction (AGENTEE-488c, Astra HIGH H3)
+
+The earlier claim "board delta EXACTLY three" holds only for the component, net, value and footprint delta.
+
+**The native geometry changed:** 287 footprints moved between board 0b68a0ac and board cbfea9be.
+- 286 moved by +2.54 mm in Y; C18 moved by +1.27 mm. No rotation changed.
+- The outline UUIDs also changed.
+- **Cause:** the scaffold's off-board staging column, ordered by reference, reflowed after C18's larger 1210 courtyard.
+- **Unmoved:** C1–C17, the fixed parts J1–J3, U1 and U2, and H1–H4.
+- **Electrically preserved but moved:** C100, C83 and C19.
+- The scaffold reflow is NOT reverted.
+
+**Downstream implication:** no prior placement or routing acceptance (R1–R5, ROUTE-1 to ROUTE-4, or any evidence measured on an earlier emitted board) carries over to this board. Placement and routing must be redone from this emission.
+
+## AGENTEE-488c checkpoint (Astra HIGH H1 to H3): 2026-10-23T12:56:42Z to 13:35:12Z, over the 25-minute bound
+
+**Base:** fome-mc main **33c5ba8** + `wt/agentee-stock-484r2` head **60f6a78d** (clean merge) + `wt/agentee-186` **324b37ee**, which includes 488 c98e1135 (clean merge). Branch `wt/agentee-488c`.
+
+### H1: FIXED
+
+- **Emitter:** `agentee-478-prep/build_prep.py` emits each supply/return pair in the consumer's schema: `from`, `to`, `max_distance_nm`, `citation` and a `provenance` OBJECT (`class: default`, numeric_provenance, decision).
+  - The unsourced 3/5 mm values stay advisory; no hard authority is claimed.
+- **New test:** `test_locality_consumer.py` runs agent-ee a085fbfa `electrical_locality.validate` and `locality_provenance.classify` on the EMITTED file.
+- **Before** (`h1-validate-before.txt`): "locality pair needs from/to, optionally max_distance_nm and citation".
+- **After** (`h1-validate-after.txt`): validates; all 4 legs are `default / advisory`; the named returns are on /+5V_CAN at 5 mm.
+- `electrical-locality-named-returns.json` is regenerated, and the validator still PASSes 313/0/0.
+
+### H3: FIXED (report corrected above)
+
+- **Delta:** 3 electrical changes plus 287 moved footprints (286 by +2.54 mm Y, C18 by +1.27 mm).
+- **Implication:** no prior placement or routing acceptance carries over.
+
+### H2: NOT CLOSED, a concrete HOLD
+
+**Done (existing workflow):**
+- `requirements/rev3-microsd/spec-record.json` and its receipt were re-captured with the recorded `agent_ee.spec_record capture` argv for main's REQUIREMENTS.md (dd6555f7…; record 21288e01…; `verify` OK).
+  - Main itself carried a stale spec record after 7a1cdd9 changed REQUIREMENTS.md without re-capture.
+- The requirement-map spec and spec-record pins were updated, and `compiled/` recompiled (scope 3271312d…; placement subjects match).
+- The J1 hand-fit REQUIREMENTS pin was updated in `pipeline.py` HAND_FIT_CHAIN and `assembly/hand-fit-policy.json` (the quoted line 139 is unchanged).
+- New retention dir: `emission-7d5b0d4d-agentee488c`.
+
+**Blocked:** the composed production run (`production_run.sh` from c7328b03) fails at pipeline.py:718-729: "the microSD spec differs from telemetry-pod-rev3 beyond the POD-CD-STORAGE row: changed ['POD-ME-1']". The guard admits ONLY the POD-CD-STORAGE addition relative to the pinned telemetry-pod-rev3 source. Main's 486 height correction changed POD-ME-1, so no coherent retention can be produced without a decision.
+
+**Remaining work, for 449/529 to authorize:**
+- (1) Either record the POD-ME-1 change as an accepted revision delta:
+  - extend the guard's allowed set to {added POD-CD-STORAGE, changed POD-ME-1}, citing the 486/529 decision (owner relay 27c51f73@1, a13a1ba8 v2);
+  - and, if that file is meant to record the current comparison, add the POD-ME-1 entry to `requirements/rev3-microsd/revision-delta.json`.
+- (2) Or re-pin the telemetry-pod-rev3 requirement source to include the correction.
+- Then re-run `production_run.sh`, `retain.py` (new retention, `--install`), the composed `retain.py --check`, and the fresh git-archive proof.
+- **Not done:** I did not weaken the guard, rewrite checksums or edit retain.py.
