@@ -4,7 +4,14 @@
   "path": "telemetry-pod/expansion/blocks/allocation.json",
   "sha256": "434a9984f52eda3121313171fb69321d22e14ae9ff0679a0e8fabadd20cd8ec9"
  },
- "board_sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673",
+ "board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+ "inventory": {
+  "board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "board_extract": "extract/emitted-0b68a0ac.json",
+  "schematic_netlist": "extract/emitted-schematic-netlist-cef8e4c7.json",
+  "schematic_netlist_sha256": "d7937f11458aaa6dbc06f63e81f4cbbb4e245774276ebc848ab444d3866b9036",
+  "schematic_only_not_yet_on_board": []
+ },
  "blocks": [
   {
    "id": "adc",
@@ -18,6 +25,7 @@
     "C57",
     "C59",
     "C61",
+    "C130",
     "R12",
     "R15",
     "R18",
@@ -40,6 +48,7 @@
     "C32",
     "C34",
     "C36",
+    "C131",
     "R10",
     "R11",
     "R13",
@@ -111,10 +120,6 @@
     "C13",
     "C14",
     "C15",
-    "C38",
-    "C41",
-    "C43",
-    "C44",
     "L2",
     "R4",
     "R5",
@@ -130,6 +135,7 @@
    "id": "can",
    "references": [
     "C100",
+    "C133",
     "D100",
     "R100",
     "U100"
@@ -198,6 +204,7 @@
    "id": "gnss-antenna-supply",
    "references": [
     "C42",
+    "C43",
     "R24",
     "R25",
     "R26",
@@ -205,6 +212,16 @@
    ],
    "anchor": {
     "member": "U10"
+   },
+   "interfaces_to_fixed": "U3"
+  },
+  {
+   "id": "gnss-receiver-support",
+   "references": [
+    "C44"
+   ],
+   "anchor": {
+    "fixed": "U3"
    },
    "interfaces_to_fixed": "U3"
   },
@@ -218,6 +235,17 @@
     "fixed": "U3"
    },
    "interfaces_to_fixed": "U3"
+  },
+  {
+   "id": "imu-support",
+   "references": [
+    "C38",
+    "C41"
+   ],
+   "anchor": {
+    "fixed": "U2"
+   },
+   "interfaces_to_fixed": "U2"
   },
   {
    "id": "mcu",
@@ -265,7 +293,6 @@
     "C5",
     "C6",
     "C7",
-    "C18",
     "L1",
     "R2",
     "R3",
@@ -332,6 +359,7 @@
    "id": "sensor-ref",
    "references": [
     "C39",
+    "C132",
     "R22",
     "R23",
     "U9"
@@ -408,6 +436,7 @@
    "references": [
     "C16",
     "C17",
+    "C18",
     "C19",
     "C20",
     "C21",
@@ -619,21 +648,73 @@
     "C18"
    ],
    "from": "residual/unassigned",
-   "to": "pre-6v3",
-   "reason": "C18 (1 uF) is on /PRE_6V3, the U5/L1 output node (pre-6v3 regulator output). It is drawn with the buck-3v3 output bank in the emitted schematic, but U7 is not on that net (third fix). Function: pre-6v3 output capacitance.",
-   "evidence": "netlist C18.1=/PRE_6V3 C18.2=/GND; L1.2=/PRE_6V3; schematic symbol C18 at (375.92,41.91), inside the emitter group \"buck-3v3: 3V3 regulator (U7) and 3V3 bulk\""
+   "to": "supplies-5v",
+   "reason": "AGENTEE-484 rebind: C18 (1 uF) on /PRE_6V3 is the REF5050 (U11) Vin supply bypass (REF50xx: TI recommends a supply bypass capacitor ranging from 1 uF; place as close as possible). U5 keeps C6/C7 2x22 uF.",
+   "evidence": "netlist C18=/PRE_6V3-/GND, U11.2 Vin=/PRE_6V3; source emitter-layout group supplies-5v"
   },
   {
    "references": [
     "C38",
-    "C41",
-    "C43",
+    "C41"
+   ],
+   "from": "residual/unassigned",
+   "to": "imu-support",
+   "reason": "AGENTEE-484 rebind: C38 -> U2.8 VDD and C41 -> U2.5 VDDIO, the two 100 nF capacitors C1/C2 of the LSM6DSO32 datasheet; U7 keeps the LMR36520 Table 8-1 3.3 V output bank 3x22 uF (C13-C15)",
+   "evidence": "source emitter-layout group imu; netlist unchanged (+3V3/GND)"
+  },
+  {
+   "references": [
+    "C43"
+   ],
+   "from": "residual/unassigned",
+   "to": "gnss-antenna-supply",
+   "reason": "AGENTEE-484 rebind: C43 (100 nF) -> U10.1 IN, the TPS2553 100-nF bypass near IN and GND",
+   "evidence": "source emitter-layout group gnss; netlist unchanged"
+  },
+  {
+   "references": [
     "C44"
    ],
    "from": "residual/unassigned",
-   "to": "buck-3v3",
-   "reason": "The emitted schematic draws C38/C41/C43/C44 in the \"3V3 regulator (U7) and 3V3 bulk\" group, on /+3V3 with no per-load binding. By schematic function they are the regulator output bank. The fifth fix removed them on PLACEMENT evidence (48-51 mm from U7 in iteration 5), not on function. The consequent load-pin decoupling gaps are reported as UNRESOLVED in relationship-bounds.json (D-GAP entries). An alternative per-load binding is offered there as an owner/529 decision, not applied.",
-   "evidence": "emitter-layout.json group buck-3v3 lists power/C38, C41, C43, C44; schematic x 332-366, y 34-42, beside U7 at (444.5,43.18)"
+   "to": "gnss-receiver-support",
+   "reason": "AGENTEE-484 rebind: C44 (1 uF) -> U3.23 VCC (NEO-M9N VCC decoupling as close as possible); also local to the adjacent V_BCKP pin 22 tied to VCC (PENDING-510)",
+   "evidence": "source emitter-layout group gnss; U3 pads 22/23/24 at 1.1 mm pitch"
+  },
+  {
+   "references": [
+    "C130"
+   ],
+   "from": "residual/unassigned",
+   "to": "adc",
+   "reason": "AGENTEE-484 added: 1 uF U4.16 Vdd bypass (MCP3208: 1 uF is recommended)",
+   "evidence": "source intent adc/C130"
+  },
+  {
+   "references": [
+    "C131"
+   ],
+   "from": "residual/unassigned",
+   "to": "afe",
+   "reason": "AGENTEE-484 added: 100 nF U8.4 V+ bypass",
+   "evidence": "source intent power/C131"
+  },
+  {
+   "references": [
+    "C132"
+   ],
+   "from": "residual/unassigned",
+   "to": "sensor-ref",
+   "reason": "AGENTEE-484 added: 100 nF U9.5 V+ bypass (OPA320: 0.1-uF bypass close to the supply pins)",
+   "evidence": "source intent power/C132"
+  },
+  {
+   "references": [
+    "C133"
+   ],
+   "from": "residual/unassigned",
+   "to": "can",
+   "reason": "AGENTEE-484 added: 100 nF U100.5 VIO bypass",
+   "evidence": "source intent can/C133"
   },
   {
    "references": [

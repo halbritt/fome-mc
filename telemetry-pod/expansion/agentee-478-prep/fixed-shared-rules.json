@@ -1,21 +1,54 @@
 {
  "schema": "fome-mc.fixed-shared-rules/1 (proposed consumer: agent-ee, AGENTEE-479)",
+ "role_vs_authority": "complete role coverage is not side or pose authority (AGENTEE-478c)",
  "no_flat_fallback": "every footprint is a block member, a fixed anchor or a shared part with the rules below; an unlisted footprint is a refusal, never a residual pack",
  "fixed": {
   "J1": {
-   "anchor_pose_r5": {
-    "x_mm": 45.0,
-    "y_mm": 55.5,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C05",
+     "class": "OWNER",
+     "restriction": "right-angle connector (D:175)"
+    },
+    {
+     "entry": "C05",
+     "class": "MFR",
+     "restriction": "mating direction +Y to the board edge, recommended PCB edge at local y+9.5 (TE 776163 K1 sh2)"
+    },
+    {
+     "entry": "C06",
+     "class": "MFR",
+     "restriction": "35-pin PTH pattern and locators; through-board pads/drills on both faces"
+    },
+    {
+     "entry": "C07/C08",
+     "class": "MFR",
+     "restriction": "panel/mate interface geometry (owner-relay items labelled as such)"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (45, 55.5) rot 0 on F: AGENT (E:67-83; global X is an agent choice). Face F follows the right-angle body over the board with mating toward the edge; reconsidering the face needs the mirrored mate/panel check",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 45.0,
-    "y": 55.5,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "F as engineering anchor (AGENT), reconsiderable",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 45.0,
+     "y_mm": 55.5,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 45.0,
+     "y": 55.5,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "OWNER right-angle + MFR datum; global XY AGENT (C05)",
+   "pose_authority_summary": "OWNER right-angle + MFR datum; global XY AGENT (C05)",
    "register_entries": [
     "C05",
     "C06",
@@ -38,22 +71,44 @@
     "B: PTH tails and solder/trim access; stickout UNKNOWN (C06)",
     "mate/CPA/latch/harness lanes UNKNOWN (C08)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "J2": {
-   "anchor_pose_r5": {
-    "x_mm": 85.24,
-    "y_mm": 28.0,
-    "rot_deg": 180.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C15",
+     "class": "OWNER/project",
+     "restriction": "GNSS RF path on F.Cu over In1 (R:65): the J2 signal launch must be on the F.Cu RF path"
+    },
+    {
+     "entry": "C09",
+     "class": "MECH-DERIVED",
+     "restriction": "edge-mount launch at a board edge (footprint geometry)"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (85.24, 28) rot 180: AGENT (D-PCB-4); RF corridor and anchor per AGENTEE-480 (agent-507, landed b389b47), not duplicated here",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 85.24,
-    "y": 28.0,
-    "rot": 180.0,
-    "side": "F"
+   "face_decision": "F, required by the F-over-In1 RF path (sourced, C15/R:65)",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 85.24,
+     "y_mm": 28.0,
+     "rot_deg": 180.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 85.24,
+     "y": 28.0,
+     "rot": 180.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "MECH-DERIVED/AGENT (C09, D-PCB-4)",
+   "pose_authority_summary": "MECH-DERIVED/AGENT (C09, D-PCB-4)",
    "register_entries": [
     "C09"
    ],
@@ -66,22 +121,44 @@
    "access": [
     "edge launch at x=90; cable sweep / wrench UNKNOWN (C09)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "J3": {
-   "anchor_pose_r5": {
-    "x_mm": 8.9,
-    "y_mm": 32.0,
-    "rot_deg": 90.0,
-    "side": "B"
+   "sourced_restrictions": [
+    {
+     "entry": "C10",
+     "class": "OWNER",
+     "restriction": "card slot points off the left board edge (D:176)"
+    },
+    {
+     "entry": "C11",
+     "class": "MFR",
+     "restriction": "socket body, push-push travel and socket-owned no-conductor areas move with the part"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (8.9, 32) rot 90 on B, 15 mm lane: AGENT/MECH-DERIVED (D:120-126, E:130-145)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 8.9,
-    "y": 32.0,
-    "rot": 90.0,
-    "side": "B"
+   "face_decision": "B as engineering anchor (AGENT), reconsiderable; the off-left-edge direction is the sourced restriction",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 8.9,
+     "y_mm": 32.0,
+     "rot_deg": 90.0,
+     "side": "B"
+    },
+    "emitted": {
+     "x": 8.9,
+     "y": 32.0,
+     "rot": 90.0,
+     "side": "B"
+    }
    },
-   "pose_authority": "OWNER off-left-edge direction; XY/rot AGENT (C10)",
+   "pose_authority_summary": "OWNER off-left-edge direction; XY/rot AGENT (C10)",
    "register_entries": [
     "C10",
     "C11"
@@ -96,22 +173,49 @@
    "access": [
     "card mouth points off the left edge; push-push travel 4.0 eject / 0.8 overstroke from catalog; hand access UNKNOWN (C10, C11)"
    ],
-   "side_rule": "fixed B; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "U1": {
-   "anchor_pose_r5": {
-    "x_mm": 72.5,
-    "y_mm": 6.5,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C12",
+     "class": "OWNER",
+     "restriction": "accepted antenna overhang / antenna case (D:179); preserve the antenna feed orientation and the all-layer antenna area"
+    },
+    {
+     "entry": "C12",
+     "class": "MFR",
+     "restriction": "module land pattern and antenna geometry (datasheet Fig 11-1 p45)"
+    },
+    {
+     "entry": "C13",
+     "class": "MFR",
+     "restriction": "housing clearance recommendation (not a board keepout)"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (72.5, 6.5) rot 0 on F: AGENT baseline, not a manufacturer-mandated XY",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 72.5,
-    "y": 6.5,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "F as engineering anchor (AGENT), reconsiderable with the antenna-case check",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 72.5,
+     "y_mm": 6.5,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 72.5,
+     "y": 6.5,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "OWNER accepted overhang; XY AGENT baseline (C12)",
+   "pose_authority_summary": "OWNER accepted overhang; XY AGENT baseline (C12)",
    "register_entries": [
     "C12",
     "C13"
@@ -137,50 +241,84 @@
     "antenna area all layers keep-out (C12); housing 15 mm recommendation is NOT a board keep-out (C13)",
     "UART programming via TP1/TP2/TP4/TP5 (C20)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "U2": {
-   "anchor_pose_r5": {
-    "x_mm": 12.0,
-    "y_mm": 10.0,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C14",
+     "class": "OWNER/project",
+     "restriction": "REQUIRED installed axes X forward, Y left, Z up, marked on silkscreen, without a software rotation (REQUIREMENTS.md:69); tall/heavy parts kept away (R:68, no numeric distance)"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (12, 10) rot 0: AGENT historical pose (E:120-128); no owner/manufacturer source for XY or F-only (C14)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 12.0,
-    "y": 10.0,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "OPEN for agent-529. Evidence: R:69 requires sensor Z up with no software rotation, so U2 must sit on the board face that points UP when installed, at the rotation that maps sensor X forward / Y left. The installed board orientation (which face is up, which edge is forward) is not sourced (C14 board-to-bike transform UNKNOWN; C22). Either face is physically possible; neither is inherited. Candidate start: F, labelled AGENT, valid only under the assumption F faces up; any face/rotation must pass the final axis check",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 12.0,
+     "y_mm": 10.0,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 12.0,
+     "y": 10.0,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "AGENT historical pose; OWNER axis mapping (C14)",
+   "pose_authority_summary": "AGENT historical pose; OWNER axis mapping (C14)",
    "register_entries": [
     "C14"
    ],
    "adjacent_blocks": [],
    "support_relationships": [
-    "U2.8-none-decoupling-gap",
-    "U2.5-none-decoupling-gap"
+    "U2.8-C38-hf-decoupler",
+    "U2.5-C41-hf-decoupler"
    ],
    "access": [
     "installed axis transform X fwd/Y left/Z up must be preserved; rot/face fixed (C14)",
     "tall/heavy parts away: numeric distance UNKNOWN (C14)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "U3": {
-   "anchor_pose_r5": {
-    "x_mm": 55.35,
-    "y_mm": 12.8514,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C15",
+     "class": "OWNER/project",
+     "restriction": "F.Cu over In1 GNSS RF path REQUIRED (R:65); RF_IN pad 11 on the F.Cu path"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "pose is placement-derived (staged off-board in the emitted board); component-relative RF corridor and anchor belong to AGENTEE-480 (agent-507, landed b389b47) and are referenced, not duplicated",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 95.25,
-    "y": 1137.92,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "F, required by the F-over-In1 RF path (sourced)",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 55.35,
+     "y_mm": 12.8514,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 95.25,
+     "y": 1153.16,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "MECH-DERIVED from placement (staged off-board in the emitted board); RF path UNRESOLVED (C15)",
+   "pose_authority_summary": "MECH-DERIVED from placement (staged off-board in the emitted board); RF path UNRESOLVED (C15)",
    "register_entries": [
     "C15"
    ],
@@ -189,31 +327,53 @@
     "gnss-antenna-supply"
    ],
    "support_relationships": [
+    "U3.23-C44-hf-decoupler",
+    "U3.22-C44-hf-decoupler",
     "U3.14-R24-strap",
     "U3.11-L3-rf-line",
-    "U3.11-D3-rf-line",
-    "U3.23-none-decoupling-gap",
-    "U3.22-none-decoupling-gap"
+    "U3.11-D3-rf-line"
    ],
    "access": [
     "RF_IN pad 11 to J2.1 path F-over-In1 (C15, R:65); corridor UNRESOLVED"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "H1": {
-   "anchor_pose_r5": {
-    "x_mm": 4.0,
-    "y_mm": 4.0,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C03",
+     "class": "OWNER",
+     "restriction": "a mounting hole in each corner (R:65)"
+    },
+    {
+     "entry": "C04",
+     "class": "OWNER (selection)",
+     "restriction": "M3 hardware, agents select (AGENTEE-480); envelope per AGENTEE-480"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (4, 4), 3.2 mm NPTH: AGENT (E:227-267)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 4.0,
-    "y": 4.0,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "n/a: NPTH through both faces; hardware reservations on both faces per AGENTEE-480",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 4.0,
+     "y_mm": 4.0,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 4.0,
+     "y": 4.0,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "OWNER four corners; XY/drill AGENT (C03)",
+   "pose_authority_summary": "OWNER four corners; XY/drill AGENT (C03)",
    "register_entries": [
     "C03",
     "C04"
@@ -221,24 +381,46 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "H2": {
-   "anchor_pose_r5": {
-    "x_mm": 86.0,
-    "y_mm": 4.0,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C03",
+     "class": "OWNER",
+     "restriction": "a mounting hole in each corner (R:65)"
+    },
+    {
+     "entry": "C04",
+     "class": "OWNER (selection)",
+     "restriction": "M3 hardware, agents select (AGENTEE-480); envelope per AGENTEE-480"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (86, 4), 3.2 mm NPTH: AGENT (E:227-267)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 86.0,
-    "y": 4.0,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "n/a: NPTH through both faces; hardware reservations on both faces per AGENTEE-480",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 86.0,
+     "y_mm": 4.0,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 86.0,
+     "y": 4.0,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "same as H1",
+   "pose_authority_summary": "same as H1",
    "register_entries": [
     "C03",
     "C04"
@@ -246,24 +428,46 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04); near U1 antenna/housing (C13)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04); near U1 antenna/housing (C13)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "H3": {
-   "anchor_pose_r5": {
-    "x_mm": 86.0,
-    "y_mm": 61.0,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C03",
+     "class": "OWNER",
+     "restriction": "a mounting hole in each corner (R:65)"
+    },
+    {
+     "entry": "C04",
+     "class": "OWNER (selection)",
+     "restriction": "M3 hardware, agents select (AGENTEE-480); envelope per AGENTEE-480"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (86, 61), 3.2 mm NPTH: AGENT (E:227-267)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 86.0,
-    "y": 61.0,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "n/a: NPTH through both faces; hardware reservations on both faces per AGENTEE-480",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 86.0,
+     "y_mm": 61.0,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 86.0,
+     "y": 61.0,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "same as H1",
+   "pose_authority_summary": "same as H1",
    "register_entries": [
     "C03",
     "C04"
@@ -271,24 +475,46 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   },
   "H4": {
-   "anchor_pose_r5": {
-    "x_mm": 4.0,
-    "y_mm": 61.0,
-    "rot_deg": 0.0,
-    "side": "F"
+   "sourced_restrictions": [
+    {
+     "entry": "C03",
+     "class": "OWNER",
+     "restriction": "a mounting hole in each corner (R:65)"
+    },
+    {
+     "entry": "C04",
+     "class": "OWNER (selection)",
+     "restriction": "M3 hardware, agents select (AGENTEE-480); envelope per AGENTEE-480"
+    }
+   ],
+   "engineering_anchor": {
+    "pose": "XY (4, 61), 3.2 mm NPTH: AGENT (E:227-267)",
+    "label": "AGENT",
+    "reconsiderable": true,
+    "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)"
    },
-   "emitted_pose": {
-    "x": 4.0,
-    "y": 61.0,
-    "rot": 0.0,
-    "side": "F"
+   "face_decision": "n/a: NPTH through both faces; hardware reservations on both faces per AGENTEE-480",
+   "starting_poses": {
+    "label": "captured start state only, never a constraint",
+    "r5": {
+     "x_mm": 4.0,
+     "y_mm": 61.0,
+     "rot_deg": 0.0,
+     "side": "F"
+    },
+    "emitted": {
+     "x": 4.0,
+     "y": 61.0,
+     "rot": 0.0,
+     "side": "F"
+    }
    },
-   "pose_authority": "same as H1",
+   "pose_authority_summary": "same as H1",
    "register_entries": [
     "C03",
     "C04"
@@ -296,9 +522,9 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
-   "side_rule": "fixed F; not a decision variable"
+   "side_rule": "per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose"
   }
  },
  "shared": {
@@ -306,17 +532,29 @@
    "role": "test",
    "anchor": "none (movable)",
    "adjacency": [
-    "all six pads on one face, selected by the planner (either face eligible, C01/C20)",
-    "TP1 TX, TP2 RX, TP4 EN, TP5 BOOT nets: pad within 25 mm (EJ) of each other so one fixture head covers them; TP3 GND and TP6 +3V3 in the same head",
-    "no part courtyard within the probe keep-clear of each pad: radius UNKNOWN (C20); report as unresolved, do not invent",
-    "opposite face under each pad: fixture support area UNKNOWN (C20)",
+    "REQUIRED: each pad is reachable by a hand-held pogo clip / probe on the bare board before enclosure; either face, bottom allowed (C20 owner answer, C01)",
+    "REQUIRED: probe-tip approach clearance over and around each pad: no tall part and no screw hardware there; clearance size UNKNOWN (C20), reported unresolved, never PASS",
+    "NOT required: no fixed fixture pattern, no common face, no grouping distance, no post-seal access",
+    "ENGINEERING CONVENIENCE (labelled, optional, never a hard constraint): keeping the six pads on one face and near each other eases a single clip; the planner may use it only as a tie-break",
     "pads stay outside the U1 antenna area (C12) and J3 card path (C10/C11)"
    ],
-   "side_rule": "one common face, either"
+   "access": "hand-held pogo clip / probes on the bare board before enclosure; probe-tip approach clearance only (size UNKNOWN); no fixture pattern; no post-seal access",
+   "owner_answer": {
+    "quote": "Pogo clip on bench",
+    "source": "agent-529 consolidated owner-directions notice, Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1 (owner relay fd5bea71@1)",
+    "interpretation": "hand-held pogo clip / probes on the bare board, on the bench, before enclosure; bottom-side TPs allowed; BLE OTA after sealing. No fixed fixture pattern, no post-seal access. Reserve probe-tip approach clearance only (no tall parts or screw hardware over or around the pads)"
+   },
+   "side_rule": "either face per pad (bottom allowed); common face is an optional labelled convenience only"
   },
   "JP1-JP5 (block members)": {
    "role": "assembly configuration",
    "membership": "JP1 tire-can; JP2-JP5 thermistor",
+   "access": "one-time soldering-iron access on the bare board before enclosure (zone size UNKNOWN)",
+   "owner_answer": {
+    "quote": "Once, on the bench",
+    "source": "agent-529 consolidated owner-directions notice, Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1 (owner relay fd5bea71@1)",
+    "interpretation": "one-time soldering-iron access on the bare board before enclosure only"
+   },
    "side_rule": "face of its block"
   }
  },

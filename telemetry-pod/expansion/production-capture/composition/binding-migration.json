@@ -1,6 +1,7 @@
 {
  "changed": [
   "adc",
+  "adc/C130",
   "aux-power/C124",
   "aux-power/C125",
   "aux-power/C126",
@@ -14,6 +15,7 @@
   "aux-power/R168",
   "aux-power/R169",
   "aux-power/U30",
+  "can/C133",
   "can/C308",
   "can/R9",
   "can2/C79",
@@ -108,6 +110,8 @@
   "power/C11",
   "power/C12",
   "power/C13",
+  "power/C131",
+  "power/C132",
   "power/C14",
   "power/C15",
   "power/C16",
@@ -273,9 +277,11 @@
   "wheel-input/R127",
   "wheel-input/U26"
  ],
- "components_changed": 272,
+ "components_changed": 276,
  "field_migrations": {
   "AGENT_EE_Ratings": [
+   "adc/C130",
+   "can/C133",
    "can/C308",
    "can/R9",
    "expansion/C54",
@@ -304,6 +310,8 @@
    "power/C11",
    "power/C12",
    "power/C13",
+   "power/C131",
+   "power/C132",
    "power/C14",
    "power/C15",
    "power/C16",
@@ -396,10 +404,10 @@
  },
  "schema": "pod-capture.binding-migration/1",
  "source_intent": {
-  "identity": "9be44884921475cd840825666d926758c9f2b461b7071b620436bb21b9f601ca",
+  "identity": "3543c43b80c5774f3ec40e60c177c0ab33bb39864772a056a31b0bb4bbe040c9",
   "path": "composition/intent.json",
-  "sha256": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427"
+  "sha256": "c7c1eb52adcfa97a91fb3e4011672a43a85dd49d96f8c588984d1df249a9ab63"
  },
  "unchanged": "Every other component, net, no-connect, library and binding field (Power and Voltage included) is identical; restoring the ledger texts and migrated fields reproduces the source intent exactly (checked by build.py, including field order).",
- "writer_intent_identity": "4ffd4c8f3e80cd650dbf05adb51f86b3318237251d9e99aa4858bd98fde61df7"
+ "writer_intent_identity": "a7f1076f17aeaecf8b9da89ddf0c85e1ae83749bdb9fe8665c1338460221b9d7"
 }

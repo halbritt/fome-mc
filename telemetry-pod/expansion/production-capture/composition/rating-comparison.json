@@ -610,11 +610,11 @@
   "error": "writer binding mismatch: power/C40/Voltage",
   "execution": "refused"
  },
- "components": 98,
+ "components": 102,
  "counts": {
-  "AGENT_EE_Ratings": 98,
+  "AGENT_EE_Ratings": 102,
   "Power": 43,
-  "Voltage": 55
+  "Voltage": 59
  },
  "datasheet_sourced": [
   "power/C40"
@@ -627,9 +627,71 @@
  },
  "record_migrations": {
   "other captured response with the same attribute": 24,
-  "same bytes, repository path": 74
+  "same bytes, repository path": 78
  },
  "rows": {
+  "adc/C130": {
+   "fields": [
+    "AGENT_EE_Ratings",
+    "Voltage"
+   ],
+   "original_record_sha256": "32f4901df51469a95f7e2c87923ed37c511a9337cde3c80f762d7b20e76bb3a6",
+   "part_id": {
+    "pilot": "power-c44",
+    "regenerated": "adc/C130"
+   },
+   "reference": "C130",
+   "regenerated_record_sha256": "307fde3ceb946107bfabc468483b6a9b63335327ae6ba5a98346827b31fd6441",
+   "sources": [
+    {
+     "field": "Voltage",
+     "kind": "catalog",
+     "migration": "same bytes, repository path",
+     "pilot": {
+      "path": "power-source/stock-auto-caps/responses/C76706.json",
+      "sha256": "1fd8b65295af0c43bfb51cd6a553c26e30fac03ee3d2dac4212bb7b6df72fb75"
+     },
+     "regenerated": {
+      "path": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76706.json",
+      "sha256": "1fd8b65295af0c43bfb51cd6a553c26e30fac03ee3d2dac4212bb7b6df72fb75"
+     }
+    }
+   ],
+   "values": {
+    "Voltage": "16V"
+   }
+  },
+  "can/C133": {
+   "fields": [
+    "AGENT_EE_Ratings",
+    "Voltage"
+   ],
+   "original_record_sha256": "53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d",
+   "part_id": {
+    "pilot": "power-c38",
+    "regenerated": "can/C133"
+   },
+   "reference": "C133",
+   "regenerated_record_sha256": "b79511fb774593dd429e5ddf65dea0659edee9a8e8b42adb291fbc00fe7f2d9f",
+   "sources": [
+    {
+     "field": "Voltage",
+     "kind": "catalog",
+     "migration": "same bytes, repository path",
+     "pilot": {
+      "path": "power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     },
+     "regenerated": {
+      "path": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     }
+    }
+   ],
+   "values": {
+    "Voltage": "50V"
+   }
+  },
   "can/C308": {
    "fields": [
     "AGENT_EE_Ratings",
@@ -1496,6 +1558,68 @@
    ],
    "values": {
     "Voltage": "25V"
+   }
+  },
+  "power/C131": {
+   "fields": [
+    "AGENT_EE_Ratings",
+    "Voltage"
+   ],
+   "original_record_sha256": "53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d",
+   "part_id": {
+    "pilot": "power-c38",
+    "regenerated": "power/C131"
+   },
+   "reference": "C131",
+   "regenerated_record_sha256": "5de38aa1c236a72c742b2e6b6f65345ecc5b0675fd150f5119990b37b50712ae",
+   "sources": [
+    {
+     "field": "Voltage",
+     "kind": "catalog",
+     "migration": "same bytes, repository path",
+     "pilot": {
+      "path": "power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     },
+     "regenerated": {
+      "path": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     }
+    }
+   ],
+   "values": {
+    "Voltage": "50V"
+   }
+  },
+  "power/C132": {
+   "fields": [
+    "AGENT_EE_Ratings",
+    "Voltage"
+   ],
+   "original_record_sha256": "53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d",
+   "part_id": {
+    "pilot": "power-c38",
+    "regenerated": "power/C132"
+   },
+   "reference": "C132",
+   "regenerated_record_sha256": "790e3f6e69ab9ad752c1e3933ef6e8c696df44400b91cfe725f3ffe4f1eecb6a",
+   "sources": [
+    {
+     "field": "Voltage",
+     "kind": "catalog",
+     "migration": "same bytes, repository path",
+     "pilot": {
+      "path": "power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     },
+     "regenerated": {
+      "path": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76711.json",
+      "sha256": "560fd620a68686188f11347f4cdf3ffaf6e9c22684a1fe5a86e1f7578bcab8f6"
+     }
+    }
+   ],
+   "values": {
+    "Voltage": "50V"
    }
   },
   "power/C14": {
@@ -3671,5 +3795,5 @@
  },
  "schema": "pod-capture.rating-comparison/1",
  "sources_sha256": "940c146e974075b2f02d5b9d5e11708336ec9216c5c38f999de09ad53515d8ba",
- "values_equal": 98
+ "values_equal": 102
 }

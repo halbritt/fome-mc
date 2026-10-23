@@ -1,0 +1,11 @@
+{
+ "schema": "pod-capture.part-additions/1",
+ "decision": "agent-529, Plane AGENTEE-484: supply decoupling repair; dispositions in telemetry-pod/expansion/agentee-484-decoupling/dispositions.json",
+ "rule": "each added capacitor reuses an existing design part (same LCSC record, CAD and binding) of its template reference; no new part selection",
+ "additions": [
+  {"reference": "C130", "id": "adc/C130", "template": "C44", "purpose": "U4.16 Vdd bypass, 1 uF (MCP3208 p23)"},
+  {"reference": "C131", "id": "power/C131", "template": "C38", "purpose": "U8.4 V+ bypass, 100 nF"},
+  {"reference": "C132", "id": "power/C132", "template": "C38", "purpose": "U9.5 V+ bypass, 100 nF (OPA320 p28)"},
+  {"reference": "C133", "id": "can/C133", "template": "C38", "purpose": "U100.5 VIO bypass, 100 nF"}
+ ]
+}

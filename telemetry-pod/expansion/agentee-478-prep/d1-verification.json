@@ -21,9 +21,15 @@
      "R42",
      "R45",
      "U4"
+    ],
+    [
+     "C130"
     ]
    ],
    "members": {
+    "C130": [
+     "D3 relationship: U4.16-C130-hf-decoupler"
+    ],
     "C31": [
      "non-rail connected to the block core",
      "D3 relationship: U4.1-C31-input-filter"
@@ -113,9 +119,15 @@
      "R19",
      "R20",
      "U8"
+    ],
+    [
+     "C131"
     ]
    ],
    "members": {
+    "C131": [
+     "D3 relationship: U8.4-C131-hf-decoupler"
+    ],
     "C30": [
      "non-rail connected to the block core",
      "D3 relationship: U8.3-C30-input-filter"
@@ -320,21 +332,6 @@
   "buck-3v3": {
    "non_rail_components": [
     [
-     "C9"
-    ],
-    [
-     "C13"
-    ],
-    [
-     "C10"
-    ],
-    [
-     "C41"
-    ],
-    [
-     "C38"
-    ],
-    [
      "C11",
      "C12",
      "L2",
@@ -344,19 +341,22 @@
      "U7"
     ],
     [
-     "C43"
-    ],
-    [
-     "C44"
-    ],
-    [
      "C15"
+    ],
+    [
+     "C13"
+    ],
+    [
+     "C10"
     ],
     [
      "C8"
     ],
     [
      "C14"
+    ],
+    [
+     "C9"
     ]
    ],
    "members": {
@@ -379,18 +379,6 @@
     ],
     "C15": [
      "D3 relationship: L2.2-C15-regulator-output"
-    ],
-    "C38": [
-     "D3 relationship: L2.2-C38-regulator-output"
-    ],
-    "C41": [
-     "D3 relationship: L2.2-C41-regulator-output"
-    ],
-    "C43": [
-     "D3 relationship: L2.2-C43-regulator-output"
-    ],
-    "C44": [
-     "D3 relationship: L2.2-C44-regulator-output"
     ],
     "C8": [
      "D3 relationship: U7.2-C8-bulk-input"
@@ -426,12 +414,18 @@
      "U100"
     ],
     [
+     "C133"
+    ],
+    [
      "C100"
     ]
    ],
    "members": {
     "C100": [
      "D3 relationship: U100.3-C100-hf-decoupler"
+    ],
+    "C133": [
+     "D3 relationship: U100.5-C133-hf-decoupler"
     ],
     "D100": [
      "non-rail connected to the block core",
@@ -494,22 +488,22 @@
      "U29"
     ],
     [
-     "C123"
-    ],
-    [
-     "C118"
-    ],
-    [
      "C122"
-    ],
-    [
-     "C119"
     ],
     [
      "C121"
     ],
     [
+     "C118"
+    ],
+    [
+     "C123"
+    ],
+    [
      "C120"
+    ],
+    [
+     "C119"
     ]
    ],
    "members": {
@@ -682,11 +676,17 @@
      "R25",
      "R26",
      "U10"
+    ],
+    [
+     "C43"
     ]
    ],
    "members": {
     "C42": [
      "non-rail connected to the block core"
+    ],
+    "C43": [
+     "D3 relationship: U10.1-C43-hf-decoupler"
     ],
     "R24": [
      "non-rail connected to the block core",
@@ -702,6 +702,19 @@
     "U10": [
      "non-rail connected to the block core",
      "non-rail net to fixed anchor U3"
+    ]
+   }
+  },
+  "gnss-receiver-support": {
+   "non_rail_components": [
+    [
+     "C44"
+    ]
+   ],
+   "members": {
+    "C44": [
+     "D3 relationship: U3.23-C44-hf-decoupler, U3.22-C44-hf-decoupler",
+     "single-member block"
     ]
    }
   },
@@ -725,47 +738,65 @@
     ]
    }
   },
-  "mcu": {
+  "imu-support": {
    "non_rail_components": [
     [
-     "C46"
+     "C41"
     ],
     [
-     "C49"
+     "C38"
+    ]
+   ],
+   "members": {
+    "C38": [
+     "D3 relationship: U2.8-C38-hf-decoupler"
     ],
-    [
-     "C50"
-    ],
-    [
-     "C53"
-    ],
-    [
-     "R31"
-    ],
-    [
-     "C48"
-    ],
-    [
-     "C51"
-    ],
-    [
-     "R33"
-    ],
-    [
-     "R30"
-    ],
+    "C41": [
+     "D3 relationship: U2.5-C41-hf-decoupler"
+    ]
+   }
+  },
+  "mcu": {
+   "non_rail_components": [
     [
      "C47",
      "R29"
     ],
     [
-     "C45"
+     "R33"
+    ],
+    [
+     "C51"
+    ],
+    [
+     "C52"
     ],
     [
      "R32"
     ],
     [
-     "C52"
+     "C48"
+    ],
+    [
+     "R30"
+    ],
+    [
+     "C49"
+    ],
+    [
+     "C53"
+    ],
+    [
+     "C50"
+    ],
+    [
+     "C46"
+    ],
+    [
+     "C45"
+    ],
+    [
+     "R31"
     ]
    ],
    "members": {
@@ -866,24 +897,18 @@
      "U5"
     ],
     [
-     "C3"
-    ],
-    [
      "C1"
     ],
     [
      "C2"
     ],
     [
-     "C18"
+     "C3"
     ]
    ],
    "members": {
     "C1": [
      "D3 relationship: U5.2-C1-bulk-input"
-    ],
-    "C18": [
-     "D3 relationship: L1.2-C18-regulator-output"
     ],
     "C2": [
      "D3 relationship: U5.2-C2-bulk-input"
@@ -1069,6 +1094,9 @@
   "sensor-ref": {
    "non_rail_components": [
     [
+     "C132"
+    ],
+    [
      "C39",
      "R22",
      "R23",
@@ -1076,6 +1104,9 @@
     ]
    ],
    "members": {
+    "C132": [
+     "D3 relationship: U9.5-C132-hf-decoupler"
+    ],
     "C39": [
      "non-rail connected to the block core",
      "D3 relationship: U9.3-C39-input-filter"
@@ -1099,25 +1130,25 @@
      "R49"
     ],
     [
-     "R47"
-    ],
-    [
      "R48"
-    ],
-    [
-     "R55"
-    ],
-    [
-     "R50"
-    ],
-    [
-     "R46"
     ],
     [
      "C64"
     ],
     [
+     "R47"
+    ],
+    [
      "C65"
+    ],
+    [
+     "R46"
+    ],
+    [
+     "R50"
+    ],
+    [
+     "R55"
     ]
    ],
    "members": {
@@ -1272,16 +1303,19 @@
      "R6"
     ],
     [
-     "C20"
-    ],
-    [
      "C17"
     ],
     [
-     "C16"
+     "C20"
+    ],
+    [
+     "C18"
     ],
     [
      "C19"
+    ],
+    [
+     "C16"
     ]
    ],
    "members": {
@@ -1290,6 +1324,9 @@
     ],
     "C17": [
      "D3 relationship: U6.1-C17-ldo-cap"
+    ],
+    "C18": [
+     "D3 relationship: U11.2-C18-hf-decoupler"
     ],
     "C19": [
      "D3 relationship: U12.1-C19-ldo-cap"
@@ -1411,6 +1448,9 @@
   "tire-can": {
    "non_rail_components": [
     [
+     "C80"
+    ],
+    [
      "C81",
      "C82",
      "D101",
@@ -1428,12 +1468,6 @@
      "Y1"
     ],
     [
-     "C79"
-    ],
-    [
-     "C80"
-    ],
-    [
      "C85"
     ],
     [
@@ -1441,6 +1475,9 @@
     ],
     [
      "C83"
+    ],
+    [
+     "C79"
     ]
    ],
    "members": {
@@ -1547,10 +1584,10 @@
      "U26"
     ],
     [
-     "C98"
+     "C97"
     ],
     [
-     "C97"
+     "C98"
     ]
    ],
    "members": {

@@ -50,6 +50,8 @@ PATCHED = X / 'design-rules/footprints'
 CONSTRAINTS = X / 'design-rules/constraints.json'
 OLD_PARTS = X / 'complete-parts-manifest/parts.json'
 OLD_ASSIGNMENTS = X / 'complete-parts-manifest/assignments.json'
+# AGENTEE-484: capacitors added by the decoupling source repair, each reusing an existing design part.
+ADDITIONS = HERE / 'sources/decoupling-additions-agentee-484.json'
 OLD_DECLARATIONS = X / 'cad-assignments/declarations.json'
 FOOTPRINT_MANIFEST = X / 'placement-seed-microsd/footprint-manifest.json'
 ENVELOPE = X / 'placement-inputs/envelope.json'
@@ -567,7 +569,8 @@ def writer_intent(intent, intent_blob, j3_record):
                            'sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and '
                            'PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.')})
     counts = {k: sum(e['class'] == k for e in entries.values()) for k in QUALIFICATION_COUNTS}
-    if sum(m['field'] == 'AGENT_EE_Ratings' for m in migrations) != 98:
+    added_ids = {a['id'] for a in json.loads(ADDITIONS.read_text())['additions']}  # AGENTEE-484, template bindings
+    if sum(m['field'] == 'AGENT_EE_Ratings' and m['component'] not in added_ids for m in migrations) != 98:
         raise ValueError('expected the 98 original AGENT_EE_Ratings fields')
     if counts != QUALIFICATION_COUNTS:
         raise ValueError(f'Qualification classes differ from the reviewed 174: {counts}')
@@ -833,7 +836,8 @@ def build(out, agent_ee):
     root.copy(MICROSD / 'inputs/emitter-layout.json', 'composition/emitter-layout.json')
     intent = json.loads((out / intent_blob['path']).read_text())
     physical = {c['reference']: c for c in intent['components'] if not c['reference'].startswith('#')}
-    if set(physical) != set(native['components']) or len(physical) != 305:
+    additions = json.loads(ADDITIONS.read_text())['additions']
+    if set(physical) != set(native['components']) or len(physical) != 305 + len(additions):
         raise ValueError('intent and native references differ')
     constraints_blob = root.copy(CONSTRAINTS, rel(CONSTRAINTS))
     relay_text = RELAY.read_text()
@@ -881,6 +885,22 @@ def build(out, agent_ee):
             part['selection']['decision_ref'] = {**intent_blob, 'locator': f'components[reference={ref}]'}
         parts.append(part)
         kept[ref] = part['id']
+    root.copy(ADDITIONS, rel(ADDITIONS))
+    added = {}
+    for add in additions:  # copy the template's verified part; only identity fields change
+        ref, tmpl_ref = add['reference'], add['template']
+        tmpl = next(p for p in parts if [i['reference'] for i in p['instances']] == [tmpl_ref])
+        comp, tcomp = physical[ref], physical[tmpl_ref]
+        if (comp['id'] != add['id'] or comp['part_binding'] != tcomp['part_binding'] or
+                any(comp[k] != tcomp[k] for k in ('lib_id', 'footprint', 'value'))):
+            raise ValueError('added part differs from its template: ' + ref)
+        part = copy.deepcopy(tmpl)
+        part.update({'id': add['id'], 'selection_id': add['id'], 'role': f"Expanded pod {ref} {comp['value']}",
+                     'instances': [{'sheet': native['components'][ref]['sheet'], 'reference': ref}]})
+        part['selection']['decision_ref'] = {**intent_blob, 'locator': f'components[reference={ref}]'}
+        parts.append(part)
+        kept[ref] = part['id']
+        added[part['id']] = tmpl['id']
     j3 = j3_part(root, physical['J3'], native['components']['J3']['sheet'], intent_blob, qualify_record)
     parts.append(j3)
     kept['J3'] = j3['id']
@@ -903,10 +923,11 @@ def build(out, agent_ee):
     manifest_blob = root.write('composition/footprints.json', manifest)
     old_assignments = {c['reference']: c for c in json.loads(OLD_ASSIGNMENTS.read_text())['components']}
     assignments = {'schema': 'agent-ee.footprint-assignments-input/1', 'libraries': intent['libraries'],
-                   'components': [old_assignments.get(p['id']) or {
+                   'components': [old_assignments.get(p['id']) or (
+                       {**old_assignments[added[p['id']]], 'reference': p['id']} if p['id'] in added else None) or {
                        'reference': p['id'], 'lib_id': p['lib_id'], 'footprint': p['footprint'],
                        'assembly': 'smd', 'connector': None} for p in parts]}
-    if sum(p['id'] not in old_assignments for p in parts) != 1:
+    if sum(p['id'] not in old_assignments and p['id'] not in added for p in parts) != 1:
         raise ValueError('only J3 may lack an earlier footprint assignment')
     assignments_blob = root.write('composition/assignments.json', assignments)
     declared = declarations()

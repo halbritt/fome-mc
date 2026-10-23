@@ -213,6 +213,10 @@
   "TL431": {
    "path": "telemetry-pod/expansion/thermistor/sources/tl431.pdf",
    "sha256": "ed2e90697de4e2c553195514adf1ee59cda42863716b6ef702b8304a5b921d22"
+  },
+  "REF50": {
+   "path": "telemetry-pod/expansion/interface-preparation/aux-power/ref50.pdf",
+   "sha256": "33b13191ad54693f9a4f52e226b354757ad092d2cec6b2c31dba2fecb710d0c6"
   }
  },
  "old_obligations_disposition": [
@@ -3051,6 +3055,595 @@
    }
   },
   {
+   "id": "U2.8-C38-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U2",
+    "pin": "8",
+    "pin_function": "VDD_8",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C38",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "fixed:U2",
+    "support": "imu-support"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+     "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
+     "page": 53,
+     "text": "Power supply decoupling capacitors (C1, C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 36.799,
+     "return_leg_mm": 37.148,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 36.799,
+     "return_leg_mm": 37.148,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   }
+  },
+  {
+   "id": "U2.5-C41-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U2",
+    "pin": "5",
+    "pin_function": "VDDIO_5",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C41",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "fixed:U2",
+    "support": "imu-support"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+     "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
+     "page": 53,
+     "text": "Power supply decoupling capacitors (C1, C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 24.201,
+     "return_leg_mm": 24.165,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 24.201,
+     "return_leg_mm": 24.165,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   }
+  },
+  {
+   "id": "U3.23-C44-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U3",
+    "pin": "23",
+    "pin_function": "VCC_23",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C44",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "fixed:U3",
+    "support": "gnss-receiver-support"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
+     "sha256": "fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b",
+     "page": 81,
+     "text": "The VCC pad needs a large pad and the decoupling capacitor must be placed as close as possible"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 57.765,
+     "return_leg_mm": 42.276,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 57.765,
+     "return_leg_mm": 42.276,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   }
+  },
+  {
+   "id": "U3.22-C44-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U3",
+    "pin": "22",
+    "pin_function": "V_BCKP_22",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C44",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "fixed:U3",
+    "support": "gnss-receiver-support"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "topology",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
+     "sha256": "fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b",
+     "page": 71,
+     "text": "If no backup supply voltage is available, connect the V_BCKP pin to VCC"
+    },
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
+     "sha256": "fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b",
+     "page": 81,
+     "text": "The VCC pad needs a large pad and the decoupling capacitor must be placed as close as possible"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 57.172,
+     "return_leg_mm": 42.276,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 57.172,
+     "return_leg_mm": 42.276,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   },
+   "disposition": "NO DEDICATED CAPACITOR - PENDING-510: V_BCKP is tied to VCC as the integration manual directs when no backup supply exists (p71); C44 sits at the adjacent VCC pin 23 (1.1 mm pitch, GND pin 24 adjacent), so it is local to pin 22 and not a remote capacitor. Needs agent-510 agreement"
+  },
+  {
+   "id": "U10.1-C43-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U10",
+    "pin": "1",
+    "pin_function": "IN_1",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C43",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "gnss-antenna-supply",
+    "support": "gnss-antenna-supply"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf",
+     "sha256": "88e453700cea2b263cdb5b44fce1e883e0f6d3b975457f879ac1423eeea42071",
+     "page": 25,
+     "text": "12.1: placing the 100-nF bypass capacitor near the IN and GND pins ... low-inductance trace"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 58.134,
+     "return_leg_mm": 58.821,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 58.134,
+     "return_leg_mm": 58.821,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   }
+  },
+  {
+   "id": "U11.2-C18-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U11",
+    "pin": "2",
+    "pin_function": "Vin_2",
+    "net": "/PRE_6V3"
+   },
+   "support": {
+    "ref": "C18",
+    "pin_net": "/PRE_6V3"
+   },
+   "membership": {
+    "device": "supplies-5v",
+    "support": "supplies-5v"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/interface-preparation/aux-power/ref50.pdf",
+     "sha256": "33b13191ad54693f9a4f52e226b354757ad092d2cec6b2c31dba2fecb710d0c6",
+     "page": 29,
+     "text": "TI recommends a supply bypass capacitor ranging from 1uF to 50uF for REF50xxI ... Place the power-supply bypass capacitor as closely as possible to the supply and ground pins"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": 16.654,
+     "return_leg_mm": 15.741,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    },
+    "route3": {
+     "supply_leg_mm": 16.654,
+     "return_leg_mm": 15.741,
+     "faces": [
+      "F",
+      "F"
+     ],
+     "verdict": "exceeds"
+    }
+   }
+  },
+  {
+   "id": "U4.16-C130-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U4",
+    "pin": "16",
+    "pin_function": "Vdd_16",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C130",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "adc",
+    "support": "adc"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/native-candidate/sources/mcp3208.pdf",
+     "sha256": "89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20",
+     "page": 23,
+     "text": "A bypass capacitor should always be used ... placed as close as possible to the device pin. A bypass capacitor value of 1 uF is recommended"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    },
+    "route3": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    }
+   }
+  },
+  {
+   "id": "U8.4-C131-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U8",
+    "pin": "4",
+    "pin_function": "V+_4",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C131",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "afe",
+    "support": "afe"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    },
+    "route3": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    }
+   }
+  },
+  {
+   "id": "U9.5-C132-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U9",
+    "pin": "5",
+    "pin_function": "V+_5",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C132",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "sensor-ref",
+    "support": "sensor-ref"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "MFR",
+     "requirement": "qualitative",
+     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf",
+     "sha256": "6ad9e31b95374c9bd582b821c528c91cb5813772e74e68f80cf81d0c10772b13",
+     "page": 28,
+     "text": "Place 0.1-uF bypass capacitors close to the power-supply pins"
+    },
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    },
+    "route3": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    }
+   }
+  },
+  {
+   "id": "U100.5-C133-hf-decoupler",
+   "kind": "hf-decoupler",
+   "device": {
+    "ref": "U100",
+    "pin": "5",
+    "pin_function": "VIO_5",
+    "net": "/+3V3"
+   },
+   "support": {
+    "ref": "C133",
+    "pin_net": "/+3V3"
+   },
+   "membership": {
+    "device": "can",
+    "support": "can"
+   },
+   "bound": {
+    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
+    "supply_leg_max_mm": 3.0,
+    "return_leg_max_mm": 5.0,
+    "same_face_required": false
+   },
+   "provenance": [
+    {
+     "class": "TOPOLOGY",
+     "text": "single-pin HF decoupler"
+    },
+    {
+     "class": "ENGINEERING-JUDGEMENT",
+     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
+    }
+   ],
+   "baseline": {
+    "r5": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    },
+    "route3": {
+     "supply_leg_mm": null,
+     "return_leg_mm": null,
+     "faces": null,
+     "verdict": "not-on-board (added by AGENTEE-484; measured after regeneration and placement)"
+    }
+   }
+  },
+  {
    "id": "U6.1-R6-output-load",
    "kind": "output-load",
    "device": {
@@ -3213,60 +3806,6 @@
    }
   },
   {
-   "id": "L1.2-C18-regulator-output",
-   "kind": "regulator-output",
-   "device": {
-    "ref": "L1",
-    "pin": "2",
-    "pin_function": "2_2",
-    "net": "/PRE_6V3"
-   },
-   "support": {
-    "ref": "C18",
-    "pin_net": "/PRE_6V3"
-   },
-   "membership": {
-    "device": "pre-6v3",
-    "support": "pre-6v3"
-   },
-   "bound": {
-    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
-    "supply_leg_max_mm": 10.0,
-    "return_leg_max_mm": null,
-    "same_face_required": false
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": "output bank at the inductor output pad; bulk, not HF"
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "baseline": {
-    "r5": {
-     "supply_leg_mm": 21.932,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    },
-    "route3": {
-     "supply_leg_mm": 21.932,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    }
-   }
-  },
-  {
    "id": "L2.2-C13-regulator-output",
    "kind": "regulator-output",
    "device": {
@@ -3419,222 +3958,6 @@
     },
     "route3": {
      "supply_leg_mm": 34.12,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    }
-   }
-  },
-  {
-   "id": "L2.2-C38-regulator-output",
-   "kind": "regulator-output",
-   "device": {
-    "ref": "L2",
-    "pin": "2",
-    "pin_function": "2_2",
-    "net": "/+3V3"
-   },
-   "support": {
-    "ref": "C38",
-    "pin_net": "/+3V3"
-   },
-   "membership": {
-    "device": "buck-3v3",
-    "support": "buck-3v3"
-   },
-   "bound": {
-    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
-    "supply_leg_max_mm": 10.0,
-    "return_leg_max_mm": null,
-    "same_face_required": false
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": "output bank at the inductor output pad; bulk, not HF"
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "baseline": {
-    "r5": {
-     "supply_leg_mm": 14.672,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    },
-    "route3": {
-     "supply_leg_mm": 14.672,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    }
-   }
-  },
-  {
-   "id": "L2.2-C41-regulator-output",
-   "kind": "regulator-output",
-   "device": {
-    "ref": "L2",
-    "pin": "2",
-    "pin_function": "2_2",
-    "net": "/+3V3"
-   },
-   "support": {
-    "ref": "C41",
-    "pin_net": "/+3V3"
-   },
-   "membership": {
-    "device": "buck-3v3",
-    "support": "buck-3v3"
-   },
-   "bound": {
-    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
-    "supply_leg_max_mm": 10.0,
-    "return_leg_max_mm": null,
-    "same_face_required": false
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": "output bank at the inductor output pad; bulk, not HF"
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "baseline": {
-    "r5": {
-     "supply_leg_mm": 36.114,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    },
-    "route3": {
-     "supply_leg_mm": 36.114,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    }
-   }
-  },
-  {
-   "id": "L2.2-C43-regulator-output",
-   "kind": "regulator-output",
-   "device": {
-    "ref": "L2",
-    "pin": "2",
-    "pin_function": "2_2",
-    "net": "/+3V3"
-   },
-   "support": {
-    "ref": "C43",
-    "pin_net": "/+3V3"
-   },
-   "membership": {
-    "device": "buck-3v3",
-    "support": "buck-3v3"
-   },
-   "bound": {
-    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
-    "supply_leg_max_mm": 10.0,
-    "return_leg_max_mm": null,
-    "same_face_required": false
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": "output bank at the inductor output pad; bulk, not HF"
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "baseline": {
-    "r5": {
-     "supply_leg_mm": 37.486,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    },
-    "route3": {
-     "supply_leg_mm": 37.486,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    }
-   }
-  },
-  {
-   "id": "L2.2-C44-regulator-output",
-   "kind": "regulator-output",
-   "device": {
-    "ref": "L2",
-    "pin": "2",
-    "pin_function": "2_2",
-    "net": "/+3V3"
-   },
-   "support": {
-    "ref": "C44",
-    "pin_net": "/+3V3"
-   },
-   "membership": {
-    "device": "buck-3v3",
-    "support": "buck-3v3"
-   },
-   "bound": {
-    "metric": "pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)",
-    "supply_leg_max_mm": 10.0,
-    "return_leg_max_mm": null,
-    "same_face_required": false
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": "output bank at the inductor output pad; bulk, not HF"
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "baseline": {
-    "r5": {
-     "supply_leg_mm": 38.886,
-     "return_leg_mm": null,
-     "faces": [
-      "F",
-      "F"
-     ],
-     "verdict": "exceeds"
-    },
-    "route3": {
-     "supply_leg_mm": 38.886,
      "return_leg_mm": null,
      "faces": [
       "F",
@@ -12226,396 +12549,6 @@
      "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
     }
    ]
-  },
-  {
-   "id": "U2.8-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U2",
-    "pin": "8",
-    "pin_function": "VDD_8",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "fixed:U2",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U2.8 VDD; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
-     "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
-     "page": 53,
-     "text": "Power supply decoupling capacitors (C1, C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "bind an existing +3V3 bank capacitor to this pin instead of the U7 output bank",
-    "capacitor": "C38",
-    "status": "proposed, NOT applied (needs 529/owner decision via 519)"
-   }
-  },
-  {
-   "id": "U2.5-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U2",
-    "pin": "5",
-    "pin_function": "VDDIO_5",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "fixed:U2",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U2.5 VDDIO; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
-     "sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
-     "page": 53,
-     "text": "Power supply decoupling capacitors (C1, C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "bind an existing +3V3 bank capacitor to this pin instead of the U7 output bank",
-    "capacitor": "C41",
-    "status": "proposed, NOT applied (needs 529/owner decision via 519)"
-   }
-  },
-  {
-   "id": "U3.23-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U3",
-    "pin": "23",
-    "pin_function": "VCC_23",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "fixed:U3",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U3.23 VCC; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
-     "sha256": "fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b",
-     "page": 81,
-     "text": "The VCC pad needs a large pad and the decoupling capacitor must be placed as close as possible"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "bind an existing +3V3 bank capacitor to this pin instead of the U7 output bank",
-    "capacitor": "C44",
-    "status": "proposed, NOT applied (needs 529/owner decision via 519)"
-   }
-  },
-  {
-   "id": "U3.22-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U3",
-    "pin": "22",
-    "pin_function": "V_BCKP_22",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "fixed:U3",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U3.22 V_BCKP; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
-     "sha256": "fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b",
-     "page": 81,
-     "text": "The VCC pad needs a large pad and the decoupling capacitor must be placed as close as possible"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
-  },
-  {
-   "id": "U10.1-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U10",
-    "pin": "1",
-    "pin_function": "IN_1",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "gnss-antenna-supply",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U10.1 IN; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf",
-     "sha256": "88e453700cea2b263cdb5b44fce1e883e0f6d3b975457f879ac1423eeea42071",
-     "page": 25,
-     "text": "12.1: placing the 100-nF bypass capacitor near the IN and GND pins ... low-inductance trace"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "bind an existing +3V3 bank capacitor to this pin instead of the U7 output bank",
-    "capacitor": "C43",
-    "status": "proposed, NOT applied (needs 529/owner decision via 519)"
-   }
-  },
-  {
-   "id": "U4.16-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U4",
-    "pin": "16",
-    "pin_function": "Vdd_16",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "adc",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U4.16 Vdd; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/native-candidate/sources/mcp3208.pdf",
-     "sha256": "89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20",
-     "page": 23,
-     "text": "A bypass capacitor should always be used ... placed as close as possible to the device pin"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
-  },
-  {
-   "id": "U8.4-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U8",
-    "pin": "4",
-    "pin_function": "V+_4",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "afe",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U8.4 V+; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
-  },
-  {
-   "id": "U9.5-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U9",
-    "pin": "5",
-    "pin_function": "V+_5",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "sensor-ref",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U9.5 V+; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "MFR",
-     "requirement": "qualitative",
-     "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf",
-     "sha256": "6ad9e31b95374c9bd582b821c528c91cb5813772e74e68f80cf81d0c10772b13",
-     "page": 28,
-     "text": "Place 0.1-uF bypass capacitors close to the power-supply pins"
-    },
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
-  },
-  {
-   "id": "U100.5-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U100",
-    "pin": "5",
-    "pin_function": "VIO_5",
-    "net": "/+3V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "can",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U100.5 VIO; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
-  },
-  {
-   "id": "U11.2-none-decoupling-gap",
-   "kind": "decoupling-gap",
-   "device": {
-    "ref": "U11",
-    "pin": "2",
-    "pin_function": "Vin_2",
-    "net": "/PRE_6V3"
-   },
-   "support": null,
-   "membership": {
-    "device": "supplies-5v",
-    "support": null
-   },
-   "bound": {
-    "status": "UNRESOLVED",
-    "reason": "emitted schematic has no capacitor dedicated to U11.2 Vin; placement cannot satisfy a decoupling relationship that the design does not contain. Blocks acceptance of this relationship"
-   },
-   "provenance": [
-    {
-     "class": "TOPOLOGY",
-     "text": ""
-    },
-    {
-     "class": "ENGINEERING-JUDGEMENT",
-     "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-    }
-   ],
-   "owner_decision_alternative": {
-    "option": "design change: add a decoupler",
-    "status": "proposed, not applied"
-   }
   }
  ]
 }

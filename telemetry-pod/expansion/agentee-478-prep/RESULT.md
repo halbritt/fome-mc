@@ -32,7 +32,7 @@ Assignment: agent-529 decisions D1-D5 via agent-519 (Plane AGENTEE-478 under AGE
   - `released-source-migration/emitter-layout.json` `261f1c3b…`, the schematic functional groups;
   - the emission `composition/placement-policy.json` `5fab430a…`, the 12 old obligations;
   - the 13 retained datasheet PDFs, each hashed in `relationship-bounds.json` → `sources`.
-- **Not consumed:** agent-ee `b7c72f6e` (plan docs) mentions "owner answers to the 474 unknowns (cowl height corrected)". That is outside the frozen input set, so nothing here uses it. 449 should decide whether D2's UNKNOWN entries need rebinding.
+- **Not consumed at 478 time; applied in 478b (below):** agent-ee `b7c72f6e` (plan docs) mentions "owner answers to the 474 unknowns". They arrived after the frozen inputs. AGENTEE-478b applies them from agent-529's notice (Cairn `a13a1ba8…` v1).
 
 **Runtime:** pcbnew 10.0.7 read-only extraction (`extract_pins.py`, `LoadBoard` with no save; each board's hash is re-checked after loading). The `kicad-cli sch export netlist` run on a scratch copy of the emitted schematic used native-admit leases `4c3b99deaa3c` and `a3ee1e0d909b` (`logs/native-admit-events.jsonl`). Everything else is stdlib Python over the extracts. No docker, AppArmor, cloud, upload or review.
 
@@ -79,17 +79,17 @@ The 37 former residual parts:
   - C10/C11, B: the J3 card lane and rule areas, for `storage-support`.
   - C06, B: the J1 PTH pin field, for the 11 blocks around J1.
 - **Material unknowns carried per block:**
-  - C19: heights, both faces.
-  - C22: enclosure.
-  - C04: H1–H4 hardware, radius UNKNOWN, both faces.
+  - C19: heights, both faces. The owner cowl estimate (C22) is context only, not a per-face budget (478b).
+  - C22: enclosure. The owner estimate is about 90 mm of provisional available HEIGHT for the full stack (enclosure floor and lid, standoffs, board, both-face parts, connector bodies, cable/harness). It is not a measured rigid cap. Length and width are substantially larger, and the outline has no numeric cowl constraint (478b, corrected per a13a1ba8 v2).
+  - C04: H1–H4 hardware is M3, selected by agents (owner answer). The envelope radius stays UNKNOWN on both faces, pending AGENTEE-480 (478b).
   - C23: thermal, for the regulator, MCU and switch blocks.
   - The opposite-face area under the U5/U7 exposed pad is reserved for thermal vias (LMR36520 p28 item 7); its size is UNKNOWN.
-- **Fixed parts:** each keeps a single face.
+- **Fixed parts:** ~~each keeps a single face~~ (superseded by 478c): a fixed role is not side authority. Each part separates sourced restrictions, an AGENT engineering anchor and the captured starting pose; U2's face is OPEN for 529.
 - **Test and assembly access plan (`test_assembly_access_plan`):**
-  - TP1–TP6 all go on one common face, chosen by the planner. One fixture head covers TX, RX, EN, BOOT, GND and +3V3; the 25 mm grouping figure is labelled engineering judgement.
-  - The probe keep-clear radius and the fixture support are UNKNOWN (C20).
-  - JP1–JP5 follow their blocks. Each needs solder-iron access before sealing; the access size is UNKNOWN (C21).
-  - **No genuinely owner-reserved fixture constraint was found.** UART programming before sealing is an owner functional requirement (R:42); the fixture geometry itself is engineering.
+  - TP1–TP6 (corrected in 478b): hand-held pogo clip or probes on the bare board before enclosure (owner: "Pogo clip on bench"). Either face, bottom allowed. No fixed fixture pattern, no common-face or grouping requirement, no post-seal access. A common face or grouping is at most a labelled, optional engineering convenience. The earlier "one fixture head / 25 mm grouping" assumption is withdrawn.
+  - Probe-tip approach clearance only (no tall part or screw hardware over or around each pad). Its size is UNKNOWN (C20); never PASS.
+  - JP1–JP5 follow their blocks. One-time soldering-iron access on the bare board before enclosure (owner: "Once, on the bench"); the access-zone size is UNKNOWN (C21).
+  - **No owner-reserved fixture constraint.** The owner decided usage (bench clip, before sealing); clearance geometry is engineering and still UNKNOWN.
 
 ## D3: relationship bounds (`relationship-bounds.json`)
 
@@ -165,10 +165,10 @@ Anything else on the opposite face is lost cohesion. The regression contract is 
 
 ## D5: fixed and shared rules (`fixed-shared-rules.json`)
 
-- **Fixed parts:** each records its R5 and emitted poses, its pose authority as 474 classes it, its adjacent blocks, its support relationships, its access rules and its side rule.
+- **Fixed parts (corrected in 478c):** each records its sourced restrictions (474 entry and class), its AGENT engineering anchor (reconsiderable, chosen before packing) and its R5/emitted starting poses (start state only), plus adjacent blocks, support relationships and access rules.
   - U3 is **staged off-board in the emitted board**. Its anchor pose is placement-derived (MECH-DERIVED, C15), not sourced.
   - J1, J2, J3, U1, U2 and H1–H4 match between the emitted board and R5.
-- **Shared parts:** the TP common-face and access rules; JP parts follow their blocks.
+- **Shared parts:** the TP bench pogo-clip approach rules (either face per pad; a common face is only an optional convenience, 478b); JP parts follow their blocks.
 - **Rails:** these are nets, not memberships; they never merge blocks.
 - **No flat fallback:** an unlisted footprint is a refusal.
 
@@ -215,6 +215,82 @@ python3 -I validate_coverage.py . coverage-report.json
 
 1. A 529/owner decision on the 10 decoupling gaps: rebind the bank capacitors as proposed, or change the design.
 2. Reconcile 474 C15 (the RF path), which unblocks the three RF relationships and the `gnss-rf-feed` face.
-3. 449 to decide whether the agent-ee `b7c72f6e` owner answers to the 474 unknowns rebind the D2 UNKNOWN entries.
+3. Done in 478b: the owner answers are applied to the usage and selection entries. Their geometry (probe/iron clearance, M3 envelope via AGENTEE-480, cowl fit) stays UNKNOWN.
 4. Agreement with agent-524 on `block-candidate-set/1`.
 5. The numeric bounds are labelled engineering judgement and untested for feasibility; AGENTEE-479 stage A will test them.
+
+## AGENTEE-484: rebinding to the decoupling-repaired design
+
+The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../agentee-484-decoupling/dispositions.json`).
+- **Inventory:** the regenerated emission, board `0b68a0ac…` with 313 footprints (`extract/emitted-0b68a0ac.json`) and schematic `cef8e4c7…` (`extract/emitted-schematic-netlist-cef8e4c7.json`). The 2f1c9557 extract stays for the R5/ROUTE-3 baselines.
+- **Coverage:** PASS. 313 footprints: 297 block members in 26 blocks, 10 fixed, 6 shared; 0 unassigned, 0 duplicates.
+- **Relationships:** 214, of which 3 are UNRESOLVED (the RF line, C15).
+- **Allocation changes:**
+  - new blocks `imu-support` (C38, C41) and `gnss-receiver-support` (C44);
+  - C43 moves to `gnss-antenna-supply`, C18 to `supplies-5v`;
+  - C130–C133 join `adc`, `afe`, `sensor-ref` and `can`;
+  - the U7 output bank keeps C13–C15.
+- **Tooling:** `validate_coverage.py` and `d1_verify.py` now read the board extract and netlist declared in `allocation-v2.json` → `inventory`. Schematic-only parts are allowed only when declared.
+## AGENTEE-478b: owner physical answers applied (data only)
+
+**Run:** 2026-10-23T09:29:32.43Z to 2026-10-23T09:31:31Z, within the 15-minute bound, directed by 449.
+
+**Single reference:** agent-529's consolidated owner-directions notice, Cairn `a13a1ba8-2838-4044-a40c-fe875b4e83f1` v1 (owner relay fd5bea71@1).
+
+**Rule:** these answers resolve usage and selection only. No geometric clearance is marked PASS; unsupplied dimensions stay UNKNOWN.
+
+**Owner quotes, verbatim** (recorded separately as `owner_answer.quote` in the data):
+
+| Entry | Quote |
+|---|---|
+| C20 | "Pogo clip on bench" |
+| C21 | "Once, on the bench" |
+| C22 / C19 | "I'm sure it's ~90mm or more." (fd5bea71@1); correction: "90mm height, the length and width are quite a bit more than that" (27c51f73@1) |
+| C04 | "Agents pick M3 hardware" |
+
+**Engineering interpretation** (`owner_answer.interpretation`):
+- **C20:** a hand-held pogo clip or probes on the bare board before enclosure. Bottom-side TPs are allowed, BLE OTA is used after sealing, and there is no fixed fixture pattern and no post-seal access. Only probe-tip approach clearance is reserved: no tall part or screw hardware over or around the pads. Its size is UNKNOWN.
+- **C21:** one-time soldering-iron access on the bare board before enclosure.
+- **C22 / C19 (per a13a1ba8 v2, which supersedes the v1 cowl paragraph):** about 90 mm is the provisional available **HEIGHT**, an owner estimate and not a measured rigid cap. It covers the full vertical stack: enclosure floor and lid, standoffs, board, both-face parts, connector bodies, and cable/harness. Length and width are substantially larger, with no numeric outline constraint. Final fit stays with bench/install verification. The per-face height budget remains UNKNOWN; no clearance PASS.
+  - The earlier v1 "unspecified dimension" reading, and the discrepancy note about it, are superseded; they remain in git history (`93adc6c`).
+- **C04:** M3 hardware, selected and sourced by agent-507 in AGENTEE-480 (pending). The selection is not duplicated here; the head/washer/standoff/driver envelope stays UNKNOWN on both faces until AGENTEE-480 supplies it.
+
+**Changed entries (before → after):**
+
+| File / entry | Before | After |
+|---|---|---|
+| side-eligibility `shared.TP1-TP6.constraint` | all six on ONE common face (single-sided programming fixture), chosen by the planner | either face per pad (bottom allowed); probe-tip approach clearance reserved on the probed face; no fixed fixture pattern, no common-face requirement |
+| side-eligibility `shared.TP1-TP6.material_unknowns[C20]` | probe tip / approach travel / fixture pin height / support force / tool clearance | probe-tip / pogo-clip approach clearance dimensions (no tall part or screw hardware over or around each pad); size not supplied |
+| side-eligibility `test_assembly_access_plan.rules` | one common face; "pad within 25 mm (EJ) … one fixture head"; probe keep-clear UNKNOWN; "fixture support area UNKNOWN" | REQUIRED: hand-probe/clip reach on the bare board, either face. REQUIRED: approach clearance, no tall part or screw hardware, size UNKNOWN, never PASS. NOT required: fixture pattern, common face, grouping, post-seal access. Labelled optional ENGINEERING CONVENIENCE: one face and nearby pads, as a tie-break only. The U1 antenna / J3 card-path rule is kept |
+| side-eligibility `test_assembly_access_plan.purpose` / `.JP1-JP5` | factory programming before sealing / during assembly before sealing | bench pogo clip before enclosure, BLE OTA after, no post-seal access / once, on the bench, bare board before enclosure |
+| side-eligibility `shared.JP1-JP5` | solder-iron access before sealing; unknown: tool angle / access footprint / timing | one-time soldering-iron access on the bare board before enclosure; unknown: access-zone size (timing decided) |
+| side-eligibility `blocks.*.material_unknowns` C04 ×4 | radius UNKNOWN; envelope UNKNOWN | M3 hardware (owner); radius and envelope UNKNOWN pending AGENTEE-480; no clearance PASS |
+| side-eligibility `blocks.*.material_unknowns` C19 / C22 | heights / "enclosure / cowl / harness envelope" | the same UNKNOWN, plus the owner estimate as context (about 90 mm provisional available HEIGHT for the full stack, not a measured cap; length/width substantially larger; outline not cowl-constrained) |
+| fixed-shared-rules `fixed.H1-H4.access` | hardware envelope UNKNOWN F/B (C04) | M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04) |
+| fixed-shared-rules `shared.TP1-TP6` | side_rule: one common face, either | adds `access` (hand clip/probes, approach clearance only, no fixture pattern, no post-seal access) and `owner_answer`; side_rule: either face per pad, common face only an optional labelled convenience |
+| fixed-shared-rules `shared.JP1-JP5` | role / membership / side_rule only | adds `access` (one-time iron access on the bare board before enclosure, zone size UNKNOWN) and `owner_answer` |
+| RESULT.md:35, 82-84, 89-92, 218 | as written in 478 | corrected to the above; the earlier text stays in git history (`2ee1e63`) |
+
+**Not changed:** `allocation-v2.json`, `relationship-bounds.json`, `cross-face-templates.json` and `proposed-schemas.json` (content identical). `d1-verification.json` was restored to the committed file: a rerun differs only in set iteration order and is semantically equal.
+
+**Generator:** `build_prep.py` now holds the `OWNER` table and the patched entries, so the data stays reproducible. The validator `validate_coverage.py` was rerun: **PASS**, 309 footprints, 0 unassigned, 0 duplicates, 0 failed checks.
+
+## AGENTEE-478c: role coverage is not side or pose authority (agent-529, AGENTEE-479 comment 5dbeb677, Cairn c228b69f)
+
+`side-eligibility.json` → `fixed.*` and `fixed-shared-rules.json` → `fixed.*` now separate, per part:
+- **`sourced_restrictions`:** each cites its 474 entry and class.
+- **`engineering_anchor`:** labelled AGENT and `reconsiderable`. It is chosen before packing, and a reconsidered anchor needs final transformed keepout and axis checks (an AGENTEE-479 acceptance item).
+- **`starting_poses`:** R5 and emitted poses, labelled "captured start state only, never a constraint".
+- **`face_decision`:** stated explicitly per part.
+
+| Part | Sourced restriction (474) | Engineering anchor (AGENT) | Face decision |
+|---|---|---|---|
+| J1 | right angle (C05 OWNER); +Y mating to the edge (C05 MFR); PTH pattern (C06 MFR) | XY (45, 55.5) rot 0 | F, AGENT, reconsiderable |
+| J2 | F.Cu-over-In1 RF launch (C15, R:65); edge launch (C09 MECH-DERIVED) | XY (85.24, 28) rot 180; corridor per AGENTEE-480 | F, sourced via the RF path |
+| J3 | card off the left edge (C10 OWNER); socket areas (C11 MFR) | XY (8.9, 32) rot 90 B, lane | B, AGENT, reconsiderable |
+| U1 | antenna case and overhang (C12 OWNER); land pattern (C12 MFR) | XY (72.5, 6.5) rot 0 | F, AGENT, reconsiderable |
+| **U2** | **REQUIRED axes X fwd / Y left / Z up, no software rotation (C14, R:69)** | XY (12, 10), historical; no source for XY or F-only | **OPEN for 529:** U2 must be on the face that points up when installed; the installed orientation is UNKNOWN (C14/C22); F is only a labelled AGENT start |
+| U3 | F.Cu over In1 REQUIRED (C15, R:65) | corridor and anchor per AGENTEE-480 (agent-507), not duplicated | F, sourced |
+| H1–H4 | corner holes (C03 OWNER); M3, agents pick (C04) | XY at the 4 mm corners, AGENT | n/a (NPTH, both faces) |
+
+The 478b owner answers (commits `93adc6c` and `6e0aea2` on the j6b2 branch) were carried onto this branch so the data is coherent. Validator: PASS, 313 footprints, 0 unassigned, 0 duplicates.

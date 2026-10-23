@@ -22,7 +22,7 @@ placer ran. Compilation and the configuration probe are preparation evidence onl
 | `revision-delta.json` | comparison with `../spec-record.json` | One entry added (`POD-CD-STORAGE`), none changed or removed |
 | `requirement-map.json` | authored, derived from `../requirement-map.json` | Scope template and dispositions (below) |
 | `datasheet-ratings.json` | authored | Datasheet citations for parts rated below 105 °C |
-| `temperature_ratings.py`, `temperature-ratings.json` | script and its output | Rating inventory of all 305 references from captured catalog records |
+| `temperature_ratings.py`, `temperature-ratings.json` | script and its output | Rating inventory of all 309 references from captured catalog records |
 | `probe_configuration.py` | script | Runs `pod_driver.validate_configuration` on a compiled scope |
 | `placement_subjects.py` | script | Checks the placement subject and `POD-ME-HOLES` against the schematic and `envelope.json` |
 | `compiled/` | `agent_ee.requirement_scope` (agent-ee `ce12718`; compiler modules unchanged since `1da2763`) | `scope.json`, `receipt.json`, `requirements-map/` |
@@ -32,7 +32,7 @@ placer ran. Compilation and the configuration probe are preparation evidence onl
 - **Stages.** The order is `schematic, placement, routing, verification`, and `finding_retry_limit` is 2.
   Fab stays out of the order until AGENTEE-146-compatible pod step wiring exists. Subjects: the schematic
   and verification stages list symbols, placement lists footprints, and routing requires at least one track.
-  The references are the 305 that `agent_ee.stages.native_references` reads from the current microSD
+  The references are the 309 (305 before the AGENTEE-484 decoupling repair) that `agent_ee.stages.native_references` reads from the current microSD
   schematic (sha256 `4da27afc…`). The placement subject also expects the four board-only corner holes
   H1–H4 from `../../placement-inputs/envelope.json` (sha256 `ad0a3597…`), so it lists 309 footprints.
   `POD-ME-HOLES` states each hole's declared position and drill: 3.2 mm NPTH at (4, 4), (86, 4),
@@ -92,8 +92,8 @@ PYTHONDONTWRITEBYTECODE=1 python3 -I $D/placement_subjects.py --agent-ee $AGENT_
 PYTHONDONTWRITEBYTECODE=1 python3 -I $D/probe_configuration.py $AGENT_EE $D/compiled /path/to/new-work-dir
 ```
 
-The compile must reproduce `compiled/` byte for byte: scope sha256 `6a74fee2…`, baseline
-`30bb6af0…`. The U3 datasheet is not in this repository. Without `--pdf`, the script reports its
+The compile must reproduce `compiled/` byte for byte: scope sha256 `534b9223…`, baseline
+`8020c370…` (AGENTEE-484: C130-C133 added to the subjects; before it, `6a74fee2…` / `30bb6af0…`). The U3 datasheet is not in this repository. Without `--pdf`, the script reports its
 bytes as unavailable instead of verified.
 
 ## Configuration probe
