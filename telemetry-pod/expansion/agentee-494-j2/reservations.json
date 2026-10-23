@@ -1,0 +1,68 @@
+{
+  "schema": "agentee494.reservations/1",
+  "units": "mm",
+  "binding": {
+    "uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+    "pose_candidate": [
+      103,
+      40,
+      0
+    ],
+    "side": "F",
+    "frame": "local u,v in board plane; w positive out of F. Fsurface w=0; Bsurface w=-tBoard. Transform every recipe with final writer pose, do not reuse fixed world bounds after movement."
+  },
+  "parameters": {
+    "sF": "actual seating lift above F; no sourced maximum",
+    "fB": "maximum actual solder fillet projection beyond B",
+    "fF": "maximum actual solder projection beyond F",
+    "mate": "095-902-570-006 right-angle SMA plug, keyed only by screw interface; clocking theta is free; final route must select it",
+    "Tmate": "Mate from MIL-STD-348 SMA mating reference planes, not tip-to-tip, origin or visual overlap",
+    "tool": "actual 8mm open wrench jaw/head solid plus handle, 11mm wrench at bulkhead; dimensions on 95-902-570-XXX revA. No inferred head OD or handle length."
+  },
+  "recipes": [
+    {
+      "id": "J2-F-body",
+      "phase": "all",
+      "shape": "box u,v[-3.6,3.6],w[sF,sF+9.73]",
+      "class": "drawing dimensional bound; independent tolerances; not model max",
+      "allowance": "Any additional placement/case clearance must be explicitly default/advisory unless sourced."
+    },
+    {
+      "id": "J2-B-pins-and-solder",
+      "phase": "soldered",
+      "shape": "Union of four square-pin and signal-pin cylinders at pad-map centres, plus actual fillet solids; conservative XY may use pad-union as an advisory envelope. Relative B depth max(2.90-sF,fB).",
+      "class": "source lead/board arithmetic plus unresolved fillet bound; cannot emit a qualified finite solid until fB and sF are bound"
+    },
+    {
+      "id": "J2-F-mate",
+      "phase": "installed cable",
+      "shape": "Tboard*Tmate*Raxis(theta)*(actual plug solid plus dimensional tolerances); union with cable strain relief and swept cable tube",
+      "class": "concrete mate selected, complete max shape and datum still unqualified; 10.50 REF on assembly drawing is not maximum"
+    },
+    {
+      "id": "J2-F-mate-insertion",
+      "phase": "assembly/service before closing lid",
+      "shape": "Union of J2-F-mate translated along F normal from disconnected clear-start to fully seated; start travel determined by actual mating thread engagement, not an invented distance",
+      "class": "recipe; requires plane/engagement data"
+    },
+    {
+      "id": "J2-wrench",
+      "phase": "mate before lid closure",
+      "shape": "Sweep actual 8mm open wrench jaw/head/handle around SMA axis through achievable tightening/regrip angles, plus counterhold fixture; never transmit cable tightening torque through solder pins",
+      "class": "8mm jaw is source dimension; all other tool dimensions/torque are unresolved"
+    },
+    {
+      "id": "J2-iron-B",
+      "phase": "bare board hand fit",
+      "shape": "For each of all five pads, sweep selected iron-tip/head solid from unobstructed B-side entry to actual fillet. Union with solder-wire approach and inspection line-of-sight; exclude case/floor/board supports until after soldering",
+      "class": "phase sequencing and recipe; tool model and contact clearance require qualification"
+    },
+    {
+      "id": "SMA-wall",
+      "phase": "installed enclosure",
+      "shape": "Use selected cable bulkhead jack, supplied O-ring and washer/nut stack with one D-hole; seat O-ring on continuous compatible panel land. Counterhold at11mm and mate-tool8mm; strain-relieve inside. Only this jack crosses wall;132134 remains entirely inside.",
+      "class": "local interface only; panel thickness, flatness/finish, seal compression, assembly torque and actual access must be bound before IP67 acceptance"
+    }
+  ],
+  "acceptance": "These recipes are writer inputs, not proof of packing, installed fit, vibration survival or ingress. Preserve no-metal ESP32 antenna region and all unrelated reservations."
+}

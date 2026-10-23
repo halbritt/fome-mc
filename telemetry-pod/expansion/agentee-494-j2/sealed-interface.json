@@ -1,0 +1,31 @@
+{
+  "schema": "agentee494.sealed-interface/1",
+  "selection_status": "Concrete proposed compatible interface; no full ingress qualification",
+  "internal_board_connector": "Amphenol132134, standard SMA female50ohm; unsealed, inside enclosure",
+  "pigtail": "Amphenol095-902-570-006; right-angle standard SMA plug to IP67 straight SMA bulkhead female; RG31650ohm6in",
+  "primary_product": "https://www.amphenolrf.com/en-us/part/095-902-570-006/9372/",
+  "primary_drawing": "https://www.amphenolrf.com/en-us/assets/file/4068761521/",
+  "drawing_identification": "95-902-570-XXX rev A, released17-Jan-2022, customeroutline sheet2of2; drawing lengthtable omits leading0 versus orderMPN; productpage binds it",
+  "primary_family_datasheet": "https://www.amphenolrf.com/library/download/link/link_id/599161/parent/095-902-569M025/",
+  "important_conflict": "Familydatasheet swaps569/570straight/RA descriptions relative to currentpartpage and exact570drawing. Use exact570revA+partpage:570isRA; do not importfamilyorientationblindly.",
+  "interface": "MIL-STD-348 standard SMA plug at132134; suppliedO-ring,lockwasher,nut atwall. ExternalstandardSMAfemale accepts existing standardSMAantenna plug; noRP-SMA.",
+  "hole_recipe": "Exact570drawing nominal D-hole \u00d86.60,6.10flat-to-oppositeextent. Verify drawing figure and tolerance/partthreadfit before cutting; no fabricated panel tolerance. The5.85 D-flat labels connector barrel, not mounting-hole recipe.",
+  "panel_and_ingress_remaining": [
+    "No qualified panel thickness range or nut engagement captured for this exact assembly. Do not borrow132397or90110813values.",
+    "No sourced panel finish/flatness/O-ring compression or torque captured. Select local thickness within measured/confirmed hardware engagement and follow exactmakerassemblyprocess.",
+    "IP67 is manufacturer component rating, not evidence of completed enclosure IP67. Whole assembly test remains requirement; no alternate ingress acceptance invented."
+  ],
+  "cable_budget": {
+    "internal_nominal_mm": 152.4,
+    "drawing_tolerance_mm": 6.35,
+    "internal_max_mm": 158.75,
+    "owner_external_antenna_limit_mm": 500,
+    "combined_path_option": "For a conservative \u2264500mm combined cable allocation, choose external actual maximum \u2264341.25mm (=500-158.75), e.g a300mm nominal external assembly only if its actual max is within341.25. This is an advisory engineering allocation, not a newly attributed owner requirement. Exact antenna assembly remains to bind.",
+    "existing_457mm_external": "Meets owner external-to-wall-SMA\u2264500 if actual max\u2264500; exceeds combined500 allocation once158.75 internal added; do not silently claim both interpretations pass."
+  },
+  "penetrations": [
+    "Existing AMPSEAL",
+    "ONE SMA bulkhead of095-902-570-006"
+  ],
+  "not_selected": "132170-12-EE IP68adapter investigated but not needed; no BOMchange to132134selection or boardstackup."
+}
