@@ -197,3 +197,15 @@ the rule name and width; this section records the selector.
 
 The binding enforces a minimum width. It does **not** prove 50-ohm impedance, which needs the fabricator stackup
 and a reference-plane check (AGENTEE-480).
+
+## Plane plan island policy (AGENTEE-487)
+
+`planes.json` → `/+3V3` on In2.Cu now uses `island_removal: "never"`. `/GND` on In1.Cu stays `"always"`.
+
+The declared `add-planes` producer is a campaign routing-turn step. It runs on the placed board before the router. On the placed board the In2 `/+3V3` zone is wholly unconnected, because every `/+3V3` load is SMD and nothing connects In2 before routing. agent-ee `docs/add-planes.md` "Island removal" says a wholly unconnected `always` zone is refused, and engineering must choose the policy in the captured plan. With `always` the step refused (`plane_production_refused`, isolated copper), so a campaign routing turn could never produce the planes.
+
+`never` keeps the disconnected In2 copper until routing connects it with vias. The routing phase owns two checks:
+- the post-routing connectivity and dead-island checks;
+- the 480 reference-continuity check on In1.
+
+Evidence: `../agentee-487-planes/`.

@@ -1,0 +1,128 @@
+{
+ "spec_stage": "routing",
+ "spec_step": "add-planes",
+ "plan_sha256": "9e592e3ee4bdf5b6042fd3a595235cc5425359f4a69f87787ce00fc3624779aa",
+ "plan": {
+  "schema": "agent-ee.plane-plan/1",
+  "zones": [
+   {
+    "net": "/GND",
+    "layer": "In1.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "always"
+   },
+   {
+    "net": "/+3V3",
+    "layer": "In2.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "always"
+   }
+  ]
+ },
+ "r5-placed": {
+  "input_board_sha256": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+  "zones_before": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "exit": 1,
+  "adopted": "ValueError: stage step add-planes failed; no output adopted or substituted",
+  "output_board_sha256": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+  "zones_after": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "receipt_sha256": "1d4f53de44ca361757ba43fabd17344f49c787f29321665f8c3ffd1504c51f66"
+ },
+ "emitted-unplaced": {
+  "input_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "zones_before": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "exit": 1,
+  "adopted": "ValueError: stage step add-planes failed; no output adopted or substituted",
+  "output_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "zones_after": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "receipt_sha256": "c12db242879e2ffe6cd589de7d27ac4b82fcbacc7ff99aae81009dca1b1d82fa"
+ }
+}
