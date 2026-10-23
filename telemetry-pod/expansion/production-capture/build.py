@@ -349,15 +349,42 @@ def j1_deviation(spec_ref, j1_part):
 
 # j6: the five generic envelope obligations staged for candidate generation (agent-509 decision
 # 2026-10-22, notes/509-envelope-obligations-20261022.txt) under agent-ee's reviewed source contract
-# telemetry-pod-expanded/1 (board_envelope.OBLIGATION_CONTRACTS, agent-ee 81e387ee). Witnesses are
+# telemetry-pod-expanded/1 (board_envelope.OBLIGATION_CONTRACTS; 81e387ee, and 7d5b0d4d since j6b2). Witnesses are
 # concrete envelope locators; open items are text only and add no numeric limit. Nothing here closes
-# an item: board_envelope.require_final keeps every one blocking final acceptance. Owner direction
-# 2026-10-22: the enclosure and harness are open design deliverables, not blockers to generation.
+# an item: board_envelope.require_final keeps every one blocking final acceptance. The enclosure/harness and
+# board-thickness texts cite the committed relay record (j6b, review H2): class owner-relayed, agent-drafted,
+# unconfirmed by the owner; authority is only the verbatim Cairn relay quoted (RELAY_QUOTES), never agent prose.
+# At agent-ee 7d5b0d4d the contract screens J1 board thickness itself (AGENTEE-448 tht_thickness_fit) and no longer
+# requires 'thickness-tolerance'; the contract refuses only dropped or restaged required items. The item is kept as
+# an extra open item for the relayed board-side checks (d162e001); dropping it is a reviewed decision, not done here.
 PHYSICAL, CANDIDATE = 'physical_qualification', 'candidate_assessment'
-ENCLOSURE = ('The enclosure is an open design deliverable (owner direction 2026-10-22), not a blocker to '
-             'candidate generation; ')
-HARNESS = ('The harness is an open design deliverable (owner direction 2026-10-22), not a blocker to '
-           'candidate generation; ')
+RELAY = X / 'connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt'
+RELAY_CLASS = 'owner-relayed, agent-drafted, unconfirmed'
+# Verbatim fragments of the agent-509 relays recorded in RELAY (Cairn id: quote); build() refuses unless each
+# occurs in RELAY exactly as written.
+RELAY_QUOTES = {
+    'b706da93-a2c0-4c65-b36f-5e2697146aa3': (
+        'accept the standard JLCPCB four-layer 1.6 mm nominal finished-board choice and its published standard '
+        'tolerance.'),
+    'b706da93-a2c0-4c65-b36f-5e2697146aa3/deliverables': (
+        'Keep the owner direction that enclosure/harness are future design deliverables'),
+    'd162e001-8f44-47cb-8960-d68ac9484d14': (
+        'Keep normal footprint, finished-hole/pad, retention and solder-joint checks; a narrower requirement '
+        'would need a concrete source or observed failure.'),
+    '9561cd0c-759a-461e-955d-8f32829a5a73': 'Do not conflate these two tolerances.'}
+
+
+def relay(key):
+    """A cited relay: record path, the Cairn id it was relayed in, and the verbatim quote."""
+    return f'Cairn {key.split("/")[0]} (verbatim): "{RELAY_QUOTES[key]}"'
+
+
+RELAY_CITE = (f'[{RELAY_CLASS}; {RELAY.relative_to(ROOT).as_posix()} sha256 '
+              f'{hashlib.sha256(RELAY.read_bytes()).hexdigest()}]')
+ENCLOSURE = (f'The enclosure is an open design deliverable, not a blocker to candidate generation {RELAY_CITE}, '
+             f'{relay("b706da93-a2c0-4c65-b36f-5e2697146aa3/deliverables")}; ')
+HARNESS = (f'The harness is an open design deliverable, not a blocker to candidate generation {RELAY_CITE}, '
+           f'{relay("b706da93-a2c0-4c65-b36f-5e2697146aa3/deliverables")}; ')
 OPEN_ITEMS = {
     'corner-holes': [
         ('hole-authority', PHYSICAL, 'H1-H4 drill, plating, inset and coordinates are generator-selected values '
@@ -380,11 +407,14 @@ OPEN_ITEMS = {
          '(connector-candidate/mating-interface).'),
         ('retention', PHYSICAL, 'Board-lock and plug retention are not established; no PCB retention is inferred '
          'from contact retention.'),
-        ('thickness-tolerance', PHYSICAL, 'Owner decision 2026-10-22: the standard JLCPCB 4-layer 1.6 mm board '
-         'with its published finished-thickness tolerance is accepted, and its interval against TE 114-16016 is a '
-         'documented uncertainty, not an incompatibility. The J1 footprint, finished-hole, pad, board-lock and '
-         'solder-tail checks against the TE drawing for that board stay open. This fabrication tolerance is '
-         'distinct from the component-side through-hole fit screening of AGENTEE-448.'),
+        ('thickness-tolerance', PHYSICAL, f'Board thickness {RELAY_CITE}. Relayed board choice: '
+         f'{relay("b706da93-a2c0-4c65-b36f-5e2697146aa3")} Relayed checks: '
+         f'{relay("d162e001-8f44-47cb-8960-d68ac9484d14")} Agent reasoning (not owner text): the J1 footprint, '
+         'finished-hole, pad, board-lock and solder-tail checks against the TE drawing for the fabricated board '
+         'therefore stay open here, and no thickness limit is adopted. The fabricator finished-thickness tolerance '
+         'is a board-side fact; the component-side through-hole fit screening is a separate rule '
+         f'({relay("9561cd0c-759a-461e-955d-8f32829a5a73")}; agent-ee AGENTEE-448) and is not evaluated by this '
+         'item.'),
         ('harness-clearance', PHYSICAL, HARNESS + 'clearance at the J1 edge is verified against it.')],
     'antenna': [
         ('feed-point-side', PHYSICAL, 'The antenna feed-point side relative to the installed orientation is not '
@@ -806,6 +836,12 @@ def build(out, agent_ee):
     if set(physical) != set(native['components']) or len(physical) != 305:
         raise ValueError('intent and native references differ')
     constraints_blob = root.copy(CONSTRAINTS, rel(CONSTRAINTS))
+    relay_text = RELAY.read_text()
+    sections = {s.split(' ', 1)[0]: s for s in relay_text.split('--- Cairn ')[1:]}  # one verbatim relay each
+    missing = [k for k, q in RELAY_QUOTES.items() if q not in sections.get(k.split('/')[0], '')]
+    if missing or 'Class: owner-relayed' not in relay_text:
+        raise ValueError(f'relay quotes absent from their Cairn sections of {rel(RELAY)}: {missing}')
+    root.copy(RELAY, rel(RELAY))  # the cited relay record travels with the candidate
     spec_blob = root.copy(X / 'requirements/compiled/requirements-map/spec.md', 'composition/spec.md')
 
     # Existing named records, probes and copper features, re-verified against the microSD intent.

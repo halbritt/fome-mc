@@ -1,6 +1,6 @@
 """Phase B on the production capture: binding-fill, scaffold, envelope content, emitter and
 annotation declarations, the composed production scope, the derived request policy, the real
-pod_driver dry run of the bounded two-iteration plan and its receipt (j6/j6b, agent-ee 81e387ee).
+pod_driver dry run of the bounded two-iteration plan and its receipt (j6/j6b; agent-ee 7d5b0d4d since j6b2).
 
 Every stage runs the owned agent-ee producer on a fresh copy of the capture root; a refusal is
 kept verbatim and never substituted. The agent-ee export must be the exact tree of the pinned
@@ -80,9 +80,11 @@ A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
 HERE = Path(__file__).resolve().parent
 STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261022'
 REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-a9dac2f-j5'
-# agent-ee main 81e387ee (AGENTEE-197 landed; contains the hand-fit chain 08ddaa17 and the emitter field
-# order 41e91eca): the coordinator's pin for emission and every check (2026-10-22).
-AGENT_EE_PIN = '81e387ee24981bfabfbdfb423337e07ca2867887'
+# agent-ee main 7d5b0d4d, the AGENTEE-466 qualified runtime (contains the AGENTEE-454 read-once fix, the AGENTEE-450
+# router pin b5774496 and everything of the earlier 81e387ee pin): explicitly repinned by agent-449 for the j6b2
+# preparation (coordinator decision relaying agent-521 a9cb03ad/2fbe5f08; not owner-stated). The preparation runs in
+# that runtime's own image (runtime_receipt.py binds it). 81e387ee (j6, j6b) predates read-once.
+AGENT_EE_PIN = '7d5b0d4de65a5b8e8f925ad6f366a46653aae563'
 
 
 def verify_export(export, git):
@@ -975,8 +977,12 @@ adapter = {'schema': 'agent-ee.placement-adapter/1', 'helper': 'agent-ee.placer/
 route = {'schema': 'agent-ee.routing-adapter/1', 'project': 'project', 'board': 'telemetry-pod.kicad_pcb',
          'schematic': 'telemetry-pod.kicad_sch', 'name': 'telemetry-pod', 'label': 'campaign',
          'checkout': str(R), 'budget': budget, 'timeout': 2 * budget + 300}
-stage('routing_adapter.preflight', lambda: (lambda p: p['problems'] and (_ for _ in ()).throw(
-    ValueError('; '.join(p['problems']))) or {k: p[k] for k in ('commit', 'pin')})(routing_adapter.preflight(R)))
+# The pinned agent-ee's preflight of ROUTER_CHECKOUT (the image's own /opt/kicad-route when run as runtime_receipt.py
+# records). The image, router source/extension/interpreter identities and the exact invocation are bound by the
+# separate immutable receipt (runtime_receipt.py); this stage alone qualifies nothing.
+stage('routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)',
+      lambda: (lambda p: p['problems'] and (_ for _ in ()).throw(ValueError('; '.join(p['problems']))) or
+               {k: p[k] for k in ('commit', 'pin', 'checkout')})(routing_adapter.preflight(R)))
 implementation = [s for s in (steps.get('fill'), *(steps.get('schematic', {}).get('implementation_steps', [])),
                               steps.get('planes')) if s is not None]
 if not AUTHORIZED['placement_timeout_s'][0] <= adapter['timeout_s'] <= AUTHORIZED['placement_timeout_s'][1]:
