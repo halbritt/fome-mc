@@ -2,7 +2,7 @@
   "schema": "agentee-486.candidate-delta/1",
   "adopted": false,
   "activation": "explicitsourceowneradoption+newnativebinding; switch overlay status only after exact source313/314 identity checked",
-  "authority": "4f45ed17@1;488 candidate reviewpending",
+  "authority": "4f45ed17-0afe-4a2b-bd17-14f48dba1eee@1, corrected by 0749f277-d948-46e9-8dd7-cd22f129a848@1",
   "base_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
   "operations": [
     {
@@ -13,32 +13,35 @@
       "lcsc": "C694521",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "height_max_mm": 2.8,
-      "height_authority": "relayed488 candidate bound4f45ed17@1; exactdatasheet acquisitionneededbeforeadoption",
+      "height_authority": "0749f277-d948-46e9-8dd7-cd22f129a848@1; relayed review candidate, exact datasheet acquisition required before adoption",
       "conservative_xy_square_mm": null,
       "adjacent_to": "U11.2",
       "nets": [
         "PRE_6V3",
         "/GND"
       ],
-      "landpattern_rebind_required": true
+      "landpattern_rebind_required": true,
+      "height_nominal_mm": 2.5,
+      "height_tolerance_mm": 0.3,
+      "superseded_height_nominal_mm": 0.8,
+      "superseded_height_tolerance_mm": 0.1
     },
     {
-      "reference": "C134",
-      "operation": "new",
-      "native_uuid": null,
-      "mpn": "CGA3E2X7R1H104KT0Y0N",
-      "lcsc": "C76711",
+      "reference": "C84",
+      "operation": "net-only",
+      "native_uuid": "00b7d928-a457-5d4b-9b02-62a7fb9ed742",
+      "mpn": "C0603C104K5RACTU",
+      "manufacturer": "KEMET",
+      "lcsc": "C127833",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "height_max_mm": 0.9,
-      "conservative_xy_square_mm": 1.7,
-      "datasheet_sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d",
-      "source_fact_key": "CGA3E2X7R1H104KT0Y0N",
-      "adjacent_to": "U21.5VIO",
-      "nets": [
-        "/+3V3",
-        "/+5V_CAN"
-      ],
-      "native_binding": "UNRESOLVEDuntilsourcewriteremits"
+      "pin": "2",
+      "old_net": "/GND",
+      "new_net": "/+5V_CAN",
+      "height_or_body_change": false,
+      "unchanged_height_max_mm": 0.95,
+      "adjacent_to": "U21.5",
+      "binding_role": "U21.5-C84-hf-decoupler",
+      "native_binding": "Existing immutable 313-part inventory binding; source-writer net adoption remains required"
     },
     {
       "reference": "C133",
@@ -50,5 +53,28 @@
       "height_or_body_change": false
     }
   ],
-  "packing_admission": "OPEN; no automatic candidate adoption"
+  "packing_admission": "OPEN; no automatic candidate adoption",
+  "correction": {
+    "source_record": "0749f277-d948-46e9-8dd7-cd22f129a848",
+    "version": 1,
+    "source_body_sha256": "27394fcb5153269da59a0750194985fcbfc6fffd1aa9def17b731e7915b3758b",
+    "supersedes": "The original C134 addition was incorrect. U21 uses existing C84; there is no new C134."
+  },
+  "c18_alternatives": {
+    "status": "Optional candidates only; no substitution selected or adopted",
+    "selection_owner": "agent-529",
+    "parts": [
+      {
+        "mpn": "C1206C106K4RACTU",
+        "capacitance_uF": 10,
+        "package": "1206"
+      },
+      {
+        "mpn": "C0805C475K4RACTU",
+        "capacitance_uF": 4.7,
+        "package": "0805"
+      }
+    ],
+    "height_limits": "Not established for these alternatives by this correction"
+  }
 }
