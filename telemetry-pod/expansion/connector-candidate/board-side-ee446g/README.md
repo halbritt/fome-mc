@@ -27,8 +27,8 @@ it. The check:
 - enforces the reporting rules: TE page/section, a fixed verdict set, a named missing source for
   each unknown, relay labels, no owner-stated text, and (c)/(d) deferred.
 
-The self-test also requires 34 negative controls to be rejected: 18 for the packet and 16 for the
-addendum below.
+The self-test also requires 43 negative controls to be rejected: 18 for the packet and 25 for the
+addendum below, including the H1/H2 controls.
 
 **Source-capture addendum (agent-521 c13da285; coordinator decision, not owner text).** See
 `ADDENDUM-c13da285.md` and `addendum-c13da285.json`; the captured bytes and their licence note are in
@@ -37,7 +37,10 @@ stays UNKNOWN. The addendum then compares each fact with the rows below:
 
 - No concrete incompatibility.
 - a9 → consistent.
-- a11 → no TE requirement.
+- a11 stays unknown: the TE requirement was not obtained (108-1329 is HTTP 403). The JLC 18 μm average
+  is recorded separately.
+- a8 stays consistent (nominal). JLC's ±0.1 mm precision-routing option is recorded with its published
+  conditions (minimum 50*50 mm, 3 tooling holes ≥ 1.5 mm) and left unqualified.
 - a2, a4, a7 → documented uncertainty (published tolerance bands do not nest).
 - a6, b1 and registration stay unknown.
 

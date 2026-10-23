@@ -82,8 +82,22 @@
    "id": "F8",
    "source": "JLCCAP20261023",
    "label": "Dimension Tolerance",
+   "section": "PCB specifications table, \"Dimension Tolerance\" row",
    "quote": "±0.1mm(Precision) and ±0.2mm(Regular) for CNC routing, and ±0.4mm for V-scoring",
-   "conditions": "outline routing",
+   "conditions": "the ±0.1 mm precision option is conditional; the published conditions are quoted verbatim in condition_quotes (Outline table, \"Routed\" row, items ③ and ④)",
+   "condition_quotes": [
+    {
+     "section": "Outline table, \"Routed\" row, item ③",
+     "anchor": "Routed",
+     "quote": "③ Dimension tolerance for routed board edges: ±0.2 mm (regular precision); ±0.1 mm (high precision)"
+    },
+    {
+     "section": "Outline table, \"Routed\" row, item ④",
+     "anchor": "Routed",
+     "quote": "④ Minimum dimension 50*50mm for high precision, and at least 3 tooling holes with minimum 1.5mm diameter on different corners."
+    }
+   ],
+   "precision_applicability": "unqualified: whether this board and order meet the high-precision conditions (minimum 50*50 mm, and at least 3 tooling holes of minimum 1.5 mm diameter on different corners) is NOT demonstrated here. It is not assumed, selected or ordered. Only the regular ±0.2 mm applies by default.",
    "informs": [
     "a8"
    ]
@@ -126,6 +140,7 @@
    "unknown": "HTTP 403 from AkamaiGHost (\"Access Denied\", reference 18.470ed217.1792725481.3307e1fc) at 2026-10-23T03:18:01Z for the official TE document-delivery URL. The response body is 416 bytes, sha256 48fc3d8a... No workaround was attempted. 108-1329 is the applicable source by TE's own reference: the K1 title block names \"PRODUCT SPEC 108-1329\". The reused captures (S3, E5, K1, the header CVM zip with its single STEP member, and the historical J8, 114-16016 G, PCN E2 and product-page print) give no board-lock geometry, thickness range or PCB retention.",
    "informs": [
     "a6",
+    "a11",
     "b1"
    ]
   }
@@ -142,6 +157,9 @@
   },
   {
    "row": "a2",
+   "missing_sides": [
+    "JLCPCB"
+   ],
    "previous": "unknown",
    "now": "documented-uncertainty",
    "facts": [
@@ -162,6 +180,9 @@
   },
   {
    "row": "a4",
+   "missing_sides": [
+    "JLCPCB"
+   ],
    "previous": "unknown",
    "now": "documented-uncertainty",
    "facts": [
@@ -182,6 +203,9 @@
   },
   {
    "row": "a6",
+   "missing_sides": [
+    "TE"
+   ],
    "previous": "unknown",
    "now": "unknown",
    "facts": [
@@ -192,6 +216,9 @@
   },
   {
    "row": "a7",
+   "missing_sides": [
+    "JLCPCB"
+   ],
    "previous": "unknown",
    "now": "documented-uncertainty",
    "facts": [
@@ -217,10 +244,14 @@
    "facts": [
     "F8"
    ],
-   "reason": "The nominal 9.0 mm is unchanged. JLC routed-edge tolerance is ±0.2 regular and ±0.1 precision. Which TE tolerance applies to the 9 is not resolved: S3 p.1 gives a general ±0.13, while K1 governs (S3 §2.3) and its 0-place tolerance is not stated. The edge sets panel/enclosure position, not hole fit. Recorded for the enclosure deliverable."
+   "nominal_conclusion": "consistent: both locator centres are 9.0 mm from Edge.Cuts (native), equal to the TE 9. This is unchanged and independent of any fabricator tolerance.",
+   "reason": "The nominal conclusion is unchanged (see nominal_conclusion). Separately, as capability information only: JLCPCB routed-edge tolerance is ±0.2 mm regular (the default). The ±0.1 mm high-precision option is published with the condition \"Minimum dimension 50*50mm for high precision, and at least 3 tooling holes with minimum 1.5mm diameter on different corners.\" (Outline table, Routed row, item ④). Its applicability to this board is UNQUALIFIED: not demonstrated, not selected, not assumed. Which TE tolerance applies to the 9 is also unresolved: S3 p.1 gives a general ±0.13, while K1 governs (S3 §2.3) and states no 0-place value. No design rule or geometry is changed. Recorded for the enclosure deliverable."
   },
   {
    "row": "a9",
+   "missing_sides": [
+    "JLCPCB"
+   ],
    "previous": "unknown",
    "now": "consistent",
    "facts": [
@@ -235,12 +266,23 @@
   },
   {
    "row": "a11",
-   "previous": "unknown",
-   "now": "no-te-requirement",
-   "facts": [
-    "F3"
+   "missing_sides": [
+    "TE",
+    "JLCPCB"
    ],
-   "reason": "JLCPCB states an average hole plating of 18 μm (an average, not a minimum). No captured TE document states a requirement, so there is nothing to compare."
+   "previous": "unknown",
+   "now": "unknown",
+   "facts": [
+    "F3",
+    "U2"
+   ],
+   "sourced_fab_value": {
+    "fact": "F3",
+    "value": "18μm",
+    "meaning": "JLCPCB average hole plating thickness (an average, not a minimum)"
+   },
+   "missing_requirement": "The applicable TE hole-wall plating requirement or minimum for 1-776163-1, if any. None is stated in S3, K1 or E5. The applicable product specification 108-1329 (named in the K1 title block) was refused: HTTP 403 AkamaiGHost at 2026-10-23T03:18:01Z, body sha256 48fc3d8a..., Akamai ref 18.470ed217.1792725481.3307e1fc.",
+   "reason": "Stays UNKNOWN. The JLCPCB average of 18 μm is recorded separately (sourced_fab_value). The TE requirement has not been obtained, so absence from the captured TE documents is not evidence that no requirement exists, and nothing is compared."
   },
   {
    "row": "a14",
@@ -253,6 +295,9 @@
   },
   {
    "row": "b1",
+   "missing_sides": [
+    "TE"
+   ],
    "previous": "unknown",
    "now": "unknown",
    "facts": [

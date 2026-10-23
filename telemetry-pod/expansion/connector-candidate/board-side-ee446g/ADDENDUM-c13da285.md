@@ -6,6 +6,10 @@ design file and `production-capture/` file. The record is `addendum-c13da285.jso
 `sources-c13da285/` (`sources.json`, and `NOTICE.md` for the licence/redistribution note). `check.py --self-test`
 verifies them.
 
+*Reporting corrections H1/H2 (review-ee446g HOLD on b3d570ca) are applied: a11 stays unknown with the JLC value
+recorded separately, and F8/a8 now carry JLCPCB's published precision-routing conditions, with that option left
+unqualified.*
+
 **There is no concrete incompatibility.** Three rows (a2, a4, a7) change from unknown to **documented uncertainty**.
 In each, JLCPCB's published tolerance band does not nest inside TE's band. That is interval arithmetic between two
 published tolerances: no source or physical check shows a failing feature, so nothing is tightened or gated.
@@ -40,7 +44,7 @@ published tolerances: no source or physical check shows a failing feature, so no
 | F5 | PTH annular ring (Multilayer) | "1 oz: Recommended 0.20 mm or above; absolute minimum 0.15 mm" | Multilayer, 1 oz |
 | F6 | Drill Diameter | "Multilayer: 0.15 – 6.3 mm" | |
 | F7 | Min. Non-plated holes | "0.50mm" | |
-| F8 | Dimension Tolerance | "±0.1mm(Precision) and ±0.2mm(Regular) for CNC routing, and ±0.4mm for V-scoring" | |
+| F8 | Dimension Tolerance (PCB specifications table) | "±0.1mm(Precision) and ±0.2mm(Regular) for CNC routing, and ±0.4mm for V-scoring" | The precision option is conditional. Outline table, Routed row, item ③: "③ Dimension tolerance for routed board edges: ±0.2 mm (regular precision); ±0.1 mm (high precision)". Item ④: "④ Minimum dimension 50*50mm for high precision, and at least 3 tooling holes with minimum 1.5mm diameter on different corners." Applicability to this board is **unqualified** (not demonstrated, selected or assumed); the regular ±0.2 applies by default |
 | F9 | Thickness Tolerance | "e.g. For the 1.6mm board thickness, the finished board thickness ranges from 1.44mm(T-1.6×10%) to 1.76mm(T+1.6×10%)" | Thickness ≥ 1.0 mm |
 | F10 | NPTH pad annular ring | "Recommended 0.45 mm or more." | NPTH with a copper pad; the J1 locators have none |
 | U1 | Layer / drill-to-copper registration | **UNKNOWN** | Not stated on the page; no capabilities sub-page is linked; no other JLC URL was fetched |
@@ -57,10 +61,10 @@ published tolerances: no source or physical check shows a failing feature, so no
 | a5 | consistent | consistent | Ø2.85 ≥ the 0.50 NPTH minimum, inside the drill range (F6, F7) |
 | a6 | unknown | unknown | TE is silent and 108-1329 returned 403 (U2). F10 does not apply because there is no copper |
 | a7 | unknown | **documented uncertainty** | TE 2.77–2.93; JLC F1 gives 2.77–2.98, so the upper end is +0.05. Model-only context: the TE model's shoulder reaches radius 1.90 (Ø3.80) |
-| a8 | consistent | consistent (nominal) | JLC routed edge is ±0.2 regular / ±0.1 precision (F8). The TE tolerance on the 9 is unresolved (S3 p.1 ±0.13 vs K1 governing with no 0-place value). It affects the panel/enclosure deliverable |
+| a8 | consistent | consistent (nominal) | **Nominal conclusion, unchanged and independent of any fab tolerance:** both locator centres are 9.0 mm from Edge.Cuts, equal to TE's 9. **Fab capability, information only:** JLC routed edge is ±0.2 regular, the default (F8). The ±0.1 high-precision option requires "Minimum dimension 50*50mm for high precision, and at least 3 tooling holes with minimum 1.5mm diameter on different corners." (Outline table, Routed row ④); its applicability here is **unqualified**. The TE tolerance on the 9 is unresolved (S3 p.1 ±0.13 vs K1 governing with no 0-place value). No rule or geometry change; this is for the panel/enclosure deliverable |
 | a9 | unknown | **consistent** | Design annulus 0.325 ≥ JLC multilayer 1 oz recommended 0.20 and minimum 0.15 (F5). At the JLC maximum finished hole it is 0.26 (informational) |
 | a10, a12, a13 | consistent | unchanged | |
-| a11 | unknown | **no TE requirement** | JLC average 18 μm (F3); no TE requirement is captured |
+| a11 | unknown | **unknown** (TE requirement unknown) | Sourced JLC value, recorded separately: average hole plating 18 μm (F3; an average, not a minimum). **Missing:** the applicable TE hole-wall plating requirement or minimum for 1-776163-1, if any. S3, K1 and E5 state none, and 108-1329 (named in the K1 title block) was refused with HTTP 403 AkamaiGHost at 2026-10-23T03:18:01Z (sha256 `48fc3d8a…`, ref 18.470ed217.1792725481.3307e1fc). Absence from the captured documents is not evidence of no requirement |
 | a14 | settled | settled | F9 confirms 1.44–1.76. Not reopened |
 | b1 | unknown | unknown | U2 (HTTP 403). The reused TE captures contain no board-lock spec |
 | b2–b8 | — | unchanged | Not informed by this capture |

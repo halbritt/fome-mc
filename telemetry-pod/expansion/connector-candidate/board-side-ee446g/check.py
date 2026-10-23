@@ -63,7 +63,11 @@ def derived(facts, faces):
     }
 
 
-ADD_VERDICTS = VERDICTS | {'documented-uncertainty', 'no-te-requirement'}
+ADD_VERDICTS = VERDICTS | {'documented-uncertainty'}
+# H1 (review-ee446g): a packet `missing_source` that names an absent TE document makes TE a missing side; the row may
+# then leave `unknown` only when a quoted fact from a captured (HTTP 200) TE source is cited.
+TE_MISSING = re.compile(r'Neither TE|No captured TE|^TE .*not captured')
+PUBLISHER = {'TE': 'TE', 'JLCPCB': 'JLCPCB'}
 WINDOW = 600
 
 
@@ -111,6 +115,17 @@ def addendum_problems(ev, add, man):
         starts = [m.start() for m in re.finditer(re.escape(anchor), text)]
         if not any(f['quote'] in text[i:i + WINDOW] for i in starts):
             out.append(f'{f["id"]}: quote not found verbatim after "{anchor}" in the captured page')
+        for c in f.get('condition_quotes', []):
+            cstarts = [m.start() for m in re.finditer(re.escape(c['anchor']), text)]
+            if not c.get('section') or not any(c['quote'] in text[i:i + WINDOW] for i in cstarts):
+                out.append(f'{f["id"]}: condition quote not found verbatim after "{c["anchor"]}" or has no section')
+        # H2 (review-ee446g): a published precision option keeps its published conditions and stays unqualified.
+        if 'Precision' in f['quote']:
+            conds = ' '.join(c['quote'] for c in f.get('condition_quotes', []))
+            if '50*50' not in conds or 'tooling holes' not in conds:
+                out.append(f'{f["id"]}: precision option without its published conditions (50*50, tooling holes)')
+            if not str(f.get('precision_applicability', '')).startswith('unqualified'):
+                out.append(f'{f["id"]}: precision-option applicability must stay unqualified unless demonstrated')
     rows = {r['id']: r for r in ev['rows']}
     arow = {}
     for r in add['rows']:
@@ -133,6 +148,25 @@ def addendum_problems(ev, add, man):
             out.append(f'addendum {r["row"]}: mismatch not listed as a concrete incompatibility')
         if r['now'] == 'consistent' and any(fids.get(x, {}).get('quote') is None for x in r['facts']):
             out.append(f'addendum {r["row"]}: consistent on an unknown fact')
+        if r['previous'] == 'unknown':
+            sides = r.get('missing_sides') or []
+            if not sides or set(sides) - set(PUBLISHER):
+                out.append(f'addendum {r["row"]}: an unknown row must name its missing sides')
+            if TE_MISSING.search(rows[r['row']].get('missing_source', '')) and 'TE' not in sides:
+                out.append(f'addendum {r["row"]}: the packet names a missing TE source but TE is not a missing side')
+            if r['now'] != 'unknown':
+                for side in sides:
+                    if not any(fids.get(x, {}).get('quote') and by.get(fids[x]['source'], {}).get('http_status') == 200
+                               and by[fids[x]['source']]['publisher'].startswith(PUBLISHER[side]) for x in r['facts']):
+                        out.append(f'addendum {r["row"]}: leaves unknown without a captured {side} fact')
+            elif 'TE' in sides and 'HTTP 403' not in (r.get('missing_requirement', '') + r['reason']):
+                out.append(f'addendum {r["row"]}: TE requirement unknown without the retrieval limit')
+            sfv = r.get('sourced_fab_value')
+            if sfv and (sfv['fact'] not in r['facts'] or fids.get(sfv['fact'], {}).get('quote') != sfv['value']):
+                out.append(f'addendum {r["row"]}: sourced_fab_value does not match a cited quoted fact')
+        if any(fids.get(x, {}).get('precision_applicability') for x in r['facts']) and r['now'] == 'consistent':
+            if not str(r.get('nominal_conclusion', '')).startswith('consistent'):
+                out.append(f'addendum {r["row"]}: nominal conclusion not kept distinct from the fab option')
     if set(arow) != set(rows) - {'c', 'd'}:
         out.append('addendum: does not cover exactly rows a1-a14 and b1-b8')
     for f in add['facts']:
@@ -321,6 +355,15 @@ def controls(ev, facts, faces, sums, files, add, man):
         'arithmetic altered': mut(lambda a: arow(a, 'a2')['arithmetic'].update(jlc_on_1_75_mm=[1.67, 1.85]), 'add'),
         'incompatibility without source': mut(lambda a: a['concrete_incompatibilities'].append({'row': 'a2'}), 'add'),
         'addendum owner-stated label': mut(lambda a: a.update(decision='owner-stated'), 'add'),
+        'H1 a11 promoted to no-te-requirement': mut(lambda a: arow(a, 'a11').update(now='no-te-requirement'), 'add'),
+        'H1 a11 promoted on the JLC value alone': mut(lambda a: arow(a, 'a11').update(now='documented-uncertainty'), 'add'),
+        'H1 a11 TE side dropped': mut(lambda a: arow(a, 'a11').update(missing_sides=['JLCPCB'], now='documented-uncertainty'), 'add'),
+        'H1 a11 retrieval limit dropped': mut(lambda a: arow(a, 'a11').update(missing_requirement='', reason='unknown'), 'add'),
+        'H1 a11 fab value misquoted': mut(lambda a: arow(a, 'a11')['sourced_fab_value'].update(value='25μm'), 'add'),
+        'H2 F8 conditions dropped': mut(lambda a: fact(a, 'F8').update(condition_quotes=[]), 'add'),
+        'H2 F8 condition misquoted': mut(lambda a: fact(a, 'F8')['condition_quotes'][1].update(quote='④ Minimum dimension 50*50mm for high precision, and at least 3 tooling holes.'), 'add'),
+        'H2 F8 precision qualified': mut(lambda a: fact(a, 'F8').update(precision_applicability='qualified: precision routing applies'), 'add'),
+        'H2 a8 nominal conclusion dropped': mut(lambda a: arow(a, 'a8').pop('nominal_conclusion'), 'add'),
     }
 
 
