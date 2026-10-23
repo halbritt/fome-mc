@@ -16,6 +16,7 @@ rust=()
 if [ -n "${POD_RUST_DIR:-}" ]; then rust=(-v "$(realpath -e "$POD_RUST_DIR"):/work/rust:ro"); fi
 # AGENTEE-485 R4: opt-in container memory cap (e.g. POD_MEMORY_LIMIT=12g, recorded as docker --memory) and the
 # recorded C1 hold mode (POD_C1, see pipeline.py C1_HOLD). Unset: no flag is added and C1 runs as before.
+# POD_TIMEOUT_S (default 5400) bounds the in-container steps, so a capped validation run cannot outlive its writer.
 mem=()
 if [ -n "${POD_MEMORY_LIMIT:-}" ]; then mem=(--memory "$POD_MEMORY_LIMIT" --memory-swap "$POD_MEMORY_LIMIT"); fi
 docker run --rm --name agent-ee-pod-capture-j6b2-prepare --label "native-admission.lease=$NATIVE_ADMISSION_LEASE" \
@@ -25,7 +26,7 @@ docker run --rm --name agent-ee-pod-capture-j6b2-prepare --label "native-admissi
   -e AGENT_EE_GIT=/work/ae.git -e AGENT_EE_TOOL_SOURCE_CACHE=/work/source-cache -e PYTHONDONTWRITEBYTECODE=1 \
   -e POD_BUILD_OPTIN="${POD_BUILD_OPTIN:-}" -e POD_RUNTIME="${POD_RUNTIME:-runtime/agentee-484r2.json}" -e POD_C1="${POD_C1:-}" \
   -v "$run:/work" -v "$run/iter8n:/home/halbritt/.cache/agent449-pod/iter8n:ro" "${rust[@]}" -w /work/fome \
-  "$image" timeout 5400 /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/production_steps.py
+  "$image" timeout "${POD_TIMEOUT_S:-5400}" /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/production_steps.py
 status=$?
 printf '\nexit=%s\n' "$status"
 exit "$status"
