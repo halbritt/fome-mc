@@ -41,9 +41,10 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
+# AGENTEE-484r: the RF width-rule binding emission (same pin) is a NEW retention after emission-7d5b0d4d-agentee484/;
 # AGENTEE-484: the decoupling-repair emission (same producer pin) is a NEW retention; evidence/emission-7d5b0d4d/
 # is the superseded pre-repair retention, kept unchanged.
-DEST = HERE / 'evidence/emission-7d5b0d4d-agentee484'
+DEST = HERE / 'evidence/emission-7d5b0d4d-agentee484r'
 SUPERSEDED = HERE / 'evidence/emission-81e387ee'  # j6/j6b retention (producer 81e387ee); removed at j6b2
 POD = ROOT / 'telemetry-pod'
 REPO_SUBTREE = 'telemetry-pod/'

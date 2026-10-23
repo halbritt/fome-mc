@@ -204,7 +204,7 @@ def invocation(run_dir, producer_mount):
             '/pod/out/campaign']
     container = ['docker', 'run', '--rm', '--label', 'native-admission.lease=$NATIVE_ADMISSION_LEASE',
                  '--cpus', '$NATIVE_ADMISSION_CPUS', '--pids-limit', '$NATIVE_ADMISSION_PIDS',
-                 '--security-opt', 'seccomp=unconfined', '--security-opt', 'apparmor=agent-ee-container',
+                 '--security-opt', 'seccomp=unconfined', '--security-opt', 'apparmor=unconfined',
                  '--security-opt', 'systempaths=unconfined', '--user', 'UID:GID', '-e', 'HOME=/tmp',
                  '-e', 'PYTHONPATH=/opt/agent-ee/src', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
                  '-w', '/opt/agent-ee', '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',

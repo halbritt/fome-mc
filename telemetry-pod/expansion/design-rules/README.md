@@ -177,3 +177,23 @@ shorts and 14 clearances of earlier reports (addressed by the AGENTEE-318 reserv
 mask and silk findings, via-in-pad assembly process (tenting or plugging of the 0.30 mm
 vias under the exposed pads must be specified with the fabricator), thermal validation,
 and final DFM review.
+
+## RF width rule binding (AGENTEE-484r, agent-529 decision 39bfdc72)
+
+AGENTEE-480 found that the project has only the Default net class and no RF_50 assignment, so
+`agent_ee_netclass_RF_50` (track_width min 0.335 mm) never applied to /POD_GNSS_RF. The rule condition in
+`telemetry-pod.kicad_dru` now also selects the net directly:
+`A.NetClass == 'RF_50' || A.NetName == '/POD_GNSS_RF'`.
+- The width is unchanged: 0.335 mm, inherited from the retained stackup calculation.
+- No other rule or clearance changed.
+- The F.Cu-over-In1 requirement is unchanged.
+
+The selector is in this fome-mc source because the pipeline copies this file into the project byte for byte,
+while `board-setup.kicad_pro` is rewritten by the agent-ee scaffold. A net-class assignment there would depend
+on agent-ee preserving it.
+
+`constraints.json` is not edited: its bytes are pinned by the J1 hand-fit chain. Its `custom_rules` entry keeps
+the rule name and width; this section records the selector.
+
+The binding enforces a minimum width. It does **not** prove 50-ohm impedance, which needs the fabricator stackup
+and a reference-plane check (AGENTEE-480).

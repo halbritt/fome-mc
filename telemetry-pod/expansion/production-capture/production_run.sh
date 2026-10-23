@@ -7,12 +7,12 @@
 set -u
 run=$(realpath -e "$1")
 image=sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7
-profile=unconfined
-if [ -e /sys/module/apparmor/parameters/enabled ] && [ "$(cat /sys/module/apparmor/parameters/enabled)" = Y ]; then profile=agent-ee-container; fi
+# AppArmor: always unconfined (owner ruling "remove the apparmor profiles like I asked"; AGENTEE-475). No profile is
+# selected, loaded or tested, whatever the host AppArmor state.
 # The image ENTRYPOINT is tini, so --init is omitted.
 docker run --rm --name agent-ee-pod-capture-j6b2-prepare --label "native-admission.lease=$NATIVE_ADMISSION_LEASE" \
   --cpus "$NATIVE_ADMISSION_CPUS" --pids-limit "$NATIVE_ADMISSION_PIDS" --network none \
-  --security-opt seccomp=unconfined --security-opt "apparmor=$profile" --security-opt systempaths=unconfined \
+  --security-opt seccomp=unconfined --security-opt apparmor=unconfined --security-opt systempaths=unconfined \
   --user "$(id -u):$(id -g)" -e HOME=/tmp -e AGENT_EE_REQUIRE_TOOLCHAIN=1 -e AGENT_EE_SKIP_VISUALS=1 \
   -e AGENT_EE_GIT=/work/ae.git -e AGENT_EE_TOOL_SOURCE_CACHE=/work/source-cache -e PYTHONDONTWRITEBYTECODE=1 \
   -v "$run:/work" -v "$run/iter8n:/home/halbritt/.cache/agent449-pod/iter8n:ro" -w /work/fome \
