@@ -46,7 +46,8 @@ ROOT = HERE.parents[2]
 # is the superseded pre-repair retention, kept unchanged.
 # a57b675c: a NEW retention that SUPERSEDES the incomplete emission-7d5b0d4d-agentee484r/ (its .gitignored native.xml and
 # netlist/design.xml were never committed). The old retention stays unchanged as defect evidence.
-DEST = HERE / 'evidence/emission-7d5b0d4d-agentee484r2'
+# AGENTEE-488: NEW retention for the VIO-to-VCC / C18 22 uF source change (after emission-7d5b0d4d-agentee484r2/).
+DEST = HERE / 'evidence/emission-7d5b0d4d-agentee488'
 SUPERSEDED = HERE / 'evidence/emission-81e387ee'  # j6/j6b retention (producer 81e387ee); removed at j6b2
 POD = ROOT / 'telemetry-pod'
 REPO_SUBTREE = 'telemetry-pod/'

@@ -1,0 +1,10 @@
+PASS positive: named supply and return measured
+PASS positive: governed return overrun is exceeds
+PASS negative: wrong-net support return (GND) is unmeasurable
+PASS negative: wrong-net return verdict is unsatisfied, not within
+PASS negative: no GND inference for the named return (GND pads present but not used)
+PASS negative: missing return pad -> unsatisfied
+PASS negative: missing device return pad -> unsatisfied
+PASS negative: generic GND return unmeasurable -> unsatisfied (old code passed this)
+PASS supply-only bound with no return declared still passes on supply
+9/9 passed
