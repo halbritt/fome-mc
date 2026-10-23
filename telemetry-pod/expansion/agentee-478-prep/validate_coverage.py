@@ -13,8 +13,13 @@ load = lambda n: json.loads((D / n).read_text())
 alloc, elig, rb, xf, fx = (load(n) for n in ('allocation-v2.json', 'side-eligibility.json', 'relationship-bounds.json',
                                              'cross-face-templates.json', 'fixed-shared-rules.json'))
 board = load('extract/emitted-2f1c9557.json')
-sch = load('extract/emitted-schematic-netlist.json')['components']
-fps = board['footprints']
+inv = alloc.get('inventory', {})
+sch = load(inv.get('schematic_netlist', 'extract/emitted-schematic-netlist.json'))['components']
+# Inventory = emitted-board footprints plus schematic symbols not yet on a board (AGENTEE-484 additions).
+fps = dict(board['footprints'])
+schematic_only = sorted(set(sch) - set(fps))
+for r in schematic_only:
+    fps[r] = {'pads': [{'number': k, 'net': v[0]} for k, v in sch[r]['pins'].items()]}
 errors, checks = [], collections.OrderedDict()
 
 def check(name, ok, detail=None):
@@ -42,10 +47,11 @@ unknown = sorted(set(seen) - set(fps))
 check('0 duplicates', not dups, dups)
 check('0 unassigned', not unassigned, unassigned)
 check('0 unknown references', not unknown, unknown)
-check('309 footprints captured', len(fps) == 309 and len(set(seen) & set(fps)) == 309, len(set(seen) & set(fps)))
+check('inventory captured exactly', set(seen) == set(fps), {'inventory': len(fps), 'captured': len(set(seen) & set(fps))})
+check('schematic-only parts are declared', schematic_only == inv.get('schematic_only_not_yet_on_board', []), schematic_only)
 board_only = sorted(set(fps) - set(sch))
 check('board-only footprints are H1-H4 and fixed', board_only == ['H1', 'H2', 'H3', 'H4'] and all(role[r] == 'fixed' for r in board_only), board_only)
-check('every schematic symbol is on the board', not (set(sch) - set(fps)), sorted(set(sch) - set(fps)))
+check('every schematic symbol is in the inventory', not (set(sch) - set(fps)), sorted(set(sch) - set(fps)))
 check('no empty block', all(b['references'] for b in alloc['blocks']))
 bad_anchor = [b['id'] for b in alloc['blocks'] if ('member' in b['anchor'] and b['anchor']['member'] not in b['references'])
               or ('fixed' in b['anchor'] and role.get(b['anchor']['fixed']) != 'fixed')]
@@ -88,7 +94,7 @@ check('cross-face instances reference relationships', all(i['relationship'] in r
 check('fixed rules cover every fixed part', set(fx['fixed']) == {f['reference'] for f in alloc['fixed']})
 
 report = {'validator': 'agentee-478 validate_coverage.py', 'board_sha256': board['sha256'],
-          'counts': {'footprints': len(fps), 'block_members': sum(len(b['references']) for b in alloc['blocks']),
+          'counts': {'footprints': len(fps), 'schematic_only': len(schematic_only), 'block_members': sum(len(b['references']) for b in alloc['blocks']),
                      'blocks': len(alloc['blocks']), 'fixed': len(alloc['fixed']), 'shared': len(alloc['shared']),
                      'unassigned': len(unassigned), 'duplicates': len(dups)},
           'checks': checks, 'result': 'PASS' if not errors else 'FAIL', 'failed': errors}

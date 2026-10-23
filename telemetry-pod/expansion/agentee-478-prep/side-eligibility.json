@@ -478,6 +478,54 @@
    "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
    "same_face_relationships": []
   },
+  "gnss-receiver-support": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
   "gnss-rf-feed": {
    "eligible_faces": [
     "F"
@@ -488,6 +536,54 @@
      "text": "RF line parts follow the U3.11-J2.1 RF path, which must be F.Cu over the In1 reference (OWNER/project R:65); U3 and J2 are F. Re-check once C15 is reconciled"
     }
    ],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "imu-support": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
    "region_restrictions": [],
    "material_unknowns": [
     {

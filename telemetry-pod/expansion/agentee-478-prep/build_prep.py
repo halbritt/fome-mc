@@ -16,7 +16,12 @@ ALLOC_PATH = EXP / 'blocks/allocation.json'
 ALLOC = json.loads(ALLOC_PATH.read_text())
 EXTRACT = {k: json.loads((OUT / 'extract' / f).read_text()) for k, f in
            [('emitted', 'emitted-2f1c9557.json'), ('r5', 'r5-8f3bc234.json'), ('route3', 'route3-08066170.json')]}
-BOARD = EXTRACT['emitted']['footprints']
+BOARD = dict(EXTRACT['emitted']['footprints'])
+# AGENTEE-484: parts added by the source repair exist in the regenerated schematic but on no board yet.
+SCHEMATIC_ONLY = sorted(set(SCH) - set(BOARD))
+for _r in SCHEMATIC_ONLY:
+    BOARD[_r] = {'value': SCH[_r]['value'], 'side': None, 'on_board': False,
+                 'pads': [{'number': k, 'net': v[0], 'pin_function': v[1]} for k, v in SCH[_r]['pins'].items()]}
 RAILS = ['/GND', '/+3V3', '/PRE_6V3', '/POD_12V_PROTECTED', '/+5V_CAN', '/POD_5V_SENSOR']
 nat = lambda r: (re.sub(r'\d', '', r), int(re.sub(r'\D', '', r) or 0))
 
@@ -40,20 +45,27 @@ def move(refs, src, dst, why, evidence):
                         'reason': why, 'evidence': evidence})
 
 # residual and unassigned -> explicit roles
-move(['C18'], None, 'pre-6v3',
-     'C18 (1 uF) is on /PRE_6V3, the U5/L1 output node (pre-6v3 regulator output). It is drawn with the '
-     'buck-3v3 output bank in the emitted schematic, but U7 is not on that net (third fix). Function: '
-     'pre-6v3 output capacitance.',
-     'netlist C18.1=/PRE_6V3 C18.2=/GND; L1.2=/PRE_6V3; schematic symbol C18 at (375.92,41.91), inside the '
-     'emitter group "buck-3v3: 3V3 regulator (U7) and 3V3 bulk"')
-move(['C38', 'C41', 'C43', 'C44'], None, 'buck-3v3',
-     'The emitted schematic draws C38/C41/C43/C44 in the "3V3 regulator (U7) and 3V3 bulk" group, on '
-     '/+3V3 with no per-load binding. By schematic function they are the regulator output bank. The fifth '
-     'fix removed them on PLACEMENT evidence (48-51 mm from U7 in iteration 5), not on function. The '
-     'consequent load-pin decoupling gaps are reported as UNRESOLVED in relationship-bounds.json (D-GAP '
-     'entries). An alternative per-load binding is offered there as an owner/529 decision, not applied.',
-     'emitter-layout.json group buck-3v3 lists power/C38, C41, C43, C44; schematic x 332-366, y 34-42, '
-     'beside U7 at (444.5,43.18)')
+# AGENTEE-484 (decision of agent-529, Plane AGENTEE-484): the 478 bank assignment is replaced by per-pin
+# dispositions sourced in ../agentee-484-decoupling/dispositions.json. The netlist is unchanged for rebinds.
+move(['C18'], None, 'supplies-5v',
+     'AGENTEE-484 rebind: C18 (1 uF) on /PRE_6V3 is the REF5050 (U11) Vin supply bypass (REF50xx: TI '
+     'recommends a supply bypass capacitor ranging from 1 uF; place as close as possible). U5 keeps C6/C7 2x22 uF.',
+     'netlist C18=/PRE_6V3-/GND, U11.2 Vin=/PRE_6V3; source emitter-layout group supplies-5v')
+move(['C38', 'C41'], None, 'imu-support',
+     'AGENTEE-484 rebind: C38 -> U2.8 VDD and C41 -> U2.5 VDDIO, the two 100 nF capacitors C1/C2 of the '
+     'LSM6DSO32 datasheet; U7 keeps the LMR36520 Table 8-1 3.3 V output bank 3x22 uF (C13-C15)',
+     'source emitter-layout group imu; netlist unchanged (+3V3/GND)')
+move(['C43'], None, 'gnss-antenna-supply',
+     'AGENTEE-484 rebind: C43 (100 nF) -> U10.1 IN, the TPS2553 100-nF bypass near IN and GND',
+     'source emitter-layout group gnss; netlist unchanged')
+move(['C44'], None, 'gnss-receiver-support',
+     'AGENTEE-484 rebind: C44 (1 uF) -> U3.23 VCC (NEO-M9N VCC decoupling as close as possible); also local '
+     'to the adjacent V_BCKP pin 22 tied to VCC (PENDING-510)',
+     'source emitter-layout group gnss; U3 pads 22/23/24 at 1.1 mm pitch')
+move(['C130'], None, 'adc', 'AGENTEE-484 added: 1 uF U4.16 Vdd bypass (MCP3208: 1 uF is recommended)', 'source intent adc/C130')
+move(['C131'], None, 'afe', 'AGENTEE-484 added: 100 nF U8.4 V+ bypass', 'source intent power/C131')
+move(['C132'], None, 'sensor-ref', 'AGENTEE-484 added: 100 nF U9.5 V+ bypass (OPA320: 0.1-uF bypass close to the supply pins)', 'source intent power/C132')
+move(['C133'], None, 'can', 'AGENTEE-484 added: 100 nF U100.5 VIO bypass', 'source intent can/C133')
 move(['R33'], None, 'mcu',
      'R33 (10 k) pulls U1 IO46 (/MCU_BOOT46) to GND: a strap of the module. mcu is the U1 support block '
      'anchored on the fixed U1, so a member reachable only through the fixed anchor is expected and valid.',
@@ -94,10 +106,10 @@ for sv, parts in [('supervisor-3v3', ['U16', 'R56', 'R57', 'C71', 'C72']),
          'netlist SENSE nets /SUP_U16_SENSE, /SUP_U18_SENSE, /SUP_U19_SENSE; VDD-cap binding by emitter '
          'order (U, Rtop, Rbot, CT, VDD cap)')
 del blocks['supervision']
-anchors.update({'gnss-antenna-supply': 'U10', 'gnss-rf-feed': None, 'storage-support': None, 'sensor-ref': 'U9',
+anchors.update({'imu-support': None, 'gnss-receiver-support': None, 'gnss-antenna-supply': 'U10', 'gnss-rf-feed': None, 'storage-support': None, 'sensor-ref': 'U9',
                 'supervisor-3v3': 'U16', 'supervisor-5v-sensor': 'U18', 'supervisor-12v': 'U19', 'mcu': None})
 anchors.pop('supervision', None)
-FIXED_ANCHOR = {'mcu': 'U1', 'gnss-rf-feed': 'U3', 'gnss-antenna-supply': 'U3', 'storage-support': 'J3',
+FIXED_ANCHOR = {'imu-support': 'U2', 'gnss-receiver-support': 'U3', 'mcu': 'U1', 'gnss-rf-feed': 'U3', 'gnss-antenna-supply': 'U3', 'storage-support': 'J3',
                 'power-entry': 'J1', 'can': 'J1', 'tire-can': 'J1'}
 
 # ---------------------------------------------------------------- sources (D3 provenance)
@@ -115,6 +127,7 @@ DS = {
     'LM2903B': 'interface-preparation/wheel-input/lm2903b-q1.pdf',
     'SN74LVC1G132': 'interface-preparation/sources/sn74lvc1g132.pdf',
     'TL431': 'thermistor/sources/tl431.pdf',
+    'REF50': 'interface-preparation/aux-power/ref50.pdf',
 }
 SRC = {k: {'path': 'telemetry-pod/expansion/' + v, 'sha256': sha(EXP / v)} for k, v in DS.items()}
 CITE = {  # (source key, page, retained wording, what it constrains)
@@ -134,13 +147,15 @@ CITE = {  # (source key, page, retained wording, what it constrains)
     'esp-rc': ('ESP32-HG', 17, 'Ensure that the RC/LC components are placed close to the pins of the chip or module'),
     'ads-decouple': ('ADS1119', 37, '10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins'),
     'ads-layer': ('ADS1119', 38, 'Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device'),
-    'mcp3208-bypass': ('MCP3208', 23, 'A bypass capacitor should always be used ... placed as close as possible to the device pin'),
+    'mcp3208-bypass': ('MCP3208', 23, 'A bypass capacitor should always be used ... placed as close as possible to the device pin. A bypass capacitor value of 1 uF is recommended'),
+    'ref50-bypass': ('REF50', 29, 'TI recommends a supply bypass capacitor ranging from 1uF to 50uF for REF50xxI ... Place the power-supply bypass capacitor as closely as possible to the supply and ground pins'),
+    'neo-bckp': ('NEO-M9N-IM', 71, 'If no backup supply voltage is available, connect the V_BCKP pin to VCC'),
     'opa320-bypass': ('OPA320', 28, 'Place 0.1-uF bypass capacitors close to the power-supply pins'),
     'lm2903-bypass': ('LM2903B', 18, 'A bypass capacitor is recommended on the supply pin'),
     'lvc-bypass': ('SN74LVC1G132', 14, 'Add a decoupling capacitor from VCC to GND ... physically close to the device; 0.1 uF recommended'),
     'tl431-bypass': ('TL431', 31, 'Bypass capacitors should be placed as close to the part as possible'),
 }
-IC_DECOUPLE_CITE = {'U5': 'lmr-hotloop', 'U7': 'lmr-hotloop', 'U6': 'tps7b-layout', 'U12': 'tps7b-layout',
+IC_DECOUPLE_CITE = {'U11': 'ref50-bypass', 'U5': 'lmr-hotloop', 'U7': 'lmr-hotloop', 'U6': 'tps7b-layout', 'U12': 'tps7b-layout',
                     'U10': 'tps2553-layout', 'U23': 'tps2662-layout', 'U24': 'tps2662-layout',
                     'U25': 'tps2662-layout', 'U30': 'tps2662-layout', 'U2': 'lsm6-bypass', 'U3': 'neo-vcc',
                     'U27': 'ads-decouple', 'U28': 'ads-decouple', 'U29': 'ads-decouple', 'U4': 'mcp3208-bypass',
@@ -198,17 +213,21 @@ RAIL_BIND = [
     ('C120', 'U28', '12', 'hf-decoupler'), ('C121', 'U28', '13', 'hf-decoupler'),
     ('C122', 'U29', '12', 'hf-decoupler'), ('C123', 'U29', '13', 'hf-decoupler'),
     ('C64', 'J3', '4', 'bulk-decoupler'), ('C65', 'J3', '4', 'hf-decoupler'),
+    # AGENTEE-484 dispositions
+    ('C38', 'U2', '8', 'hf-decoupler'), ('C41', 'U2', '5', 'hf-decoupler'), ('C44', 'U3', '23', 'hf-decoupler'),
+    ('C44', 'U3', '22', 'hf-decoupler'), ('C43', 'U10', '1', 'hf-decoupler'), ('C18', 'U11', '2', 'hf-decoupler'),
+    ('C130', 'U4', '16', 'hf-decoupler'), ('C131', 'U8', '4', 'hf-decoupler'), ('C132', 'U9', '5', 'hf-decoupler'),
+    ('C133', 'U100', '5', 'hf-decoupler'),
 ]
-OUTPUT_BANK = [('C6', 'L1', '2'), ('C7', 'L1', '2'), ('C18', 'L1', '2'),
-               ('C13', 'L2', '2'), ('C14', 'L2', '2'), ('C15', 'L2', '2'),
-               ('C38', 'L2', '2'), ('C41', 'L2', '2'), ('C43', 'L2', '2'), ('C44', 'L2', '2')]
+OUTPUT_BANK = [('C6', 'L1', '2'), ('C7', 'L1', '2'),
+               ('C13', 'L2', '2'), ('C14', 'L2', '2'), ('C15', 'L2', '2')]
 GAPS = [  # IC supply pins with no dedicated decoupler in the emitted schematic
     ('U2', '8', 'VDD', 'lsm6-bypass', 'C38'), ('U2', '5', 'VDDIO', 'lsm6-bypass', 'C41'),
     ('U3', '23', 'VCC', 'neo-vcc', 'C44'), ('U3', '22', 'V_BCKP', 'neo-vcc', None),
     ('U10', '1', 'IN', 'tps2553-layout', 'C43'), ('U4', '16', 'Vdd', 'mcp3208-bypass', None),
     ('U8', '4', 'V+', None, None), ('U9', '5', 'V+', 'opa320-bypass', None), ('U13', '4', 'V+ (has C62)', None, None),
     ('U100', '5', 'VIO', None, None), ('U11', '2', 'Vin', None, None)]
-GAPS = [g for g in GAPS if g[0] != 'U13']
+GAPS = []  # AGENTEE-484: every former gap now has a disposition (see dispositions.json)
 
 def pad(fp, number, netname=None):
     c = [p for p in fp['pads'] if p['number'] == number and (netname is None or p['net'] == netname)]
@@ -219,6 +238,8 @@ def dist(fa, pa, fb, pb):
     return round(math.sqrt((pa['x'] - pb['x']) ** 2 + (pa['y'] - pb['y']) ** 2 + dz ** 2), 3)
 
 def leg(board, ra, pna, rb, netname, pnb=None):
+    if ra not in board or rb not in board or board[rb].get('on_board') is False:
+        return None
     fa, fb = board[ra], board[rb]
     a = pad(fa, pna)
     bs = [p for p in fb['pads'] if p['net'] == netname and (pnb is None or p['number'] == pnb)]
@@ -227,6 +248,8 @@ def leg(board, ra, pna, rb, netname, pnb=None):
     return min(dist(fa, a, fb, b) for b in bs)
 
 def return_leg(board, ic, cap):
+    if ic not in board or cap not in board or board[cap].get('on_board') is False:
+        return None
     fi, fc = board[ic], board[cap]
     gi = [p for p in fi['pads'] if p['net'] == '/GND']
     gc = [p for p in fc['pads'] if p['net'] == '/GND']
@@ -238,6 +261,10 @@ def measure(rel):
     out = {}
     for k in ('r5', 'route3'):
         bd = EXTRACT[k]['footprints']
+        if rel['support']['ref'] not in bd:
+            out[k] = {'supply_leg_mm': None, 'return_leg_mm': None, 'faces': None,
+                      'verdict': 'not-on-board (added by AGENTEE-484; measured after regeneration and placement)'}
+            continue
         s = leg(bd, rel['device']['ref'], rel['device']['pin'], rel['support']['ref'], rel['device']['net'])
         r = return_leg(bd, rel['device']['ref'], rel['support']['ref']) if rel['bound'].get('return_leg_max_mm') else None
         same = bd[rel['device']['ref']]['side'] == bd[rel['support']['ref']]['side']
@@ -385,6 +412,15 @@ for ic, pin, fn, cite, alt in GAPS:
                   'capacitor': alt, 'status': 'proposed, NOT applied (needs 529/owner decision via 519)'}
                  if alt else {'option': 'design change: add a decoupler', 'status': 'proposed, not applied'}))
 
+for r in rels:
+    if r['id'] == 'U3.22-C44-hf-decoupler':
+        r['disposition'] = ('NO DEDICATED CAPACITOR - PENDING-510: V_BCKP is tied to VCC as the integration manual '
+                            'directs when no backup supply exists (p71); C44 sits at the adjacent VCC pin 23 '
+                            '(1.1 mm pitch, GND pin 24 adjacent), so it is local to pin 22 and not a remote capacitor. '
+                            'Needs agent-510 agreement')
+        s_, p_, q_ = CITE['neo-bckp']
+        r['provenance'].insert(0, {'class': 'MFR', 'requirement': 'topology', 'source': SRC[s_]['path'],
+                                   'sha256': SRC[s_]['sha256'], 'page': p_, 'text': q_})
 # old 12 obligations -> disposition
 POLICY = json.loads((EXP / 'production-capture/evidence/emission-7d5b0d4d/design/composition/placement-policy.json').read_text())
 old_dispo = []
@@ -538,6 +574,8 @@ def anchor_of(b):
 alloc2 = {'schema': 'agent-ee.block-allocation/2 (proposed; /1 consumers ignore fixed/shared)',
           'derived_from': {'path': 'telemetry-pod/expansion/blocks/allocation.json', 'sha256': sha(ALLOC_PATH)},
           'board_sha256': EXTRACT['emitted']['sha256'],
+          'inventory': {'board_sha256': EXTRACT['emitted']['sha256'], 'schematic_netlist': 'extract/' + NETLIST.name,
+                        'schematic_netlist_sha256': sha(NETLIST), 'schematic_only_not_yet_on_board': SCHEMATIC_ONLY},
           'blocks': [{'id': b, 'references': sorted(rs, key=nat), 'anchor': anchor_of(b),
                       'interfaces_to_fixed': FIXED_ANCHOR.get(b)} for b, rs in sorted(blocks.items())],
           'fixed': [{'reference': f, 'register_entries': ids} for f, ids in FIXED.items()],

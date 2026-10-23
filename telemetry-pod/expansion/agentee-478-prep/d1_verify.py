@@ -6,7 +6,7 @@ from pathlib import Path
 D = Path(sys.argv[1])
 alloc = json.loads((D / 'allocation-v2.json').read_text())
 rels = json.loads((D / 'relationship-bounds.json').read_text())['relationships']
-nl = json.loads((D / 'extract/emitted-schematic-netlist.json').read_text())
+nl = json.loads((D / alloc.get('inventory', {}).get('schematic_netlist', 'extract/emitted-schematic-netlist.json')).read_text())
 C, N = nl['components'], nl['nets']
 RAIL = {'/GND', '/+3V3', '/PRE_6V3', '/POD_12V_PROTECTED', '/+5V_CAN', '/POD_5V_SENSOR'}
 bound = {}
