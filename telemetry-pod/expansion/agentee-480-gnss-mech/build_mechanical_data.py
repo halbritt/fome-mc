@@ -93,6 +93,8 @@ def materialize(obs):
         elif ref.startswith(("H", "TP", "JP")):
             row.update(body_nominal_mm=0, body_max_mm=0, status="COPPER_OR_HOLE_NO_COMPONENT_BODY",
                        source=source477, note="no component body; installed hardware, probe and solder bridge/fillet are separate, not zero-height assumptions")
+        if ref in ("L1", "L2"):
+            row["variant_dimension_validation"] = "inductor-variant-check.json#/items/" + ref
         heights.append(row)
     save("heights.json", {"schema": "agentee-480.part-heights/1", "status": "PROVISIONAL_HEIGHT_TABLE", "board_sha256": obs["board_sha256"],
                           "parts": heights, "unknown_never_passes": True,
