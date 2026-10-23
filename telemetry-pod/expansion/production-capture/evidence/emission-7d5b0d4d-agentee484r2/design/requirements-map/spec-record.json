@@ -1,0 +1,2371 @@
+{
+  "counts": {
+    "acceptance": 11,
+    "bullet": 18,
+    "prose": 20,
+    "requirements": 59,
+    "table_row": 30
+  },
+  "headings": [
+    {
+      "byte_end": 28,
+      "byte_start": 0,
+      "code": "DOC",
+      "heading_path": [
+        "Telemetry pod requirements"
+      ],
+      "level": 1,
+      "text": "Telemetry pod requirements"
+    },
+    {
+      "byte_end": 433,
+      "byte_start": 423,
+      "code": "PU",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Purpose"
+      ],
+      "level": 2,
+      "text": "Purpose"
+    },
+    {
+      "byte_end": 1222,
+      "byte_start": 1211,
+      "code": "FN",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Function"
+      ],
+      "level": 2,
+      "text": "Function"
+    },
+    {
+      "byte_end": 2846,
+      "byte_start": 2833,
+      "code": "IF",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Interfaces"
+      ],
+      "level": 2,
+      "text": "Interfaces"
+    },
+    {
+      "byte_end": 6609,
+      "byte_start": 6587,
+      "code": "CD",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Component decisions"
+      ],
+      "level": 2,
+      "text": "Component decisions"
+    },
+    {
+      "byte_end": 10652,
+      "byte_start": 10623,
+      "code": "ME",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Mechanical and environment"
+      ],
+      "level": 2,
+      "text": "Mechanical and environment"
+    },
+    {
+      "byte_end": 13074,
+      "byte_start": 13024,
+      "code": "TE",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Owner-approved component-temperature exceptions"
+      ],
+      "level": 2,
+      "text": "Owner-approved component-temperature exceptions"
+    },
+    {
+      "byte_end": 15241,
+      "byte_start": 15210,
+      "code": "PI",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Power integrity and recovery"
+      ],
+      "level": 2,
+      "text": "Power integrity and recovery"
+    },
+    {
+      "byte_end": 17797,
+      "byte_start": 17746,
+      "code": "ED",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Expanded-design decisions required before layout"
+      ],
+      "level": 2,
+      "text": "Expanded-design decisions required before layout"
+    },
+    {
+      "byte_end": 19872,
+      "byte_start": 19850,
+      "code": "AC",
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Acceptance criteria"
+      ],
+      "level": 2,
+      "text": "Acceptance criteria"
+    }
+  ],
+  "ids": {
+    "codes": {
+      "Acceptance criteria": "AC",
+      "Component decisions": "CD",
+      "Expanded-design decisions required before layout": "ED",
+      "Function": "FN",
+      "Interfaces": "IF",
+      "Mechanical and environment": "ME",
+      "Owner-approved component-temperature exceptions": "TE",
+      "Power integrity and recovery": "PI",
+      "Purpose": "PU",
+      "Telemetry pod requirements": "DOC"
+    },
+    "prefix": "POD"
+  },
+  "lists": [
+    {
+      "byte_end": 13022,
+      "byte_start": 10838,
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Mechanical and environment"
+      ],
+      "items": 6,
+      "list": 1,
+      "ordered": false,
+      "section": "Mechanical and environment"
+    },
+    {
+      "byte_end": 17102,
+      "byte_start": 15535,
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Power integrity and recovery"
+      ],
+      "items": 6,
+      "list": 1,
+      "ordered": false,
+      "section": "Power integrity and recovery"
+    },
+    {
+      "byte_end": 19328,
+      "byte_start": 17953,
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Expanded-design decisions required before layout"
+      ],
+      "items": 6,
+      "list": 1,
+      "ordered": false,
+      "section": "Expanded-design decisions required before layout"
+    },
+    {
+      "byte_end": 23011,
+      "byte_start": 20062,
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Acceptance criteria"
+      ],
+      "items": 11,
+      "list": 1,
+      "ordered": true,
+      "section": "Acceptance criteria"
+    }
+  ],
+  "prose": [
+    {
+      "id": "POD-DOC-P1",
+      "locator": {
+        "byte_end": 421,
+        "byte_start": 30,
+        "heading_path": [
+          "Telemetry pod requirements"
+        ],
+        "paragraph": 1
+      },
+      "section": "Telemetry pod requirements",
+      "text": "Revision 3, Oct 20, 2026 \u00b7 @Heath. The owner accepted eight analog inputs, two wheel-speed inputs, standalone logging, and provision for digital tire-temperature sensors, with a 35-position right-angle AMPSEAL connector. This revision supersedes the four-channel and 23-position requirements. The committed v9 pilot hardware and its verification artifacts still describe the earlier design.",
+      "text_sha256": "d170359fb5d3a2bd73394b1779c01f0d7d58a6753abb99dfedd54b481ca8b544"
+    },
+    {
+      "id": "POD-PU-P1",
+      "locator": {
+        "byte_end": 872,
+        "byte_start": 435,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Purpose"
+        ],
+        "paragraph": 1
+      },
+      "section": "Purpose",
+      "text": "The tail-cowl telemetry pod is the first real board the agent-ee generator must produce from a specification, before it is pointed at fome-mc. fome-mc already defines the pod's job and its CAN interface in its telemetry document but left the parts, mechanics and acceptance criteria open. This document records the accepted capabilities. The implementation decisions listed below must be resolved before the expanded design is generated.",
+      "text_sha256": "e94efb5a70eaacb2d1f7e4999b928341320145ad0278b05506a28e13170bea4d"
+    },
+    {
+      "id": "POD-PU-P2",
+      "locator": {
+        "byte_end": 1209,
+        "byte_start": 874,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Purpose"
+        ],
+        "paragraph": 2
+      },
+      "section": "Purpose",
+      "text": "Everything here is a requirement on the pod, not a design. Where a part is named, it is a decision made once by hand so that what the generator proposes can be compared against it. Facts about fome-mc are taken from the repository as of 2026-10-17 (commit c582b29). The pod design will live in the fome-mc repository alongside the ECU.",
+      "text_sha256": "dad4a61eb843c4050718317a2b699d4d4d82cb3954f545af83aff69d6a0ba4b8"
+    },
+    {
+      "id": "POD-FN-P1",
+      "locator": {
+        "byte_end": 1511,
+        "byte_start": 1224,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "paragraph": 1
+      },
+      "section": "Function",
+      "text": "The pod is a CAN1 node mounted in the tail cowl of the SV650 that measures chassis dynamics the ECU cannot reach and publishes them twice: on CAN1 for the ECU's .mlg logs, and over Bluetooth LE to RaceChrono Pro together with the ECU's own 0x200..0x207 frames. It has no control outputs.",
+      "text_sha256": "f1ba12738837ea51e1183012c6ef2a2704ac3b6113db3c3efc58cad2140cf3dc"
+    },
+    {
+      "id": "POD-FN-P2",
+      "locator": {
+        "byte_end": 2831,
+        "byte_start": 2324,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "paragraph": 2
+      },
+      "section": "Function",
+      "text": "The pod also relays every CAN1 frame it receives from the ECU to RaceChrono over the BLE DIY CAN characteristic, filtered to the IDs RaceChrono subscribes to. The eight analog channels are 12-bit and use a reference derived from the pod's own 5 V sensor supply (see Interfaces). Ratiometric sensors track that supply; absolute-voltage sensors require their own transfer-function and reference-error treatment. The pod is a standalone unit with its own power supply; the ECU's 5V\\_SENSOR\\_2 rail is not used.",
+      "text_sha256": "8cf9e23492cb255423ced6f3bcbb72b69ac673157dd57089be26cce1d6aeb5b4"
+    },
+    {
+      "id": "POD-IF-P1",
+      "locator": {
+        "byte_end": 3254,
+        "byte_start": 2848,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "paragraph": 1
+      },
+      "section": "Interfaces",
+      "text": "The pod's external interfaces are fixed by fome-mc and are not the generator's to change. Frame layouts, scaling and the RaceChrono channel equations are in [fome-mc docs/TELEMETRY\\_AND\\_RACECHRONO.md](https://github.com/halbritt/fome-mc/blob/main/docs/TELEMETRY_AND_RACECHRONO.md); the harness pins are in [docs/WIRING\\_SV650\\_K7.md](https://github.com/halbritt/fome-mc/blob/main/docs/WIRING_SV650_K7.md).",
+      "text_sha256": "307b274e0e9bcf2ab3925ddb1d753fcf6f11936c8def2561660f2af1891b8baa"
+    },
+    {
+      "id": "POD-CD-P1",
+      "locator": {
+        "byte_end": 6920,
+        "byte_start": 6611,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "paragraph": 1
+      },
+      "section": "Component decisions",
+      "text": "These are the choices fome-mc's telemetry document left as alternatives, settled here. Where fome-mc already carries a verified part for the same job, the pod reuses it, in line with the composition approach. LCSC numbers are given only where fome-mc's BOM already has them; the parts stage captures the rest.",
+      "text_sha256": "5331247dc358811c7d419d30ef47fc8665eae609cd140fd29f05d1039ac35dc7"
+    },
+    {
+      "id": "POD-ME-P1",
+      "locator": {
+        "byte_end": 10836,
+        "byte_start": 10654,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "paragraph": 1
+      },
+      "section": "Mechanical and environment",
+      "text": "The pod lives under the tail cowl of a 2007 SV650, next to the battery and tail light wiring, and is treated like the ECU: sealed, vibration-loaded, and not serviced on the roadside.",
+      "text_sha256": "64e08d5e76ec2a72122cf4d4c43ef51a44a1bbc533720695f2186b2c433da3ff"
+    },
+    {
+      "id": "POD-TE-P1",
+      "locator": {
+        "byte_end": 13241,
+        "byte_start": 13076,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "paragraph": 1
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "On 2026-10-20, the owner approved retaining the following parts despite the blanket 105 \u00b0C component-rating requirement, with enclosure thermal validation required:",
+      "text_sha256": "2e561aa87cd22de1196e99bb858b100045296afc0a21180efef6b8489cfe4557"
+    },
+    {
+      "id": "POD-TE-P2",
+      "locator": {
+        "byte_end": 13973,
+        "byte_start": 13564,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "paragraph": 2
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "The assembly verifier's canonical source is\n[operating-temperature-exemptions.txt](operating-temperature-exemptions.txt).\nThat file contains only the three owner-approved exemption lines, without\nMarkdown, headings, comments or blank lines. Cite its captured bytes, SHA-256 and\nindividual line numbers in the expanded pod scope. Withdraw an exemption by\ndeleting its line and regenerating the scope citations.",
+      "text_sha256": "bcaa5b180be721e16af8a0b59305c9f34cd5d49911c091a65d0a9be9726dd648"
+    },
+    {
+      "id": "POD-TE-P3",
+      "locator": {
+        "byte_end": 14574,
+        "byte_start": 13975,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "paragraph": 3
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "These declarations waive the blanket 105 \u00b0C part-selection check only. They do not qualify operation beyond manufacturer limits, waive thermal validation, or transfer to a different part/reference. Record the exception with each exact component binding. Validate enclosure temperatures and self-heating under worst-case input, sensor load, radio and logging activity; the stated +85 \u00b0C board-ambient ceiling is not demonstrated for this assembly. If the actual thermal margin is insufficient, revise cooling, the operating envelope or the affected part with an explicit disposition before release.",
+      "text_sha256": "7fd4b8512b8855e86b7764c65707e1f0f7fd8beda50aab8c77ef0bc247a11ef7"
+    },
+    {
+      "id": "POD-TE-P4",
+      "locator": {
+        "byte_end": 15208,
+        "byte_start": 14576,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "paragraph": 4
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "The current exemption mechanism excludes these references from the assembly\noperating-temperature predicate entirely; it does not verify them against their\nown ratings. Therefore the expanded scope must carry actual manufacturer limits,\nexact-part binding and enclosure thermal validation as unresolved declared\nlimitations. A passing assembly predicate does not discharge those obligations.\nThe scope fragment in\n[expansion/temperature-scope-fragment.json](expansion/temperature-scope-fragment.json)\nretains the citations and limitations for incorporation when the expanded scope\nis generated; it is not a completed assembly check.",
+      "text_sha256": "e51176b2e240c3510a4887a6a8378f1cb7e3991c784e54f3ada233d428a566d9"
+    },
+    {
+      "id": "POD-PI-P1",
+      "locator": {
+        "byte_end": 15533,
+        "byte_start": 15243,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "paragraph": 1
+      },
+      "section": "Power integrity and recovery",
+      "text": "Owner direction, 2026-10-20: redesign the power block to accommodate brownouts and ripple as well as the expanded sensor load. The owner reports possible unusual SV650 supply behavior around 2,500 rpm. This is an investigation lead, not a measured waveform or established model-wide defect.",
+      "text_sha256": "19304c46266b1e1f9f0aed52072c02a6b9848d9e3276197127ab5a82bc0b1820"
+    },
+    {
+      "id": "POD-PI-P2",
+      "locator": {
+        "byte_end": 17554,
+        "byte_start": 17104,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "paragraph": 2
+      },
+      "section": "Power integrity and recovery",
+      "text": "Verification must include programmable supply dips/recovery, swept ripple, sensor shorts and load steps while acquiring and logging. Capture the actual bike supply at the pod harness around 2,500 rpm, across the operating range and during starting, then replay relevant measured disturbances on the bench. Keep simulation, injected-waveform testing and on-bike evidence distinct. No specific ripple amplitude or dip duration has yet been established.",
+      "text_sha256": "4e3eaec4ca152b355b6030e53e06a9bf8dcc0b1c5328536c3433180d6a3e3e07"
+    },
+    {
+      "id": "POD-PI-P3",
+      "locator": {
+        "byte_end": 17744,
+        "byte_start": 17556,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "paragraph": 3
+      },
+      "section": "Power integrity and recovery",
+      "text": "Reference design for topology and test methods: [TI TIDA-00699 automotive front end](https://www.ti.com/tool/TIDA-00699). Its reported results apply to that reference design, not this pod.",
+      "text_sha256": "9cf9fef52a800b6102798a86a676e366a431f01de380f175bb7d1a61137db07e"
+    },
+    {
+      "id": "POD-ED-P1",
+      "locator": {
+        "byte_end": 17951,
+        "byte_start": 17799,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "paragraph": 1
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "The owner accepted the capability baseline on 2026-10-20. The following implementation choices remain open; the generator must not silently invent them:",
+      "text_sha256": "1f6f9c39ea651b80588c2e455c897e701b8069cf6eb0afbf2b37f7677c6c885a"
+    },
+    {
+      "id": "POD-ED-P2",
+      "locator": {
+        "byte_end": 19567,
+        "byte_start": 19330,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "paragraph": 2
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Manufacturer references: [MCP3204/3208 datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/21298e.pdf) and [TE 776163-1 product and drawing](https://www.te.com/en/product-776163-1.html).",
+      "text_sha256": "d6ec12c302db75e0038655bc451c29b3e3a6d1f04271bc2fd8bb9f3c1683b2f1"
+    },
+    {
+      "id": "POD-ED-P3",
+      "locator": {
+        "byte_end": 19848,
+        "byte_start": 19569,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "paragraph": 3
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "The previous v9 schematic, PCB, BOM, io-map and compiled interface contract remain historical pilot artifacts. Their passing checks do not establish compliance with Revision 3. Regenerate the expanded candidate from revised source inputs and repeat placement, routing and review.",
+      "text_sha256": "c7e1310df3b4c4a43c434b84d300bc6ef569c5df482f198f330829e575e04436"
+    },
+    {
+      "id": "POD-AC-P1",
+      "locator": {
+        "byte_end": 20060,
+        "byte_start": 19874,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "paragraph": 1
+      },
+      "section": "Acceptance criteria",
+      "text": "A generated pod design is accepted when all of the following hold, each backed by tool output in the evidence trail. Items 1 to 7 are checked on the files; 8 to 11 require a built board.",
+      "text_sha256": "98850d63a6117b3c25334f32b09d76aa35f7527c5b7ef4d41860ff5b3713d9c3"
+    },
+    {
+      "id": "POD-AC-P2",
+      "locator": {
+        "byte_end": 23261,
+        "byte_start": 23013,
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "paragraph": 2
+      },
+      "section": "Acceptance criteria",
+      "text": "The design does not need to be routed by hand, placed by hand, or match any particular layout. If the generator proposes a different part from the decisions table and records a reason that holds up, that is a finding about the table, not a failure.",
+      "text_sha256": "68c4ecdf51689f1450ad4c90e67fab9f9421bcecabb77242b38d3e8530567653"
+    }
+  ],
+  "requirements": [
+    {
+      "cells": {
+        "Published as": "0x174, 0x178, 0x17C (Bosch MM5.10 format)",
+        "Quantity": "Lateral, longitudinal, vertical acceleration",
+        "Range": "\u00b116 g minimum",
+        "Rate": "100 Hz",
+        "Sensor on the pod": "6-axis IMU"
+      },
+      "id": "POD-FN-LATERAL-LONGITUDINAL-VERTICAL-ACCELERATION",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 1739,
+        "byte_start": 1608,
+        "cells": {
+          "Published as": [
+            1696,
+            1737
+          ],
+          "Quantity": [
+            1610,
+            1654
+          ],
+          "Range": [
+            1670,
+            1684
+          ],
+          "Rate": [
+            1687,
+            1693
+          ],
+          "Sensor on the pod": [
+            1657,
+            1667
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 1,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Lateral, longitudinal, vertical acceleration | 6-axis IMU | \u00b116 g minimum | 100 Hz | 0x174, 0x178, 0x17C (Bosch MM5.10 format) |",
+      "text_sha256": "d7e600bb8e0652434a9e3496605c6ff3db2099745fa5e26092d1a00fd61731d1"
+    },
+    {
+      "cells": {
+        "Published as": "0x174, 0x178, 0x17C",
+        "Quantity": "Yaw, roll, pitch rate",
+        "Range": "\u00b12000 \u00b0/s",
+        "Rate": "100 Hz",
+        "Sensor on the pod": "same IMU"
+      },
+      "id": "POD-FN-YAW-ROLL-PITCH-RATE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 1821,
+        "byte_start": 1740,
+        "cells": {
+          "Published as": [
+            1800,
+            1819
+          ],
+          "Quantity": [
+            1742,
+            1763
+          ],
+          "Range": [
+            1777,
+            1788
+          ],
+          "Rate": [
+            1791,
+            1797
+          ],
+          "Sensor on the pod": [
+            1766,
+            1774
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 2,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Yaw, roll, pitch rate | same IMU | \u00b12000 \u00b0/s | 100 Hz | 0x174, 0x178, 0x17C |",
+      "text_sha256": "b1c80d4a7cf06d6ea4c1db18c6901bc74f7c6a104b7cbbd1e5bf5059385c1a6e"
+    },
+    {
+      "cells": {
+        "Published as": "0x301",
+        "Quantity": "Lean and pitch angle",
+        "Range": "\u00b165\u00b0, \u00b145\u00b0",
+        "Rate": "100 Hz",
+        "Sensor on the pod": "computed on the pod from the IMU"
+      },
+      "id": "POD-FN-LEAN-AND-PITCH-ANGLE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 1915,
+        "byte_start": 1822,
+        "cells": {
+          "Published as": [
+            1908,
+            1913
+          ],
+          "Quantity": [
+            1824,
+            1844
+          ],
+          "Range": [
+            1882,
+            1896
+          ],
+          "Rate": [
+            1899,
+            1905
+          ],
+          "Sensor on the pod": [
+            1847,
+            1879
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 3,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Lean and pitch angle | computed on the pod from the IMU | \u00b165\u00b0, \u00b145\u00b0 | 100 Hz | 0x301 |",
+      "text_sha256": "a349f209a451ed5eba15e7a0a286bd99e5a750918abb98e9afbc5319334fe696"
+    },
+    {
+      "cells": {
+        "Published as": "0x300",
+        "Quantity": "Front fork travel",
+        "Range": "0\u2013130 mm",
+        "Rate": "200 Hz",
+        "Sensor on the pod": "external linear potentiometer, 0\u20135 V"
+      },
+      "id": "POD-FN-FRONT-FORK-TRAVEL",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 2008,
+        "byte_start": 1916,
+        "cells": {
+          "Published as": [
+            2001,
+            2006
+          ],
+          "Quantity": [
+            1918,
+            1935
+          ],
+          "Range": [
+            1979,
+            1989
+          ],
+          "Rate": [
+            1992,
+            1998
+          ],
+          "Sensor on the pod": [
+            1938,
+            1976
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 4,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Front fork travel | external linear potentiometer, 0\u20135 V | 0\u2013130 mm | 200 Hz | 0x300 |",
+      "text_sha256": "83bb511c790232b678e675adac75ff42f050bb6996fdc43fe641aa8b889689cc"
+    },
+    {
+      "cells": {
+        "Published as": "0x300",
+        "Quantity": "Rear shock travel",
+        "Range": "0\u201370 mm",
+        "Rate": "200 Hz",
+        "Sensor on the pod": "external linear potentiometer, 0\u20135 V"
+      },
+      "id": "POD-FN-REAR-SHOCK-TRAVEL",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 2100,
+        "byte_start": 2009,
+        "cells": {
+          "Published as": [
+            2093,
+            2098
+          ],
+          "Quantity": [
+            2011,
+            2028
+          ],
+          "Range": [
+            2072,
+            2081
+          ],
+          "Rate": [
+            2084,
+            2090
+          ],
+          "Sensor on the pod": [
+            2031,
+            2069
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 5,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Rear shock travel | external linear potentiometer, 0\u20135 V | 0\u201370 mm | 200 Hz | 0x300 |",
+      "text_sha256": "9c3f42489429d7fee836e2e16d208dedfed959c2bd86a83f088c4943bc8ef7bd"
+    },
+    {
+      "cells": {
+        "Published as": "0x301",
+        "Quantity": "Front and rear brake pressure",
+        "Range": "0\u2013100 bar",
+        "Rate": "100 Hz",
+        "Sensor on the pod": "external transducers, 0.5\u20134.5 V"
+      },
+      "id": "POD-FN-FRONT-AND-REAR-BRAKE-PRESSURE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 2201,
+        "byte_start": 2101,
+        "cells": {
+          "Published as": [
+            2194,
+            2199
+          ],
+          "Quantity": [
+            2103,
+            2132
+          ],
+          "Range": [
+            2171,
+            2182
+          ],
+          "Rate": [
+            2185,
+            2191
+          ],
+          "Sensor on the pod": [
+            2135,
+            2168
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 6,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Front and rear brake pressure | external transducers, 0.5\u20134.5 V | 0\u2013100 bar | 100 Hz | 0x301 |",
+      "text_sha256": "fbb7df06cea1bc7cc75abb47195ebfda5be6379ee0895bca9c611b6fe101c414"
+    },
+    {
+      "cells": {
+        "Published as": "0x302, and BLE GPS characteristic",
+        "Quantity": "Position, speed, heading, altitude",
+        "Range": "multi-constellation",
+        "Rate": "25 Hz",
+        "Sensor on the pod": "GNSS receiver"
+      },
+      "id": "POD-FN-POSITION-SPEED-HEADING-ALTITUDE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 2322,
+        "byte_start": 2202,
+        "cells": {
+          "Published as": [
+            2287,
+            2320
+          ],
+          "Quantity": [
+            2204,
+            2238
+          ],
+          "Range": [
+            2257,
+            2276
+          ],
+          "Rate": [
+            2279,
+            2284
+          ],
+          "Sensor on the pod": [
+            2241,
+            2254
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Function"
+        ],
+        "item": null,
+        "list": null,
+        "row": 7,
+        "table": 1
+      },
+      "section": "Function",
+      "text": "| Position, speed, heading, altitude | GNSS receiver | multi-constellation | 25 Hz | 0x302, and BLE GPS characteristic |",
+      "text_sha256": "efe7b314ce3d032f16befa335b3814c66edb65bc5a06c29936b4988bfb828fbf"
+    },
+    {
+      "cells": {
+        "Interface": "CAN1",
+        "Requirement": "ISO 11898-2, 500 kbit/s, classic CAN 2.0B. Transmit 0x174/0x178/0x17C at 100 Hz, 0x300 at 200 Hz, 0x301 at 100 Hz, 0x302 at 25 Hz. Receive 0x200..0x207. 120 \u03a9 termination on the pod (far end of the harness; the ECU carries the other). ESD protection on CAN\\_H and CAN\\_L."
+      },
+      "id": "POD-IF-CAN1",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 3581,
+        "byte_start": 3298,
+        "cells": {
+          "Interface": [
+            3300,
+            3304
+          ],
+          "Requirement": [
+            3307,
+            3579
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 1,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| CAN1 | ISO 11898-2, 500 kbit/s, classic CAN 2.0B. Transmit 0x174/0x178/0x17C at 100 Hz, 0x300 at 200 Hz, 0x301 at 100 Hz, 0x302 at 25 Hz. Receive 0x200..0x207. 120 \u03a9 termination on the pod (far end of the harness; the ECU carries the other). ESD protection on CAN\\_H and CAN\\_L. |",
+      "text_sha256": "54afa3df631706544c326cb32316147b0028811dec23ca4c01d4a6e8eb0bb572"
+    },
+    {
+      "cells": {
+        "Interface": "Bluetooth LE",
+        "Requirement": "BLE 5.0 peripheral implementing the RaceChrono DIY GATT service (0x1FF8) with the CAN main, filter and two GPS characteristics. Range to a phone in a tank bag or jacket pocket."
+      },
+      "id": "POD-IF-BLUETOOTH-LE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 3777,
+        "byte_start": 3582,
+        "cells": {
+          "Interface": [
+            3584,
+            3596
+          ],
+          "Requirement": [
+            3599,
+            3775
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 2,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Bluetooth LE | BLE 5.0 peripheral implementing the RaceChrono DIY GATT service (0x1FF8) with the CAN main, filter and two GPS characteristics. Range to a phone in a tank bag or jacket pocket. |",
+      "text_sha256": "f3b0a3484f12dc62bb29483f30a3f8f4b145bf5e25ee684501a5412c20c84db1"
+    },
+    {
+      "cells": {
+        "Interface": "Power in",
+        "Requirement": "Switched 12 V from the main-relay output, spliced in the harness on the same circuit that feeds the ECU's J1-27 input, through the pod's own 2 A fuse; ground to chassis on the ECU's J1-34 (CHASSIS\\_ECU\\_GND) circuit. The pod never draws power from the ECU. Operate from 9 V to 16 V; survive 12 V automotive transients (ISO 7637-2 pulses, 40 V clamp) and reverse polarity. Budget under 2 A at 12 V including sensors."
+      },
+      "id": "POD-IF-POWER-IN",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 4208,
+        "byte_start": 3778,
+        "cells": {
+          "Interface": [
+            3780,
+            3788
+          ],
+          "Requirement": [
+            3791,
+            4206
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 3,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Power in | Switched 12 V from the main-relay output, spliced in the harness on the same circuit that feeds the ECU's J1-27 input, through the pod's own 2 A fuse; ground to chassis on the ECU's J1-34 (CHASSIS\\_ECU\\_GND) circuit. The pod never draws power from the ECU. Operate from 9 V to 16 V; survive 12 V automotive transients (ISO 7637-2 pulses, 40 V clamp) and reverse polarity. Budget under 2 A at 12 V including sensors. |",
+      "text_sha256": "aae28c7ce7bc738a29b267520ee9d378f05b4f9d11a556915668d0ba64028828"
+    },
+    {
+      "cells": {
+        "Interface": "Sensor supply",
+        "Requirement": "Provide 5.00 V \u00b11 % from the pod's own regulator. The earlier 200 mA aggregate budget is a baseline to reassess against all selected sensors; it is not qualification for the expanded load. Derive the ADC reference from this rail at the connector. The ECU's 5V\\_SENSOR\\_2 is not used."
+      },
+      "id": "POD-IF-SENSOR-SUPPLY",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 4513,
+        "byte_start": 4209,
+        "cells": {
+          "Interface": [
+            4211,
+            4224
+          ],
+          "Requirement": [
+            4227,
+            4511
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 4,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Sensor supply | Provide 5.00 V \u00b11 % from the pod's own regulator. The earlier 200 mA aggregate budget is a baseline to reassess against all selected sensors; it is not qualification for the expanded load. Derive the ADC reference from this rail at the connector. The ECU's 5V\\_SENSOR\\_2 is not used. |",
+      "text_sha256": "68a336c361174c79b07897163a8e8d13fe26d956ee67b01ba3cd61063b5f11b8"
+    },
+    {
+      "cells": {
+        "Interface": "Analog inputs",
+        "Requirement": "Eight channels, 0\u20135 V, 12-bit, input-protected to 16 V, capable of 200 Hz per channel. Retain the four suspension/brake channels; provide four auxiliary channels with optional thermistor pull-ups. Specify pull-up values, filtering, acquisition settling, calibration and fault interpretation for the selected sensor configurations."
+      },
+      "id": "POD-IF-ANALOG-INPUTS",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 4866,
+        "byte_start": 4514,
+        "cells": {
+          "Interface": [
+            4516,
+            4529
+          ],
+          "Requirement": [
+            4532,
+            4864
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 5,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Analog inputs | Eight channels, 0\u20135 V, 12-bit, input-protected to 16 V, capable of 200 Hz per channel. Retain the four suspension/brake channels; provide four auxiliary channels with optional thermistor pull-ups. Specify pull-up values, filtering, acquisition settling, calibration and fault interpretation for the selected sensor configurations. |",
+      "text_sha256": "9be5195eb483bfa367f52146442da16fd8cca3134ee707abd7783d5489afc1b4"
+    },
+    {
+      "cells": {
+        "Interface": "Wheel speed",
+        "Requirement": "Two independently conditioned pulse inputs for front and rear wheel speed. Resolve Hall, VR or dual-mode support and the sensor electrical requirements before choosing the conditioning circuit."
+      },
+      "id": "POD-IF-WHEEL-SPEED",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 5078,
+        "byte_start": 4867,
+        "cells": {
+          "Interface": [
+            4869,
+            4880
+          ],
+          "Requirement": [
+            4883,
+            5076
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 6,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Wheel speed | Two independently conditioned pulse inputs for front and rear wheel speed. Resolve Hall, VR or dual-mode support and the sensor electrical requirements before choosing the conditioning circuit. |",
+      "text_sha256": "a777a51a1e0494a6f1febc501959de4380fd923f95e62a6de0e703aabfd7500a"
+    },
+    {
+      "cells": {
+        "Interface": "Digital tire temperature",
+        "Requirement": "Provide an external digital interface for front and rear tire-temperature sensors. Resolve protocol, channel/zone count, sensor power, cable length and protection before assigning pins. Provision does not establish compatibility with arbitrary sensors."
+      },
+      "id": "POD-IF-DIGITAL-TIRE-TEMPERATURE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 5362,
+        "byte_start": 5079,
+        "cells": {
+          "Interface": [
+            5081,
+            5105
+          ],
+          "Requirement": [
+            5108,
+            5360
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 7,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Digital tire temperature | Provide an external digital interface for front and rear tire-temperature sensors. Resolve protocol, channel/zone count, sensor power, cable length and protection before assigning pins. Provision does not establish compatibility with arbitrary sensors. |",
+      "text_sha256": "6167558a83589ac8170cc7d7f145798e46a2d283100a469f9e0b213cb9b8419e"
+    },
+    {
+      "cells": {
+        "Interface": "Standalone logging",
+        "Requirement": "Record pod measurements and received ECU telemetry without a phone connection. Target eight hours of recording as a soft capacity goal, with wireless download while parked (owner clarification 2026-10-20). Report achieved duration against the declared workload; shorter duration is a disclosed tradeoff, not an automatic failure. Define throughput, timestamps, full-media behavior and recovery from interrupted power before selecting storage."
+      },
+      "id": "POD-IF-STANDALONE-LOGGING",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 5830,
+        "byte_start": 5363,
+        "cells": {
+          "Interface": [
+            5365,
+            5383
+          ],
+          "Requirement": [
+            5386,
+            5828
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 8,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Standalone logging | Record pod measurements and received ECU telemetry without a phone connection. Target eight hours of recording as a soft capacity goal, with wireless download while parked (owner clarification 2026-10-20). Report achieved duration against the declared workload; shorter duration is a disclosed tradeoff, not an automatic failure. Define throughput, timestamps, full-media behavior and recovery from interrupted power before selecting storage. |",
+      "text_sha256": "590e46a9f8e953241fb14141a7f65f11f28815dfd1578f9d55bd9c75b3440bd4"
+    },
+    {
+      "cells": {
+        "Interface": "GNSS antenna",
+        "Requirement": "Active antenna connector (SMA or U.FL) if the receiver has no integrated antenna; see component decisions."
+      },
+      "id": "POD-IF-GNSS-ANTENNA",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 5956,
+        "byte_start": 5831,
+        "cells": {
+          "Interface": [
+            5833,
+            5845
+          ],
+          "Requirement": [
+            5848,
+            5954
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 9,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| GNSS antenna | Active antenna connector (SMA or U.FL) if the receiver has no integrated antenna; see component decisions. |",
+      "text_sha256": "a089117518a71f1980c2269ee2a5a693daf371dda02fea7c7103b2992c9bf420"
+    },
+    {
+      "cells": {
+        "Interface": "Programming and debug",
+        "Requirement": "Factory firmware load and serial console over UART pogo-pin test pads before the enclosure is sealed. Field updates over BLE using the ESP-IDF OTA dual-partition scheme from the first firmware. No CAN1 bootloader and no external USB connector."
+      },
+      "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 6228,
+        "byte_start": 5957,
+        "cells": {
+          "Interface": [
+            5959,
+            5980
+          ],
+          "Requirement": [
+            5983,
+            6226
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 10,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Programming and debug | Factory firmware load and serial console over UART pogo-pin test pads before the enclosure is sealed. Field updates over BLE using the ESP-IDF OTA dual-partition scheme from the first firmware. No CAN1 bootloader and no external USB connector. |",
+      "text_sha256": "eb7fbd36ae51b455acd265186246347210ee25f4b20a245c11438e89cdf54054"
+    },
+    {
+      "cells": {
+        "Interface": "Harness connector",
+        "Requirement": "One black, sealed TE AMPSEAL 35-position right-angle header, with explicit signal, sensor-power, return and spare-pin allocation. Use TE 776163-1 as the mechanical candidate; validate its drawing, footprint, mating plug and enclosure fit before binding the BOM. Replace the old 23-position map and regenerate its interface contract."
+      },
+      "id": "POD-IF-HARNESS-CONNECTOR",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 6585,
+        "byte_start": 6229,
+        "cells": {
+          "Interface": [
+            6231,
+            6248
+          ],
+          "Requirement": [
+            6251,
+            6583
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Interfaces"
+        ],
+        "item": null,
+        "list": null,
+        "row": 11,
+        "table": 1
+      },
+      "section": "Interfaces",
+      "text": "| Harness connector | One black, sealed TE AMPSEAL 35-position right-angle header, with explicit signal, sensor-power, return and spare-pin allocation. Use TE 776163-1 as the mechanical candidate; validate its drawing, footprint, mating plug and enclosure fit before binding the BOM. Replace the old 23-position map and regenerate its interface contract. |",
+      "text_sha256": "c3523ad0032675db22a162193981b4f89fdaa0ae364fd83cce64c91743903178"
+    },
+    {
+      "cells": {
+        "Decision": "ESP32-S3-WROOM-1 module (8 MB flash)",
+        "Function": "MCU and radio",
+        "Not chosen": "STM32G4: needs a separate BLE radio and firmware. Bare ESP32-S3 chip: RF layout and certification burden for no gain.",
+        "Why": "BLE 5 for the RaceChrono DIY service without a second radio, a built-in CAN 2.0B controller (TWAI), a pre-certified module antenna, and existing RaceChrono DIY firmware on ESP32 (RejsaCAN) to start from."
+      },
+      "id": "POD-CD-MCU-AND-RADIO",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 7373,
+        "byte_start": 6991,
+        "cells": {
+          "Decision": [
+            7009,
+            7045
+          ],
+          "Function": [
+            6993,
+            7006
+          ],
+          "Not chosen": [
+            7254,
+            7371
+          ],
+          "Why": [
+            7048,
+            7251
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 1,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| MCU and radio | ESP32-S3-WROOM-1 module (8 MB flash) | BLE 5 for the RaceChrono DIY service without a second radio, a built-in CAN 2.0B controller (TWAI), a pre-certified module antenna, and existing RaceChrono DIY firmware on ESP32 (RejsaCAN) to start from. | STM32G4: needs a separate BLE radio and firmware. Bare ESP32-S3 chip: RF layout and certification burden for no gain. |",
+      "text_sha256": "f74124997fa35f1385d1e7f7cf8ecd6e235b23a20d18091b3c0b8267332599f9"
+    },
+    {
+      "cells": {
+        "Decision": "TJA1051T/3 (LCSC C38695) with PESD1CAN-UX (C907839) and a 120 \u03a9 termination (C22787)",
+        "Function": "CAN transceiver",
+        "Not chosen": "MCP2562FD: equivalent, but a new part with no fome-mc precedent.",
+        "Why": "The transceiver fome-mc's wideband sheets use, composed with the ESD part and termination from fome-mc's PSU sheet (which itself uses an MCP2551 at the ECU end); VCC on 5 V, VIO on 3.3 V logic. Composing from two sheets is a recorded deviation from \"block carried over unchanged\"."
+      },
+      "id": "POD-CD-CAN-TRANSCEIVER",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 7831,
+        "byte_start": 7374,
+        "cells": {
+          "Decision": [
+            7394,
+            7479
+          ],
+          "Function": [
+            7376,
+            7391
+          ],
+          "Not chosen": [
+            7765,
+            7829
+          ],
+          "Why": [
+            7482,
+            7762
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 2,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| CAN transceiver | TJA1051T/3 (LCSC C38695) with PESD1CAN-UX (C907839) and a 120 \u03a9 termination (C22787) | The transceiver fome-mc's wideband sheets use, composed with the ESD part and termination from fome-mc's PSU sheet (which itself uses an MCP2551 at the ECU end); VCC on 5 V, VIO on 3.3 V logic. Composing from two sheets is a recorded deviation from \"block carried over unchanged\". | MCP2562FD: equivalent, but a new part with no fome-mc precedent. |",
+      "text_sha256": "cfbe615d1ed50fa33d94fd41034b7f97cea3290b258651798adb5a5910f8465c"
+    },
+    {
+      "cells": {
+        "Decision": "LSM6DSO32, SPI",
+        "Function": "IMU",
+        "Not chosen": "BMI270: \u00b116 g ceiling, consumer grade. BMI088: good vibration behaviour, kept as the fallback if bench tests show rectification errors with the LSM6DSO32.",
+        "Why": "\u00b132 g accelerometer and \u00b12000 \u00b0/s gyro so engine vibration does not clip the signal; output rate to 6.66 kHz so the pod can filter down to 100 Hz on-board."
+      },
+      "id": "POD-CD-IMU",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 8175,
+        "byte_start": 7832,
+        "cells": {
+          "Decision": [
+            7840,
+            7854
+          ],
+          "Function": [
+            7834,
+            7837
+          ],
+          "Not chosen": [
+            8018,
+            8173
+          ],
+          "Why": [
+            7857,
+            8015
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 3,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| IMU | LSM6DSO32, SPI | \u00b132 g accelerometer and \u00b12000 \u00b0/s gyro so engine vibration does not clip the signal; output rate to 6.66 kHz so the pod can filter down to 100 Hz on-board. | BMI270: \u00b116 g ceiling, consumer grade. BMI088: good vibration behaviour, kept as the fallback if bench tests show rectification errors with the LSM6DSO32. |",
+      "text_sha256": "5e7eef76bd12405800b87a796093ed1201f1e05f496fdcdcd4a361577c8382c0"
+    },
+    {
+      "cells": {
+        "Decision": "NEO-M9N with an external active antenna on an SMA connector",
+        "Function": "GNSS",
+        "Not chosen": "SAM-M10Q: simpler (no antenna cable) but too slow for the spec.",
+        "Why": "The 25 Hz requirement. The NEO-M9N delivers [25 Hz with four concurrent constellations](https://www.mouser.lt/pdfDocs/ProductOverview_Sparkfun_NEO-M9NGPSBreakoutBoard.pdf); the SAM-M10Q with its integrated antenna tops out at [18 Hz single-constellation and 10 Hz multi-constellation](https://cdn.sparkfun.com/assets/1/1/d/f/4/SAM-M10Q_DataSheet_UBX-22013293.pdf)."
+      },
+      "id": "POD-CD-GNSS",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 8679,
+        "byte_start": 8176,
+        "cells": {
+          "Decision": [
+            8185,
+            8244
+          ],
+          "Function": [
+            8178,
+            8182
+          ],
+          "Not chosen": [
+            8614,
+            8677
+          ],
+          "Why": [
+            8247,
+            8611
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 4,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| GNSS | NEO-M9N with an external active antenna on an SMA connector | The 25 Hz requirement. The NEO-M9N delivers [25 Hz with four concurrent constellations](https://www.mouser.lt/pdfDocs/ProductOverview_Sparkfun_NEO-M9NGPSBreakoutBoard.pdf); the SAM-M10Q with its integrated antenna tops out at [18 Hz single-constellation and 10 Hz multi-constellation](https://cdn.sparkfun.com/assets/1/1/d/f/4/SAM-M10Q_DataSheet_UBX-22013293.pdf). | SAM-M10Q: simpler (no antenna cable) but too slow for the spec. |",
+      "text_sha256": "b5cbf0722a38fd0ebbc7b8331d2fbc0f8935eaf610ecd435c87be9b7cb12a235"
+    },
+    {
+      "cells": {
+        "Decision": "microSD socket (Hirose DM3AT-SF-PEJM5, LCSC C114218) on the module's four-bit SDMMC pins, card detect on GPIO35. Owner decision 2026-10-21: \"go with the microSD socket, drop the eMMC\".",
+        "Function": "Storage",
+        "Not chosen": "eMMC (FEMDME008G, agent-chosen, never an owner requirement): BGA-153 at 0.5 mm forced zero-margin 0.09 mm rules, filled via-in-pad and a separate core regulator.",
+        "Why": "Standalone logging with wireless download needs no card access in service; a socket inside the sealed, unpotted enclosure routes on ordinary geometry."
+      },
+      "id": "POD-CD-STORAGE",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 9195,
+        "byte_start": 8680,
+        "cells": {
+          "Decision": [
+            8692,
+            8876
+          ],
+          "Function": [
+            8682,
+            8689
+          ],
+          "Not chosen": [
+            9032,
+            9193
+          ],
+          "Why": [
+            8879,
+            9029
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 5,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| Storage | microSD socket (Hirose DM3AT-SF-PEJM5, LCSC C114218) on the module's four-bit SDMMC pins, card detect on GPIO35. Owner decision 2026-10-21: \"go with the microSD socket, drop the eMMC\". | Standalone logging with wireless download needs no card access in service; a socket inside the sealed, unpotted enclosure routes on ordinary geometry. | eMMC (FEMDME008G, agent-chosen, never an owner requirement): BGA-153 at 0.5 mm forced zero-margin 0.09 mm rules, filled via-in-pad and a separate core regulator. |",
+      "text_sha256": "f5f7d5816bf466e23e7f6dd3c22d47a361c34329a7e6a59a55ddb4b375661474"
+    },
+    {
+      "cells": {
+        "Decision": "MCP3208 12-bit 8-channel SPI ADC replaces MCP3204. Retain the 3.3 V ADC supply and nominal 2:1 input/reference scaling, subject to verification for every added input configuration.",
+        "Function": "Analog front end",
+        "Not chosen": "MCP3204: insufficient channels for the expanded baseline.",
+        "Why": "Four auxiliary channels without a second ADC or chip-select."
+      },
+      "id": "POD-CD-ANALOG-FRONT-END",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 9522,
+        "byte_start": 9196,
+        "cells": {
+          "Decision": [
+            9217,
+            9397
+          ],
+          "Function": [
+            9198,
+            9214
+          ],
+          "Not chosen": [
+            9463,
+            9520
+          ],
+          "Why": [
+            9400,
+            9460
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 6,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| Analog front end | MCP3208 12-bit 8-channel SPI ADC replaces MCP3204. Retain the 3.3 V ADC supply and nominal 2:1 input/reference scaling, subject to verification for every added input configuration. | Four auxiliary channels without a second ADC or chip-select. | MCP3204: insufficient channels for the expanded baseline. |",
+      "text_sha256": "cc5d82992634d4b8a94efc6427b24a0e8479b0b17b94fe0c97419d400e61a8c9"
+    },
+    {
+      "cells": {
+        "Decision": "Reverse-polarity and transient protection at the input (TVS clamp at 24 V working, 40 V peak), a synchronous buck rated for 40 V input making the 5 V sensor rail, a second regulator making 3.3 V at 1 A for the module's radio peaks",
+        "Function": "Power",
+        "Not chosen": "A single LDO from 12 V: dissipation at 1 A is unacceptable.",
+        "Why": "Standard automotive front end; the 1 A rail covers ESP32-S3 transmit peaks. Exact regulators are the generator's choice from LCSC stock."
+      },
+      "id": "POD-CD-POWER",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 9966,
+        "byte_start": 9523,
+        "cells": {
+          "Decision": [
+            9533,
+            9763
+          ],
+          "Function": [
+            9525,
+            9530
+          ],
+          "Not chosen": [
+            9905,
+            9964
+          ],
+          "Why": [
+            9766,
+            9902
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 7,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| Power | Reverse-polarity and transient protection at the input (TVS clamp at 24 V working, 40 V peak), a synchronous buck rated for 40 V input making the 5 V sensor rail, a second regulator making 3.3 V at 1 A for the module's radio peaks | Standard automotive front end; the 1 A rail covers ESP32-S3 transmit peaks. Exact regulators are the generator's choice from LCSC stock. | A single LDO from 12 V: dissipation at 1 A is unacceptable. |",
+      "text_sha256": "08d53f6c266d981258e1c32c5bc508bda97e25a4bac0a475b711bf60f70b0608"
+    },
+    {
+      "cells": {
+        "Decision": "35-position right-angle AMPSEAL; candidate 776163-1 with matching 776164-1 plug. Exact contact and cavity-plug selections require verification.",
+        "Function": "Harness connector",
+        "Not chosen": "23-position header: insufficient wiring flexibility for the expanded baseline.",
+        "Why": "Separate power/return connections and expansion room."
+      },
+      "id": "POD-CD-HARNESS-CONNECTOR",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 10271,
+        "byte_start": 9967,
+        "cells": {
+          "Decision": [
+            9989,
+            10132
+          ],
+          "Function": [
+            9969,
+            9986
+          ],
+          "Not chosen": [
+            10191,
+            10269
+          ],
+          "Why": [
+            10135,
+            10188
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 8,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| Harness connector | 35-position right-angle AMPSEAL; candidate 776163-1 with matching 776164-1 plug. Exact contact and cavity-plug selections require verification. | Separate power/return connections and expansion room. | 23-position header: insufficient wiring flexibility for the expanded baseline. |",
+      "text_sha256": "0261829f692f710f0982a495bb864f7d499c860a97d90e0de62a0ba90f581c27"
+    },
+    {
+      "cells": {
+        "Decision": "4 layers, 1.6 mm FR-4, JLCPCB standard stackup, JLCPCB basic parts preferred where a basic part meets the requirement",
+        "Function": "Board",
+        "Not chosen": "2 layers: possible, but RF grounding and routing both suffer.",
+        "Why": "A solid ground under the module antenna and the GNSS RF path, and easier routing for kicad-route. The price difference to 2 layers is small at this size."
+      },
+      "id": "POD-CD-BOARD",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 10621,
+        "byte_start": 10272,
+        "cells": {
+          "Decision": [
+            10282,
+            10399
+          ],
+          "Function": [
+            10274,
+            10279
+          ],
+          "Not chosen": [
+            10558,
+            10619
+          ],
+          "Why": [
+            10402,
+            10555
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Component decisions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 9,
+        "table": 1
+      },
+      "section": "Component decisions",
+      "text": "| Board | 4 layers, 1.6 mm FR-4, JLCPCB standard stackup, JLCPCB basic parts preferred where a basic part meets the requirement | A solid ground under the module antenna and the GNSS RF path, and easier routing for kicad-route. The price difference to 2 layers is small at this size. | 2 layers: possible, but RF grounding and routing both suffer. |",
+      "text_sha256": "3b247d87f448fa36cd79ac2068909292f5ef7dacf47ed08a0ea8a873c9d98d07"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-1",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 11703,
+        "byte_start": 10840,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 1,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "Board outline sized to fit inside the rear seat cowl (the earlier 80 mm by 50 mm figure was not an owner requirement; owner decision 2026-10-19: \"I don't know how the size got fixed. I didn't specify, there's room in the cowl, that said, a double-sided part seems fine\"), double-sided component placement permitted (preserving the ESP32 module antenna keep-out, the F.Cu over In1.Cu GNSS RF path, and connector mechanical constraints), mounting holes in all four corners. The earlier 12 mm component-height limit was an agent-drafted assumption, not an owner requirement (owner correction 2026-10-20: \"I never set 12mm, that was arbitrary.\"). Actual enclosure/cowl height clearance remains unknown and must be measured; 12 mm is not a hard pass/fail limit, and no connector-specific exception is pending. The rear seat cowl is large, so the envelope is not tight.",
+      "text_sha256": "d865a76d53f44c1c275964a9dbcd98585cf70d6ac68af5e44e66767713c3b9bb"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-2",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 12139,
+        "byte_start": 11706,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 2,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "Enclosure sealed to IP67, non-metallic over the ESP32 module antenna, with the harness connector and the SMA antenna connector the only penetrations. Do not pot the pod unless proven necessary (potting detunes the ESP32 module antenna and GNSS RF path and mechanically stresses the MEMS IMU package); rigidly couple the board and IMU to the enclosure and the enclosure to the frame so the IMU measures the bike, not a floating board.",
+      "text_sha256": "e2d285007d785a566edbbe75bc4efd7d6c86ae7b5600d08514db4f88c2af0a18"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-3",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 12330,
+        "byte_start": 12142,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 3,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "Operating temperature \u221220 \u00b0C to +85 \u00b0C board ambient. Parts rated to 105 \u00b0C or higher. The explicit exceptions below apply only to the named parts; their actual ratings remain limits.",
+      "text_sha256": "23b202a3df1e8986ce31f840f56cb6881cbdf64cb518b236ebd44df2a15e1b4b"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-4",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 12610,
+        "byte_start": 12333,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 4,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "Vibration: a V-twin at 10,000 rpm puts strong content between 50 Hz and 400 Hz into the frame. The IMU's \u00b132 g range is chosen for this. Mount the pod on the frame, not the cowl plastic, and keep tall or heavy parts (connector, SMA, electrolytic capacitors) away from the IMU.",
+      "text_sha256": "383b75e3d3582f9a2c6b4e6e243577be3d52ef814ae47e4a3e63699ad5f61138"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-5",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 12781,
+        "byte_start": 12613,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 5,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "IMU axes aligned to the bike: X forward, Y left, Z up, marked on the silkscreen, so that the frame scaling matches Bosch MM5.10 conventions without a software rotation.",
+      "text_sha256": "bb49708e83865ba21d36c3548a6cb663912dc18fc832c701f8c21f8075f95bac"
+    },
+    {
+      "cells": {},
+      "id": "POD-ME-6",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 13022,
+        "byte_start": 12784,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Mechanical and environment"
+        ],
+        "item": 6,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Mechanical and environment",
+      "text": "GNSS antenna mounted inside the cowl, as high as possible and facing up. The cowl is fiberglass and therefore transparent to GNSS and BLE, so neither antenna needs to penetrate it. Antenna cable no longer than 500 mm to the SMA connector.",
+      "text_sha256": "713ec01c6742e8ac06b6d51bf745ca7a81315cc3dcb930166274540d6818f000"
+    },
+    {
+      "cells": {
+        "Exact selected part": "ESP32-S3-WROOM-1-N8",
+        "Exception scope": "Retain the 85 \u00b0C module variant.",
+        "Reference": "U1"
+      },
+      "id": "POD-TE-U1",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 13381,
+        "byte_start": 13317,
+        "cells": {
+          "Exact selected part": [
+            13324,
+            13343
+          ],
+          "Exception scope": [
+            13346,
+            13379
+          ],
+          "Reference": [
+            13319,
+            13321
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 1,
+        "table": 1
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "| U1 | ESP32-S3-WROOM-1-N8 | Retain the 85 \u00b0C module variant. |",
+      "text_sha256": "df87308961d2045ea7ddc6d346dd137fecc467379edd30d47781fff02f0949dd"
+    },
+    {
+      "cells": {
+        "Exact selected part": "LSM6DSO32TR",
+        "Exception scope": "Retain the 85 \u00b0C IMU.",
+        "Reference": "U2"
+      },
+      "id": "POD-TE-U2",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 13427,
+        "byte_start": 13382,
+        "cells": {
+          "Exact selected part": [
+            13389,
+            13400
+          ],
+          "Exception scope": [
+            13403,
+            13425
+          ],
+          "Reference": [
+            13384,
+            13386
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 2,
+        "table": 1
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "| U2 | LSM6DSO32TR | Retain the 85 \u00b0C IMU. |",
+      "text_sha256": "540db834969f9bc7d6ed7ce7c9a1bc693abe137375fdc6d3c58219cd230ad26d"
+    },
+    {
+      "cells": {
+        "Exact selected part": "MCP3208-BI/SL",
+        "Exception scope": "Retain the industrial-temperature ADC for the expanded design; this does not approve the old MCP3204 binding.",
+        "Reference": "U4"
+      },
+      "id": "POD-TE-U4",
+      "kind": "table_row",
+      "locator": {
+        "byte_end": 13562,
+        "byte_start": 13428,
+        "cells": {
+          "Exact selected part": [
+            13435,
+            13448
+          ],
+          "Exception scope": [
+            13451,
+            13560
+          ],
+          "Reference": [
+            13430,
+            13432
+          ]
+        },
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Owner-approved component-temperature exceptions"
+        ],
+        "item": null,
+        "list": null,
+        "row": 3,
+        "table": 1
+      },
+      "section": "Owner-approved component-temperature exceptions",
+      "text": "| U4 | MCP3208-BI/SL | Retain the industrial-temperature ADC for the expanded design; this does not approve the old MCP3204 binding. |",
+      "text_sha256": "8048c8e7edacd00ac38523937612e515e5ff204456168b779be929f386d37e82"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-1",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 15816,
+        "byte_start": 15537,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 1,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Retain reverse-polarity and automotive-transient protection. Coordinate the clamp, input disconnect/protection, capacitor ratings and regulator absolute maxima using the actual pulse voltage, duration and source impedance. A nominal TVS voltage alone does not establish survival.",
+      "text_sha256": "c1c7a8eaed957bab3ca941f32f9ff513e8adc67272ec0aced07303e612d8aded"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-2",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 16069,
+        "byte_start": 15819,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 2,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Define a continuous-operation voltage range, a short-dip ride-through envelope and a lower-voltage controlled-reset region separately. Check both electronics and powered sensors: a running MCU does not establish valid sensor data during a supply dip.",
+      "text_sha256": "1e21db91637f0bf9a59ccbfb74be5107bba6c5141fbf1bcd5029078bad606165"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-3",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 16335,
+        "byte_start": 16072,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 3,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Specify and validate input filtering and damping over the regulator's load range, including radio and storage bursts. Measure ripple at the connector, logic rails, sensor supply and ADC reference; set limits from regulator stability and acquisition error budgets.",
+      "text_sha256": "17b2c3ec76bbf80619413ad60965bcf36491d834337cfafce56c4fdccdf9e1cc"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-4",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 16540,
+        "byte_start": 16338,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 4,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Add independent input/rail monitoring and a power-fail/reset supervisor path. Use hysteresis to avoid repeated resets during marginal supply. Record supply faults and invalidate affected sensor samples.",
+      "text_sha256": "4010e0472c45922a3e0636d3f4ad97e775b1578082e4dc676a0503ae3f31bd47"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-5",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 16796,
+        "byte_start": 16543,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 5,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Define bounded log loss on abrupt power removal, storage recovery and restart behavior. Calculate hold-up energy from measured worst-case consumption and storage completion time before claiming a safe flush; capacitors do not cover indefinite brownouts.",
+      "text_sha256": "d8582a0c0b4636d1213bc61088fee44337c8210b2b1daa22b27b15c175646b45"
+    },
+    {
+      "cells": {},
+      "id": "POD-PI-6",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 17102,
+        "byte_start": 16799,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Power integrity and recovery"
+        ],
+        "item": 6,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Power integrity and recovery",
+      "text": "Recalculate sensor-rail current and thermal limits. The pilot's TPS7B4253-Q1 rail is rated for 300 mA and had a 200 mA aggregate sensor budget; it is not prequalified for the expansion. Evaluate separately protected sensor branches so an external sensor fault does not unnecessarily collapse the logger.",
+      "text_sha256": "06686b7bce539e70d7a823d6cd54fef147a511095e9d90f306ab032fb12fc638"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-1",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 18241,
+        "byte_start": 17955,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 1,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "A joint GPIO, SPI/bus and 35-pin connector allocation covering the MCP3208, both wheel-speed inputs, digital tire sensors, storage, existing IMU/GNSS/CAN and debug access. Preserve existing ECU connector assignments and CAN frame definitions; allocate new telemetry messages separately.",
+      "text_sha256": "cda27f4a9c618e0e2fb232714cd86307795f28163fce559d621b33f3d77268f0"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-2",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 18515,
+        "byte_start": 18244,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 2,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Wheel sensor type, voltage/current interface, maximum pulse frequency, low-speed behavior and conditioning. The owner has no wheel sensors or tone rings selected; develop a sensor-and-conditioning recommendation. Support for Hall and VR together is not yet a requirement.",
+      "text_sha256": "2b113dbb1229d5fe689fe41ec6c1e3190360b735596e37ba0901f7c988db90e9"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-3",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 18662,
+        "byte_start": 18518,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 3,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Digital tire sensor protocol, mounting and field of view, zone count, harness length and update rate. No specific tire sensor has been selected.",
+      "text_sha256": "e8d48213951b6fbb97dc44ef35e92a8278db4c76152169d30cef095afdbd2478"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-4",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 18832,
+        "byte_start": 18665,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 4,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Logging duration, data format, timestamp source, retrieval method, media endurance and power-loss behavior. Storage must coexist with BLE OTA and the sealed enclosure.",
+      "text_sha256": "2c36a68df8955afd188d66283a9ccf4414736806f4e5022206067357ffe7f311"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-5",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 19020,
+        "byte_start": 18835,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 5,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Expanded power and thermal budgets, including sensor faults and storage/radio peaks; define supply-voltage monitoring, sensor-supply fault detection and feasible open/short diagnostics.",
+      "text_sha256": "37dc63a9ddff536c03f14286dd37b2c6c7ffe0feaffa92edf72f454fda2352b9"
+    },
+    {
+      "cells": {},
+      "id": "POD-ED-6",
+      "kind": "bullet",
+      "locator": {
+        "byte_end": 19328,
+        "byte_start": 19023,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Expanded-design decisions required before layout"
+        ],
+        "item": 6,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Expanded-design decisions required before layout",
+      "text": "Full connector courtyard and module antenna keep-outs, mounting-hole clearances and enclosure fit. Start with the current 90 \u00d7 65 mm pilot outline; unchanged dimensions are a layout target, not a demonstrated fit. TE drawing 776163 K1 gives 76.9 mm overall header width; 63.4 mm is not its overall width.",
+      "text_sha256": "6a6b10b742211cda6c1757606354902a9c1ad2e2c787aa79f6e90306097a408d"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-1",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 20303,
+        "byte_start": 20065,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 1,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "Every interface row above is satisfied, with a pinout table equivalent to fome-mc's io-map that names, for each connector position, the signal, the net, the MCU pin and the external destination, verified by a script against the schematic.",
+      "text_sha256": "32bc04740403908f7a4f57caf2047edda84126af1fb87a4d5ddbb36c6750cd7e"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-2",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 20433,
+        "byte_start": 20307,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 2,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "Every part in the component decisions table is present, with the stated part number, or a deviation is recorded with a reason.",
+      "text_sha256": "ec67ea055edeffaab45b03560b977d8ca9b16b6cd010508549ccb85d18d3ed44"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-3",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 20729,
+        "byte_start": 20437,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 3,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "ERC and DRC report zero errors and zero unwaived warnings under the fome-mc toolchain rules. A warning is waived only by an owner-recorded disposition bound to the exact violation (rule, items, reason, location hash); a moved or new violation needs a new disposition, and agents do not waive.",
+      "text_sha256": "935ee4b1cf640f0fee856fab519f7e743985e85f487a46fb3834a45cca2d68a3"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-4",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 20940,
+        "byte_start": 20733,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 4,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "The kicad-happy schematic, PCB, cross-analysis and EMC analyzers, run offline, report no findings at error level; findings at warning level are listed with a disposition. SPICE is not part of this criterion.",
+      "text_sha256": "71ead770e06175276c3b19eb2b204a771b633f0bc76e770519b890799bbdbac8"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-5",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 21393,
+        "byte_start": 20944,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 5,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "Every BOM line has an LCSC part number that is in stock at JLCPCB on the day of generation, captured from JLCPCB's public component search per LCSC id with the response hash and UTC timestamp as evidence. Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery: excluded from assembly with a not\\_assembled marker and a recorded deviation naming the purchase source.",
+      "text_sha256": "1e1e38c5900b4043ddee841fec6738e4a651e7b78280a4c46ddf0bd11d2efdea"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-6",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 21919,
+        "byte_start": 21397,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 6,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "The fab package contains Gerbers, drill files, BOM and CPL in JLCPCB's formats, and a JLCPCB DFM check on the Gerbers passes: the owner uploads the sealed Gerber package to JLCPCB once and the saved DFM report is bound to the package hash as evidence; geometry pre-checks against JLCPCB's captured capability limits run in the pipeline but do not replace it. CPL rotations the captured policy cannot verify are listed as PREVIEW\\_REQUIRED obligations for the owner to confirm in JLCPCB's placement preview before ordering.",
+      "text_sha256": "1de8406cc2bdb8f7d306b801b675427c5d00b1fe8f281b80548d4328fe637050"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-7",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 22124,
+        "byte_start": 21923,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 7,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "The board fits the envelope, the mounting holes are where the mechanical section says, the IMU axis marking is on the silkscreen, and the module antenna keep-out matches the ESP32-S3-WROOM-1 datasheet.",
+      "text_sha256": "0bb5335db14fde694e6c7d2e90062496afa1903fff02ba32102d925f23ce7a24"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-8",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 22340,
+        "byte_start": 22128,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 8,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "On a bench CAN bus with the ECU, the frames 0x174, 0x178, 0x17C, 0x300, 0x301 and 0x302 appear at their stated rates within 5 %, and the ECU logs lean angle, brake pressure and suspension travel in its .mlg file.",
+      "text_sha256": "fd74d0b4a966e50b62fbb3b123fe3eedf9acdac49426d6802caae99527f6cb62"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-9",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 22453,
+        "byte_start": 22344,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 9,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "RaceChrono Pro pairs with the pod over BLE and shows ECU RPM alongside pod lean angle and GPS speed at 25 Hz.",
+      "text_sha256": "f854f5963fde88183531140e169698f4e5ccf967463e3a7328666c685b28677c"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-10",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 22740,
+        "byte_start": 22459,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 10,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "All eight analog channels meet the declared range, accuracy and acquisition requirements while wheel-speed capture, IMU/GNSS, CAN, BLE and logging operate concurrently. Verify the selected wheel sensors over their declared speed range and exercise the specified sensor-fault cases.",
+      "text_sha256": "cc8dc4d1416b6527b4b2b792aa2f3582d1c9c4c00b4efd41fee350bb704c54d0"
+    },
+    {
+      "cells": {},
+      "id": "POD-AC-11",
+      "kind": "acceptance",
+      "locator": {
+        "byte_end": 23011,
+        "byte_start": 22745,
+        "cells": {},
+        "heading_path": [
+          "Telemetry pod requirements",
+          "Acceptance criteria"
+        ],
+        "item": 11,
+        "list": 1,
+        "row": null,
+        "table": null
+      },
+      "section": "Acceptance criteria",
+      "text": "Standalone logging meets its declared duration and data-integrity requirements without a phone, including power interruption and full-media tests. Verify the selected digital tire-sensor interface over the declared harness and record the actual sensor/zone coverage.",
+      "text_sha256": "d230d66efcf951e28d588606d93b60aceddb2b1b72cfb171376b2e6952b3ca18"
+    }
+  ],
+  "schema": "agent-ee.spec-record/1",
+  "spec": {
+    "bytes": 23262,
+    "name": "REQUIREMENTS.md",
+    "sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7"
+  },
+  "tables": [
+    {
+      "byte_end": 2322,
+      "byte_start": 1513,
+      "headers": [
+        "Quantity",
+        "Sensor on the pod",
+        "Range",
+        "Rate",
+        "Published as"
+      ],
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Function"
+      ],
+      "rows": 7,
+      "section": "Function",
+      "table": 1
+    },
+    {
+      "byte_end": 6585,
+      "byte_start": 3256,
+      "headers": [
+        "Interface",
+        "Requirement"
+      ],
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Interfaces"
+      ],
+      "rows": 11,
+      "section": "Interfaces",
+      "table": 1
+    },
+    {
+      "byte_end": 10621,
+      "byte_start": 6922,
+      "headers": [
+        "Function",
+        "Decision",
+        "Why",
+        "Not chosen"
+      ],
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Component decisions"
+      ],
+      "rows": 9,
+      "section": "Component decisions",
+      "table": 1
+    },
+    {
+      "byte_end": 13562,
+      "byte_start": 13243,
+      "headers": [
+        "Reference",
+        "Exact selected part",
+        "Exception scope"
+      ],
+      "heading_path": [
+        "Telemetry pod requirements",
+        "Owner-approved component-temperature exceptions"
+      ],
+      "rows": 3,
+      "section": "Owner-approved component-temperature exceptions",
+      "table": 1
+    }
+  ]
+}

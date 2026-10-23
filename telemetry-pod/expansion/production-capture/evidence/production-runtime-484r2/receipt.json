@@ -1,0 +1,275 @@
+{
+ "agent_ee": {
+  "blobs": 1804,
+  "commit": "7d5b0d4de65a5b8e8f925ad6f366a46653aae563",
+  "export": "/work/export",
+  "image_equals_export": true,
+  "image_files": 1804,
+  "producer_mounts": {
+   "/work/source-cache/8ebb19ba4cafb390aa73865bbfef464662f07e87e4692b059c05cfd1d01b9f4b": {
+    "equals_export_src": true,
+    "files": 228,
+    "identity": "8ebb19ba4cafb390aa73865bbfef464662f07e87e4692b059c05cfd1d01b9f4b",
+    "name_is_identity": true
+   }
+  },
+  "same_for_producer_and_runtime": true,
+  "tree": "68531db113f99cc37e7007876d5e9df45f72edc3"
+ },
+ "authority": "agent-529 decision a57b675c via agent-519 (coordinator): new 484r2 retention; preparation only, not a launch authorization",
+ "binding": {
+  "campaign": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/prepared/campaign.json",
+   "sha256": "e85a2d74e74f67377174d15379fe9298e0525d1ae111c7d3111d8d47a25aded4"
+  },
+  "driver_receipt": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/prepared/driver-receipt.json",
+   "sha256": "77ca10193c86e347e0b7ad3468c471825141b868b833e0151012d7c72a8e1a55"
+  },
+  "initial_candidate": {
+   "candidate_id": "1f8368a87871ceadba1197b1ccb2526699bc42195086ef255c45bf2a0eec78ec",
+   "dry_run_candidate_sha256": "83d33d9e5617b4f17048689f2e80dcd46f25538003c7091715f3bea481cc55d1",
+   "files": 559
+  },
+  "pipeline": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/pipeline.json",
+   "sha256": "f864037d75d9287167396a28a2a3c3fa2a095e6e3b0f762267488e4274febf2e"
+  },
+  "plan": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/prepared/plan.json",
+   "sha256": "77ad0ba0391f6449774785474e5c6f01880d1850af9741e7a621319afb8d4892"
+  },
+  "prepared_tree": {
+   "files": 4216,
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/prepared-tree.json",
+   "sha256": "95e75737a0fcffe72d0f508d7b939a3e55862b89ea94db7d10152dd7a974f33c"
+  },
+  "retained_manifest": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/MANIFEST.json",
+   "sha256": "0ba4bd192f8b230dddc0c1becac16396d89bbadfba4e94e0f5ed8497b956569b"
+  },
+  "scope": {
+   "path": "evidence/emission-7d5b0d4d-agentee484r2/prepared/scope.json",
+   "sha256": "d4d89c2ddd7ed503effe74f29ce10ea847ef29ba44da9b1d65ec306549b18b02"
+  }
+ },
+ "image": {
+  "c4_amd64_manifest": null,
+  "c4_oci_index": null,
+  "created": "2026-10-22T22:35:57.470107585Z",
+  "ee466_review": {
+   "path": "/tmp/agent-ee-burndown-20261017/reviews/ee466-repin-runtime-sol.md",
+   "sha256": "c1552f707107a58f1054aa4e6d17374f46d6cafc697bac45c1ec74433159d3a2",
+   "verdict": null
+  },
+  "entrypoint": [
+   "/usr/bin/tini",
+   "--"
+  ],
+  "files": {
+   "image/blobs__sha256__9724a2d0269250e2a44725a0d2b24b43a6a05f1598d0bd6ff2496b2fba7042e3": "9724a2d0269250e2a44725a0d2b24b43a6a05f1598d0bd6ff2496b2fba7042e3",
+   "image/blobs__sha256__d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7": "d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "image/image-c4-oci.txt": "d602f827169da071ed68d06cb4f8d2b8b2385b69357fa31fd5f9596f2499d6a1",
+   "image/index.json": "284d873f7aacaed08299a81c49c8c5f8b033e9a1a3618cf54f33a9faa0682683",
+   "image/manifest.json": "f9c31e46e1d1b320da3dff47ee81b491afef81597a412bb848ed4fde532eb13f",
+   "image/save-report.json": "aa2c9bd837737370f48e3d31d49b49cbdb196fea45f5ef8a9a60e61b603bfae9"
+  },
+  "proximal_config_digest": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+  "recomputed_on_proximal": {
+   "blobs_hash_to_names": true,
+   "c4": "not selected by the runtime manifest",
+   "config_blob_sha256": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "docker_save_rc": 0,
+   "layers_equal_diff_ids": true,
+   "oci_manifest_config": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "review_verdict": null
+  },
+  "relation": "c4 OCI index -> linux/amd64 manifest -> config blob, which equals the proximal image config (AGENTEE-466 evidence image-c4-oci.txt, verified by its independent review; c4 itself is not contacted by this lane)",
+  "tag_on_c4": null
+ },
+ "invocation": {
+  "campaign_command": [
+   "/usr/bin/python3",
+   "-B",
+   "-m",
+   "agent_ee.cli",
+   "campaign",
+   "/pod/prepared/campaign.json",
+   "--out",
+   "/pod/out/campaign"
+  ],
+  "container": [
+   "docker",
+   "run",
+   "--rm",
+   "--label",
+   "native-admission.lease=$NATIVE_ADMISSION_LEASE",
+   "--cpus",
+   "$NATIVE_ADMISSION_CPUS",
+   "--pids-limit",
+   "$NATIVE_ADMISSION_PIDS",
+   "--security-opt",
+   "seccomp=unconfined",
+   "--security-opt",
+   "apparmor=unconfined",
+   "--security-opt",
+   "systempaths=unconfined",
+   "--user",
+   "UID:GID",
+   "-e",
+   "HOME=/tmp",
+   "-e",
+   "PYTHONPATH=/opt/agent-ee/src",
+   "-e",
+   "PYTHONDONTWRITEBYTECODE=1",
+   "-e",
+   "AGENT_EE_REQUIRE_TOOLCHAIN=1",
+   "-w",
+   "/opt/agent-ee",
+   "-v",
+   "PREPARED_DIR:/pod/prepared:ro",
+   "-v",
+   "EXPORT_7D5B0D4D:/pod/export:ro",
+   "-v",
+   "EXPORT_7D5B0D4D/src:/work/source-cache/8ebb19ba4cafb390aa73865bbfef464662f07e87e4692b059c05cfd1d01b9f4b:ro",
+   "-v",
+   "RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro",
+   "-v",
+   "NEW_OUTPUT_PARENT:/pod/out",
+   "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7"
+  ],
+  "cwd": "/opt/agent-ee",
+  "image": {
+   "by": "config digest (proximal classic store)",
+   "c4_index": null,
+   "reference": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "tag_on_c4": null
+  },
+  "open": "Network and inference-provider credentials for the review profile belong to the launcher's environment (launch authority: the --authority parameter of this receipt); this receipt does not choose them. The preparation ran with --network none.",
+  "placeholders": {
+   "$NATIVE_ADMISSION_*": "the admitted native-admit lease the launch runs in",
+   "EXPORT_7D5B0D4D": "`git archive 7d5b0d4de65a5b8e8f925ad6f366a46653aae563`; its src is the producer mount at the exact container path the campaign steps name",
+   "NEW_OUTPUT_PARENT": "a new, empty directory",
+   "PREPARED_DIR": "`retain.py --materialize-prepared OUT` (prepared-tree.json), byte-equal to the observed tree",
+   "RUNTIME_RECEIPT_PY": "this script at the integrated fome-mc commit",
+   "UID:GID": "the launching user"
+  },
+  "pre_launch_identity_check": {
+   "argv": [
+    "/usr/bin/python3",
+    "-B",
+    "/pod/runtime_receipt.py",
+    "observe",
+    "/pod/prepared",
+    "/pod/pre-launch.json",
+    "/pod/export"
+   ],
+   "requires": "exit 0 and problems []"
+  },
+  "preparation_run": {
+   "run_dir": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/a484r/run",
+   "script": "evidence/production-runtime-484r2/production_run.sh",
+   "steps": "evidence/production-runtime-484r2/production_steps.py"
+  },
+  "router": "the image's own /opt/kicad-route (no override, no legacy /tool/kicad-route mount)"
+ },
+ "launch": "NOT launched by this receipt. Launch authority is the authority parameter above, not this script.",
+ "observation": {
+  "path": "evidence/production-runtime-484r2/observation.json",
+  "sha256": "5d5a33560dedbc12539980e4f4d9b608fbcaca08a6241bee90cc2fc2b2f03352"
+ },
+ "router": {
+  "checkout": "/opt/kicad-route",
+  "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+  "extension": {
+   "path": "/opt/kicad-route/.venv-krt/lib/python3.12/site-packages/grid_router.so",
+   "sha256_recomputed": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9"
+  },
+  "install_record": {
+   "path": "/opt/kicad-route.install.json",
+   "sha256": "470539a116e6eb2bdf9b3b578b4bc0761e8bedc1e533a8151232979a2cd9db32"
+  },
+  "interpreter": {
+   "manifest_python": {
+    "executable": "/usr/bin/python3",
+    "version": "3.12.3"
+   },
+   "path": "/opt/kicad-route/.venv-krt/bin/python",
+   "resolved": "/usr/bin/python3.12",
+   "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+   "version": "3.12.3"
+  },
+  "manifest": {
+   "krt": {
+    "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+    "describe": "owned-9cfc5d5e9369",
+    "extension_module": {
+     "path": ".venv-krt/lib/python3.12/site-packages/grid_router.so",
+     "sha256": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9"
+    },
+    "generation": null,
+    "source_path": "src/kicad_route/router",
+    "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2"
+   },
+   "path": "/opt/kicad-route/manifest.json",
+   "sha256": "b86a7c93f798991320c3cdc5304e52b283f951056b5b91ad839f634fcd356660"
+  },
+  "preflight_problems": [],
+  "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2"
+ },
+ "run_bindings": {
+  "contracts": [
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/agentee-478-prep/allocation-v2.json",
+    "sha256": "a5596374ba04096ab9935ed8ac97befdf7300564e7e7f66f36fb1d324c9fe42b"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/agentee-478-prep/side-eligibility.json",
+    "sha256": "936f582bd970b079ad7226d602dc86618f3887f1872b372c9b35f34f29bcbb7c"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json",
+    "sha256": "962636563e8abd960efba85a4f7c212cb70701430991527ad5fcb1275fabede5"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
+    "sha256": "1cfba372b661ce04b6fe962b4b5192672199da14d2a7c88ea08ed15749c09fdc"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/agentee-480-gnss-mech/RESULT.md",
+    "sha256": "1fec5b5b2451676704a405d8d8b552a2af6268ee6f93ad4cebfc4aeb75a5ea4b"
+   }
+  ],
+  "mounted_python_source": {
+   "/work/source-cache/8ebb19ba4cafb390aa73865bbfef464662f07e87e4692b059c05cfd1d01b9f4b": {
+    "equals_export_src": true,
+    "files": 228,
+    "identity": "8ebb19ba4cafb390aa73865bbfef464662f07e87e4692b059c05cfd1d01b9f4b",
+    "name_is_identity": true
+   }
+  },
+  "native_artifact": {
+   "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/telemetry-pod.kicad_pcb",
+   "sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac"
+  },
+  "rust": null,
+  "source_commit": "92dc5acf31f1ee97ca551386497c1af8f064260a"
+ },
+ "runtime_selection": {
+  "kind": "manifest",
+  "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-stock-484r2/telemetry-pod/expansion/production-capture/runtime/agentee-484r2.json",
+  "sha256": "e7c51cd20312c561960da4b2bd2b39ea60c1b0e08ce4336a2824eee1bea170a0"
+ },
+ "runtime_validation": {
+  "initial_candidate_recaptured": "1f8368a87871ceadba1197b1ccb2526699bc42195086ef255c45bf2a0eec78ec",
+  "plan_bounds": {
+   "max_iterations": 2,
+   "max_seconds": 8400
+  },
+  "routing_declaration": "accepted",
+  "routing_step": "kicad-route-builtin",
+  "routing_step_sha256": "2e7dcb7f62ad7d1624a07709430cffd05b27ab12653f03aef4e61d06fbed005f",
+  "scope": "accepted"
+ },
+ "schema": "pod-capture.production-runtime-receipt/2"
+}
