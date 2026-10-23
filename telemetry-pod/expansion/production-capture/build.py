@@ -569,8 +569,12 @@ def writer_intent(intent, intent_blob, j3_record):
                            'sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and '
                            'PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.')})
     counts = {k: sum(e['class'] == k for e in entries.values()) for k in QUALIFICATION_COUNTS}
-    added_ids = {a['id'] for a in json.loads(ADDITIONS.read_text())['additions']}  # AGENTEE-484, template bindings
-    if sum(m['field'] == 'AGENT_EE_Ratings' and m['component'] not in added_ids for m in migrations) != 98:
+    declared = json.loads(ADDITIONS.read_text())
+    added_ids = {a['id'] for a in declared['additions']}  # AGENTEE-484, template bindings
+    record_ids = {r['id'] for r in declared.get('rebindings', []) if 'record' in r}  # AGENTEE-491, ratings regenerated
+    if any(m['field'] == 'AGENT_EE_Ratings' and m['component'] in record_ids for m in migrations):
+        raise ValueError('a record rebinding still pins its earlier rating record')
+    if sum(m['field'] == 'AGENT_EE_Ratings' and m['component'] not in added_ids for m in migrations) + len(record_ids) != 98:
         raise ValueError('expected the 98 original AGENT_EE_Ratings fields')
     if counts != QUALIFICATION_COUNTS:
         raise ValueError(f'Qualification classes differ from the reviewed 174: {counts}')
@@ -856,7 +860,16 @@ def build(out, agent_ee):
     rebound = {}
     for part in old['parts']:
         refs = [i['reference'] for i in part['instances']]
-        if refs and refs[0] in rebind:  # take the template's verified part with this reference's identity
+        if refs and refs[0] in rebind and 'record' in rebind[refs[0]]:  # AGENTEE-491: identity from its canonical record
+            r = rebind[refs[0]]
+            record = json.loads((ROOT / r['record']).read_text())
+            part = {**copy.deepcopy(part), 'role': f"Expanded pod {refs[0]} {physical[refs[0]]['value']}",
+                    **{k: record[k] for k in ('lcsc', 'mpn', 'manufacturer', 'package', 'stock')},
+                    'datasheet': {'status': 'captured', 'required': True, 'artifact': record['artifact'],
+                                  'provenance': {**record['datasheets'], 'locator': 'parts[id=' + record['datasheet_id'] + ']'}},
+                    'selection': {**part['selection'], 'lcsc': record['lcsc'], 'part_record': r['record'],
+                                  'part_record_sha256': sha(ROOT / r['record'])}}
+        elif refs and refs[0] in rebind:  # take the template's verified part with this reference's identity
             r = rebind[refs[0]]
             tmpl = old_by_ref[r['template']]
             if physical[refs[0]]['part_binding'] != physical[r['template']]['part_binding']:
