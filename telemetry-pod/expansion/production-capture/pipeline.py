@@ -88,6 +88,16 @@ REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/
 # preparation (coordinator decision relaying agent-521 a9cb03ad/2fbe5f08; not owner-stated). The preparation runs in
 # that runtime's own image (runtime_receipt.py binds it). 81e387ee (j6, j6b) predates read-once.
 AGENT_EE_PIN = '7d5b0d4de65a5b8e8f925ad6f366a46653aae563'
+# AGENTEE-485 G1 (chief agent-531 f8ee7804): POD_RUNTIME (production_run.sh) selects an immutable runtime manifest
+# under runtime/; its agent_ee_commit replaces the historical pin above, which stays the default. The export is
+# still checked blob by blob against AGENT_EE_GIT. Provenance only: fome-mc keeps no versions.toml agent-ee pin.
+if os.environ.get('POD_RUNTIME'):
+    _selected = json.loads((HERE / os.environ['POD_RUNTIME']).read_text())
+    _commit = str(_selected.get('agent_ee_commit'))
+    if (_selected.get('schema') != 'pod-capture.runtime-manifest/1' or len(_commit) != 40
+            or set(_commit) - set('0123456789abcdef')):
+        raise SystemExit(f"POD_RUNTIME {os.environ['POD_RUNTIME']} is not a pod-capture.runtime-manifest/1")
+    AGENT_EE_PIN = _selected['agent_ee_commit']
 
 
 def verify_export(export, git):
@@ -904,7 +914,10 @@ stage('scaffold.content_step', lambda: steps.update(content=scaffold.content_ste
 stage('schematic_stage.configuration', lambda: steps.update(schematic=schematic_stage.configuration(
     SRC, board=BOARD, schematic=SCHEMATIC, intent=bound, layout=inputs['layout'], captures='.',
     footprints=inputs['footprints'])) or [s['step'] for s in steps['schematic']['implementation_steps']])
-stage('add_planes.step', lambda: steps.update(planes=add_planes.step(SRC, board=BOARD, plan=inputs['planes'])) or None)
+# AGENTEE-485 (487c residual, agent-522 4f63e270): the pod planes are a pre-routing fill, so the declared step names
+# that phase explicitly (agent-ee add_planes PRE_ROUTING); agent-ee refuses any other phase value.
+stage('add_planes.step', lambda: steps.update(planes=add_planes.step(SRC, board=BOARD, plan=inputs['planes'],
+                                                                     phase=add_planes.PRE_ROUTING)) or None)
 
 
 def declared_imports():

@@ -15,6 +15,7 @@ docker run --rm --name agent-ee-pod-capture-j6b2-prepare --label "native-admissi
   --security-opt seccomp=unconfined --security-opt apparmor=unconfined --security-opt systempaths=unconfined \
   --user "$(id -u):$(id -g)" -e HOME=/tmp -e AGENT_EE_REQUIRE_TOOLCHAIN=1 -e AGENT_EE_SKIP_VISUALS=1 \
   -e AGENT_EE_GIT=/work/ae.git -e AGENT_EE_TOOL_SOURCE_CACHE=/work/source-cache -e PYTHONDONTWRITEBYTECODE=1 \
+  -e POD_BUILD_OPTIN="${POD_BUILD_OPTIN:-}" -e POD_RUNTIME="${POD_RUNTIME:-runtime/agentee-484r2.json}" \
   -v "$run:/work" -v "$run/iter8n:/home/halbritt/.cache/agent449-pod/iter8n:ro" -w /work/fome \
   "$image" timeout 5400 /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/production_steps.py
 status=$?

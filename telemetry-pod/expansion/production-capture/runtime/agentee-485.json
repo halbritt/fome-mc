@@ -1,0 +1,10 @@
+{
+ "schema": "pod-capture.runtime-manifest/1",
+ "purpose": "AGENTEE-485 production-integration runtime selection (chief agent-531 f8ee7804 item 1; coordinator decision, not owner text). Immutable: a new runtime is a new file.",
+ "agent_ee_commit": "337a75cec650ea195c3fe1715699d72d71f78130",
+ "config": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+ "router_commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+ "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2",
+ "extension_sha256": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9",
+ "note": "agent-ee main 337a75ce contains the 524 consumer (1177cbc2, 87025844), 495 (b72b9de4) and the 479 candidate-set engine (c4724465). It is the MOUNTED Python (/work/export, a git archive checked blob by blob). The image d96f8e00 and its router/extension are unchanged, so router_commit, source_sha256 and extension_sha256 are the image's values carried from agentee-484r2.json, NOT recomputed for this commit. The image's own /opt/agent-ee is still 7d5b0d4d, so runtime_receipt.py observe (which requires /opt/agent-ee == the pin) is expected to refuse until the image is rebuilt; that refusal is a real boundary, not waived."
+}

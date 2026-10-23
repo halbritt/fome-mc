@@ -60,6 +60,10 @@ ENVELOPE = X / 'placement-inputs/envelope.json'
 MECHANICAL = X / 'agentee-489-source'
 MECHANICAL_SOURCES = {'mechanics/agentee-490-bound-reservations.json': X / 'agentee-490-mechanical-inputs/bound-reservations.json',
                       'mechanics/original-board.kicad_pcb': ROOT / 'telemetry-pod/telemetry-pod.kicad_pcb'}
+# AGENTEE-485 G3: the 489 per-dielectric material declaration (agent-529 1f09c567@1), opt-in. It enters the sourced
+# envelope stackup (agent-ee.envelope/2 dielectric_type/epsilon_r/loss_tangent); thickness, copper and every layer
+# source stay byte-identical, and a declaration that names another layer or thickness is refused.
+STACKUP_MATERIALS = MECHANICAL / 'stackup-materials.json'
 J3_CATALOG = MICROSD / 'stock/catalog.json'
 SOURCES = HERE / 'sources'
 GUIDELINES = SOURCES / 'esp32-guidelines'
@@ -814,7 +818,7 @@ def rating_comparison(intent, writer, output, report, catalog_only):
             'missing': report['ratings']['missing'], 'rows': dict(sorted(rows.items()))}
 
 
-def build(out, agent_ee, mechanical=False):
+def build(out, agent_ee, mechanical=False, materials=False):
     sys.path[:0] = [str(Path(agent_ee).resolve() / 'src')]
     from agent_ee import binding_fill, board_envelope
     from agent_ee.footprint_library import (antenna_placement_context, esp32_s3_wroom_1_datasheet_facts,
@@ -1037,6 +1041,17 @@ def build(out, agent_ee, mechanical=False):
             if root.copy(source, dest)['sha256'] != expected[dest]:
                 raise ValueError('mechanical reservations are stale against ' + rel(source))
         revised['mechanical_reservations'] = root.copy(MECHANICAL / 'reservations.json', 'mechanics/reservations.json')
+    if materials:
+        declared = json.loads(STACKUP_MATERIALS.read_text())
+        if declared.get('schema') != 'agentee-489.stackup-materials/1':
+            raise ValueError('stackup materials are not agentee-489.stackup-materials/1')
+        dielectrics = [l for l in revised['stackup']['layers'] if l['kind'] == 'dielectric']
+        if [(l['name'], l['thickness_mm']) for l in dielectrics] != [
+                (l['name'], l['thickness_mm']) for l in declared['layers']]:
+            raise ValueError('stackup materials name other dielectric layers or thicknesses than the envelope')
+        for layer, material in zip(dielectrics, declared['layers']):
+            layer.update({k: material[k] for k in ('dielectric_type', 'epsilon_r', 'loss_tangent')})
+        root.copy(STACKUP_MATERIALS, 'mechanics/stackup-materials.json')
     envelope_blob = root.write('composition/envelope.json', revised)
     files = {p.relative_to(out).as_posix(): sha(p) for p in out.rglob('*') if p.is_file()}
     record = board_envelope.validate((out / envelope_blob['path']).read_bytes(),
@@ -1157,10 +1172,12 @@ if __name__ == '__main__':
     mode.add_argument('--check', action='store_true')
     parser.add_argument('--mechanical-reservations', action='store_true',
                         help='AGENTEE-489: bind agentee-489-source/reservations.json into the envelope (--out only)')
+    parser.add_argument('--stackup-materials', action='store_true',
+                        help='AGENTEE-485 G3: declared dielectric materials into the envelope stackup (--out only)')
     args = parser.parse_args()
-    if args.check and args.mechanical_reservations:
+    if args.check and (args.mechanical_reservations or args.stackup_materials):
         parser.error('--check reproduces the committed capture, which does not opt in')
     if args.check:
         check(args.agent_ee)
     else:
-        print(json.dumps(build(args.out, args.agent_ee, args.mechanical_reservations), indent=1, sort_keys=True))
+        print(json.dumps(build(args.out, args.agent_ee, args.mechanical_reservations, args.stackup_materials), indent=1, sort_keys=True))
