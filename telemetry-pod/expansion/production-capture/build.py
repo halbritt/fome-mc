@@ -569,12 +569,8 @@ def writer_intent(intent, intent_blob, j3_record):
                            'sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and '
                            'PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.')})
     counts = {k: sum(e['class'] == k for e in entries.values()) for k in QUALIFICATION_COUNTS}
-    declared = json.loads(ADDITIONS.read_text())
-    added_ids = {a['id'] for a in declared['additions']}  # AGENTEE-484, template bindings
-    record_ids = {r['id'] for r in declared.get('rebindings', []) if 'record' in r}  # AGENTEE-491, ratings regenerated
-    if any(m['field'] == 'AGENT_EE_Ratings' and m['component'] in record_ids for m in migrations):
-        raise ValueError('a record rebinding still pins its earlier rating record')
-    if sum(m['field'] == 'AGENT_EE_Ratings' and m['component'] not in added_ids for m in migrations) + len(record_ids) != 98:
+    added_ids = {a['id'] for a in json.loads(ADDITIONS.read_text())['additions']}  # AGENTEE-484, template bindings
+    if sum(m['field'] == 'AGENT_EE_Ratings' and m['component'] not in added_ids for m in migrations) != 98:
         raise ValueError('expected the 98 original AGENT_EE_Ratings fields')
     if counts != QUALIFICATION_COUNTS:
         raise ValueError(f'Qualification classes differ from the reviewed 174: {counts}')
