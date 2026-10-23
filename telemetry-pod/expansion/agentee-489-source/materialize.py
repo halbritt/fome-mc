@@ -13,8 +13,10 @@ Rules kept here (agent-ee docs/mechanical-reservations.md):
   sweep, the unknown tolerance kept in uncertainty); only truly missing geometry (height_nm null) stays "unknown";
 - J2 follows the 494-j2 correction (OWNER-CORRECTION.md, agent-drafted, applying owner-relayed direction): the published
   Amphenol 132134 Rev C pattern and the Manufacturer footprint; the old J2 slot/thickness ambiguity is NOT a gate;
-- unresolved conditional geometry (J2 132134 before the 485 footprint rebind, J1 internal mate,
-  J3 card/blade Z) is polygons_nm null with required true, so it cannot pass;
+- selected connector geometry is declared in source-fixed library-front coordinates before generation;
+  reflect local Y on a captured B owner, then let the consumer follow final native pose/side;
+- final part substitution changes native FPID/pad inventory and requires a fresh binding after source adoption,
+  not a circular pre-generation geometry-completeness requirement;
 - cylinders become circumscribed regular 16-gons, vertices rounded outward to integer nm, so the
   per-face projection covers the cylinder (conservative-per-face);
 - owners with custom pads (JP1..JP5, shape 6) are refused by the consumer binding and are listed
@@ -33,7 +35,7 @@ OUT = POD / 'expansion/agentee-489-source'
 BOARD_REL = 'mechanics/original-board.kicad_pcb'
 SRC_REL = 'mechanics/agentee-490-bound-reservations.json'
 NM = 1_000_000
-AUTHOR = 'agent-ee writer lane ee489-source (AGENT engineering); recipe by agent-507 (AGENTEE-486/490)'
+AUTHOR = 'AGENT engineering: original486/490 recipe by agent-507; ten-row485 board-side closure by agent-535;489 materialization'
 OWNER_CITE = ('owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed')
 
 
@@ -108,40 +110,43 @@ def main():
                          'basis': f"axial cylinder r={g['radius_mm']} mm about the footprint centre, circumscribed "
                                   f"16-gon rounded outward; class: {r['class']} (engineering)"},
             'uncertainty': [u for u in unc if u]})
-    j1 = re.search(r'\(uuid "([0-9a-f-]+)"\)\s*\(at [^)]*\)\s*(?:\(descr[^\n]*\)\s*)?(?:\(tags[^\n]*\)\s*)?\(property "Reference" "J1"', text)
-    cond = {
-        'J2/132134-part-optionA': ('J2', '18c6ebf4-5f6a-5227-b278-be0fa33a91c9', 'solid', ['same', 'opposite'], ['installed'],
-            'J2 = Amphenol 132134 vertical THT SMA (owner "keep the vertical SMA", relayed by agent-519 0bb47bec@1; '
-            'agent-drafted correction ../agentee-494-j2/OWNER-CORRECTION.md). Pattern: the published Amphenol RF 132134 Rev C '
-            'PCB mounting holes (centre 1.5 mm, four ground 1.7 mm on a 5.08 mm square) in '
-            'Agentee494.pretty/SMA_Amphenol_132134_Manufacturer (2b65c583), not the enlarged-hole variant; the old J2 '
-            'slot/thickness ambiguity is not a gate. Geometry is unresolved ONLY because this snapshot J2 still carries the '
-            'Molex 73251-1153 edge footprint: the box (xy +-3.6 about RF pad1, above F 0..9.73, below B 2.90) is '
-            'materialized after the AGENTEE-485 regeneration rebinds J2 (UUID kept).'),
-        'J2/132134-assembly-expansion': ('J2', '18c6ebf4-5f6a-5227-b278-be0fa33a91c9', 'access', ['same', 'opposite'], ['installed', 'bench-sma-attach'],
-            'Chosen reserves +0.1 above F / +0.5 below B and the 7.25 mm, 115 mm tool sweep are AGENT assembly choices, not '
-            'manufacturer limits. Normal THT assembly and hand soldering per ../agentee-494-j2/OWNER-CORRECTION.md; the '
-            'Wurth torque is not imported; the sweep follows the final connector pose after the AGENTEE-485 rebind.'),
-        'J3/card-and-flat-tool': ('J3', 'c4f5153d-f022-576c-a234-98fe27f874d1', 'access', ['same'], ['bare-board-sd-access'],
-            'J3 plain-edge B (9.1,40,90) bare-board blade access selected, no notch (agent-529 82f08e7a v1); actual card/socket '
-            'Z unknown; the 490 J3 study used an idealised 110x80 rectangle, not the saved Edge.Cuts; card/tool tolerance open.'),
-    }
-    if j1:
-        cond['J1/internal-mate-and-tail'] = ('J1', j1.group(1), 'access', ['same', 'opposite'], ['installed'],
-            'J1 external-mating direction selected (agent-529 82f08e7a v1); mated plug envelope and K1 4.75+-0.15 panel vs the '
-            'application spec 2..5 are unreconciled; 35-tail grid registration is not a mating-stop proof (486 J1-registration).')
-    for rid, (ref, uuid, kind, faces, phases, note) in cond.items():
+    # These selected-part declarations exist before a final native pose. In particular,
+    # waiting for the 132134 replacement before declaring its body would prevent the
+    # scaffold that performs that replacement from preparing at all.
+    closure = recipe['board_side_access_closure']
+    for r in closure['rows']:
+        ref, uuid = r['reference'], r['uuid']
         if uuid not in side:
             raise SystemExit(f'{ref} {uuid} not in snapshot')
-        rows.append({'id': rid, 'required': True, 'kind': kind, 'frame': 'footprint', 'owner': {'ref': ref, 'uuid': uuid},
-                     'geometry': {'polygons_nm': None}, 'faces': faces, 'height_nm': None, 'phases': phases,
-                     'self_exclusion': True,
-                     'coverage': {'projection': 'conservative-per-face', 'height': 'unknown', 'access': 'unknown',
-                                  'basis': 'CONDITIONAL: geometry unresolved at this snapshot; cannot pass until regenerated'},
-                     'uncertainty': [note]})
+        if r['frame'] != 'library-front-footprint':
+            raise SystemExit(f"unsupported source frame for {r['id']}")
+        g = r['geometry']
+        if 'polygons_mm' in g:
+            polygons = [[[round(x * NM), round(y * NM)] for x, y in poly]
+                        for poly in g['polygons_mm']]
+        else:
+            polygons = [ngon(g['cylinder_radius_mm'])]
+        # Consumer-local coordinates are on the captured side, with the native
+        # angle removed. Convert library-front geometry once; later native flips
+        # are handled by agent-ee's bound-owner transform.
+        if side[uuid] == 'B':
+            polygons = [[[x, -y] for x, y in poly] for poly in polygons]
+        h = interval(r['height_mm'])
+        if not polygons or h is None:
+            raise SystemExit(f"source-fixed declaration is incomplete: {r['id']}")
+        citations = '; '.join(f"{s['classification']}: {s['path']} sha256 {s['sha256']} ({s['locator']})"
+                              for s in r['sources'])
+        rows.append({'id': r['id'], 'required': True, 'kind': r['kind'],
+                     'frame': 'footprint', 'owner': {'ref': ref, 'uuid': uuid},
+                     'geometry': {'polygons_nm': polygons}, 'faces': r['faces'],
+                     'height_nm': h, 'phases': r['phases'], 'self_exclusion': True,
+                     'coverage': {'projection': 'conservative-per-face', 'height': 'covered',
+                                  'access': 'covered',
+                                  'basis': r['basis'] + ' Dimension class: ' + r['dimension_class'] + '. ' + citations},
+                     'uncertainty': r['uncertainty']})
     doc = {'schema': 'agent-ee.mechanical-reservations/1', 'original_board_path': BOARD_REL,
            'original_board_sha256': sha(BOARD),
-           'source': {'path': SRC_REL, 'sha256': sha(SRC), 'locator': 'base_486_items + new_or_clarified',
+           'source': {'path': SRC_REL, 'sha256': sha(SRC), 'locator': 'base_486_items + board_side_access_closure.rows',
                       'classification': 'engineering', 'author': AUTHOR},
            'reservations': rows}
     (OUT / 'reservations.json').write_text(json.dumps(doc, indent=1) + '\n')
