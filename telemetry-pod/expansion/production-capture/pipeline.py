@@ -137,6 +137,9 @@ import importlib.util  # noqa: E402
 _spec = importlib.util.spec_from_file_location('candidate_checks', Path(__file__).resolve().parent / 'candidate_checks.py')
 candidate_checks = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(candidate_checks)
+_spec = importlib.util.spec_from_file_location('required_stages', Path(__file__).resolve().parent / 'required_stages.py')
+required_stages = importlib.util.module_from_spec(_spec)  # AGENTEE-485 X1
+_spec.loader.exec_module(required_stages)
 
 ROOT = HERE.parents[2]
 X = ROOT / 'telemetry-pod/expansion'
@@ -1093,7 +1096,18 @@ adapter['blocks'] = block_section
 block_mutable = sorted(set(scope.get('mutable_inputs', [scope['board'], scope['schematic']]))
                        | {writer, inputs['deviations']} | {p for s in implementation for p in s['writes']}
                        | set(block_variant_stage.output_paths(block_section)))
-block_step = block_variant_stage.step(SRC, scope=scope, declaration=adapter, mutable_inputs=block_mutable)
+# AGENTEE-485 C1 timeout plumbing: the timeout is passed EXPLICITLY. Its VALUE stays pinned to the agent-ee 8ab3b0b9
+# block_variant_stage.step default (600 s) and is PENDING slice B: B measures the producer wall time T on the emitted
+# board, and only if ceil(1.25 * T) <= 1500 may a derived value replace it (set by agent-530 in slice C). A timed-out
+# or partial variant set is never adopted (stage_receipts.adopt refuses it) and so never becomes a campaign input.
+BLOCK_VARIANTS_TIMEOUT_S = 600
+BLOCK_VARIANTS_TIMEOUT = {'value_s': BLOCK_VARIANTS_TIMEOUT_S, 'status': 'PENDING slice B',
+                          'source': 'agent-ee 8ab3b0b9 block_variant_stage.step default timeout_s=600 (unsourced default)',
+                          'rule': 'a derived value only if ceil(1.25 * measured T) <= 1500; set in slice C'}
+block_step = block_variant_stage.step(SRC, scope=scope, declaration=adapter, mutable_inputs=block_mutable,
+                                      timeout_s=BLOCK_VARIANTS_TIMEOUT_S)
+if block_step['timeout_s'] != BLOCK_VARIANTS_TIMEOUT_S:
+    raise SystemExit('the block-variants step does not carry the explicit timeout_s')
 _annotate = [s['step'] for s in implementation].index('forward-annotate')
 implementation.insert(_annotate + 1, block_step)
 if not AUTHORIZED['placement_timeout_s'][0] <= adapter['timeout_s'] <= AUTHORIZED['placement_timeout_s'][1]:
@@ -1267,6 +1281,7 @@ def block_variants_c1():
     underside = sorted(b for b, f in faces.items() if f.get('B') == 'packed')
     report = json.loads((design / block_section['stage_owned']['report']).read_text())
     board = design / prepared_scope['board']
+    underside_control = legal_underside_applied(design, board, sets, root / 'underside')
     original, stale = board.read_bytes(), {}
     probe_ref = next(m['ref'] for s in sets.values() for m in s['captured_members'])
     for n, mutation in enumerate(('move', 'rotate', 'flip'), 1):
@@ -1295,7 +1310,94 @@ def block_variants_c1():
             'exit': (receipt.get('execution') or {}).get('exit_code', receipt.get('status')),
             'pending_refusal': pending, 'binding_stable': True, 'report_sha256': sha(design / block_section['stage_owned']['report']),
             'report_board': report['board'], 'sets': len(sets), 'faces': faces,
-            'legal_underside_packed': underside, 'stale_probe_ref': probe_ref, 'stale_refusals': stale}
+            'legal_underside_packed': underside, 'legal_underside_applied': underside_control,
+            'advisory_exceedances': exceeded_advisories({'sets': sets, 'report': report,
+                                                         'underside': underside_control}),
+            'stale_probe_ref': probe_ref, 'stale_refusals': stale}
+
+
+def references(value):
+    """Every footprint reference a contract obligation names (its from/to endpoints, at any depth)."""
+    if isinstance(value, dict):
+        return ({value['reference']} if isinstance(value.get('reference'), str) else set()).union(
+            *(references(v) for v in value.values()))
+    if isinstance(value, list):
+        return set().union(*(references(v) for v in value))
+    return set()
+
+
+def legal_underside_applied(design, board, sets, work):
+    """AGENTEE-485 H3: the legal B-side control through the actual consumer. A non-empty B list is not enough:
+
+    1. SELECT: a produced /1 set whose B variant is 'packed' AND whose eligibility (block_variants.eligible_faces on
+       the produced side-eligibility record) admits B, among blocks that the produced contract gives at least one
+       block/pin relationship (so the relationship check below is never vacuous). None refuses.
+    2. VERIFY: block_variants.verify_native recreates every declared variant from the original native board bytes.
+    3. APPLY: block_variants._native_variant applies the B variant's member sides to a native copy with pcbnew; the
+       saved capture must hash to the variant's capture_sha256 and its native rows (side, flipped, pad-inventory
+       digest) must equal the variant's members, so pad identity survives the flip.
+    4. RELATE: block_contract.check_complete on the APPLIED capture with the produced contract; any defect naming
+       the block, one of its members or one of its relationships refuses, and every block relationship must have
+       been evaluated. Exceeded advisory targets are returned, never waived or hidden (F3).
+    Runs on the real emitted board copy in the production run; no simplified fixture replaces it."""
+    from agent_ee import block_contract, block_variants as bv
+    from agent_ee.placement_probe import extract
+    eligibility = json.loads((design / block_section['side_eligibility']).read_text())
+    contract = json.loads((design / block_section['contract']).read_text())
+    obligations = contract['relationships']['obligations']
+    capture = extract(board)
+    legal = []
+    for document in sorted(sets.values(), key=lambda d: d['block_id']):
+        bid = document['block_id']
+        if (document['variants'].get('B') or {}).get('status') != 'packed' or 'B' not in bv.eligible_faces(eligibility, bid):
+            continue
+        rows = bv._structure(document, capture, eligibility)
+        refs = {row['ref'] for row in rows}
+        related = sorted(o['id'] for o in obligations if references(o) & refs)
+        if related:
+            legal.append((document, rows, refs, related))
+    if not legal:
+        raise ValueError('no produced block has a legal, packed B variant with block/pin relationships; '
+                         'an empty or relationship-free underside is not a legal-underside pass')
+    document, rows, refs, related = legal[0]
+    bid, variant = document['block_id'], document['variants']['B']
+    bv.verify_native(board, document, capture)
+    members = [{'ref': row['ref'], 'uuid': row['uuid'], 'side': row['side']} for row in rows]
+    sides = {m['ref']: m['side'] for m in variant['members']}
+    applied, native_rows = bv._native_variant(board, work / board.name, members, sides)
+    if (bv.digest(applied) != variant['capture_sha256'] or native_rows != variant['members']
+            or not any(row['flipped'] for row in native_rows)):
+        raise ValueError(f'the applied B variant of {bid} differs from its produced native variant')
+    check = block_contract.check_complete(applied, contract)
+    evaluated = {row['relationship'] for row in check['relationships']}
+    mine = [d for d in check['defects'] if d.get('relationship') in related or d.get('reference') in refs
+            or d.get('block') == bid]
+    if mine or not set(related) <= evaluated:
+        raise ValueError(f'B variant of {bid}: block/pin relationship defects {mine[:5]}, '
+                         f'unevaluated {sorted(set(related) - evaluated)[:5]}')
+    return {'block': bid, 'legal_b_blocks': [d['block_id'] for d, *_ in legal], 'members': sorted(refs),
+            'flipped': sorted(row['ref'] for row in native_rows if row['flipped']),
+            'applied_capture_sha256': bv.digest(applied), 'relationships': related,
+            'contract_check_status': check['status'], 'block_defects': [],
+            'advisories_exceeded': [a for a in check['advisories'] if a.get('exceeded')
+                                    and a.get('relationship') in related]}
+
+
+def exceeded_advisories(value, where=''):
+    """AGENTEE-485 F3: every exceeded ADVISORY engineering target in a report, with its JSON location. A contract
+    check reports status 'pass'/'info' when advisories are its only findings (agent-ee block_contract.check_complete,
+    chief 9ff29dfd@1), so fome reports surface the exceedances themselves, not only the status."""
+    found = []
+    if isinstance(value, dict):
+        if value.get('exceeded') is True:
+            return [{'at': where or '/', **{k: value[k] for k in ('kind', 'relationship', 'role', 'citation', 'distance_mm')
+                                            if k in value}}]
+        for k, v in value.items():
+            found += exceeded_advisories(v, f'{where}/{k}')
+    elif isinstance(value, list):
+        for i, v in enumerate(value):
+            found += exceeded_advisories(v, f'{where}/{i}')
+    return found
 stage('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', block_variants_c1)
 MODELS = 'composition/project-models.json'
 
@@ -1449,7 +1551,20 @@ def record_of(directory):
     return json.loads(path.read_text()) if path.exists() else None
 
 
-result = dict(schema='pod-capture.pipeline/6', done=False, inference=False,
+def advisory_report():
+    """AGENTEE-485 F3: exceeded advisory engineering targets of this preparation's reports, surfaced at the top of
+    pipeline.json (repack candidates and the C1 stage), never waived; an advisory is not a hard limit."""
+    repack = {p.name: found for p in sorted((REPACK / 'cand').glob('*.candidate.json'))
+              if (found := exceeded_advisories(json.loads(p.read_text())))}
+    c1 = (stages.get('blocks.stage_owned_variants C1 (AGENTEE-485 R2)') or {}).get('detail') or {}
+    return {'meaning': 'advisory engineering targets exceeded (enforcement advisory); not a hard-limit failure and '
+                       'not waived; status pass/info does not hide them',
+            'repack': {'path': str(REPACK / 'cand'), 'count': sum(map(len, repack.values())), 'by_candidate': repack},
+            'c1': {'count': len(c1.get('advisory_exceedances', [])), 'rows': c1.get('advisory_exceedances', []),
+                   'status': 'produced' if c1 else 'not produced (C1 refused or absent)'}}
+
+
+result = dict(schema='pod-capture.pipeline/7', done=False, inference=False,
               authority='Producer execution and declarations on a fresh capture copy and the real pod_driver dry run '
                         'of the bounded plan; no placement, routing, campaign or model run. The diagnostic is '
                         'scratch-only and never an input.',
@@ -1465,6 +1580,13 @@ result = dict(schema='pod-capture.pipeline/6', done=False, inference=False,
                        'routing_timeout_s': route['timeout'], 'review_budget_s': review_budget,
                        'driver_max_seconds_minimum': 2 * (route['timeout'] + routing_adapter.STEP_MARGIN_S) + review_budget},
               initial_candidate=stages['campaign.initial_candidate'].get('detail'),
-              stages=stages, diagnostics=diagnostics,
+              stages=stages, required_stages=required_stages.summary(stages),
+              advisory_exceedances=advisory_report(),
+              block_variants_timeout=BLOCK_VARIANTS_TIMEOUT, diagnostics=diagnostics,
               dry_run_records={'production (bounded plan)': record_of(PREPARED)})
 (OUT / 'pipeline.json').write_text(text(result))
+# AGENTEE-485 X1: pipeline.json (all stage records and diagnostics) is retained above; a refused, missing or
+# unclassified required stage then makes preparation exit non-zero, so production_run.sh stops before observe/write.
+if result['required_stages']['problems']:
+    print('\nrequired stages refused: ' + '; '.join(result['required_stages']['problems']), flush=True)
+    sys.exit(3)

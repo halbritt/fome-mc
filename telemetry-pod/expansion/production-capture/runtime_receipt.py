@@ -61,6 +61,23 @@ RUNTIME_KEYS = ('agent_ee_commit', 'config', 'router_commit', 'source_sha256', '
 RUNTIME = None  # selected by configure(runtime=...): 'historical-j6b' or a runtime manifest file
 
 
+def required_stage_problems(pipeline):
+    """AGENTEE-485 X1: required_stages.problems over a retained pipeline.json (one definition, required_stages.py)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('required_stages', HERE / 'required_stages.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.problems(pipeline.get('stages'))
+
+
+def runner_paths():
+    """AGENTEE-485 H1: (PYTHONPATH, cwd) of the ACTUAL campaign interpreter for the selected runtime. A mounted-export
+    runtime runs the mounted export (/pod/export/src, cwd /pod/export), never the image's /opt/agent-ee/src."""
+    if runtime().get('runtime_agent_ee', 'image') == 'mounted-export':
+        return '/pod/export/src', '/pod/export'
+    return '/opt/agent-ee/src', '/opt/agent-ee'
+
+
 def select_runtime(selection):
     """AGENTEE-487 H4: the runtime identities are SELECTED, never assumed. 'historical-j6b' selects the retained j6b
     identities explicitly; any other value is an immutable pod-capture.runtime-manifest/1 file whose sha256 is bound."""
@@ -412,8 +429,8 @@ def invocation(run_dir, producer_mount):
                  '--cpus', '$NATIVE_ADMISSION_CPUS', '--pids-limit', '$NATIVE_ADMISSION_PIDS',
                  '--security-opt', 'seccomp=unconfined', '--security-opt', 'apparmor=unconfined',
                  '--security-opt', 'systempaths=unconfined', '--user', 'UID:GID', '-e', 'HOME=/tmp',
-                 '-e', 'PYTHONPATH=/opt/agent-ee/src', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
-                 '-w', '/opt/agent-ee', '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',
+                 '-e', f'PYTHONPATH={runner_paths()[0]}', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
+                 '-w', runner_paths()[1], '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',
                  '-v', f'EXPORT_7D5B0D4D/src:{producer_mount}:ro', '-v', 'RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro',
                  '-v', 'NEW_OUTPUT_PARENT:/pod/out',
                  *(['-v', 'RUNTIME_MANIFEST:/pod/runtime-manifest.json:ro'] if sel['kind'] == 'manifest' else []),
@@ -421,7 +438,8 @@ def invocation(run_dir, producer_mount):
     return {'image': {'by': 'config digest (proximal classic store)', 'reference': runtime()['config'],
                       'tag_on_c4': runtime().get('image_tag'), 'c4_index': runtime().get('c4_index')},
             'pre_launch_identity_check': {'argv': pre, 'requires': 'exit 0 and problems []'},
-            'campaign_command': argv, 'container': container, 'cwd': '/opt/agent-ee',
+            'campaign_command': argv, 'container': container, 'cwd': runner_paths()[1],
+            'runner_pythonpath': runner_paths()[0],
             'placeholders': {
                 'PREPARED_DIR': '`retain.py --materialize-prepared OUT` (prepared-tree.json), byte-equal to the observed tree',
                 'EXPORT_7D5B0D4D': f'`git archive {runtime()["agent_ee_commit"]}`; its src is the producer mount at the exact '
@@ -447,6 +465,9 @@ def write(observation, image_dir, run_dir):
     if obs['problems']:
         raise SystemExit(f'observation has problems: {obs["problems"]}')
     pipeline = json.loads((EVIDENCE / 'pipeline.json').read_text())
+    refused = required_stage_problems(pipeline)
+    if refused:  # AGENTEE-485 X1: no receipt for a candidate with a refused required stage
+        raise SystemExit('required stages refused; no receipt written: ' + '; '.join(refused))
     retained = {name: sha(EVIDENCE / 'prepared' / name) for name in PREPARED}
     if retained != obs['prepared']:
         raise SystemExit('observed prepared files differ from the retained evidence')
