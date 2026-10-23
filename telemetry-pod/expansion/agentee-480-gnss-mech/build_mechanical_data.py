@@ -55,10 +55,14 @@ def materialize(obs):
                                          "note": "Paraphrased dimensions, not a redistributed standard/drawing. Sources do not authorize purchases."})
     save("owner-answers.json", {"schema": "agentee-480.owner-answers/1", "source": "owner answers fd5bea71 as relayed in exact Cairn5bfc7b7a-9520-4e85-a94f-ee53caa5e630@1",
                                 "class": "owner-relayed; assignment is not owner-authored text",
+                                "interpretation_class": "Engineering interpretation of relayed owner usage/selection; quotations stored separately",
+                                "verbatim_owner_quotes_file": "owner-quotes.json",
+                                "geometry_evidence_policy": 'Answers settle usage and selection only. No geometric clearance PASS follows from these quotes alone. Manufacturer/measured dimensions and final collision checks remain required.',
                                 "TP": "handheld pogo clip, bare board before enclosure; bottom TPs allowed; BLE OTA after",
                                 "JP": "set once with soldering iron on bare board before enclosure",
                                 "hardware": "agents choose standard M3 hardware; no purchase",
                                 "cowl": {'estimate_mm': 90, 'dimension': 'available vertical height under rear cowl', 'axis': 'Z', 'measured': False, 'hard_cap': False, 'provisional_envelope_height_mm': 90, 'length_width': 'well over90mm;90x65mm board outline is not cowl-constrained', 'measurement_task': False, 'source': 'b1987334-6363-413b-b1a4-d2666284142b@1 relays owner to519 via27c51f73', 'assembly_requirement': 'Entire installed vertical stack must fit provisional90mm height: enclosure floor/lid, M3 stack, board, both-face components, J1 body plus harness, J2 SMA plus cable bend. Unknown terms cannot pass.'}})
+    save("owner-quotes.json", {'schema': 'agentee-480.owner-quotes/1', 'attribution': 'Verbatim owner quotes as relayed by449 from529 via519; exact native notice source, not independently owner-authored text.', 'source_record': '60ee73db-149c-44c5-be61-5b8bec36421b@1', 'source_body_sha256': '5d35fe4b59583759a38dd01baf446dfff825e789ba200fd6c04d38097a6c3035', 'quotes': {'C20': 'Pogo clip on bench', 'C21': 'Once, on the bench', 'C19_C22': '90mm height, the length and width are quite a bit more than that', 'C04': 'Agents pick M3 hardware'}, 'authority_boundary': 'Answers settle usage and selection only. No geometric clearance PASS follows from these quotes alone. Manufacturer/measured dimensions and final collision checks remain required.', 'engineering_interpretation_file': 'owner-answers.json'})
     body_limits = {
         "L1": (4.8, 5.0, "BournsSRP7050TA-150M", source477, "4.8+0.2; reused477 capture5a7926dd, not reacquired"),
         "L2": (5.2, 5.4, "BournsSRP7050WA-6R8M", source477, "5.2+0.2; reused477 capture3f16305b, not reacquired"),
