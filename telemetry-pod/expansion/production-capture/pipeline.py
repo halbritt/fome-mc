@@ -963,7 +963,11 @@ stage('producers.import_from_declared_mount', declared_imports)
 
 # 4. The final derived request policy (captured policy minus caller-authored overhangs).
 policy = read(inputs['policy'])
-envelope_record = board_envelope.validate((planning / inputs['envelope']).read_bytes())
+# AGENTEE-485 B0: validate against the planning capture inventory (mechanical_reservations require captured
+# immutable inputs; agent-ee refuses an uncaptured envelope that carries them).
+envelope_files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+envelope_record = board_envelope.validate((planning / inputs['envelope']).read_bytes(),
+                                          captured=(envelope_files, planning))
 stage('placement.refuse_policy_sources', lambda: placement_adapter.refuse_policy_sources(policy))
 stage('placement.envelope_overhangs', lambda: placement_adapter.envelope_overhangs(envelope_record))
 
