@@ -1,0 +1,30 @@
+{
+ "schema": "pod-capture.rating-source/1",
+ "scope": "AGENTEE-491 R74/R78/R82 (C723587) and R75/R79/R83 (C861219)",
+ "source": "the acquired YAGEO per-part product sheets (canonical-parts/acquisition-491, Typst-generated pages dated 10/23/2026, page 1 Specifications); not the RT series datasheet; read with pdftotext -layout",
+ "parts": {
+  "C723587": {
+   "artifact_sha256": "7c8e63688a91c17db9b88a70379496b1b9b507031b71b7d19c8abfbfc37f40a7",
+   "ratings": {
+    "power": "0.1 W (70C)",
+    "voltage_dc": "75 V (Max Continuous Voltage at Full Rated Power), 150 Max Over Voltage, 100 Dielectric Withstanding Voltage",
+    "temperature_range": "-55/+155°C",
+    "tcr": "-/+25 ppm/C",
+    "tolerance": "0.1%",
+    "resistance": "75 kOhms"
+   }
+  },
+  "C861219": {
+   "artifact_sha256": "ffde22da4914f75216dc30941d1a0e73debe455300b72518b7441720faea6822",
+   "ratings": {
+    "power": "0.1 W (70C)",
+    "voltage_dc": "75 V (Max Continuous Voltage at Full Rated Power), 150 Max Over Voltage, 100 Dielectric Withstanding Voltage",
+    "temperature_range": "-55/+155°C",
+    "tcr": "-/+25 ppm/C",
+    "tolerance": "0.1%",
+    "resistance": "208 kOhms"
+   }
+  }
+ },
+ "binding": "the writer intent carries no AGENT_EE_Ratings on these six (it never did); build.py rating_comparison covers only the 98 original fields; no derated operating qualification is claimed"
+}

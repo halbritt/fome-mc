@@ -48,8 +48,9 @@ ROOT = HERE.parents[2]
 # netlist/design.xml were never committed). The old retention stays unchanged as defect evidence.
 # AGENTEE-488: NEW retention for the VIO-to-VCC / C18 22 uF source change (after emission-7d5b0d4d-agentee484r2/).
 # AGENTEE-186: NEW retention for the RF 0.293 mm / CPW gap rules (after emission-7d5b0d4d-agentee488/).
+# AGENTEE-488c/491: NEW retention for the coherent 488c + 186 + 491 (C723587/C861219) + H2-delta production.
 # AGENTEE-488c: NEW retention composed on fome-mc main 33c5ba8 (486 REQUIREMENTS.md correction) + 60f6a78d + 488/186.
-DEST = HERE / 'evidence/emission-7d5b0d4d-agentee488c'
+DEST = HERE / 'evidence/emission-7d5b0d4d-agentee491'
 SUPERSEDED = HERE / 'evidence/emission-81e387ee'  # j6/j6b retention (producer 81e387ee); removed at j6b2
 POD = ROOT / 'telemetry-pod'
 REPO_SUBTREE = 'telemetry-pod/'
