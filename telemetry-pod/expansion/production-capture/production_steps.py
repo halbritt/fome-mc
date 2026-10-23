@@ -36,5 +36,6 @@ for name in generated:
 shutil.copyfile(CAP / 'reconstruction.json', HERE / 'reconstruction.json')
 step('build-check', [*py, HERE / 'build.py', EXPORT, '--check'])
 step('pipeline', [*py, HERE / 'pipeline.py', EXPORT, '/opt/kicad-route', SCOPE, CAP, PIPE])
-step('observe', [*py, HERE / 'runtime_receipt.py', 'observe', PIPE / 'prepared', W / 'observation.json', EXPORT])
+step('observe', [*py, HERE / 'runtime_receipt.py', '--runtime', HERE / 'runtime/agentee-484r2.json', 'observe', PIPE / 'prepared',
+                  W / 'observation.json', EXPORT])  # AGENTEE-487 H4: explicit runtime selection
 print('\nsteps=done', flush=True)

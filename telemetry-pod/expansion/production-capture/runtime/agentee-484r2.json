@@ -1,0 +1,10 @@
+{
+ "schema": "pod-capture.runtime-manifest/1",
+ "purpose": "CURRENT runtime selection for the AGENTEE-484r2 production preparation (agent-529 a57b675c / review H4). Immutable: a new runtime is a new file.",
+ "agent_ee_commit": "7d5b0d4de65a5b8e8f925ad6f366a46653aae563",
+ "config": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+ "router_commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+ "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2",
+ "extension_sha256": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9",
+ "note": "These values equal the historical j6b runtime because the production pin is unchanged (agent-ee 7d5b0d4d, image d96f8e00, router b5774496); they are SELECTED here, not inherited. No c4 relation is selected; the image is bound by its proximal docker-save identity only. No Rust binary runs in the preparation."
+}
