@@ -1,8 +1,8 @@
 {
   "schema": "agentee-486.candidate-delta/1",
   "adopted": false,
-  "activation": "explicitsourceowneradoption+newnativebinding; switch overlay status only after exact source313/314 identity checked",
-  "authority": "4f45ed17-0afe-4a2b-bd17-14f48dba1eee@1, corrected by 0749f277-d948-46e9-8dd7-cd22f129a848@1",
+  "activation": "Never activate from this administrative correction. Source owner must explicitly emit adopted part/net edits and new native bindings, then regenerate downstream data; existing base-part inventory stays unchanged.",
+  "authority": "4f45ed17-0afe-4a2b-bd17-14f48dba1eee@1, corrected by 0749f277-d948-46e9-8dd7-cd22f129a848@1; bounded correction 1023f164-da86-47eb-a68a-d098161b29f8@1",
   "base_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
   "operations": [
     {
@@ -13,18 +13,37 @@
       "lcsc": "C694521",
       "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "height_max_mm": 2.8,
-      "height_authority": "0749f277-d948-46e9-8dd7-cd22f129a848@1; relayed review candidate, exact datasheet acquisition required before adoption",
-      "conservative_xy_square_mm": null,
+      "height_authority": "Retained manufacturer characterization CGA6P3X7R1E226M250AB, 2022-02-16; family CGA6P3X7R1E226MT****; source relay 1023f164-da86-47eb-a68a-d098161b29f8@1",
+      "conservative_xy_square_mm": 3.6,
       "adjacent_to": "U11.2",
       "nets": [
-        "PRE_6V3",
+        "/PRE_6V3",
         "/GND"
       ],
       "landpattern_rebind_required": true,
       "height_nominal_mm": 2.5,
       "height_tolerance_mm": 0.3,
       "superseded_height_nominal_mm": 0.8,
-      "superseded_height_tolerance_mm": 0.1
+      "superseded_height_tolerance_mm": 0.1,
+      "body_max_lwh_mm": [
+        3.6,
+        2.8,
+        2.8
+      ],
+      "characterization_evidence": [
+        {
+          "path": "/home/halbritt/.local/share/agent-ee/reviews/2026-10-23-ee488-agent522/tdk-c6-characterization.pdf",
+          "sha256": "bee79427c7260a12e7d1b7f6ee84d4ece9a247547af91c94019a5d47ae346355"
+        },
+        {
+          "path": "/home/halbritt/.local/share/agent-ee/reviews/2026-10-23-ee488-agent522/tdk-c6-characterization.png",
+          "sha256": "7b8643fafba775fb7efa95846b068bafff4b19cff97e7ca8acfdeeb1e312208d"
+        }
+      ],
+      "characterization_primary_url": "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/charasheet/cga6p3x7r1e226m250ab.pdf",
+      "characterization_binding": "Same existing C6/C7 part CGA6P3X7R1E226MT000N/C694521; sheet explicitly covers CGA6P3X7R1E226MT****. Manufacturer suffix M250AB is characterization designation, not a different selected MPN.",
+      "decision_status": "Selected by 529 in 061a1b20@2 as relayed in 1023f164-da86-47eb-a68a-d098161b29f8@1; native source adoption is not performed by this evidence overlay.",
+      "decision_rationale": "Engineering margin within REF50xxI/AI section 9.3; not stability repair and no EI-to-AI stability minimum or margin ratio claimed"
     },
     {
       "reference": "C84",

@@ -9,7 +9,7 @@
   "files": {
     "part-heights.json": "313exactnativeUUID+MPN/LCSC/footprint+canonicaldatasheethash;296package limits15bare2unknown;bodyXY/assembledtolseparate",
     "height-facts.json": "applicablemanufacturerpage+hash+derivation;C1/C100supplementalofficialwebsnapshotsmetadata",
-    "candidate-488-deltas.json": "Inactive C18 1210 replacement with 2.8 mm maximum; existing C84 and C133 pin-2 net changes only. No C134 addition. Correction 0749f277@1; source adoption remains explicit.",
+    "candidate-488-deltas.json": "Inactive source overlay: 529-selected C18 1210 replacement with retained exact-family TDK characterization (3.6 x 2.8 x 2.8 mm maxima); existing C84/C133 pin-2 net changes; no C134. Native source adoption remains explicit.",
     "axis-transform.json": "U2F0derivedunderexplicitRHboardtobikeF-upframe;8face/anglecases;nativepadmapandactualinstalled/silkchecksseparate",
     "J2-compatibility.json": "common1150/1153mechanicaldrawing,controllingINCHconvertedbounds:aboveF4.5466/belowB2.1082/slot1.6002..1.7526;assemblytolopen",
     "J1-registration.json": "35nominaltailgridregistration;notmatingstopproof",
@@ -18,7 +18,8 @@
     "cpw-plan.json": "gap.2032,track.335,AGENTstrip1/fencepitch2;35candidateviasoutsideinnerban;fullconnectivity/uniformCPWnotproved",
     "cpw-packing-obstacles.json": "twoF/Bfragments40integernm polygons;8hardwarepolygonsfrombasefilecanappend;explicitfixedRFsupportcutouts",
     "selected-assembly.json": "namedhardware/plug/contacts/wire/card/tools/antennaandfinitechoicevolumes,dimensionedconditionalassemblysequence;uncertaintynotzero",
-    "consumer-check.json": "actualimmutable09c0076API observations;NOTendtoendproductionproof"
+    "consumer-check.json": "actualimmutable09c0076API observations;NOTendtoendproductionproof",
+    "followup-corrections.json": "529/519 relay F1-F4: current484r static rebind, explicit regeneration for both board-level rule areas, selected mounting instructions and final saved-pose/silk gap, retained exact C18 characterization."
   },
   "units": "geometrypolicyintegernanometres;derivedplanningmmrecordedexplicitly;anglesKiCaddeg;BsideuseactualnativeFlipnotguessedmirror",
   "selected_changes": {
@@ -104,7 +105,7 @@
     "height_Z_access_sourceconsumption": "NOT_IMPLEMENTED_OR_PROVED_IN_INSPECTED09c0076",
     "finalsavedmove_flipmechanicalchecks": "NOT_PROVED",
     "underside_congested_regression": "STILL_REQUIRED;onlyBcollisionpredicatecontrolhere",
-    "full_native_consumer": "priorREFUSEDsixcustomruleinventory;487sourceownernext",
+    "full_native_consumer": "Historical REFUSED result; current484r static source rebind in followup-corrections.json. Current native runtime NOT_RUN; source owner must re-emit/check.",
     "packing_admission": false,
     "postroute_RF_pass": false
   },
@@ -116,5 +117,55 @@
     "U1case/chassis/othermetal/harnessclearance;fullinstalledstack/cowlfit",
     "sourceprovenancereemitandactualendtoendmechanicalconsumer+finalmovefliptests",
     "CPWshuntreliefimpedance/finalGND/fenceRF_INcoverageandfull313packingfit"
-  ]
+  ],
+  "board_level_rule_area_regeneration": {
+    "status": "REGENERATION_CONTRACT_EXPLICIT",
+    "board_level_rule_areas": [
+      {
+        "uuid": "460352a8-dace-51a2-842b-c1e4ef7ad212",
+        "name": "D-PCB-7v2-In1-no-tracks",
+        "layers": [
+          "In1.Cu"
+        ],
+        "forbid": {
+          "tracks": true,
+          "vias": false,
+          "pads": false,
+          "footprints": false,
+          "copper_pours": false
+        },
+        "policy": "regenerate-on-pose-change; never preserve old world polygons after relevant changes",
+        "dependencies": [
+          "outline",
+          "board stack/layers"
+        ],
+        "on_change": "Invalidate stale source hash; regenerate through canonical source writer; preserve intended layers/forbid policy; rebind and inspect final saved board."
+      },
+      {
+        "uuid": "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae",
+        "name": "D-PCB-6-RF-reference",
+        "layers": [
+          "In1.Cu",
+          "In2.Cu"
+        ],
+        "forbid": {
+          "tracks": true,
+          "vias": true,
+          "pads": false,
+          "footprints": false,
+          "copper_pours": false
+        },
+        "policy": "regenerate-on-pose-change; never preserve old world polygons after relevant changes",
+        "dependencies": [
+          "U3/RF_IN native pose/face",
+          "J2 pose/face",
+          "RF corridor geometry",
+          "outline/stack/layers"
+        ],
+        "on_change": "Invalidate stale source hash; regenerate through canonical source writer; preserve intended layers/forbid policy; rebind and inspect final saved board."
+      }
+    ],
+    "footprint_owned_areas": "Six existing native owned areas follow native move/Flip; two board-level areas require explicit regeneration.",
+    "runtime_status": "No native source was changed or regenerated here; final production proof remains open."
+  }
 }
