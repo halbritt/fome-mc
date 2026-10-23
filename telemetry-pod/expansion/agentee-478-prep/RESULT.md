@@ -84,7 +84,7 @@ The 37 former residual parts:
   - C04: H1–H4 hardware is M3, selected by agents (owner answer). The envelope radius stays UNKNOWN on both faces, pending AGENTEE-480 (478b).
   - C23: thermal, for the regulator, MCU and switch blocks.
   - The opposite-face area under the U5/U7 exposed pad is reserved for thermal vias (LMR36520 p28 item 7); its size is UNKNOWN.
-- **Fixed parts:** each keeps a single face.
+- **Fixed parts:** ~~each keeps a single face~~ (superseded by 478c): a fixed role is not side authority. Each part separates sourced restrictions, an AGENT engineering anchor and the captured starting pose; U2's face is OPEN for 529.
 - **Test and assembly access plan (`test_assembly_access_plan`):**
   - TP1–TP6 (corrected in 478b): hand-held pogo clip or probes on the bare board before enclosure (owner: "Pogo clip on bench"). Either face, bottom allowed. No fixed fixture pattern, no common-face or grouping requirement, no post-seal access. A common face or grouping is at most a labelled, optional engineering convenience. The earlier "one fixture head / 25 mm grouping" assumption is withdrawn.
   - Probe-tip approach clearance only (no tall part or screw hardware over or around each pad). Its size is UNKNOWN (C20); never PASS.
@@ -165,7 +165,7 @@ Anything else on the opposite face is lost cohesion. The regression contract is 
 
 ## D5: fixed and shared rules (`fixed-shared-rules.json`)
 
-- **Fixed parts:** each records its R5 and emitted poses, its pose authority as 474 classes it, its adjacent blocks, its support relationships, its access rules and its side rule.
+- **Fixed parts (corrected in 478c):** each records its sourced restrictions (474 entry and class), its AGENT engineering anchor (reconsiderable, chosen before packing) and its R5/emitted starting poses (start state only), plus adjacent blocks, support relationships and access rules.
   - U3 is **staged off-board in the emitted board**. Its anchor pose is placement-derived (MECH-DERIVED, C15), not sourced.
   - J1, J2, J3, U1, U2 and H1–H4 match between the emitted board and R5.
 - **Shared parts:** the TP common-face and access rules; JP parts follow their blocks.
@@ -274,3 +274,23 @@ The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../
 **Not changed:** `allocation-v2.json`, `relationship-bounds.json`, `cross-face-templates.json` and `proposed-schemas.json` (content identical). `d1-verification.json` was restored to the committed file: a rerun differs only in set iteration order and is semantically equal.
 
 **Generator:** `build_prep.py` now holds the `OWNER` table and the patched entries, so the data stays reproducible. The validator `validate_coverage.py` was rerun: **PASS**, 309 footprints, 0 unassigned, 0 duplicates, 0 failed checks.
+
+## AGENTEE-478c: role coverage is not side or pose authority (agent-529, AGENTEE-479 comment 5dbeb677, Cairn c228b69f)
+
+`side-eligibility.json` → `fixed.*` and `fixed-shared-rules.json` → `fixed.*` now separate, per part:
+- **`sourced_restrictions`:** each cites its 474 entry and class.
+- **`engineering_anchor`:** labelled AGENT and `reconsiderable`. It is chosen before packing, and a reconsidered anchor needs final transformed keepout and axis checks (an AGENTEE-479 acceptance item).
+- **`starting_poses`:** R5 and emitted poses, labelled "captured start state only, never a constraint".
+- **`face_decision`:** stated explicitly per part.
+
+| Part | Sourced restriction (474) | Engineering anchor (AGENT) | Face decision |
+|---|---|---|---|
+| J1 | right angle (C05 OWNER); +Y mating to the edge (C05 MFR); PTH pattern (C06 MFR) | XY (45, 55.5) rot 0 | F, AGENT, reconsiderable |
+| J2 | F.Cu-over-In1 RF launch (C15, R:65); edge launch (C09 MECH-DERIVED) | XY (85.24, 28) rot 180; corridor per AGENTEE-480 | F, sourced via the RF path |
+| J3 | card off the left edge (C10 OWNER); socket areas (C11 MFR) | XY (8.9, 32) rot 90 B, lane | B, AGENT, reconsiderable |
+| U1 | antenna case and overhang (C12 OWNER); land pattern (C12 MFR) | XY (72.5, 6.5) rot 0 | F, AGENT, reconsiderable |
+| **U2** | **REQUIRED axes X fwd / Y left / Z up, no software rotation (C14, R:69)** | XY (12, 10), historical; no source for XY or F-only | **OPEN for 529:** U2 must be on the face that points up when installed; the installed orientation is UNKNOWN (C14/C22); F is only a labelled AGENT start |
+| U3 | F.Cu over In1 REQUIRED (C15, R:65) | corridor and anchor per AGENTEE-480 (agent-507), not duplicated | F, sourced |
+| H1–H4 | corner holes (C03 OWNER); M3, agents pick (C04) | XY at the 4 mm corners, AGENT | n/a (NPTH, both faces) |
+
+The 478b owner answers (commits `93adc6c` and `6e0aea2` on the j6b2 branch) were carried onto this branch so the data is coherent. Validator: PASS, 313 footprints, 0 unassigned, 0 duplicates.

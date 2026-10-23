@@ -499,10 +499,58 @@ for b in sorted(blocks):
                                 'region_restrictions': reg, 'material_unknowns': unk,
                                 'whole_block_transform': 'native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face',
                                 'same_face_relationships': intra}
+# AGENTEE-478c (agent-529, AGENTEE-479 comment 5dbeb677 / Cairn c228b69f): a fixed ROLE is not side or pose
+# authority. Per part: (a) SOURCED restrictions with their 474 entry and class, (b) the ENGINEERING anchor selected
+# for this candidate (AGENT, reconsiderable, with a disposition), (c) captured STARTING poses (start state only).
+REG = 'agentee-474-constraints/RESULT.md'
+ANCHOR_RULE = ('chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; '
+               'any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)')
+ROLE = {
+ 'J1': {'sourced': [{'entry': 'C05', 'class': 'OWNER', 'restriction': 'right-angle connector (D:175)'},
+                    {'entry': 'C05', 'class': 'MFR', 'restriction': 'mating direction +Y to the board edge, recommended PCB edge at local y+9.5 (TE 776163 K1 sh2)'},
+                    {'entry': 'C06', 'class': 'MFR', 'restriction': '35-pin PTH pattern and locators; through-board pads/drills on both faces'},
+                    {'entry': 'C07/C08', 'class': 'MFR', 'restriction': 'panel/mate interface geometry (owner-relay items labelled as such)'}],
+        'anchor': 'XY (45, 55.5) rot 0 on F: AGENT (E:67-83; global X is an agent choice). Face F follows the right-angle body over the board with mating toward the edge; reconsidering the face needs the mirrored mate/panel check',
+        'face_decision': 'F as engineering anchor (AGENT), reconsiderable'},
+ 'J2': {'sourced': [{'entry': 'C15', 'class': 'OWNER/project', 'restriction': 'GNSS RF path on F.Cu over In1 (R:65): the J2 signal launch must be on the F.Cu RF path'},
+                    {'entry': 'C09', 'class': 'MECH-DERIVED', 'restriction': 'edge-mount launch at a board edge (footprint geometry)'}],
+        'anchor': 'XY (85.24, 28) rot 180: AGENT (D-PCB-4); RF corridor and anchor per AGENTEE-480 (agent-507, landed b389b47), not duplicated here',
+        'face_decision': 'F, required by the F-over-In1 RF path (sourced, C15/R:65)'},
+ 'J3': {'sourced': [{'entry': 'C10', 'class': 'OWNER', 'restriction': 'card slot points off the left board edge (D:176)'},
+                    {'entry': 'C11', 'class': 'MFR', 'restriction': 'socket body, push-push travel and socket-owned no-conductor areas move with the part'}],
+        'anchor': 'XY (8.9, 32) rot 90 on B, 15 mm lane: AGENT/MECH-DERIVED (D:120-126, E:130-145)',
+        'face_decision': 'B as engineering anchor (AGENT), reconsiderable; the off-left-edge direction is the sourced restriction'},
+ 'U1': {'sourced': [{'entry': 'C12', 'class': 'OWNER', 'restriction': 'accepted antenna overhang / antenna case (D:179); preserve the antenna feed orientation and the all-layer antenna area'},
+                    {'entry': 'C12', 'class': 'MFR', 'restriction': 'module land pattern and antenna geometry (datasheet Fig 11-1 p45)'},
+                    {'entry': 'C13', 'class': 'MFR', 'restriction': 'housing clearance recommendation (not a board keepout)'}],
+        'anchor': 'XY (72.5, 6.5) rot 0 on F: AGENT baseline, not a manufacturer-mandated XY',
+        'face_decision': 'F as engineering anchor (AGENT), reconsiderable with the antenna-case check'},
+ 'U2': {'sourced': [{'entry': 'C14', 'class': 'OWNER/project', 'restriction': 'REQUIRED installed axes X forward, Y left, Z up, marked on silkscreen, without a software rotation (REQUIREMENTS.md:69); tall/heavy parts kept away (R:68, no numeric distance)'}],
+        'anchor': 'XY (12, 10) rot 0: AGENT historical pose (E:120-128); no owner/manufacturer source for XY or F-only (C14)',
+        'face_decision': ('OPEN for agent-529. Evidence: R:69 requires sensor Z up with no software rotation, so U2 must sit on the board face '
+                          'that points UP when installed, at the rotation that maps sensor X forward / Y left. The installed board '
+                          'orientation (which face is up, which edge is forward) is not sourced (C14 board-to-bike transform UNKNOWN; C22). '
+                          'Either face is physically possible; neither is inherited. Candidate start: F, labelled AGENT, valid only under '
+                          'the assumption F faces up; any face/rotation must pass the final axis check')},
+ 'U3': {'sourced': [{'entry': 'C15', 'class': 'OWNER/project', 'restriction': 'F.Cu over In1 GNSS RF path REQUIRED (R:65); RF_IN pad 11 on the F.Cu path'}],
+        'anchor': 'pose is placement-derived (staged off-board in the emitted board); component-relative RF corridor and anchor belong to AGENTEE-480 (agent-507, landed b389b47) and are referenced, not duplicated',
+        'face_decision': 'F, required by the F-over-In1 RF path (sourced)'},
+}
+for h, xy in (('H1', (4, 4)), ('H2', (86, 4)), ('H3', (86, 61)), ('H4', (4, 61))):
+    ROLE[h] = {'sourced': [{'entry': 'C03', 'class': 'OWNER', 'restriction': 'a mounting hole in each corner (R:65)'},
+                           {'entry': 'C04', 'class': 'OWNER (selection)', 'restriction': 'M3 hardware, agents select (AGENTEE-480); envelope per AGENTEE-480'}],
+               'anchor': f'XY {xy}, 3.2 mm NPTH: AGENT (E:227-267)', 'face_decision': 'n/a: NPTH through both faces; hardware reservations on both faces per AGENTEE-480'}
 for f, ids in FIXED.items():
-    fp = EXTRACT['r5']['footprints'][f]
-    eligibility['fixed'][f] = {'face': fp['side'], 'eligible_faces': [fp['side']], 'sources': ids,
-                               'note': 'fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)'}
+    r5, em = EXTRACT['r5']['footprints'][f], BOARD[f]
+    eligibility['fixed'][f] = {
+        'sourced_restrictions': ROLE[f]['sourced'], 'register': REG,
+        'engineering_anchor': {'pose': ROLE[f]['anchor'], 'label': 'AGENT', 'reconsiderable': True, 'rule': ANCHOR_RULE,
+                               'disposition': 'retained as the candidate anchor for AGENTEE-479 packing unless reconsidered'},
+        'face_decision': ROLE[f]['face_decision'],
+        'starting_poses': {'label': 'captured start state only, never a constraint',
+                           'r5': {'x_mm': r5['x'], 'y_mm': r5['y'], 'rot_deg': r5['rot'], 'side': r5['side']},
+                           'emitted': {k: em.get(k) for k in ('x', 'y', 'rot', 'side')}},
+        'sources': ids}
 eligibility['shared']['TP1-TP6'] = {
     'eligible_faces': ['F', 'B'], 'constraint': 'either face per pad (bottom allowed); probe-tip approach clearance reserved on the probed face; no fixed fixture pattern, no common-face requirement',
     'sources': ['C20', 'C01'], 'owner_answer': OWNER['C20'],
@@ -575,16 +623,23 @@ ACCESS = {'J1': ['mating direction +Y to board edge y=65 (C05)', 'B: PTH tails a
 ADJ = {'U1': ['mcu'], 'U3': ['gnss-rf-feed', 'gnss-antenna-supply'], 'J2': ['gnss-rf-feed'], 'J3': ['storage-support'],
        'J1': ['power-entry', 'can', 'tire-can'], 'U2': []}
 fixed_rules = {'schema': 'fome-mc.fixed-shared-rules/1 (proposed consumer: agent-ee, AGENTEE-479)',
+               'role_vs_authority': 'complete role coverage is not side or pose authority (AGENTEE-478c)',
                'no_flat_fallback': 'every footprint is a block member, a fixed anchor or a shared part with the rules below; an unlisted footprint is a refusal, never a residual pack',
                'fixed': {}, 'shared': {}, 'rails': {}}
 for f in FIXED:
     fp = EXTRACT['r5']['footprints'][f]
     rel_ids = [r['id'] for r in rels if r['device']['ref'] == f]
-    fixed_rules['fixed'][f] = {'anchor_pose_r5': {'x_mm': fp['x'], 'y_mm': fp['y'], 'rot_deg': fp['rot'], 'side': fp['side']},
-                               'emitted_pose': {k: BOARD[f][k] for k in ('x', 'y', 'rot', 'side')},
-                               'pose_authority': POSE_CLASS[f], 'register_entries': FIXED[f],
+    fixed_rules['fixed'][f] = {'sourced_restrictions': ROLE[f]['sourced'],
+                               'engineering_anchor': {'pose': ROLE[f]['anchor'], 'label': 'AGENT', 'reconsiderable': True,
+                                                      'rule': ANCHOR_RULE},
+                               'face_decision': ROLE[f]['face_decision'],
+                               'starting_poses': {'label': 'captured start state only, never a constraint',
+                                                  'r5': {'x_mm': fp['x'], 'y_mm': fp['y'], 'rot_deg': fp['rot'], 'side': fp['side']},
+                                                  'emitted': {k: BOARD[f].get(k) for k in ('x', 'y', 'rot', 'side')}},
+                               'pose_authority_summary': POSE_CLASS[f], 'register_entries': FIXED[f],
                                'adjacent_blocks': ADJ.get(f, []), 'support_relationships': rel_ids,
-                               'access': ACCESS[f], 'side_rule': f"fixed {fp['side']}; not a decision variable"}
+                               'access': ACCESS[f],
+                               'side_rule': 'per face_decision (sourced restriction, AGENT anchor or OPEN); never inherited from the starting pose'}
 fixed_rules['shared']['TP1-TP6'] = {'role': 'test', 'anchor': 'none (movable)', 'adjacency': TP_PLAN['rules'],
                                     'access': 'hand-held pogo clip / probes on the bare board before enclosure; probe-tip approach clearance only (size UNKNOWN); no fixture pattern; no post-seal access',
                                     'owner_answer': OWNER['C20'], 'side_rule': 'either face per pad (bottom allowed); common face is an optional labelled convenience only'}
