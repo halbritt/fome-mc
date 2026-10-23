@@ -46,3 +46,38 @@
 - **Then:** production run, new retention, `retain.py --check`, the composed check on the then-current main, a fresh-checkout proof, and the board delta.
   - **Expected board delta:** the six value/part changes, plus any staging moves. Same-footprint resistors should not reflow the column; this must be verified and disclosed.
 - **Not done:** the guard was not weakened, no sums were rewritten, and retain.py was not edited.
+
+## AGENTEE-488c/491 coherent production (13:54:53Z to the 14:34:53Z bound): INCOMPLETE, stopped at the stock gate
+
+**Done (commits 8757050, ed884e4, 9bb03d0 on wt/agentee-488c, base 92e66373):**
+- **Acquisition (existing path):** `agent_ee.datasheet_capture` (agent-ee 7d5b0d4d) on `canonical-parts/acquisition-491-bindings.json` wrote `canonical-parts/acquisition-491/`. Both parts were captured, and their bytes equal the bound PARAM_Datasheet hashes:
+  - C723587: 7c8e6368…;
+  - C861219: ffde22da….
+- **Catalog:** `jlc_stock_capture` into `canonical-parts/catalog-491/`, as_of 2026-10-23T13:55:30Z.
+  - C723587: stock 182799.
+  - C861219: stock 1901.
+- **Records:** `prepare_record` + `qualify_record`, called exactly as in `build_records.py`, wrote `canonical-parts/records-491/` (C723587-7c8e63688a91.json, C861219-ffde22da4914.json, index.json). These parts are not in `parts-closure/inventory.json`, so `build_records.py` itself does not list them. This is recorded in index.json.
+- **build.py declarations:** six `rebindings` entries with a `record` key in `sources/decoupling-additions-agentee-484.json` (R74/R78/R82 to C723587; R75/R79/R83 to C861219).
+  - build.py builds each part entry from that canonical record.
+  - The existing binding-vs-record check still applies unchanged.
+  - The 98 AGENT_EE_Ratings rule is unchanged: the six never carried the field. This corrects my earlier note above, which said otherwise.
+- **Rating source:** `canonical-parts/records-491/rating-source.json`, taken from the acquired YAGEO per-part product sheets (page 1). These sheets are not the RT series datasheet.
+  - 0.1 W (70C);
+  - 75 V DC max continuous, 150 V max overvoltage, 100 V dielectric withstanding;
+  - -55/+155°C;
+  - -/+25 ppm/C.
+- **Build:**
+  - build-only in the image: exit 0, 309 references (`build-only-ed884e4.log`);
+  - in production: build-out exit 0 and build-check exit 0.
+
+**Gap (concrete):** pipeline.py refused at 14:07:29Z (`production-refusal-stale-stock.log`): `stock capture needs a refresh for ['C723587', 'C861219'] (older than 24 h ..., or not observed); no generation on stale stock`.
+- The pipeline default `sources/assembly-stock-20261023` (81 ids, 11:14Z) lacks the two new ids. A single capture covering all 83 ids is required.
+- A read-only 83-id capture into `sources/assembly-stock-20261023-491b` was started at about 14:08Z. It had not completed when the remaining time ran short.
+- A full production run takes about 17 min, which could not finish inside the bound, so it was not launched.
+
+**Not done:** production pipeline, new retention + `--install`, composed `retain.py --check`, fresh git-archive proof, ERC/correspondence/validator on a new board, and the board delta vs cbfea9be. No checksum repair, no guard or retention weakening, and no old placement evidence carried over.
+
+**Next:**
+1. Complete or redo the 83-id capture.
+2. Point `pipeline.py` STOCK at it, then commit.
+3. Run `production_run.sh`, then `/tmp/a491b/post.sh`-style retain (DEST `evidence/emission-7d5b0d4d-agentee491`, which does not yet exist) + `--install`, `--check`, the archive proof, and the checks.
