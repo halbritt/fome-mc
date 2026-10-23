@@ -1,0 +1,11 @@
+{
+ "schema": "pod-capture.runtime-manifest/1",
+ "purpose": "AGENTEE-485 integration slice C runtime selection (integrator agent-530 dispatch; chief agent-531 1ae1a485 item C; coordinator decision, not owner text). UNLANDED, UNREVIEWED CANDIDATE: agent-ee origin wt/agentee-485-composed head 8e3b382b = main f36fd032 (U1+U2) + B0 c69bf8b3 + 485-A 42cea84b + 485-B 99b7452c, awaiting the one 485 critical review. Immutable: a new runtime is a new file.",
+ "agent_ee_commit": "8e3b382b0f48525742cfd520e3f306b12e78a468",
+ "runtime_agent_ee": "mounted-export",
+ "config": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+ "router_commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+ "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2",
+ "extension_sha256": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9",
+ "note": "The runtime agent-ee is the MOUNTED export of 8e3b382b, verified by observe blob by blob against AGENT_EE_GIT; the image's own /opt/agent-ee (7d5b0d4d) is recorded but not used. The Rust planner is the MOUNTED binary built and verified by agent-530 for this composition (/home/halbritt/.cache/agent-ee-evidence/agentee-485-runtime-u2, binary sha256 d5ab1ebd...); observe requires its receipt (agent-ee.placement-engine-install/1) to name the recomputed binary digest and every receipt source to equal the mounted 8e3b382b export file. router_commit, source_sha256 and extension_sha256 are the unchanged image d96f8e00 values; observe recomputes and compares them."
+}
