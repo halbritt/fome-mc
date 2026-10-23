@@ -1,0 +1,32 @@
+{
+  "schema": "agentee494b.ranked-interface/1",
+  "status": "RECOMMENDATION_FOR_CHIEF_REVIEW;NOT_CANONICAL_ADOPTION_OR_PLACEMENT_ADMISSION",
+  "ranking": [
+    {
+      "rank": 1,
+      "part": "W\u00fcrth60312102114405",
+      "kind": "ONE evaluated all-SMT RF alternative",
+      "reason": "Published land pattern and native3-pad/no-drill geometry avoid132134pin-to-hole fit, annulus-registration andBpinprojection uncertainty. Preserves standardSMA,50ohm and activeantennaDCpath.",
+      "temperature_C": [
+        -65,
+        165
+      ],
+      "temperature_source": "sources/60312102114405-rev002.pdf p2",
+      "electrical_source": "Same p2: DC..18GHz, centrecontactinitial\u22643m\u03a9,aftertest\u22644m\u03a9; no seriescapacitor is introduced.",
+      "mechanical_source": "Same p1:6.35square nominal,8.84height nominal, DINISO2768-1m; sources/ISO2768-1-1989.pdf Table1 gives\u00b1.2 for6..30. Thus6.55square,9.04height dimensionalupperbounds before assemblylift.",
+      "scope_limit": "Manufacturer drawing recommends a land pattern; it does not qualify solder-process robustness or actual product automotive vibration.",
+      "application_conditions": "Captured datasheet conditions restrict high-safety/transport-control uses and call for application evaluation. This monitoring pod has no control outputs per REQUIREMENTS, but no manufacturer automotive approval is claimed; chief must disposition applicability before production release without unauthorized vendor contact.",
+      "tradeoff": "SMT retention/counterhold and RF launch require review. Removes through-hole fit uncertainty but does not prove the complete assembled interface."
+    },
+    {
+      "rank": 2,
+      "part": "Amphenol132134",
+      "kind": "Retain selected direction if preferred by chief",
+      "reason": "Known165C standardSMA and retained drawing, but proposed2.0/2.4holes remain conditional on pin-axis datum and solder process. Not fabrication permission.",
+      "remaining_material_joint_boundary": "Mounting-pattern\u00b1.10 is not a physical pin true-position guarantee; larger-hole wetting/retention andsolderedprojection need a process contract."
+    }
+  ],
+  "common_wall_interface": "Amphenol095-902-570-006 standardSMA RAplug to IP67 straightbulkheadfemale,RG31650ohm, capturedexactdrawing. Boardjack remains inside. OnlyAMPSEAL+SMA penetrate.",
+  "common_admission_boundary": "The complete assembled board-jack-to-bulkhead installation lacks a qualified seating/engagement, seal-stack and assembly-envelope contract. Finite selected assembly limits below are review/packing proposals, not published maxima or proof of placement admissibility. Source drawing10.50REF is not usable as a guaranteed bulkhead engagement or mateheight.",
+  "adoption_owner": "Chief after the same FableHIGHdelta arranged by449."
+}

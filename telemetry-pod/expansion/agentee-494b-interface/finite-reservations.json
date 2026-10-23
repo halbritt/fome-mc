@@ -1,0 +1,88 @@
+{
+  "schema": "agentee494b.reservations/1",
+  "frame": "J2localu,v atRFpadcentre;w outofF; relativeBdepthstatedseparately. Proposedanchor103,40,F0 isnotadopted;composewithfinalwriterpose.",
+  "status": "FINITE_ENGINEERING_PROPOSAL; actualinterfaceadmission remainsconditional",
+  "published_vs_default": "See published-vs-selected.json; allnumericassemblybins/defaultlimitsadvisory,notqualification.",
+  "volumes": [
+    {
+      "id": "SMT-F-body-and-solder",
+      "phase": "all",
+      "shape": "boxu[-4,4],v[-4,4],w[0,10]",
+      "class": "default",
+      "covers": "Published6.55square/9.04height plusselectedlift\u2264.20 andselectedFfillet\u2264.50, onlyifactualprocessmeetstheseconditions."
+    },
+    {
+      "id": "SMT-B",
+      "phase": "all",
+      "shape": "J2hasnoBbody/pin/soldervolume;noBpad/drill;reserveonlyactualboardthickness",
+      "class": "nativegeometry",
+      "limit": "Does not delete otherBparts/supports or futuregroundvias."
+    },
+    {
+      "id": "THT-F",
+      "phase": "all",
+      "shape": "boxu[-4.5,4.5],v[-4.5,4.5],w[0,10]",
+      "class": "default",
+      "limit": "Alternative132134only;selectedsF\u2264.20 notqualified."
+    },
+    {
+      "id": "THT-B",
+      "phase": "soldered",
+      "shape": "boxu[-4.5,4.5],v[-4.5,4.5],depthbelowB[0,3.2]",
+      "class": "default",
+      "limit": "Alternative132134only;requiresactualsolder/trimprocess\u22643.2, notcurrentjointqualification."
+    },
+    {
+      "id": "mate",
+      "phase": "installed",
+      "shape": "boxu[-10,30],v[-12,12],w[8,38]",
+      "class": "default",
+      "limit": "RAplugclocked cabletoward+u;capturedoesnotgivecompleteplugmaxorSMAseatingtransform. Verifywithactualmate/modeldatum before relyingonbin."
+    },
+    {
+      "id": "mate-insertion",
+      "phase": "beforelid",
+      "shape": "sweepmatebin +w0..15",
+      "class": "default",
+      "limit": "Selectedassemblytravel15,notpublishedengagement;exactSMAseatingdatumrequired."
+    },
+    {
+      "id": "tools",
+      "phase": "bareboardmatingbeforecase",
+      "shape": "Cylinderr175aboutJ2axis,w[5,43];8mmjawtoolhead\u226425x25x5,handle\u2264150;counterholdbodyin6.8squarefixturepocket",
+      "class": "default",
+      "limit": "Largephase-onlyservicevolume;actualtool/fixtureverifiedbeforeuse. Published.57Nm appliesW\u00fcrthmatingrecommendation,notSMTjointstrength."
+    },
+    {
+      "id": "cable-bay",
+      "phase": "installed",
+      "shape": "boxu[-6,128],v[-6,26],w[10,40]",
+      "class": "default",
+      "recipe": "Conceptcentrelineinuv:(0,0)->(50,0)->(50,20)->(90,20)->(90,0)->(122,0),w20;fillet4cornersR10;sweeptubeR3. Length144.831853mm beforetermination/slackadjustment. This localproposal is not an installedfitproof orfullenclosuredesign.",
+      "limit": "DrawingL isnotfreeroutedlength;realterminationdatums/slackmustbind. Actualbendradius/ODnotpublishedhere."
+    },
+    {
+      "id": "strainrelief",
+      "phase": "installed",
+      "shape": "Two10x10x8clampbins centred(35,0,20)and(70,20,20) on the two straight portions of the proposedR10path, then rebound to actualassemblydatums.",
+      "class": "default",
+      "limit": "Clamp only the jacket beyond actual heatshrink ends.26.67 is a published tube LENGTH, not an absolute u-coordinate. Rebind both proposed clamp positions to actual termination datums before using them. No gland or additional penetration."
+    },
+    {
+      "id": "local-bulkhead",
+      "phase": "installed",
+      "shape": "boxaboutlocalwallanchoru122,v0,w20:insideaxial35,outsideaxial20,radial15;11mmcounterhold/8mmnuttoolsbeforeclosure",
+      "class": "default",
+      "limit": "Panelthickness/sealstack/nutengagement/torqueandtemperatureoftheexactcableassemblyremaincontractinputs;published10.50REFisnotahardbound."
+    }
+  ],
+  "design_protection": "Do notoverlapESP32antennaregion,IMUmechanicalsupport orotherboundreservations. Composeonlyafterfinalsource/poseadoption; noRFnetwidewaiver.",
+  "curve_arithmetic": {
+    "class": "engineering-proposal/default",
+    "polyline_length_mm": 162,
+    "corner_radius_mm": 10,
+    "corners": 4,
+    "filleted_length_mm": 144.83185307179588,
+    "caveat": "Dimensional drawingL isnotfreeroutedcablelength;thisarithmeticdoesnotestablishactualcablefit/slackorminimumbendradius."
+  }
+}

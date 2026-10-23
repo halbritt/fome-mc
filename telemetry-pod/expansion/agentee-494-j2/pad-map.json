@@ -91,7 +91,7 @@
       -20,
       -12
     ],
-    "equation": "saved_xy = lineage_xy + (-20,-12); rotation unchanged for this coordinate correspondence",
+    "equation": "For these two J2 RF-pad point correspondences only: lineage=saved+(20,12), or saved=lineage+(-20,-12).",
     "candidate_lineage_xy": [
       103,
       40
@@ -100,6 +100,10 @@
       83,
       28
     ],
-    "use_limit": "Coordinates and ideal 110x80 margins belong to a proposed lineage layout, not the saved 90x65 Edge.Cuts. This mapping does not enlarge or translate the saved board and does not establish final placement or saved-board clearance. Writer must bind the chosen final board frame."
+    "use_limit": "Do not apply this offset to any other saved geometry, footprints, supports, cutouts, outlines, rule areas or pads by inference. CandidateF(103,40,0) is proposed-outline-frame only; it proves neither a saved pose nor edge clearance. Writer must regenerate and bind actual adopted geometry and both RF board-area UUIDs to the final saved source.",
+    "mapping_applies_only_to": [
+      "The old J2 RF-pad endpoint correspondence: saved(86.96,28), proposed-lineage(106.96,40).",
+      "The explicitly proposed J2 RF-pad anchor: lineage(103,40), saved-frame candidate(83,28), without asserting it exists on the saved board."
+    ]
   }
 }
