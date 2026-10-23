@@ -612,8 +612,9 @@ def compose_scope(base):
                           params=dict(criterion='connector-edge/1', envelope=env, reference=reference, drc_check=drc))]
         elif field == 'mechanical_reservations':
             # AGENTEE-485 N1: the existing agent-ee mechanical-access/1 contract exactly as agent-533 states it
-            # (agentee-485-pb RESULT.md, N1-check.json): executable coverage, not mechanical acceptance.
-            specs = [dict(id=cid, kind='placement', stage='placement',
+            # (agentee-485-pb RESULT.md, N1-check.json): executable coverage, not mechanical acceptance. Its check id
+            # is that JSON's exact id, not the generic suffix id ('envelope-mechanical-access' for this envelope id).
+            specs = [dict(id='envelope-production-mechanical-access', kind='placement', stage='placement',
                           params=dict(criterion='mechanical-access/1', envelope=env, drc_check=drc))]
         else:  # no registered criterion binds this field; it stays visible as unmapped
             unmapped.append({'id': item['id'], 'field': field, 'reason': board_envelope.UNBOUND[field]})
