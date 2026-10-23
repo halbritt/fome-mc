@@ -1,0 +1,1134 @@
+{
+ "authorization": {
+  "schema": "agent-ee.placement-write/1",
+  "single_design_writer": true,
+  "source_sha256": "a06324eb092b02e83f0aa670dafcfab7bc3aa659ec305021b5ca5e2fc80e48d6",
+  "writable_root": "/work/r3root"
+ },
+ "policy": {
+  "capacity_proof": true,
+  "constraint_provenance": {
+   "fixed": {
+    "H1": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "H2": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "H3": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "H4": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "J1": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "J2": {
+     "class": "derived",
+     "enforcement": "hard"
+    },
+    "J3": {
+     "class": "derived",
+     "enforcement": "hard"
+    },
+    "U1": {
+     "class": "unknown",
+     "enforcement": "hard"
+    },
+    "U2": {
+     "class": "unknown",
+     "enforcement": "hard"
+    }
+   },
+   "outline": {
+    "class": "unknown",
+    "enforcement": "hard"
+   }
+  },
+  "electrical_locality": {
+   "obligations": [
+    {
+     "id": "u5-input-hf-C3",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C3"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "2",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C3"
+      }
+     },
+     "switch": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_PRE",
+       "pad": "8",
+       "reference": "U5"
+      },
+      "max_distance_nm": 5500000,
+      "to": {
+       "net": "/SW_PRE",
+       "pad": "1",
+       "reference": "L1"
+      }
+     }
+    },
+    {
+     "id": "u5-input-bulk-C1",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C1"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U5"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C1"
+      }
+     }
+    },
+    {
+     "id": "u5-input-bulk-C2",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C2"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U5"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C2"
+      }
+     }
+    },
+    {
+     "id": "u5-vcc-C4",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U5"
+      },
+      "max_distance_nm": 8500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C4"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/VCC_PRE",
+       "pad": "6",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/VCC_PRE",
+       "pad": "1",
+       "reference": "C4"
+      }
+     }
+    },
+    {
+     "id": "u5-boot-C5",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_PRE",
+       "pad": "8",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/SW_PRE",
+       "pad": "2",
+       "reference": "C5"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/BOOT_PRE",
+       "pad": "7",
+       "reference": "U5"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/BOOT_PRE",
+       "pad": "1",
+       "reference": "C5"
+      }
+     }
+    },
+    {
+     "id": "u7-input-hf-C10",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U7"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C10"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "2",
+       "reference": "U7"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C10"
+      }
+     },
+     "switch": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_3V3",
+       "pad": "8",
+       "reference": "U7"
+      },
+      "max_distance_nm": 5500000,
+      "to": {
+       "net": "/SW_3V3",
+       "pad": "1",
+       "reference": "L2"
+      }
+     }
+    },
+    {
+     "id": "u7-input-bulk-C8",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U7"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C8"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U7"
+      },
+      "max_distance_nm": 7000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C8"
+      }
+     }
+    },
+    {
+     "id": "u7-input-bulk-C9",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U7"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C9"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "3",
+       "reference": "U7"
+      },
+      "max_distance_nm": 9000000,
+      "to": {
+       "net": "/POD_12V_PROTECTED",
+       "pad": "1",
+       "reference": "C9"
+      }
+     }
+    },
+    {
+     "id": "u7-vcc-C11",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "1",
+       "reference": "U7"
+      },
+      "max_distance_nm": 8500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C11"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/VCC_3V3",
+       "pad": "6",
+       "reference": "U7"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/VCC_3V3",
+       "pad": "1",
+       "reference": "C11"
+      }
+     }
+    },
+    {
+     "id": "u7-boot-C12",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/SW_3V3",
+       "pad": "8",
+       "reference": "U7"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/SW_3V3",
+       "pad": "2",
+       "reference": "C12"
+      }
+     },
+     "supply": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/BOOT_3V3",
+       "pad": "7",
+       "reference": "U7"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/BOOT_3V3",
+       "pad": "1",
+       "reference": "C12"
+      }
+     }
+    },
+    {
+     "id": "u26-bypass-C97",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "4",
+       "reference": "U26"
+      },
+      "max_distance_nm": 8500000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C97"
+      }
+     },
+     "supply": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/PRE_6V3",
+       "pad": "8",
+       "reference": "U26"
+      },
+      "max_distance_nm": 3500000,
+      "to": {
+       "net": "/PRE_6V3",
+       "pad": "1",
+       "reference": "C97"
+      }
+     }
+    },
+    {
+     "id": "u26-bypass-C98",
+     "metric": "pad-centre-to-centre",
+     "return": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/GND",
+       "pad": "4",
+       "reference": "U26"
+      },
+      "max_distance_nm": 10000000,
+      "to": {
+       "net": "/GND",
+       "pad": "2",
+       "reference": "C98"
+      }
+     },
+     "supply": {
+      "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "from": {
+       "net": "/PRE_6V3",
+       "pad": "8",
+       "reference": "U26"
+      },
+      "max_distance_nm": 5500000,
+      "to": {
+       "net": "/PRE_6V3",
+       "pad": "1",
+       "reference": "C98"
+      }
+     }
+    }
+   ],
+   "schema": "agent-ee.electrical-locality/1"
+  },
+  "electrical_locality_binding": {
+   "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+   "sha256": "576a0115e4f66841fa36381f82ec201f954ed221e5e1e89dc8ee332f73773e74"
+  },
+  "fixed_overhangs": [
+   {
+    "edges": [
+     {
+      "end_nm": [
+       0,
+       65000000
+      ],
+      "max_nm": 22850000,
+      "name": "bottom",
+      "outward": "y+",
+      "start_nm": [
+       90000000,
+       65000000
+      ]
+     }
+    ],
+    "reference": "J1",
+    "source": {
+     "envelope_id": "expanded-pod-microsd-production",
+     "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+     "pointer": "/fixed_footprints/0/courtyard_overhangs"
+    }
+   },
+   {
+    "edges": [
+     {
+      "end_nm": [
+       90000000,
+       65000000
+      ],
+      "max_nm": 9730000,
+      "name": "right",
+      "outward": "x+",
+      "start_nm": [
+       90000000,
+       0
+      ]
+     }
+    ],
+    "reference": "J2",
+    "source": {
+     "envelope_id": "expanded-pod-microsd-production",
+     "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+     "pointer": "/fixed_footprints/1/courtyard_overhangs"
+    }
+   },
+   {
+    "edges": [
+     {
+      "end_nm": [
+       0,
+       0
+      ],
+      "max_nm": 20300000,
+      "name": "left",
+      "outward": "x-",
+      "start_nm": [
+       0,
+       65000000
+      ]
+     }
+    ],
+    "reference": "J3",
+    "source": {
+     "envelope_id": "expanded-pod-microsd-production",
+     "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+     "pointer": "/fixed_footprints/4/courtyard_overhangs"
+    }
+   },
+   {
+    "edges": [
+     {
+      "end_nm": [
+       90000000,
+       0
+      ],
+      "max_nm": 21250000,
+      "name": "top",
+      "outward": "y-",
+      "start_nm": [
+       0,
+       0
+      ]
+     },
+     {
+      "end_nm": [
+       90000000,
+       65000000
+      ],
+      "max_nm": 6500000,
+      "name": "right",
+      "outward": "x+",
+      "start_nm": [
+       90000000,
+       0
+      ]
+     }
+    ],
+    "reference": "U1",
+    "source": {
+     "envelope_id": "expanded-pod-microsd-production",
+     "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+     "pointer": "/fixed_footprints/2/courtyard_overhangs"
+    }
+   }
+  ],
+  "fixed_refs": [
+   "C1",
+   "C10",
+   "C100",
+   "C11",
+   "C110",
+   "C111",
+   "C112",
+   "C114",
+   "C115",
+   "C116",
+   "C117",
+   "C118",
+   "C119",
+   "C12",
+   "C120",
+   "C121",
+   "C122",
+   "C123",
+   "C124",
+   "C125",
+   "C126",
+   "C127",
+   "C128",
+   "C129",
+   "C13",
+   "C14",
+   "C15",
+   "C16",
+   "C17",
+   "C18",
+   "C19",
+   "C2",
+   "C20",
+   "C21",
+   "C22",
+   "C3",
+   "C30",
+   "C31",
+   "C32",
+   "C33",
+   "C34",
+   "C35",
+   "C36",
+   "C37",
+   "C38",
+   "C39",
+   "C4",
+   "C40",
+   "C41",
+   "C42",
+   "C43",
+   "C44",
+   "C45",
+   "C46",
+   "C47",
+   "C48",
+   "C49",
+   "C5",
+   "C50",
+   "C51",
+   "C52",
+   "C53",
+   "C54",
+   "C55",
+   "C56",
+   "C57",
+   "C58",
+   "C59",
+   "C6",
+   "C60",
+   "C61",
+   "C62",
+   "C64",
+   "C65",
+   "C7",
+   "C71",
+   "C72",
+   "C75",
+   "C76",
+   "C77",
+   "C78",
+   "C79",
+   "C8",
+   "C80",
+   "C81",
+   "C82",
+   "C83",
+   "C84",
+   "C85",
+   "C86",
+   "C87",
+   "C88",
+   "C89",
+   "C9",
+   "C90",
+   "C91",
+   "C92",
+   "C93",
+   "C94",
+   "C95",
+   "C96",
+   "C97",
+   "C98",
+   "D1",
+   "D100",
+   "D101",
+   "D102",
+   "D103",
+   "D104",
+   "D105",
+   "D2",
+   "D3",
+   "H1",
+   "H2",
+   "H3",
+   "H4",
+   "J1",
+   "J2",
+   "J3",
+   "JP1",
+   "JP2",
+   "JP3",
+   "JP4",
+   "JP5",
+   "L1",
+   "L2",
+   "L3",
+   "Q1",
+   "R1",
+   "R10",
+   "R100",
+   "R11",
+   "R110",
+   "R111",
+   "R112",
+   "R113",
+   "R114",
+   "R115",
+   "R116",
+   "R117",
+   "R118",
+   "R119",
+   "R12",
+   "R120",
+   "R121",
+   "R122",
+   "R123",
+   "R124",
+   "R125",
+   "R126",
+   "R127",
+   "R128",
+   "R129",
+   "R13",
+   "R130",
+   "R131",
+   "R132",
+   "R133",
+   "R134",
+   "R135",
+   "R136",
+   "R137",
+   "R138",
+   "R139",
+   "R14",
+   "R144",
+   "R145",
+   "R146",
+   "R147",
+   "R148",
+   "R149",
+   "R15",
+   "R150",
+   "R151",
+   "R152",
+   "R153",
+   "R154",
+   "R155",
+   "R156",
+   "R157",
+   "R158",
+   "R159",
+   "R16",
+   "R160",
+   "R161",
+   "R162",
+   "R163",
+   "R164",
+   "R165",
+   "R166",
+   "R167",
+   "R168",
+   "R169",
+   "R17",
+   "R170",
+   "R171",
+   "R172",
+   "R173",
+   "R174",
+   "R175",
+   "R176",
+   "R177",
+   "R178",
+   "R179",
+   "R18",
+   "R180",
+   "R181",
+   "R19",
+   "R2",
+   "R20",
+   "R21",
+   "R22",
+   "R23",
+   "R24",
+   "R25",
+   "R26",
+   "R27",
+   "R28",
+   "R29",
+   "R3",
+   "R30",
+   "R31",
+   "R32",
+   "R33",
+   "R34",
+   "R35",
+   "R36",
+   "R37",
+   "R38",
+   "R39",
+   "R4",
+   "R40",
+   "R41",
+   "R42",
+   "R43",
+   "R44",
+   "R45",
+   "R46",
+   "R47",
+   "R48",
+   "R49",
+   "R5",
+   "R50",
+   "R55",
+   "R56",
+   "R57",
+   "R6",
+   "R60",
+   "R61",
+   "R62",
+   "R63",
+   "R64",
+   "R65",
+   "R66",
+   "R67",
+   "R68",
+   "R69",
+   "U1",
+   "U10",
+   "U100",
+   "U11",
+   "U12",
+   "U13",
+   "U16",
+   "U18",
+   "U19",
+   "U2",
+   "U20",
+   "U21",
+   "U22",
+   "U23",
+   "U24",
+   "U25",
+   "U26",
+   "U27",
+   "U28",
+   "U29",
+   "U3",
+   "U30",
+   "U31",
+   "U4",
+   "U5",
+   "U6",
+   "U7",
+   "U8",
+   "U9",
+   "Y1"
+  ],
+  "gap_nm": 250000,
+  "ground_nets": [
+   "/GND"
+  ],
+  "groups": [
+   {
+    "anchor": {
+     "reference": "U20"
+    },
+    "id": "u20-local-bypass",
+    "max_distance_nm": 5000000,
+    "references": [
+     "C79",
+     "C80"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U20"
+    },
+    "id": "u20-local-clock",
+    "max_distance_nm": 9000000,
+    "references": [
+     "Y1",
+     "C81",
+     "C82"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U21"
+    },
+    "id": "u21-local-bypass",
+    "max_distance_nm": 5000000,
+    "references": [
+     "C83",
+     "C84"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U22"
+    },
+    "id": "u22-local-bypass",
+    "max_distance_nm": 3500000,
+    "references": [
+     "C85"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U3"
+    },
+    "id": "gnss-antenna-power",
+    "max_distance_nm": 15000000,
+    "references": [
+     "U10"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "U3"
+    },
+    "id": "gnss-local",
+    "max_distance_nm": 12000000,
+    "references": [
+     "R24",
+     "R25",
+     "R26"
+    ]
+   },
+   {
+    "anchor": {
+     "reference": "J3"
+    },
+    "id": "j3-microsd-local",
+    "max_distance_nm": 12000000,
+    "references": [
+     "R46",
+     "R47",
+     "R48",
+     "R49",
+     "R50",
+     "R55",
+     "C64",
+     "C65"
+    ]
+   }
+  ],
+  "min_courtyard_edge_mm": 0.5,
+  "obstacles": [
+   {
+    "polygons": [
+     [
+      [
+       7000000,
+       5000000
+      ],
+      [
+       17000000,
+       5000000
+      ],
+      [
+       17000000,
+       15000000
+      ],
+      [
+       7000000,
+       15000000
+      ]
+     ]
+    ],
+    "side": "B"
+   },
+   {
+    "polygons": [
+     [
+      [
+       7500000,
+       4500000
+      ],
+      [
+       9900000,
+       4500000
+      ],
+      [
+       9900000,
+       15500000
+      ],
+      [
+       7500000,
+       15500000
+      ]
+     ]
+    ],
+    "side": "F"
+   },
+   {
+    "polygons": [
+     [
+      [
+       14100000,
+       4500000
+      ],
+      [
+       17750000,
+       4500000
+      ],
+      [
+       17750000,
+       15500000
+      ],
+      [
+       14100000,
+       15500000
+      ]
+     ]
+    ],
+    "side": "F"
+   },
+   {
+    "polygons": [
+     [
+      [
+       10100000,
+       4500000
+      ],
+      [
+       13900000,
+       4500000
+      ],
+      [
+       13900000,
+       8150000
+      ],
+      [
+       10100000,
+       8150000
+      ]
+     ]
+    ],
+    "side": "F"
+   },
+   {
+    "polygons": [
+     [
+      [
+       10100000,
+       11850000
+      ],
+      [
+       13900000,
+       11850000
+      ],
+      [
+       13900000,
+       15500000
+      ],
+      [
+       10100000,
+       15500000
+      ]
+     ]
+    ],
+    "side": "F"
+   },
+   {
+    "polygons": [
+     [
+      [
+       27755000,
+       1605000
+      ],
+      [
+       36245000,
+       1605000
+      ],
+      [
+       36245000,
+       11595000
+      ],
+      [
+       27755000,
+       11595000
+      ]
+     ]
+    ],
+    "side": "B"
+   },
+   {
+    "polygons": [
+     [
+      [
+       34405000,
+       16005000
+      ],
+      [
+       43595000,
+       16005000
+      ],
+      [
+       43595000,
+       26595000
+      ],
+      [
+       34405000,
+       26595000
+      ]
+     ]
+    ],
+    "side": "B"
+   }
+  ],
+  "priority_refs": [
+   "J1",
+   "U1",
+   "J2",
+   "U3"
+  ],
+  "schema": "agent-ee.packing-policy/1",
+  "step_budget": 200000
+ },
+ "skip_visuals": true
+}

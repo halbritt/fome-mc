@@ -1,0 +1,30 @@
+[canary] PASS  split
+[canary] PASS  bridge
+[canary] PASS -> build/kicad-route/doctor/canary/canary.json
+PASS         kicad-cli                                    10.0.7
+PASS         kicad-cli pcb drc --refill-zones             native grading
+PASS         kicad-cli pcb drc --save-board               native grading
+PASS         kicad-cli pcb drc --schematic-parity         native grading
+PASS         kicad-cli pcb drc --severity-all             native grading
+PASS         kicad-cli pcb drc --format                   native grading
+UNSUPPORTED  kicad-cli DSN export                         not in kicad-cli: the Freerouting bridge uses pcbnew SWIG instead
+PASS         pcbnew SWIG (facts, Specctra bridge)         10.0.7-10.0.7~ubuntu24.04.1
+PASS         bwrap (planes)                               planes namespaces ready; see build/kicad-route/doctor/planes-bwrap/bwrap.log
+PASS         owned routing source                         0.23.1 owned-89a2efbf5305
+PASS         Builtin routing venv                         /home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/venv
+PASS         Builtin Rust router module                   grid_router 0.23.1 (checkout 0.23.1)
+PASS         Builtin startup checks                       All checks passed. Rust router v0.23.1
+PASS         Builtin controls used by the adapter         all present
+NOT_RUN      Builtin latest release                       owned source; upstream is provenance only
+PASS         Freerouting jar                              v2.5.0 freerouting-2.5.0.jar b647a2f824cfbc54bc4dcaee71b03b7cd945eb76
+PASS         Java for Freerouting                         /usr/lib/jvm/java-25-openjdk-amd64/bin/java (25) (jar built for Java 25)
+PASS         Freerouting headless CLI                     Freerouting v2.5.0 (build-date: 2026-10-05)
+PASS         Freerouting latest release                   latest v2.5.0, installed v2.5.0
+PASS         state manifest                               /home/halbritt/git/kicad-route/manifest.json (2026-10-21T10:02:46.166586+00:00, by update)
+PASS         state manifest matches the files on disk     jar, extension module, venv packages, requirements, owned source, kicad-cli
+PASS         builtin determinism verified for this build  determinism check 2026-10-21T10:10:57.626520+00:00: identical copper geometry on repeat
+PASS         canary split (awkward net names)             Specctra class split and DSN export/parse round-trip
+PASS         canary bridge (awkward net names)            Specctra class split and DSN export/parse round-trip
+NOT_RUN      state read-only                              --require-readonly-state: STATE /home/halbritt/git/kicad-route is writable by this process (., .router-generations, .venv-krt, vendor/freerouting, vendor/skills); mount it read-only before `doctor`
+
+route doctor: PASS (25 checks) -> build/kicad-route/doctor/doctor.json

@@ -1,0 +1,42 @@
+{
+ "adoptable_exits": [
+  0
+ ],
+ "argv": [
+  "/usr/bin/python3",
+  "-B",
+  "-I",
+  "/placement-tool/launch.py",
+  "/candidate/project/telemetry-pod.kicad_pcb",
+  "/candidate/project/telemetry-pod.kicad_sch",
+  "--request",
+  "/placement-request/request.json",
+  "--root",
+  "/work/placement"
+ ],
+ "artifacts": [
+  "placement"
+ ],
+ "mounts": [
+  {
+   "at": "/placement-tool",
+   "source": "/work/step/tool"
+  },
+  {
+   "at": "/placement-request",
+   "source": "/work/step/request"
+  }
+ ],
+ "schema": "agent-ee.stage-step/1",
+ "source": "/placement-tool",
+ "stage": "placement",
+ "step": "agent-ee-placer",
+ "timeout_s": 1500,
+ "version_argv": [
+  "/usr/bin/kicad-cli",
+  "version"
+ ],
+ "writes": {
+  "project/telemetry-pod.kicad_pcb": "placement/placed/candidate.kicad_pcb"
+ }
+}

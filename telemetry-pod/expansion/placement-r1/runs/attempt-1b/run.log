@@ -1,0 +1,16 @@
+fome-mc de1da2a48ffa03e43bce679050622b333606c4f6; submit 2026-10-23T05:11:27.558561585Z
+lease=a140c83f893e cpus=12 start=2026-10-23T05:11:27.619465737Z
+setup start 2026-10-23T05:11:27.620212842Z
+{"materialized_files": 559, "candidate_id": "683e4af12acd566546be6eaf5af72c4abbff28df24521fa2fef427afdfca8b26", "identity_matches_emission": false, "protected_refs": ["C42", "D3", "H1", "H2", "H3", "H4", "J1", "J2", "J3", "L3", "U1", "U2", "U3"], "min_courtyard_edge_mm": 0.5, "envelopes": ["composition/envelope.json"], "step_timeout_s": 1500, "drc_before_exit": 0}
+setup end 2026-10-23T05:11:29.607033545Z exit=0
+placement step: timeout 1500 /usr/bin/python3 -B -I /placement-tool/launch.py /candidate/project/telemetry-pod.kicad_pcb /candidate/project/telemetry-pod.kicad_sch --request /placement-request/request.json --root /work/placement
+placement start 2026-10-23T05:11:29.657775935Z
+placement end 2026-10-23T05:11:32.492078136Z exit=1
+checks start 2026-10-23T05:11:32.492885316Z
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+{"before": {"copper_layers": 4, "electrical": 305, "footprints": 309, "mounting_holes": ["H1", "H2", "H3", "H4"], "nets": 235, "thickness_nm": 1600000, "tracks": 0, "vias": 0, "zones": 2}, "drc_before": {"by_type": {"courtyards_overlap": 4, "lib_footprint_mismatch": 3, "text_height": 7, "text_thickness": 7}, "schematic_parity": 0, "sha256": "2b44ca7bc48b5453360199c40eeb1c378d276ef9c67835313574de3bc0e86724", "unconnected": 499, "violations": 21}, "placed_board_exists": false}
+checks end 2026-10-23T05:11:33.057367727Z exit=0
+admit-exit=1
+end 2026-10-23T05:11:33.061702286Z

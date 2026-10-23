@@ -1,0 +1,180 @@
+{
+ "board_sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673",
+ "candidate_id": "683e4af12acd566546be6eaf5af72c4abbff28df24521fa2fef427afdfca8b26",
+ "constraint_provenance_keys": [
+  "fixed",
+  "outline"
+ ],
+ "declaration": {
+  "fixed_footprints": [],
+  "helper": "agent-ee.placer/1",
+  "policy": "composition/placement-policy.json",
+  "schema": "agent-ee.placement-adapter/1",
+  "timeout_s": 1500
+ },
+ "drc_before_exit": 0,
+ "electrical_locality": {
+  "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+  "sha256": "576a0115e4f66841fa36381f82ec201f954ed221e5e1e89dc8ee332f73773e74"
+ },
+ "emission_candidate_id": "5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba",
+ "envelopes": [
+  "composition/envelope.json"
+ ],
+ "fixed_overhangs": [
+  {
+   "edges": [
+    {
+     "end_nm": [
+      0,
+      65000000
+     ],
+     "max_nm": 22850000,
+     "name": "bottom",
+     "outward": "y+",
+     "start_nm": [
+      90000000,
+      65000000
+     ]
+    }
+   ],
+   "reference": "J1",
+   "source": {
+    "envelope_id": "expanded-pod-microsd-production",
+    "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+    "pointer": "/fixed_footprints/0/courtyard_overhangs"
+   }
+  },
+  {
+   "edges": [
+    {
+     "end_nm": [
+      90000000,
+      65000000
+     ],
+     "max_nm": 9730000,
+     "name": "right",
+     "outward": "x+",
+     "start_nm": [
+      90000000,
+      0
+     ]
+    }
+   ],
+   "reference": "J2",
+   "source": {
+    "envelope_id": "expanded-pod-microsd-production",
+    "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+    "pointer": "/fixed_footprints/1/courtyard_overhangs"
+   }
+  },
+  {
+   "edges": [
+    {
+     "end_nm": [
+      0,
+      0
+     ],
+     "max_nm": 20300000,
+     "name": "left",
+     "outward": "x-",
+     "start_nm": [
+      0,
+      65000000
+     ]
+    }
+   ],
+   "reference": "J3",
+   "source": {
+    "envelope_id": "expanded-pod-microsd-production",
+    "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+    "pointer": "/fixed_footprints/4/courtyard_overhangs"
+   }
+  },
+  {
+   "edges": [
+    {
+     "end_nm": [
+      90000000,
+      0
+     ],
+     "max_nm": 21250000,
+     "name": "top",
+     "outward": "y-",
+     "start_nm": [
+      0,
+      0
+     ]
+    },
+    {
+     "end_nm": [
+      90000000,
+      65000000
+     ],
+     "max_nm": 6500000,
+     "name": "right",
+     "outward": "x+",
+     "start_nm": [
+      90000000,
+      0
+     ]
+    }
+   ],
+   "reference": "U1",
+   "source": {
+    "envelope_id": "expanded-pod-microsd-production",
+    "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+    "pointer": "/fixed_footprints/2/courtyard_overhangs"
+   }
+  }
+ ],
+ "identity_matches_emission": false,
+ "materialized_files": 559,
+ "min_courtyard_edge_mm": 0.5,
+ "policy_fixed_refs": [
+  "C42",
+  "D3",
+  "H1",
+  "H2",
+  "H3",
+  "H4",
+  "J1",
+  "J2",
+  "J3",
+  "L3",
+  "U1",
+  "U2",
+  "U3"
+ ],
+ "project_sha256": "10002b987995765415313fa89da32ba9011160853596f1a78ff8fba24ac9b175",
+ "protected_refs": [
+  "C42",
+  "D3",
+  "H1",
+  "H2",
+  "H3",
+  "H4",
+  "J1",
+  "J2",
+  "J3",
+  "L3",
+  "U1",
+  "U2",
+  "U3"
+ ],
+ "request_sha256": "caa9b3037019253af2dff92891048f954d4d3d2a96a308d99669bb5d88bbf928",
+ "schematic_sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2",
+ "step_argv": [
+  "/usr/bin/python3",
+  "-B",
+  "-I",
+  "/placement-tool/launch.py",
+  "/candidate/project/telemetry-pod.kicad_pcb",
+  "/candidate/project/telemetry-pod.kicad_sch",
+  "--request",
+  "/placement-request/request.json",
+  "--root",
+  "/work/placement"
+ ],
+ "step_timeout_s": 1500
+}

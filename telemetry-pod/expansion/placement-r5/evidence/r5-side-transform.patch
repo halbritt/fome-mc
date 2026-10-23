@@ -1,0 +1,122 @@
+diff --git a/src/agent_ee/placer_runner.py b/src/agent_ee/placer_runner.py
+index 9274bc25..f14dbf7a 100644
+--- a/src/agent_ee/placer_runner.py
++++ b/src/agent_ee/placer_runner.py
+@@ -668,11 +668,75 @@ def _stamp_lineage(source, output, project_payloads, comparison, before, baselin
+     return after
+ 
+ 
+-def _apply_plan(board, plan, output):
++SIDE_CHANGES = 'agent-ee.side-changes/1'
++
++
++def _side(fp):
++    return 'B' if fp.IsFlipped() else 'F'
++
++
++def _side_changes(source, authorization, plan):
++    """Footprint side changes the request explicitly authorizes (AGENTEE-207 R5): {uuid: side}.
++
++    The authorization, never the plan, grants a flip. It is bound to the original board bytes and
++    names each exact reference and UUID once; the plan must declare the same side for exactly those
++    movable footprints and no other side change. A footprint with a custom pad or a per-layer
++    padstack has no qualified flipped geometry, so its flip is refused."""
++    import pcbnew
++    board = pcbnew.LoadBoard(str(source))
++    by_uuid = {fp.m_Uuid.AsString(): fp for fp in board.GetFootprints()}
++    changes = {}
++    if authorization is not None:
++        if (not isinstance(authorization, dict) or authorization.get('schema') != SIDE_CHANGES
++                or set(authorization) != {'schema', 'source_sha256', 'changes'}
++                or not isinstance(authorization['changes'], list) or not authorization['changes']):
++            raise ValueError(f'side-change authorization must be one {SIDE_CHANGES} record')
++        if authorization['source_sha256'] != digest(source):
++            raise ValueError('side-change authorization is bound to another board')
++        for change in authorization['changes']:
++            fp = by_uuid.get(change.get('uuid')) if isinstance(change, dict) else None
++            if (fp is None or set(change) != {'ref', 'uuid', 'side'} or fp.GetReference() != change['ref']
++                    or change['side'] not in ('F', 'B') or change['uuid'] in changes):
++                raise ValueError('side change must name one exact original reference and UUID')
++            if change['side'] == _side(fp):
++                raise ValueError(f"side change for {change['ref']} keeps its original side")
++            if any(pad.GetShape(pcbnew.PADSTACK.ALL_LAYERS) == pcbnew.PAD_SHAPE_CUSTOM
++                   or pad.Padstack().Mode() != pcbnew.PADSTACK.MODE_NORMAL for pad in fp.Pads()):
++                raise ValueError(f"side change for {change['ref']}: flipped custom or per-layer pad geometry is unqualified")
++            changes[change['uuid']] = change['side']
++    planned = set()
++    for placement in plan['placements']:
++        planned.add(placement['uuid'])
++        declared = placement.get('side')
++        if placement['uuid'] in changes:
++            if placement['fixed'] or declared != changes[placement['uuid']]:
++                raise ValueError(f"placement {placement['ref']} side differs from its authorized side change")
++        elif declared is not None and declared != _side(by_uuid[placement['uuid']]):
++            raise ValueError(f"placement {placement['ref']} side change is not authorized")
++    if set(changes) - planned:
++        raise ValueError('authorized side change has no placement')
++    return changes
++
++
++def _flipped_inventory(source, changes):
++    """Expected footprint-local pad facts: the original footprints after the declared native flip."""
++    import pcbnew
++    board = pcbnew.LoadBoard(str(source))  # disposable original; the baseline is never flipped
++    expected = {}
++    for fp in board.GetFootprints():
++        if fp.m_Uuid.AsString() in changes:
++            fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
++            expected[fp.m_Uuid.AsString()] = _footprint_pad_inventory(fp)
++    return expected
++
++
++def _apply_plan(board, plan, output, changes=None):
+     import pcbnew
+     by_uuid = {fp.m_Uuid.AsString(): fp for fp in board.GetFootprints()}
+     for placement in plan['placements']:
+         fp = by_uuid[placement['uuid']]
++        if changes and placement['uuid'] in changes and _side(fp) != changes[placement['uuid']]:
++            fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+         if not placement['fixed']:
+             fp.SetOrientationDegrees(placement['rotation_deg'])
+             fp.SetPosition(pcbnew.VECTOR2I(*placement['position_nm']))
+@@ -714,9 +778,10 @@ def _board_only(board):
+     return frozenset(fp.GetReference() for fp in board.GetFootprints() if fp.IsBoardOnly())
+ 
+ 
+-def _evaluate_proposal(board, output, plan, netlist_bytes, initial_facts, source):
++def _evaluate_proposal(board, output, plan, netlist_bytes, initial_facts, source, side_changes=None):
+     import pcbnew
+-    pads = _pad_inventory(board)
++    changes = _side_changes(source, side_changes, plan)
++    pads = {**_pad_inventory(board), **_flipped_inventory(source, changes)}
+     from .geometry_probe import box_nm
+     expected_custom = {}
+     placements = {p['uuid']: p for p in plan['placements']}
+@@ -732,10 +797,16 @@ def _evaluate_proposal(board, output, plan, netlist_bytes, initial_facts, source
+                               proposal['position_nm'], proposal['rotation_deg'])
+             expected_custom.update({p['uuid']: p['custom_geometry']['bbox_nm'] for p in moved['pads']})
+     placement_trace.phase('export')  # Trace phases (AGENTEE-430) are no-ops unless tracing is on.
+-    _apply_plan(board, plan, output)
++    if changes:
++        _apply_plan(board, plan, output, changes)
++    else:
++        _apply_plan(board, plan, output)  # unchanged call without side changes
+     placement_trace.phase('native_checks')
+     if _pad_inventory(pcbnew.LoadBoard(str(output))) != pads:
+         raise ValueError('native saved board changed footprint pad geometry')
++    original = {fp.m_Uuid.AsString(): _side(fp) for fp in pcbnew.LoadBoard(str(source)).GetFootprints()}
++    if {fp.m_Uuid.AsString(): _side(fp) for fp in pcbnew.LoadBoard(str(output)).GetFootprints()} != {**original, **changes}:
++        raise ValueError('native saved footprint side differs from the declared side changes')
+     overlaps, comparison = _proposal_drc(source, output)
+     if _pad_inventory(pcbnew.LoadBoard(str(output))) != pads:
+         raise ValueError('native saved board changed footprint pad geometry')
+@@ -883,7 +954,8 @@ def place_candidate(source, netlist, destination, request):
+             output = scratch / 'candidate.kicad_pcb'
+             write_json(scratch / 'placement-plan.json', plan)
+             try:
+-                report = _evaluate_proposal(board, output, plan, netlist_bytes, facts, source)
++                report = _evaluate_proposal(board, output, plan, netlist_bytes, facts, source,
++                                            request.get('side_changes'))
+                 from .placement_adapter import write_scope
+                 protected = ([p['uuid'] for p in plan['placements'] if p['fixed']]
+                              if targeted else ())

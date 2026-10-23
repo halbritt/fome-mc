@@ -1,0 +1,227 @@
+{
+ "bound": {
+  "board": "project/telemetry-pod.kicad_pcb",
+  "fixed_footprints": [],
+  "helper": "agent-ee.placer/1",
+  "policy": "composition/placement-policy.json",
+  "schema": "agent-ee.placement-adapter/1",
+  "schematic": "project/telemetry-pod.kicad_sch",
+  "timeout_s": 1500
+ },
+ "protected": [
+  "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+  "3a090e20-e2de-5213-9daa-48d7c74140e2",
+  "60bb47dc-e7eb-56fa-ac2b-35ba100bd339",
+  "61835ab9-4a81-5478-a1fd-cfb321d95af5",
+  "8eb32225-1992-5f1d-b985-e54e4c12d058",
+  "a0606821-c5ba-5bc6-9c3d-9f3b3c72fdfc",
+  "bdce0c7f-1201-589c-a5d8-ec43c36bc880",
+  "c4f5153d-f022-576c-a234-98fe27f874d1",
+  "de37aacc-2cc8-5e42-919d-34ea70b8cae5"
+ ],
+ "protected_refs": [
+  "H1",
+  "H2",
+  "H3",
+  "H4",
+  "J1",
+  "J2",
+  "J3",
+  "U1",
+  "U2"
+ ],
+ "record": {
+  "board": "project/telemetry-pod.kicad_pcb",
+  "declaration_sha256": "c83d1169a8cbf72c2927e51ac7e3bb74172db703626d582382db7a3482edc3e9",
+  "electrical_locality": {
+   "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+   "sha256": "576a0115e4f66841fa36381f82ec201f954ed221e5e1e89dc8ee332f73773e74"
+  },
+  "envelopes": [
+   {
+    "envelope_id": "expanded-pod-microsd-production",
+    "overhangs": [
+     {
+      "edges": [
+       {
+        "end_nm": [
+         0,
+         65000000
+        ],
+        "max_nm": 22850000,
+        "name": "bottom",
+        "outward": "y+",
+        "start_nm": [
+         90000000,
+         65000000
+        ]
+       }
+      ],
+      "reference": "J1",
+      "source": {
+       "envelope_id": "expanded-pod-microsd-production",
+       "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+       "pointer": "/fixed_footprints/0/courtyard_overhangs"
+      }
+     },
+     {
+      "edges": [
+       {
+        "end_nm": [
+         90000000,
+         65000000
+        ],
+        "max_nm": 9730000,
+        "name": "right",
+        "outward": "x+",
+        "start_nm": [
+         90000000,
+         0
+        ]
+       }
+      ],
+      "reference": "J2",
+      "source": {
+       "envelope_id": "expanded-pod-microsd-production",
+       "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+       "pointer": "/fixed_footprints/1/courtyard_overhangs"
+      }
+     },
+     {
+      "edges": [
+       {
+        "end_nm": [
+         90000000,
+         0
+        ],
+        "max_nm": 21250000,
+        "name": "top",
+        "outward": "y-",
+        "start_nm": [
+         0,
+         0
+        ]
+       },
+       {
+        "end_nm": [
+         90000000,
+         65000000
+        ],
+        "max_nm": 6500000,
+        "name": "right",
+        "outward": "x+",
+        "start_nm": [
+         90000000,
+         0
+        ]
+       }
+      ],
+      "reference": "U1",
+      "source": {
+       "envelope_id": "expanded-pod-microsd-production",
+       "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+       "pointer": "/fixed_footprints/2/courtyard_overhangs"
+      }
+     },
+     {
+      "edges": [
+       {
+        "end_nm": [
+         0,
+         0
+        ],
+        "max_nm": 20300000,
+        "name": "left",
+        "outward": "x-",
+        "start_nm": [
+         0,
+         65000000
+        ]
+       }
+      ],
+      "reference": "J3",
+      "source": {
+       "envelope_id": "expanded-pod-microsd-production",
+       "envelope_sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366",
+       "pointer": "/fixed_footprints/4/courtyard_overhangs"
+      }
+     }
+    ],
+    "path": "composition/envelope.json",
+    "provenance": {
+     "fixed": {
+      "H1": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "H2": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "H3": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "H4": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "J1": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "J2": {
+       "class": "derived",
+       "enforcement": "hard"
+      },
+      "J3": {
+       "class": "derived",
+       "enforcement": "hard"
+      },
+      "U1": {
+       "class": "unknown",
+       "enforcement": "hard"
+      },
+      "U2": {
+       "class": "unknown",
+       "enforcement": "hard"
+      }
+     },
+     "outline": {
+      "class": "unknown",
+      "enforcement": "hard"
+     }
+    },
+    "references": [
+     "H1",
+     "H2",
+     "H3",
+     "H4",
+     "J1",
+     "J2",
+     "J3",
+     "U1",
+     "U2"
+    ],
+    "sha256": "528e10cfdba5e3d3035c61bca19f30941c2e24f1811e38a893b2e7bbfeeb1366"
+   }
+  ],
+  "policy": {
+   "path": "composition/placement-policy.json",
+   "sha256": "ed9af8d7a8dc3d502f135d4be65a49ce172dc600ecbffc06e840734ac7cd1f8c"
+  },
+  "policy_fixed_refs": [
+   "H1",
+   "H2",
+   "H3",
+   "H4",
+   "J1",
+   "J2",
+   "J3",
+   "U1",
+   "U2"
+  ],
+  "schema": "agent-ee.placement-binding/1",
+  "schematic": "project/telemetry-pod.kicad_sch"
+ }
+}

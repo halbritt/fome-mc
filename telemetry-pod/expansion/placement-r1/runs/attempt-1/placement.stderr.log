@@ -1,0 +1,26 @@
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+Traceback (most recent call last):
+  File "/placement-tool/launch.py", line 5, in <module>
+    raise SystemExit(sandbox_main(sys.argv[1:]))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/placement-tool/agent_ee/placement_adapter.py", line 1929, in sandbox_main
+    code = main([args.board, str(placer_netlist), '--request', args.request,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/placement-tool/agent_ee/placer_runner.py", line 1048, in main
+    report = place_candidate(args.board, args.netlist, args.destination, request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/placement-tool/agent_ee/placer_runner.py", line 867, in place_candidate
+    facts = extract(source)
+            ^^^^^^^^^^^^^^^
+  File "/placement-tool/agent_ee/placement_probe.py", line 398, in extract
+    own_clearances = (packing_clearances(board, finding_sources(path), project)
+                                                ^^^^^^^^^^^^^^^^^^^^^
+  File "/placement-tool/agent_ee/design_rule_provenance.py", line 516, in finding_sources
+    _verify_geometry(project, record, raw)
+  File "/placement-tool/agent_ee/design_rule_provenance.py", line 391, in _verify_geometry
+    refuse()
+  File "/placement-tool/agent_ee/design_rule_provenance.py", line 373, in refuse
+    raise ValueError('constraint provenance geometry inventory differs from saved project/rules')
+ValueError: constraint provenance geometry inventory differs from saved project/rules
