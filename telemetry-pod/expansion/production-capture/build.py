@@ -55,6 +55,11 @@ ADDITIONS = HERE / 'sources/decoupling-additions-agentee-484.json'
 OLD_DECLARATIONS = X / 'cad-assignments/declarations.json'
 FOOTPRINT_MANIFEST = X / 'placement-seed-microsd/footprint-manifest.json'
 ENVELOPE = X / 'placement-inputs/envelope.json'
+# AGENTEE-489: source-bound mechanical reservations (agent-ee.mechanical-reservations/1), opt-in until the
+# production agent-ee pin carries the consumer (agent-ee 1177cbc2+); 7d5b0d4d does not know the field.
+MECHANICAL = X / 'agentee-489-source'
+MECHANICAL_SOURCES = {'mechanics/agentee-490-bound-reservations.json': X / 'agentee-490-mechanical-inputs/bound-reservations.json',
+                      'mechanics/original-board.kicad_pcb': ROOT / 'telemetry-pod/telemetry-pod.kicad_pcb'}
 J3_CATALOG = MICROSD / 'stock/catalog.json'
 SOURCES = HERE / 'sources'
 GUIDELINES = SOURCES / 'esp32-guidelines'
@@ -809,7 +814,7 @@ def rating_comparison(intent, writer, output, report, catalog_only):
             'missing': report['ratings']['missing'], 'rows': dict(sorted(rows.items()))}
 
 
-def build(out, agent_ee):
+def build(out, agent_ee, mechanical=False):
     sys.path[:0] = [str(Path(agent_ee).resolve() / 'src')]
     from agent_ee import binding_fill, board_envelope
     from agent_ee.footprint_library import (antenna_placement_context, esp32_s3_wroom_1_datasheet_facts,
@@ -1022,6 +1027,16 @@ def build(out, agent_ee):
         raise ValueError('fab profile relabel changed more than the requirement mapping')
     profile_blob = root.write('composition/fab-profile.json', production)
     revised['fab_profile']['sha256'] = profile_blob['sha256']
+    if mechanical:
+        mech = json.loads((MECHANICAL / 'reservations.json').read_text())
+        expected = {mech['source']['path']: mech['source']['sha256'],
+                    mech['original_board_path']: mech['original_board_sha256']}
+        if set(expected) != set(MECHANICAL_SOURCES):
+            raise ValueError('mechanical reservations name other captured paths')
+        for dest, source in MECHANICAL_SOURCES.items():
+            if root.copy(source, dest)['sha256'] != expected[dest]:
+                raise ValueError('mechanical reservations are stale against ' + rel(source))
+        revised['mechanical_reservations'] = root.copy(MECHANICAL / 'reservations.json', 'mechanics/reservations.json')
     envelope_blob = root.write('composition/envelope.json', revised)
     files = {p.relative_to(out).as_posix(): sha(p) for p in out.rglob('*') if p.is_file()}
     record = board_envelope.validate((out / envelope_blob['path']).read_bytes(),
@@ -1140,8 +1155,12 @@ if __name__ == '__main__':
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--out', type=Path)
     mode.add_argument('--check', action='store_true')
+    parser.add_argument('--mechanical-reservations', action='store_true',
+                        help='AGENTEE-489: bind agentee-489-source/reservations.json into the envelope (--out only)')
     args = parser.parse_args()
+    if args.check and args.mechanical_reservations:
+        parser.error('--check reproduces the committed capture, which does not opt in')
     if args.check:
         check(args.agent_ee)
     else:
-        print(json.dumps(build(args.out, args.agent_ee), indent=1, sort_keys=True))
+        print(json.dumps(build(args.out, args.agent_ee, args.mechanical_reservations), indent=1, sort_keys=True))
