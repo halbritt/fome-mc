@@ -208,3 +208,16 @@ and a reference-plane check (AGENTEE-480).
   - The historical forward point is 47.394 ohm at 0.335 mm, T1 0.035 mm, with its own inputs. No width sensitivity is derived from the pair.
 - **Not claimed:** no tolerance band and no impedance verification.
 - **Unchanged:** calculator parameters stay distinct from the fab stackup; the board's layer thicknesses and its 1.6 mm thickness are unchanged.
+
+## Plane plan island policy (AGENTEE-487)
+
+The final policy is `island_removal: "always"` for both `/GND` (In1.Cu) and `/+3V3` (In2.Cu).
+
+Checkpoint `e780472` had changed `/+3V3` to `never`. agent-529 rejected that (76150ac4), and it is reverted here.
+
+The underlying defect was that the declared routing-turn `add-planes` producer refused a wholly unconnected `always` zone. Before routing, In2 `/+3V3` has no connection, because every `/+3V3` load is SMD. This is repaired in the producer:
+- **Change:** agent-ee `add_planes` (AGENTEE-487 branch) keeps such a zone's definition and its `always` policy, and reports it as `deferred_connectivity`.
+- **Obligation:** connected fill under `always` after routing.
+- **Still refused:** partial isolation, missing nets and unplanned zones.
+
+Evidence and the before/after regression are in `../agentee-487-planes/`.

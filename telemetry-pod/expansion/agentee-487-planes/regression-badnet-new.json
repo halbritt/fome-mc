@@ -1,0 +1,101 @@
+{
+ "spec_stage": "routing",
+ "spec_step": "add-planes",
+ "plan_sha256": "56d291f3d8cb32f682c46a8681193ad21c387525ed270f812f508b6051a3756a",
+ "plan": {
+  "schema": "agent-ee.plane-plan/1",
+  "zones": [
+   {
+    "net": "GND",
+    "layer": "In1.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "always"
+   },
+   {
+    "net": "/+3V3",
+    "layer": "In2.Cu",
+    "outline": "board",
+    "clearance_mm": 0.25,
+    "min_width_mm": 0.2,
+    "thermal": {
+     "connection": "thermal",
+     "gap_mm": 0.3,
+     "spoke_width_mm": 0.3
+    },
+    "priority": 0,
+    "island_removal": "always"
+   }
+  ]
+ },
+ "r5-placed": {
+  "input_board_sha256": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+  "zones_before": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "exit": 1,
+  "adopted": "ValueError: stage step add-planes failed; no output adopted or substituted",
+  "producer_mount": "/work/ae487/src",
+  "report": {
+   "board_before": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+   "execution": "failed",
+   "findings": [
+    {
+     "code": "plane_production_refused",
+     "message": "native plane child failed exit 1: ./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\nTraceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/app/agent_ee/add_planes_probe.py\", line 154, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/app/agent_ee/add_planes_probe.py\", line 146, in main\n    apply(args.board, plan, args.output)\n  File \"/app/agent_ee/add_planes_probe.py\", line 116, in apply\n    planned = [_zone(board, spec, uid) for uid,spec in zip(zone_ids(plan),plan['zones'])]\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/app/agent_ee/add_planes_probe.py\", line 34, in _zone\n    raise ValueError('planned plane net is missing: ' + spec['net'])\nValueError: planned plane net is missing: GND\n"
+    }
+   ],
+   "outcome": "unknown",
+   "plan_sha256": "56d291f3d8cb32f682c46a8681193ad21c387525ed270f812f508b6051a3756a",
+   "planned_zone_ids": [
+    "e382aaf9-2aca-5a37-b7a5-26f9f22e61a8",
+    "c8f75bf5-8fd3-5138-9804-41601bd50439"
+   ],
+   "schema": "agent-ee.add-planes/1"
+  },
+  "output_board_sha256": "8f3bc234305516b91b6e519d3e0a3cd05b69b6dd16006a317c39b6d810ace5fd",
+  "zones_after": [
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu"
+    ],
+    "name": "D-PCB-7v2-In1-no-tracks"
+   },
+   {
+    "rule_area": true,
+    "net": "",
+    "layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "name": "D-PCB-6-RF-reference"
+   }
+  ],
+  "receipt_sha256": "71b1a37b221057e96b81b6d7cdd5879e6bda350f300a46acf0cb35bc7458ec71"
+ }
+}

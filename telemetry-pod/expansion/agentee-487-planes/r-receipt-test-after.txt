@@ -1,0 +1,25 @@
+PASS default evidence is retain.py DEST
+PASS default receipt dir is the historical j6b receipt
+PASS configure resolves evidence and receipt dir
+PASS write refuses an existing receipt (history kept)
+PASS parse: repeated --contract, authority, source commit
+PASS no hard-coded retained-evidence or receipt binding paths remain
+PASS receipt authority is the neutral parameter (no agent-521 text in the receipt body)
+PASS H3 rust: any actual binary + its JSON install receipt is accepted
+PASS H3 rust: wrong field (previous_binary_sha256 correct) is rejected
+PASS H3 rust: malformed non-JSON containing the digest is rejected
+PASS H3 rust: wrong schema is rejected
+PASS H3 rust: missing receipt file is rejected
+PASS H3 rust: binary without receipt (missing input) is rejected
+PASS H3 full check: good pair accepted
+PASS H3 full check: wrong-field receipt rejected
+PASS H3 full check: binary mismatch rejected
+PASS rust: no hard-coded 5261cb13 binary identity
+PASS H4: no implicit runtime (selection required)
+PASS H4: current runtime manifest selected and hash-bound
+PASS H4: malformed runtime manifest refused
+PASS H4: --source-commit that is not a fome-mc commit refused
+PASS H4: --source-commit validated against the run copy (empty run copy refused)
+PASS H4: historical receipt without explicit selection is refused
+PASS historical j6b receipt checks with explicit --runtime historical-j6b
+24/24 passed

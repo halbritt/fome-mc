@@ -1,0 +1,12 @@
+PASS default evidence is retain.py DEST
+PASS default receipt dir is the historical j6b receipt
+PASS configure resolves evidence and receipt dir
+PASS write refuses an existing receipt (history kept)
+PASS parse: repeated --contract, authority, source commit
+PASS no hard-coded retained-evidence or receipt binding paths remain
+PASS receipt authority is the neutral parameter (no agent-521 text in the receipt body)
+Traceback (most recent call last):
+  File "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee-487/telemetry-pod/expansion/production-capture/test_runtime_receipt_params.py", line 51, in <module>
+    good = Path(tmp) / 'good.json'; good.write_text(json.dumps({'schema': m.RUST_RECEIPT_SCHEMA, 'binary_sha256': digest}))
+                                                                          ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'runtime_receipt' has no attribute 'RUST_RECEIPT_SCHEMA'
