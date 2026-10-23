@@ -212,9 +212,15 @@ The comparison is a read-only pcbnew extract of both boards: 313 footprints each
 ## 5. F1: plane polygons and add-planes timing on the actual saved board
 
 - **Saved board:** fa7c2ca6, read-only `pcbnew.LoadBoard`, hash unchanged after the read, wall 0.33 s.
-- **Zones:** it has NO In1.Cu `/GND` and NO In2.Cu `/+3V3` net plane zones. Its only zones are two netless In1.Cu zones (rule areas): 4 outline vertices each, unfilled, 0 fill vertices.
+- **Zones:** it has NO In1.Cu `/GND` and NO In2.Cu `/+3V3` net plane zones. Its only zones are two board-level rule areas, one In1.Cu-only (D-PCB-7v2-In1-no-tracks) and one spanning In1.Cu+In2.Cu (D-PCB-6-RF-reference); both netless, unfilled, 4 outline vertices each; no filled net planes. (Corrected AGENTEE-491 H5: this line earlier read "two netless In1.Cu zones".)
 - **add-planes:** this production is preparation plus emission. `add_planes.step` is accepted at log line 244 as a declared routing-turn step and is not executed. So there is NO add-planes inspection wall time against this saved board; none was run, and none is claimed.
 - The plane vertex counts and inspection time become measurable only after the routing-turn add-planes runs on a placed board.
+
+## 6. Packet manifest revision (AGENTEE-491 H4)
+
+- **Earlier manifest failed.** `SHA256SUMS` in this directory was frozen at feaf999 with `./RESULT.md` 5dfcce083ea57b24296f934401e315702e4b12d2927a48069c13c117346da8ae. `RESULT.md` then changed in 2663b0b (c2457f07…) and again in 2b097a8 (48ee6f30…, current), without the manifest being regenerated. From 2663b0b through 2924705 (main), `sha256sum -c SHA256SUMS` reported `./RESULT.md: FAILED`.
+- **Revision 2.** The manifest is regenerated with the same producer form over the same two `./` entries: `sha256sum ./RESULT.md ./storage-microsd-erc.json > SHA256SUMS`. New `./RESULT.md` digest: 48ee6f3048d36bd2f32c83f532f1bf6d48a2194d16ad1e95e314e44845fefbc2. `./storage-microsd-erc.json` is unchanged (462bf280…).
+- `RESULT.md` content is not edited. The 417-file production retention and retain.py data are not touched. `sha256sum -c SHA256SUMS` passes.
 
 ## Rules
 
