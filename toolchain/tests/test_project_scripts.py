@@ -137,8 +137,8 @@ class ProjectScripts(unittest.TestCase):
     def test_landed_pod_map_reads_before_missing_root_contract(self):
         source = REPO / 'telemetry-pod/io-map.csv'
         pins = verify.read_project_map(source)
-        self.assertEqual(len(pins), 32)
-        self.assertEqual(pins['AMPSEAL-1'], '/POD_CAN_P')
+        self.assertEqual(len(pins), 55)
+        self.assertEqual(pins['J1-1'], '/POD_CAN_P')
         self.assertEqual(pins['BLE-RADIO'], 'N/A')
         project = self.root / 'telemetry-pod'
         project.mkdir()
@@ -203,44 +203,57 @@ class ProjectScripts(unittest.TestCase):
         original_bytes = (REPO / 'contracts/telemetry-pod.interface.json').read_bytes()
         original = json.loads(original_bytes)
         cfg = dict(verify.eda.project_config('telemetry-pod'), path=project)
+        for rel in (verify.POD_RECORD, verify.POD_RECEIPT):
+            shutil.copyfile(REPO / rel, self.root / rel)
+        # The candidate is a committed revision of the real repository.
+        candidate = verify.pod_candidate_config(verify.eda.project_config('telemetry-pod'))
 
         def run(contract):
             contract_path.write_bytes(original_bytes if contract == original else json.dumps(contract).encode())
             output = io.StringIO()
-            with patch.object(verify, 'REPO', self.root), contextlib.redirect_stdout(output):
+            with patch.object(verify, 'REPO', self.root), patch.object(verify, 'pod_candidate_config',
+                                                                       lambda _: candidate), \
+                    contextlib.redirect_stdout(output):
                 result = verify.verify_project_io(cfg)
             return result, output.getvalue()
 
         result, output = run(original)
         self.assertEqual(result, 0, output)
         self.assertIn('NOT_EVALUATED: BLE-RADIO', output)
-        self.assertIn('81/82 invariants satisfied', output)
-        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap'):
+        self.assertIn('193/194 invariants satisfied', output)
+        self.assertIn('PASS: candidate 3688390f4b30506f2c32af4550c10c53bd9f0205433d8126b012702939704928', output)
+        self.assertIn('REQUIREMENT_AUTHORITY: sourced: none;', output)
+        for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap', 'drop-wireless'):
             with self.subTest(mutation=mutation):
                 contract = copy.deepcopy(original)
                 terminals = contract['terminals']
                 if mutation == 'net':
                     contract['invariants'][0]['names'] = ['WRONG']
                 elif mutation == 'pin':
-                    terminals['AMPSEAL-1'], terminals['AMPSEAL-2'] = terminals['AMPSEAL-2'], terminals['AMPSEAL-1']
+                    terminals['J1-1'], terminals['J1-2'] = terminals['J1-2'], terminals['J1-1']
                 elif mutation == 'nc':
-                    terminals['AMPSEAL-17'], terminals['AMPSEAL-3'] = terminals['AMPSEAL-3'], terminals['AMPSEAL-17']
+                    terminals['J1-35'], terminals['J1-3'] = terminals['J1-3'], terminals['J1-35']
                 elif mutation == 'unresolved':
-                    terminals['AMPSEAL-1'] = {'unresolved': 'deliberate scratch mutation'}
+                    terminals['J1-1'] = {'unresolved': 'deliberate scratch mutation'}
                 elif mutation == 'unknown':
                     inv = contract['invariants'][0]
                     inv.pop('terminal'); inv.pop('names')
                     inv.update(kind='unresolved', reason='deliberate scratch unknown')
                 elif mutation == 'missing':
-                    del terminals['AMPSEAL-23']
-                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'AMPSEAL-23']
+                    del terminals['J1-35']
+                    contract['invariants'] = [i for i in contract['invariants'] if i.get('terminal') != 'J1-35']
                 elif mutation == 'same-net-swap':
-                    terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+                    terminals['J1-5'], terminals['J1-8'] = terminals['J1-8'], terminals['J1-5']
+                elif mutation == 'drop-wireless':
+                    contract['invariants'] = [i for i in contract['invariants'] if i['id'] != 'BLE-RADIO:net']
                 result, output = run(contract)
                 self.assertEqual(result, 1, output)
                 self.assertIn('FAIL:', output)
                 if mutation == 'same-net-swap':
-                    self.assertIn('differs from fresh AGENTEE-188 compile', output)
+                    self.assertIn('differs from a fresh compile by the agent-ee on PATH', output)
+                if mutation in ('drop-wireless', 'missing'):
+                    # Every record row must stay cited; agent-ee's loader refuses first.
+                    self.assertIn('qualification record rows are not all cited', output)
         for source in (REPO / 'telemetry-pod').glob('*.kicad_*'):
             self.assertEqual(source.read_bytes(), (project / source.name).read_bytes())
 
@@ -253,7 +266,7 @@ class ProjectScripts(unittest.TestCase):
                 map_path.write_bytes(raw.replace(old, new))
                 result, output = run(original)
                 self.assertEqual(result, 1, output)
-                self.assertIn('stale io-map citation', output)
+                self.assertIn('io_map CSV must be captured with matching sha256', output)
                 map_path.write_bytes(raw)
 
         # Bindings and indirect paths are compiler inputs too, even if the
@@ -262,11 +275,11 @@ class ProjectScripts(unittest.TestCase):
         raw_bindings = bindings_path.read_bytes()
         bindings = json.loads(raw_bindings)
         terminals = bindings['terminals']
-        terminals['AMPSEAL-5'], terminals['AMPSEAL-8'] = terminals['AMPSEAL-8'], terminals['AMPSEAL-5']
+        terminals['J1-5'], terminals['J1-8'] = terminals['J1-8'], terminals['J1-5']
         bindings_path.write_text(json.dumps(bindings))
         result, output = run(original)
         self.assertEqual(result, 1, output)
-        self.assertIn('differs from fresh AGENTEE-188 compile', output)
+        self.assertIn('differs from a fresh compile by the agent-ee on PATH', output)
         bindings_path.write_bytes(raw_bindings)
 
         paths_path = project / 'pinout-checks/paths.json'
@@ -276,6 +289,146 @@ class ProjectScripts(unittest.TestCase):
         self.assertEqual(result, 1, output)
         self.assertIn('pod contract compile failed (rc=2)', output)
         paths_path.write_bytes(raw_paths)
+
+    def pod_inputs(self):
+        """The captured files the pod scope reads, copied under self.root (REPO is patched to it)."""
+        for rel in (verify.POD_CONTRACT, verify.POD_RECORD, verify.POD_CSV, verify.POD_V9_ORIGIN,
+                    verify.POD_REQUIREMENTS):
+            (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(REPO / rel, self.root / rel)
+        return (json.loads((self.root / verify.POD_CONTRACT).read_bytes()),
+                json.loads((self.root / verify.POD_RECORD).read_bytes()))
+
+    def write_bundle(self, contract, record):
+        """Write a record and re-pin it in the contract, as a consistent tamperer would."""
+        raw = json.dumps(record, indent=2).encode()
+        contract = copy.deepcopy(contract)
+        if 'qualification_record' in contract:
+            contract['qualification_record']['sha256'] = verify.hashlib.sha256(raw).hexdigest()
+        (self.root / verify.POD_RECORD).write_bytes(raw)
+        (self.root / verify.POD_CONTRACT).write_text(json.dumps(contract))
+
+    def capability(self):
+        with patch.object(verify, 'REPO', self.root):
+            descriptor = verify.pod_capability()
+            rows = verify.read_project_rows(self.root / verify.POD_CSV)
+            return descriptor, verify.check_pod_history(descriptor, rows)
+
+    def test_pod_compile_receipt_records_the_agent_ee_on_path(self):
+        """No pin: the receipt names the agent-ee on PATH that compiled the committed contract."""
+        receipt = json.loads((REPO / verify.POD_RECEIPT).read_bytes())
+        self.assertEqual(receipt['compiler']['commit'], verify.AGENT_EE['commit'])
+        self.assertEqual(receipt['compiler']['modules'], verify.AGENT_EE['modules'])
+        self.assertEqual(receipt['outputs'][verify.POD_CONTRACT],
+                         verify.hashlib.sha256((REPO / verify.POD_CONTRACT).read_bytes()).hexdigest())
+        self.assertEqual(verify.check_pod_compilation(REPO / verify.POD_CONTRACT), [])
+        pins = (REPO / 'toolchain/versions.toml').read_text()
+        self.assertNotIn('upstream.agent-ee', pins)
+        # A receipt from another agent-ee is refused, even with identical contract bytes.
+        for rel in ('telemetry-pod/io-map.csv', verify.POD_REQUIREMENTS, 'telemetry-pod/pinout-checks/bindings.json',
+                    'telemetry-pod/pinout-checks/paths.json', verify.POD_HISTORY, verify.POD_V9_ORIGIN,
+                    verify.POD_CONTRACT, verify.POD_RECORD):
+            (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(REPO / rel, self.root / rel)
+        receipt['compiler']['commit'] = 'f' * 40
+        (self.root / verify.POD_RECEIPT).write_text(json.dumps(receipt, indent=2) + '\n')
+        with patch.object(verify, 'REPO', self.root):
+            errors = '\n'.join(verify.check_pod_compilation(self.root / verify.POD_CONTRACT))
+        self.assertIn(f"{verify.POD_RECEIPT} differs from a fresh compile", errors)
+        self.assertIn(f"records agent-ee {'f' * 40}; the agent-ee on PATH is {verify.AGENT_EE['commit']}", errors)
+
+    def test_pod_carried_citations_stay_unqualified_through_agent_ee(self):
+        contract, record = self.pod_inputs()
+        descriptor, errors = self.capability()
+        self.assertEqual(errors, [])
+        authority, history = descriptor['requirement_authority'], descriptor['requirement_history']
+        self.assertEqual(authority['sourced'], [])
+        self.assertIn('POD-IF-CAN1', authority['unqualified-carryover'])
+        self.assertEqual(history['origin_verification'], {verify.POD_V9_ORIGIN: 'verified'})
+        j1 = next(r for r in history['rows'] if r['row'] == 2)
+        self.assertEqual(j1['requirements'], {'POD-IF-CAN1': 'unqualified historical assertion',
+                                              'POD-IF-HARNESS-CONNECTOR': 'unqualified historical assertion'})
+        self.assertEqual(j1['origin'], 'verified')
+        carried = [r for r in record['rows'] if r['origin']['locator'].startswith('row ')]
+        self.assertEqual(len(carried), 25)
+        self.assertTrue(all(q['qualification'] == 'unqualified-carryover' for r in record['rows']
+                            for q in r['requirements']))
+
+        # Regression: a consistent bundle that promotes J1-1's citation to `sourced`
+        # (contract, record and pin all agree, the cited source is a captured file).
+        # agent-ee's loader accepts it and its authority would count POD-IF-CAN1 as
+        # sourced; this verifier refuses it.
+        sha = verify.hashlib.sha256((self.root / verify.POD_REQUIREMENTS).read_bytes()).hexdigest()
+        promoted = {'id': 'POD-IF-CAN1', 'qualification': 'sourced',
+                    'source': {'path': verify.POD_REQUIREMENTS, 'sha256': sha, 'locator': 'Interfaces / CAN1'}}
+        upgraded_record, upgraded_contract = copy.deepcopy(record), copy.deepcopy(contract)
+        for row in upgraded_record['rows']:
+            if row['connector_pin'] in ('J1-1', 'J1-2'):
+                row['requirements'][0] = promoted
+        for inv in upgraded_contract['invariants']:
+            if inv['io_map']['connector_pin'] in ('J1-1', 'J1-2'):
+                inv['io_map']['requirements'][0] = promoted
+        self.write_bundle(upgraded_contract, upgraded_record)
+        descriptor, errors = self.capability()
+        self.assertEqual(descriptor['requirement_authority']['sourced'], ['POD-IF-CAN1'])
+        self.assertIn("sourced requirement in the pod contract: ['POD-IF-CAN1']", '\n'.join(errors))
+
+        # The rev3c contract (bare IDs, no record) cannot stand in for the bound one.
+        legacy = subprocess.run(['git', '-C', str(REPO), 'show', 'bb58520:contracts/telemetry-pod.interface.json'],
+                                capture_output=True, check=True).stdout
+        (self.root / verify.POD_CONTRACT).write_bytes(legacy)
+        with self.assertRaisesRegex(ValueError, 'contract must declare the qualification record pinned by the scope'):
+            self.capability()
+
+        def refused(change, message):
+            c, r = copy.deepcopy(contract), copy.deepcopy(record)
+            change(c, r)
+            self.write_bundle(c, r)
+            with self.assertRaisesRegex(ValueError, message):
+                self.capability()
+
+        cases = {
+            'citation status lost': (lambda c, r: c['invariants'][0]['io_map']['requirements'].pop(),
+                                     'differs from qualification record'),
+            'record status upgraded alone': (lambda c, r: r['rows'][0]['requirements'][0].update(
+                qualification='sourced'), 'expected fields'),
+            'record row stripped': (lambda c, r: r['rows'].pop(0), 'differs from qualification record'),
+            'declaration stripped': (lambda c, r: c.pop('qualification_record'),
+                                     'contract must declare the qualification record'),
+            'origin digest rewritten': (lambda c, r: [row['origin'].update(sha256='0' * 64) for row in r['rows']],
+                                        'differs from its declared sha256'),
+        }
+        for name, (change, message) in cases.items():
+            with self.subTest(mutation=name):
+                refused(change, message)
+        with self.subTest(mutation='contract upgraded, record unchanged'):
+            c = copy.deepcopy(contract)
+            c['invariants'][0]['io_map']['requirements'][0] = promoted
+            (self.root / verify.POD_RECORD).write_text(json.dumps(record, indent=2))
+            c['qualification_record']['sha256'] = verify.hashlib.sha256(
+                (self.root / verify.POD_RECORD).read_bytes()).hexdigest()
+            (self.root / verify.POD_CONTRACT).write_text(json.dumps(c))
+            with self.assertRaisesRegex(ValueError, 'differs from qualification record'):
+                self.capability()
+        with self.subTest(mutation='record deleted'):
+            (self.root / verify.POD_RECORD).unlink()
+            with self.assertRaisesRegex(ValueError, 'missing qualification record'):
+                self.capability()
+
+        # What the loader does not prove: the located v9 row really holds the carried values.
+        with self.subTest(mutation='v9 locator moved to another row'):
+            r = copy.deepcopy(record)
+            r['rows'][0]['origin']['locator'] = r['rows'][0]['origin']['locator'].replace(
+                'row 2 (AMPSEAL-1)', 'row 4 (AMPSEAL-3)')
+            self.write_bundle(contract, r)
+            _, errors = self.capability()
+            self.assertIn('J1-1: carried values differ from v9 row AMPSEAL-3', errors)
+        with self.subTest(mutation='carried row relabelled uncarried'):
+            r = copy.deepcopy(record)
+            r['rows'][0]['origin']['locator'] = 'none'
+            self.write_bundle(contract, r)
+            _, errors = self.capability()
+            self.assertIn('without a located v9 origin row', '\n'.join(errors))
 
 
 if __name__ == '__main__':

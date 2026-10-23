@@ -1,0 +1,917 @@
+{
+  "io_map": {
+    "path": "telemetry-pod/io-map.csv",
+    "sha256": "db90fc6e60f3c3630e04790039e5d7e6c78d329dbe9fdbf240af60c22d60070c"
+  },
+  "rows": [
+    {
+      "connector_pin": "J1-1",
+      "external_destination": "fome-mc J2-28 CAN1_H; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 2 (AMPSEAL-1): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-CAN1",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 2,
+      "signal": "POD_CAN_P"
+    },
+    {
+      "connector_pin": "J1-2",
+      "external_destination": "fome-mc J2-29 CAN1_L; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 3 (AMPSEAL-2): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-CAN1",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 3,
+      "signal": "POD_CAN_N"
+    },
+    {
+      "connector_pin": "J1-3",
+      "external_destination": "R/Y main-relay harness splice on circuit feeding J1-27; own 2 A inline fuse; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 4 (AMPSEAL-3): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-POWER-IN",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 4,
+      "signal": "POD_12V_IN"
+    },
+    {
+      "connector_pin": "J1-4",
+      "external_destination": "Chassis ground point on J1-34 CHASSIS_ECU_GND circuit; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 5 (AMPSEAL-4): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-POWER-IN",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 5,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-5",
+      "external_destination": "front fork linear potentiometer (0-130 mm) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 6 (AMPSEAL-5): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 6,
+      "signal": "POD_5V_SENSOR"
+    },
+    {
+      "connector_pin": "J1-6",
+      "external_destination": "front fork linear potentiometer (0-130 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 7 (AMPSEAL-6): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-ANALOG-INPUTS",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 7,
+      "signal": "POD_FRONT_FORK_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-7",
+      "external_destination": "front fork linear potentiometer (0-130 mm) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 8 (AMPSEAL-7): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 8,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-8",
+      "external_destination": "rear shock linear potentiometer (0-70 mm) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 9 (AMPSEAL-8): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 9,
+      "signal": "POD_5V_SENSOR"
+    },
+    {
+      "connector_pin": "J1-9",
+      "external_destination": "rear shock linear potentiometer (0-70 mm) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 10 (AMPSEAL-9): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-ANALOG-INPUTS",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 10,
+      "signal": "POD_REAR_SHOCK_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-10",
+      "external_destination": "rear shock linear potentiometer (0-70 mm) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 11 (AMPSEAL-10): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 11,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-11",
+      "external_destination": "front brake pressure transducer (0-100 bar) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 12 (AMPSEAL-11): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 12,
+      "signal": "POD_5V_SENSOR"
+    },
+    {
+      "connector_pin": "J1-12",
+      "external_destination": "front brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 13 (AMPSEAL-12): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-ANALOG-INPUTS",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 13,
+      "signal": "POD_FRONT_BRAKE_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-13",
+      "external_destination": "front brake pressure transducer (0-100 bar) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 14 (AMPSEAL-13): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 14,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-14",
+      "external_destination": "rear brake pressure transducer (0-100 bar) supply; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 15 (AMPSEAL-14): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 15,
+      "signal": "POD_5V_SENSOR"
+    },
+    {
+      "connector_pin": "J1-15",
+      "external_destination": "rear brake pressure transducer (0-100 bar) signal; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 16 (AMPSEAL-15): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-ANALOG-INPUTS",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 16,
+      "signal": "POD_REAR_BRAKE_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-16",
+      "external_destination": "rear brake pressure transducer (0-100 bar) return; pod-local sub-harness; docs/WIRING_SV650_K7.md blob bb0ff8c1a32faef6e7cc8fe1e67538829544b106 section 7",
+      "origin": {
+        "locator": "row 17 (AMPSEAL-16): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-HARNESS-CONNECTOR",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-SENSOR-SUPPLY",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 17,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-17",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 18,
+      "signal": "POD_AUX1_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-18",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 19,
+      "signal": "POD_AUX2_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-19",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 20,
+      "signal": "POD_AUX3_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-20",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 21,
+      "signal": "POD_AUX4_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-21",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 22,
+      "signal": "POD_5V_AUX"
+    },
+    {
+      "connector_pin": "J1-22",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 23,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-23",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 24,
+      "signal": "POD_WHEEL_FRONT_SUPPLY"
+    },
+    {
+      "connector_pin": "J1-24",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 25,
+      "signal": "POD_WHEEL_FRONT_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-25",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 26,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-26",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 27,
+      "signal": "POD_WHEEL_REAR_SUPPLY"
+    },
+    {
+      "connector_pin": "J1-27",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 28,
+      "signal": "POD_WHEEL_REAR_SIGNAL"
+    },
+    {
+      "connector_pin": "J1-28",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 29,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-29",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 30,
+      "signal": "TIRE_CAN_H"
+    },
+    {
+      "connector_pin": "J1-30",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 31,
+      "signal": "TIRE_CAN_L"
+    },
+    {
+      "connector_pin": "J1-31",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 32,
+      "signal": "POD_TIRE_SUPPLY"
+    },
+    {
+      "connector_pin": "J1-32",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 33,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J1-33",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 34,
+      "signal": "TIRE_CAN_H"
+    },
+    {
+      "connector_pin": "J1-34",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 35,
+      "signal": "TIRE_CAN_L"
+    },
+    {
+      "connector_pin": "J1-35",
+      "external_destination": "unused: native no-connect; cavity plug not selected (unknown)",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 36,
+      "signal": "NO_CONNECT"
+    },
+    {
+      "connector_pin": "J2-1",
+      "external_destination": "External active GNSS antenna in cowl; upward facing; cable <=500 mm",
+      "origin": {
+        "locator": "row 26 (GNSS-SMA-CENTER): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-GNSS-ANTENNA",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 37,
+      "signal": "POD_GNSS_RF"
+    },
+    {
+      "connector_pin": "J2-2",
+      "external_destination": "External active GNSS antenna coax shield",
+      "origin": {
+        "locator": "row 27 (GNSS-SMA-SHIELD): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-GNSS-ANTENNA",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 38,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J3-1",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 39,
+      "signal": "SD_DAT2"
+    },
+    {
+      "connector_pin": "J3-2",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 40,
+      "signal": "SD_DAT3"
+    },
+    {
+      "connector_pin": "J3-3",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 41,
+      "signal": "SD_CMD"
+    },
+    {
+      "connector_pin": "J3-4",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 42,
+      "signal": "+3V3"
+    },
+    {
+      "connector_pin": "J3-5",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 43,
+      "signal": "SD_CLK"
+    },
+    {
+      "connector_pin": "J3-6",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 44,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J3-7",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 45,
+      "signal": "SD_DAT0"
+    },
+    {
+      "connector_pin": "J3-8",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 46,
+      "signal": "SD_DAT1"
+    },
+    {
+      "connector_pin": "J3-9",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 47,
+      "signal": "SD_CD"
+    },
+    {
+      "connector_pin": "J3-10",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 48,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "J3-SH",
+      "external_destination": "unknown",
+      "origin": {
+        "locator": "none: no v9 row carried. Signal_Name and Net are native; the other descriptive columns are generated (unknown, N/C or N/A)",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [],
+      "row": 49,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "TP1-1",
+      "external_destination": "Factory pogo-pin fixture UART receive",
+      "origin": {
+        "locator": "row 28 (DEBUG-UART-TX): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 50,
+      "signal": "POD_UART_TX"
+    },
+    {
+      "connector_pin": "TP2-1",
+      "external_destination": "Factory pogo-pin fixture UART transmit",
+      "origin": {
+        "locator": "row 29 (DEBUG-UART-RX): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 51,
+      "signal": "POD_UART_RX"
+    },
+    {
+      "connector_pin": "TP3-1",
+      "external_destination": "Factory pogo-pin fixture ground",
+      "origin": {
+        "locator": "row 30 (DEBUG-UART-RETURN): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 52,
+      "signal": "GND"
+    },
+    {
+      "connector_pin": "TP4-1",
+      "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+      "origin": {
+        "locator": "row 31 (DEBUG-MCU-EN): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 53,
+      "signal": "MCU_EN"
+    },
+    {
+      "connector_pin": "TP5-1",
+      "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+      "origin": {
+        "locator": "row 32 (DEBUG-MCU-BOOT): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 54,
+      "signal": "MCU_BOOT"
+    },
+    {
+      "connector_pin": "TP6-1",
+      "external_destination": "Programming/debug fixture (fixture wiring and physical access unverified)",
+      "origin": {
+        "locator": "row 33 (DEBUG-3V3): carried Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 55,
+      "signal": "+3V3"
+    },
+    {
+      "connector_pin": "BLE-RADIO",
+      "external_destination": "RaceChrono Pro phone in tank bag or jacket pocket; docs/TELEMETRY_AND_RACECHRONO.md blob 3dafed620a10f8fba209c2707b8f832eec6f6303 section 4.1",
+      "origin": {
+        "locator": "row 25 (BLE-RADIO): carried Signal_Name, Direction_Class, Voltage_Current_Domain, External_Destination, POD-IF citations; not requalified for Rev-3",
+        "path": "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+        "revision": "36b19506e22a3d59e14b325f64c16e14e12ba3f1 (original path telemetry-pod/io-map.csv; moved byte-identical to telemetry-pod/pinout-checks/v9-pilot/io-map.csv by 72b189012f03c534a10efa793ce77cb18e1bae63)",
+        "sha256": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+      },
+      "requirements": [
+        {
+          "id": "POD-IF-BLUETOOTH-LE",
+          "qualification": "unqualified-carryover"
+        },
+        {
+          "id": "POD-IF-PROGRAMMING-AND-DEBUG",
+          "qualification": "unqualified-carryover"
+        }
+      ],
+      "row": 56,
+      "signal": "BLE_RACECHRONO"
+    }
+  ],
+  "schema": "agent-ee.io-map-qualification/1"
+}

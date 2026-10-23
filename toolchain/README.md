@@ -122,8 +122,22 @@ firmware configuration in `~/git/fome-fw`, YAML connectors and sheet contracts.
 `make verify-io PROJECT=telemetry-pod` reads `telemetry-pod/io-map.csv`, then
 requires exactly `contracts/telemetry-pod.interface.json` at the repository root.
 The committed contract is compiled by AGENTEE-188 from the pod map and its
-explicit terminal bindings and indirect MCU paths. Regeneration instructions and
-input hashes are in [the pod input notes](../telemetry-pod/IO_MAP.md).
+explicit terminal bindings and indirect MCU paths. The pod map describes the Rev-3
+source schematic named in `telemetry-pod/pinout-checks/source.json`, not the v9
+pilot at the project root. The gate checks that schematic's pinned SHA-256 and
+builds its native inventory from it. It requires `pinout-checks/generate.py --check`
+to reproduce the map, bindings, paths and `pinout-checks/history.json`
+byte-identically from its netlist. The pod contract is qualification-bound
+(AGENTEE-188): a fresh compile with the agent-ee on PATH must reproduce the contract,
+`contracts/telemetry-pod.qualification.json` and the compile receipt
+`contracts/telemetry-pod.compile-receipt.json`, which records the agent-ee commit used. The contract is read only
+through agent-ee's `capability()` with a scope that pins that record. Carried
+`POD-IF-*` citations stay `unqualified-carryover`, and a `sourced` one fails. The
+same contract is also graded on the actual candidate pinned in `source.json`
+`candidate`. fome-mc pins no agent-ee: verify-io uses the `agent-ee` CLI on PATH
+(its interpreter and source), and the receipt is that compiler's provenance (see the
+pod notes).
+Regeneration instructions are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
 including column order, with an optional final `MCU_Path` column:
@@ -147,14 +161,15 @@ native XML netlist and source geometry from a snapshot under
 `build/runs/verify-io/<project>/`. Unresolved terminals fail without a traceback.
 The pod's declared `BLE-RADIO:net` wireless obligation is printed by name as
 `NOT_EVALUATED`, excluded from the satisfied count, and permitted only for its
-`Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. Every other
+`Net=N/A`, `Direction_Class=Bidirectional_RF`, no-MCU-pin row. That row is also
+required: a pod map or contract without it fails. Every other
 non-satisfied invariant fails. Compiler CSV hash citations must match the current
 map; regenerate the contract after changing its input. The pod gate also recompiles
 its CSV, bindings and paths with AGENTEE-188 and requires byte identity with the
 committed contract. A compiler failure or any byte difference fails verification;
 fresh JSON and compiler logs are retained under `build/runs/verify-io/telemetry-pod/`. This command checks
-connectivity using the existing `agent-ee.hardware_interface` evaluator from
-`~/git/agent-ee`; it does not generate design content.
+connectivity using the `agent-ee.hardware_interface` evaluator of the `agent-ee` CLI
+on PATH; it does not generate design content.
 
 `make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
 project directories and native filenames from `toolchain/versions.toml`. Packaging

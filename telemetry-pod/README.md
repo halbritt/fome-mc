@@ -25,6 +25,7 @@
   - `analyze` (`kicad-happy`): **PASS** (`108` schematic components, `112` PCB footprints, `routing_complete: true`).
   - `export` (KiBot): **FAIL** (KiBot `1.9.1` exits `22` when parsing `agent-ee`'s JSON `bare-copper-probe/1` metadata property on `TP1..TP6` as a colon-delimited footprint string; native `kicad-cli` fab export passes).
   - `verify-io`: **FAIL** (`contracts/telemetry-pod.interface.json` intentionally fails closed per `FOMEMC-29` until `AGENTEE-188` generates the root contract).
+  - *Superseded (AGENTEE-207):* `verify-io` now checks the Rev-3 map derived from `expansion/storage-microsd/` (not this v9 schematic); see [IO_MAP.md](IO_MAP.md). The v9 map moved to `pinout-checks/v9-pilot/`.
 
 ---
 
@@ -79,5 +80,6 @@
 | `captured-symbols/`, `captured-footprints/` | KiCad-library-derived and project-authored symbols and footprints |
 | `kicad-libraries/` | Shared FOME AMPSEAL-23 footprint and 3D STEP model (`c-1-776228-1-e-3d.STEP`) |
 | `renders/` | 2D layer SVGs/PNGs/PDFs, schematic SVG/PNG/PDF, and 4K 3D ray-traced views (`renders/3d/`) |
-| `io-map.csv`, `IO_MAP.md`, `verify_io_map.py`, `io-map-cross-check.txt` | Proposed harness, radio, antenna, and factory UART interface input and spec-ID cross-check |
+| `io-map.csv`, `IO_MAP.md`, `pinout-checks/` | Rev-3 connector/MCU map generated from the `expansion/storage-microsd/` netlist, plus the declared `BLE-RADIO` wireless row (no pin, `NOT_EVALUATED`); its bindings, paths and generator; v9 inputs in `pinout-checks/v9-pilot/` |
+| `verify_io_map.py`, `io-map-cross-check.txt`, `IO_MAP_HISTORY.md` | Retired revision-2 checker and historical cross-check |
 | `REQUIREMENTS.md` | Captured hardware requirements and owner design decisions |
