@@ -221,7 +221,7 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
    "side_rule": "fixed F; not a decision variable"
   },
@@ -246,7 +246,7 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04); near U1 antenna/housing (C13)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04); near U1 antenna/housing (C13)"
    ],
    "side_rule": "fixed F; not a decision variable"
   },
@@ -271,7 +271,7 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
    "side_rule": "fixed F; not a decision variable"
   },
@@ -296,7 +296,7 @@
    "adjacent_blocks": [],
    "support_relationships": [],
    "access": [
-    "hardware envelope UNKNOWN F/B (C04)"
+    "M3 hardware (owner: \"Agents pick M3 hardware\"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)"
    ],
    "side_rule": "fixed F; not a decision variable"
   }
@@ -306,17 +306,29 @@
    "role": "test",
    "anchor": "none (movable)",
    "adjacency": [
-    "all six pads on one face, selected by the planner (either face eligible, C01/C20)",
-    "TP1 TX, TP2 RX, TP4 EN, TP5 BOOT nets: pad within 25 mm (EJ) of each other so one fixture head covers them; TP3 GND and TP6 +3V3 in the same head",
-    "no part courtyard within the probe keep-clear of each pad: radius UNKNOWN (C20); report as unresolved, do not invent",
-    "opposite face under each pad: fixture support area UNKNOWN (C20)",
+    "REQUIRED: each pad is reachable by a hand-held pogo clip / probe on the bare board before enclosure; either face, bottom allowed (C20 owner answer, C01)",
+    "REQUIRED: probe-tip approach clearance over and around each pad: no tall part and no screw hardware there; clearance size UNKNOWN (C20), reported unresolved, never PASS",
+    "NOT required: no fixed fixture pattern, no common face, no grouping distance, no post-seal access",
+    "ENGINEERING CONVENIENCE (labelled, optional, never a hard constraint): keeping the six pads on one face and near each other eases a single clip; the planner may use it only as a tie-break",
     "pads stay outside the U1 antenna area (C12) and J3 card path (C10/C11)"
    ],
-   "side_rule": "one common face, either"
+   "access": "hand-held pogo clip / probes on the bare board before enclosure; probe-tip approach clearance only (size UNKNOWN); no fixture pattern; no post-seal access",
+   "owner_answer": {
+    "quote": "Pogo clip on bench",
+    "source": "agent-529 consolidated owner-directions notice, Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1 (owner relay fd5bea71@1)",
+    "interpretation": "hand-held pogo clip / probes on the bare board, on the bench, before enclosure; bottom-side TPs allowed; BLE OTA after sealing. No fixed fixture pattern, no post-seal access. Reserve probe-tip approach clearance only (no tall parts or screw hardware over or around the pads)"
+   },
+   "side_rule": "either face per pad (bottom allowed); common face is an optional labelled convenience only"
   },
   "JP1-JP5 (block members)": {
    "role": "assembly configuration",
    "membership": "JP1 tire-can; JP2-JP5 thermistor",
+   "access": "one-time soldering-iron access on the bare board before enclosure (zone size UNKNOWN)",
+   "owner_answer": {
+    "quote": "Once, on the bench",
+    "source": "agent-529 consolidated owner-directions notice, Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1 (owner relay fd5bea71@1)",
+    "interpretation": "one-time soldering-iron access on the bare board before enclosure only"
+   },
    "side_rule": "face of its block"
   }
  },

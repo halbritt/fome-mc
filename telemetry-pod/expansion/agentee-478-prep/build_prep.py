@@ -450,11 +450,26 @@ REGION = {
 }
 J1_B = {'id': 'C06', 'face': 'B', 'region_mm': [6.055, 48.955, 83.945, 65.0],
         'rule': 'J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)'}
-HOLES = [{'id': 'C04', 'face': 'F,B', 'region': f'around {h} ({x},{y}), radius UNKNOWN',
-          'rule': 'screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced'}
+# AGENTEE-478b: owner physical answers, agent-529 notice Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1
+# (owner relay fd5bea71@1). Quotes verbatim; the interpretation is kept separate. They resolve usage and
+# selection only; no geometric clearance becomes PASS from them.
+OWNER_SRC = 'agent-529 consolidated owner-directions notice, Cairn a13a1ba8-2838-4044-a40c-fe875b4e83f1 v1 (owner relay fd5bea71@1)'
+OWNER = {
+    'C20': {'quote': 'Pogo clip on bench', 'source': OWNER_SRC,
+            'interpretation': 'hand-held pogo clip / probes on the bare board, on the bench, before enclosure; bottom-side TPs allowed; BLE OTA after sealing. No fixed fixture pattern, no post-seal access. Reserve probe-tip approach clearance only (no tall parts or screw hardware over or around the pads)'},
+    'C21': {'quote': 'Once, on the bench', 'source': OWNER_SRC,
+            'interpretation': 'one-time soldering-iron access on the bare board before enclosure only'},
+    'C22': {'quote': "I'm sure it's ~90mm or more.", 'source': OWNER_SRC,
+            'interpretation': 'owner estimate of ~90 mm or more for an UNSPECIFIED cowl dimension (529 notice): not a hard cap, not an assumed smallest dimension, not a measured fit. The 519 brief relays it as "90mm height, the length and width are quite a bit more than that"; that wording is not in the single reference, so the dimension stays unspecified here. The board outline is not cowl-constrained by this answer. Physical fit stays with bench/install verification'},
+    'C04': {'quote': 'Agents pick M3 hardware', 'source': OWNER_SRC,
+            'interpretation': 'hardware is M3, selected and sourced by agents: agent-507 in AGENTEE-480 (pending). Head/washer/standoff/driver geometry is reserved on the relevant faces once AGENTEE-480 supplies it; not duplicated here'},
+}
+HOLES = [{'id': 'C04', 'face': 'F,B', 'region': f'around {h} ({x},{y}), radius UNKNOWN pending AGENTEE-480',
+          'rule': 'M3 hardware (owner: "Agents pick M3 hardware"); head/washer/standoff/driver envelope UNKNOWN on both faces until AGENTEE-480 supplies the selected geometry; hole courtyard only is enforced; no clearance PASS',
+          'owner_answer': OWNER['C04']}
          for h, x, y in [('H1', 4, 4), ('H2', 86, 4), ('H3', 86, 61), ('H4', 4, 61)]]
-UNKNOWNS_ALL = [{'id': 'C19', 'what': 'installed heights of all parts on both faces; enclosure clearance per face', 'region': 'whole board', 'face': 'F,B'},
-                {'id': 'C22', 'what': 'enclosure / cowl / harness envelope', 'region': 'whole board', 'face': 'F,B'}]
+UNKNOWNS_ALL = [{'id': 'C19', 'what': 'installed heights of all parts on both faces; enclosure clearance per face (the owner ~90 mm-or-more estimate for an unspecified cowl dimension is context only, not a height budget per face)', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']},
+                {'id': 'C22', 'what': 'enclosure / cowl / harness envelope: owner estimate "~90mm or more" for an unspecified dimension; not a cap, not measured; outline not cowl-constrained; fit carried to bench/install verification', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']}]
 THERMAL = {'pre-6v3', 'buck-3v3', 'supplies-5v', 'mcu', 'gnss-antenna-supply', 'storage-support',
            'sensor-power-front', 'sensor-power-rear', 'sensor-power-tire', 'aux-power'}
 NEAR_J1 = {'power-entry', 'can', 'tire-can', 'wheel-input', 'sensor-power-front', 'sensor-power-rear',
@@ -487,22 +502,25 @@ for f, ids in FIXED.items():
     eligibility['fixed'][f] = {'face': fp['side'], 'eligible_faces': [fp['side']], 'sources': ids,
                                'note': 'fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)'}
 eligibility['shared']['TP1-TP6'] = {
-    'eligible_faces': ['F', 'B'], 'constraint': 'all six on ONE common face (single-sided programming fixture), chosen by the planner',
-    'sources': ['C20', 'C01'], 'material_unknowns': [{'id': 'C20', 'what': 'probe tip / approach travel / fixture pin height / support force / tool clearance', 'region': 'each TP pad', 'face': 'probed face'}],
-    'owner_reserved': 'none: UART programming before sealing is an owner/project functional requirement (R:42); fixture geometry is engineering, not owner-reserved'}
+    'eligible_faces': ['F', 'B'], 'constraint': 'either face per pad (bottom allowed); probe-tip approach clearance reserved on the probed face; no fixed fixture pattern, no common-face requirement',
+    'sources': ['C20', 'C01'], 'owner_answer': OWNER['C20'],
+    'material_unknowns': [{'id': 'C20', 'what': 'probe-tip / pogo-clip approach clearance dimensions (no tall part or screw hardware over or around each pad); size not supplied', 'region': 'each TP pad', 'face': 'probed face'}],
+    'owner_reserved': 'none: usage decided by the owner (bench pogo clip, before sealing); clearance geometry is engineering and still UNKNOWN'}
 eligibility['shared']['JP1-JP5'] = {
-    'eligible_faces': ['F', 'B'], 'constraint': 'face follows its block (tire-can: JP1; thermistor: JP2-JP5); solder-iron access before sealing',
-    'sources': ['C21'], 'material_unknowns': [{'id': 'C21', 'what': 'solder tool angle / access footprint / timing', 'region': 'each JP', 'face': 'jumper face'}],
+    'eligible_faces': ['F', 'B'], 'constraint': 'face follows its block (tire-can: JP1; thermistor: JP2-JP5); one-time soldering-iron access on the bare board before enclosure',
+    'sources': ['C21'], 'owner_answer': OWNER['C21'],
+    'material_unknowns': [{'id': 'C21', 'what': 'soldering-iron access zone (tool angle / clear footprint) on the bare board; size not supplied; timing decided (once, on the bench)', 'region': 'each JP', 'face': 'jumper face'}],
     'owner_reserved': 'none'}
 TP_PLAN = {
-    'purpose': 'factory UART programming and console before sealing (R:42); BLE OTA afterwards; no field-service opening',
+    'purpose': 'UART programming and console on the bench before enclosure with a hand-held pogo clip or probes (owner: "Pogo clip on bench"; R:42); BLE OTA after sealing; no post-seal access',
+    'owner_answers': {'C20': OWNER['C20'], 'C21': OWNER['C21']},
     'pads': {f'TP{i}': SCH[f'TP{i}']['pins']['1'][0] for i in range(1, 7)},
-    'rules': ['all six pads on one face, selected by the planner (either face eligible, C01/C20)',
-              'TP1 TX, TP2 RX, TP4 EN, TP5 BOOT nets: pad within 25 mm (EJ) of each other so one fixture head covers them; TP3 GND and TP6 +3V3 in the same head',
-              'no part courtyard within the probe keep-clear of each pad: radius UNKNOWN (C20); report as unresolved, do not invent',
-              'opposite face under each pad: fixture support area UNKNOWN (C20)',
+    'rules': ['REQUIRED: each pad is reachable by a hand-held pogo clip / probe on the bare board before enclosure; either face, bottom allowed (C20 owner answer, C01)',
+              'REQUIRED: probe-tip approach clearance over and around each pad: no tall part and no screw hardware there; clearance size UNKNOWN (C20), reported unresolved, never PASS',
+              'NOT required: no fixed fixture pattern, no common face, no grouping distance, no post-seal access',
+              'ENGINEERING CONVENIENCE (labelled, optional, never a hard constraint): keeping the six pads on one face and near each other eases a single clip; the planner may use it only as a tie-break',
               'pads stay outside the U1 antenna area (C12) and J3 card path (C10/C11)'],
-    'JP1-JP5': 'configured by solder bridge during assembly before sealing (C21); JP1 closes only at the bus end (value text); no tall part within the iron access zone: size UNKNOWN',
+    'JP1-JP5': 'configured once by solder bridge on the bare board on the bench, before enclosure (owner: "Once, on the bench"; C21); JP1 closes only at the bus end (value text); no tall part within the soldering-iron access zone: size UNKNOWN',
     'owner_reserved_flags': []}
 eligibility['test_assembly_access_plan'] = TP_PLAN
 
@@ -548,8 +566,10 @@ ACCESS = {'J1': ['mating direction +Y to board edge y=65 (C05)', 'B: PTH tails a
           'U1': ['antenna area all layers keep-out (C12); housing 15 mm recommendation is NOT a board keep-out (C13)', 'UART programming via TP1/TP2/TP4/TP5 (C20)'],
           'U2': ['installed axis transform X fwd/Y left/Z up must be preserved; rot/face fixed (C14)', 'tall/heavy parts away: numeric distance UNKNOWN (C14)'],
           'U3': ['RF_IN pad 11 to J2.1 path F-over-In1 (C15, R:65); corridor UNRESOLVED'],
-          'H1': ['hardware envelope UNKNOWN F/B (C04)'], 'H2': ['hardware envelope UNKNOWN F/B (C04); near U1 antenna/housing (C13)'],
-          'H3': ['hardware envelope UNKNOWN F/B (C04)'], 'H4': ['hardware envelope UNKNOWN F/B (C04)']}
+          'H1': ['M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)'],
+          'H2': ['M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04); near U1 antenna/housing (C13)'],
+          'H3': ['M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)'],
+          'H4': ['M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04)']}
 ADJ = {'U1': ['mcu'], 'U3': ['gnss-rf-feed', 'gnss-antenna-supply'], 'J2': ['gnss-rf-feed'], 'J3': ['storage-support'],
        'J1': ['power-entry', 'can', 'tire-can'], 'U2': []}
 fixed_rules = {'schema': 'fome-mc.fixed-shared-rules/1 (proposed consumer: agent-ee, AGENTEE-479)',
@@ -563,8 +583,12 @@ for f in FIXED:
                                'pose_authority': POSE_CLASS[f], 'register_entries': FIXED[f],
                                'adjacent_blocks': ADJ.get(f, []), 'support_relationships': rel_ids,
                                'access': ACCESS[f], 'side_rule': f"fixed {fp['side']}; not a decision variable"}
-fixed_rules['shared']['TP1-TP6'] = {'role': 'test', 'anchor': 'none (movable)', 'adjacency': TP_PLAN['rules'], 'side_rule': 'one common face, either'}
-fixed_rules['shared']['JP1-JP5 (block members)'] = {'role': 'assembly configuration', 'membership': 'JP1 tire-can; JP2-JP5 thermistor', 'side_rule': 'face of its block'}
+fixed_rules['shared']['TP1-TP6'] = {'role': 'test', 'anchor': 'none (movable)', 'adjacency': TP_PLAN['rules'],
+                                    'access': 'hand-held pogo clip / probes on the bare board before enclosure; probe-tip approach clearance only (size UNKNOWN); no fixture pattern; no post-seal access',
+                                    'owner_answer': OWNER['C20'], 'side_rule': 'either face per pad (bottom allowed); common face is an optional labelled convenience only'}
+fixed_rules['shared']['JP1-JP5 (block members)'] = {'role': 'assembly configuration', 'membership': 'JP1 tire-can; JP2-JP5 thermistor',
+                                                     'access': 'one-time soldering-iron access on the bare board before enclosure (zone size UNKNOWN)',
+                                                     'owner_answer': OWNER['C21'], 'side_rule': 'face of its block'}
 for rail in RAILS:
     fixed_rules['rails'][rail] = {'parts': 'none: rails are nets, not memberships; rail capacitors are bound to their device pins in relationship-bounds.json', 'merge_rule': 'a common rail never merges blocks'}
 
