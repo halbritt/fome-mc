@@ -34,9 +34,12 @@ production scope is composed here from the compiled Rev-3 microSD scope in three
 
 The plan selects requirement_source telemetry-pod-rev3, whose pinned capture fome-mc keeps at
 requirements/compiled/requirements-map; it is added to the scope as baseline sources
-(requirements-source/). Its requirements and prose equal the microSD spec's, which only adds the
-POD-CD-STORAGE decision row (checked here); the microSD spec itself is not a pinned source and its
-refusal is kept. The plan of record carries the authorized bound (max_iterations 2, routing backend
+(requirements-source/). Against the pinned baseline the current spec may differ only by the accepted
+revision (requirement_revision.py, requirements/rev3-microsd/revision-delta.json; checked here): the added
+POD-CD-STORAGE decision row, and the POD-ME-1 cowl correction (owner relay a13a1ba8 v2: ~90 mm provisional
+available HEIGHT for the full stack, an owner estimate and not a measured cap), text sha256 d865a76d... ->
+09c89ce3... with id/kind/section/cells unchanged, REQUIREMENTS.md dd6555f7..., spec record 21288e01....
+Any other difference refuses; the microSD spec itself is not a pinned source and its refusal is kept. The plan of record carries the authorized bound (max_iterations 2, routing backend
 budget at most 900 s, placement timeout_s 900-1500 s; ROUTE.md R2): the driver's derived campaign wall
 clock is checked never to change the routing budget, timeout or iteration count. There is no
 driver-default plan and no compiled-only scope. No placement, routing, campaign or model runs here.
