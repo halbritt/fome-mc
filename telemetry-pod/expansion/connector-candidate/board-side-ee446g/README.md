@@ -27,7 +27,21 @@ it. The check:
 - enforces the reporting rules: TE page/section, a fixed verdict set, a named missing source for
   each unknown, relay labels, no owner-stated text, and (c)/(d) deferred.
 
-The self-test also requires 18 negative controls to be rejected.
+The self-test also requires 34 negative controls to be rejected: 18 for the packet and 16 for the
+addendum below.
+
+**Source-capture addendum (agent-521 c13da285; coordinator decision, not owner text).** See
+`ADDENDUM-c13da285.md` and `addendum-c13da285.json`; the captured bytes and their licence note are in
+`sources-c13da285/`. It captured JLCPCB's official capabilities page. TE 108-1329 returned HTTP 403, so that fact
+stays UNKNOWN. The addendum then compares each fact with the rows below:
+
+- No concrete incompatibility.
+- a9 → consistent.
+- a11 → no TE requirement.
+- a2, a4, a7 → documented uncertainty (published tolerance bands do not nest).
+- a6, b1 and registration stay unknown.
+
+The tables below are the accepted packet as reviewed; the addendum supersedes their verdicts where it says so.
 
 ## Binding (recomputed from the bytes before any check)
 

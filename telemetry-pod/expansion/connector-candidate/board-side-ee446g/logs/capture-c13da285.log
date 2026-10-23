@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# ee446g source capture: official JLCPCB / TE URLs only, original bytes retained. Usage: capture.sh OUTDIR
+set -u
+out=$1; mkdir -p "$out"
+fetch() {  # fetch <name> <url>
+  local name=$1 url=$2 t
+  t=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  curl -sS --max-time 60 -D "$out/$name.headers" -o "$out/$name.body" -w '%{http_code} %{url_effective} %{size_download}\n' "$url" > "$out/$name.meta" 2> "$out/$name.err"
+  printf '%s rc=%s time=%s url=%s -> %s' "$name" "$?" "$t" "$url" "$(cat "$out/$name.meta")"
+}
+fetch jlc-pcb-capabilities 'https://jlcpcb.com/capabilities/pcb-capabilities'
+fetch te-108-1329 'https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=pdf&DocNm=108-1329&DocType=Specification+Or+Standard'
+--- run (native-admit --label "ee446g source capture" --class test --weight 1)
+admitted=1792725480
+jlc-pcb-capabilities rc=0 time=2026-10-23T03:18:00Z url=https://jlcpcb.com/capabilities/pcb-capabilities -> 200 https://jlcpcb.com/capabilities/pcb-capabilities 136648te-108-1329 rc=0 time=2026-10-23T03:18:01Z url=https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=pdf&DocNm=108-1329&DocType=Specification+Or+Standard -> 403 https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=pdf&DocNm=108-1329&DocType=Specification+Or+Standard 416done=1792725481
+
+--- jlc-pcb-capabilities.meta
+200 https://jlcpcb.com/capabilities/pcb-capabilities 136648
+--- te-108-1329.meta
+403 https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=pdf&DocNm=108-1329&DocType=Specification+Or+Standard 416
+--- jlc-pcb-capabilities.err
+--- te-108-1329.err

@@ -1,0 +1,355 @@
+{
+ "schema": "ee446g.source-capture-addendum/1",
+ "decision": "agent-521 c13da285, relayed by agent-449 (coordinator decision, not owner text)",
+ "base_packet_commit": "53f6d5bd1d4b8be106f5ce125e4ba3166494f82b",
+ "manifest": "sources-c13da285/sources.json",
+ "concrete_incompatibilities": [],
+ "facts": [
+  {
+   "id": "F1",
+   "source": "JLCCAP20261023",
+   "label": "Hole size Tolerance",
+   "quote": "Through-holes: +0.13 / -0.08 mm",
+   "conditions": "finished hole size (page example: \"for the 0.6mm hole size, the finished hole size between 0.52mm to 0.73mm is acceptable\"); the page does not split plated vs non-plated round holes (it splits only slots)",
+   "informs": [
+    "a2",
+    "a7"
+   ]
+  },
+  {
+   "id": "F2",
+   "source": "JLCCAP20261023",
+   "label": "Hole size Tolerance (press-fit option)",
+   "quote": "Press-fit holes：±0.05 mm (Finished hole size: 0.55-2.0mm. Multilayer ENIG boards and circular holes only. Mention the specific holes in PCB Remark)",
+   "conditions": "multilayer, ENIG finish, circular holes 0.55-2.0 mm finished, named in the PCB remark",
+   "informs": [
+    "a2"
+   ]
+  },
+  {
+   "id": "F3",
+   "source": "JLCCAP20261023",
+   "label": "Average Hole Plating Thickness",
+   "quote": "18μm",
+   "conditions": "average, not a minimum; no layer-count or finish condition stated",
+   "informs": [
+    "a11"
+   ]
+  },
+  {
+   "id": "F4",
+   "source": "JLCCAP20261023",
+   "label": "Hole Position Tolerance",
+   "quote": "±0.075 mm",
+   "conditions": "reference datum not stated",
+   "informs": [
+    "a4"
+   ]
+  },
+  {
+   "id": "F5",
+   "source": "JLCCAP20261023",
+   "label": "PTH annular ring",
+   "quote": "1 oz: Recommended 0.20 mm or above; absolute minimum 0.15 mm",
+   "conditions": "the \"Multilayer:\" sub-entry for 1 oz copper (the board is 4-layer, outer 1 oz per the captured stackup); the headline value is \"≧0.20mm\"",
+   "informs": [
+    "a9"
+   ]
+  },
+  {
+   "id": "F6",
+   "source": "JLCCAP20261023",
+   "label": "Drill Diameter",
+   "quote": "Multilayer: 0.15 – 6.3 mm",
+   "conditions": "mechanical drilling",
+   "informs": [
+    "a1",
+    "a5"
+   ]
+  },
+  {
+   "id": "F7",
+   "source": "JLCCAP20261023",
+   "label": "Min. Non-plated holes",
+   "quote": "0.50mm",
+   "conditions": "",
+   "informs": [
+    "a5",
+    "a7"
+   ]
+  },
+  {
+   "id": "F8",
+   "source": "JLCCAP20261023",
+   "label": "Dimension Tolerance",
+   "quote": "±0.1mm(Precision) and ±0.2mm(Regular) for CNC routing, and ±0.4mm for V-scoring",
+   "conditions": "outline routing",
+   "informs": [
+    "a8"
+   ]
+  },
+  {
+   "id": "F9",
+   "source": "JLCCAP20261023",
+   "label": "Thickness Tolerance",
+   "quote": "e.g. For the 1.6mm board thickness, the finished board thickness ranges from 1.44mm(T-1.6×10%) to 1.76mm(T+1.6×10%)",
+   "conditions": "thickness >= 1.0 mm",
+   "informs": [
+    "a14"
+   ]
+  },
+  {
+   "id": "F10",
+   "source": "JLCCAP20261023",
+   "label": "NPTH pad annular ring",
+   "quote": "Recommended 0.45 mm or more.",
+   "conditions": "NPTH with a copper pad; the J1 locators have no copper (pad size = drill)",
+   "informs": [
+    "a6"
+   ]
+  },
+  {
+   "id": "U1",
+   "source": "JLCCAP20261023",
+   "label": "Layer-to-layer / drill-to-copper registration",
+   "quote": null,
+   "unknown": "The official pcb-capabilities page, retrieved 2026-10-23T03:18:00Z (sha256 03af7196...), states no registration tolerance. It links no other capabilities sub-page, and no other JLCPCB URL was fetched (the scope was the official capabilities pages).",
+   "informs": [
+    "a4"
+   ]
+  },
+  {
+   "id": "U2",
+   "source": "TE1081329-403",
+   "label": "TE 108-1329 product specification (board-lock / retention leg, PCB-thickness range, header retention)",
+   "quote": null,
+   "unknown": "HTTP 403 from AkamaiGHost (\"Access Denied\", reference 18.470ed217.1792725481.3307e1fc) at 2026-10-23T03:18:01Z for the official TE document-delivery URL. The response body is 416 bytes, sha256 48fc3d8a... No workaround was attempted. 108-1329 is the applicable source by TE's own reference: the K1 title block names \"PRODUCT SPEC 108-1329\". The reused captures (S3, E5, K1, the header CVM zip with its single STEP member, and the historical J8, 114-16016 G, PCN E2 and product-page print) give no board-lock geometry, thickness range or PCB retention.",
+   "informs": [
+    "a6",
+    "b1"
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "row": "a1",
+   "previous": "consistent",
+   "now": "consistent",
+   "facts": [
+    "F6"
+   ],
+   "reason": "Ø1.75 lies within the multilayer drill range 0.15-6.3 mm. Nominal only."
+  },
+  {
+   "row": "a2",
+   "previous": "unknown",
+   "now": "documented-uncertainty",
+   "facts": [
+    "F1",
+    "F2"
+   ],
+   "arithmetic": {
+    "te_mm": [
+     1.65,
+     1.85
+    ],
+    "jlc_on_1_75_mm": [
+     1.67,
+     1.88
+    ]
+   },
+   "reason": "TE needs a finished Ø1.75 ±0.1 (1.65-1.85). JLCPCB publishes +0.13/-0.08 for through-holes, which gives 1.67-1.88 on a 1.75 nominal. The lower end nests; the upper end exceeds TE by 0.03 mm. JLC's band (0.21 mm) is wider than TE's (0.20 mm), so no nominal choice makes the published bands nest. This is interval arithmetic between two published tolerances. No source or physical check shows a 1.88 mm hole failing the J1 tails, so it is NOT recorded as a concrete incompatibility, and nothing is tightened. A sourced option is recorded but not adopted (no design or order change): JLC press-fit holes are ±0.05, which gives 1.70-1.80 and nests, conditional on multilayer, ENIG, circular holes 0.55-2.0 mm and a PCB remark."
+  },
+  {
+   "row": "a4",
+   "previous": "unknown",
+   "now": "documented-uncertainty",
+   "facts": [
+    "F4",
+    "U1"
+   ],
+   "reason": "TE: true position Ø0.1 (S) to datum A (S), i.e. a 0.05 mm radius about true position relative to the left locator. JLCPCB publishes hole position ±0.075 mm with no datum stated. The published values do not nest, but they are not the same measurand (TE is relative to datum A; JLC's reference is unstated), so this is a documented uncertainty, not a concrete incompatibility. Layer registration stays UNKNOWN (U1)."
+  },
+  {
+   "row": "a5",
+   "previous": "consistent",
+   "now": "consistent",
+   "facts": [
+    "F6",
+    "F7"
+   ],
+   "reason": "Ø2.85 NPTH is at or above the 0.50 mm NPTH minimum and inside the drill range. Nominal only."
+  },
+  {
+   "row": "a6",
+   "previous": "unknown",
+   "now": "unknown",
+   "facts": [
+    "U2",
+    "F10"
+   ],
+   "reason": "TE still states no plating for the Ø2.85 holes (108-1329 is HTTP 403). The JLC NPTH pad ring (F10) applies only to NPTH with copper; the locators have none."
+  },
+  {
+   "row": "a7",
+   "previous": "unknown",
+   "now": "documented-uncertainty",
+   "facts": [
+    "F1",
+    "F7"
+   ],
+   "arithmetic": {
+    "te_mm": [
+     2.77,
+     2.93
+    ],
+    "jlc_on_2_85_mm": [
+     2.77,
+     2.98
+    ]
+   },
+   "reason": "TE needs Ø2.85 ±0.08 (2.77-2.93). The JLC \"Through-holes\" tolerance, which the page does not split by plating for round holes, gives 2.77-2.98: the upper end exceeds TE by 0.05 mm. This is interval arithmetic, not a concrete incompatibility. Model-only context, no claim: the TE header model's snap shoulder reaches 1.90 mm radius (Ø3.80), beyond 2.98."
+  },
+  {
+   "row": "a8",
+   "previous": "consistent",
+   "now": "consistent",
+   "facts": [
+    "F8"
+   ],
+   "reason": "The nominal 9.0 mm is unchanged. JLC routed-edge tolerance is ±0.2 regular and ±0.1 precision. Which TE tolerance applies to the 9 is not resolved: S3 p.1 gives a general ±0.13, while K1 governs (S3 §2.3) and its 0-place tolerance is not stated. The edge sets panel/enclosure position, not hole fit. Recorded for the enclosure deliverable."
+  },
+  {
+   "row": "a9",
+   "previous": "unknown",
+   "now": "consistent",
+   "facts": [
+    "F5"
+   ],
+   "arithmetic": {
+    "board_nominal_annulus_mm": 0.325,
+    "jlc_recommended_mm": 0.2,
+    "jlc_absolute_min_mm": 0.15
+   },
+   "reason": "The design annular ring of 0.325 mm (2.4 land, 1.75 hole) meets the JLCPCB multilayer 1 oz recommendation of 0.20 mm and the absolute minimum of 0.15 mm. Informational arithmetic only: (2.4-1.88)/2 = 0.26 at the JLC maximum finished hole."
+  },
+  {
+   "row": "a11",
+   "previous": "unknown",
+   "now": "no-te-requirement",
+   "facts": [
+    "F3"
+   ],
+   "reason": "JLCPCB states an average hole plating of 18 μm (an average, not a minimum). No captured TE document states a requirement, so there is nothing to compare."
+  },
+  {
+   "row": "a14",
+   "previous": "settled",
+   "now": "settled",
+   "facts": [
+    "F9"
+   ],
+   "reason": "The page confirms the captured ±10 % (1.44-1.76 mm). Thickness is not reopened; no gate."
+  },
+  {
+   "row": "b1",
+   "previous": "unknown",
+   "now": "unknown",
+   "facts": [
+    "U2"
+   ],
+   "reason": "No TE board-lock specification is obtainable from this host (108-1329 is HTTP 403). The reused captures contain none."
+  },
+  {
+   "row": "a3",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "a10",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "a12",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "a13",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b2",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b3",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b4",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b5",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b6",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b7",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  },
+  {
+   "row": "b8",
+   "previous": null,
+   "now": null,
+   "facts": [],
+   "reason": "Not informed by this capture; the verdict is unchanged."
+  }
+ ],
+ "proposal": "Owner drop, AGENTEE-451 precedent, PROPOSED only: TE product specification 108-1329, current revision, for 1-776163-1. It is the only captured-source gap for rows a6 and b1. Registration (U1) would need a JLCPCB source other than the capabilities page (e.g. a support or engineering answer), which is outside this session's URL scope.",
+ "time": {
+  "session_start_utc": "2026-10-23T03:17:42Z",
+  "capture_lease": {
+   "label": "ee446g source capture",
+   "class": "test",
+   "weight": 1,
+   "requested_epoch": 1792725480,
+   "admitted_epoch": 1792725480,
+   "done_epoch": 1792725481,
+   "queued_s": 0,
+   "admitted_run_s": 1
+  }
+ }
+}
