@@ -1,0 +1,35 @@
+{
+  "verdict": "PASS: declaration/source controls only; full critical-pin acceptance unresolved",
+  "native_footprints": 313,
+  "blocks": 26,
+  "effective_roles": 26,
+  "historical_rows": 211,
+  "unmapped_historical_rows": 197,
+  "byte_equal_relationships": true,
+  "native_endpoint_resolutions": 52,
+  "real_consumer_positive": true,
+  "negative_controls": [
+    {
+      "control": "unbound template cannot be consumed as bound contract",
+      "refusal": "allocation is not bound to this original board"
+    },
+    {
+      "control": "stale board binding",
+      "refusal": "allocation is not bound to this original board"
+    },
+    {
+      "control": "missing native allocation member",
+      "refusal": "unallocated native footprints: C130"
+    },
+    {
+      "control": "different effective locality bytes/semantics",
+      "refusal": "contract relationships differ from effective policy electrical_locality"
+    },
+    {
+      "control": "invented historical ID as effective ID",
+      "refusal": "template instance is duplicate or names an unknown relationship/role"
+    }
+  ],
+  "consumer_head": "8e3b382b0f48525742cfd520e3f306b12e78a468",
+  "consumer_source_identity": "selected consumer module blobs verified against frozen commit"
+}
