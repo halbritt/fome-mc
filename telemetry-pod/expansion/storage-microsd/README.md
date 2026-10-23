@@ -29,6 +29,15 @@ gates; the binding carries the LCSC URL without a byte hash.
 - No card-side ESD array: the socket is inside the sealed enclosure and the card is
   never handled in service. Add one if a service procedure changes that.
 
+## Decoupling repair (AGENTEE-484, agent-529 decision)
+
+`inputs/intent.json` adds C130 (1 uF, U4 Vdd), C131 (100 nF, U8 V+), C132 (100 nF, U9 V+) and C133
+(100 nF, U100 VIO), each on +3V3/GND and reusing an existing part binding (C44 or C38). `inputs/emitter-layout.json`
+draws the rebound capacitors with their consumers: C38/C41 with the IMU (U2 VDD/VDDIO), C43/C44 with GNSS
+(U10 IN, U3 VCC), C18 with the 5 V reference (U11 Vin). Rebinds do not change the netlist. Per-pin sources:
+`../agentee-484-decoupling/dispositions.json`. Emission (agent-ee `f92d71c`, which reproduces the previous
+`project/` byte for byte from the previous inputs): 309 components, 235 nets, ERC zero violations.
+
 ## Reproduction
 
 `inputs/` is `../released-source-migration/inputs/` with `intent.json` and

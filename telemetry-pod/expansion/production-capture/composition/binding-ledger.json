@@ -812,6 +812,38 @@
    "producer_value": "https://media.digikey.com/pdf/Data%20Sheets/Hirose%20PDFs/DM3_Series_MicroSD.pdf",
    "reason": "The historical URL served no PDF (sources/j3-capture-attempt, outcome missing; sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.",
    "reference": "J3"
+  },
+  {
+   "component": "adc/C130",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"32f4901df51469a95f7e2c87923ed37c511a9337cde3c80f762d7b20e76bb3a6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C130"
+  },
+  {
+   "component": "power/C131",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C131"
+  },
+  {
+   "component": "power/C132",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C132"
+  },
+  {
+   "component": "can/C133",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C133"
   }
  ],
  "qualification": {
@@ -2036,8 +2068,8 @@
  },
  "schema": "pod-capture.binding-ledger/1",
  "source_intent": {
-  "identity": "9be44884921475cd840825666d926758c9f2b461b7071b620436bb21b9f601ca",
+  "identity": "3543c43b80c5774f3ec40e60c177c0ab33bb39864772a056a31b0bb4bbe040c9",
   "path": "composition/intent.json",
-  "sha256": "ae3db604553539693ac486f9987eac537c28b237ccbf859d4f7f452c48a6f427"
+  "sha256": "c7c1eb52adcfa97a91fb3e4011672a43a85dd49d96f8c588984d1df249a9ab63"
  }
 }
