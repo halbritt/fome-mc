@@ -1,0 +1,296 @@
+{
+ "envelope": "composition/envelope.json",
+ "envelope_content": {
+  "antenna_facts": "composition/antenna-facts.json",
+  "captured_rule_areas": "composition/captured-rule-areas.json",
+  "intent": "composition/intent.writer.json",
+  "layout": "composition/emitter-layout.json"
+ },
+ "implementation": {
+  "effort": "high",
+  "harness": "claude",
+  "model": "claude-opus-5-5",
+  "timeout_s": 900
+ },
+ "implementation_steps": [
+  {
+   "adoptable_exits": [
+    0
+   ],
+   "argv": [
+    "/usr/bin/env",
+    "PYTHONPATH=/tool/agent-ee",
+    "/usr/bin/python3",
+    "-B",
+    "-P",
+    "-m",
+    "agent_ee.binding_fill",
+    "--intent",
+    "composition/intent.writer.json",
+    "--manifest",
+    "composition/parts.json",
+    "--part-refs",
+    "composition/part-refs.json",
+    "--deviations",
+    "composition/deviations.json",
+    "--captures",
+    ".",
+    "--ratings",
+    "composition/rating-sources.json",
+    "--source-migration"
+   ],
+   "artifacts": [
+    "out/binding-fill.json"
+   ],
+   "backend_report": null,
+   "inputs": [
+    "composition/datasheet-source-selection.json",
+    "composition/deviations.json",
+    "composition/intent.writer.json",
+    "composition/part-refs.json",
+    "composition/parts.json",
+    "composition/rating-facts.json",
+    "composition/rating-sources.json",
+    "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/e171be81af1fd58fcb06f260ba912d6d565041a69a7e6dd28d81f471710e97b2.pdf"
+   ],
+   "mounts": [
+    {
+     "at": "/tool/agent-ee",
+     "source": "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c"
+    }
+   ],
+   "schema": "agent-ee.stage-step/1",
+   "source": "/tool/agent-ee",
+   "stage": "schematic",
+   "step": "binding-fill",
+   "timeout_s": 600,
+   "version_argv": [
+    "/usr/bin/python3",
+    "--version"
+   ],
+   "writes": {
+    "composition/intent.bound.json": "out/intent.json"
+   }
+  },
+  {
+   "adoptable_exits": [
+    0
+   ],
+   "argv": [
+    "/usr/bin/env",
+    "PYTHONPATH=/tool/agent-ee",
+    "/usr/bin/python3",
+    "-B",
+    "-P",
+    "-m",
+    "agent_ee.schematic_stage",
+    "emit",
+    "--board",
+    "project/telemetry-pod.kicad_pcb",
+    "--schematic",
+    "project/telemetry-pod.kicad_sch",
+    "--intent",
+    "composition/intent.bound.json",
+    "--layout",
+    "composition/emitter-layout.json",
+    "--captures",
+    ".",
+    "--footprints",
+    "composition/footprints.json"
+   ],
+   "artifacts": [
+    "out/emission.json",
+    "out/project"
+   ],
+   "backend_report": null,
+   "inputs": [
+    "composition/intent.bound.json",
+    "composition/emitter-layout.json",
+    "composition/footprints.json"
+   ],
+   "mounts": [
+    {
+     "at": "/tool/agent-ee",
+     "source": "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c"
+    }
+   ],
+   "schema": "agent-ee.stage-step/1",
+   "source": "/tool/agent-ee",
+   "stage": "schematic",
+   "step": "emit-schematic",
+   "timeout_s": 300,
+   "version_argv": [
+    "/usr/bin/kicad-cli",
+    "version"
+   ],
+   "writes": {
+    "project/telemetry-pod.kicad_sch": "out/project/telemetry-pod.kicad_sch"
+   }
+  },
+  {
+   "adoptable_exits": [
+    0
+   ],
+   "argv": [
+    "/usr/bin/env",
+    "PYTHONPATH=/tool/agent-ee",
+    "/usr/bin/python3",
+    "-B",
+    "-P",
+    "-m",
+    "agent_ee.schematic_stage",
+    "annotate",
+    "--board",
+    "project/telemetry-pod.kicad_pcb",
+    "--schematic",
+    "project/telemetry-pod.kicad_sch",
+    "--intent",
+    "composition/intent.bound.json",
+    "--layout",
+    "composition/emitter-layout.json",
+    "--captures",
+    ".",
+    "--footprints",
+    "composition/footprints.json"
+   ],
+   "artifacts": [
+    "out/emission.json",
+    "out/netlist",
+    "out/plan.json",
+    "out/annotation.json"
+   ],
+   "backend_report": null,
+   "inputs": [
+    "composition/intent.bound.json",
+    "composition/emitter-layout.json",
+    "composition/footprints.json"
+   ],
+   "mounts": [
+    {
+     "at": "/tool/agent-ee",
+     "source": "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c"
+    }
+   ],
+   "schema": "agent-ee.stage-step/1",
+   "source": "/tool/agent-ee",
+   "stage": "schematic",
+   "step": "forward-annotate",
+   "timeout_s": 300,
+   "version_argv": [
+    "/usr/bin/kicad-cli",
+    "version"
+   ],
+   "writes": {
+    "project/telemetry-pod.kicad_pcb": "out/board.kicad_pcb"
+   }
+  },
+  {
+   "adoptable_exits": [
+    0
+   ],
+   "argv": [
+    "/usr/bin/env",
+    "PYTHONPATH=/tool/agent-ee",
+    "/usr/bin/python3",
+    "-B",
+    "-P",
+    "-m",
+    "agent_ee.add_planes",
+    "--board",
+    "project/telemetry-pod.kicad_pcb",
+    "--plan",
+    "composition/planes.json",
+    "--phase",
+    "pre-routing"
+   ],
+   "artifacts": [
+    "out"
+   ],
+   "backend_report": null,
+   "mounts": [
+    {
+     "at": "/tool/agent-ee",
+     "source": "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c"
+    }
+   ],
+   "schema": "agent-ee.stage-step/1",
+   "source": "/tool/agent-ee",
+   "stage": "routing",
+   "step": "add-planes",
+   "timeout_s": 600,
+   "version_argv": [
+    "/usr/bin/kicad-cli",
+    "version"
+   ],
+   "writes": {
+    "composition/planes-producer.json": "out/planes.json",
+    "project/telemetry-pod.kicad_pcb": "out/board.kicad_pcb"
+   }
+  }
+ ],
+ "max_iterations": 2,
+ "parts": "composition/parts.json",
+ "placement_adapter": {
+  "fixed_footprints": [],
+  "helper": "agent-ee.placer/1",
+  "policy": "composition/placement-policy.json",
+  "schema": "agent-ee.placement-adapter/1",
+  "timeout_s": 1500
+ },
+ "requirement_source": "telemetry-pod-rev3",
+ "review_budget_s": 3600,
+ "review_profile": {
+  "adjudicator": {
+   "effort": "high",
+   "harness": "claude",
+   "model": "claude-opus-5-5",
+   "timeout_s": 900
+  },
+  "name": "pod-rf-review-v1",
+  "reviewers": [
+   {
+    "effort": "high",
+    "harness": "codex",
+    "model": "gpt-6.1-sol",
+    "role": "circuit",
+    "timeout_s": 900
+   },
+   {
+    "effort": "high",
+    "harness": "agy",
+    "model": "gemini-4-argon-high",
+    "role": "physical",
+    "timeout_s": 900
+   },
+   {
+    "effort": "high",
+    "harness": "claude",
+    "model": "claude-opus-5-5",
+    "role": "rf",
+    "timeout_s": 900
+   }
+  ],
+  "schema": "agent-ee.profile/1",
+  "tool_mode": "investigate"
+ },
+ "routing_adapter": {
+  "board": "telemetry-pod.kicad_pcb",
+  "budget": 900,
+  "checkout": "/opt/kicad-route",
+  "label": "campaign",
+  "name": "telemetry-pod",
+  "project": "project",
+  "schema": "agent-ee.routing-adapter/1",
+  "schematic": "telemetry-pod.kicad_sch",
+  "timeout": 2100
+ },
+ "routing_budget_s": 900,
+ "schema": "agent-ee.pod-plan/1",
+ "scope": "scope.json",
+ "spec": "requirements-source/spec.md",
+ "spec_record": "requirements-source/spec-record.json",
+ "writer_inputs": {
+  "deviations": "composition/deviations.json",
+  "intent": "composition/intent.writer.json"
+ }
+}

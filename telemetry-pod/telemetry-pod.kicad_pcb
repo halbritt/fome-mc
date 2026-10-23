@@ -38,10 +38,10 @@
 				(thickness 0.035)
 			)
 			(layer "dielectric 1"
-				(type "core")
+				(type "prepreg")
 				(thickness 0.2104)
 				(material "FR4")
-				(epsilon_r 4.5)
+				(epsilon_r 4.4)
 				(loss_tangent 0.02)
 			)
 			(layer "In1.Cu"
@@ -52,7 +52,7 @@
 				(type "core")
 				(thickness 1.065)
 				(material "FR4")
-				(epsilon_r 4.5)
+				(epsilon_r 4.6)
 				(loss_tangent 0.02)
 			)
 			(layer "In2.Cu"
@@ -60,10 +60,10 @@
 				(thickness 0.0152)
 			)
 			(layer "dielectric 3"
-				(type "core")
+				(type "prepreg")
 				(thickness 0.2104)
 				(material "FR4")
-				(epsilon_r 4.5)
+				(epsilon_r 4.4)
 				(loss_tangent 0.02)
 			)
 			(layer "B.Cu"
@@ -18457,86 +18457,6 @@
 			)
 		)
 	)
-	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
-		(locked yes)
-		(layer "F.Cu")
-		(uuid "3a090e20-e2de-5213-9daa-48d7c74140e2")
-		(at 4 61)
-		(property "Reference" "H4"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "20509cf4-6a02-5718-896a-3f47c530f45a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "e74f2708-24e9-589d-838f-222d1e2581f6")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e01a8691-b9b5-58eb-8f16-6e401d3821c9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "207fc942-7319-50c7-b0ca-cb1fa611872a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(attr board_only exclude_from_pos_files exclude_from_bom)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "86ab8d42-9bdb-5e64-9cd9-e3541ccc0dfa")
-		)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "0300a1da-2d69-5c86-85b5-f201907332b7")
-		)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 3.2 3.2)
-			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
-			(uuid "a112ba49-f407-56b1-a982-6ac4f17d8c8a")
-		)
-		(embedded_fonts no)
-	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "3a0a99fe-f477-5ac6-818a-bfa616a0663d")
@@ -29538,7 +29458,7 @@
 		)
 		(zone
 			(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
-			(uuid "c0248a4d-cbed-5ea1-8b42-fb0ce96f0761")
+			(uuid "077779d8-3e85-533c-884b-ece717d995fc")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -41111,86 +41031,6 @@
 			)
 		)
 	)
-	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
-		(locked yes)
-		(layer "F.Cu")
-		(uuid "8eb32225-1992-5f1d-b985-e54e4c12d058")
-		(at 86 61)
-		(property "Reference" "H3"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "bf545326-dfe6-5c74-a35b-6b14fb62833a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "d89b92f7-96ee-59f9-9337-01077729ab7d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9ca63715-e862-5239-b1c8-b7f7af48246f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0b1de30a-2aa8-5a26-b3b4-3d6dd7b04075")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(attr board_only exclude_from_pos_files exclude_from_bom)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "bee09729-2f7c-512c-8f2f-acdbfb0c2a10")
-		)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "7f299b94-62a9-506b-964d-1b4f07a34ba0")
-		)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 3.2 3.2)
-			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
-			(uuid "7cfc8cf3-eb03-5371-834c-9272c6cbbb8e")
-		)
-		(embedded_fonts no)
-	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "8f0e119c-cdd5-58eb-b1ac-080a53848de1")
@@ -46142,86 +45982,6 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/+3V3")
 			(uuid "7002eda0-a6b5-564e-9898-008dd746be6b")
-		)
-		(embedded_fonts no)
-	)
-	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
-		(locked yes)
-		(layer "F.Cu")
-		(uuid "a0606821-c5ba-5bc6-9c3d-9f3b3c72fdfc")
-		(at 86 4)
-		(property "Reference" "H2"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "bd7e0fd5-24a6-54bf-9051-5da9d3867e43")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "5a3c38d9-070b-50d6-b790-44fa70f6430f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0027e9c7-117f-51dd-8847-d7be626ef150")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "b0f33ac1-43b5-5f7b-98f7-61a786aafee7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(attr board_only exclude_from_pos_files exclude_from_bom)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "5d9c3cc2-1af7-5476-9740-da675b6b3109")
-		)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "90f0b443-b13a-5157-85a8-29be4f11c817")
-		)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 3.2 3.2)
-			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
-			(uuid "e0eba337-b98e-536d-b729-e52640bd1fcc")
 		)
 		(embedded_fonts no)
 	)
@@ -52481,6 +52241,86 @@
 			)
 		)
 	)
+	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
+		(locked yes)
+		(layer "F.Cu")
+		(uuid "b3360744-2788-5315-89a8-1793306146b9")
+		(at 4 61)
+		(property "Reference" "H4"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "a8aeb345-9215-551c-ac13-94d9acc49aa3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "b2b98a99-557b-59d7-819d-5501eeee8564")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "865f1300-78c8-5537-a88a-09ff185ce7e1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "227790d6-2e47-54c5-963d-eb42740eb51d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "2523c861-7007-5cec-832b-e805902c41b1")
+		)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "bb21e209-8591-5cee-a575-284246dc895c")
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0)
+			(size 3.2 3.2)
+			(drill 3.2)
+			(layers "*.Cu" "*.Mask")
+			(uuid "70ec60d9-e9b7-5f3d-9297-263119abf6f3")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "b3554290-9420-5cce-b204-3c0d67d6fd41")
@@ -55974,86 +55814,6 @@
 				(xyz 0 0 0)
 			)
 		)
-	)
-	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
-		(locked yes)
-		(layer "F.Cu")
-		(uuid "bdce0c7f-1201-589c-a5d8-ec43c36bc880")
-		(at 4 4)
-		(property "Reference" "H1"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "74a558b0-5a4c-5c14-b4ac-ad157600aeb4")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(uuid "c846f9ae-8403-5d04-8ffd-eced3619864d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "df9d3902-700e-5329-9fd3-b242080fd5f7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "53e90d1d-d184-5b29-b1b8-fa2fcd3df56b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(attr board_only exclude_from_pos_files exclude_from_bom)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "5c47ee27-195b-54ad-ba5a-f23742020389")
-		)
-		(fp_rect
-			(start -1.6 -1.6)
-			(end 1.6 1.6)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "a1dc5299-515a-53c9-bed9-e12c10109415")
-		)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 3.2 3.2)
-			(drill 3.2)
-			(layers "*.Cu" "*.Mask")
-			(uuid "90c0033f-12a4-585e-962e-d61e50d292db")
-		)
-		(embedded_fonts no)
 	)
 	(footprint "Capacitor_SMD:C_1210_3225Metric"
 		(layer "F.Cu")
@@ -60557,6 +60317,86 @@
 				(xyz 0 0 0)
 			)
 		)
+	)
+	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
+		(locked yes)
+		(layer "F.Cu")
+		(uuid "d3fdb49f-270a-5d2c-b96c-2fa5d2c12ef9")
+		(at 4 4)
+		(property "Reference" "H1"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "18489319-a91a-55e0-9a9d-137a87796864")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "d3eebcf2-eef0-5e40-bc8e-fe190e937ae3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9b8e375c-d1a6-5b2e-a6cd-c02010fdafa1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e1f98df6-93e1-5673-978d-40328ebc074f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "24bc9acf-3080-5ea7-9a4c-d4053583f5e0")
+		)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "bc180921-8bc5-58b9-aeec-801bc60dfe47")
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0)
+			(size 3.2 3.2)
+			(drill 3.2)
+			(layers "*.Cu" "*.Mask")
+			(uuid "c1d7057b-c915-539b-b808-72f6d9686fa0")
+		)
+		(embedded_fonts no)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -65874,6 +65714,86 @@
 			)
 		)
 	)
+	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
+		(locked yes)
+		(layer "F.Cu")
+		(uuid "e8126730-4e62-5fc8-ae15-b9c35409b536")
+		(at 86 4)
+		(property "Reference" "H2"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "b913cb8c-1a1a-51d0-b1ca-d71a250bed51")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "63f6acd9-b9da-5936-aa49-11659b61ce7d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "0a07da7a-85fe-5d50-aa61-2c0d401ef4b0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "42f3664c-19ae-5f28-87b6-8bda3c75a18f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "aab9b975-5b65-55b2-b8cc-df5a90c459b1")
+		)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "f8150ce1-5427-5334-9738-29a54acc2ede")
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0)
+			(size 3.2 3.2)
+			(drill 3.2)
+			(layers "*.Cu" "*.Mask")
+			(uuid "50df18b4-a614-573b-ae65-2891775a98bf")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "e965ce72-a432-55ff-9679-94af69875774")
@@ -69038,6 +68958,86 @@
 			(net "/MCU_BOOT")
 			(solder_mask_margin 0.05)
 			(uuid "d039a1b6-6903-55c7-937b-5888584ecc45")
+		)
+		(embedded_fonts no)
+	)
+	(footprint "AgentEE_Mechanical_MountingHole_NPTH"
+		(locked yes)
+		(layer "F.Cu")
+		(uuid "f4acadd4-a62f-5d63-bd5f-dca7249449a2")
+		(at 86 61)
+		(property "Reference" "H3"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "2fd9cdb0-3a56-591f-91dd-65db3f62291c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "dbbef200-e57a-509a-b3fb-af925087271d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "282613cf-8b7f-557e-b3b5-8b872fff2946")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "58e45382-ba9b-5361-97eb-d92ddd40eb12")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(attr board_only exclude_from_pos_files exclude_from_bom)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "99a435e5-ba12-5f2a-bad4-e1c0d8f9941b")
+		)
+		(fp_rect
+			(start -1.6 -1.6)
+			(end 1.6 1.6)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "d593e920-40bf-5dc9-877b-50983869f97e")
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0)
+			(size 3.2 3.2)
+			(drill 3.2)
+			(layers "*.Cu" "*.Mask")
+			(uuid "44480bd9-a76f-5a40-a390-effebc4c2ad6")
 		)
 		(embedded_fonts no)
 	)
@@ -73581,7 +73581,7 @@
 		)
 		(zone
 			(layer "B.Cu")
-			(uuid "e56fa5ae-bab2-53aa-a86b-62a5e306abf0")
+			(uuid "e9a6166b-c88c-53a8-b041-86b324eb07c4")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -73611,7 +73611,7 @@
 		)
 		(zone
 			(layer "B.Cu")
-			(uuid "1fa4a8d7-062c-50fe-9951-518e8a056da3")
+			(uuid "0bd9834d-aba1-5c54-a12c-165219fbbaba")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -73641,7 +73641,7 @@
 		)
 		(zone
 			(layer "B.Cu")
-			(uuid "8384d02e-2a70-59a6-8c65-cced62ce1f35")
+			(uuid "08342450-2aa0-5e3b-befc-041144d71a48")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -73671,7 +73671,7 @@
 		)
 		(zone
 			(layer "B.Cu")
-			(uuid "b12b70b9-ab61-5cf8-aaa6-1c8174db5d57")
+			(uuid "ab1f02ea-b480-518e-bb28-838fd7dd7a7e")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -73701,7 +73701,7 @@
 		)
 		(zone
 			(layer "B.Cu")
-			(uuid "ad027fb1-8df2-5947-b747-387d244b2b89")
+			(uuid "9eb2d187-7c8c-58cc-9c7b-c7ad1ac28ba6")
 			(hatch full 0.508)
 			(connect_pads
 				(clearance 0)
@@ -73750,7 +73750,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "8c6adeae-09a6-50fc-9c23-d587b7b2492e")
+		(uuid "172df4ed-7a67-5798-8d03-a65063242d7d")
 	)
 	(gr_line
 		(start 0 65)
@@ -73760,7 +73760,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "6689f7d4-287f-5c47-a6ab-bd7d28bea2a2")
+		(uuid "8a82198e-a999-5e86-894f-5b8305549b7d")
 	)
 	(gr_line
 		(start 90 0)
@@ -73770,7 +73770,7 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "728899c5-021c-58ad-8c1f-d5bbba353479")
+		(uuid "85d6f971-b250-5074-b4a7-11cd24969791")
 	)
 	(gr_line
 		(start 90 65)
@@ -73780,12 +73780,12 @@
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "b03c6940-03b2-5026-b280-b756fddfe98c")
+		(uuid "cd5f04ad-3412-5d9c-b887-d536de51ccb4")
 	)
 	(gr_text "ASM J1 0deg"
 		(at 45 46.645 0)
 		(layer "F.SilkS")
-		(uuid "58b2f1f3-8e5e-5abf-bb61-d595f1dc841f")
+		(uuid "fa037820-e383-5551-8a1e-ada2f4711430")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -73796,7 +73796,7 @@
 	(gr_text "ASM U1 0deg"
 		(at 55.8625 22.23 0)
 		(layer "F.SilkS")
-		(uuid "a85a2329-9d4b-57f9-90f5-4a4af41f0b8e")
+		(uuid "783bc4c7-6e99-5617-8a7e-7fe7e0801625")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -73807,7 +73807,7 @@
 	(gr_text "ASM J2 180deg"
 		(at 76.186 29.0125 0)
 		(layer "F.SilkS")
-		(uuid "29c0ee5b-ade4-5932-b886-465cc5e02928")
+		(uuid "0cce9ece-78d9-569e-b653-5e15b5178dbc")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -73818,7 +73818,7 @@
 	(gr_text "ASM J3 90deg"
 		(at 23.701 32.205 0)
 		(layer "B.SilkS")
-		(uuid "5831b13b-ac60-51ea-8bb0-8dfb4e55eee7")
+		(uuid "51d73d48-558c-52f2-9959-98c13865dc3f")
 		(effects
 			(font
 				(size 0.8 0.8)
@@ -73829,7 +73829,7 @@
 	)
 	(zone
 		(layer "In1.Cu")
-		(uuid "460352a8-dace-51a2-842b-c1e4ef7ad212")
+		(uuid "a582e673-9cf3-5088-ae10-cfeb0a7de8d1")
 		(name "D-PCB-7v2-In1-no-tracks")
 		(hatch edge 0.5)
 		(connect_pads
@@ -73860,7 +73860,7 @@
 	)
 	(zone
 		(layers "In1.Cu" "In2.Cu")
-		(uuid "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae")
+		(uuid "f208eef7-ed7e-5c72-8d48-c7cc6267f354")
 		(name "D-PCB-6-RF-reference")
 		(hatch edge 0.5)
 		(connect_pads
