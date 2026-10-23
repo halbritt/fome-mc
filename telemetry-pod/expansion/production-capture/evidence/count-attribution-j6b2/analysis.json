@@ -1,0 +1,281 @@
+{
+ "current": "9f92bcc",
+ "drc_unconnected": {
+  "copper": {
+   "05783ce": {
+    "min_connections": 769,
+    "nets_with_pads": 235,
+    "tracks": 0,
+    "vias": 0,
+    "zones": 2
+   },
+   "243b17d": {
+    "min_connections": 315,
+    "nets_with_pads": 116,
+    "tracks": 901,
+    "vias": 170,
+    "zones": 2
+   },
+   "5d923c5": {
+    "min_connections": 769,
+    "nets_with_pads": 235,
+    "tracks": 0,
+    "vias": 0,
+    "zones": 2
+   },
+   "9f92bcc": {
+    "min_connections": 769,
+    "nets_with_pads": 235,
+    "tracks": 0,
+    "vias": 0,
+    "zones": 2
+   }
+  },
+  "count": 499,
+  "differences_against_reference": [
+   {
+    "commit": "243b17d",
+    "differing_items": 499,
+    "equal_ignoring_copper_layer_label": false
+   },
+   {
+    "commit": "5d923c5",
+    "differing_items": 4,
+    "equal_ignoring_copper_layer_label": true
+   },
+   {
+    "commit": "9f92bcc",
+    "differing_items": 4,
+    "equal_ignoring_copper_layer_label": true
+   }
+  ],
+  "note": "kicad-cli DRC reports unconnected items at its own granularity; the pcbnew pad count min_connections is not that number and is not used to reproduce it",
+  "pad_to_pad_same_net": 499
+ },
+ "drc_violations": {
+  "by_type": {
+   "courtyards_overlap": [
+    {
+     "description": "Courtyards overlap",
+     "items": [
+      "Footprint C5",
+      "Footprint J2"
+     ]
+    },
+    {
+     "description": "Courtyards overlap",
+     "items": [
+      "Footprint C6",
+      "Footprint J2"
+     ]
+    },
+    {
+     "description": "Courtyards overlap",
+     "items": [
+      "Footprint C7",
+      "Footprint J2"
+     ]
+    },
+    {
+     "description": "Courtyards overlap",
+     "items": [
+      "Footprint L1",
+      "Footprint L2"
+     ]
+    }
+   ],
+   "lib_footprint_mismatch": [
+    {
+     "description": "Footprint 'AMPSEAL_35_1-776163-1' does not match copy in library 'PodConnector'",
+     "items": [
+      "Footprint J1"
+     ]
+    },
+    {
+     "description": "Footprint 'SMA_Molex_73251-1153_EdgeMount_Horizontal' does not match copy in library 'Connector_Coaxial'",
+     "items": [
+      "Footprint J2"
+     ]
+    },
+    {
+     "description": "Footprint 'microSD_HC_Hirose_DM3AT-SF-PEJM5' does not match copy in library 'Connector_Card'",
+     "items": [
+      "Footprint J3"
+     ]
+    }
+   ],
+   "text_height": [
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "PCB text 'ASM J1 0deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "PCB text 'ASM J2 180deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "PCB text 'ASM J3 90deg' on B.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "PCB text 'ASM U1 0deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "Reference field of U16"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "Reference field of U18"
+     ]
+    },
+    {
+     "description": "Text height out of range (board setup constraints silk text height min height 1.0000 mm; actual 0.8000 mm)",
+     "items": [
+      "Reference field of U19"
+     ]
+    }
+   ],
+   "text_thickness": [
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "PCB text 'ASM J1 0deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "PCB text 'ASM J2 180deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "PCB text 'ASM J3 90deg' on B.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "PCB text 'ASM U1 0deg' on F.Silkscreen"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "Reference field of U16"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "Reference field of U18"
+     ]
+    },
+    {
+     "description": "Text thickness out of range (board setup constraints silk text thickness min thickness 0.1500 mm; actual 0.1200 mm)",
+     "items": [
+      "Reference field of U19"
+     ]
+    }
+   ]
+  },
+  "count": 21,
+  "identical_to_reference": {
+   "243b17d": false,
+   "5d923c5": true,
+   "9f92bcc": true
+  }
+ },
+ "identities": {
+  "05783ce": {
+   "board_sha256": "191ce5641171c17ad4071a2d6e023885242f3b72675d7a21fd81ea7201656bf6",
+   "commit": "05783cea1fdfbdd8c687eb6e2cbb55d4da156728",
+   "io_inputs": {
+    "contracts/telemetry-pod.interface.json": "2c62d08cbd15a77fea07a963359c1e9e3bd0e2c541ea6366aed83175bc4059c7",
+    "scripts/verify_io_map.py": "d3d33b5c394732f2f9787388b343148fe5d62bd422058bd99ff2504d2497fe71",
+    "telemetry-pod/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+    "telemetry-pod/pinout-checks/bindings.json": "6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b",
+    "telemetry-pod/pinout-checks/paths.json": "b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e"
+   },
+   "netlist_sha256_without_date": "014b141110291e77ffc4e382b3c17f6395f9d2260577393807ded76df248822f",
+   "schematic_sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2",
+   "tree": "65934a9218c3cb2fef9b197e420de2dc78842346"
+  },
+  "243b17d": {
+   "board_sha256": "2938ee1ee2cae459c869ee5c4c8443e66322034736fe3fcbf4b5e56377ea1cfa",
+   "commit": "243b17db28ae71182f721f05b6b69fff647dd3a6",
+   "io_inputs": {
+    "contracts/telemetry-pod.interface.json": "2c62d08cbd15a77fea07a963359c1e9e3bd0e2c541ea6366aed83175bc4059c7",
+    "scripts/verify_io_map.py": "d3d33b5c394732f2f9787388b343148fe5d62bd422058bd99ff2504d2497fe71",
+    "telemetry-pod/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+    "telemetry-pod/pinout-checks/bindings.json": "6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b",
+    "telemetry-pod/pinout-checks/paths.json": "b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e"
+   },
+   "netlist_sha256_without_date": "b18dd3b508df048dae2fc05f3c05779b1890186d25a87e69ff2f954e9db516f5",
+   "schematic_sha256": "025babaaa039c12052d9995ff7d3707e94b80d7087cbd494d20b8c19c2647e70",
+   "tree": "5f0ff3a41978caa511490591faa11fa702c59d47"
+  },
+  "5d923c5": {
+   "board_sha256": "adfb7668ac0c80dc1b4f1d2f97afa86b193f630c545bf43cbc0de8f49f351a40",
+   "commit": "5d923c5412d3659638c67c9cfa9f097e24620518",
+   "io_inputs": {
+    "contracts/telemetry-pod.interface.json": "2c62d08cbd15a77fea07a963359c1e9e3bd0e2c541ea6366aed83175bc4059c7",
+    "scripts/verify_io_map.py": "d3d33b5c394732f2f9787388b343148fe5d62bd422058bd99ff2504d2497fe71",
+    "telemetry-pod/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+    "telemetry-pod/pinout-checks/bindings.json": "6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b",
+    "telemetry-pod/pinout-checks/paths.json": "b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e"
+   },
+   "netlist_sha256_without_date": "e8c4749ef832d453bf62aa3383f755821f343f9852eea1f7eeabd89fa45cbc94",
+   "schematic_sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2",
+   "tree": "b5abfda2ecb0660a4e6bfa6a0a3cb7307a62acc1"
+  },
+  "9f92bcc": {
+   "board_sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673",
+   "commit": "9f92bccac6f5dc68efb1a0a7fd3141d0f6c42512",
+   "io_inputs": {
+    "contracts/telemetry-pod.interface.json": "2c62d08cbd15a77fea07a963359c1e9e3bd0e2c541ea6366aed83175bc4059c7",
+    "scripts/verify_io_map.py": "d3d33b5c394732f2f9787388b343148fe5d62bd422058bd99ff2504d2497fe71",
+    "telemetry-pod/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+    "telemetry-pod/pinout-checks/bindings.json": "6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b",
+    "telemetry-pod/pinout-checks/paths.json": "b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e"
+   },
+   "netlist_sha256_without_date": "4b3a88ca88adbcf58497de8bc938e8f289fac59ed8690b48c794747b356a30ca",
+   "schematic_sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2",
+   "tree": "1cbb318193dba75f77eddbdb1fbebee65e78f0d1"
+  }
+ },
+ "reference": "05783ce",
+ "schema": "pod-capture.count-attribution-analysis/1",
+ "verify_io": {
+  "by_kind": {
+   "io-map connector coverage": 1,
+   "io-map coverage": 23,
+   "telemetry-pod.interface.json": 76,
+   "telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; regenerate from committed inputs (see telemetry-pod/IO_MAP.md)": 1
+  },
+  "common_with_second_commit": [
+   "[ERROR] telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; regenerate from committed inputs (see telemetry-pod/IO_MAP.md)"
+  ],
+  "count": 101,
+  "identical_to_reference": {
+   "243b17d": false,
+   "5d923c5": true,
+   "9f92bcc": true
+  },
+  "only_current": 100
+ }
+}

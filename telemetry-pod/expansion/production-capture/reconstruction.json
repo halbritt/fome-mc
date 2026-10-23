@@ -217,6 +217,8 @@
    "source": "telemetry-pod/expansion/storage-microsd/inputs/footprints/PodSupervisor.pretty/DSE0006A.kicad_mod"
   },
   "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod": {
+   "derived": "FOMEMC-34 U3 model binding (library-updates.json)",
+   "output_sha256": "04fd063c146fbcfa6f60482253bb34b2bf1c39215b6158dd5f099bc89a1671bf",
    "sha256": "0864b907d97061cd5b98c0f71f1d1b94959be293a4597c2bd9a3f065e86083c6",
    "source": "telemetry-pod/expansion/storage-microsd/inputs/footprints/RF_GPS.pretty/ublox_NEO.kicad_mod"
   },
@@ -256,13 +258,17 @@
    "sha256": "e4a060e7f44df7303021f3de85d56737423aeb03ada3c2e52af1359c91c81a3b",
    "source": "telemetry-pod/expansion/storage-microsd/inputs/microsd-symbol-capture.json"
   },
-  "models/c-1-776163-1-t-3d.stp": {
-   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
-   "source": "telemetry-pod/expansion/storage-microsd/inputs/models/c-1-776163-1-t-3d.stp"
-  },
   "pre-thermistor-integration-receipt.json": {
    "sha256": "7b2886cbb543a56a0f179a44568d9b3d2361c0fe5a7f32ea1b8eab0caed1e61c",
    "source": "telemetry-pod/expansion/storage-microsd/inputs/pre-thermistor-integration-receipt.json"
+  },
+  "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step": {
+   "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9",
+   "source": "telemetry-pod/expansion/neo-m9n-model/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step"
+  },
+  "project/inputs/models/c-1-776163-1-t-3d.stp": {
+   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
+   "source": "telemetry-pod/expansion/connector-candidate/sources/c-1-776163-1-t-3d.stp"
   },
   "sources/fab-profile.json": {
    "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632",
@@ -831,6 +837,10 @@
   "telemetry-pod/expansion/component-fit/stock/responses/C7353633.json": {
    "sha256": "5ae2910650ecf0f91cc6aaa515187c07c675f9166881244fe43a3c5e76fec007",
    "source": "telemetry-pod/expansion/component-fit/stock/responses/C7353633.json"
+  },
+  "telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt": {
+   "sha256": "e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2",
+   "source": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt"
   },
   "telemetry-pod/expansion/design-rules/constraints.json": {
    "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
@@ -1789,6 +1799,21 @@
    "provenance_status": "unknown",
    "structural": "pass"
   },
+  "fab_profile": {
+   "limits": 8,
+   "production": {
+    "path": "composition/fab-profile.json",
+    "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
+   },
+   "relabel": {
+    "from": "R-envelope-telemetry-pod-fab-profile",
+    "to": "R-envelope-expanded-pod-microsd-production-fab-profile"
+   },
+   "source": {
+    "path": "sources/fab-profile.json",
+    "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632"
+   }
+  },
   "gaps": [],
   "ledger": {
    "historical-j3": 1,
@@ -1800,6 +1825,16 @@
    "bare_copper_probe": 6,
    "copper_feature": 5,
    "named": 294
+  },
+  "project_models": {
+   "J1": {
+    "candidate": "project/inputs/models/c-1-776163-1-t-3d.stp",
+    "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+   },
+   "U3": {
+    "candidate": "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+    "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9"
+   }
   },
   "qualify_manifest": {
    "cad": {

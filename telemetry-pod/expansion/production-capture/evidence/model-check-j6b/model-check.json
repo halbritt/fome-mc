@@ -1,0 +1,112 @@
+{
+ "J1": {
+  "argv": [
+   "kicad-cli",
+   "pcb",
+   "export",
+   "step",
+   "--force",
+   "--component-filter",
+   "J1",
+   "-o",
+   "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/mc-7d/J1.step",
+   "BOARD"
+  ],
+  "check": {
+   "board_body_top_z_mm": 1.5162,
+   "bounds_mm": [
+    6.55,
+    83.45,
+    -87.3,
+    -49.5,
+    -2.7288,
+    29.3712
+   ],
+   "cadquery_version": "2.8.0",
+   "exporter_datum_shift_from_fixture_mm": 0.0362,
+   "limits": "Native exporter datum, not physical stand-off, seating, fit, retention or mating acceptance (connector-candidate/README.md)",
+   "native_step_sha256": "f2e32f478c93dcf8769898ebbaeeaf52e1930cdf76ec65607cffca5609212ab9",
+   "rear_support_z_mm": 1.6012,
+   "status": "PASS",
+   "tail_axes": 35,
+   "tail_projection_mm": 3.5,
+   "tail_tips": 35
+  },
+  "fixture_check_model": {
+   "rc": 1,
+   "script": "connector-candidate/check_model.py",
+   "sha256": "fde643fdcfc247612b715ec8f2e233ee1a86d987efefda0b2f33d7a1c355a067",
+   "stderr_tail": [
+    "AssertionError: fixture-specific native seating datum"
+   ],
+   "stdout": ""
+  },
+  "log": "J1-step-export.log",
+  "log_lines": 3,
+  "rc": 0,
+  "sha256": "f2e32f478c93dcf8769898ebbaeeaf52e1930cdf76ec65607cffca5609212ab9",
+  "step": "J1.step"
+ },
+ "U3": {
+  "argv": [
+   "kicad-cli",
+   "pcb",
+   "export",
+   "step",
+   "--force",
+   "--component-filter",
+   "U3",
+   "--no-board-body",
+   "-o",
+   "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/mc-7d/U3.step",
+   "BOARD"
+  ],
+  "check": {
+   "cadquery_version": "2.8.0",
+   "limits": "Datasheet-derived visualization placement only; not mechanical qualification",
+   "native_mounting_z_mm": 1.6012,
+   "native_step_sha256": "98b8c0e688b21ad84291692769e33c25f11db9bb573b7e8afb51e310b3537122",
+   "pad_overlaps": 24,
+   "pose": {
+    "position_mm": [
+     95.25,
+     1137.92
+    ],
+    "rotation_deg": 0.0
+   },
+   "status": "PASS",
+   "valid_solids": 29
+  },
+  "log": "U3-step-export.log",
+  "log_lines": 3,
+  "rc": 0,
+  "sha256": "98b8c0e688b21ad84291692769e33c25f11db9bb573b7e8afb51e310b3537122",
+  "step": "U3.step"
+ },
+ "board": {
+  "path": "telemetry-pod/telemetry-pod.kicad_pcb",
+  "sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673"
+ },
+ "kicad_cli": "10.0.7",
+ "not_bound": [
+  {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/TE-CVM_776164-1-F-3d_stp.zip",
+   "reason": "mating plug (CVM_776164-1 rev F), mating-interface evidence only",
+   "ruling": {
+    "class": "coordinator-relayed agent-521 decision",
+    "quote": "CORRECTION by agent-521, Cairn 2026-10-22: the rev F CVM_776164-1 file is the mating PLUG, plug-only, in its own frame with no mating datum. It is NOT the J1 model. Keep it only as mating-interface evidence. A composite/mated view needs a sourced engagement datum and stays OPEN, so infer no transform."
+   },
+   "sha256": "be5ceb67574a916f83e9ec12e2bbf0ec64ef4dbd6b1e06cb9e96a7638a22d537"
+  }
+ ],
+ "open": [
+  "A composite or mated J1 view needs a sourced engagement datum; it stays OPEN and no transform is inferred.",
+  "Native model resolution and pose checks run on each emitted candidate (pipeline.py models stage, model_check.py); file presence here is not proof that KiCad loaded a model."
+ ],
+ "record": {
+  "path": "composition/project-models.json",
+  "sha256": "0c176468c066e33c444297ff60dbc0599f6ddbd6a85fb3eb0edb7b9fe836736b"
+ },
+ "schema": "pod-capture.model-check/1",
+ "status": "PASS"
+}

@@ -1,8 +1,19 @@
-# telemetry-pod (`FOMEMC-28` — Pilot Snapshot)
+# telemetry-pod (`FOMEMC-28`)
 
-> **Expanded requirements accepted 2026-10-20:** [Revision 3](REQUIREMENTS.md) calls for MCP3208/eight analog inputs, two wheel-speed inputs, standalone logging, digital tire-temperature provision and a 35-position AMPSEAL. The files and renders below remain the earlier v9 pilot and do not implement this baseline.
+> **Project files (2026-10-22, AGENTEE-207 j6 / AGENTEE-445): the production Rev-3 microSD pod, emitted, not
+> yet placed or routed.** `telemetry-pod.kicad_sch` is the production schematic emitted by agent-ee
+> `7d5b0d4d` (j6b2, the AGENTEE-466 runtime; byte-identical to the j6 `81e387ee` emission) from the bound production intent (305 components, 235 nets), and `telemetry-pod.kicad_pcb` is its
+> forward-annotated generation seed: the envelope's fixed parts (J1, J2, J3, U1, U2, H1-H4) posed, every other
+> footprint unplaced, nothing routed. Inputs, receipts and the bounded two-iteration preparation it came from
+> are retained in [`expansion/production-capture/evidence/emission-7d5b0d4d/`](expansion/production-capture/evidence/emission-7d5b0d4d/)
+> (`retain.py --check`); the library tables point at the retained captured libraries, and the bound J1 and U3
+> 3D models resolve from `inputs/models/` (j6b, FOMEMC-34). This is generation
+> input, not a design result: native DRC reports the unrouted connections and the unplaced-part overlaps as
+> findings, and no placement, routing, fabrication or bench acceptance exists.
 
-> **PILOT SNAPSHOT — NOT A RELEASE:** This placed-and-routed 4-layer `90 × 65 mm` board (`driver-preparation-v9-90x65`) is committed as an owner-approved pilot snapshot so the complete schematic, placement, routing, and 2D/3D renders are visible in-tree while trunk requalification finishes. It will be replaced by the clean-`main` requalified board once the open items below land.
+> **Historical v9 pilot snapshot.** Everything below, including the renders, describes the earlier v9 pilot
+> (commit `13c0bfb`, `driver-preparation-v9-90x65`), whose schematic and board files are retained in git
+> history only. Its emitter inputs were lost, so it could not be re-emitted (AGENTEE-445).
 
 ## Pilot Provenance & Open Requalification Items
 
@@ -71,15 +82,16 @@
 
 | Path | Description |
 |---|---|
-| `telemetry-pod.kicad_sch` | Complete telemetry-pod schematic (`108` components, `116` nets, `0` ERC violations) |
-| `telemetry-pod.kicad_pcb` | Placed-and-routed 4-layer `90 × 65 mm` pilot board (`112` footprints, `62/62` signal nets routed, `0` DRC violations) |
-| `telemetry-pod.kicad_pro` | KiCad 10 project configuration and netclass rules |
-| `telemetry-pod.kicad_dru` | Custom design rules (`agent-ee` net constraint rules) |
-| `telemetry-pod.net-constraints.record.json` | Provenance record for assigned net classes and RF/differential constraints |
-| `sym-lib-table`, `fp-lib-table` | Project-relative symbol and footprint library tables (`${KIPRJMOD}/...`) |
-| `captured-symbols/`, `captured-footprints/` | KiCad-library-derived and project-authored symbols and footprints |
+| `telemetry-pod.kicad_sch` | Production schematic emitted by agent-ee `7d5b0d4d` (j6b2; byte-identical to the j6 `81e387ee` emission; `305` components, `235` nets); the v9 pilot schematic is in history at `13c0bfb` |
+| `telemetry-pod.kicad_pcb` | Forward-annotated generation seed (fixed parts posed, the rest unplaced, unrouted); the v9 pilot board is in history at `13c0bfb` |
+| `telemetry-pod.kicad_pro` | KiCad 10 project written by the emission (production board setup and net classes) |
+| `telemetry-pod.kicad_dru` | Production custom design rules (`expansion/design-rules/telemetry-pod.kicad_dru`) |
+| `telemetry-pod.net-constraints.record.json` | (v9 pilot, historical) Provenance record for assigned net classes and RF/differential constraints |
+| `sym-lib-table`, `fp-lib-table` | The emitted candidate's tables, relocated to the retained captured libraries under `expansion/production-capture/evidence/emission-7d5b0d4d/design/` |
+| `inputs/models/` | (j6b, FOMEMC-34) The two bound project-local 3D models the board names as `${KIPRJMOD}/inputs/models/`: the J1 TE 1-776163-1 rev T header STEP and the U3 NEO-M9N datasheet-derived visualization, installed by `retain.py` and recorded in `expansion/production-capture/composition/project-models.json`. These are visual/mechanical models only |
+| `captured-symbols/`, `captured-footprints/` | (v9 pilot, historical) KiCad-library-derived and project-authored symbols and footprints |
 | `kicad-libraries/` | Shared FOME AMPSEAL-23 footprint and 3D STEP model (`c-1-776228-1-e-3d.STEP`) |
-| `renders/` | 2D layer SVGs/PNGs/PDFs, schematic SVG/PNG/PDF, and 4K 3D ray-traced views (`renders/3d/`) |
+| `renders/` | (v9 pilot, historical) 2D layer SVGs/PNGs/PDFs, schematic SVG/PNG/PDF, and 4K 3D ray-traced views (`renders/3d/`) |
 | `io-map.csv`, `IO_MAP.md`, `pinout-checks/` | Rev-3 connector/MCU map generated from the `expansion/storage-microsd/` netlist, plus the declared `BLE-RADIO` wireless row (no pin, `NOT_EVALUATED`); its bindings, paths and generator; v9 inputs in `pinout-checks/v9-pilot/` |
 | `verify_io_map.py`, `io-map-cross-check.txt`, `IO_MAP_HISTORY.md` | Retired revision-2 checker and historical cross-check |
 | `REQUIREMENTS.md` | Captured hardware requirements and owner design decisions |

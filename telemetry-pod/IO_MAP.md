@@ -229,10 +229,17 @@ them. This is not an upgrade.
 *Agent decision (AGENTEE-207, fm-iomap-rev3c round 4), not an owner decision.*
 
 - **What:** `source.json` `candidate` pins the actual emitted pod candidate. That is
-  pod-capture-j6b2 commit `5d923c5412d3659638c67c9cfa9f097e24620518`, project
+  pod-capture-j6b2 commit `2bd0f5c71abfce9a7a1a116edd5c1648521dd34a`, project
   schematic `telemetry-pod/telemetry-pod.kicad_sch` with sha256
   `f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2`, and
-  `candidate_id` `3688390f4b30506f2c32af4550c10c53bd9f0205433d8126b012702939704928`.
+  `candidate_id` `5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba`, emitted by
+  agent-ee `7d5b0d4d` (`evidence/emission-7d5b0d4d/MANIFEST.json`). This pin was refreshed on
+  2026-10-23 (agent-521 coordinator decision, relayed by agent-449; not owner text).
+  - The first pin, commit `5d923c54…` with candidate `3688390f…` and emission `81e387ee`
+    (manifest `cff19152…`), is kept as HISTORICAL in `source.json` `candidate_history`, with
+    its provenance. Its 193/194 result does not qualify the current candidate.
+  - `source.json` `candidate_provenance` records how each new value was recomputed from the
+    bytes. The schematic bytes are the same in both pins.
   The pin is bound to that emission's `MANIFEST.json` digest, its candidate id and
   its installed schematic digest. verify-io grades the same contract on a fresh
   netlist of that candidate. It reads the candidate in place once the project root

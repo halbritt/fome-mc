@@ -1,0 +1,155 @@
+{
+ "authority": "FOMEMC-34 (agent-449 pod lane, relayed in the j6b assignment): bind the J1 header STEP and the U3 NEO-M9N visualization into the prepared scope, hash-bound. Visual/mechanical models only; no electrical, fit, mating or qualification claim.",
+ "kiprjmod": "project/",
+ "models": [
+  {
+   "candidate": {
+    "path": "project/inputs/models/c-1-776163-1-t-3d.stp",
+    "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
+    "size_bytes": 1840115
+   },
+   "class": "exact-part manufacturer customer view model; mechanical visualization, not physical fit, retention or mating acceptance",
+   "footprint": "PodConnector:AMPSEAL_35_1-776163-1",
+   "member": {
+    "path": "footprints/PodConnector.pretty/AMPSEAL_35_1-776163-1.kicad_mod",
+    "sha256": "a0982315d870a57ef90772f57fc7473fe220929c5fcb09cb75d5284a34cc2101"
+   },
+   "model_reference": "${KIPRJMOD}/inputs/models/c-1-776163-1-t-3d.stp",
+   "part": {
+    "kind": "right-angle 35-position AMPSEAL PCB header",
+    "manufacturer": "TE Connectivity",
+    "model_revision": "T",
+    "mpn": "1-776163-1"
+   },
+   "pose": {
+    "offset": [
+     0,
+     -31.8,
+     11.72
+    ],
+    "rotate": [
+     -90,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "source": {
+     "path": "telemetry-pod/expansion/connector-candidate/README.md",
+     "quote": "KiCad stores the corresponding model rotation as **(-90, 0, 0)** degrees and\noffset **(0, -31.8, 11.72)** mm",
+     "sha256": "51893568cdee2564bc0e28812deb74fe3c7a698f57900d87e1337ff8551b650f"
+    }
+   },
+   "pose_checks": "connector-candidate/check_model.py: 35 tail axes on the drilled coordinates, 35 tip faces below the two rear support flats, 3.50 mm projection, model envelope",
+   "reference": "J1",
+   "source": {
+    "path": "telemetry-pod/expansion/connector-candidate/sources/c-1-776163-1-t-3d.stp",
+    "record": {
+     "archive": {
+      "captured_at_utc": "2026-10-20T12:36:35.565096+00:00",
+      "file": "sources/1-776163-1-T.zip",
+      "sha256": "42788e7aa3aa8375c27125e0b8f4c5625330e2bcb90061aa909a0872a5423321",
+      "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocLang=English&PartCntxt=1-776163-1&DocFormat=3d_stp.zip&DocNm=CVM_1-776163-1&DocType=Customer+View+Model"
+     },
+     "entry": {
+      "archive_member": "c-1-776163-1-t-3d.stp",
+      "derived_from": "sources/1-776163-1-T.zip",
+      "file": "sources/c-1-776163-1-t-3d.stp",
+      "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+     },
+     "path": "telemetry-pod/expansion/connector-candidate/sources.json",
+     "sha256": "90314bf747604435af41106376d86cd2ca5bc3821471d5f202ad407702396ee9"
+    },
+    "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+   }
+  },
+  {
+   "binding": {
+    "after_sha256": "04fd063c146fbcfa6f60482253bb34b2bf1c39215b6158dd5f099bc89a1671bf",
+    "path": "telemetry-pod/expansion/storage-microsd/inputs/footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+    "sha256": "0864b907d97061cd5b98c0f71f1d1b94959be293a4597c2bd9a3f065e86083c6"
+   },
+   "candidate": {
+    "path": "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+    "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9",
+    "size_bytes": 173473
+   },
+   "class": "visualization-only, datasheet-derived, not manufacturer/mechanical qualification",
+   "footprint": "RF_GPS:ublox_NEO",
+   "member": {
+    "path": "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+    "sha256": "04fd063c146fbcfa6f60482253bb34b2bf1c39215b6158dd5f099bc89a1671bf"
+   },
+   "model_reference": "${KIPRJMOD}/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+   "part": {
+    "manufacturer": "u-blox",
+    "mpn": "NEO-M9N-00B"
+   },
+   "pose": {
+    "offset": [
+     0,
+     0,
+     0
+    ],
+    "rotate": [
+     0,
+     0,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ],
+    "source": {
+     "path": "telemetry-pod/expansion/neo-m9n-model/README.md",
+     "quote": "Zero model rotation/offset and unit scale place it on `RF_GPS:ublox_NEO`.",
+     "sha256": "b2fbd4f3f081f4d1d6cb1c6aaa567c6bc7472aa1fc7b58fe0656e24a095ea250"
+    }
+   },
+   "reference": "U3",
+   "source": {
+    "path": "telemetry-pod/expansion/neo-m9n-model/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+    "record": {
+     "class": "visualization-only, datasheet-derived, not manufacturer/mechanical qualification",
+     "datasheet": {
+      "date": "2025-10-09",
+      "figure": 5,
+      "file": "NEO-M9N-00B_DataSheet_UBX-19014285.pdf",
+      "pages": [
+       16,
+       17
+      ],
+      "revision": "R08",
+      "sha256": "e21b35c1a4fd04f353e298a3c3c411c08e683a318d87ad3af9f570da40a40150",
+      "table": 20,
+      "url": "https://content.u-blox.com/sites/default/files/NEO-M9N-00B_DataSheet_UBX-19014285.pdf"
+     },
+     "path": "telemetry-pod/expansion/neo-m9n-model/provenance.json",
+     "sha256": "a8c95c10f0cb81235f4fe5164dfa4d0a07dff1e90504373bc98bcc4fb313d6b9"
+    },
+    "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9"
+   }
+  }
+ ],
+ "models_at": "project/inputs/models/",
+ "not_bound": [
+  {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/TE-CVM_776164-1-F-3d_stp.zip",
+   "reason": "mating plug (CVM_776164-1 rev F), mating-interface evidence only",
+   "ruling": {
+    "class": "coordinator-relayed agent-521 decision",
+    "quote": "CORRECTION by agent-521, Cairn 2026-10-22: the rev F CVM_776164-1 file is the mating PLUG, plug-only, in its own frame with no mating datum. It is NOT the J1 model. Keep it only as mating-interface evidence. A composite/mated view needs a sourced engagement datum and stays OPEN, so infer no transform."
+   },
+   "sha256": "be5ceb67574a916f83e9ec12e2bbf0ec64ef4dbd6b1e06cb9e96a7638a22d537"
+  }
+ ],
+ "open": [
+  "A composite or mated J1 view needs a sourced engagement datum; it stays OPEN and no transform is inferred.",
+  "Native model resolution and pose checks run on each emitted candidate (pipeline.py models stage, model_check.py); file presence here is not proof that KiCad loaded a model."
+ ],
+ "schema": "pod-capture.project-models/1"
+}

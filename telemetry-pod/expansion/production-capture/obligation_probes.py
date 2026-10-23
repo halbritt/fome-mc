@@ -286,16 +286,16 @@ class Probes(unittest.TestCase):
     def review(self, change_packet=None, change_candidate=None):
         env = self.env_for_lines = self.accepted()
         out, planning = Path(self.tmp.name) / 'out', Path(self.tmp.name) / 'planning'
-        run, probe = out / 'prepared-probe-scope/dry-run', planning / 'probe'
-        for path in (run / 'inputs/composition', probe, planning / 'composition'):
+        run = out / 'prepared/dry-run'
+        for path in (run / 'inputs/composition', planning / 'composition'):
             path.mkdir(parents=True, exist_ok=True)
         for target in (run / 'inputs' / RECORD, planning / RECORD):
             shutil.copyfile(self.root / 'block-obligations.json', target)
         dump(run / 'inputs/composition/binding-ledger.json', {'qualification': {f'R{i}': {} for i in range(174)}})
         scope = {**env['scope'], 'limitations': [*env['scope']['limitations'], 'copper_unknown']}
-        dump(probe / 'scope.json', scope)
-        dump(out / 'prepared-probe-scope/scope.json', scope)
-        candidate = {'scope_sha256': sha(out / 'prepared-probe-scope/scope.json'), 'scope': copy.deepcopy(scope)}
+        dump(planning / 'scope.json', scope)
+        dump(out / 'prepared/scope.json', scope)
+        candidate = {'scope_sha256': sha(out / 'prepared/scope.json'), 'scope': copy.deepcopy(scope)}
         packet = {'declared_limitations': list(scope['limitations']), 'artifacts': [{'path': 'inputs/' + RECORD}],
                   'citation_files': [{'path': 'inputs/' + RECORD}, {'path': 'inputs/composition/binding-ledger.json'}]}
         (change_packet or (lambda p: None))(packet['declared_limitations'])
@@ -305,7 +305,7 @@ class Probes(unittest.TestCase):
         stub = types.ModuleType('agent_ee.reviewers')
         stub.build_packet = lambda *_: packet
         sys.modules.update({'agent_ee': types.ModuleType('agent_ee'), 'agent_ee.reviewers': stub})
-        env.update(OUT=out, planning=planning, probe=probe, inputs={'ledger': 'composition/binding-ledger.json'})
+        env.update(OUT=out, planning=planning, PREPARED='prepared', inputs={'ledger': 'composition/binding-ledger.json'})
         try:
             return env['review_obligations']()
         finally:

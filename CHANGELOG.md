@@ -1,5 +1,50 @@
 # Changelog
 
+## 2026-10-23 — Pod production preparation j6b2: AGENTEE-466 runtime, binding receipt, relayed-decision labels (`AGENTEE-207`)
+
+- The pod preparation is repinned to agent-ee `7d5b0d4d`, the AGENTEE-466 qualified runtime with the AGENTEE-454
+  read-once fix. This is a coordinator decision by agent-449, not owner-stated. It ran once in that runtime's
+  own image, addressed by its proximal config digest `d96f8e00…` (c4 `agent-ee:ci-b29cead1…`, OCI index
+  `6dd73b15…`), under native-admit. The 81e387ee runs b4/b5 were TERMINATED-SUPERSEDED by the coordinators.
+- `production-capture/evidence/production-runtime-j6b/receipt.json` binds:
+  - that image (config recomputed on proximal; the c4 relation from the AGENTEE-466 evidence);
+  - the agent-ee source;
+  - router `b5774496` with its source, extension and interpreter identities, measured in the image;
+  - the exact invocation, behind a pre-launch identity check;
+  - the plan, scope, campaign, driver receipt, retained prepared tree and initial candidate.
+- The board-thickness, enclosure and harness open items are labelled `owner-relayed, agent-drafted, unconfirmed`.
+  They cite the committed relay record and the verbatim Cairn relays; the fix is in the generator. Evidence is
+  `evidence/emission-7d5b0d4d/`. The schematic is byte-identical to j6's, and the board equals the reviewed
+  head's except UUIDs and node order. No campaign was launched.
+
+## 2026-10-22 — Pod production preparation j6b: bound J1/U3 models, initial candidate, JP1-JP5 copper contract (`AGENTEE-207`, `FOMEMC-34`)
+
+- The prepared scope now carries two project-local 3D models at `${KIPRJMOD}/inputs/models/`, recorded in
+  `composition/project-models.json`:
+  - the exact-part J1 header STEP (TE 1-776163-1 rev T, `connector-candidate/sources/c-1-776163-1-t-3d.stp`),
+    with its sourced native pose;
+  - the U3 NEO-M9N datasheet-derived visualization, which the captured `RF_GPS:ublox_NEO` member now references
+    with zero transform.
+
+  The j6 candidate's J1 reference did not resolve (`missing`), and U3 had no model at all. The CVM_776164-1
+  rev F mating plug is not bound. These are visual/mechanical models only.
+- The pipeline records the initial candidate identity of iteration 1. Native checks on the emitted design
+  verify agent-509's JP1-JP5 ruling: on-board normally-open copper, not BOM, not DNP. They also rerun the
+  J1 drilling audit. `model_check.py` verifies the native STEP export of both models.
+- The production emission is regenerated (same agent-ee `81e387ee`, same plan bounds). It is reinstalled as
+  the telemetry-pod project, with the models at `telemetry-pod/inputs/models/`. No campaign was launched.
+
+## 2026-10-22 — Telemetry pod production preparation and re-emitted schematic (`AGENTEE-207` j6, `AGENTEE-445`)
+
+- The production capture (`telemetry-pod/expansion/production-capture/`) runs on agent-ee `81e387ee`. The real
+  `pod_driver` dry run prepares the bounded plan of record: 2 iterations, routing budget 900 s, placement
+  timeout 1500 s and a derived watchdog of 8400 s. The production scope stages the five generic envelope
+  obligations under agent-ee's reviewed source contract. No campaign was launched.
+- `telemetry-pod/telemetry-pod.kicad_sch` and `.kicad_pcb` are now the production schematic emitted from the
+  bound intent (305 components, 235 nets) and its forward-annotated, unplaced generation seed. The emitter
+  inputs and stage receipts are retained in `evidence/emission-81e387ee/`. `make check PROJECT=telemetry-pod`
+  passes all five steps. The v9 pilot snapshot (`13c0bfb`) stays in history and in its renders.
+
 ## 2026-10-18 — Telemetry Pod Document Reconciliation & 12 V Power Source Decision (`FOMEMC-31`)
 
 Reconciled the `fome-mc` telemetry and SV650 harness documentation (`docs/TELEMETRY_AND_RACECHRONO.md` and `docs/WIRING_SV650_K7.md`) against the standalone Rung-3 telemetry pod specification ([`telemetry-pod/REQUIREMENTS.md`](telemetry-pod/REQUIREMENTS.md), revision 2, 2026-10-18, sha256 `09e02c8d9471aabfa5d25935c87f436370cf1be367a96425b35305a53ce93493`) under the owner's third-batch decisions (`2026-10-18`, `FOMEMC-31` / `pod-45`):

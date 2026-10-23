@@ -1,0 +1,40 @@
+{
+ "copper": {
+  "min_connections": 315,
+  "nets_with_pads": 116,
+  "tracks": 901,
+  "vias": 170,
+  "zones": 2
+ },
+ "drc": {
+  "by_type": {},
+  "exit": 0,
+  "schematic_parity": 0,
+  "unconnected": 0,
+  "unconnected_list": [],
+  "violation_list": [],
+  "violations": 0
+ },
+ "identity": {
+  "board_sha256": "2938ee1ee2cae459c869ee5c4c8443e66322034736fe3fcbf4b5e56377ea1cfa",
+  "commit": "243b17db28ae71182f721f05b6b69fff647dd3a6",
+  "io_inputs": {
+   "contracts/telemetry-pod.interface.json": "2c62d08cbd15a77fea07a963359c1e9e3bd0e2c541ea6366aed83175bc4059c7",
+   "scripts/verify_io_map.py": "d3d33b5c394732f2f9787388b343148fe5d62bd422058bd99ff2504d2497fe71",
+   "telemetry-pod/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea",
+   "telemetry-pod/pinout-checks/bindings.json": "6790d55291b35e32e3d80187a024b918d49f6e5ac877bb8480a63143442c178b",
+   "telemetry-pod/pinout-checks/paths.json": "b5cffef62beecb5a78af00cece8362f0d4561bfa758740b1d3cec303438cb47e"
+  },
+  "netlist_sha256_without_date": "b18dd3b508df048dae2fc05f3c05779b1890186d25a87e69ff2f954e9db516f5",
+  "schematic_sha256": "025babaaa039c12052d9995ff7d3707e94b80d7087cbd494d20b8c19c2647e70",
+  "tree": "5f0ff3a41978caa511490591faa11fa702c59d47"
+ },
+ "netlist_exit": 0,
+ "verify_io": {
+  "error_list": [
+   "[ERROR] telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; regenerate from committed inputs (see telemetry-pod/IO_MAP.md)"
+  ],
+  "errors": 1,
+  "exit": 1
+ }
+}

@@ -21,8 +21,9 @@ native netlist, with explicit tire CAN/eMMC aliases and unused reset state.
 The full compiled interface and firmware contract remain outstanding.
 The [production capture](production-capture/README.md) binds the microSD source's parts manifest
 (all 305 references, J3 included), deviations, patched CAD closure, revised envelope, writer intent
-with its Qualification ledger and source-derived ratings for a pod run. Only its preparation probe
-prepares; the production scope and the bounded two-iteration plan are still refused (see its README).
+with its Qualification ledger and source-derived ratings for a pod run. At agent-ee `81e387ee` (j6; since j6b2 the preparation runs on `7d5b0d4d`, the AGENTEE-466 runtime) the
+production scope prepares with the bounded two-iteration plan (no campaign launched), and its emitted
+schematic and annotated board are now the telemetry-pod project (see its README).
 
 ## Connector and buses
 

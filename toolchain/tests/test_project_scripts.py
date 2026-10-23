@@ -221,7 +221,7 @@ class ProjectScripts(unittest.TestCase):
         self.assertEqual(result, 0, output)
         self.assertIn('NOT_EVALUATED: BLE-RADIO', output)
         self.assertIn('193/194 invariants satisfied', output)
-        self.assertIn('PASS: candidate 3688390f4b30506f2c32af4550c10c53bd9f0205433d8126b012702939704928', output)
+        self.assertIn('PASS: candidate 5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba', output)
         self.assertIn('REQUIREMENT_AUTHORITY: sourced: none;', output)
         for mutation in ('net', 'pin', 'nc', 'unresolved', 'unknown', 'missing', 'same-net-swap', 'drop-wireless'):
             with self.subTest(mutation=mutation):
