@@ -19,6 +19,7 @@ The lists of every commit are diffed against the first (the frozen reference), i
 
 Usage (fome-mc root, inside one admitted native-admit suite lease):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/count_attribution.py OUT_DIR COMMIT [COMMIT ...]
+  /usr/bin/python3 telemetry-pod/expansion/production-capture/count_attribution.py analyze OUT_DIR   (derived; reads only)
 """
 import collections
 import hashlib
@@ -138,5 +139,56 @@ def main(out, commits):
     print(json.dumps(summary['diffs_against_reference'], sort_keys=True))
 
 
+def analyze(out):
+    """Derive the attribution from a finished run's JSON (report-only; no check is rerun)."""
+    out = Path(out)
+    summary = json.loads((out / 'summary.json').read_text())
+    ref, commits = summary['reference'], summary['commits']
+    runs = {c: json.loads((out / f'{c}.json').read_text()) for c in commits}
+    diffs = json.loads((out / 'diffs.json').read_text())
+    pad = re.compile(r'^(?:PTH pad|Pad) (\S+) \[([^\]]*)\] of (\S+)(?: on (\S+))?$')  # SMD pads name a layer
+    current = commits[-1]
+
+    def pads(item):
+        return [pad.match(d) for d, _, _ in item['items']]
+    unconnected = runs[current]['drc']['unconnected_list']
+    pad_pairs = [u for u in unconnected if len(u['items']) == 2 and all(pads(u))
+                 and pads(u)[0].group(2) == pads(u)[1].group(2)]
+    tie_breaks = []
+    for c in commits[1:]:
+        only_ref = [json.loads(x) for x in diffs[c]['unconnected']['only_reference']]
+        only_other = [json.loads(x) for x in diffs[c]['unconnected']['only_other']]
+        strip = lambda u: sorted((m.group(1), m.group(2), m.group(3), x, y) for m, (_, x, y) in zip(pads(u), u['items']))  # noqa: E731
+        tie_breaks.append({'commit': c, 'differing_items': len(only_ref) + len(only_other),
+                           'equal_ignoring_copper_layer_label': sorted(map(strip, only_ref)) == sorted(map(strip, only_other))})
+    by_type = {}
+    for v in runs[current]['drc']['violation_list']:
+        by_type.setdefault(v['type'], []).append({'description': v['description'], 'items': [d for d, _, _ in v['items']]})
+    io = runs[current]['verify_io']['error_list']
+    frozen_io = runs[commits[1]]['verify_io']['error_list'] if len(commits) > 1 else []
+    result = {
+        'schema': 'pod-capture.count-attribution-analysis/1', 'reference': ref, 'current': current,
+        'identities': {c: runs[c]['identity'] for c in commits},
+        'drc_violations': {'count': runs[current]['drc']['violations'], 'by_type': by_type,
+                           'identical_to_reference': {c: diffs[c]['violations']['only_reference'] == [] and
+                                                      diffs[c]['violations']['only_other'] == [] for c in commits[1:]}},
+        'drc_unconnected': {'count': len(unconnected), 'pad_to_pad_same_net': len(pad_pairs),
+                            'copper': {c: runs[c]['copper'] for c in commits},
+                            'differences_against_reference': tie_breaks,
+                            'note': ('kicad-cli DRC reports unconnected items at its own granularity; the pcbnew pad '
+                                     'count min_connections is not that number and is not used to reproduce it')},
+        'verify_io': {'count': len(io), 'common_with_second_commit': sorted(set(io) & set(frozen_io)),
+                      'only_current': len(set(io) - set(frozen_io)),
+                      'by_kind': dict(collections.Counter(re.sub(r'^\[ERROR\] ', '', e).split(':')[0] for e in io)),
+                      'identical_to_reference': {c: diffs[c]['verify_io']['only_reference'] == [] and
+                                                 diffs[c]['verify_io']['only_other'] == [] for c in commits[1:]}}}
+    (out / 'analysis.json').write_text(json.dumps(result, indent=1, sort_keys=True) + '\n')
+    print(json.dumps({k: (v if not isinstance(v, dict) else {kk: vv for kk, vv in v.items() if kk not in ('by_type', 'copper')})
+                      for k, v in result.items() if k not in ('identities',)}, sort_keys=True)[:3000])
+
+
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2:])
+    if sys.argv[1] == 'analyze':
+        analyze(sys.argv[2])
+    else:
+        main(sys.argv[1], sys.argv[2:])
