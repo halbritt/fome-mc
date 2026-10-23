@@ -1,0 +1,843 @@
+{
+ "schema": "ee446g.board-side-evidence/1",
+ "item": "AGENTEE-446",
+ "lane": "ee446g",
+ "scope": "Design evidence only for items (a) finished hole, plating and registration and (b) board-lock/retention and solder tails of J1 on candidate 5504a022. Items (c) and (d) are deferred. No placement, routing, campaign, footprint, track, zone or board-geometry change. Nominal native values and TE customer-model geometry only: no TE compliance, seating, retention, assembled-clearance or vibration claim.",
+ "binding": {
+  "candidate_id": "5504a022417b5bf49ad6b1cec7f39f65bd3f8a566e46a286bb656904bef837ba",
+  "retained_commit": "2bd0f5c71abfce9a7a1a116edd5c1648521dd34a",
+  "files": [
+   {
+    "role": "emission manifest",
+    "path": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/MANIFEST.json",
+    "sha256": "161f71b0b1438830885a9f0badb0c913e17b55083f8216113483efe186b6d81f"
+   },
+   {
+    "role": "runtime receipt",
+    "path": "telemetry-pod/expansion/production-capture/evidence/production-runtime-j6b/receipt.json",
+    "sha256": "31ce57f6ab16e338477657f63f5e2e802d2bf855102990228ceca187230521f1"
+   },
+   {
+    "role": "schematic (installed)",
+    "path": "telemetry-pod/telemetry-pod.kicad_sch",
+    "sha256": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2"
+   },
+   {
+    "role": "board (installed)",
+    "path": "telemetry-pod/telemetry-pod.kicad_pcb",
+    "sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673"
+   },
+   {
+    "role": "board (retained design copy)",
+    "path": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/design/project/telemetry-pod.kicad_pcb",
+    "sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673"
+   },
+   {
+    "role": "board project (installed)",
+    "path": "telemetry-pod/telemetry-pod.kicad_pro",
+    "sha256": "10002b987995765415313fa89da32ba9011160853596f1a78ff8fba24ac9b175"
+   },
+   {
+    "role": "pipeline (j1.native_inspection on this board)",
+    "path": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/pipeline.json",
+    "sha256": "f1f67fc74e0d806b35f644e7e2ce9e7ce7ea5f89c2b16e5b9243a86a20589035"
+   },
+   {
+    "role": "J1 library footprint (captured)",
+    "path": "telemetry-pod/expansion/connector-candidate/PodConnector.pretty/AMPSEAL_35_1-776163-1.kicad_mod",
+    "sha256": "a0982315d870a57ef90772f57fc7473fe220929c5fcb09cb75d5284a34cc2101"
+   },
+   {
+    "role": "J1 library footprint (emitted design copy)",
+    "path": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/design/footprints/PodConnector.pretty/AMPSEAL_35_1-776163-1.kicad_mod",
+    "sha256": "a0982315d870a57ef90772f57fc7473fe220929c5fcb09cb75d5284a34cc2101"
+   }
+  ],
+  "gates": {
+   "retain_check": {
+    "command": "python3 telemetry-pod/expansion/production-capture/retain.py --check",
+    "before": "logs/retain-check-before.log",
+    "after": "logs/retain-check-after.log"
+   },
+   "runtime_receipt_check": {
+    "command": "/usr/bin/python3 telemetry-pod/expansion/production-capture/runtime_receipt.py check",
+    "before": "logs/runtime-receipt-check-before.log",
+    "after": "logs/runtime-receipt-check-after.log"
+   }
+  },
+  "native_pose": {
+   "J1": {
+    "fpid": "PodConnector:AMPSEAL_35_1-776163-1",
+    "position_mm": [
+     45.0,
+     55.5
+    ],
+    "rotation_deg": 0.0,
+    "layer": "F.Cu",
+    "locked": true,
+    "placement": "fixed: envelope fixed footprint (bottom edge, inset 9.5 mm, position 45 mm, rotation 0, tolerance 0) in telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/design/composition/envelope.json fixed_footprints"
+   },
+   "U3": {
+    "fpid": "RF_GPS:ublox_NEO",
+    "position_mm": [
+     95.25,
+     1137.92
+    ],
+    "rotation_deg": 0.0,
+    "layer": "F.Cu",
+    "locked": false,
+    "placement": "NONE on this unplaced candidate: staged far outside the board outline (Edge.Cuts bbox -0.05..90.05 x -0.05..65.05 mm); not in envelope fixed_footprints. U3 clearance needs a placed candidate."
+   }
+  }
+ },
+ "sources": {
+  "AS114S3": {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/TE-114-16016-S3.pdf",
+   "sha256": "645a74cb6e245a15ae3f8c3a2380e577cf16627d146fe1db6a08ee68250d0c55",
+   "identity": "TE application specification 114-16016 rev S3, 30 APR 25, 13 pages",
+   "class": "manufacturer original"
+  },
+  "D2293782E5": {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/TE-2293782-E5.pdf",
+   "sha256": "a692de19592374817583725c4dc00bfb60121cc05295e2ab89071febbac56aea",
+   "identity": "TE customer drawing 2293782 rev E5 (plug assembly, AMPSEAL family), 2 sheets",
+   "class": "manufacturer original"
+  },
+  "K1": {
+   "path": "telemetry-pod/expansion/connector-candidate/sources/776163-K1.pdf",
+   "sha256": "7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7",
+   "identity": "TE customer drawing 776163 rev K1 (header, 35 position, right angle), 2 sheets",
+   "class": "manufacturer original"
+  },
+  "CVM776164F": {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/TE-CVM_776164-1-F-3d_stp.zip",
+   "sha256": "be5ceb67574a916f83e9ec12e2bbf0ec64ef4dbd6b1e06cb9e96a7638a22d537",
+   "identity": "TE CVM_776164-1 rev F mating plug STEP zip (still unbound; not used here)",
+   "class": "manufacturer original"
+  },
+  "HEADERSTEP": {
+   "path": "telemetry-pod/expansion/connector-candidate/sources/c-1-776163-1-t-3d.stp",
+   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
+   "identity": "TE 1-776163-1 rev T header customer view model (the bound J1 model)",
+   "class": "manufacturer original (model; not a drawing dimension)"
+  },
+  "FAB": {
+   "path": "telemetry-pod/expansion/production-capture/sources/fab-profile/fab-profile.json",
+   "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632",
+   "identity": "captured JLCPCB fab profile jlc04161h-7628, as of 2026-10-18",
+   "class": "manufacturer published capability (agent-ee recorded facts)"
+  },
+  "OWNER20261022": {
+   "path": "telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt",
+   "sha256": "e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2",
+   "identity": "relayed decision record (Cairn d162e001, b706da93, 9561cd0c via agent-509)",
+   "class": "owner-relayed (agent-drafted, unconfirmed)"
+  }
+ },
+ "native": {
+  "facts": "logs/native-facts.json",
+  "probe": "probe.py",
+  "runtime": "fome-runtime:d96f8e00 image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, KiCad 10.0.7, network none, native-admit test/1",
+  "snapshots": {
+   "current": "build/runs/ee446g/current/telemetry-pod.kicad_pcb (byte copy of the installed board 2f1c9557 + .kicad_pro + .kicad_dru)",
+   "prior": "build/runs/ee446g/prior/telemetry-pod.kicad_pcb (git show 5d923c5:telemetry-pod/telemetry-pod.kicad_pcb = adfb7668, + .kicad_pro + .kicad_dru)"
+  },
+  "model_faces": "logs/boardlock-faces.json",
+  "model_faces_script": "boardlock_faces.py"
+ },
+ "change_since_adfb7668": {
+  "prior_board": {
+   "commit": "5d923c5",
+   "sha256": "adfb7668ac0c80dc1b4f1d2f97afa86b193f630c545bf43cbc0de8f49f351a40"
+  },
+  "current_board": {
+   "sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673"
+  },
+  "result": "J1 and U3 unchanged: equal footprint-local native geometry digests (pads, graphics, models), equal footprint text-block digests (uuids, nets and the footprint pose removed), and equal native poses. J1 pads equal the captured library footprint; the board instance carries the two pin-1 marker lines on F.Fab where the library has F.Silkscreen (same on both boards, not hole geometry).",
+  "reuse_valid": true
+ },
+ "rows": [
+  {
+   "id": "a1",
+   "item": "a",
+   "topic": "J1 plated-hole finished diameter (nominal)",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø1.75 ±0.1 After Plating; X Places = 35 (35-Position)"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2, RECOMMENDED P.C. BOARD LAYOUT",
+     "quote": "35X Ø1.75±0.1 AFTER PLATING"
+    }
+   ],
+   "board": {
+    "value": "35 PTH, drill 1.75 mm round (KiCad PTH drill = finished hole)",
+    "facts": {
+     "pth_count": 35,
+     "pth_drill_mm": [
+      1.75
+     ]
+    }
+   },
+   "verdict": "consistent",
+   "note": "Nominal only; the ±0.1 mm finished tolerance is row a2."
+  },
+  {
+   "id": "a2",
+   "item": "a",
+   "topic": "Fabricator finished-hole tolerance for the Ø1.75 ±0.1 PTH",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø1.75 ±0.1 After Plating"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[] and finished_thickness_tolerance",
+     "quote": "(no PTH finished-hole tolerance recorded)"
+    }
+   ],
+   "board": {
+    "value": "drill 1.75 mm",
+    "facts": {
+     "pth_drill_mm": [
+      1.75
+     ]
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "JLCPCB published PTH finished-hole diameter tolerance (not in the captured fab profile or its three source files; no network this lane)."
+  },
+  {
+   "id": "a3",
+   "item": "a",
+   "topic": "PTH pattern and position (nominal) vs datum A",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "position Ø0.1 (S) A (S); pitch 4, rows 4 and 4, stagger 2, 0.5 to the Ø2.85 centreline, 6.5 to the first hole"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2, RECOMMENDED P.C. BOARD LAYOUT",
+     "quote": "35X Ø1.75±0.1 ... Ø0.1 (S) A (S)"
+    }
+   ],
+   "board": {
+    "value": "all 35 PTH at the derived K1 coordinates (review/coordinates.json); j1.native_inspection grid_matches_k1_sheet_2 true on this board",
+    "facts": {
+     "pth_matches_coordinates_json": true
+    }
+   },
+   "verdict": "consistent",
+   "reuse": [
+    "R1",
+    "R2"
+   ]
+  },
+  {
+   "id": "a4",
+   "item": "a",
+   "topic": "Fabricator drill position / layer registration against the Ø0.1 position tolerance",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø0.1 (S) A (S)"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[]",
+     "quote": "(no drill-position or registration tolerance recorded)"
+    }
+   ],
+   "board": {
+    "value": "nominal positions exact (row a3)",
+    "facts": {
+     "pth_matches_coordinates_json": true
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "JLCPCB published drill position tolerance and drill-to-copper / layer-to-layer registration (not in the captured fab profile)."
+  },
+  {
+   "id": "a5",
+   "item": "a",
+   "topic": "Locator holes: diameter, count, spacing (nominal)",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø2.85 ± 0.08, Ø0.1 (S), 2 Places (Right-Angle Header Only); Z = 57.0 (35-Position)"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2, RECOMMENDED P.C. BOARD LAYOUT",
+     "quote": "Ø2.85±0.08 -A-; Ø2.85±0.08 Ø0.1 (S) A (S); 57"
+    }
+   ],
+   "board": {
+    "value": "2 NPTH, drill 2.85 mm at local (-28.5, +0.5) and (+28.5, +0.5): spacing 57.0",
+    "facts": {
+     "npth": [
+      [
+       [
+        -28.5,
+        0.5
+       ],
+       [
+        2.85,
+        2.85
+       ]
+      ],
+      [
+       [
+        28.5,
+        0.5
+       ],
+       [
+        2.85,
+        2.85
+       ]
+      ]
+     ]
+    }
+   },
+   "verdict": "consistent",
+   "reuse": [
+    "R1"
+   ]
+  },
+  {
+   "id": "a6",
+   "item": "a",
+   "topic": "Locator holes plated or unplated",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "\"After Plating\" is attached only to the Ø1.75 callout; the Ø2.85 callout states no plating"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2",
+     "quote": "\"AFTER PLATING\" under the 35X Ø1.75 callout only"
+    }
+   ],
+   "board": {
+    "value": "NPTH, pad size = drill (no copper)",
+    "facts": {
+     "npth_copper_free": true
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "No captured TE document states the plating of the Ø2.85 holes (TE product spec 108-1329 is not captured; HTTP 403 in mating-interface missing_captures). NPTH is the board's design assumption, not a mismatch."
+  },
+  {
+   "id": "a7",
+   "item": "a",
+   "topic": "Fabricator NPTH tolerance for Ø2.85 ±0.08",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø2.85 ± 0.08"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[]",
+     "quote": "(no NPTH diameter tolerance recorded)"
+    }
+   ],
+   "board": {
+    "value": "drill 2.85 mm",
+    "facts": {
+     "npth_drill_mm": [
+      2.85
+     ]
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "JLCPCB published NPTH diameter tolerance (not in the captured fab profile)."
+  },
+  {
+   "id": "a8",
+   "item": "a",
+   "topic": "Board edge 9 mm from the locator centreline",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Edge of PC Board; 9 (from the Ø2.85 centreline)"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2, RECOMMENDED P.C. BOARD LAYOUT",
+     "quote": "9 (to the dashed line)"
+    }
+   ],
+   "board": {
+    "value": "both locator centres 9.0 mm from the nearest Edge.Cuts segment",
+    "facts": {
+     "locator_centreline_to_edge_mm": [
+      9.0,
+      9.0
+     ]
+    }
+   },
+   "verdict": "consistent",
+   "note": "Nominal outline; the fabricator outline-routing tolerance is not in the captured profile (not a TE-tolerance row: TE gives the 9 without its own tolerance beyond the S3 p.1 general note)."
+  },
+  {
+   "id": "a9",
+   "item": "a",
+   "topic": "Copper land size and annular ring",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "(hole callouts only; no land diameter)"
+    },
+    {
+     "key": "K1",
+     "page": 2,
+     "section": "sheet 2",
+     "quote": "(hole callouts only; no land diameter)"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[]",
+     "quote": "(no PTH annular-ring minimum recorded)"
+    }
+   ],
+   "board": {
+    "value": "2.4 mm lands (pad 1 square, others round) on every copper layer; nominal radial annulus 0.325 mm; 0.275 mm at the TE maximum finished hole 1.85 (arithmetic only, not a gate)",
+    "facts": {
+     "pth_land_mm": [
+      2.4
+     ],
+     "pth_nominal_annulus_mm": [
+      0.325
+     ]
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "JLCPCB published minimum PTH annular ring (not in the captured fab profile). TE prescribes no land size. The project rule min_via_annular_width 0.1 mm applies to vias only."
+  },
+  {
+   "id": "a10",
+   "item": "a",
+   "topic": "Plating present on the 35 contact holes",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A, Figure 13a",
+     "quote": "Ø1.75 ±0.1 After Plating"
+    }
+   ],
+   "board": {
+    "value": "all 35 are PTH with copper on all copper layers",
+    "facts": {
+     "pth_count": 35
+    }
+   },
+   "verdict": "consistent",
+   "note": "Plating presence only."
+  },
+  {
+   "id": "a11",
+   "item": "a",
+   "topic": "Plated wall (copper) thickness",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A",
+     "quote": "(no plating thickness stated)"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "stackup",
+     "quote": "outer / copper: 1 oz (foil, not hole-wall plating)"
+    }
+   ],
+   "board": {
+    "value": "not a board-file property"
+   },
+   "verdict": "unknown",
+   "missing_source": "Neither TE nor the captured fab profile states a hole-wall plating thickness."
+  },
+  {
+   "id": "a12",
+   "item": "a",
+   "topic": "Hole-to-hole spacing vs fabricator minimum",
+   "sources": [
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[id=holes] min_hole_to_hole_mm",
+     "quote": "pad / hole / hole: 0.45 mm"
+    }
+   ],
+   "board": {
+    "value": "minimum J1 hole-wall gap 2.25 mm (pins 1-2)",
+    "facts": {
+     "min_hole_wall_gap_mm": 2.25
+    }
+   },
+   "verdict": "consistent"
+  },
+  {
+   "id": "a13",
+   "item": "a",
+   "topic": "J1 copper to board edge vs fabricator minimum",
+   "sources": [
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "limits[id=edge] min_edge_clearance_mm",
+     "quote": "routed / copper / edge: 0.2 mm"
+    }
+   ],
+   "board": {
+    "value": "minimum J1 PTH land to Edge.Cuts 4.3 mm",
+    "facts": {
+     "min_pth_land_to_edge_mm": 4.3
+    }
+   },
+   "verdict": "consistent"
+  },
+  {
+   "id": "a14",
+   "item": "a",
+   "topic": "Board thickness (SETTLED; not reopened, not a gate)",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A",
+     "quote": "The pc board thickness shall be 1.57 mm."
+    },
+    {
+     "key": "OWNER20261022",
+     "page": 1,
+     "section": "Cairn b706da93 (verbatim relay)",
+     "class": "owner-relayed (agent-drafted, unconfirmed)",
+     "quote": "accept the standard JLCPCB four-layer 1.6 mm nominal finished-board choice and its published standard tolerance"
+    },
+    {
+     "key": "FAB",
+     "page": 1,
+     "section": "finished_thickness_tolerance",
+     "quote": "nominal >= 1.0 mm / finished thickness: +/-10 %"
+    }
+   ],
+   "board": {
+    "value": "native board thickness 1.6 mm, 4 copper layers",
+    "facts": {
+     "board_thickness_mm": 1.6,
+     "copper_layers": 4
+    }
+   },
+   "verdict": "settled",
+   "note": "AGENTEE-448 component-side fit: TE 1.57 mm, screening band 1.413-1.727 mm, 1.6 mm inside. The JLC ±10% vs TE ±0.13 mm arithmetic is a documented uncertainty, not a gate. No new thickness gate is added."
+  },
+  {
+   "id": "b1",
+   "item": "b",
+   "topic": "Board-lock / retention feature specification",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 1,
+     "section": "1, Figure 1",
+     "quote": "Retention Leg (feature name only, no dimension)"
+    },
+    {
+     "key": "AS114S3",
+     "page": "1-13",
+     "section": "whole document",
+     "quote": "(no board-lock, retention-leg or PCB-retention dimension, thickness range or force)"
+    },
+    {
+     "key": "K1",
+     "page": 1,
+     "section": "sheet 1, bottom view",
+     "quote": "(two pegs drawn, undimensioned)"
+    },
+    {
+     "key": "D2293782E5",
+     "page": "1-2",
+     "section": "sheets 1-2",
+     "quote": "(plug drawing: no header, PCB, board-lock or tail data)"
+    }
+   ],
+   "board": {
+    "value": "two Ø2.85 NPTH receive the pegs (row a5)",
+    "facts": {
+     "npth_drill_mm": [
+      2.85
+     ]
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "TE board-lock geometry, supported PCB-thickness range and PCB retention data (e.g. product spec 108-1329; not captured, HTTP 403)."
+  },
+  {
+   "id": "b2",
+   "item": "b",
+   "topic": "Board-lock peg vs a 1.6 mm board (MODEL-ONLY design assumption)",
+   "sources": [
+    {
+     "key": "HEADERSTEP",
+     "page": null,
+     "section": "raw model frame; support flats at raw Y -11.72 (review/geometry.md)",
+     "quote": "peg shaft radial extent <= 1.2992 mm at Y -11.72..-13.29 (review/boardlock-sections.json); +Y-facing snap shoulder plane at raw Y -13.5, radial reach 1.90 mm (logs/boardlock-faces.json, review/boardlock-sections.json); peg end at raw Y -15.1"
+    }
+   ],
+   "board": {
+    "value": "board 1.6 mm (native); shoulder 1.78 mm below the seating flats, i.e. 0.18 mm below the nominal board underside; shaft Ø about 2.60 inside the Ø2.85 (min 2.77) hole",
+    "facts": {
+     "board_thickness_mm": 1.6,
+     "shoulder_y": -13.5,
+     "support_flat_y": -11.72
+    }
+   },
+   "verdict": "consistent",
+   "note": "Model geometry of TE's customer view model (rev T), not a TE dimension. It does not establish insertion force, retention force, latch engagement or tolerance-stack fit. Across the board-side JLC range 1.44-1.76 mm the model shoulder stays below the underside (0.34 to 0.02 mm); that is recorded arithmetic, not a gate."
+  },
+  {
+   "id": "b3",
+   "item": "b",
+   "topic": "Physical PCB retention / pull test",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 5,
+     "section": "3.5.A.2",
+     "quote": "Pull back on the contact wire with a force of 4.45 or 8.9 N (contact-in-plug check; NOT PCB retention, not used)"
+    }
+   ],
+   "board": {
+    "value": "none"
+   },
+   "verdict": "open-bench",
+   "note": "Future bench item on AGENTEE-446. PCB retention force is never inferred from contact-wire retention."
+  },
+  {
+   "id": "b4",
+   "item": "b",
+   "topic": "Primary header attachment is the panel screws (TE design intent)",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 11,
+     "section": "3.6.B",
+     "quote": "The header assembly is designed to be fastened to the enclosure by four self-tapping thread-forming screws"
+    },
+    {
+     "key": "K1",
+     "page": 1,
+     "section": "sheet 1 note 1",
+     "quote": "SUGGESTED MOUNTING SCREW SIZE IS Ø2.50mm ... DRIVEN AT 0.6-0.8 N-m. THE CUSTOMER MUST TEST THE SCREW SIZE AND TYPE"
+    }
+   ],
+   "board": {
+    "value": "n/a (enclosure/panel is a team design deliverable)"
+   },
+   "verdict": "open-design",
+   "note": "Design assumption for (b) and the deferred (d): mating loads go to the panel, not the solder joints or pegs. Not a claim; the enclosure and panel are future deliverables."
+  },
+  {
+   "id": "b5",
+   "item": "b",
+   "topic": "Solder-tail length vs board thickness",
+   "sources": [
+    {
+     "key": "K1",
+     "page": 1,
+     "section": "sheet 1, SECTION A-A",
+     "quote": "(3.0-4.0) (reference; header seating plane to tail tips)"
+    },
+    {
+     "key": "HEADERSTEP",
+     "page": null,
+     "section": "raw model frame",
+     "quote": "35 tail tips 3.50 mm below the support flats (connector-candidate/README.md, check_model.py)"
+    }
+   ],
+   "board": {
+    "value": "board 1.6 mm: model tails protrude about 1.90 mm below the nominal underside (1.74-2.06 mm over 1.44-1.76 mm); even the K1 minimum reference 3.0 exceeds 1.76",
+    "facts": {
+     "board_thickness_mm": 1.6
+    }
+   },
+   "verdict": "consistent",
+   "note": "Design assumption: the tails pass through the board for a fillet. TE states no minimum protrusion in the captured documents. Solder-joint quality is not claimed."
+  },
+  {
+   "id": "b6",
+   "item": "b",
+   "topic": "Tail trimming per the relayed assembly sequence",
+   "sources": [
+    {
+     "key": "OWNER20261022",
+     "page": 1,
+     "section": "Cairn d162e001 (verbatim relay)",
+     "class": "owner-relayed (agent-drafted, unconfirmed)",
+     "quote": "Assembly sequence described by owner: secure/seat the connector, tack-solder one pin, re-seat/align, solder remaining pins, trim excess lead stickout."
+    }
+   ],
+   "board": {
+    "value": "n/a"
+   },
+   "verdict": "open-design",
+   "note": "No source gives a trimmed length; the assembly instruction stays a design deliverable."
+  },
+  {
+   "id": "b7",
+   "item": "b",
+   "topic": "Tail cross-section vs finished hole",
+   "sources": [
+    {
+     "key": "HEADERSTEP",
+     "page": null,
+     "section": "raw model frame",
+     "quote": "35 tail axes of radius 0.65 mm (review/geometry.md)"
+    },
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A",
+     "quote": "(no tail dimension)"
+    }
+   ],
+   "board": {
+    "value": "finished hole 1.75 mm (1.65-1.85 per TE)",
+    "facts": {
+     "pth_drill_mm": [
+      1.75
+     ]
+    }
+   },
+   "verdict": "unknown",
+   "missing_source": "No captured TE drawing dimensions the tail; the Ø1.30 model value is visual-model geometry only."
+  },
+  {
+   "id": "b8",
+   "item": "b",
+   "topic": "Soldering process",
+   "sources": [
+    {
+     "key": "AS114S3",
+     "page": 9,
+     "section": "3.6.A",
+     "quote": "The header assembly is designed to be compatible with any standard wave soldering process, which uses tin solder."
+    }
+   ],
+   "board": {
+    "value": "n/a"
+   },
+   "verdict": "open-design",
+   "note": "The relayed sequence (b6) is hand/tack soldering; TE text does not address it. No incompatibility is established. Process selection stays an assembly deliverable."
+  },
+  {
+   "id": "c",
+   "item": "c",
+   "topic": "U3 maximum-envelope clearance",
+   "sources": [],
+   "board": {
+    "value": "U3 at (95.25, 1137.92) mm, outside the board outline",
+    "facts": {
+     "u3_on_board": false
+    }
+   },
+   "verdict": "deferred",
+   "note": "deferred: needs the placed candidate (after agent-521's campaign decision). Any U3 envelope from neo-m9n-model is VISUAL-ONLY."
+  },
+  {
+   "id": "d",
+   "item": "d",
+   "topic": "Vibration mounting (design part), linked to AGENTEE-447",
+   "sources": [],
+   "board": {
+    "value": "n/a"
+   },
+   "verdict": "deferred",
+   "note": "deferred: needs the placed candidate. The vibration test stays OPEN."
+  }
+ ],
+ "reuse": [
+  {
+   "id": "R1",
+   "what": "j1.native_inspection on THIS board (35 PTH 1.75/2.4, annulus 0.325, NPTH 2.85 at (±28.5, +0.5), grid_matches_k1_sheet_2 true)",
+   "where": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/pipeline.json stages[\"j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)\"]",
+   "board_sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673"
+  },
+  {
+   "id": "R2",
+   "what": "j6b2-r1 nominal J1 pattern (35 PTH + 2 locators vs K1), derived coordinates",
+   "where": "telemetry-pod/expansion/connector-candidate/review/coordinates.json, review/geometry.md, review/candidate-review.md"
+  },
+  {
+   "id": "R3",
+   "what": "J1 model solder-tail geometry (35 axes r 0.65, 3.50 mm projection, two support flats) and the check_model.py seating refusal (0.0362 mm exporter datum shift)",
+   "where": "telemetry-pod/expansion/connector-candidate/README.md, telemetry-pod/expansion/connector-candidate/check_model.py, telemetry-pod/expansion/production-capture/evidence/model-check-j6b/model-check.json",
+   "board_sha256": "adfb7668ac0c80dc1b4f1d2f97afa86b193f630c545bf43cbc0de8f49f351a40"
+  },
+  {
+   "id": "R4",
+   "what": "native J1 (rev T header STEP) and U3 (NEO-M9N visual-only) model resolution and poses",
+   "where": "telemetry-pod/expansion/production-capture/evidence/emission-7d5b0d4d/pipeline.json stages[\"models.candidate_resolution (FOMEMC-34)\"], telemetry-pod/expansion/production-capture/evidence/model-check-j6b/facts.json"
+  },
+  {
+   "id": "R5",
+   "what": "board-lock shaft sections of the header STEP",
+   "where": "telemetry-pod/expansion/connector-candidate/review/boardlock-sections.json, review/section_step.py"
+  },
+  {
+   "id": "R6",
+   "what": "TE drop custody and lead-claim verdicts",
+   "where": "telemetry-pod/expansion/connector-candidate/mating-interface/interface.json te_drop_2026_10_22, mating-interface/README.md"
+  }
+ ],
+ "findings": [],
+ "observations": [
+  "J1 board instance: the two pin-1 marker lines are on F.Fab; the captured library footprint has them on F.Silkscreen. Identical on adfb7668 and 2f1c9557; not hole, plating or tail geometry; outside (a)/(b). Recorded for the reviewer, no change made.",
+  "Project rule min_hole_to_hole 0.25 mm (telemetry-pod.kicad_pro) is below the captured JLC \"pad / hole / hole: 0.45 mm\". J1 clears both (2.25 mm). Rule provenance is outside this item; recorded, not changed."
+ ],
+ "open_items": [
+  "JLCPCB PTH finished-hole tolerance, NPTH tolerance, drill position / registration, minimum PTH annular ring and hole-wall plating thickness: capture the published values (rows a2, a4, a7, a9, a11). No network in this lane.",
+  "TE board-lock / retention-leg specification and PCB-thickness range (e.g. 108-1329): not captured (rows a6, b1).",
+  "Physical PCB retention / pull test and solder-joint inspection: future bench (row b3).",
+  "Assembly instruction: tail trim length and soldering process (rows b6, b8).",
+  "Enclosure/panel attachment by four screws per TE: team design deliverable (row b4).",
+  "(c) U3 maximum-envelope clearance: deferred, needs the placed candidate.",
+  "(d) vibration mounting design part, linked to AGENTEE-447: deferred, needs the placed candidate."
+ ]
+}
