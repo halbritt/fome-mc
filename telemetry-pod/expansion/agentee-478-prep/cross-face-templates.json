@@ -1,0 +1,3157 @@
+{
+ "schema": "fome-mc.cross-face-templates/1 (proposed consumer: agent-ee, AGENTEE-479)",
+ "templates": [
+  {
+   "id": "decoupler-under-device",
+   "applies_to_classes": [
+    "hf-decoupler",
+    "secondary-decoupler",
+    "bulk-decoupler",
+    "vcc-bias",
+    "reference-cap",
+    "input-filter",
+    "sense-network",
+    "strap",
+    "series-input"
+   ],
+   "excluded_devices": {
+    "U6": "7.4.1: place every capacitor as close as possible to the device and on the same side of the PCB as the regulator. Do not place any of the capacitors on the opposite side",
+    "U12": "7.4.1: place every capacitor as close as possible to the device and on the same side of the PCB as the regulator. Do not place any of the capacitors on the opposite side",
+    "U27": "Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device",
+    "U28": "Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device",
+    "U29": "Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device"
+   },
+   "membership": "device and support in ONE logical membership (same block, or block anchored on the fixed device)",
+   "pin_locality": "the relationship bound in 3D (dz = 1.6 mm): XY offset <= sqrt(bound^2 - 1.6^2) from the device pin pad; both pads joined by one via within that XY span",
+   "per_face_limits": [
+    "support courtyard must not overlap device thermal/EP via field on the opposite face (LMR36520 p28 item 7 for U5/U7)",
+    "support must not sit in any native rule area of its face (C11 J3, C12 U1 antenna, C16/D-PCB-6 via exclusions apply to its via)",
+    "heights UNKNOWN (C19): no claim of enclosure clearance on the support face",
+    "support must not occupy J1 PTH pin field on B (C06) or hole hardware zones (C04 UNKNOWN)"
+   ]
+  },
+  {
+   "id": "same-face-only",
+   "applies_to_classes": [
+    "hot-loop-input",
+    "bulk-input",
+    "bootstrap",
+    "switch-inductor",
+    "ldo-cap",
+    "crystal",
+    "crystal-load"
+   ],
+   "rule": "cross-face placement of the support is a violation (topology or MFR same-side text)"
+  },
+  {
+   "id": "whole-block-flip",
+   "rule": "a whole block on the opposite face is not a split: every member is transformed by the native flip and the relationships are evaluated unchanged"
+  }
+ ],
+ "split_criterion": {
+  "deliberate": [
+   "support on the opposite face of its device",
+   "relationship class allows cross-face (decoupler-under-device) and the device is not excluded",
+   "measured 3D pin metric within the relationship bound",
+   "support XY inside the device courtyard expanded by the XY allowance (vertical adjacency, not drift)"
+  ],
+  "lost_cohesion": [
+   "any member on the face opposite to the block majority/anchor that is NOT covered by a deliberate template instance",
+   "a covered member whose 3D metric exceeds its bound, or that lies outside the device shadow allowance",
+   "a same-face-only relationship split across faces"
+  ],
+  "regression": "473 congested-underside case: before (current code) members leak to the opposite face without template -> lost_cohesion > 0 (must fail); after -> every opposite-face member classified deliberate (must pass)"
+ },
+ "instances": [
+  {
+   "relationship": "U5.2-C3-hot-loop-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.2-C1-bulk-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.2-C2-bulk-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.6-C4-vcc-bias",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.2-C10-hot-loop-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.2-C8-bulk-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.2-C9-bulk-input",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.6-C11-vcc-bias",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U6.8-C16-ldo-cap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U6.1-C17-ldo-cap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U12.8-C20-ldo-cap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U12.1-C19-ldo-cap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C46-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C50-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C45-bulk-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C48-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C49-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C51-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C52-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.2-C53-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U100.3-C100-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.4-C62-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U16.4-C72-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U18.4-C76-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U19.4-C78-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.14-C79-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.14-C80-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.3-C83-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.5-C84-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U22.5-C85-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.1-C86-hotswap-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.1-C89-hotswap-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.1-C92-hotswap-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.1-C124-hotswap-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.8-C97-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.8-C98-secondary-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 11.893,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.12-C118-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.13-C119-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.12-C120-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.13-C121-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.12-C122-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.13-C123-hf-decoupler",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J3.4-C64-bulk-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "B",
+     "F"
+    ],
+    "route3": [
+     "B",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J3.4-C65-hf-decoupler",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 2.538,
+   "baseline_faces": {
+    "r5": [
+     "B",
+     "F"
+    ],
+    "route3": [
+     "B",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U6.1-R6-output-load",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L1.2-C6-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L1.2-C7-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L1.2-C18-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C13-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C14-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C15-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C38-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C41-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C43-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "L2.2-C44-regulator-output",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "Q1.1-D2-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "Q1.1-R1-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.3-C47-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.3-R29-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.16-R33-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U1.27-R30-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U3.14-R24-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.1-C31-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.1-R12-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.2-C33-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.2-R15-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.3-C35-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.3-R18-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.4-C37-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.4-R21-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.5-C55-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.5-R36-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.6-C57-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.6-R39-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.7-C59-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.7-R42-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.8-C61-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.8-R45-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U4.15-C40-reference-cap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.5-R27-feedback",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.5-R3-feedback",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.7-C5-bootstrap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U5.8-L1-switch-inductor",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.5-R28-feedback",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.5-R5-feedback",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.7-C12-bootstrap",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U7.8-L2-switch-inductor",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.3-C30-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.3-R10-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.3-R11-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.5-C32-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.5-R13-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.5-R14-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.10-C34-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.10-R16-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.10-R17-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.12-C36-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.12-R19-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U8.12-R20-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U9.3-C39-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U9.3-R22-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U9.3-R23-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U10.3-R24-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U11.5-C21-reference-cap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 3.666,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.3-C54-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.3-R34-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.3-R35-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.5-C56-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.5-R37-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.5-R38-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.10-C58-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.10-R40-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.10-R41-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.12-C60-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.12-R43-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U13.12-R44-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U16.1-R56-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U16.1-R57-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U16.5-C71-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U18.1-R181-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U18.1-R61-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U18.5-C75-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U19.1-R62-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U19.1-R63-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U19.5-C77-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.1-R69-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.5-C82-crystal-load",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.5-Y1-crystal",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.6-C81-crystal-load",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.6-Y1-crystal",
+   "template": "same-face-only",
+   "xy_allowance_mm": null,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U20.9-R68-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.6-D101-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.7-D101-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.7-R70-termination",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 14.914,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U21.8-R71-strap",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.2-R73-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.2-R74-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.3-R74-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.3-R75-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.7-R76-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U23.8-C88-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.2-R77-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.2-R78-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.3-R78-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.3-R79-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.7-R80-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U24.8-C91-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.2-R81-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.2-R82-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.3-R82-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.3-R83-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.7-R84-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "B"
+    ],
+    "route3": [
+     "F",
+     "B"
+    ]
+   }
+  },
+  {
+   "relationship": "U25.8-C94-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.2-C95-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.2-R112-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.2-R113-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.3-R114-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.3-R115-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.3-R116-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.5-R123-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.5-R124-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.5-R125-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.6-C96-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.6-R121-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U26.6-R122-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.7-C112-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.7-R138-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.7-R139-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.10-C111-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.10-R134-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.10-R135-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.11-C110-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.11-R130-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U27.11-R131-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.6-C129-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.6-R178-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.6-R179-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.7-C127-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.7-R168-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.7-R169-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.10-C114-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.10-R146-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U28.10-R147-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.7-C117-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.7-R158-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.7-R159-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.10-C116-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.10-R154-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.10-R155-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.11-C115-input-filter",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.11-R150-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U29.11-R151-series-input",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 5.783,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.2-R162-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.2-R163-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.3-R163-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.3-R164-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.7-R165-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U30.8-C126-sense-network",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 4.737,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U100.6-D100-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U100.6-R100-termination",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 14.914,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U100.7-D100-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "U100.7-R100-termination",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 14.914,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J1.3-D1-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J1.1-D100-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J1.29-D101-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  },
+  {
+   "relationship": "J1.24-D104-esd-connector",
+   "template": "decoupler-under-device",
+   "xy_allowance_mm": 9.871,
+   "baseline_faces": {
+    "r5": [
+     "F",
+     "F"
+    ],
+    "route3": [
+     "F",
+     "F"
+    ]
+   }
+  }
+ ]
+}

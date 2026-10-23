@@ -1,0 +1,90 @@
+{
+ "status": "PROPOSED ONLY. No agent-ee code is changed by AGENTEE-478; consumption is AGENTEE-479 after the Rust landing (AGENTEE-476).",
+ "pipeline_as_it_actually_is": {
+  "stage_A_block_packing": "Python: agent_ee.blocks.pack_block (blocks.py:478) produces agent-ee.block-candidate/2. Rust has no stage-A packer (473b).",
+  "stage_B_arrangement": "Rust is the DEFAULT once AGENTEE-476 ships: crates/placement-engine arrangement::plan (lib.rs dispatch, arrangement.rs).",
+  "candidate_admission": "Rust default: blocks.rs validate_candidate (:769) and admit (:1913).",
+  "residual_pack": "Rust default: packing::pack. With the D1 allocation v2 the residual set is empty (fixed and shared parts carry explicit rules, D5); a non-empty residual is a refusal, not a flat fallback.",
+  "python_reference": "Python stage B / admission / residual pack (block_arrangement.py, placer.py) is an EXPLICIT parity reference only (scripts/placement_engine_parity.py). It is never a silent fallback inside a Rust session.",
+  "saved_board_validation": "Python (placer_runner._saved_judgment), planner-independent; the D3/D4 per-block final report belongs here.",
+  "not_claimed": "The pipeline is hybrid. It is not 'all Rust': stage A and saved-board validation stay Python."
+ },
+ "schemas": {
+  "agent-ee.block-allocation/2": {
+   "file": "allocation-v2.json",
+   "extends": "agent-ee.block-allocation/1 (blocks[].id, references, anchor)",
+   "fields": {
+    "blocks[].anchor": "one of {member: ref} | {fixed: ref} | {none: 'centroid of members'}",
+    "blocks[].interfaces_to_fixed": "fixed ref the block is anchored or interfaced to, or null",
+    "fixed[]": "{reference, register_entries[] (AGENTEE-474 ids)}; pose and rules in fixed-shared-rules.json",
+    "shared[]": "{reference, role in {test}}",
+    "corrections[]": "audit trail versus /1: {references, from, to, reason, evidence}"
+   },
+   "strict_coverage": "consumer refuses unless every captured footprint is in exactly one of blocks[].references, fixed[], shared[] (validate_coverage.py is the stand-alone reference check). No 'residual' key, no root-sheet bucket.",
+   "consumer": "blocks.derive strict mode (Python) and blocks.rs derive (Rust) - parity required; or the stand-alone validator before planning so neither derive changes before AGENTEE-479"
+  },
+  "fome-mc.side-eligibility/1": {
+   "file": "side-eligibility.json",
+   "fields": {
+    "default.faces": "[F,B] (C01)",
+    "blocks.<id>.eligible_faces": "subset of [F,B]; anything narrower than the default must carry face_restrictions[] with a 474 id",
+    "blocks.<id>.region_restrictions[]": "{id, face, region_mm|region, rule}",
+    "blocks.<id>.material_unknowns[]": "{id, what, region, face}: carried into the final report as UNKNOWN, never as pass",
+    "blocks.<id>.same_face_relationships[]": "relationship ids that a split across faces would violate",
+    "fixed.<ref>": "{face, eligible_faces (single), sources}",
+    "shared": "TP1-TP6 common-face rule; JP1-JP5 follow their block",
+    "count_balance": "always 'none'"
+   },
+   "consumer": "placement_adapter.binding binds the record (Python); placer_runner._side_changes derives agent-ee.side-changes/1 authorization from it (rebase point with 6f48b9f2); stage A builds one variant per eligible face; stage B searches rotation x eligible face"
+  },
+  "fome-mc.relationship-bounds/1": {
+   "file": "relationship-bounds.json",
+   "fields": {
+    "relationships[].device": "{ref, pin, pin_function, net}",
+    "relationships[].support": "{ref, pin_net} (support pad = its pad on device.net)",
+    "relationships[].bound": "{metric, supply_leg_max_mm, return_leg_max_mm|null, same_face_required} or {status: UNRESOLVED, reason}",
+    "relationships[].provenance[]": "{class in MFR|TOPOLOGY|ENGINEERING-JUDGEMENT, source, sha256, page, text}",
+    "metric": "3D pad-centre distance; dz = 1.6 mm when pads are on opposite faces; return leg = support GND pad to nearest device GND pad"
+   },
+   "enforcement": "a bound with numeric value is HARD in search and final validation (electrical_locality enforcement 'hard'); UNRESOLVED blocks acceptance of that relationship and is reported, never silently passed",
+   "consumer": "electrical_locality.py (Python) and locality.rs (Rust): parity; final saved-board report in Python"
+  },
+  "fome-mc.cross-face-templates/1": {
+   "file": "cross-face-templates.json",
+   "fields": {
+    "templates[]": "decoupler-under-device | same-face-only | whole-block-flip",
+    "instances[]": "{relationship, template, xy_allowance_mm}",
+    "split_criterion": "deliberate vs lost_cohesion rules; regression contract"
+   },
+   "consumer": "final per-block report (Python) classifies every opposite-face member; stage A may emit a deliberate cross-face member only through an instance"
+  },
+  "fome-mc.fixed-shared-rules/1": {
+   "file": "fixed-shared-rules.json",
+   "consumer": "fixed_refs + obstacles + groups in the placement policy (both planners already consume these), plus the final report access checks"
+  },
+  "agent-ee.block-candidate-set/1 (stage-A side-variant format)": {
+   "status": "PROPOSED, PENDING AGREEMENT WITH agent-524 (Rust holder). 449 routes the agreement through 519 before any code touches this boundary.",
+   "design": "smallest compatible change: a wrapper around UNCHANGED agent-ee.block-candidate/2 documents, one per eligible face. Rust validate_candidate (blocks.rs:769) keeps its exact key set, so every variant is validated by the existing function; only the wrapper is new.",
+   "shape": {
+    "schema": "agent-ee.block-candidate-set/1",
+    "block_id": "string",
+    "eligibility": "{record_sha256, eligible_faces[]} from fome-mc.side-eligibility/1",
+    "captured_face": "F|B (the face the members are captured on)",
+    "variants": {
+     "F": "agent-ee.block-candidate/2 document (byte-identical to today's candidate when F is the captured face)",
+     "B": "agent-ee.block-candidate/2 document whose members[] rows carry side 'B' and courtyard/pins taken from the NATIVE pcbnew Flip(position, FLIP_DIRECTION_LEFT_RIGHT) of each captured footprint (not a synthetic mirror)"
+    },
+    "transform": "{kind: 'native-flip/left-right', tool: 'pcbnew 10.0.7', per_member_pad_inventory_sha256: {ref: sha}}"
+   },
+   "admission_rules": [
+    "every variant passes validate_candidate unchanged",
+    "variant faces are a subset of eligibility.eligible_faces; a face not eligible is refused",
+    "per member, the variant pad inventory equals the native flip of the captured footprint (same check as the R5 _flipped_inventory declared transform)",
+    "same block_id, same member set, same frame anchor in every variant"
+   ],
+   "producer": "Python stage A (blocks.pack_block run once per eligible face on the natively flipped capture)",
+   "consumer": "Rust admit (blocks.rs:1913) and stage B (arrangement.rs:743 loop over rotation x variant face); macro side = variant face (arrangement.rs:210 / footprint.rs:413); plan pose gains 'side' (packing.rs:854, arrangement.rs:357)",
+   "backward_compatibility": "a plain block-candidate/2 is read as a set with one variant (its captured face)"
+  }
+ }
+}

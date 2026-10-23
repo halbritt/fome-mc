@@ -1,0 +1,555 @@
+"""AGENTEE-478: build the D1-D5 data files from frozen inputs (read-only; no board is opened for write).
+
+Usage: build_prep.py <frozen telemetry-pod dir> <schematic netlist.json> <out dir>
+Inputs: blocks/allocation.json (434a9984), the pin extracts in extract/ (pcbnew, no save),
+the netlist exported by kicad-cli from the emitted schematic, retained datasheet PDFs (hashed here).
+"""
+import hashlib, json, math, re, sys
+from pathlib import Path
+
+ROOT, NETLIST, OUT = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3])
+EXP = ROOT / 'expansion'
+sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
+net = json.loads(NETLIST.read_text())
+SCH, NETS = net['components'], net['nets']
+ALLOC_PATH = EXP / 'blocks/allocation.json'
+ALLOC = json.loads(ALLOC_PATH.read_text())
+EXTRACT = {k: json.loads((OUT / 'extract' / f).read_text()) for k, f in
+           [('emitted', 'emitted-2f1c9557.json'), ('r5', 'r5-8f3bc234.json'), ('route3', 'route3-08066170.json')]}
+BOARD = EXTRACT['emitted']['footprints']
+RAILS = ['/GND', '/+3V3', '/PRE_6V3', '/POD_12V_PROTECTED', '/+5V_CAN', '/POD_5V_SENSOR']
+nat = lambda r: (re.sub(r'\d', '', r), int(re.sub(r'\D', '', r) or 0))
+
+# ---------------------------------------------------------------- D1 membership
+FIXED = {  # role fixed: sourced anchors per AGENTEE-474 (entry ids cite agentee-474-constraints/RESULT.md)
+    'J1': ['C05', 'C06', 'C07', 'C08'], 'J2': ['C09'], 'J3': ['C10', 'C11'], 'U1': ['C12', 'C13'],
+    'U2': ['C14'], 'U3': ['C15'], 'H1': ['C03', 'C04'], 'H2': ['C03', 'C04'], 'H3': ['C03', 'C04'],
+    'H4': ['C03', 'C04']}
+SHARED = {f'TP{i}': 'test' for i in range(1, 7)}
+old = {b['id']: list(b['references']) for b in ALLOC['blocks']}
+anchors = {b['id']: b.get('anchor') for b in ALLOC['blocks']}
+blocks = {k: list(v) for k, v in old.items()}
+corrections = []
+
+def move(refs, src, dst, why, evidence):
+    for r in refs:
+        if src:
+            blocks[src].remove(r)
+        blocks.setdefault(dst, []).append(r)
+    corrections.append({'references': refs, 'from': src or 'residual/unassigned', 'to': dst,
+                        'reason': why, 'evidence': evidence})
+
+# residual and unassigned -> explicit roles
+move(['C18'], None, 'pre-6v3',
+     'C18 (1 uF) is on /PRE_6V3, the U5/L1 output node (pre-6v3 regulator output). It is drawn with the '
+     'buck-3v3 output bank in the emitted schematic, but U7 is not on that net (third fix). Function: '
+     'pre-6v3 output capacitance.',
+     'netlist C18.1=/PRE_6V3 C18.2=/GND; L1.2=/PRE_6V3; schematic symbol C18 at (375.92,41.91), inside the '
+     'emitter group "buck-3v3: 3V3 regulator (U7) and 3V3 bulk"')
+move(['C38', 'C41', 'C43', 'C44'], None, 'buck-3v3',
+     'The emitted schematic draws C38/C41/C43/C44 in the "3V3 regulator (U7) and 3V3 bulk" group, on '
+     '/+3V3 with no per-load binding. By schematic function they are the regulator output bank. The fifth '
+     'fix removed them on PLACEMENT evidence (48-51 mm from U7 in iteration 5), not on function. The '
+     'consequent load-pin decoupling gaps are reported as UNRESOLVED in relationship-bounds.json (D-GAP '
+     'entries). An alternative per-load binding is offered there as an owner/529 decision, not applied.',
+     'emitter-layout.json group buck-3v3 lists power/C38, C41, C43, C44; schematic x 332-366, y 34-42, '
+     'beside U7 at (444.5,43.18)')
+move(['R33'], None, 'mcu',
+     'R33 (10 k) pulls U1 IO46 (/MCU_BOOT46) to GND: a strap of the module. mcu is the U1 support block '
+     'anchored on the fixed U1, so a member reachable only through the fixed anchor is expected and valid.',
+     'netlist R33.1=/MCU_BOOT46 (U1.16 IO46) R33.2=/GND; emitter group mcu lists support/R33')
+move(['U10', 'R24', 'R25', 'R26', 'C42'], None, 'gnss-antenna-supply',
+     'Active-antenna bias supply: TPS2553 load switch U10 (EN from U3 LNA_EN, fault flag) feeding '
+     '/ANT_LIMITED -> R26 -> /ANT_BIAS (C42). DC circuitry, independent of the RF line; its own small block.',
+     'netlist U10.3=/GNSS_LNA_EN (U3.14, R24), U10.4=/GNSS_ANT_FAULT_N (R25), U10.6=/ANT_LIMITED (R26), '
+     'C42.1=/ANT_BIAS; emitter group gnss')
+move(['L3', 'D3'], None, 'gnss-rf-feed',
+     'Parts ON the RF line /POD_GNSS_RF between U3.11 and J2.1: bias-tee inductor L3 and ESD D3. They follow '
+     'the RF path (474 C15), so they are a separate block from the DC antenna supply.',
+     'netlist L3=/ANT_BIAS-/POD_GNSS_RF, D3=/POD_GNSS_RF-/GND, J2.1=/POD_GNSS_RF, U3.11 RF_IN')
+move(['R46', 'R47', 'R48', 'R49', 'R50', 'R55', 'C64', 'C65'], None, 'storage-support',
+     'microSD support: pull-ups on CMD/DAT0-3/CD and the J3 VDD capacitors, anchored on the fixed J3 '
+     '(seventh fix dissolved the storage block only because J3 became fixed).',
+     'netlist R46-R50 to /SD_CMD,/SD_DAT0..3, R55 to /SD_CD, C64/C65 on /+3V3 at J3.4 VDD')
+# verification corrections of the existing 18
+move(['U9', 'R22', 'R23', 'C39'], 'afe', 'sensor-ref',
+     'U9 (OPA320) buffers the 2.5 V ADC reference from the /POD_5V_SENSOR divider R22/R23 (C39 filter) to '
+     'U4 Vref. On non-rail nets it is unreachable from the afe anchor U8: an independent circuit. Kept '
+     'as its own small block instead of riding with the input buffers.',
+     'netlist U9.3=/REF_DIV (R22,R23,C39), U9.1/4=/SENSOR_REF_2V5 = U4.15 Vref (C40); reachability check '
+     'in d1-verification.json')
+move(['R36', 'R39', 'R42', 'R45', 'C55', 'C57', 'C59', 'C61'], 'aux-afe', 'adc',
+     'ADC CH4-7 input RC (100 ohm series + 100 pF at the U4 pin) has the same topology and function as the '
+     'CH0-3 RC (R12/R15/R18/R21, C31/C33/C35/C37), which are already in adc. The 100 pF is the sampling '
+     'reservoir at the U4 pin, so it belongs with the ADC.',
+     'netlist C55.1=/ADC_AIN4=U4.5 ... C61.1=/ADC_AIN7=U4.8; R36 /AFE_BUF4-/ADC_AIN4 ...; '
+     'CH0-3 equivalents in old adc')
+for sv, parts in [('supervisor-3v3', ['U16', 'R56', 'R57', 'C71', 'C72']),
+                  ('supervisor-5v-sensor', ['U18', 'R60', 'R181', 'R61', 'C75', 'C76', 'R64']),
+                  ('supervisor-12v', ['U19', 'R62', 'R63', 'C77', 'C78', 'R65'])]:
+    move(parts, 'supervision', sv,
+         'The three TPS389001 supervisors watch different rails (+3V3, /POD_5V_SENSOR, '
+         '/POD_12V_PROTECTED) and share only rails; on non-rail nets U18/U19 are unreachable from U16. '
+         'Split into independent small blocks (common rails do not merge blocks).',
+         'netlist SENSE nets /SUP_U16_SENSE, /SUP_U18_SENSE, /SUP_U19_SENSE; VDD-cap binding by emitter '
+         'order (U, Rtop, Rbot, CT, VDD cap)')
+del blocks['supervision']
+anchors.update({'gnss-antenna-supply': 'U10', 'gnss-rf-feed': None, 'storage-support': None, 'sensor-ref': 'U9',
+                'supervisor-3v3': 'U16', 'supervisor-5v-sensor': 'U18', 'supervisor-12v': 'U19', 'mcu': None})
+anchors.pop('supervision', None)
+FIXED_ANCHOR = {'mcu': 'U1', 'gnss-rf-feed': 'U3', 'gnss-antenna-supply': 'U3', 'storage-support': 'J3',
+                'power-entry': 'J1', 'can': 'J1', 'tire-can': 'J1'}
+
+# ---------------------------------------------------------------- sources (D3 provenance)
+DS = {
+    'LMR36520': 'parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf',
+    'TPS7B4253': 'interface-preparation/aux-power/tps7b4253-q1.pdf',
+    'TPS2553': 'parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf',
+    'TPS2662': 'interface-preparation/sensor-power/tps2662.pdf',
+    'LSM6DSO32': 'parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf',
+    'NEO-M9N-IM': 'parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf',
+    'ESP32-HG': 'production-capture/sources/esp32-guidelines/3dc09a979cf612db0754f966d180b22f05896ad220cece362d62cb0d0eb1d400.pdf',
+    'ADS1119': 'interface-preparation/diagnostics/ads1119.pdf',
+    'MCP3208': 'native-candidate/sources/mcp3208.pdf',
+    'OPA320': 'parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf',
+    'LM2903B': 'interface-preparation/wheel-input/lm2903b-q1.pdf',
+    'SN74LVC1G132': 'interface-preparation/sources/sn74lvc1g132.pdf',
+    'TL431': 'thermistor/sources/tl431.pdf',
+}
+SRC = {k: {'path': 'telemetry-pod/expansion/' + v, 'sha256': sha(EXP / v)} for k, v in DS.items()}
+CITE = {  # (source key, page, retained wording, what it constrains)
+    'lmr-hotloop': ('LMR36520', 27, '8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals'),
+    'lmr-vcc': ('LMR36520', 27, '2. Place the bypass capacitor for VCC close to the VCC pin ... short, wide traces to the VCC and GND pins'),
+    'lmr-boot': ('LMR36520', 27, '3. Place CBOOT close to the device with short, wide traces to the BOOT and SW pins'),
+    'lmr-fb': ('LMR36520', 27, '4. Place the feedback divider as close as possible to the FB pin ... connection to VOUT can be somewhat longer (continues p28)'),
+    'lmr-sw': ('LMR36520', 28, '8. Keep the switch area small. Keep the copper area connecting the SW pin to the inductor as short and wide as possible'),
+    'lmr-thermal': ('LMR36520', 28, '7. Provide enough PCB area for proper heat-sinking ... thermal vias'),
+    'tps7b-layout': ('TPS7B4253', 19, '7.4.1: place every capacitor as close as possible to the device and on the same side of the PCB as the regulator. Do not place any of the capacitors on the opposite side'),
+    'tps2553-layout': ('TPS2553', 25, '12.1: placing the 100-nF bypass capacitor near the IN and GND pins ... low-inductance trace'),
+    'tps2662-layout': ('TPS2662', 35, '12.1: 0.1 uF or higher ceramic decoupling between IN and GND ... closest to the IN and GND terminals ... minimize the loop area'),
+    'lsm6-bypass': ('LSM6DSO32', 53, 'Power supply decoupling capacitors (C1, C2 = 100 nF ceramic) should be placed as near as possible to the supply pin of the device'),
+    'neo-vcc': ('NEO-M9N-IM', 81, 'The VCC pad needs a large pad and the decoupling capacitor must be placed as close as possible'),
+    'neo-rf': ('NEO-M9N-IM', 80, 'RF input co-planar waveguide referenced to layer 2, matched to 50 ohm'),
+    'esp-en': ('ESP32-HG', 11, 'add an RC delay circuit at the CHIP_PU pin ... R = 10 kOhm and C = 1 uF (chip guideline; module EN = CHIP_PU)'),
+    'esp-rc': ('ESP32-HG', 17, 'Ensure that the RC/LC components are placed close to the pins of the chip or module'),
+    'ads-decouple': ('ADS1119', 37, '10.2: AVDD and DVDD must be decoupled with at least a 0.1-uF capacitor. Place the bypass capacitors as close to the power-supply pins'),
+    'ads-layer': ('ADS1119', 38, 'Do not place vias between bypass capacitors and the active device. Placing the bypass capacitors on the same layer as close to the active device'),
+    'mcp3208-bypass': ('MCP3208', 23, 'A bypass capacitor should always be used ... placed as close as possible to the device pin'),
+    'opa320-bypass': ('OPA320', 28, 'Place 0.1-uF bypass capacitors close to the power-supply pins'),
+    'lm2903-bypass': ('LM2903B', 18, 'A bypass capacitor is recommended on the supply pin'),
+    'lvc-bypass': ('SN74LVC1G132', 14, 'Add a decoupling capacitor from VCC to GND ... physically close to the device; 0.1 uF recommended'),
+    'tl431-bypass': ('TL431', 31, 'Bypass capacitors should be placed as close to the part as possible'),
+}
+IC_DECOUPLE_CITE = {'U5': 'lmr-hotloop', 'U7': 'lmr-hotloop', 'U6': 'tps7b-layout', 'U12': 'tps7b-layout',
+                    'U10': 'tps2553-layout', 'U23': 'tps2662-layout', 'U24': 'tps2662-layout',
+                    'U25': 'tps2662-layout', 'U30': 'tps2662-layout', 'U2': 'lsm6-bypass', 'U3': 'neo-vcc',
+                    'U27': 'ads-decouple', 'U28': 'ads-decouple', 'U29': 'ads-decouple', 'U4': 'mcp3208-bypass',
+                    'U9': 'opa320-bypass', 'U26': 'lm2903-bypass', 'U22': 'lvc-bypass', 'U31': 'tl431-bypass'}
+SAME_FACE_MFR = {'U6': 'tps7b-layout', 'U12': 'tps7b-layout', 'U27': 'ads-layer', 'U28': 'ads-layer',
+                 'U29': 'ads-layer'}
+EJ = 'ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set)'
+
+# bound classes: supply leg / return leg in mm (3D pad-centre, dz = 1.6 mm across faces), same-face rule
+BOUND = {
+    'hot-loop-input': (3.0, 3.0, True, 'topology: hot loop; a via pair adds loop inductance'),
+    'bulk-input': (8.0, 8.0, True, 'topology: parallel member of the same hot loop'),
+    'vcc-bias': (3.0, 6.0, False, 'return may close through the In1 GND plane'),
+    'bootstrap': (3.5, 3.5, True, 'topology: switch-node referenced; vias add radiating area'),
+    'switch-inductor': (5.0, None, True, 'topology: switch-node area (dv/dt)'),
+    'feedback': (4.0, None, False, 'only the FB leg is bounded (manufacturer: VOUT leg may be longer)'),
+    'regulator-output': (10.0, None, False, 'output bank at the inductor output pad; bulk, not HF'),
+    'ldo-cap': (4.0, 6.0, True, 'manufacturer forbids opposite-side capacitors'),
+    'hf-decoupler': (3.0, 5.0, False, 'single-pin HF decoupler'),
+    'secondary-decoupler': (12.0, None, False, 'additional capacitor of a multi-capacitor supply set'),
+    'bulk-decoupler': (10.0, None, False, 'bulk capacitor >= 4.7 uF'),
+    'hotswap-input': (3.0, 4.0, False, 'IN-GND bypass loop'),
+    'crystal': (6.0, None, True, 'oscillator loop kept on one face, no vias'),
+    'crystal-load': (3.0, None, True, 'load capacitor at the crystal pin'),
+    'esd-connector': (10.0, None, False, 'protector between connector pin and the protected IC'),
+    'termination': (15.0, None, False, 'bus termination near the transceiver bus pins'),
+    'input-filter': (5.0, None, False, 'filter / sampling reservoir capacitor at the IC input pin'),
+    'series-input': (6.0, None, False, 'series resistor of an input RC, at the IC side'),
+    'sense-network': (5.0, None, False, 'high-impedance sense/timing node pad at the IC pin'),
+    'strap': (10.0, None, False, 'strap / enable / reset pull or RC on a critical control line'),
+    'reference-cap': (4.0, None, False, 'reference / noise-reduction capacitor at the pin'),
+    'output-load': (10.0, None, False, 'bleed / minimum-load resistor at the regulator output'),
+}
+
+# rail-capacitor bindings: (cap, ic, pin, class)
+RAIL_BIND = [
+    ('C3', 'U5', '2', 'hot-loop-input'), ('C1', 'U5', '2', 'bulk-input'), ('C2', 'U5', '2', 'bulk-input'),
+    ('C4', 'U5', '6', 'vcc-bias'),
+    ('C10', 'U7', '2', 'hot-loop-input'), ('C8', 'U7', '2', 'bulk-input'), ('C9', 'U7', '2', 'bulk-input'),
+    ('C11', 'U7', '6', 'vcc-bias'),
+    ('C16', 'U6', '8', 'ldo-cap'), ('C17', 'U6', '1', 'ldo-cap'), ('C20', 'U12', '8', 'ldo-cap'),
+    ('C19', 'U12', '1', 'ldo-cap'),
+    ('C46', 'U1', '2', 'hf-decoupler'), ('C50', 'U1', '2', 'hf-decoupler'), ('C45', 'U1', '2', 'bulk-decoupler'),
+    ('C48', 'U1', '2', 'secondary-decoupler'), ('C49', 'U1', '2', 'secondary-decoupler'),
+    ('C51', 'U1', '2', 'secondary-decoupler'), ('C52', 'U1', '2', 'secondary-decoupler'),
+    ('C53', 'U1', '2', 'secondary-decoupler'),
+    ('C100', 'U100', '3', 'hf-decoupler'), ('C62', 'U13', '4', 'hf-decoupler'),
+    ('C72', 'U16', '4', 'hf-decoupler'), ('C76', 'U18', '4', 'hf-decoupler'), ('C78', 'U19', '4', 'hf-decoupler'),
+    ('C79', 'U20', '14', 'hf-decoupler'), ('C80', 'U20', '14', 'secondary-decoupler'),
+    ('C83', 'U21', '3', 'hf-decoupler'), ('C84', 'U21', '5', 'hf-decoupler'), ('C85', 'U22', '5', 'hf-decoupler'),
+    ('C86', 'U23', '1', 'hotswap-input'), ('C89', 'U24', '1', 'hotswap-input'), ('C92', 'U25', '1', 'hotswap-input'),
+    ('C124', 'U30', '1', 'hotswap-input'),
+    ('C97', 'U26', '8', 'hf-decoupler'), ('C98', 'U26', '8', 'secondary-decoupler'),
+    ('C118', 'U27', '12', 'hf-decoupler'), ('C119', 'U27', '13', 'hf-decoupler'),
+    ('C120', 'U28', '12', 'hf-decoupler'), ('C121', 'U28', '13', 'hf-decoupler'),
+    ('C122', 'U29', '12', 'hf-decoupler'), ('C123', 'U29', '13', 'hf-decoupler'),
+    ('C64', 'J3', '4', 'bulk-decoupler'), ('C65', 'J3', '4', 'hf-decoupler'),
+]
+OUTPUT_BANK = [('C6', 'L1', '2'), ('C7', 'L1', '2'), ('C18', 'L1', '2'),
+               ('C13', 'L2', '2'), ('C14', 'L2', '2'), ('C15', 'L2', '2'),
+               ('C38', 'L2', '2'), ('C41', 'L2', '2'), ('C43', 'L2', '2'), ('C44', 'L2', '2')]
+GAPS = [  # IC supply pins with no dedicated decoupler in the emitted schematic
+    ('U2', '8', 'VDD', 'lsm6-bypass', 'C38'), ('U2', '5', 'VDDIO', 'lsm6-bypass', 'C41'),
+    ('U3', '23', 'VCC', 'neo-vcc', 'C44'), ('U3', '22', 'V_BCKP', 'neo-vcc', None),
+    ('U10', '1', 'IN', 'tps2553-layout', 'C43'), ('U4', '16', 'Vdd', 'mcp3208-bypass', None),
+    ('U8', '4', 'V+', None, None), ('U9', '5', 'V+', 'opa320-bypass', None), ('U13', '4', 'V+ (has C62)', None, None),
+    ('U100', '5', 'VIO', None, None), ('U11', '2', 'Vin', None, None)]
+GAPS = [g for g in GAPS if g[0] != 'U13']
+
+def pad(fp, number, netname=None):
+    c = [p for p in fp['pads'] if p['number'] == number and (netname is None or p['net'] == netname)]
+    return c[0] if c else None
+
+def dist(fa, pa, fb, pb):
+    dz = 0.0 if fa['side'] == fb['side'] else 1.6
+    return round(math.sqrt((pa['x'] - pb['x']) ** 2 + (pa['y'] - pb['y']) ** 2 + dz ** 2), 3)
+
+def leg(board, ra, pna, rb, netname, pnb=None):
+    fa, fb = board[ra], board[rb]
+    a = pad(fa, pna)
+    bs = [p for p in fb['pads'] if p['net'] == netname and (pnb is None or p['number'] == pnb)]
+    if not a or not bs:
+        return None
+    return min(dist(fa, a, fb, b) for b in bs)
+
+def return_leg(board, ic, cap):
+    fi, fc = board[ic], board[cap]
+    gi = [p for p in fi['pads'] if p['net'] == '/GND']
+    gc = [p for p in fc['pads'] if p['net'] == '/GND']
+    if not gi or not gc:
+        return None
+    return min(dist(fi, a, fc, b) for a in gi for b in gc)
+
+def measure(rel):
+    out = {}
+    for k in ('r5', 'route3'):
+        bd = EXTRACT[k]['footprints']
+        s = leg(bd, rel['device']['ref'], rel['device']['pin'], rel['support']['ref'], rel['device']['net'])
+        r = return_leg(bd, rel['device']['ref'], rel['support']['ref']) if rel['bound'].get('return_leg_max_mm') else None
+        same = bd[rel['device']['ref']]['side'] == bd[rel['support']['ref']]['side']
+        res = {'supply_leg_mm': s, 'return_leg_mm': r, 'faces': [bd[rel['device']['ref']]['side'],
+                                                                 bd[rel['support']['ref']]['side']]}
+        b = rel['bound']
+        if b.get('status') == 'UNRESOLVED' or s is None:
+            res['verdict'] = 'n/a'
+        else:
+            ok = s <= b['supply_leg_max_mm'] and (r is None or b.get('return_leg_max_mm') is None or
+                                                  r <= b['return_leg_max_mm'])
+            if b.get('same_face_required') and not same:
+                ok = False
+            res['verdict'] = 'within' if ok else 'exceeds'
+        out[k] = res
+    return out
+
+member_of = {}
+for b, rs in blocks.items():
+    for r in rs:
+        member_of[r] = b
+for r in FIXED:
+    member_of[r] = 'fixed:' + r
+for r in SHARED:
+    member_of[r] = 'shared:test'
+
+rels = []
+def add(kind, ic, pin, sup, bound_cls, cite=None, note=None, unresolved=None, gap_alt=None):
+    netname = BOARD[ic]['pads'] and (pad(BOARD[ic], pin) or {}).get('net')
+    fn = SCH[ic]['pins'].get(pin, ['', ''])[1]
+    sm, rm, same, why = BOUND[bound_cls] if bound_cls else (None, None, False, '')
+    if ic in SAME_FACE_MFR and bound_cls in ('hf-decoupler', 'ldo-cap', 'secondary-decoupler'):
+        same = True
+    prov = []
+    if cite:
+        s, p, q = CITE[cite]
+        prov.append({'class': 'MFR', 'requirement': 'qualitative', 'source': SRC[s]['path'],
+                     'sha256': SRC[s]['sha256'], 'page': p, 'text': q})
+    if ic in SAME_FACE_MFR and same:
+        s, p, q = CITE[SAME_FACE_MFR[ic]]
+        prov.append({'class': 'MFR', 'requirement': 'same-face', 'source': SRC[s]['path'],
+                     'sha256': SRC[s]['sha256'], 'page': p, 'text': q})
+    prov.append({'class': 'TOPOLOGY', 'text': why})
+    prov.append({'class': 'ENGINEERING-JUDGEMENT', 'text': EJ + ': numeric value of the bound'})
+    bound = {'metric': 'pad-centre distance, 3D (dz = 1.6 mm when the two pads are on opposite faces)',
+             'supply_leg_max_mm': sm, 'return_leg_max_mm': rm, 'same_face_required': same}
+    if unresolved:
+        bound = {'status': 'UNRESOLVED', 'reason': unresolved}
+    kind = kind or 'decoupling-gap'
+    rid = f"{ic}.{pin}-{sup or 'none'}-{kind}"
+    rel = {'id': rid, 'kind': kind,
+           'device': {'ref': ic, 'pin': pin, 'pin_function': fn, 'net': netname},
+           'support': {'ref': sup, 'pin_net': netname} if sup else None,
+           'membership': {'device': member_of.get(ic), 'support': member_of.get(sup) if sup else None},
+           'bound': bound, 'provenance': prov}
+    if note:
+        rel['note'] = note
+    if gap_alt:
+        rel['owner_decision_alternative'] = gap_alt
+    if sup and not unresolved:
+        rel['baseline'] = measure(rel)
+    elif sup:
+        rel['baseline'] = {k: {'supply_leg_mm': leg(EXTRACT[k]['footprints'], ic, pin, sup, netname),
+                               'verdict': 'n/a'} for k in ('r5', 'route3')}
+    rels.append(rel)
+
+for cap, ic, pin, cls in RAIL_BIND:
+    cite = IC_DECOUPLE_CITE.get(ic)
+    if cls == 'vcc-bias':
+        cite = 'lmr-vcc'
+    if ic == 'U1':
+        cite = None
+    add(cls, ic, pin, cap, cls, cite,
+        note=('U1 has one 3V3 pin; C46 (100 nF) and C50 (1 uF) are the primary HF pair, the others '
+              'are interchangeable set members (any 100 nF + any 1 uF may serve as the primary pair)')
+        if ic == 'U1' else None)
+add('output-load', 'U6', '1', 'R6', 'output-load', None)
+for cap, l, pin in OUTPUT_BANK:
+    add('regulator-output', l, pin, cap, 'regulator-output', None)
+
+# signal-net relationships derived from the netlist by pin function
+CRIT = [(r'^FB', 'feedback'), (r'^BOOT_', 'bootstrap'), (r'^SW_', 'switch-inductor'), (r'^OSC', 'crystal'),
+        (r'^dVdT', 'sense-network'), (r'^ILIM', 'sense-network'), (r'^UVLO', 'sense-network'),
+        (r'^OVP', 'sense-network'), (r'^SENSE', 'sense-network'), (r'^CT_', 'sense-network'),
+        (r'^Trim/NR', 'reference-cap'), (r'^Vref', 'reference-cap'), (r'^EN_', 'strap'), (r'^IO0_', 'strap'),
+        (r'^IO46', 'strap'), (r'^GPIO0_XSTBY', 'strap'), (r'^S_8$', 'strap'), (r'^LNA_EN', 'strap'),
+        (r'^TXCAN', 'strap'), (r'^\+IN', 'input-filter'), (r'^IN\d-', 'input-filter'),
+        (r'^IN\d\+', 'sense-network'), (r'^AIN', 'input-filter'), (r'^CH\d', 'input-filter'),
+        (r'^CANH', 'esd-connector'), (r'^CANL', 'esd-connector'), (r'^G_1$', 'sense-network')]
+NONCRIT = ('CS', 'INT', 'SDA', 'SCL', 'FAULT', 'TXD', 'RXD', 'GPIO1', 'SD_', 'TIMEPULSE', 'OUT')
+for ic in sorted((r for r in SCH if re.match(r'^(U|Q)\d', r)), key=nat):
+    for pin, (netname, fn) in sorted(SCH[ic]['pins'].items(), key=lambda x: nat('p' + x[0])):
+        if netname in RAILS or netname.startswith('unconnected') or netname == '/POD_GNSS_RF':
+            continue
+        cls = next((c for k, c in CRIT if re.search(k, fn)), None)
+        if ic in ('U5', 'U7') and fn.startswith('SW'):
+            cls = 'switch-inductor'
+        if fn.startswith('BOOT_'):
+            cls = 'bootstrap'
+        if cls is None:
+            continue
+        for r, p, _ in NETS[netname]:
+            if r == ic or not re.match(r'^(C|R|L|D|Y)\d', r):
+                continue
+            k = cls
+            if cls == 'crystal' and r.startswith('C'):
+                k = 'crystal-load'
+            if cls == 'esd-connector' and r.startswith('R'):
+                k = 'termination'
+            if cls == 'input-filter' and r.startswith('R'):
+                k = 'series-input' if 'AIN' in netname or 'CH' in fn else 'sense-network'
+            if cls == 'switch-inductor' and not r.startswith('L'):
+                continue
+            if cls == 'bootstrap' and not r.startswith('C'):
+                continue
+            if k == 'feedback' and ic in ('U6', 'U12'):
+                continue  # TPS7B4253 FB is tied to OUT (tracking mode): no divider
+            cite = {'feedback': 'lmr-fb', 'bootstrap': 'lmr-boot', 'switch-inductor': 'lmr-sw'}.get(k) \
+                if ic in ('U5', 'U7') else None
+            if ic == 'U1' and k == 'strap':
+                cite = 'esp-en' if fn.startswith('EN') else 'esp-rc'
+            if ic in ('U23', 'U24', 'U25', 'U30') and k == 'sense-network':
+                cite = 'tps2662-layout'
+            add(k, ic, pin, r, k, cite)
+# connector-side protection: TVS / ESD parts measured to the connector pin they protect
+for d, conn_pin, cls, note in [('D1', ('J1', '3'), 'esd-connector', 'input surge TVS at the power entry'),
+                               ('D100', ('J1', '1'), 'esd-connector', 'pod CAN ESD at J1'),
+                               ('D101', ('J1', '29'), 'esd-connector', 'tire CAN ESD at J1'),
+                               ('D104', ('J1', None), 'esd-connector', 'wheel-signal ESD at J1')]:
+    j, p = conn_pin
+    if p is None:
+        p = next(pp for pp, (nn, _) in SCH['J1']['pins'].items() if nn == '/POD_WHEEL_FRONT_SIGNAL')
+    add(cls, j, p, d, cls, None, note=note)
+# RF line: unresolved until 474 C15 is reconciled
+for r in ('L3', 'D3'):
+    add('rf-line', 'U3', '11', r, None, 'neo-rf', unresolved=(
+        '474 C15: the RF path /POD_GNSS_RF (U3.11 - L3/D3 - J2.1) and its F-over-In1 reference corridor are '
+        'not reconciled with the actual U3/J2 locations; no pin bound can be set before that reconciliation'))
+add('rf-line', 'J2', '1', None, None, 'neo-rf', unresolved='474 C15 (as above); J2 to U3.11 RF length bound UNKNOWN')
+for ic, pin, fn, cite, alt in GAPS:
+    add(None, ic, pin, None, None, cite, unresolved=(
+        f'emitted schematic has no capacitor dedicated to {ic}.{pin} {fn}; placement cannot satisfy a '
+        'decoupling relationship that the design does not contain. Blocks acceptance of this relationship'),
+        gap_alt=({'option': 'bind an existing +3V3 bank capacitor to this pin instead of the U7 output bank',
+                  'capacitor': alt, 'status': 'proposed, NOT applied (needs 529/owner decision via 519)'}
+                 if alt else {'option': 'design change: add a decoupler', 'status': 'proposed, not applied'}))
+
+# old 12 obligations -> disposition
+POLICY = json.loads((EXP / 'production-capture/evidence/emission-7d5b0d4d/design/composition/placement-policy.json').read_text())
+old_dispo = []
+for o in POLICY['electrical_locality']['obligations']:
+    legs = {k: (v['from']['reference'], v['from']['pad'], v['to']['reference'], v['max_distance_nm'] / 1e6)
+            for k, v in o.items() if isinstance(v, dict) and 'from' in v}
+    new = sorted({r['id'] for v in legs.values() for r in rels if r['support']
+                  and {r['device']['ref'], r['support']['ref']} == {v[0], v[2]}})
+    notes = []
+    if any(v[1] == '3' for v in legs.values()):
+        notes.append('old supply leg used pin 3 (EN, tied to VIN); new relationship uses VIN pin 2')
+    old_dispo.append({'old_id': o['id'], 'old_legs_mm': {k: v[3] for k, v in legs.items()},
+                      'old_class': 'ADVISORY (agent-499, unsourced numeric)', 'new': new,
+                      'disposition': 'replaced, not hardened: new bound re-derived per class with labelled '
+                                     'provenance (see bound classes); old numeric value not carried as authority',
+                      'notes': notes})
+
+# ---------------------------------------------------------------- D2 eligibility
+FACE_RESTRICT = {
+    'gnss-rf-feed': (['F'], [{'id': 'C15', 'text': 'RF line parts follow the U3.11-J2.1 RF path, which must be F.Cu over the In1 reference (OWNER/project R:65); U3 and J2 are F. Re-check once C15 is reconciled'}]),
+}
+REGION = {
+    'mcu': [{'id': 'C12', 'face': 'F,B', 'region_mm': [48.5, -21.25, 96.5, -0.25], 'rule': 'U1 antenna area: no parts on any layer'}],
+    'storage-support': [{'id': 'C11', 'face': 'B', 'region': 'J3 native B-only rule areas (5 polygons, native-geometry.json)', 'rule': 'no parts/pads inside'},
+                        {'id': 'C10', 'face': 'B', 'region_mm': [-20.095, 24.125, 17.715, 39.815], 'rule': 'J3 card/lane courtyard (AGENT 15 mm lane); card removal off the left edge'}],
+}
+J1_B = {'id': 'C06', 'face': 'B', 'region_mm': [6.055, 48.955, 83.945, 65.0],
+        'rule': 'J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)'}
+HOLES = [{'id': 'C04', 'face': 'F,B', 'region': f'around {h} ({x},{y}), radius UNKNOWN',
+          'rule': 'screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced'}
+         for h, x, y in [('H1', 4, 4), ('H2', 86, 4), ('H3', 86, 61), ('H4', 4, 61)]]
+UNKNOWNS_ALL = [{'id': 'C19', 'what': 'installed heights of all parts on both faces; enclosure clearance per face', 'region': 'whole board', 'face': 'F,B'},
+                {'id': 'C22', 'what': 'enclosure / cowl / harness envelope', 'region': 'whole board', 'face': 'F,B'}]
+THERMAL = {'pre-6v3', 'buck-3v3', 'supplies-5v', 'mcu', 'gnss-antenna-supply', 'storage-support',
+           'sensor-power-front', 'sensor-power-rear', 'sensor-power-tire', 'aux-power'}
+NEAR_J1 = {'power-entry', 'can', 'tire-can', 'wheel-input', 'sensor-power-front', 'sensor-power-rear',
+           'sensor-power-tire', 'aux-power', 'afe', 'aux-afe', 'thermistor'}
+
+eligibility = {'schema': 'fome-mc.side-eligibility/1 (proposed consumer: agent-ee, AGENTEE-479)',
+               'default': {'faces': ['F', 'B'], 'source': 'C01 (OWNER R:65, 2026-10-19): both faces permitted; no count balance'},
+               'count_balance': 'none: no side quota or balance term (C01)',
+               'blocks': {}, 'fixed': {}, 'shared': {}}
+for b in sorted(blocks):
+    faces, restr = FACE_RESTRICT.get(b, (['F', 'B'], []))
+    reg = list(REGION.get(b, []))
+    if b in NEAR_J1:
+        reg.append(J1_B)
+    unk = list(UNKNOWNS_ALL) + HOLES
+    if b in THERMAL:
+        unk.append({'id': 'C23', 'what': 'validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone', 'region': 'block footprint', 'face': 'F,B'})
+    if b in ('pre-6v3', 'buck-3v3'):
+        unk.append({'id': 'C23', 'what': 'LMR36520 heat-sink copper area / thermal vias under the exposed pad (MFR p28 item 7): the opposite-face area under each EP is reserved for thermal vias; its size is UNKNOWN', 'region': 'under U5/U7 exposed pad', 'face': 'opposite of the IC'})
+    intra = []
+    for r in rels:
+        if r['membership']['device'] == b and r['membership']['support'] == b and r['bound'].get('same_face_required'):
+            intra.append(r['id'])
+    eligibility['blocks'][b] = {'eligible_faces': faces, 'face_restrictions': restr,
+                                'region_restrictions': reg, 'material_unknowns': unk,
+                                'whole_block_transform': 'native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face',
+                                'same_face_relationships': intra}
+for f, ids in FIXED.items():
+    fp = EXTRACT['r5']['footprints'][f]
+    eligibility['fixed'][f] = {'face': fp['side'], 'eligible_faces': [fp['side']], 'sources': ids,
+                               'note': 'fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)'}
+eligibility['shared']['TP1-TP6'] = {
+    'eligible_faces': ['F', 'B'], 'constraint': 'all six on ONE common face (single-sided programming fixture), chosen by the planner',
+    'sources': ['C20', 'C01'], 'material_unknowns': [{'id': 'C20', 'what': 'probe tip / approach travel / fixture pin height / support force / tool clearance', 'region': 'each TP pad', 'face': 'probed face'}],
+    'owner_reserved': 'none: UART programming before sealing is an owner/project functional requirement (R:42); fixture geometry is engineering, not owner-reserved'}
+eligibility['shared']['JP1-JP5'] = {
+    'eligible_faces': ['F', 'B'], 'constraint': 'face follows its block (tire-can: JP1; thermistor: JP2-JP5); solder-iron access before sealing',
+    'sources': ['C21'], 'material_unknowns': [{'id': 'C21', 'what': 'solder tool angle / access footprint / timing', 'region': 'each JP', 'face': 'jumper face'}],
+    'owner_reserved': 'none'}
+TP_PLAN = {
+    'purpose': 'factory UART programming and console before sealing (R:42); BLE OTA afterwards; no field-service opening',
+    'pads': {f'TP{i}': SCH[f'TP{i}']['pins']['1'][0] for i in range(1, 7)},
+    'rules': ['all six pads on one face, selected by the planner (either face eligible, C01/C20)',
+              'TP1 TX, TP2 RX, TP4 EN, TP5 BOOT nets: pad within 25 mm (EJ) of each other so one fixture head covers them; TP3 GND and TP6 +3V3 in the same head',
+              'no part courtyard within the probe keep-clear of each pad: radius UNKNOWN (C20); report as unresolved, do not invent',
+              'opposite face under each pad: fixture support area UNKNOWN (C20)',
+              'pads stay outside the U1 antenna area (C12) and J3 card path (C10/C11)'],
+    'JP1-JP5': 'configured by solder bridge during assembly before sealing (C21); JP1 closes only at the bus end (value text); no tall part within the iron access zone: size UNKNOWN',
+    'owner_reserved_flags': []}
+eligibility['test_assembly_access_plan'] = TP_PLAN
+
+# ---------------------------------------------------------------- D4 cross-face templates
+templates = {'schema': 'fome-mc.cross-face-templates/1 (proposed consumer: agent-ee, AGENTEE-479)',
+             'templates': [
+    {'id': 'decoupler-under-device', 'applies_to_classes': ['hf-decoupler', 'secondary-decoupler', 'bulk-decoupler', 'vcc-bias', 'reference-cap', 'input-filter', 'sense-network', 'strap', 'series-input'],
+     'excluded_devices': {k: CITE[v][2] for k, v in SAME_FACE_MFR.items()},
+     'membership': 'device and support in ONE logical membership (same block, or block anchored on the fixed device)',
+     'pin_locality': 'the relationship bound in 3D (dz = 1.6 mm): XY offset <= sqrt(bound^2 - 1.6^2) from the device pin pad; both pads joined by one via within that XY span',
+     'per_face_limits': ['support courtyard must not overlap device thermal/EP via field on the opposite face (LMR36520 p28 item 7 for U5/U7)',
+                         'support must not sit in any native rule area of its face (C11 J3, C12 U1 antenna, C16/D-PCB-6 via exclusions apply to its via)',
+                         'heights UNKNOWN (C19): no claim of enclosure clearance on the support face',
+                         'support must not occupy J1 PTH pin field on B (C06) or hole hardware zones (C04 UNKNOWN)']},
+    {'id': 'same-face-only', 'applies_to_classes': ['hot-loop-input', 'bulk-input', 'bootstrap', 'switch-inductor', 'ldo-cap', 'crystal', 'crystal-load'],
+     'rule': 'cross-face placement of the support is a violation (topology or MFR same-side text)'},
+    {'id': 'whole-block-flip', 'rule': 'a whole block on the opposite face is not a split: every member is transformed by the native flip and the relationships are evaluated unchanged'},
+             ],
+             'split_criterion': {
+    'deliberate': ['support on the opposite face of its device', 'relationship class allows cross-face (decoupler-under-device) and the device is not excluded',
+                   'measured 3D pin metric within the relationship bound', 'support XY inside the device courtyard expanded by the XY allowance (vertical adjacency, not drift)'],
+    'lost_cohesion': ['any member on the face opposite to the block majority/anchor that is NOT covered by a deliberate template instance',
+                      'a covered member whose 3D metric exceeds its bound, or that lies outside the device shadow allowance',
+                      'a same-face-only relationship split across faces'],
+    'regression': '473 congested-underside case: before (current code) members leak to the opposite face without template -> lost_cohesion > 0 (must fail); after -> every opposite-face member classified deliberate (must pass)'},
+             'instances': []}
+for r in rels:
+    if r['support'] and r['bound'].get('status') != 'UNRESOLVED':
+        t = 'same-face-only' if r['bound'].get('same_face_required') else 'decoupler-under-device'
+        sm = r['bound']['supply_leg_max_mm']
+        templates['instances'].append({'relationship': r['id'], 'template': t,
+                                       'xy_allowance_mm': round(math.sqrt(max(sm ** 2 - 1.6 ** 2, 0)), 3) if t != 'same-face-only' else None,
+                                       'baseline_faces': {k: r['baseline'][k]['faces'] for k in ('r5', 'route3')}})
+
+# ---------------------------------------------------------------- D5 fixed and shared rules
+POSE_CLASS = {'J1': 'OWNER right-angle + MFR datum; global XY AGENT (C05)', 'J2': 'MECH-DERIVED/AGENT (C09, D-PCB-4)',
+              'J3': 'OWNER off-left-edge direction; XY/rot AGENT (C10)', 'U1': 'OWNER accepted overhang; XY AGENT baseline (C12)',
+              'U2': 'AGENT historical pose; OWNER axis mapping (C14)', 'U3': 'MECH-DERIVED from placement (staged off-board in the emitted board); RF path UNRESOLVED (C15)',
+              'H1': 'OWNER four corners; XY/drill AGENT (C03)', 'H2': 'same as H1', 'H3': 'same as H1', 'H4': 'same as H1'}
+ACCESS = {'J1': ['mating direction +Y to board edge y=65 (C05)', 'B: PTH tails and solder/trim access; stickout UNKNOWN (C06)', 'mate/CPA/latch/harness lanes UNKNOWN (C08)'],
+          'J2': ['edge launch at x=90; cable sweep / wrench UNKNOWN (C09)'],
+          'J3': ['card mouth points off the left edge; push-push travel 4.0 eject / 0.8 overstroke from catalog; hand access UNKNOWN (C10, C11)'],
+          'U1': ['antenna area all layers keep-out (C12); housing 15 mm recommendation is NOT a board keep-out (C13)', 'UART programming via TP1/TP2/TP4/TP5 (C20)'],
+          'U2': ['installed axis transform X fwd/Y left/Z up must be preserved; rot/face fixed (C14)', 'tall/heavy parts away: numeric distance UNKNOWN (C14)'],
+          'U3': ['RF_IN pad 11 to J2.1 path F-over-In1 (C15, R:65); corridor UNRESOLVED'],
+          'H1': ['hardware envelope UNKNOWN F/B (C04)'], 'H2': ['hardware envelope UNKNOWN F/B (C04); near U1 antenna/housing (C13)'],
+          'H3': ['hardware envelope UNKNOWN F/B (C04)'], 'H4': ['hardware envelope UNKNOWN F/B (C04)']}
+ADJ = {'U1': ['mcu'], 'U3': ['gnss-rf-feed', 'gnss-antenna-supply'], 'J2': ['gnss-rf-feed'], 'J3': ['storage-support'],
+       'J1': ['power-entry', 'can', 'tire-can'], 'U2': []}
+fixed_rules = {'schema': 'fome-mc.fixed-shared-rules/1 (proposed consumer: agent-ee, AGENTEE-479)',
+               'no_flat_fallback': 'every footprint is a block member, a fixed anchor or a shared part with the rules below; an unlisted footprint is a refusal, never a residual pack',
+               'fixed': {}, 'shared': {}, 'rails': {}}
+for f in FIXED:
+    fp = EXTRACT['r5']['footprints'][f]
+    rel_ids = [r['id'] for r in rels if r['device']['ref'] == f]
+    fixed_rules['fixed'][f] = {'anchor_pose_r5': {'x_mm': fp['x'], 'y_mm': fp['y'], 'rot_deg': fp['rot'], 'side': fp['side']},
+                               'emitted_pose': {k: BOARD[f][k] for k in ('x', 'y', 'rot', 'side')},
+                               'pose_authority': POSE_CLASS[f], 'register_entries': FIXED[f],
+                               'adjacent_blocks': ADJ.get(f, []), 'support_relationships': rel_ids,
+                               'access': ACCESS[f], 'side_rule': f"fixed {fp['side']}; not a decision variable"}
+fixed_rules['shared']['TP1-TP6'] = {'role': 'test', 'anchor': 'none (movable)', 'adjacency': TP_PLAN['rules'], 'side_rule': 'one common face, either'}
+fixed_rules['shared']['JP1-JP5 (block members)'] = {'role': 'assembly configuration', 'membership': 'JP1 tire-can; JP2-JP5 thermistor', 'side_rule': 'face of its block'}
+for rail in RAILS:
+    fixed_rules['rails'][rail] = {'parts': 'none: rails are nets, not memberships; rail capacitors are bound to their device pins in relationship-bounds.json', 'merge_rule': 'a common rail never merges blocks'}
+
+# ---------------------------------------------------------------- write
+def anchor_of(b):
+    a = anchors.get(b)
+    return {'member': a} if a else {'fixed': FIXED_ANCHOR.get(b)} if FIXED_ANCHOR.get(b) else {'none': 'centroid of members'}
+alloc2 = {'schema': 'agent-ee.block-allocation/2 (proposed; /1 consumers ignore fixed/shared)',
+          'derived_from': {'path': 'telemetry-pod/expansion/blocks/allocation.json', 'sha256': sha(ALLOC_PATH)},
+          'board_sha256': EXTRACT['emitted']['sha256'],
+          'blocks': [{'id': b, 'references': sorted(rs, key=nat), 'anchor': anchor_of(b),
+                      'interfaces_to_fixed': FIXED_ANCHOR.get(b)} for b, rs in sorted(blocks.items())],
+          'fixed': [{'reference': f, 'register_entries': ids} for f, ids in FIXED.items()],
+          'shared': [{'reference': t, 'role': r} for t, r in SHARED.items()],
+          'corrections': corrections}
+for name, doc in [('allocation-v2.json', alloc2), ('side-eligibility.json', eligibility),
+                  ('relationship-bounds.json', {'schema': 'fome-mc.relationship-bounds/1 (proposed consumer: agent-ee, AGENTEE-479)',
+                                                'baselines': {k: EXTRACT[k]['sha256'] for k in ('r5', 'route3')},
+                                                'metric_note': 'pad-centre distance is a lower bound of trace length; routed length is measured only after routing',
+                                                'bound_classes': {k: {'supply_leg_max_mm': v[0], 'return_leg_max_mm': v[1], 'same_face_required': v[2], 'topology': v[3], 'numeric_provenance': EJ} for k, v in BOUND.items()},
+                                                'sources': SRC, 'old_obligations_disposition': old_dispo, 'relationships': rels}),
+                  ('cross-face-templates.json', templates), ('fixed-shared-rules.json', fixed_rules)]:
+    (OUT / name).write_text(json.dumps(doc, indent=1) + '\n')
+print('blocks', len(blocks), 'members', sum(len(v) for v in blocks.values()), 'fixed', len(FIXED), 'shared', len(SHARED),
+      'relationships', len(rels), 'unresolved', sum(1 for r in rels if r['bound'].get('status') == 'UNRESOLVED'))

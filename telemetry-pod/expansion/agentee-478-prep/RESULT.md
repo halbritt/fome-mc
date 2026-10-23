@@ -1,0 +1,220 @@
+# AGENTEE-478: data and source prep for the AGENTEE-472 block repair (D1-D5)
+
+Assignment: agent-529 decisions D1-D5 via agent-519 (Plane AGENTEE-478 under AGENTEE-472; the implementation is AGENTEE-479). These are coordinator records, not owner text. This is data and source prep only: **no agent-ee planner, adapter or placer code was touched**, and no board was mutated, routed or saved.
+
+## Run record
+
+**Clock:** started 2026-10-23T09:05:38.47Z, ended 2026-10-23T09:22:24Z (about 17 minutes), within the 60-minute bound.
+
+**Model:** Claude Opus 5.5 (`claude-opus-5-5`), the existing pod-capture-j6b2 writer.
+
+**Host:** proximal.
+
+**Disclosure:** the brief asked for this input record before work began. I wrote it at the end. The values were captured at the start: the main tree export ran at 09:06, and the hashes were taken then and re-verified at 09:21.
+
+**Inputs (frozen, read-only):**
+- fome-mc main `fa41e4b93ab03d88c2f0d17320016371325a3726`, exported with `git archive` to a scratch copy.
+- Emitted design (emission-7d5b0d4d; the main `telemetry-pod/` copies are byte-identical):
+  - schematic `telemetry-pod.kicad_sch` `f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2`;
+  - board `telemetry-pod.kicad_pcb` `2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673`.
+- Allocation `expansion/blocks/allocation.json` `434a9984f52eda3121313171fb69321d22e14ae9ff0679a0e8fabadd20cd8ec9`.
+- Evidence directories, by the sha256 of each one's SHA256SUMS. All verify with 0 failures.
+
+  | Directory | SHA256SUMS sha256 |
+  |---|---|
+  | `agentee-473-trace` | `3e217f72…` |
+  | `agentee-473b-rust-trace` | `a6e2e02b…` |
+  | `agentee-474-constraints` | `97b221e2…` (`native-geometry.json` `299f1daf…`) |
+  | `placement-r5` | `140cf200…`, board `8f3bc234…` |
+  | `route-3` | `219ab5e8…`, board `08066170…` |
+
+- Also read:
+  - `released-source-migration/emitter-layout.json` `261f1c3b…`, the schematic functional groups;
+  - the emission `composition/placement-policy.json` `5fab430a…`, the 12 old obligations;
+  - the 13 retained datasheet PDFs, each hashed in `relationship-bounds.json` → `sources`.
+- **Not consumed:** agent-ee `b7c72f6e` (plan docs) mentions "owner answers to the 474 unknowns (cowl height corrected)". That is outside the frozen input set, so nothing here uses it. 449 should decide whether D2's UNKNOWN entries need rebinding.
+
+**Runtime:** pcbnew 10.0.7 read-only extraction (`extract_pins.py`, `LoadBoard` with no save; each board's hash is re-checked after loading). The `kicad-cli sch export netlist` run on a scratch copy of the emitted schematic used native-admit leases `4c3b99deaa3c` and `a3ee1e0d909b` (`logs/native-admit-events.jsonl`). Everything else is stdlib Python over the extracts. No docker, AppArmor, cloud, upload or review.
+
+## D1: allocation v2 (`allocation-v2.json`)
+
+**Coverage:** **309 of 309 captured exactly once**: 293 members of 24 blocks, 10 fixed and 6 shared. There is no residual, root-sheet or implicit bucket.
+
+The 37 former residual parts:
+- **Fixed, with 474 entry IDs:** J1 (C05–C08), J2 (C09), J3 (C10/C11), U1 (C12/C13), U2 (C14), U3 (C15), H1–H4 (C03/C04).
+- **Shared (test):** TP1–TP6.
+- **New small blocks:**
+  - `gnss-antenna-supply`: U10, R24, R25, R26, C42. The DC active-antenna bias chain.
+  - `gnss-rf-feed`: L3, D3. These sit on the RF line itself.
+  - `storage-support`: R46–R50, R55, C64, C65, anchored on the fixed J3.
+- **C18** goes to `pre-6v3`. It is on /PRE_6V3, the U5/L1 output node; U7 is not on that net.
+- **R33** goes to `mcu`. It is the IO46 strap of the fixed U1; `mcu` is U1's support block, anchored on the fixed U1.
+- **C38, C41, C43, C44** go to `buck-3v3`. The emitted schematic draws them in the "3V3 regulator (U7) and 3V3 bulk" group, on /+3V3 with no per-load binding. The old fifth fix removed them because of where an earlier placement put them, not because of what they do.
+
+**Corrections to the existing 18 blocks**, from the actual emitted netlist (evidence is in `corrections[]` and in `d1-verification.json`, the non-rail connected components):
+1. **`supervision` split into three independent blocks:** `supervisor-3v3` (U16), `supervisor-5v-sensor` (U18) and `supervisor-12v` (U19). They watch different rails and share only rails; U18 and U19 are unreachable from U16 on non-rail nets.
+2. **`afe` loses U9, R22, R23, C39 to a new `sensor-ref` block.** U9 buffers the 2.5 V ADC reference into U4 Vref. On non-rail nets it is unreachable from U8.
+3. **`aux-afe` loses the ADC CH4–7 input RC to `adc`:** R36, R39, R42, R45 and C55, C57, C59, C61. These have the same topology as the CH0–3 RC, which is already in `adc`; the 100 pF capacitor is the sampling reservoir at the U4 pin.
+
+**Every member is justified** (`d1-verification.json`, 0 unjustified). Each one is either connected to its block's core on non-rail nets, bound to a device pin by a D3 relationship, or linked to its block's fixed anchor.
+
+**Validator:** `validate_coverage.py` checks coverage and cross-file references; `coverage-report.json` is its output.
+- Result: **PASS**: 309 footprints, **0 unassigned, 0 duplicates**, 0 unknown references.
+- The other checks also pass:
+  - the board-only parts are exactly H1–H4, all fixed;
+  - every schematic symbol is on the board;
+  - the anchors are valid;
+  - there is no implicit bucket;
+  - eligibility covers every block, fixed and shared part, and cites only C01–C23;
+  - all 219 relationships bind real pins and nets;
+  - every template instance and fixed rule resolves.
+- **Negative test:** a copy with U5 duplicated and C30 removed exits 1 and fails on duplicates, unassigned and coverage.
+
+## D2: side eligibility (`side-eligibility.json`)
+
+- **Default:** every block may use either face (C01; no count balance and no quota).
+- **Face restriction:** `gnss-rf-feed` is **F only** (C15). The RF line must run on F.Cu over In1 (R:65), and U3 and J2 are on F. Recheck this once C15 is reconciled.
+- **Region restrictions** apply to a face and region, not to a whole face:
+  - C12, all layers: the U1 antenna area, for `mcu`.
+  - C10/C11, B: the J3 card lane and rule areas, for `storage-support`.
+  - C06, B: the J1 PTH pin field, for the 11 blocks around J1.
+- **Material unknowns carried per block:**
+  - C19: heights, both faces.
+  - C22: enclosure.
+  - C04: H1–H4 hardware, radius UNKNOWN, both faces.
+  - C23: thermal, for the regulator, MCU and switch blocks.
+  - The opposite-face area under the U5/U7 exposed pad is reserved for thermal vias (LMR36520 p28 item 7); its size is UNKNOWN.
+- **Fixed parts:** each keeps a single face.
+- **Test and assembly access plan (`test_assembly_access_plan`):**
+  - TP1–TP6 all go on one common face, chosen by the planner. One fixture head covers TX, RX, EN, BOOT, GND and +3V3; the 25 mm grouping figure is labelled engineering judgement.
+  - The probe keep-clear radius and the fixture support are UNKNOWN (C20).
+  - JP1–JP5 follow their blocks. Each needs solder-iron access before sealing; the access size is UNKNOWN (C21).
+  - **No genuinely owner-reserved fixture constraint was found.** UART programming before sealing is an owner functional requirement (R:42); the fixture geometry itself is engineering.
+
+## D3: relationship bounds (`relationship-bounds.json`)
+
+**Scope:** 219 relationships, each giving the exact device pin and the support part's pad on the same net. The relationships cover:
+- decoupling, including input and bulk capacitors, hot loops, VCC and LDO capacitors;
+- feedback, bootstrap and the switch-node inductor;
+- crystal and load capacitors;
+- ESD (measured both at the transceiver and at the J1 pin) and termination;
+- input and sampling filters, and sense and timing networks;
+- reference capacitors;
+- strap, enable and RC pulls on critical lines.
+
+I2C, chip-select, interrupt and SD pull-ups are treated as non-critical and left unbounded.
+
+**Metric:** 3D pad-centre distance, adding dz = 1.6 mm when the two pads are on opposite faces. The return leg runs from the support's GND pad to the nearest device GND pad. Pad-centre distance is a lower bound on trace length; routed length can only be measured after routing.
+
+**Provenance, per relationship:**
+- **MFR**, with retained file, sha256, page and wording. This covers 13 datasheets, for example:
+  - LMR36520 p27–28, items 1–4 and 8;
+  - TPS7B4253 p19, which requires the same side;
+  - ADS1119 p37–38: no vias, same layer;
+  - TPS2662 p35, TPS2553 p25, LSM6DSO32 p53;
+  - NEO-M9N integration manual p80–81, ESP32 hardware guide p11/p17;
+  - MCP3208 p23, OPA320 p28, LM2903B p18, SN74LVC1G132 p14, TL431 p31.
+- **TOPOLOGY** reasoning.
+- An explicitly labelled **ENGINEERING-JUDGEMENT** entry for every numeric value. **No manufacturer source gives a numeric radius**; they all say "as close as possible".
+- The bound classes and their values are in `bound_classes`.
+- The numeric bounds have **not been feasibility-tested** in stage A. A bound that proves infeasible is to be reported, not quietly relaxed.
+
+**The 12 old advisory obligations were not hardened** (`old_obligations_disposition`). Each was mapped to its re-derived relationship. Four old supply legs used **U5/U7 pin 3 (EN, tied to VIN)**; the new relationships use **VIN pin 2**.
+
+**UNRESOLVED (13), which block acceptance of those relationships:**
+- **RF line (3):** U3.11–L3, U3.11–D3, and J2.1. 474 C15 (RF path and corridor) has not been reconciled.
+- **Schematic decoupling gaps (10).** The emitted schematic has **no decoupler dedicated to** any of these pins:
+  - U2.8 VDD and U2.5 VDDIO (LSM6DSO32 wants C1 and C2 = 100 nF);
+  - U3.23 VCC and U3.22 V_BCKP;
+  - U10.1 IN;
+  - U4.16 Vdd, U8.4 V+, U9.5 V+;
+  - U100.5 VIO;
+  - U11.2 Vin.
+
+  Placement cannot satisfy a relationship that the design does not contain. **Proposed alternative, NOT applied; it needs a 529/owner decision via 519:**
+  - rebind C38 → U2.8, C41 → U2.5, C44 (1 µF) → U3.23 and C43 → U10.1, instead of the U7 output bank;
+  - or add decouplers in a design change.
+
+**Baseline, identical on R5 and ROUTE-3** (routing moved no parts): **43 within, 163 exceeding and 13 UNRESOLVED.** Per relationship, `baseline` records the supply and return legs, the faces and the verdict. Some examples:
+
+| Relationship | R5 measurement | Bound |
+|---|---|---|
+| U5.2–C3 hot loop | 10.32 / 10.65 mm | 3.0 / 3.0 mm |
+| U7.5–R5 feedback | 83.6 mm | 4.0 mm |
+| U1.3–R29/C47 EN RC | 40.5 / 37.0 mm | 10 mm |
+| Y1 to U20 OSC pins | 4.1 / 5.8 mm | 6 mm (within) |
+
+Opposite-face relationships in R5: 19, from the J3 caps and the R70–R84 side flips.
+
+## D4: cross-face templates (`cross-face-templates.json`)
+
+There are three templates:
+- **`decoupler-under-device`:** applies to decouplers and to bias, reference, filter, sense and strap supports. The pin locality is the 3D bound, giving an XY allowance of √(bound² − 1.6²) per instance.
+  - Excluded: TPS7B4253 (U6, U12) and ADS1119 (U27–U29), whose manufacturers require the same side.
+  - Per-face limits: no overlap with the U5/U7 exposed-pad via field, no part in a native rule area (C11, C12, C16), no part in the J1 B pin field (C06) or the hole hardware zones (C04), and heights UNKNOWN.
+- **`same-face-only`:** applies to hot loop, bulk input, bootstrap, switch-node inductor, LDO capacitors and crystal.
+- **`whole-block-flip`:** flipping a whole block is not a split.
+
+**Deliberate split versus lost cohesion:** a member on the opposite face counts as deliberate only if all four hold:
+- a template instance covers it;
+- the device is not excluded;
+- its 3D metric is within the bound;
+- its XY position is inside the device courtyard expanded by the allowance.
+
+Anything else on the opposite face is lost cohesion. The regression contract is to fail before AGENTEE-479 and pass after it. There are 206 instances.
+
+## D5: fixed and shared rules (`fixed-shared-rules.json`)
+
+- **Fixed parts:** each records its R5 and emitted poses, its pose authority as 474 classes it, its adjacent blocks, its support relationships, its access rules and its side rule.
+  - U3 is **staged off-board in the emitted board**. Its anchor pose is placement-derived (MECH-DERIVED, C15), not sourced.
+  - J1, J2, J3, U1, U2 and H1–H4 match between the emitted board and R5.
+- **Shared parts:** the TP common-face and access rules; JP parts follow their blocks.
+- **Rails:** these are nets, not memberships; they never merge blocks.
+- **No flat fallback:** an unlisted footprint is a refusal.
+
+## Proposed schemas (`proposed-schemas.json`; proposed only, AGENTEE-479 consumes them)
+
+**Schemas:** `agent-ee.block-allocation/2`, `fome-mc.side-eligibility/1`, `relationship-bounds/1`, `cross-face-templates/1` and `fixed-shared-rules/1`, each with its intended consumer.
+
+**Stage-A side-variant format: `agent-ee.block-candidate-set/1`, "proposed, pending agreement with agent-524".** 449 routes that agreement through 519.
+- It wraps **unchanged** `block-candidate/2` documents, one per eligible face.
+- Rust `validate_candidate` (blocks.rs:769) checks an exact key set. Each variant therefore still validates with the existing function.
+- The B variant's member geometry comes from the native pcbnew `Flip(LEFT_RIGHT)`.
+- Admission checks four things:
+  - each variant's face is eligible;
+  - the pad inventory equals the native flip of the captured footprint;
+  - the member set is the same in every variant;
+  - the frame anchor is the same in every variant.
+- A plain `/2` document reads as a one-variant set.
+
+**The actual hybrid pipeline:**
+- Python does stage-A packing.
+- Once AGENTEE-476 ships, Rust is the default for stage B, admission and the residual pack.
+- Python stage B and admission are an explicit parity reference only, never a silent fallback.
+- Saved-board validation stays in Python.
+
+**Not all Rust.**
+
+## Files
+
+The sha256 of every file is in `SHA256SUMS`.
+- **Data:** `allocation-v2.json`, `side-eligibility.json`, `relationship-bounds.json`, `cross-face-templates.json`, `fixed-shared-rules.json`, `proposed-schemas.json`.
+- **Reports:** `coverage-report.json` (validator output) and `d1-verification.json`.
+- **Scripts:** `extract_pins.py`, `build_prep.py`, `validate_coverage.py`, `d1_verify.py`.
+- **Extracts:** in `extract/`: the emitted board, R5, ROUTE-3 and the emitted schematic netlist.
+- **Logs:** `logs/native-admit-events.jsonl`.
+
+**Reproduce:**
+```
+python3 -I build_prep.py <telemetry-pod> extract/emitted-schematic-netlist.json .
+python3 -I d1_verify.py . d1-verification.json
+python3 -I validate_coverage.py . coverage-report.json
+```
+
+## Remaining and open items, none of which are deferred acceptance
+
+1. A 529/owner decision on the 10 decoupling gaps: rebind the bank capacitors as proposed, or change the design.
+2. Reconcile 474 C15 (the RF path), which unblocks the three RF relationships and the `gnss-rf-feed` face.
+3. 449 to decide whether the agent-ee `b7c72f6e` owner answers to the 474 unknowns rebind the D2 UNKNOWN entries.
+4. Agreement with agent-524 on `block-candidate-set/1`.
+5. The numeric bounds are labelled engineering judgement and untested for feasibility; AGENTEE-479 stage A will test them.

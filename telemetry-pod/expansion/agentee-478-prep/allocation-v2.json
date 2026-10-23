@@ -1,0 +1,757 @@
+{
+ "schema": "agent-ee.block-allocation/2 (proposed; /1 consumers ignore fixed/shared)",
+ "derived_from": {
+  "path": "telemetry-pod/expansion/blocks/allocation.json",
+  "sha256": "434a9984f52eda3121313171fb69321d22e14ae9ff0679a0e8fabadd20cd8ec9"
+ },
+ "board_sha256": "2f1c955704ab1fb38217c24cbaf5a45f4219a74a6a2309be710452c54db3b673",
+ "blocks": [
+  {
+   "id": "adc",
+   "references": [
+    "C31",
+    "C33",
+    "C35",
+    "C37",
+    "C40",
+    "C55",
+    "C57",
+    "C59",
+    "C61",
+    "R12",
+    "R15",
+    "R18",
+    "R21",
+    "R36",
+    "R39",
+    "R42",
+    "R45",
+    "U4"
+   ],
+   "anchor": {
+    "member": "U4"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "afe",
+   "references": [
+    "C30",
+    "C32",
+    "C34",
+    "C36",
+    "R10",
+    "R11",
+    "R13",
+    "R14",
+    "R16",
+    "R17",
+    "R19",
+    "R20",
+    "U8"
+   ],
+   "anchor": {
+    "member": "U8"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "aux-afe",
+   "references": [
+    "C54",
+    "C56",
+    "C58",
+    "C60",
+    "C62",
+    "R34",
+    "R35",
+    "R37",
+    "R38",
+    "R40",
+    "R41",
+    "R43",
+    "R44",
+    "U13"
+   ],
+   "anchor": {
+    "member": "U13"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "aux-power",
+   "references": [
+    "C124",
+    "C125",
+    "C126",
+    "C127",
+    "R162",
+    "R163",
+    "R164",
+    "R165",
+    "R166",
+    "R167",
+    "R168",
+    "R169",
+    "U30"
+   ],
+   "anchor": {
+    "member": "U30"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "buck-3v3",
+   "references": [
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "C38",
+    "C41",
+    "C43",
+    "C44",
+    "L2",
+    "R4",
+    "R5",
+    "R28",
+    "U7"
+   ],
+   "anchor": {
+    "member": "U7"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "can",
+   "references": [
+    "C100",
+    "D100",
+    "R100",
+    "U100"
+   ],
+   "anchor": {
+    "member": "U100"
+   },
+   "interfaces_to_fixed": "J1"
+  },
+  {
+   "id": "diagnostic",
+   "references": [
+    "C110",
+    "C111",
+    "C112",
+    "C114",
+    "C115",
+    "C116",
+    "C117",
+    "C118",
+    "C119",
+    "C120",
+    "C121",
+    "C122",
+    "C123",
+    "R128",
+    "R129",
+    "R130",
+    "R131",
+    "R132",
+    "R133",
+    "R134",
+    "R135",
+    "R136",
+    "R137",
+    "R138",
+    "R139",
+    "R144",
+    "R145",
+    "R146",
+    "R147",
+    "R148",
+    "R149",
+    "R150",
+    "R151",
+    "R152",
+    "R153",
+    "R154",
+    "R155",
+    "R156",
+    "R157",
+    "R158",
+    "R159",
+    "R160",
+    "R161",
+    "U27",
+    "U28",
+    "U29"
+   ],
+   "anchor": {
+    "member": "U27"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "gnss-antenna-supply",
+   "references": [
+    "C42",
+    "R24",
+    "R25",
+    "R26",
+    "U10"
+   ],
+   "anchor": {
+    "member": "U10"
+   },
+   "interfaces_to_fixed": "U3"
+  },
+  {
+   "id": "gnss-rf-feed",
+   "references": [
+    "D3",
+    "L3"
+   ],
+   "anchor": {
+    "fixed": "U3"
+   },
+   "interfaces_to_fixed": "U3"
+  },
+  {
+   "id": "mcu",
+   "references": [
+    "C45",
+    "C46",
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C51",
+    "C52",
+    "C53",
+    "R29",
+    "R30",
+    "R31",
+    "R32",
+    "R33"
+   ],
+   "anchor": {
+    "fixed": "U1"
+   },
+   "interfaces_to_fixed": "U1"
+  },
+  {
+   "id": "power-entry",
+   "references": [
+    "D1",
+    "D2",
+    "Q1",
+    "R1"
+   ],
+   "anchor": {
+    "member": "Q1"
+   },
+   "interfaces_to_fixed": "J1"
+  },
+  {
+   "id": "pre-6v3",
+   "references": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C18",
+    "L1",
+    "R2",
+    "R3",
+    "R27",
+    "U5"
+   ],
+   "anchor": {
+    "member": "U5"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "sensor-power-front",
+   "references": [
+    "C86",
+    "C87",
+    "C88",
+    "R73",
+    "R74",
+    "R75",
+    "R76",
+    "U23"
+   ],
+   "anchor": {
+    "member": "U23"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "sensor-power-rear",
+   "references": [
+    "C89",
+    "C90",
+    "C91",
+    "R77",
+    "R78",
+    "R79",
+    "R80",
+    "U24"
+   ],
+   "anchor": {
+    "member": "U24"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "sensor-power-tire",
+   "references": [
+    "C92",
+    "C93",
+    "C94",
+    "R81",
+    "R82",
+    "R83",
+    "R84",
+    "U25"
+   ],
+   "anchor": {
+    "member": "U25"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "sensor-ref",
+   "references": [
+    "C39",
+    "R22",
+    "R23",
+    "U9"
+   ],
+   "anchor": {
+    "member": "U9"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "storage-support",
+   "references": [
+    "C64",
+    "C65",
+    "R46",
+    "R47",
+    "R48",
+    "R49",
+    "R50",
+    "R55"
+   ],
+   "anchor": {
+    "fixed": "J3"
+   },
+   "interfaces_to_fixed": "J3"
+  },
+  {
+   "id": "supervisor-12v",
+   "references": [
+    "C77",
+    "C78",
+    "R62",
+    "R63",
+    "R65",
+    "U19"
+   ],
+   "anchor": {
+    "member": "U19"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "supervisor-3v3",
+   "references": [
+    "C71",
+    "C72",
+    "R56",
+    "R57",
+    "U16"
+   ],
+   "anchor": {
+    "member": "U16"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "supervisor-5v-sensor",
+   "references": [
+    "C75",
+    "C76",
+    "R60",
+    "R61",
+    "R64",
+    "R181",
+    "U18"
+   ],
+   "anchor": {
+    "member": "U18"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "supplies-5v",
+   "references": [
+    "C16",
+    "C17",
+    "C19",
+    "C20",
+    "C21",
+    "C22",
+    "R6",
+    "R7",
+    "U6",
+    "U11",
+    "U12"
+   ],
+   "anchor": {
+    "member": "U6"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "thermistor",
+   "references": [
+    "C128",
+    "C129",
+    "D105",
+    "JP2",
+    "JP3",
+    "JP4",
+    "JP5",
+    "R170",
+    "R171",
+    "R172",
+    "R173",
+    "R174",
+    "R175",
+    "R176",
+    "R177",
+    "R178",
+    "R179",
+    "R180",
+    "U31"
+   ],
+   "anchor": {
+    "member": "U31"
+   },
+   "interfaces_to_fixed": null
+  },
+  {
+   "id": "tire-can",
+   "references": [
+    "C79",
+    "C80",
+    "C81",
+    "C82",
+    "C83",
+    "C84",
+    "C85",
+    "D101",
+    "JP1",
+    "R66",
+    "R67",
+    "R68",
+    "R69",
+    "R70",
+    "R71",
+    "R72",
+    "U20",
+    "U21",
+    "U22",
+    "Y1"
+   ],
+   "anchor": {
+    "member": "U20"
+   },
+   "interfaces_to_fixed": "J1"
+  },
+  {
+   "id": "wheel-input",
+   "references": [
+    "C95",
+    "C96",
+    "C97",
+    "C98",
+    "D102",
+    "D103",
+    "D104",
+    "R110",
+    "R111",
+    "R112",
+    "R113",
+    "R114",
+    "R115",
+    "R116",
+    "R117",
+    "R118",
+    "R119",
+    "R120",
+    "R121",
+    "R122",
+    "R123",
+    "R124",
+    "R125",
+    "R126",
+    "R127",
+    "U26"
+   ],
+   "anchor": {
+    "member": "U26"
+   },
+   "interfaces_to_fixed": null
+  }
+ ],
+ "fixed": [
+  {
+   "reference": "J1",
+   "register_entries": [
+    "C05",
+    "C06",
+    "C07",
+    "C08"
+   ]
+  },
+  {
+   "reference": "J2",
+   "register_entries": [
+    "C09"
+   ]
+  },
+  {
+   "reference": "J3",
+   "register_entries": [
+    "C10",
+    "C11"
+   ]
+  },
+  {
+   "reference": "U1",
+   "register_entries": [
+    "C12",
+    "C13"
+   ]
+  },
+  {
+   "reference": "U2",
+   "register_entries": [
+    "C14"
+   ]
+  },
+  {
+   "reference": "U3",
+   "register_entries": [
+    "C15"
+   ]
+  },
+  {
+   "reference": "H1",
+   "register_entries": [
+    "C03",
+    "C04"
+   ]
+  },
+  {
+   "reference": "H2",
+   "register_entries": [
+    "C03",
+    "C04"
+   ]
+  },
+  {
+   "reference": "H3",
+   "register_entries": [
+    "C03",
+    "C04"
+   ]
+  },
+  {
+   "reference": "H4",
+   "register_entries": [
+    "C03",
+    "C04"
+   ]
+  }
+ ],
+ "shared": [
+  {
+   "reference": "TP1",
+   "role": "test"
+  },
+  {
+   "reference": "TP2",
+   "role": "test"
+  },
+  {
+   "reference": "TP3",
+   "role": "test"
+  },
+  {
+   "reference": "TP4",
+   "role": "test"
+  },
+  {
+   "reference": "TP5",
+   "role": "test"
+  },
+  {
+   "reference": "TP6",
+   "role": "test"
+  }
+ ],
+ "corrections": [
+  {
+   "references": [
+    "C18"
+   ],
+   "from": "residual/unassigned",
+   "to": "pre-6v3",
+   "reason": "C18 (1 uF) is on /PRE_6V3, the U5/L1 output node (pre-6v3 regulator output). It is drawn with the buck-3v3 output bank in the emitted schematic, but U7 is not on that net (third fix). Function: pre-6v3 output capacitance.",
+   "evidence": "netlist C18.1=/PRE_6V3 C18.2=/GND; L1.2=/PRE_6V3; schematic symbol C18 at (375.92,41.91), inside the emitter group \"buck-3v3: 3V3 regulator (U7) and 3V3 bulk\""
+  },
+  {
+   "references": [
+    "C38",
+    "C41",
+    "C43",
+    "C44"
+   ],
+   "from": "residual/unassigned",
+   "to": "buck-3v3",
+   "reason": "The emitted schematic draws C38/C41/C43/C44 in the \"3V3 regulator (U7) and 3V3 bulk\" group, on /+3V3 with no per-load binding. By schematic function they are the regulator output bank. The fifth fix removed them on PLACEMENT evidence (48-51 mm from U7 in iteration 5), not on function. The consequent load-pin decoupling gaps are reported as UNRESOLVED in relationship-bounds.json (D-GAP entries). An alternative per-load binding is offered there as an owner/529 decision, not applied.",
+   "evidence": "emitter-layout.json group buck-3v3 lists power/C38, C41, C43, C44; schematic x 332-366, y 34-42, beside U7 at (444.5,43.18)"
+  },
+  {
+   "references": [
+    "R33"
+   ],
+   "from": "residual/unassigned",
+   "to": "mcu",
+   "reason": "R33 (10 k) pulls U1 IO46 (/MCU_BOOT46) to GND: a strap of the module. mcu is the U1 support block anchored on the fixed U1, so a member reachable only through the fixed anchor is expected and valid.",
+   "evidence": "netlist R33.1=/MCU_BOOT46 (U1.16 IO46) R33.2=/GND; emitter group mcu lists support/R33"
+  },
+  {
+   "references": [
+    "U10",
+    "R24",
+    "R25",
+    "R26",
+    "C42"
+   ],
+   "from": "residual/unassigned",
+   "to": "gnss-antenna-supply",
+   "reason": "Active-antenna bias supply: TPS2553 load switch U10 (EN from U3 LNA_EN, fault flag) feeding /ANT_LIMITED -> R26 -> /ANT_BIAS (C42). DC circuitry, independent of the RF line; its own small block.",
+   "evidence": "netlist U10.3=/GNSS_LNA_EN (U3.14, R24), U10.4=/GNSS_ANT_FAULT_N (R25), U10.6=/ANT_LIMITED (R26), C42.1=/ANT_BIAS; emitter group gnss"
+  },
+  {
+   "references": [
+    "L3",
+    "D3"
+   ],
+   "from": "residual/unassigned",
+   "to": "gnss-rf-feed",
+   "reason": "Parts ON the RF line /POD_GNSS_RF between U3.11 and J2.1: bias-tee inductor L3 and ESD D3. They follow the RF path (474 C15), so they are a separate block from the DC antenna supply.",
+   "evidence": "netlist L3=/ANT_BIAS-/POD_GNSS_RF, D3=/POD_GNSS_RF-/GND, J2.1=/POD_GNSS_RF, U3.11 RF_IN"
+  },
+  {
+   "references": [
+    "R46",
+    "R47",
+    "R48",
+    "R49",
+    "R50",
+    "R55",
+    "C64",
+    "C65"
+   ],
+   "from": "residual/unassigned",
+   "to": "storage-support",
+   "reason": "microSD support: pull-ups on CMD/DAT0-3/CD and the J3 VDD capacitors, anchored on the fixed J3 (seventh fix dissolved the storage block only because J3 became fixed).",
+   "evidence": "netlist R46-R50 to /SD_CMD,/SD_DAT0..3, R55 to /SD_CD, C64/C65 on /+3V3 at J3.4 VDD"
+  },
+  {
+   "references": [
+    "U9",
+    "R22",
+    "R23",
+    "C39"
+   ],
+   "from": "afe",
+   "to": "sensor-ref",
+   "reason": "U9 (OPA320) buffers the 2.5 V ADC reference from the /POD_5V_SENSOR divider R22/R23 (C39 filter) to U4 Vref. On non-rail nets it is unreachable from the afe anchor U8: an independent circuit. Kept as its own small block instead of riding with the input buffers.",
+   "evidence": "netlist U9.3=/REF_DIV (R22,R23,C39), U9.1/4=/SENSOR_REF_2V5 = U4.15 Vref (C40); reachability check in d1-verification.json"
+  },
+  {
+   "references": [
+    "R36",
+    "R39",
+    "R42",
+    "R45",
+    "C55",
+    "C57",
+    "C59",
+    "C61"
+   ],
+   "from": "aux-afe",
+   "to": "adc",
+   "reason": "ADC CH4-7 input RC (100 ohm series + 100 pF at the U4 pin) has the same topology and function as the CH0-3 RC (R12/R15/R18/R21, C31/C33/C35/C37), which are already in adc. The 100 pF is the sampling reservoir at the U4 pin, so it belongs with the ADC.",
+   "evidence": "netlist C55.1=/ADC_AIN4=U4.5 ... C61.1=/ADC_AIN7=U4.8; R36 /AFE_BUF4-/ADC_AIN4 ...; CH0-3 equivalents in old adc"
+  },
+  {
+   "references": [
+    "U16",
+    "R56",
+    "R57",
+    "C71",
+    "C72"
+   ],
+   "from": "supervision",
+   "to": "supervisor-3v3",
+   "reason": "The three TPS389001 supervisors watch different rails (+3V3, /POD_5V_SENSOR, /POD_12V_PROTECTED) and share only rails; on non-rail nets U18/U19 are unreachable from U16. Split into independent small blocks (common rails do not merge blocks).",
+   "evidence": "netlist SENSE nets /SUP_U16_SENSE, /SUP_U18_SENSE, /SUP_U19_SENSE; VDD-cap binding by emitter order (U, Rtop, Rbot, CT, VDD cap)"
+  },
+  {
+   "references": [
+    "U18",
+    "R60",
+    "R181",
+    "R61",
+    "C75",
+    "C76",
+    "R64"
+   ],
+   "from": "supervision",
+   "to": "supervisor-5v-sensor",
+   "reason": "The three TPS389001 supervisors watch different rails (+3V3, /POD_5V_SENSOR, /POD_12V_PROTECTED) and share only rails; on non-rail nets U18/U19 are unreachable from U16. Split into independent small blocks (common rails do not merge blocks).",
+   "evidence": "netlist SENSE nets /SUP_U16_SENSE, /SUP_U18_SENSE, /SUP_U19_SENSE; VDD-cap binding by emitter order (U, Rtop, Rbot, CT, VDD cap)"
+  },
+  {
+   "references": [
+    "U19",
+    "R62",
+    "R63",
+    "C77",
+    "C78",
+    "R65"
+   ],
+   "from": "supervision",
+   "to": "supervisor-12v",
+   "reason": "The three TPS389001 supervisors watch different rails (+3V3, /POD_5V_SENSOR, /POD_12V_PROTECTED) and share only rails; on non-rail nets U18/U19 are unreachable from U16. Split into independent small blocks (common rails do not merge blocks).",
+   "evidence": "netlist SENSE nets /SUP_U16_SENSE, /SUP_U18_SENSE, /SUP_U19_SENSE; VDD-cap binding by emitter order (U, Rtop, Rbot, CT, VDD cap)"
+  }
+ ]
+}

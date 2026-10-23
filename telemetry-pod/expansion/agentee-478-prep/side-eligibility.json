@@ -1,0 +1,1604 @@
+{
+ "schema": "fome-mc.side-eligibility/1 (proposed consumer: agent-ee, AGENTEE-479)",
+ "default": {
+  "faces": [
+   "F",
+   "B"
+  ],
+  "source": "C01 (OWNER R:65, 2026-10-19): both faces permitted; no count balance"
+ },
+ "count_balance": "none: no side quota or balance term (C01)",
+ "blocks": {
+  "adc": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "afe": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "aux-afe": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "aux-power": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "buck-3v3": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    },
+    {
+     "id": "C23",
+     "what": "LMR36520 heat-sink copper area / thermal vias under the exposed pad (MFR p28 item 7): the opposite-face area under each EP is reserved for thermal vias; its size is UNKNOWN",
+     "region": "under U5/U7 exposed pad",
+     "face": "opposite of the IC"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": [
+    "U7.2-C10-hot-loop-input",
+    "U7.2-C8-bulk-input",
+    "U7.2-C9-bulk-input",
+    "U7.7-C12-bootstrap",
+    "U7.8-L2-switch-inductor"
+   ]
+  },
+  "can": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "diagnostic": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": [
+    "U27.12-C118-hf-decoupler",
+    "U27.13-C119-hf-decoupler",
+    "U28.12-C120-hf-decoupler",
+    "U28.13-C121-hf-decoupler",
+    "U29.12-C122-hf-decoupler",
+    "U29.13-C123-hf-decoupler"
+   ]
+  },
+  "gnss-antenna-supply": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "gnss-rf-feed": {
+   "eligible_faces": [
+    "F"
+   ],
+   "face_restrictions": [
+    {
+     "id": "C15",
+     "text": "RF line parts follow the U3.11-J2.1 RF path, which must be F.Cu over the In1 reference (OWNER/project R:65); U3 and J2 are F. Re-check once C15 is reconciled"
+    }
+   ],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "mcu": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C12",
+     "face": "F,B",
+     "region_mm": [
+      48.5,
+      -21.25,
+      96.5,
+      -0.25
+     ],
+     "rule": "U1 antenna area: no parts on any layer"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "power-entry": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "pre-6v3": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    },
+    {
+     "id": "C23",
+     "what": "LMR36520 heat-sink copper area / thermal vias under the exposed pad (MFR p28 item 7): the opposite-face area under each EP is reserved for thermal vias; its size is UNKNOWN",
+     "region": "under U5/U7 exposed pad",
+     "face": "opposite of the IC"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": [
+    "U5.2-C3-hot-loop-input",
+    "U5.2-C1-bulk-input",
+    "U5.2-C2-bulk-input",
+    "U5.7-C5-bootstrap",
+    "U5.8-L1-switch-inductor"
+   ]
+  },
+  "sensor-power-front": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "sensor-power-rear": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "sensor-power-tire": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "sensor-ref": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "storage-support": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C11",
+     "face": "B",
+     "region": "J3 native B-only rule areas (5 polygons, native-geometry.json)",
+     "rule": "no parts/pads inside"
+    },
+    {
+     "id": "C10",
+     "face": "B",
+     "region_mm": [
+      -20.095,
+      24.125,
+      17.715,
+      39.815
+     ],
+     "rule": "J3 card/lane courtyard (AGENT 15 mm lane); card removal off the left edge"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "supervisor-12v": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "supervisor-3v3": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "supervisor-5v-sensor": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "supplies-5v": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C23",
+     "what": "validated local operating temperature / enclosure airflow; no sourced thermal spacing or hot-zone",
+     "region": "block footprint",
+     "face": "F,B"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": [
+    "U6.8-C16-ldo-cap",
+    "U6.1-C17-ldo-cap",
+    "U12.8-C20-ldo-cap",
+    "U12.1-C19-ldo-cap"
+   ]
+  },
+  "thermistor": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  },
+  "tire-can": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": [
+    "U20.5-C82-crystal-load",
+    "U20.5-Y1-crystal",
+    "U20.6-C81-crystal-load",
+    "U20.6-Y1-crystal"
+   ]
+  },
+  "wheel-input": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "face_restrictions": [],
+   "region_restrictions": [
+    {
+     "id": "C06",
+     "face": "B",
+     "region_mm": [
+      6.055,
+      48.955,
+      83.945,
+      65.0
+     ],
+     "rule": "J1 PTH pin field: B parts may not overlap PTH pads/drills; lead stickout after trim UNKNOWN (no B courtyard)"
+    }
+   ],
+   "material_unknowns": [
+    {
+     "id": "C19",
+     "what": "installed heights of all parts on both faces; enclosure clearance per face",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C22",
+     "what": "enclosure / cowl / harness envelope",
+     "region": "whole board",
+     "face": "F,B"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H1 (4,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H2 (86,4), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H3 (86,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    },
+    {
+     "id": "C04",
+     "face": "F,B",
+     "region": "around H4 (4,61), radius UNKNOWN",
+     "rule": "screw/washer/standoff envelope UNKNOWN on both faces; hole courtyard only is enforced"
+    }
+   ],
+   "whole_block_transform": "native pcbnew Flip(LEFT_RIGHT) of every member; same-face relationships stay same-face",
+   "same_face_relationships": []
+  }
+ },
+ "fixed": {
+  "J1": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C05",
+    "C06",
+    "C07",
+    "C08"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "J2": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C09"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "J3": {
+   "face": "B",
+   "eligible_faces": [
+    "B"
+   ],
+   "sources": [
+    "C10",
+    "C11"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "U1": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C12",
+    "C13"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "U2": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C14"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "U3": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C15"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "H1": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C03",
+    "C04"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "H2": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C03",
+    "C04"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "H3": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C03",
+    "C04"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  },
+  "H4": {
+   "face": "F",
+   "eligible_faces": [
+    "F"
+   ],
+   "sources": [
+    "C03",
+    "C04"
+   ],
+   "note": "fixed role: side is not a decision variable; change only by an owner-reserved decision (474 owner-reserved list)"
+  }
+ },
+ "shared": {
+  "TP1-TP6": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "constraint": "all six on ONE common face (single-sided programming fixture), chosen by the planner",
+   "sources": [
+    "C20",
+    "C01"
+   ],
+   "material_unknowns": [
+    {
+     "id": "C20",
+     "what": "probe tip / approach travel / fixture pin height / support force / tool clearance",
+     "region": "each TP pad",
+     "face": "probed face"
+    }
+   ],
+   "owner_reserved": "none: UART programming before sealing is an owner/project functional requirement (R:42); fixture geometry is engineering, not owner-reserved"
+  },
+  "JP1-JP5": {
+   "eligible_faces": [
+    "F",
+    "B"
+   ],
+   "constraint": "face follows its block (tire-can: JP1; thermistor: JP2-JP5); solder-iron access before sealing",
+   "sources": [
+    "C21"
+   ],
+   "material_unknowns": [
+    {
+     "id": "C21",
+     "what": "solder tool angle / access footprint / timing",
+     "region": "each JP",
+     "face": "jumper face"
+    }
+   ],
+   "owner_reserved": "none"
+  }
+ },
+ "test_assembly_access_plan": {
+  "purpose": "factory UART programming and console before sealing (R:42); BLE OTA afterwards; no field-service opening",
+  "pads": {
+   "TP1": "/POD_UART_TX",
+   "TP2": "/POD_UART_RX",
+   "TP3": "/GND",
+   "TP4": "/MCU_EN",
+   "TP5": "/MCU_BOOT",
+   "TP6": "/+3V3"
+  },
+  "rules": [
+   "all six pads on one face, selected by the planner (either face eligible, C01/C20)",
+   "TP1 TX, TP2 RX, TP4 EN, TP5 BOOT nets: pad within 25 mm (EJ) of each other so one fixture head covers them; TP3 GND and TP6 +3V3 in the same head",
+   "no part courtyard within the probe keep-clear of each pad: radius UNKNOWN (C20); report as unresolved, do not invent",
+   "opposite face under each pad: fixture support area UNKNOWN (C20)",
+   "pads stay outside the U1 antenna area (C12) and J3 card path (C10/C11)"
+  ],
+  "JP1-JP5": "configured by solder bridge during assembly before sealing (C21); JP1 closes only at the bus end (value text); no tall part within the iron access zone: size UNKNOWN",
+  "owner_reserved_flags": []
+ }
+}
