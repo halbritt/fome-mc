@@ -1,0 +1,307 @@
+{
+  "schema": "route-3/native-verification/1",
+  "reference_run": "/home/halbritt/.cache/route-2-agent507/run",
+  "candidate_dir": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+  "scope": [
+    "/GND",
+    "/SENSOR_POWER_AUX_DVDT"
+  ],
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "/home/halbritt/.cache/route-3-agent507/native-final-route1",
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/native-final-route1/candidate-refill.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/native-final-route1/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.92
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/native-final-route1/candidate-drc.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/native-final-route1/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.929
+      }
+    ],
+    "validated_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "candidate_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "refill_modified_board": false,
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 140,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 140,
+      "resolved_violations": 1,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "native_terminal_evidence": {
+      "reference": "/home/halbritt/.cache/route-3-agent507/native-final-route1/reference-terminal-components.json",
+      "candidate": "/home/halbritt/.cache/route-3-agent507/native-final-route1/candidate-terminal-components.json",
+      "metrics": {
+        "reference": {
+          "terminal_nets": 235,
+          "incomplete_nets": 48,
+          "component_deficit": 78
+        },
+        "candidate": {
+          "terminal_nets": 235,
+          "incomplete_nets": 47,
+          "component_deficit": 77
+        }
+      }
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 187,
+      "nets_lost": [],
+      "split_components": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "existing_unlocked_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 29,
+    "unconnected_total": 77,
+    "baseline_unconnected_total": 78,
+    "unrouted_nets": [
+      "/GND"
+    ],
+    "stats": {
+      "new_tracks": 6,
+      "new_vias": 2,
+      "new_track_length_mm": 5.3,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 3.715,
+        "F.Cu": 1.586
+      },
+      "new_copper_nets": 2,
+      "removed_existing_tracks": 2,
+      "removed_existing_vias": 1
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/route-3-agent507/native-final-route1/blocked-by.json",
+      "connections_analyzed": 29,
+      "unobstructed_connections": 21,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+          "net": null,
+          "blocks": 6,
+          "blocks_any_layer": 29,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /+3V3 F.Cu (input, unlocked) 2a71f153",
+          "net": "/+3V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_12V_PROTECTED (input, unlocked) 44e65acd",
+          "net": "/POD_12V_PROTECTED",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_CAN_P (input, unlocked) cc0d9153",
+          "net": "/POD_CAN_P",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "4505d775-6855-45c8-abba-6a21b4654817",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /PRE_6V3 (input, unlocked) 4505d775",
+          "net": "/PRE_6V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /WHEEL_FRONT_OUT (input, unlocked) caf036e5",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "38dc2b18-bc7e-4a4a-accd-8f42f9a983b1",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /DIAG_I2C_SDA B.Cu (input, unlocked) 38dc2b18",
+          "net": "/DIAG_I2C_SDA",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu (input, unlocked) b5ed4d57",
+          "net": "/SENSOR_POWER_TIRE_UVLO",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /WHEEL_FRONT_OUT In2.Cu (input, unlocked) 9cf8bf9b",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "rule_area:D-PCB-6-RF-reference",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-6-RF-reference' (no tracks, no vias) on In1.Cu, In2.Cu",
+          "net": null,
+          "blocks": 0,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        }
+      ],
+      "nets": {
+        "/GND": {
+          "connections": 29,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /POD_12V_PROTECTED 44e65acd",
+            "via /PRE_6V3 4505d775",
+            "keepout 'D-PCB-7v2-In1-no-tracks'",
+            "via /WHEEL_FRONT_OUT caf036e5",
+            "via /POD_CAN_P cc0d9153"
+          ]
+        }
+      }
+    }
+  },
+  "candidate_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+  "method": "Existing cli.validate_candidate API with caller-verified exact reference context; native grading only, no ancestry/adoption claim"
+}

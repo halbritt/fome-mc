@@ -1,0 +1,22 @@
+{
+  "schema_version": "evidence-record/1",
+  "id": "route-3-defect-report",
+  "evidence_class": "evidence-incidents",
+  "summary": "Accepted design defect source 0b4dfaf2@1 selects the unresolved U30.8 /SENSOR_POWER_AUX_DVDT connection on ROUTE-1 for bounded repair. Its native DRC and terminal inventory reproduce this open connection; retained result closes it. The measured intervention uses41.751 backend command seconds across2 attempts, changes only two nets locally and meets the stated native gates. No future work beyond the accepted one-connection deliverable or release qualification is assumed.",
+  "provenance": [
+    {
+      "locator": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/route-1/out/runs/project/route-1/20261023T065308.671261Z/validate/candidate-drc.json",
+      "method": "native saved-board defect reproduction",
+      "content_sha256": "757bc4c2200c2248371f9f058eb0465cfb6c25b0fae8ad9fd8dbc98cc3d72f50"
+    },
+    {
+      "locator": "cairn:0b4dfaf2-8b28-4f2d-8df8-9167411d7638@1",
+      "method": "whole source supplied natively with exact SHA256"
+    }
+  ],
+  "satisfies": [
+    "actual current cost/risk or absence within a stated interval",
+    "expected future change from accepted plans",
+    "intervention cost and uncertainty"
+  ]
+}

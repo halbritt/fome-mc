@@ -1,0 +1,49 @@
+{
+  "schema_version": "evidence-record/1",
+  "id": "route-3-native-checks",
+  "evidence_class": "evidence-tests",
+  "summary": "Native full-board KiCad DRC/parity/refill/preservation vs exact ROUTE-1 passes zero new findings and zero split pad components, root components 2->1. Whole-board opens78->77, incomplete nets48->47, complete nets187->188. Geometry/native object comparison permits exactly target+GND and verifies all changes inside fixed local region. Against R5, validation remains FAIL with60 new dangling findings (original61 less one resolved target via). No release qualification. Both input boards are hash-unchanged; all protected physical/rule state survives.",
+  "provenance": [
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/route-3-local/telemetry-pod/expansion/route-3/checks/against-route1-result.json",
+      "method": "read exact current source or source-bound native receipt",
+      "content_sha256": "aa43e156898c5da88308355fd56a0bea006f0f8a520fcbed130c9e0806d20b71"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/route-3-local/telemetry-pod/expansion/route-3/checks/against-r5-result.json",
+      "method": "read exact current source or source-bound native receipt",
+      "content_sha256": "66c726490fc5d20b1d318ce43e1aa3058b9b620d4447bb20e27aa2e97e37c031"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/route-3-local/telemetry-pod/expansion/route-3/checks/native-connectivity-comparison.json",
+      "method": "read exact current source or source-bound native receipt",
+      "content_sha256": "7f8be91e381405eb298fd97986c7d821d8f98afd6fc58ae2c8a8ad9ccfc6704c"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/route-3-local/telemetry-pod/expansion/route-3/checks/copper-changes.json",
+      "method": "read exact current source or source-bound native receipt",
+      "content_sha256": "bf2e9891e9f8cc9d333abfff54f65b0975302dff91af89de29a55afa970b6125"
+    },
+    {
+      "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/route-3-local/telemetry-pod/expansion/route-3/checks/board-identities.json",
+      "method": "read exact current source or source-bound native receipt",
+      "content_sha256": "7f1993d47bcfcc4dc02167390a692ea01fb3c49e4925936d79d92cd739b1416a"
+    }
+  ],
+  "satisfies": [
+    "changed path exercised after repair",
+    "relevant regression evidence",
+    "reversibility and verification",
+    "affected behavior and state",
+    "preservation matrix and consumers",
+    "tests, characterization, probes, or explicit residual risk",
+    "checkpoint verification",
+    "current suite",
+    "observable oracle",
+    "risk and boundary inventory",
+    "assertion and oracle inspection",
+    "relevant contract and risk inventory",
+    "suitable test level",
+    "which asserted facts are implementation details"
+  ]
+}

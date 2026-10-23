@@ -1,0 +1,817 @@
+{
+  "schema": "kicad-route/route/1",
+  "kind": "route",
+  "backend": {
+    "name": "builtin",
+    "version": "0.23.1",
+    "build": "owned-89a2efbf5305",
+    "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+    "source": "https://github.com/halbritt/kicad-route",
+    "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+    "upstream": {
+      "project": "KiCadRoutingTools",
+      "license": "MIT",
+      "upstream": "https://github.com/drandyhaas/KiCadRoutingTools",
+      "upstream_base": "295f9ee197517e8323726853361eb137cc08ba9e",
+      "upstream_release": "v0.23.1",
+      "fork": "https://github.com/halbritt/KiCadRoutingTools",
+      "fork_commit": "0494a05e30063b849c9cf1b9ac02098073d82216",
+      "fork_tree": "288b2baca668892c812c82f0e7db4c2b2b0a50c1",
+      "fixes": {
+        "KICADROUTE-64": "4b316ba",
+        "KICADROUTE-63": "0494a05"
+      },
+      "source_inventory": "reports/routing-engine/source-closure.json",
+      "additional_license_notices": [
+        "py_router/stage3d/vendor/three/LICENSE"
+      ],
+      "ownership": "Maintained as part of kicad-route; upstream is provenance, not a runtime source selector.",
+      "selective_adoptions": {
+        "KICADROUTE-83": {
+          "commits": [
+            "fd59a050e258581d5938c4d9456bbfeb13240e67"
+          ],
+          "scope": "pass-rules"
+        },
+        "KICADROUTE-84": {
+          "commits": [
+            "8c3e833179615dbe5e3cd205e68b03e25a6f73e8",
+            "29be549c9747855315957ccc160d69746a3d66cb",
+            "20a8e1b83b00e410f2adf60861ee536d3e57dabc",
+            "0e0029f450fa609447bcb62d16a9381cbc9d9d5d",
+            "ca96bc28f39d3c5e5f014950e8ed9664a755a8f1"
+          ],
+          "scope": "layer-stub-safety"
+        },
+        "KICADROUTE-85": {
+          "commits": [
+            "a0489b30621460e35f9d390f929fab215f7cc7f3"
+          ],
+          "scope": "pair-keepouts"
+        },
+        "KICADROUTE-86": {
+          "commits": [
+            "9ac916bc16d6edcd554bf4dc8640f30379386447",
+            "ed17b29f7eaec4822ba12178a65eca5c3a452e40"
+          ],
+          "scope": "obstacle-lifecycle"
+        },
+        "KICADROUTE-87": {
+          "commits": [
+            "0b3b6a2d19666c3411252f314d3ca8d12f1766fa"
+          ],
+          "scope": "rescue-custody"
+        },
+        "KICADROUTE-88": {
+          "commits": [
+            "2ddfc187a1bd4aa0f33263de3d5194a4c6205809"
+          ],
+          "scope": "parser-lifecycle"
+        }
+      },
+      "adoption_review_head": "0b3b6a2d19666c3411252f314d3ca8d12f1766fa",
+      "adoption_note": "Selected headless fixes only; extraction baseline above is unchanged. Parser caches use parse-local context rather than upstream global memo. Owned quote-aware copper-preserving writer, unsupported-copper refusal and tap/weld repairs remain authoritative.",
+      "adoption_inventory": "reports/upstream-fixes-20261021/source-closure.json"
+    },
+    "runtime": {
+      "source": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/router",
+      "venv": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/venv",
+      "generation": "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363"
+    },
+    "rust_router": "0.23.1",
+    "execution_identity": {
+      "name": "builtin",
+      "tag": "owned-89a2efbf5305",
+      "version": "0.23.1",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+      "extension_module_sha256": "a68e93acff252282e8836b0ac33e1347684f66db7af5633c90afd326fa9d60a6",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "reproducible": true,
+    "reproducible_basis": "determinism check 2026-10-21T10:10:57.626520+00:00: identical copper geometry on repeat"
+  },
+  "measurement": true,
+  "input": {
+    "project": "project",
+    "board": "telemetry-pod.kicad_pcb",
+    "fingerprint": "b8b096d2120f53ab745946ac8122e137ccd1016bc9cbdb7dcdcf721e08cb6dab",
+    "source_dir": "/home/halbritt/.cache/route-3-agent507/attempt1/input/project",
+    "source": "working tree",
+    "source_git_head": null,
+    "source_dirty_files": [],
+    "baseline": {
+      "report": "../../out/.cache/baseline/5693166b18ce4097f3e0db5c820fce9151df52bca8a97174f3541210e0d20aff/generation-6gx8tiqc/baseline-drc.json",
+      "cached": true,
+      "reasons": [],
+      "identity": {
+        "schema": 2,
+        "input": "b8b096d2120f53ab745946ac8122e137ccd1016bc9cbdb7dcdcf721e08cb6dab",
+        "board": "telemetry-pod.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "native_terminals": {
+          "schema": 1,
+          "producer": {
+            "native_components.py": "fc5099d821f972212b0a2e30bfb15b9755336684902cea933d6db88446b361e0",
+            "kicad/native_components.py": "071b5624884586e9a8ea83b7b253c292267b352623f58c3291ddd1ae7ec14fb6",
+            "kicad/facts.py": "d47a3fd2eb40518b7beba5457b679b901150c64e3988f86537d67f373bef8c52"
+          },
+          "tool": {
+            "version": "10.0.7-10.0.7~ubuntu24.04.1",
+            "module": {
+              "path": "/usr/bin/_pcbnew.kiface",
+              "sha256": "ba821c4719fbb6e51c378ae98f7db4254a214eb9e39e4822bb88833c986513f8"
+            },
+            "binding": {
+              "path": "/usr/lib/python3/dist-packages/pcbnew.py",
+              "sha256": "50740b1aeed153349ffe000c7e2c39d9fd75d1cdf49118897f5df5bf957b8458"
+            },
+            "python": {
+              "path": "/usr/bin/python3.12",
+              "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+            }
+          }
+        },
+        "grading": {
+          "baselinecache.py": "3a36d87ddcdc19fdae6c330e51202ca091bf59e4b1ee583a9c8b4ff9c8eb202f",
+          "cli.py": "d43569e4d81a4355712d356efec35ec40167f3318c9155c8172792164dcd01b1",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "5f6c7acd40138f5f13d140bcdda7539aacf1edcd011daa8f36a76e72663bb698"
+        },
+        "result_schemas": {
+          "result-1.json": "7f23d6a7495edfdf7cbe5e238a5548bc8e2c81ec63d987e863f5562f2c17dd55",
+          "result-2.json": "cafaab23c9a0ee379f54f03436243193ef41dbf2a1b51b52f15c9df18895ed7f",
+          "result-campaign-2.json": "2ca7cbf0beb2c2d86f6d21a3598dedf623ebd122eef85888a145825f71e9cf35"
+        }
+      },
+      "generation": "generation-6gx8tiqc"
+    },
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    }
+  },
+  "settings": {
+    "backend": "builtin",
+    "budget_s": 240,
+    "protect": "existing",
+    "max_iterations": null,
+    "passes": null,
+    "default_clearance_mm": null,
+    "clearance_margin_mm": null,
+    "pour_area_loss_pct": null,
+    "pour_min_spokes": null,
+    "backend_args": [
+      "--grid-step",
+      "0.025",
+      "--max-ripup",
+      "0",
+      "--layers",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu",
+      "B.Cu",
+      "--layer-costs",
+      "1",
+      "-1",
+      "3",
+      "3"
+    ],
+    "backend_env": {
+      "KICAD_NET_RESCUE": "0",
+      "KICAD_PLANE_FINALIZE": "0",
+      "KICAD_RECONCILE_RIP_ESCALATION": "0",
+      "KICAD_GLOBAL_PLAN": "0"
+    },
+    "reserve_spokes": null,
+    "barrier": null,
+    "stall_s": null,
+    "mode": "selected",
+    "net_patterns": [
+      "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "netclasses": [],
+    "rule_floor_sha256": null
+  },
+  "scope": {
+    "mode": "selected",
+    "nets": 1,
+    "nets_list": [
+      "/SENSOR_POWER_AUX_DVDT"
+    ]
+  },
+  "unsupported": [
+    "KRT reads only a subset of .kicad_dru custom rules; every rule is still graded by KiCad DRC",
+    "KRT's cleanup may neck wide new segments near foreign pads without a flag; the new_copper_netclass_geometry check reports any new copper below its net class",
+    "backend reported: .kicad_dru: rule 'fine-pitch intra-footprint pad clearance (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U16 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U17 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U18 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it",
+    "backend reported: .kicad_dru: rule 'supervisor intra-footprint pad clearance U19 (D-PCB-1)': clearance 0.15mm has a non-layer scope (netclass/area/... condition) -- skipped, KiCad will still enforce it"
+  ],
+  "floor": null,
+  "process": {
+    "status": "PASS",
+    "reasons": [],
+    "exit_code": 0,
+    "commands": [
+      {
+        "argv": [
+          "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/venv/bin/python",
+          "/home/halbritt/git/kicad-route/.router-generations/84b30dc286f44df6b465ae8d40aa1363/router/py_router/route.py",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/input/project/telemetry-pod.kicad_pcb",
+          "--output",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/telemetry-pod.kicad_pcb",
+          "--escalation",
+          "off",
+          "--fab-tier",
+          "standard",
+          "--strict-sizes",
+          "--no-power-tap-neckdown",
+          "--no-fix-drc-settings",
+          "--json-out",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/summary.json",
+          "--keep-input-copper",
+          "--no-stub-layer-swap",
+          "--nets",
+          "/SENSOR_POWER_AUX_DVDT",
+          "--grid-step",
+          "0.025",
+          "--max-ripup",
+          "0",
+          "--layers",
+          "F.Cu",
+          "In1.Cu",
+          "In2.Cu",
+          "B.Cu",
+          "--layer-costs",
+          "1",
+          "-1",
+          "3",
+          "3"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt.log",
+        "env": {
+          "KICAD_INRUN_FLOOR_SYNC": "0",
+          "KICAD_TERMINAL_ESCALATION": "0",
+          "KICAD_IMPEDANCE_NECKDOWN": "0",
+          "KICAD_RESCUE_CAP_MOVE": "0",
+          "KICAD_DYNAMIC_ITERATIONS": "0",
+          "KICAD_CLI": "/usr/bin/kicad-cli",
+          "KICAD_STOP_FILE": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/STOP",
+          "KICAD_RIP_PREEXISTING": "0",
+          "KICAD_FINALIZE_RIP": "0",
+          "KICAD_NET_RESCUE": "0",
+          "KICAD_PLANE_FINALIZE": "0",
+          "KICAD_RECONCILE_RIP_ESCALATION": "0",
+          "KICAD_GLOBAL_PLAN": "0",
+          "KICAD_EFFECTIVE_CONFIG_REQUEST": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/effective-configuration-request.json"
+        },
+        "budget_s": 240,
+        "last_phase": "improvement gate",
+        "last_metric": {
+          "disconnected_pads_before": 219
+        },
+        "heartbeats": {
+          "count": 11,
+          "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/heartbeat.jsonl",
+          "stall_s": null,
+          "since_last_progress_s": 0.9,
+          "tail": [
+            {
+              "t_s": 15.261,
+              "utc": "2026-10-23T07:51:31.051784+00:00",
+              "phase": "summary",
+              "metric": {},
+              "line": "JSON_SUMMARY: {\"routed_single\": [\"/SENSOR_POWER_AUX_DVDT\"], \"failed_single\": [], \"open_single\": [], \"failed_multipoint\": [], \"multipoint_nets\": 0, \"multipoin..."
+            },
+            {
+              "t_s": 15.261,
+              "utc": "2026-10-23T07:51:31.051939+00:00",
+              "phase": "writing output",
+              "metric": {},
+              "line": "Writing output to /home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/telemetry-pod.kicad_pcb..."
+            },
+            {
+              "t_s": 20.264,
+              "utc": "2026-10-23T07:51:36.055056+00:00",
+              "phase": "regrade",
+              "metric": {},
+              "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 1, \"seconds\": 0.9, \"routed_single\": [\"/SENSOR_POWER_AUX_DVDT\"], \"failed_single\": [], \"open_single\": [], \"faile..."
+            },
+            {
+              "t_s": 20.264,
+              "utc": "2026-10-23T07:51:36.055172+00:00",
+              "phase": "Run complete -- whole run, re-graded on the written board (1 net(s), 0.9s)",
+              "metric": {},
+              "line": "============================================================"
+            },
+            {
+              "t_s": 22.767,
+              "utc": "2026-10-23T07:51:38.557498+00:00",
+              "phase": "improvement gate",
+              "metric": {
+                "disconnected_pads_before": 219
+              },
+              "line": "JSON_IMPROVEMENT_GATE: {\"lost\": [], \"gained\": [\"/SENSOR_POWER_AUX_DVDT\"], \"worsened\": [], \"disconnected_pads_before\": 219, \"disconnected_pads_after\": 218, \"n..."
+            }
+          ]
+        },
+        "stalled": false,
+        "exit_code": 0,
+        "duration_s": 23.704,
+        "output_tail": "33.2 F.Paste (pad)\", \"R34.1 F.Paste (pad)\", \"R36.1 F.Paste (pad)\", \"R36.2 F.Paste (pad)\", \"R37.2 F.Paste (pad)\", \"R38.1 F.Paste (pad)\", \"R39.2 F.Paste (pad)\", \"R40.1 F.Paste (pad)\", \"R42.2 F.Paste (pad)\", \"R43.2 F.Paste (pad)\", \"R44.1 F.Paste (pad)\", \"R45.2 F.Paste (pad)\", \"R47.2 F.Paste (pad)\", \"R49.2 F.Paste (pad)\", \"R5.1 F.Paste (pad)\", \"R55.1 F.Paste (pad)\", \"R56.1 F.Paste (pad)\", \"R56.2 F.Paste (pad)\", \"R57.1 F.Paste (pad)\", \"R6.1 F.Paste (pad)\", \"R62.1 F.Paste (pad)\", \"R62.2 F.Paste (pad)\", \"R63.1 F.Paste (pad)\", \"R65.1 F.Paste (pad)\", \"R65.2 F.Paste (pad)\", \"R66.1 F.Paste (pad)\", \"R66.2 F.Paste (pad)\", \"R67.1 F.Paste (pad)\", \"R69.1 F.Paste (pad)\", \"R69.2 F.Paste (pad)\", \"R74.2 B.Paste (pad)\", \"R75.2 B.Paste (pad)\", \"R76.1 B.Paste (pad)\", \"R76.2 B.Paste (pad)\", \"R79.2 B.Paste (pad)\", \"R80.2 B.Paste (pad)\", \"TP4.1\", \"U1.17 F.Paste (pad)\", \"U1.19 F.Paste (pad)\", \"U1.27 F.Paste (pad)\", \"U1.31 F.Paste (pad)\", \"U1.33 F.Paste (pad)\", \"U1.34 F.Paste (pad)\", \"U1.36 F.Paste (pad)\", \"U1.37 F.Paste (pad)\", \"U1.39 F.Paste (pad)\", \"U1.4 F.Paste (pad)\", \"U1.7 F.Paste (pad)\", \"U1.8 F.Paste (pad)\", \"U1.9 F.Paste (pad)\", \"U10.1 F.Paste (pad)\", \"U10.5 F.Paste (pad)\", \"U100.7 F.Paste (pad)\", \"U11.2 F.Paste (pad)\", \"U11.6 F.Paste (pad)\", \"U12.5 F.Paste (pad)\", \"U12.6 F.Paste (pad)\", \"U13.1 F.Paste (pad)\", \"U13.14 F.Paste (pad)\", \"U13.8 F.Paste (pad)\", \"U18.3 F.Paste (pad)\", \"U20.1 F.Paste (pad)\", \"U20.11 F.Paste (pad)\", \"U20.14 F.Paste (pad)\", \"U20.2 F.Paste (pad)\", \"U20.7 F.Paste (pad)\", \"U20.8 F.Paste (pad)\", \"U20.9 F.Paste (pad)\", \"U21.1 F.Paste (pad)\", \"U21.4 F.Paste (pad)\", \"U21.5 F.Paste (pad)\", \"U21.6 F.Paste (pad)\", \"U22.3 F.Paste (pad)\", \"U22.4 F.Paste (pad)\", \"U22.5 F.Paste (pad)\", \"U23.11 F.Paste (pad)\", \"U24.11 F.Paste (pad)\", \"U24.6 F.Paste (pad)\", \"U25.11 F.Paste (pad)\", \"U26.5 F.Paste (pad)\", \"U26.7 F.Paste (pad)\", \"U27.13 F.Paste (pad)\", \"U27.16 F.Paste (pad)\", \"U28.1 F.Paste (pad)\", \"U28.4 F.Paste (pad)\", \"U29.13 F.Paste (pad)\", \"U29.2 F.Paste (pad)\", \"U29.5 F.Paste (pad)\", \"U3.10 F.Paste (pad)\", \"U3.13 F.Paste (pad)\", \"U3.23 F.Paste (pad)\", \"U4.1 F.Paste (pad)\", \"U4.10 F.Paste (pad)\", \"U4.14 F.Paste (pad)\", \"U4.15 F.Paste (pad)\", \"U4.2 F.Paste (pad)\", \"U4.5 F.Paste (pad)\", \"U4.6 F.Paste (pad)\", \"U4.7 F.Paste (pad)\", \"U4.8 F.Paste (pad)\", \"U5.6 F.Paste (pad)\", \"U5.7 F.Paste (pad)\", \"U6.5 F.Paste (pad)\", \"U6.6 F.Paste (pad)\", \"U6.8 F.Paste (pad)\", \"U7.2 F.Paste (pad)\", \"U7.5 F.Paste (pad)\", \"U7.8 F.Paste (pad)\", \"U8.1 F.Paste (pad)\", \"U9.1 F.Paste (pad)\", \"U9.2 F.Paste (pad)\", \"U9.3 F.Paste (pad)\", \"U9.4 F.Paste (pad)\", \"Y1.1 F.Paste (pad)\"], \"stamped\": 0, \"restored\": 0, \"protected\": 284, \"unstampable\": 0, \"site_created\": 0, \"unprotected\": [], \"note\": \"via-in-pad requires IPC-4761 Type VII (filled + capped + plated); state it on the fab drawing or solder wicks into the barrel\"}\nJSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 1, \"seconds\": 0.9, \"routed_single\": [\"/SENSOR_POWER_AUX_DVDT\"], \"failed_single\": [], \"open_single\": [], \"failed_multipoint\": [], \"multipoint_pads_total\": 0, \"multipoint_pads_connected\": 0, \"successful\": 1, \"failed\": 0, \"unowned_broken\": [], \"recovered\": [], \"broken_by_run\": []}\n\n============================================================\nRun complete -- whole run, re-graded on the written board (1 net(s), 0.9s)\n============================================================\n  Single-ended:  1/1 routed\n  route summary written to /home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/summary.json\nJSON_IMPROVEMENT_GATE: {\"lost\": [], \"gained\": [\"/SENSOR_POWER_AUX_DVDT\"], \"worsened\": [], \"disconnected_pads_before\": 219, \"disconnected_pads_after\": 218, \"nets_compared\": 182, \"verdict\": \"accept\"}\nJSON_SUMMARY_MIN: {\"escalations\": 0, \"failed\": 0, \"failed_single\": [], \"main_loop_time_s\": 1.52, \"min_clearance_used\": 0.2, \"multipoint_deficit\": 0, \"open_single\": [], \"pad_pairs_open\": {\"count\": 0, \"nets\": []}, \"regraded_nets\": 1, \"routed\": 1, \"scope\": \"merged\", \"terminal_restores_broken\": [], \"vias\": 1}\nEXIT=0\n"
+      },
+      {
+        "argv": [
+          "/usr/bin/python3",
+          "/home/halbritt/git/kicad-route/src/kicad_route/kicad/locks.py",
+          "restore",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/telemetry-pod.kicad_pcb",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/locks.json"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/restore-locks.log",
+        "exit_code": 0,
+        "duration_s": 0.622
+      }
+    ],
+    "backend_report": {
+      "successful": 1,
+      "failed": 0,
+      "failed_single": [],
+      "open_single": [],
+      "failed_multipoint": [],
+      "multipoint_deficit": null,
+      "pad_pairs_connected": 1,
+      "pad_pairs_total": 1,
+      "total_vias": 1,
+      "total_iterations": 78109,
+      "total_time": 1.52,
+      "protected_skipped": null,
+      "scope": "merged",
+      "relaxations": {
+        "escalation_policy": "off",
+        "fab_tier": "standard",
+        "narrowed": [],
+        "fab_tier_escalations": 0,
+        "min_delivered": {},
+        "unsupported_rules": []
+      },
+      "improvement_gate": {
+        "lost": [],
+        "gained": [
+          "/SENSOR_POWER_AUX_DVDT"
+        ],
+        "worsened": [],
+        "disconnected_pads_before": 219,
+        "disconnected_pads_after": 218,
+        "nets_compared": 182,
+        "verdict": "accept"
+      },
+      "project_writes": null
+    },
+    "effective_configuration": {
+      "status": "missing",
+      "reasons": [
+        "backend emitted no resolved configuration evidence (legacy or unsupported path)"
+      ],
+      "replay_authority": false,
+      "record": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/effective-configuration.json",
+      "sha256": null,
+      "coverage": "resolved_outer_batch_only",
+      "output_stage": "backend_output_before_wrapper_lock_restore_and_native_refill",
+      "wrapper_output_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651"
+    },
+    "existing_copper_locks": {
+      "lock": {
+        "locked": 6575
+      },
+      "lock_exit": 0,
+      "restore": {
+        "restored": 6575,
+        "not_found": 0
+      }
+    },
+    "project_writeback": [
+      {
+        "file": "telemetry-pod.kicad_prl",
+        "identical_to_input": true
+      },
+      {
+        "file": "telemetry-pod.kicad_pro",
+        "identical_to_input": true
+      }
+    ],
+    "runtime_s": 25.15,
+    "last_phase": "improvement gate",
+    "heartbeats": {
+      "count": 11,
+      "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/work/heartbeat.jsonl",
+      "stall_s": null,
+      "since_last_progress_s": 0.9,
+      "tail": [
+        {
+          "t_s": 15.261,
+          "utc": "2026-10-23T07:51:31.051784+00:00",
+          "phase": "summary",
+          "metric": {},
+          "line": "JSON_SUMMARY: {\"routed_single\": [\"/SENSOR_POWER_AUX_DVDT\"], \"failed_single\": [], \"open_single\": [], \"failed_multipoint\": [], \"multipoint_nets\": 0, \"multipoin..."
+        },
+        {
+          "t_s": 15.261,
+          "utc": "2026-10-23T07:51:31.051939+00:00",
+          "phase": "writing output",
+          "metric": {},
+          "line": "Writing output to /home/halbritt/.cache/route-3-agent507/attempt2/run/work/krt-out/telemetry-pod.kicad_pcb..."
+        },
+        {
+          "t_s": 20.264,
+          "utc": "2026-10-23T07:51:36.055056+00:00",
+          "phase": "regrade",
+          "metric": {},
+          "line": "JSON_REGRADE: {\"board\": \"file\", \"graded_nets\": 1, \"seconds\": 0.9, \"routed_single\": [\"/SENSOR_POWER_AUX_DVDT\"], \"failed_single\": [], \"open_single\": [], \"faile..."
+        },
+        {
+          "t_s": 20.264,
+          "utc": "2026-10-23T07:51:36.055172+00:00",
+          "phase": "Run complete -- whole run, re-graded on the written board (1 net(s), 0.9s)",
+          "metric": {},
+          "line": "============================================================"
+        },
+        {
+          "t_s": 22.767,
+          "utc": "2026-10-23T07:51:38.557498+00:00",
+          "phase": "improvement gate",
+          "metric": {
+            "disconnected_pads_before": 219
+          },
+          "line": "JSON_IMPROVEMENT_GATE: {\"lost\": [], \"gained\": [\"/SENSOR_POWER_AUX_DVDT\"], \"worsened\": [], \"disconnected_pads_before\": 219, \"disconnected_pads_after\": 218, \"n..."
+        }
+      ]
+    },
+    "stalled": false,
+    "measurement_qualification": {
+      "measurement": true,
+      "build_reproducible": true,
+      "reasons": []
+    }
+  },
+  "routing": {
+    "status": "COMPLETE",
+    "unconnected_in_scope": 0,
+    "unconnected_total": 77,
+    "baseline_unconnected_total": 78,
+    "unrouted_nets": [],
+    "stats": {
+      "new_tracks": 4,
+      "new_vias": 1,
+      "new_track_length_mm": 4.73,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 3.324,
+        "F.Cu": 1.405
+      },
+      "new_copper_nets": 1,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate",
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/candidate-refill.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.909
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/candidate-drc.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.622
+      }
+    ],
+    "validated_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "candidate_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "refill_modified_board": false,
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 140,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 140,
+      "resolved_violations": 1,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "native_terminal_evidence": {
+      "reference": "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/reference-terminal-components.json",
+      "candidate": "/home/halbritt/.cache/route-3-agent507/attempt2/run/validate/candidate-terminal-components.json",
+      "metrics": {
+        "reference": {
+          "terminal_nets": 235,
+          "incomplete_nets": 48,
+          "component_deficit": 78
+        },
+        "candidate": {
+          "terminal_nets": 235,
+          "incomplete_nets": 47,
+          "component_deficit": 77
+        }
+      }
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 187,
+      "nets_lost": [],
+      "split_components": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "candidate": {
+    "dir": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project",
+    "board": "/home/halbritt/.cache/route-3-agent507/attempt2/run/candidate/project/telemetry-pod.kicad_pcb"
+  },
+  "run_dir": "/home/halbritt/.cache/route-3-agent507/attempt2/run",
+  "runtime_s": 36.027,
+  "tool_versions": {
+    "kicad-cli": "10.0.7"
+  },
+  "evidence": {
+    "input_board_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+    "input_fingerprint": "b8b096d2120f53ab745946ac8122e137ccd1016bc9cbdb7dcdcf721e08cb6dab",
+    "baseline": {
+      "identity": {
+        "schema": 2,
+        "input": "b8b096d2120f53ab745946ac8122e137ccd1016bc9cbdb7dcdcf721e08cb6dab",
+        "board": "telemetry-pod.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "native_terminals": {
+          "schema": 1,
+          "producer": {
+            "native_components.py": "fc5099d821f972212b0a2e30bfb15b9755336684902cea933d6db88446b361e0",
+            "kicad/native_components.py": "071b5624884586e9a8ea83b7b253c292267b352623f58c3291ddd1ae7ec14fb6",
+            "kicad/facts.py": "d47a3fd2eb40518b7beba5457b679b901150c64e3988f86537d67f373bef8c52"
+          },
+          "tool": {
+            "version": "10.0.7-10.0.7~ubuntu24.04.1",
+            "module": {
+              "path": "/usr/bin/_pcbnew.kiface",
+              "sha256": "ba821c4719fbb6e51c378ae98f7db4254a214eb9e39e4822bb88833c986513f8"
+            },
+            "binding": {
+              "path": "/usr/lib/python3/dist-packages/pcbnew.py",
+              "sha256": "50740b1aeed153349ffe000c7e2c39d9fd75d1cdf49118897f5df5bf957b8458"
+            },
+            "python": {
+              "path": "/usr/bin/python3.12",
+              "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+            }
+          }
+        },
+        "grading": {
+          "baselinecache.py": "3a36d87ddcdc19fdae6c330e51202ca091bf59e4b1ee583a9c8b4ff9c8eb202f",
+          "cli.py": "d43569e4d81a4355712d356efec35ec40167f3318c9155c8172792164dcd01b1",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "5f6c7acd40138f5f13d140bcdda7539aacf1edcd011daa8f36a76e72663bb698"
+        },
+        "result_schemas": {
+          "result-1.json": "7f23d6a7495edfdf7cbe5e238a5548bc8e2c81ec63d987e863f5562f2c17dd55",
+          "result-2.json": "cafaab23c9a0ee379f54f03436243193ef41dbf2a1b51b52f15c9df18895ed7f",
+          "result-campaign-2.json": "2ca7cbf0beb2c2d86f6d21a3598dedf623ebd122eef85888a145825f71e9cf35"
+        }
+      },
+      "generation": "generation-6gx8tiqc"
+    },
+    "reference_files": {
+      "fp-lib-table": "788887c3b5f3e4acf162b4117d9ea100d1834905929e8c8ed036a7ef0f3a6d2f",
+      "sym-lib-table": "3ada83e3aeb689f8385d5650d9ad97ee95245c05a6966540a2c819fc0381a1fe",
+      "telemetry-pod.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "telemetry-pod.kicad_pcb": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+      "telemetry-pod.kicad_pro": "10002b987995765415313fa89da32ba9011160853596f1a78ff8fba24ac9b175",
+      "telemetry-pod.kicad_sch": "f5840ecc8a44a2e36cd05da9c3a14d80074919f441c3ef73a107dc98d5aea6a2"
+    },
+    "rules_files": {
+      "telemetry-pod.kicad_dru": "ff62208301c38bca2c963a0682e0a2ee843d8a546bace3719340cfcca1b08d0d",
+      "telemetry-pod.kicad_pro": "10002b987995765415313fa89da32ba9011160853596f1a78ff8fba24ac9b175"
+    },
+    "rule_floor_sha256": null,
+    "backend_output_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "candidate_hash_basis": "post-refill",
+    "candidate_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "pre_refill_board_sha256": "0806617082c33df6daaa00f5d9c6131e7e07ac6160aadc07a2b2bcb90b5ac651",
+    "candidate_copper_signature": {
+      "sha256": "17f0e19a676daa7a6f620ce07910d1a04266d582078b2a1e67e95bc7e9d479ca",
+      "tracks": 5893,
+      "vias": 687
+    },
+    "records": {
+      "attempt.json": "ec2a7cbda11676509f30346ff5e86730f2f735272cd9a18dad3b6b2d73438835",
+      "validate/preservation.json": "56cb9df2c270ec36225f46d96457adc8d58412f3256a608a3d630e05cdbf71f4",
+      "validate/new-findings.json": "9b7dd1a74b3204f4e5177e93f2ff766e0234c06b2a4d7b6c0a1c0d64eeafac8f",
+      "validate/candidate-drc.json": "84113b1c1bd15562bcacbf98287f3524e3eaccce4a7a0a6a839216a49156533b",
+      "validate/candidate-facts.json": "14f521e0bfcfb1af4b316bdc56a77a3dae13359f30450942bb4f06f791501d45",
+      "validate/candidate-refill.json": "b7de3624216aeae002ef8509f25831d81daf46679824d637f9fc8dcbf3a75b64",
+      "validate/reference-terminal-components.json": "ce85d38b253b95c0ef69696eae3b055c2569e77c174bf0c2e76b0bf3e26545e2",
+      "validate/candidate-terminal-components.json": "e5ce3b447eb1610c8dffe7457754da52ab0a407dabaf4c01385f02e6c923c89e",
+      "validate/pour-integrity.json": "f7415b1d69ada9029983078901b43da24b52312f5f904672a3e5276de1650a37",
+      "work/effective-configuration-request.json": "01a5dd10328e39c8bd34ff3ff2277732556a8e92e36e159e901402708803dac0"
+    }
+  },
+  "tool_identity": {
+    "kicad_route": {
+      "version": "b577449",
+      "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+      "dirty": false
+    },
+    "kicad_cli": {
+      "path": "/usr/bin/kicad-cli",
+      "version": "10.0.7",
+      "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+    },
+    "pcbnew": {
+      "build_version": "10.0.7-10.0.7~ubuntu24.04.1",
+      "python": "/usr/bin/python3"
+    },
+    "python": {
+      "version": "3.12.3",
+      "executable": "/usr/bin/python3"
+    },
+    "backend": {
+      "name": "builtin",
+      "tag": "owned-89a2efbf5305",
+      "version": "0.23.1",
+      "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+      "grid_router_version": "0.23.1",
+      "source_sha256": "89a2efbf53057a0694b3cef365ec3acdc01b61f5f57d86bfbe8a62dc8f11db6d",
+      "extension_module_sha256": "a68e93acff252282e8836b0ac33e1347684f66db7af5633c90afd326fa9d60a6",
+      "venv_python_version": "3.12.3",
+      "venv_packages_sha256": "0dc7c913210ed2d7f0afe996b4f936eaee539c19ca5e6e5d76949d13eaf304ae"
+    },
+    "state_manifest_sha256": "c67400a1ae5d4569c5402e432c3d2e298d4ca61d69f2353d217cf49ff8d15377",
+    "state_manifest_drift": []
+  },
+  "finished_utc": "2026-10-23T07:51:50.018612+00:00",
+  "exit_code": 0,
+  "ledger": {
+    "fingerprint": "39d0a52ad8acff7a1e806f192615b5c562a7bd5f4edb057f17df407657f12293",
+    "short": "39d0a52ad8ac",
+    "forced": false,
+    "forced_over": null,
+    "upstream_changed_since": null,
+    "previous_runs": [],
+    "notes": [],
+    "path": "/home/halbritt/.cache/route-3-agent507/out/ledger.jsonl"
+  },
+  "sandbox": {
+    "require_readonly_state": false,
+    "state": {
+      "path": "/home/halbritt/git/kicad-route",
+      "exists": true,
+      "installed": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "writable": true,
+      "writable_parts": [
+        ".router-generations",
+        ".venv-krt",
+        "vendor/freerouting",
+        "vendor/skills"
+      ],
+      "readonly_mount": false
+    },
+    "tool_root": {
+      "path": "/home/halbritt/git/kicad-route",
+      "writable": true
+    },
+    "out": {
+      "path": "/home/halbritt/.cache/route-3-agent507/out"
+    },
+    "home": {
+      "HOME": "/home/halbritt",
+      "required": false,
+      "tool_home": "/home/halbritt/.cache/route-3-agent507/out/.home",
+      "env": {
+        "KICAD_CONFIG_HOME": "/home/halbritt/.cache/route-3-agent507/out/.kicad-config",
+        "KICAD_CACHE_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/cache",
+        "KICAD_DOCUMENTS_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/data",
+        "XDG_CONFIG_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/config",
+        "XDG_CACHE_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/cache",
+        "XDG_DATA_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/data",
+        "XDG_STATE_HOME": "/home/halbritt/.cache/route-3-agent507/out/.home/state"
+      },
+      "jvm": [
+        "-Duser.home=/home/halbritt/.cache/route-3-agent507/out/.home/java",
+        "-Djava.util.prefs.userRoot=/home/halbritt/.cache/route-3-agent507/out/.home/java/prefs"
+      ]
+    },
+    "network": {
+      "interfaces": 38,
+      "non_loopback_interfaces": 37,
+      "non_loopback_examples": [
+        "br-08ee9a52996a",
+        "br-1b6d28c3e778",
+        "br-24c8c1a867af",
+        "br-2fd0323456d7",
+        "br-8d6dd9da25b3"
+      ],
+      "non_loopback_routes": 109,
+      "namespace": "net:[4026531840]",
+      "connect_probe": {
+        "target": "192.0.2.1:9/udp",
+        "sends_packet": false,
+        "result": "routable"
+      },
+      "isolated": false
+    }
+  },
+  "copper_ownership": {
+    "status": "unavailable",
+    "reasons": [
+      "evidence structure exceeds limit"
+    ],
+    "replay_authority": false
+  }
+}

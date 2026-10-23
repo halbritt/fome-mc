@@ -1,0 +1,316 @@
+{
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck",
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/candidate-refill.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt1/input/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt1/input/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.872
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/candidate-drc.json",
+          "/home/halbritt/.cache/route-3-agent507/attempt1/input/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-3-agent507/attempt1/input/project",
+        "log": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.842
+      }
+    ],
+    "validated_board_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+    "candidate_board_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+    "refill_modified_board": false,
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 141,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 141,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "native_terminal_evidence": {
+      "reference": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/reference-terminal-components.json",
+      "candidate": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/candidate-terminal-components.json",
+      "metrics": {
+        "reference": {
+          "terminal_nets": 235,
+          "incomplete_nets": 48,
+          "component_deficit": 78
+        },
+        "candidate": {
+          "terminal_nets": 235,
+          "incomplete_nets": 48,
+          "component_deficit": 78
+        }
+      }
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 187,
+      "nets_lost": [],
+      "split_components": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "existing_unlocked_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 30,
+    "unconnected_total": 78,
+    "baseline_unconnected_total": 78,
+    "unrouted_nets": [
+      "/GND",
+      "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "stats": {
+      "new_tracks": 2,
+      "new_vias": 1,
+      "new_track_length_mm": 0.571,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 0.391,
+        "F.Cu": 0.18
+      },
+      "new_copper_nets": 1,
+      "removed_existing_tracks": 2,
+      "removed_existing_vias": 1
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/route-3-agent507/attempt1/precheck/blocked-by.json",
+      "connections_analyzed": 30,
+      "unobstructed_connections": 19,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+          "net": null,
+          "blocks": 7,
+          "blocks_any_layer": 30,
+          "nets_blocked": [
+            "/GND",
+            "/SENSOR_POWER_AUX_DVDT"
+          ]
+        },
+        {
+          "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /+3V3 F.Cu (input, unlocked) 2a71f153",
+          "net": "/+3V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /ADC_AIN3 F.Cu (input, unlocked) 954c8e27",
+          "net": "/ADC_AIN3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "74a31470-6f6f-4eff-856c-42d53de7c05d",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SPI_SCK F.Cu (input, unlocked) 74a31470",
+          "net": "/SPI_SCK",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_12V_PROTECTED (input, unlocked) 44e65acd",
+          "net": "/POD_12V_PROTECTED",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_CAN_P (input, unlocked) cc0d9153",
+          "net": "/POD_CAN_P",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "4505d775-6855-45c8-abba-6a21b4654817",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /PRE_6V3 (input, unlocked) 4505d775",
+          "net": "/PRE_6V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /WHEEL_FRONT_OUT (input, unlocked) caf036e5",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu (input, unlocked) b5ed4d57",
+          "net": "/SENSOR_POWER_TIRE_UVLO",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /WHEEL_FRONT_OUT In2.Cu (input, unlocked) 9cf8bf9b",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        }
+      ],
+      "nets": {
+        "/GND": {
+          "connections": 29,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /POD_12V_PROTECTED 44e65acd",
+            "via /PRE_6V3 4505d775",
+            "keepout 'D-PCB-7v2-In1-no-tracks'",
+            "via /WHEEL_FRONT_OUT caf036e5",
+            "via /POD_CAN_P cc0d9153"
+          ]
+        },
+        "/SENSOR_POWER_AUX_DVDT": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        }
+      }
+    }
+  },
+  "reference_run": "/home/halbritt/.cache/route-2-agent507/run",
+  "scope": [
+    "/GND",
+    "/SENSOR_POWER_AUX_DVDT"
+  ],
+  "purpose": "Native validation of a caller-verified local edit against exact ROUTE-1 reference; does not claim routing-run ancestry or adoption"
+}

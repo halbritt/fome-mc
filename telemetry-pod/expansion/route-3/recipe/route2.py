@@ -1,0 +1,8 @@
+import pathlib,json,subprocess,time,datetime,shlex
+b=pathlib.Path('/home/halbritt/.cache/route-3-agent507');p=json.loads((b/'attempt1/precheck-result.json').read_text());assert p['validation']['status']=='PASS' and not p['validation']['drc']['new_violations']['count']
+cmd=['native-admit','run','--class','suite','--weight','4','--label','route-3','--max-wait','60','--','kicad-route','--out',str(b/'out'),'--json','run','--backend','builtin','--dir',str(b/'attempt1/input/project'),'--board','telemetry-pod.kicad_pcb','--schematic','telemetry-pod.kicad_sch','--budget','240','--label','route-3-local2','--run-dir',str(b/'attempt2/run'),'--protect','existing','--nets','/SENSOR_POWER_AUX_DVDT']
+for arg in ['--grid-step','0.025','--max-ripup','0','--layers','F.Cu','In1.Cu','In2.Cu','B.Cu','--layer-costs','1','-1','3','3']:cmd.append('--backend-arg='+arg)
+for setting in ['KICAD_NET_RESCUE=0','KICAD_PLANE_FINALIZE=0','KICAD_RECONCILE_RIP_ESCALATION=0','KICAD_GLOBAL_PLAN=0']:cmd.extend(['--backend-env',setting])
+(b/'attempt2/command.txt').write_text(shlex.join(cmd)+'\n');start=time.monotonic();(b/'attempt2/start.json').write_text(json.dumps({'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'backend_soft_budget':240,'wrapper_max_grace':48,'total_task_deadline':'2026-10-23T08:08:11Z'}))
+with (b/'attempt2/stdout.json').open('w') as f,(b/'attempt2/stderr.log').open('w') as e:r=subprocess.run(cmd,stdout=f,stderr=e)
+(b/'attempt2/exit.json').write_text(json.dumps({'exit':r.returncode,'wall_seconds':time.monotonic()-start,'utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}));print('exit',r.returncode,flush=True)

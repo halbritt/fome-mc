@@ -1,0 +1,8286 @@
+{
+ "schema": "kicad-route/blocked/2",
+ "version": 2,
+ "source": "run",
+ "heuristic": true,
+ "method": "straight and L-shaped corridors (net-class track width + 2 x clearance) between the two endpoints of each unconnected item, per copper layer; heuristic pointer, not a proof",
+ "boards": {
+  "input_sha256": "19ed7954ab305b39f29d19f08fb619b4399cb6522869fba21b7712a52a310bdf",
+  "candidate_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+  "graded_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4"
+ },
+ "nets_considered": [
+  "/GND",
+  "/SENSOR_POWER_AUX_DVDT"
+ ],
+ "copper_layers": [
+  "F.Cu",
+  "In1.Cu",
+  "In2.Cu",
+  "B.Cu"
+ ],
+ "connections_analyzed": 30,
+ "unobstructed_connections": 19,
+ "category_notes": {
+  "keepout": "rule area: part of the design's constraints; route around it, never edit it",
+  "input_copper": "copper from the attempt's input: moving it needs the owner's permission (--protect locked frees only unlocked input copper)",
+  "new_copper": "the backend's own output in this attempt: cheap to rip (re-route in another order or scope)",
+  "footprint": "pads of other nets: placement is fixed for routing; go around or change layer",
+  "board_edge": "the corridor leaves the board outline"
+ },
+ "ranking": {
+  "keepout": [
+   {
+    "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+    "kind": "rule_area",
+    "name": "D-PCB-7v2-In1-no-tracks",
+    "net": null,
+    "restrictions": [
+     "tracks"
+    ],
+    "rule_area_layers": [
+     "In1.Cu"
+    ],
+    "bbox_mm": [
+     0.0,
+     0.0,
+     90.0,
+     65.0
+    ],
+    "category": "keepout",
+    "blocks": 7,
+    "blocks_any_layer": 30,
+    "layers": [
+     "In1.Cu"
+    ],
+    "nets_blocked": [
+     "/GND",
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu"
+   },
+   {
+    "id": "rule_area:D-PCB-6-RF-reference",
+    "kind": "rule_area",
+    "name": "D-PCB-6-RF-reference",
+    "net": null,
+    "restrictions": [
+     "tracks",
+     "vias"
+    ],
+    "rule_area_layers": [
+     "In1.Cu",
+     "In2.Cu"
+    ],
+    "bbox_mm": [
+     76.0,
+     26.5,
+     88.0,
+     30.6
+    ],
+    "category": "keepout",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "keepout 'D-PCB-6-RF-reference' (no tracks, no vias) on In1.Cu, In2.Cu"
+   }
+  ],
+  "input_copper": [
+   {
+    "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+    "width_mm": 0.2,
+    "start_mm": [
+     52.8,
+     35.1
+    ],
+    "end_mm": [
+     54.6,
+     33.3
+    ],
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "F.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 2a71f153"
+   },
+   {
+    "id": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+    "kind": "track",
+    "net": "/ADC_AIN3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+    "width_mm": 0.2,
+    "start_mm": [
+     75.2,
+     48.4
+    ],
+    "end_mm": [
+     78.2,
+     45.4
+    ],
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "F.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN3 F.Cu (input, unlocked) 954c8e27"
+   },
+   {
+    "id": "74a31470-6f6f-4eff-856c-42d53de7c05d",
+    "kind": "track",
+    "net": "/SPI_SCK",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "74a31470-6f6f-4eff-856c-42d53de7c05d",
+    "width_mm": 0.2,
+    "start_mm": [
+     72.1,
+     39.2
+    ],
+    "end_mm": [
+     72.1,
+     41.1
+    ],
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "F.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /SPI_SCK F.Cu (input, unlocked) 74a31470"
+   },
+   {
+    "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+    "kind": "via",
+    "net": "/POD_12V_PROTECTED",
+    "locked": false,
+    "origin": "input",
+    "uuid": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+    "position_mm": [
+     28.7,
+     36.5
+    ],
+    "diameter_mm": 0.6,
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "In2.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "via /POD_12V_PROTECTED (input, unlocked) 44e65acd"
+   },
+   {
+    "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+    "kind": "via",
+    "net": "/POD_CAN_P",
+    "locked": false,
+    "origin": "input",
+    "uuid": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+    "position_mm": [
+     45.9,
+     30.8
+    ],
+    "diameter_mm": 0.6,
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "In1.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "via /POD_CAN_P (input, unlocked) cc0d9153"
+   },
+   {
+    "id": "4505d775-6855-45c8-abba-6a21b4654817",
+    "kind": "via",
+    "net": "/PRE_6V3",
+    "locked": false,
+    "origin": "input",
+    "uuid": "4505d775-6855-45c8-abba-6a21b4654817",
+    "position_mm": [
+     30.4,
+     26.6
+    ],
+    "diameter_mm": 0.6,
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "In1.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "via /PRE_6V3 (input, unlocked) 4505d775"
+   },
+   {
+    "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+    "kind": "via",
+    "net": "/WHEEL_FRONT_OUT",
+    "locked": false,
+    "origin": "input",
+    "uuid": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+    "position_mm": [
+     34.3,
+     36.2
+    ],
+    "diameter_mm": 0.6,
+    "category": "input_copper",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "In1.Cu"
+    ],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "via /WHEEL_FRONT_OUT (input, unlocked) caf036e5"
+   },
+   {
+    "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+    "kind": "track",
+    "net": "/SENSOR_POWER_TIRE_UVLO",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+    "width_mm": 0.2,
+    "start_mm": [
+     51.8,
+     34.2
+    ],
+    "end_mm": [
+     60.2,
+     42.6
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 2,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu (input, unlocked) b5ed4d57"
+   },
+   {
+    "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+    "kind": "track",
+    "net": "/WHEEL_FRONT_OUT",
+    "layer": "In2.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+    "width_mm": 0.2,
+    "start_mm": [
+     31.5,
+     23.5
+    ],
+    "end_mm": [
+     31.5,
+     36.2
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 2,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /WHEEL_FRONT_OUT In2.Cu (input, unlocked) 9cf8bf9b"
+   },
+   {
+    "id": "071982e6-21cc-4d4e-8115-5a6999f85368",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "071982e6-21cc-4d4e-8115-5a6999f85368",
+    "width_mm": 0.2,
+    "start_mm": [
+     49.0,
+     4.9
+    ],
+    "end_mm": [
+     50.5,
+     4.9
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 071982e6"
+   },
+   {
+    "id": "2e93a66f-8743-4325-8096-def89a9e7c68",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2e93a66f-8743-4325-8096-def89a9e7c68",
+    "width_mm": 0.2,
+    "start_mm": [
+     62.7,
+     35.0
+    ],
+    "end_mm": [
+     66.9,
+     35.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 2e93a66f"
+   },
+   {
+    "id": "2ea1a2fb-e49f-49b9-acce-165d11c17a96",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2ea1a2fb-e49f-49b9-acce-165d11c17a96",
+    "width_mm": 0.2,
+    "start_mm": [
+     48.7,
+     5.2
+    ],
+    "end_mm": [
+     49.0,
+     4.9
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 2ea1a2fb"
+   },
+   {
+    "id": "40c733a9-93c2-4e74-9487-84036689a3c3",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "40c733a9-93c2-4e74-9487-84036689a3c3",
+    "width_mm": 0.2,
+    "start_mm": [
+     59.4,
+     33.7
+    ],
+    "end_mm": [
+     59.4,
+     35.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 40c733a9"
+   },
+   {
+    "id": "6fc685b5-2abf-4bf7-8b26-175f3dec6066",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "6fc685b5-2abf-4bf7-8b26-175f3dec6066",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.8,
+     34.4
+    ],
+    "end_mm": [
+     65.9,
+     34.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 6fc685b5"
+   },
+   {
+    "id": "82ad5b38-60b1-4991-85c9-f0fa0d5b6b20",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "82ad5b38-60b1-4991-85c9-f0fa0d5b6b20",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.9,
+     33.7
+    ],
+    "end_mm": [
+     65.9,
+     34.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 82ad5b38"
+   },
+   {
+    "id": "8be70369-6b91-4296-8e0a-38aae745534e",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "8be70369-6b91-4296-8e0a-38aae745534e",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.8,
+     34.4
+    ],
+    "end_mm": [
+     65.8,
+     35.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) 8be70369"
+   },
+   {
+    "id": "dcd4f51f-a63a-48e4-8903-e40f98bdb072",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "dcd4f51f-a63a-48e4-8903-e40f98bdb072",
+    "width_mm": 0.2,
+    "start_mm": [
+     48.6,
+     4.5
+    ],
+    "end_mm": [
+     49.0,
+     4.9
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 B.Cu (input, unlocked) dcd4f51f"
+   },
+   {
+    "id": "056c9ec2-6070-4d9d-a0ce-57917c4ae70b",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "056c9ec2-6070-4d9d-a0ce-57917c4ae70b",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.7881,
+     35.1261
+    ],
+    "end_mm": [
+     65.8,
+     35.1
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 056c9ec2"
+   },
+   {
+    "id": "0656a408-ad55-46c5-b642-7adfbfd19bb4",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "0656a408-ad55-46c5-b642-7adfbfd19bb4",
+    "width_mm": 0.2,
+    "start_mm": [
+     62.3,
+     38.3
+    ],
+    "end_mm": [
+     62.5,
+     38.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 0656a408"
+   },
+   {
+    "id": "086bc2e4-4272-4284-bf81-bab3bf8e0762",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "086bc2e4-4272-4284-bf81-bab3bf8e0762",
+    "width_mm": 0.2,
+    "start_mm": [
+     47.4,
+     7.0
+    ],
+    "end_mm": [
+     49.4,
+     7.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 086bc2e4"
+   },
+   {
+    "id": "10860f4e-58f7-4b67-bb86-9eb2a5cc1e8a",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "10860f4e-58f7-4b67-bb86-9eb2a5cc1e8a",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.5,
+     32.0
+    ],
+    "end_mm": [
+     57.9,
+     31.6
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 10860f4e"
+   },
+   {
+    "id": "6a1c754b-8888-4e1c-82d1-1fd356b56173",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "6a1c754b-8888-4e1c-82d1-1fd356b56173",
+    "width_mm": 0.2,
+    "start_mm": [
+     62.6,
+     38.4
+    ],
+    "end_mm": [
+     63.4,
+     38.4
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 6a1c754b"
+   },
+   {
+    "id": "76fe0f4f-687d-4f9b-b6ac-5738f4273d50",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "76fe0f4f-687d-4f9b-b6ac-5738f4273d50",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.3,
+     40.4
+    ],
+    "end_mm": [
+     56.3,
+     40.5
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 76fe0f4f"
+   },
+   {
+    "id": "77613b95-20aa-48f5-a190-bbdf72f6fcdc",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "77613b95-20aa-48f5-a190-bbdf72f6fcdc",
+    "width_mm": 0.2,
+    "start_mm": [
+     55.6,
+     39.7
+    ],
+    "end_mm": [
+     56.3,
+     40.4
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 77613b95"
+   },
+   {
+    "id": "842ce5e5-bfea-414e-903c-83b7164d40fd",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "842ce5e5-bfea-414e-903c-83b7164d40fd",
+    "width_mm": 0.2,
+    "start_mm": [
+     49.35,
+     6.9514
+    ],
+    "end_mm": [
+     49.4,
+     7.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 842ce5e5"
+   },
+   {
+    "id": "94635644-de51-4d7a-8903-7bd60fad3ae2",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "94635644-de51-4d7a-8903-7bd60fad3ae2",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.3,
+     40.4
+    ],
+    "end_mm": [
+     57.5,
+     40.4
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) 94635644"
+   },
+   {
+    "id": "a6f884d5-bcef-4b5e-86ff-5a0e8251db22",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "a6f884d5-bcef-4b5e-86ff-5a0e8251db22",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.9,
+     32.0
+    ],
+    "end_mm": [
+     57.5,
+     32.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) a6f884d5"
+   },
+   {
+    "id": "a842dbe7-2195-4486-a3ec-7ecf53ebae04",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "a842dbe7-2195-4486-a3ec-7ecf53ebae04",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.8,
+     35.1
+    ],
+    "end_mm": [
+     67.0,
+     35.1
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) a842dbe7"
+   },
+   {
+    "id": "d812262a-06cc-4e45-9b8d-75d64a3adac1",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "d812262a-06cc-4e45-9b8d-75d64a3adac1",
+    "width_mm": 0.2,
+    "start_mm": [
+     62.5,
+     38.3
+    ],
+    "end_mm": [
+     62.6,
+     38.4
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 F.Cu (input, unlocked) d812262a"
+   },
+   {
+    "id": "9ad038ba-33cc-40e3-a56f-325b2647387f",
+    "kind": "track",
+    "net": "/+3V3",
+    "layer": "In2.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "9ad038ba-33cc-40e3-a56f-325b2647387f",
+    "width_mm": 0.2,
+    "start_mm": [
+     77.6,
+     26.0
+    ],
+    "end_mm": [
+     81.9,
+     26.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /+3V3 In2.Cu (input, unlocked) 9ad038ba"
+   },
+   {
+    "id": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+    "kind": "track",
+    "net": "/ADC_AIN1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.8,
+     44.3
+    ],
+    "end_mm": [
+     57.5,
+     44.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /ADC_AIN1 F.Cu (input, unlocked) 5c214022"
+   },
+   {
+    "id": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+    "kind": "track",
+    "net": "/ADC_AIN1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+    "width_mm": 0.2,
+    "start_mm": [
+     54.6,
+     46.5
+    ],
+    "end_mm": [
+     56.8,
+     44.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /ADC_AIN1 F.Cu (input, unlocked) eb6bbff4"
+   },
+   {
+    "id": "c1004599-3144-45a5-89c6-ac12538c84bf",
+    "kind": "track",
+    "net": "/ADC_AIN2",
+    "layer": "In2.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "c1004599-3144-45a5-89c6-ac12538c84bf",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.0,
+     32.5
+    ],
+    "end_mm": [
+     63.2,
+     39.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN2 In2.Cu (input, unlocked) c1004599"
+   },
+   {
+    "id": "904b81c0-c397-4ae2-8eb5-c651796f2583",
+    "kind": "track",
+    "net": "/ADC_AIN5",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "904b81c0-c397-4ae2-8eb5-c651796f2583",
+    "width_mm": 0.2,
+    "start_mm": [
+     28.3,
+     57.0
+    ],
+    "end_mm": [
+     33.45,
+     57.0
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN5 F.Cu (input, unlocked) 904b81c0"
+   },
+   {
+    "id": "fb413981-cd9c-4b23-aa97-f5a0980c50d3",
+    "kind": "track",
+    "net": "/ADC_AIN5",
+    "layer": "In2.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "fb413981-cd9c-4b23-aa97-f5a0980c50d3",
+    "width_mm": 0.2,
+    "start_mm": [
+     69.5,
+     46.05
+    ],
+    "end_mm": [
+     79.15,
+     46.05
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN5 In2.Cu (input, unlocked) fb413981"
+   },
+   {
+    "id": "2d2a222b-b718-4ac5-ab5f-45d48616732b",
+    "kind": "track",
+    "net": "/ADC_AIN6",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2d2a222b-b718-4ac5-ab5f-45d48616732b",
+    "width_mm": 0.2,
+    "start_mm": [
+     76.6,
+     46.7
+    ],
+    "end_mm": [
+     79.7,
+     46.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN6 B.Cu (input, unlocked) 2d2a222b"
+   },
+   {
+    "id": "59a6fc2a-6803-4364-90df-44e9fcb46364",
+    "kind": "track",
+    "net": "/ADC_AIN6",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "59a6fc2a-6803-4364-90df-44e9fcb46364",
+    "width_mm": 0.2,
+    "start_mm": [
+     75.2,
+     45.3
+    ],
+    "end_mm": [
+     76.6,
+     46.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /ADC_AIN6 B.Cu (input, unlocked) 59a6fc2a"
+   },
+   {
+    "id": "0fc0cc44-b900-48ce-98af-48ae4b95070f",
+    "kind": "track",
+    "net": "/BOOT_3V3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "0fc0cc44-b900-48ce-98af-48ae4b95070f",
+    "width_mm": 0.2,
+    "start_mm": [
+     7.2,
+     21.6
+    ],
+    "end_mm": [
+     7.2,
+     22.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /BOOT_3V3 F.Cu (input, unlocked) 0fc0cc44"
+   },
+   {
+    "id": "38dc2b18-bc7e-4a4a-accd-8f42f9a983b1",
+    "kind": "track",
+    "net": "/DIAG_I2C_SDA",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "38dc2b18-bc7e-4a4a-accd-8f42f9a983b1",
+    "width_mm": 0.2,
+    "start_mm": [
+     77.5,
+     18.1
+    ],
+    "end_mm": [
+     77.5,
+     22.4
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_I2C_SDA B.Cu (input, unlocked) 38dc2b18"
+   },
+   {
+    "id": "036c5493-a87b-4a7a-8e2f-8d66abe1b64b",
+    "kind": "track",
+    "net": "/DIAG_U28_AIN2",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "036c5493-a87b-4a7a-8e2f-8d66abe1b64b",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.8,
+     37.7
+    ],
+    "end_mm": [
+     64.0,
+     37.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_U28_AIN2 B.Cu (input, unlocked) 036c5493"
+   },
+   {
+    "id": "7c252a05-e7f5-4756-a804-61bd89a7c464",
+    "kind": "track",
+    "net": "/DIAG_U28_AIN2",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "7c252a05-e7f5-4756-a804-61bd89a7c464",
+    "width_mm": 0.2,
+    "start_mm": [
+     64.4,
+     37.3
+    ],
+    "end_mm": [
+     66.1,
+     37.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_U28_AIN2 B.Cu (input, unlocked) 7c252a05"
+   },
+   {
+    "id": "9e9111b4-2256-4580-a30d-d4837b26d291",
+    "kind": "track",
+    "net": "/DIAG_U28_AIN2",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "9e9111b4-2256-4580-a30d-d4837b26d291",
+    "width_mm": 0.2,
+    "start_mm": [
+     64.8,
+     37.7
+    ],
+    "end_mm": [
+     65.8,
+     37.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_U28_AIN2 F.Cu (input, unlocked) 9e9111b4"
+   },
+   {
+    "id": "a1786cff-6bd1-4073-ad83-e0663e9bd145",
+    "kind": "track",
+    "net": "/DIAG_U28_AIN3",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "a1786cff-6bd1-4073-ad83-e0663e9bd145",
+    "width_mm": 0.2,
+    "start_mm": [
+     68.1,
+     44.7
+    ],
+    "end_mm": [
+     73.6,
+     39.2
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_U28_AIN3 B.Cu (input, unlocked) a1786cff"
+   },
+   {
+    "id": "0a0e5990-52ef-40dc-b6bf-d0c71de706bc",
+    "kind": "track",
+    "net": "/DIAG_U28_AIN3",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "0a0e5990-52ef-40dc-b6bf-d0c71de706bc",
+    "width_mm": 0.2,
+    "start_mm": [
+     65.8,
+     37.1
+    ],
+    "end_mm": [
+     66.9,
+     37.1
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /DIAG_U28_AIN3 F.Cu (input, unlocked) 0a0e5990"
+   },
+   {
+    "id": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.2,
+     45.5
+    ],
+    "end_mm": [
+     57.6,
+     45.5
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) 05605e70"
+   },
+   {
+    "id": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.9,
+     45.8
+    ],
+    "end_mm": [
+     57.2,
+     45.5
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) 2ab16e53"
+   },
+   {
+    "id": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.4,
+     45.8
+    ],
+    "end_mm": [
+     56.9,
+     45.8
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) d478b9a7"
+   },
+   {
+    "id": "7c3a4e2d-4e5c-4a42-97e2-34c75a2d04c4",
+    "kind": "track",
+    "net": "/GNSS_LNA_EN",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "7c3a4e2d-4e5c-4a42-97e2-34c75a2d04c4",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.5,
+     3.6
+    ],
+    "end_mm": [
+     59.3,
+     3.6
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /GNSS_LNA_EN F.Cu (input, unlocked) 7c3a4e2d"
+   },
+   {
+    "id": "d70da618-5de4-442f-9852-a95e002c0cca",
+    "kind": "track",
+    "net": "/IMU_INT1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "d70da618-5de4-442f-9852-a95e002c0cca",
+    "width_mm": 0.2,
+    "start_mm": [
+     44.9,
+     5.7
+    ],
+    "end_mm": [
+     47.8,
+     5.7
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /IMU_INT1 F.Cu (input, unlocked) d70da618"
+   },
+   {
+    "id": "dfdf67a7-3b66-4994-8a7c-14380002770c",
+    "kind": "track",
+    "net": "/IMU_INT1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "dfdf67a7-3b66-4994-8a7c-14380002770c",
+    "width_mm": 0.2,
+    "start_mm": [
+     48.4,
+     5.1
+    ],
+    "end_mm": [
+     62.3,
+     5.1
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "track /IMU_INT1 F.Cu (input, unlocked) dfdf67a7"
+   }
+  ],
+  "new_copper": [],
+  "footprint": [
+   {
+    "id": "footprint:C20",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "C20",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/PRE_6V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint C20 pads 1 (/PRE_6V3)"
+   },
+   {
+    "id": "footprint:C8",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "C8",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/POD_12V_PROTECTED"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint C8 pads 1 (/POD_12V_PROTECTED)"
+   },
+   {
+    "id": "footprint:C84",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "C84",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/+3V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint C84 pads 1 (/+3V3)"
+   },
+   {
+    "id": "footprint:C95",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "C95",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/WHEEL_FRONT_FILTERED"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint C95 pads 1 (/WHEEL_FRONT_FILTERED)"
+   },
+   {
+    "id": "footprint:R24",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "R24",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/GNSS_LNA_EN"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint R24 pads 1 (/GNSS_LNA_EN)"
+   },
+   {
+    "id": "footprint:R62",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "R62",
+    "pads": [
+     "1"
+    ],
+    "nets": [
+     "/POD_12V_PROTECTED"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint R62 pads 1 (/POD_12V_PROTECTED)"
+   },
+   {
+    "id": "footprint:U100",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U100",
+    "pads": [
+     "6",
+     "7"
+    ],
+    "nets": [
+     "/POD_CAN_N",
+     "/POD_CAN_P"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U100 pads 6, 7 (/POD_CAN_N, /POD_CAN_P)"
+   },
+   {
+    "id": "footprint:U16",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U16",
+    "pads": [
+     "3"
+    ],
+    "nets": [
+     "/+3V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U16 pads 3 (/+3V3)"
+   },
+   {
+    "id": "footprint:U19",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U19",
+    "pads": [
+     "5"
+    ],
+    "nets": [
+     "/SUP_U19_CT"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U19 pads 5 (/SUP_U19_CT)"
+   },
+   {
+    "id": "footprint:U21",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U21",
+    "pads": [
+     "5"
+    ],
+    "nets": [
+     "/+3V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U21 pads 5 (/+3V3)"
+   },
+   {
+    "id": "footprint:U28",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U28",
+    "pads": [
+     "3",
+     "6",
+     "7",
+     "8"
+    ],
+    "nets": [
+     "/+3V3",
+     "/DIAG_U28_AIN3",
+     "/DIAG_U28_AIN2",
+     "unconnected-(U28-REFN-Pad8)"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U28 pads 3, 6, 7, 8 (/+3V3, /DIAG_U28_AIN3, /DIAG_U28_AIN2 +1 more)"
+   },
+   {
+    "id": "footprint:U3",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U3",
+    "pads": [
+     "1",
+     "2"
+    ],
+    "nets": [
+     "unconnected-(U3-~{SAFEBOOT}-Pad1)",
+     "/+3V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U3 pads 1, 2 (unconnected-(U3-~{SAFEBOOT}-Pad1), /+3V3)"
+   },
+   {
+    "id": "footprint:U4",
+    "kind": "footprint",
+    "category": "footprint",
+    "footprint": "U4",
+    "pads": [
+     "16"
+    ],
+    "nets": [
+     "/+3V3"
+    ],
+    "locked": false,
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/GND"
+    ],
+    "label": "footprint U4 pads 16 (/+3V3)"
+   }
+  ],
+  "board_edge": [],
+  "input_copper_by_net": [
+   {
+    "net": "/+3V3",
+    "items": 22,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/PRE_6V3",
+    "items": 11,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/WHEEL_FRONT_OUT",
+    "items": 4,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/POD_12V_PROTECTED",
+    "items": 3,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/POD_CAN_P",
+    "items": 3,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/ADC_AIN3",
+    "items": 1,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/SPI_SCK",
+    "items": 1,
+    "locked": 0,
+    "blocks": 1
+   },
+   {
+    "net": "/DIAG_U28_AIN2",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/GND",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/MCU_EN",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_12V_IN",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SENSOR_POWER_REAR_DVDT",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SENSOR_REF_2V5",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/TIRE_CAN_H",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/TIRE_CAN_L",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/ADC_AIN1",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/ADC_AIN5",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/ADC_AIN6",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/DIAG_U28_AIN3",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/IMU_INT1",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_WHEEL_REAR_SUPPLY",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SENSOR_POWER_TIRE_RTN",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SUP_U18_TOP_SERIES",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SUP_U19_CT",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/WHEEL_REAR_CAPTURE",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/WHEEL_REAR_THRESHOLD",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/ADC_AIN2",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/BOOT_3V3",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/DIAG_I2C_SDA",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/GNSS_LNA_EN",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_5V_SENSOR",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_AUX1_SIGNAL",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_AUX2_SIGNAL",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_AUX3_SIGNAL",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_REAR_BRAKE_SIGNAL",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_REAR_SHOCK_SIGNAL",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SENSOR_POWER_TIRE_UVLO",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SPI_MISO",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SPI_MOSI",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SUP_U16_SENSE",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SW_3V3",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/THERM_AUX3_SELECT",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/TIRE_CAN_CS",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/TIRE_CAN_TERM",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/TWAI_RX",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/WHEEL_FRONT_FILTERED",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   }
+  ],
+  "new_copper_by_net": [],
+  "truncated": {
+   "input_copper": 111
+  }
+ },
+ "top": [
+  {
+   "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+   "category": "keepout",
+   "kind": "rule_area",
+   "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+   "net": null,
+   "blocks": 7,
+   "blocks_any_layer": 30,
+   "nets_blocked": [
+    "/GND",
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /+3V3 F.Cu (input, unlocked) 2a71f153",
+   "net": "/+3V3",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /ADC_AIN3 F.Cu (input, unlocked) 954c8e27",
+   "net": "/ADC_AIN3",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "74a31470-6f6f-4eff-856c-42d53de7c05d",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /SPI_SCK F.Cu (input, unlocked) 74a31470",
+   "net": "/SPI_SCK",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+   "category": "input_copper",
+   "kind": "via",
+   "label": "via /POD_12V_PROTECTED (input, unlocked) 44e65acd",
+   "net": "/POD_12V_PROTECTED",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+   "category": "input_copper",
+   "kind": "via",
+   "label": "via /POD_CAN_P (input, unlocked) cc0d9153",
+   "net": "/POD_CAN_P",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "4505d775-6855-45c8-abba-6a21b4654817",
+   "category": "input_copper",
+   "kind": "via",
+   "label": "via /PRE_6V3 (input, unlocked) 4505d775",
+   "net": "/PRE_6V3",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+   "category": "input_copper",
+   "kind": "via",
+   "label": "via /WHEEL_FRONT_OUT (input, unlocked) caf036e5",
+   "net": "/WHEEL_FRONT_OUT",
+   "locked": false,
+   "origin": "input",
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu (input, unlocked) b5ed4d57",
+   "net": "/SENSOR_POWER_TIRE_UVLO",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 2,
+   "nets_blocked": [
+    "/GND"
+   ]
+  },
+  {
+   "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /WHEEL_FRONT_OUT In2.Cu (input, unlocked) 9cf8bf9b",
+   "net": "/WHEEL_FRONT_OUT",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 2,
+   "nets_blocked": [
+    "/GND"
+   ]
+  }
+ ],
+ "nets": {
+  "/GND": {
+   "connections": 29,
+   "best_layer": "In1.Cu",
+   "hard_blockers_on_best_layer": 2,
+   "blockers": [
+    "via /POD_12V_PROTECTED 44e65acd",
+    "via /PRE_6V3 4505d775",
+    "keepout 'D-PCB-7v2-In1-no-tracks'",
+    "via /WHEEL_FRONT_OUT caf036e5",
+    "via /POD_CAN_P cc0d9153"
+   ]
+  },
+  "/SENSOR_POWER_AUX_DVDT": {
+   "connections": 1,
+   "best_layer": "In1.Cu",
+   "hard_blockers_on_best_layer": 1,
+   "blockers": [
+    "keepout 'D-PCB-7v2-In1-no-tracks'"
+   ]
+  }
+ },
+ "footprints": {
+  "C126": {
+   "reference": "C126",
+   "value": "10nF 50V C0G 10%",
+   "position_mm": [
+    56.98,
+    42.67
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    29
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  "C127": {
+   "reference": "C127",
+   "value": "100nF 50V X7R",
+   "position_mm": [
+    56.98,
+    38.47
+   ],
+   "orientation_deg": -90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    17
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "C16": {
+   "reference": "C16",
+   "value": "1 uF/16 V",
+   "position_mm": [
+    32.1258,
+    27.2786
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    6
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "C20": {
+   "reference": "C20",
+   "value": "1 uF/16 V",
+   "position_mm": [
+    29.6658,
+    26.3186
+   ],
+   "orientation_deg": 180.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    6
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "C39": {
+   "reference": "C39",
+   "value": "100 nF/50 V X7R",
+   "position_mm": [
+    53.6506,
+    36.3786
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    16
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "C8": {
+   "reference": "C8",
+   "value": "4.7 uF/100 V",
+   "position_mm": [
+    9.66,
+    23.01
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    0
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "C84": {
+   "reference": "C84",
+   "value": "100nF",
+   "position_mm": [
+    64.23,
+    30.29
+   ],
+   "orientation_deg": 180.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    23
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "C95": {
+   "reference": "C95",
+   "value": "220pF C0G",
+   "position_mm": [
+    35.135,
+    37.855
+   ],
+   "orientation_deg": -90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    7
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "R24": {
+   "reference": "R24",
+   "value": "100 kohm",
+   "position_mm": [
+    56.67,
+    3.6214
+   ],
+   "orientation_deg": 180.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    20
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "R62": {
+   "reference": "R62",
+   "value": "64.9 kohm 0.1%",
+   "position_mm": [
+    28.485,
+    35.0386
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    2
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "U10": {
+   "reference": "U10",
+   "value": "TPS2553QDBVRQ1",
+   "position_mm": [
+    60.45,
+    2.6514
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    20
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "U100": {
+   "reference": "U100",
+   "value": "TJA1051T-3",
+   "position_mm": [
+    45.25,
+    29.0864
+   ],
+   "orientation_deg": -90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    10
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "6",
+    "7"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "U16": {
+   "reference": "U16",
+   "value": "TPS389001DSER",
+   "position_mm": [
+    62.87,
+    37.8011
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    21
+   ],
+   "terminates": [
+    21
+   ],
+   "pads_blocking": [
+    "3"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "U18": {
+   "reference": "U18",
+   "value": "TPS389001DSER",
+   "position_mm": [
+    81.16,
+    25.37
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    28
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "U19": {
+   "reference": "U19",
+   "value": "TPS389001DSER",
+   "position_mm": [
+    55.6,
+    31.1911
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    18
+   ],
+   "terminates": [
+    18
+   ],
+   "pads_blocking": [
+    "5"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "U21": {
+   "reference": "U21",
+   "value": "TJA1051T/3/1J",
+   "position_mm": [
+    59.8,
+    29.0864
+   ],
+   "orientation_deg": -90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    18
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "5"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "U28": {
+   "reference": "U28",
+   "value": "ADS1119IPWR",
+   "position_mm": [
+    68.6506,
+    36.1011
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    22
+   ],
+   "terminates": [
+    22
+   ],
+   "pads_blocking": [
+    "3",
+    "6",
+    "7",
+    "8"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": [
+    "/GND"
+   ]
+  },
+  "U3": {
+   "reference": "U3",
+   "value": "NEO-M9N-00B",
+   "position_mm": [
+    55.35,
+    12.8514
+   ],
+   "orientation_deg": 0.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    13
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "1",
+    "2"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "U30": {
+   "reference": "U30",
+   "value": "TPS26625DRCR",
+   "position_mm": [
+    59.21,
+    46.55
+   ],
+   "orientation_deg": 180.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    29
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  "U4": {
+   "reference": "U4",
+   "value": "MCP3208-BI/SL",
+   "position_mm": [
+    66.81,
+    42.8011
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [
+    21
+   ],
+   "terminates": [],
+   "pads_blocking": [
+    "16"
+   ],
+   "nets_blocked": [
+    "/GND"
+   ],
+   "nets_terminated": []
+  },
+  "U6": {
+   "reference": "U6",
+   "value": "TPS7B4253QDDARQ1",
+   "position_mm": [
+    53.08,
+    41.8336
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    17
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/GND"
+   ]
+  }
+ },
+ "connections": [
+  {
+   "index": 0,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.7071 mm",
+     "uuid": "74406dd2-f3cf-4b36-ae04-c572935608b3",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      8.7,
+      21.1
+     ],
+     "reported_position_mm": [
+      8.7,
+      21.1
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.1414 mm",
+     "uuid": "6f35b678-b94a-47da-b924-0eea776cf832",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      6.6,
+      22.0
+     ],
+     "reported_position_mm": [
+      6.6,
+      22.0
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "2453088e-563c-4013-9248-1d7f94e79306",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_12V_PROTECTED F.Cu 2453088e"
+      },
+      {
+       "id": "0fc0cc44-b900-48ce-98af-48ae4b95070f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/BOOT_3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /BOOT_3V3 F.Cu 0fc0cc44"
+      },
+      {
+       "id": "pad:C8.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "C8",
+       "pad": "1",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "label": "pad C8.1 /POD_12V_PROTECTED"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "fc49fab7-8dae-4eb6-8dd9-e565bf397ff5",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SW_3V3",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SW_3V3 In2.Cu fc49fab7"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.2847,
+   "best_layer": "B.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 1,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.1414 mm",
+     "uuid": "25e054e4-d8c4-421e-9f07-5cfb8b75eac5",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      17.7,
+      41.6
+     ],
+     "reported_position_mm": [
+      17.7,
+      41.6
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.7071 mm",
+     "uuid": "d80c8871-9bea-4f03-9fc2-b4a2eb73e373",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      18.2,
+      42.1
+     ],
+     "reported_position_mm": [
+      18.2,
+      42.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "2dca98a7-fff9-4da0-aa4f-de47128f85f3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/THERM_AUX3_SELECT",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /THERM_AUX3_SELECT B.Cu 2dca98a7"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.7071,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 2,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.2300 mm",
+     "uuid": "b9e599cd-173c-415a-ae11-38cad5990eb7",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      27.5,
+      36.5
+     ],
+     "reported_position_mm": [
+      27.5,
+      36.5
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.4000 mm",
+     "uuid": "cf7290f7-6849-4318-9a9e-37f2c829c7c3",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      30.2,
+      36.0
+     ],
+     "reported_position_mm": [
+      30.2,
+      36.0
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "4cf744d3-6b13-4594-ab42-7cf2b3c3bcb3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_12V_PROTECTED F.Cu 4cf744d3"
+      },
+      {
+       "id": "4b2cffc6-ffb6-436b-b1b3-6f0173211b19",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_REAR_DVDT",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_REAR_DVDT F.Cu 4b2cffc6"
+      },
+      {
+       "id": "9767dad7-a819-4480-915e-b0d323242ef6",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_REAR_DVDT",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_REAR_DVDT F.Cu 9767dad7"
+      },
+      {
+       "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_12V_PROTECTED 44e65acd"
+      },
+      {
+       "id": "pad:R62.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "R62",
+       "pad": "1",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "label": "pad R62.1 /POD_12V_PROTECTED"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 6,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_12V_PROTECTED 44e65acd"
+      },
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_12V_PROTECTED 44e65acd"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_12V_PROTECTED",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_12V_PROTECTED 44e65acd"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.7459,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 3,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.5657 mm",
+     "uuid": "42e66f07-251a-477e-9c68-4ecc2263fd4f",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      30.4,
+      45.5
+     ],
+     "reported_position_mm": [
+      30.4,
+      45.5
+     ]
+    },
+    {
+     "description": "Track [/GND] on B.Cu, length 1.5000 mm",
+     "uuid": "7a7c222c-d63e-4a80-a45e-e431f7fccd71",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      30.0,
+      45.9
+     ],
+     "reported_position_mm": [
+      30.0,
+      45.9
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "83806460-783a-4fa4-80a8-23bcdbea5444",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_12V_IN",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_12V_IN B.Cu 83806460"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.5657,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 4,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.2828 mm",
+     "uuid": "188d8ade-dced-4426-b0bc-e615c47547d8",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      30.8,
+      56.4
+     ],
+     "reported_position_mm": [
+      30.8,
+      56.4
+     ]
+    },
+    {
+     "description": "Track [/GND] on B.Cu, length 3.3941 mm",
+     "uuid": "3bca6dad-501c-4cd2-b82c-f02bfd59e50b",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      33.2,
+      58.8
+     ],
+     "reported_position_mm": [
+      33.2,
+      58.8
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "25f30852-ad5d-439b-b081-c3fdb6ebb4fc",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_WHEEL_REAR_SUPPLY",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_WHEEL_REAR_SUPPLY F.Cu 25f30852"
+      },
+      {
+       "id": "904b81c0-c397-4ae2-8eb5-c651796f2583",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN5",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN5 F.Cu 904b81c0"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "d974b1da-4f99-4fa2-b6fa-d4df41141428",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_AUX1_SIGNAL",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_AUX1_SIGNAL In2.Cu d974b1da"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.3941,
+   "best_layer": "B.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 5,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.1414 mm",
+     "uuid": "7f481fce-a70a-4f7e-8891-0d2abf408261",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      32.2,
+      35.7
+     ],
+     "reported_position_mm": [
+      32.2,
+      35.7
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.4000 mm",
+     "uuid": "cf7290f7-6849-4318-9a9e-37f2c829c7c3",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      30.2,
+      36.0
+     ],
+     "reported_position_mm": [
+      30.2,
+      36.0
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "d3f5acbc-c226-44b4-8c27-91243eaeba6f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_REAR_DVDT",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_REAR_DVDT F.Cu d3f5acbc"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_FRONT_OUT In2.Cu 9cf8bf9b"
+      },
+      {
+       "id": "75289011-40aa-4dbc-b831-61c876a49cfa",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_12V_IN",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_12V_IN In2.Cu 75289011"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.0224,
+   "best_layer": "B.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 6,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Pad 2 [/GND] of C16 on F.Cu",
+     "uuid": "7d520b2f-83af-5cf7-bb5f-e325c52c4e55",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "C16",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      32.1258,
+      26.5036
+     ],
+     "reported_position_mm": [
+      32.1258,
+      26.5036
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.8485 mm",
+     "uuid": "48293417-0150-41ac-8526-455ff332a7e3",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      29.6,
+      26.3
+     ],
+     "reported_position_mm": [
+      29.6,
+      26.3
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 7,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "57adf523-7e21-414c-8d0a-56c10d66a7fe",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 F.Cu 57adf523"
+      },
+      {
+       "id": "8227cc30-102e-4432-9433-78a4422f8627",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 F.Cu 8227cc30"
+      },
+      {
+       "id": "a37ec623-3e23-4641-9924-d23df4481a17",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 F.Cu a37ec623"
+      },
+      {
+       "id": "6b9054c7-b9bd-4ad1-8888-cb28b2e5ea1b",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_REAR_THRESHOLD",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_REAR_THRESHOLD F.Cu 6b9054c7"
+      },
+      {
+       "id": "dd7b0af1-d611-4d72-a176-e11583b8e62d",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_REAR_THRESHOLD",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_REAR_THRESHOLD F.Cu dd7b0af1"
+      },
+      {
+       "id": "4505d775-6855-45c8-abba-6a21b4654817",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "locked": false,
+       "origin": "input",
+       "label": "via /PRE_6V3 4505d775"
+      },
+      {
+       "id": "pad:C20.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "C20",
+       "pad": "1",
+       "net": "/PRE_6V3",
+       "locked": false,
+       "label": "pad C20.1 /PRE_6V3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 7,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "4505d775-6855-45c8-abba-6a21b4654817",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "locked": false,
+       "origin": "input",
+       "label": "via /PRE_6V3 4505d775"
+      },
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 4,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "a2be920f-b457-4574-b5b8-bff0ac200e81",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 In2.Cu a2be920f"
+      },
+      {
+       "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_FRONT_OUT In2.Cu 9cf8bf9b"
+      },
+      {
+       "id": "e5599000-838c-4c1f-8629-09fa2a4cbbc5",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_12V_IN",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_12V_IN In2.Cu e5599000"
+      },
+      {
+       "id": "4505d775-6855-45c8-abba-6a21b4654817",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "locked": false,
+       "origin": "input",
+       "label": "via /PRE_6V3 4505d775"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 4,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "e451f5bb-ff5b-4f1d-8705-2a1fd3b5c678",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu e451f5bb"
+      },
+      {
+       "id": "4505d775-6855-45c8-abba-6a21b4654817",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "locked": false,
+       "origin": "input",
+       "label": "via /PRE_6V3 4505d775"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.534,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 2
+  },
+  {
+   "index": 7,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.1414 mm",
+     "uuid": "4993e0d4-cc33-41c1-9a66-d4ecc18dffe1",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      32.6,
+      35.8
+     ],
+     "reported_position_mm": [
+      32.6,
+      35.8
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.8485 mm",
+     "uuid": "b4c7c08a-ac54-4bfe-8acd-a4b14e095d9c",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      35.2,
+      36.4
+     ],
+     "reported_position_mm": [
+      35.2,
+      36.4
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "4446c1d3-f7c4-4e6b-b8c5-bea7f776da95",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_WHEEL_REAR_SUPPLY",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_WHEEL_REAR_SUPPLY F.Cu 4446c1d3"
+      },
+      {
+       "id": "c30196dd-0401-4259-a00d-ee90d9227050",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_FRONT_OUT F.Cu c30196dd"
+      },
+      {
+       "id": "88b2f906-adfc-4131-afe3-6dd7a1a1fb55",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_FILTERED",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_FRONT_FILTERED F.Cu 88b2f906"
+      },
+      {
+       "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "locked": false,
+       "origin": "input",
+       "label": "via /WHEEL_FRONT_OUT caf036e5"
+      },
+      {
+       "id": "pad:C95.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "C95",
+       "pad": "1",
+       "net": "/WHEEL_FRONT_FILTERED",
+       "locked": false,
+       "label": "pad C95.1 /WHEEL_FRONT_FILTERED"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 5,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "locked": false,
+       "origin": "input",
+       "label": "via /WHEEL_FRONT_OUT caf036e5"
+      },
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "5cd962a1-175d-47fe-8fbc-559ee384a4d6",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_REAR_BRAKE_SIGNAL",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_REAR_BRAKE_SIGNAL In2.Cu 5cd962a1"
+      },
+      {
+       "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "locked": false,
+       "origin": "input",
+       "label": "via /WHEEL_FRONT_OUT caf036e5"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "423f32e2-14a0-4281-bfcf-a0d7fe9c46a4",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_FRONT_OUT B.Cu 423f32e2"
+      },
+      {
+       "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/WHEEL_FRONT_OUT",
+       "locked": false,
+       "origin": "input",
+       "label": "via /WHEEL_FRONT_OUT caf036e5"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.6683,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 2
+  },
+  {
+   "index": 8,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 0.1000 mm",
+     "uuid": "cd78c489-1d71-4fa9-9d99-e980ef6267f9",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      41.8,
+      29.6
+     ],
+     "reported_position_mm": [
+      41.8,
+      29.6
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.2828 mm",
+     "uuid": "80d488fc-0432-4e31-8725-5a34b860de63",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      41.8,
+      29.6
+     ],
+     "reported_position_mm": [
+      41.8,
+      29.6
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.0,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 9,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 0.2000 mm",
+     "uuid": "0c620b76-d194-4735-99fc-ad08288fab6f",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      44.5,
+      51.9
+     ],
+     "reported_position_mm": [
+      44.5,
+      51.9
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.5657 mm",
+     "uuid": "f95b990a-ca32-46cb-acba-7f90c29d8b30",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      46.6,
+      51.1
+     ],
+     "reported_position_mm": [
+      46.6,
+      51.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "0535c3fc-a6b4-48c1-b4b1-f7af9ea7caa5",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_AUX3_SIGNAL",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_AUX3_SIGNAL In2.Cu 0535c3fc"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "ecf7c4d9-9f13-4bd7-a3c4-492d21a84895",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_AUX2_SIGNAL",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_AUX2_SIGNAL B.Cu ecf7c4d9"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.2472,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 10,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 0.1000 mm",
+     "uuid": "91fab816-523f-47b5-ba0b-25bbacb7352f",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      45.0,
+      32.6
+     ],
+     "reported_position_mm": [
+      45.0,
+      32.6
+     ]
+    },
+    {
+     "description": "Track [/GND] on B.Cu, length 1.8385 mm",
+     "uuid": "ded6632d-8b7a-4e0a-b0f4-e1ee5457d001",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      45.9,
+      29.2
+     ],
+     "reported_position_mm": [
+      45.9,
+      29.2
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_CAN_P",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_CAN_P cc0d9153"
+      },
+      {
+       "id": "pad:U100.6",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U100",
+       "pad": "6",
+       "net": "/POD_CAN_N",
+       "locked": false,
+       "label": "pad U100.6 /POD_CAN_N"
+      },
+      {
+       "id": "pad:U100.7",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U100",
+       "pad": "7",
+       "net": "/POD_CAN_P",
+       "locked": false,
+       "label": "pad U100.7 /POD_CAN_P"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_CAN_P",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_CAN_P cc0d9153"
+      },
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "9df3db00-cf82-412a-8ca6-96e3a137b091",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_CAN_P",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_CAN_P In2.Cu 9df3db00"
+      },
+      {
+       "id": "f5997158-b8d6-49d6-9b7a-6c64ab1f3c12",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_CAN_P",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_CAN_P f5997158"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "27b123b8-74eb-4af1-96e0-87ca67e67133",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu 27b123b8"
+      },
+      {
+       "id": "5e15b4c3-76b5-4af1-8f14-de8aa2e0fa5a",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu 5e15b4c3"
+      },
+      {
+       "id": "f5997158-b8d6-49d6-9b7a-6c64ab1f3c12",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/POD_CAN_P",
+       "locked": false,
+       "origin": "input",
+       "label": "via /POD_CAN_P f5997158"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.5171,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 2
+  },
+  {
+   "index": 11,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 1.7000 mm",
+     "uuid": "57bbd446-1f91-47f7-9867-25fa3a4f0a34",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      45.3,
+      6.8
+     ],
+     "reported_position_mm": [
+      45.3,
+      6.8
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.5000 mm",
+     "uuid": "1de16064-3fb7-4e86-9d8a-b174f05872dd",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      45.3,
+      5.1
+     ],
+     "reported_position_mm": [
+      45.3,
+      5.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "d70da618-5de4-442f-9852-a95e002c0cca",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/IMU_INT1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /IMU_INT1 F.Cu d70da618"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 1.7,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 12,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 3.3941 mm",
+     "uuid": "6e215af2-52ab-48fe-986f-d1cd9e6fdebd",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      46.6,
+      49.6
+     ],
+     "reported_position_mm": [
+      46.6,
+      49.6
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.5657 mm",
+     "uuid": "f95b990a-ca32-46cb-acba-7f90c29d8b30",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      46.6,
+      51.1
+     ],
+     "reported_position_mm": [
+      46.6,
+      51.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "de5f1a77-408d-4a77-9888-4059bea42257",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_REAR_SHOCK_SIGNAL",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_REAR_SHOCK_SIGNAL F.Cu de5f1a77"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 1.5,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 13,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.2000 mm",
+     "uuid": "42fd5f1a-3f1f-47e4-842e-64e8558c551e",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      48.9,
+      3.8
+     ],
+     "reported_position_mm": [
+      48.9,
+      3.8
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.1000 mm",
+     "uuid": "7a0f09b1-f2d6-4a89-9565-3f4c14812e3f",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      49.1,
+      6.8
+     ],
+     "reported_position_mm": [
+      49.1,
+      6.8
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 6,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "086bc2e4-4272-4284-bf81-bab3bf8e0762",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 086bc2e4"
+      },
+      {
+       "id": "842ce5e5-bfea-414e-903c-83b7164d40fd",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 842ce5e5"
+      },
+      {
+       "id": "dfdf67a7-3b66-4994-8a7c-14380002770c",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/IMU_INT1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /IMU_INT1 F.Cu dfdf67a7"
+      },
+      {
+       "id": "e6a808fb-9953-4790-975e-4b122eff9e3b",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_REAR_CAPTURE",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_REAR_CAPTURE F.Cu e6a808fb"
+      },
+      {
+       "id": "pad:U3.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U3",
+       "pad": "1",
+       "net": "unconnected-(U3-~{SAFEBOOT}-Pad1)",
+       "locked": false,
+       "label": "pad U3.1 unconnected-(U3-~{SAFEBOOT}-Pad1)"
+      },
+      {
+       "id": "pad:U3.2",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U3",
+       "pad": "2",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad U3.2 /+3V3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 6,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 4,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "071982e6-21cc-4d4e-8115-5a6999f85368",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 071982e6"
+      },
+      {
+       "id": "2ea1a2fb-e49f-49b9-acce-165d11c17a96",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 2ea1a2fb"
+      },
+      {
+       "id": "dcd4f51f-a63a-48e4-8903-e40f98bdb072",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu dcd4f51f"
+      },
+      {
+       "id": "3f71c944-d259-4e8c-8d33-468f3caf68d7",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_CS",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_CS B.Cu 3f71c944"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 7,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.0067,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 14,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 7.0000 mm",
+     "uuid": "3f8493ce-f5c6-4475-9e1e-4b862cf270cd",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      49.4,
+      14.1
+     ],
+     "reported_position_mm": [
+      49.4,
+      14.1
+     ]
+    },
+    {
+     "description": "Track [/GND] on B.Cu, length 2.9698 mm",
+     "uuid": "638d5b32-d036-42e6-aa35-a98f061f134c",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      49.4,
+      14.1
+     ],
+     "reported_position_mm": [
+      49.4,
+      14.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.0,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 15,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 2.9698 mm",
+     "uuid": "638d5b32-d036-42e6-aa35-a98f061f134c",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      49.4,
+      14.1
+     ],
+     "reported_position_mm": [
+      49.4,
+      14.1
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.8000 mm",
+     "uuid": "b0648978-c785-4051-b66f-017fd3463622",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      49.4,
+      14.1
+     ],
+     "reported_position_mm": [
+      49.4,
+      14.1
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.0,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 16,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 1.5000 mm",
+     "uuid": "6c853521-6b2e-462b-ba9b-14e0b80c486e",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      52.8,
+      34.0
+     ],
+     "reported_position_mm": [
+      52.8,
+      34.0
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of C39 on F.Cu",
+     "uuid": "45219a3d-1a73-5ae4-af49-8c617b6c4cc0",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "C39",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      53.6506,
+      35.6036
+     ],
+     "reported_position_mm": [
+      53.6506,
+      35.6036
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 2a71f153"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "776366dd-fb4c-4c85-9484-3b04a19d60bb",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SUP_U18_TOP_SERIES",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SUP_U18_TOP_SERIES In2.Cu 776366dd"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 4,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "33347664-bad0-4fc4-a4eb-3c4532786c84",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu 33347664"
+      },
+      {
+       "id": "3e4e0fad-774d-4b83-8e51-5e7965a07f04",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu 3e4e0fad"
+      },
+      {
+       "id": "60f3894b-a82b-42fa-b69e-a1ba8ab8d900",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/PRE_6V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /PRE_6V3 B.Cu 60f3894b"
+      },
+      {
+       "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_TIRE_UVLO",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu b5ed4d57"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 4,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 1.8152,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 17,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "PTH pad 9 [/GND] of U6",
+     "uuid": "66c60509-36b8-5b77-b098-20d645df11b9",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U6",
+     "pad": "9''''''''",
+     "layers": [
+      "B.Cu",
+      "F.Cu",
+      "In1.Cu",
+      "In2.Cu"
+     ],
+     "position_mm": [
+      55.03,
+      41.1836
+     ],
+     "reported_position_mm": [
+      55.03,
+      41.1836
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of C127 on F.Cu",
+     "uuid": "d751a0f7-732f-57bd-9c63-c56eabdd8f68",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "C127",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      56.98,
+      39.245
+     ],
+     "reported_position_mm": [
+      56.98,
+      39.245
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "76fe0f4f-687d-4f9b-b6ac-5738f4273d50",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 76fe0f4f"
+      },
+      {
+       "id": "77613b95-20aa-48f5-a190-bbdf72f6fcdc",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 77613b95"
+      },
+      {
+       "id": "94635644-de51-4d7a-8903-7bd60fad3ae2",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 94635644"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 8,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "37eac2aa-6f0a-43fd-941c-1bb0604e683f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_L",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_L In2.Cu 37eac2aa"
+      },
+      {
+       "id": "69feb686-a085-431b-adeb-83c1087ac77c",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_L",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_L In2.Cu 69feb686"
+      },
+      {
+       "id": "df138c6b-c0bc-4d49-bf6c-1ba8dc7d2e15",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_L",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_L In2.Cu df138c6b"
+      },
+      {
+       "id": "621c251c-8fae-4f3f-9b77-8f29c6f00719",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_H",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_H In2.Cu 621c251c"
+      },
+      {
+       "id": "d98de079-1646-441e-85b7-7527c79d34e0",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_H",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_H In2.Cu d98de079"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 9,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 5,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_TIRE_UVLO",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu b5ed4d57"
+      },
+      {
+       "id": "ff6110c1-db2f-43aa-86ed-a29555fb2f35",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_TIRE_RTN",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_TIRE_RTN B.Cu ff6110c1"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.7497,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 18,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 1.6971 mm",
+     "uuid": "1474bf99-a4a8-4b47-a4b6-ad369cf264f2",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      57.3,
+      32.7
+     ],
+     "reported_position_mm": [
+      57.3,
+      32.7
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of U19 on F.Cu",
+     "uuid": "8e49510d-5d33-5918-a32c-237562bce2fb",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U19",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      55.0,
+      31.1911
+     ],
+     "reported_position_mm": [
+      55.0,
+      31.1911
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 7,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "10860f4e-58f7-4b67-bb86-9eb2a5cc1e8a",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 10860f4e"
+      },
+      {
+       "id": "a6f884d5-bcef-4b5e-86ff-5a0e8251db22",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu a6f884d5"
+      },
+      {
+       "id": "ba987e3a-d900-4227-865d-828af9be2abe",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_H",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_H F.Cu ba987e3a"
+      },
+      {
+       "id": "13ba7f1d-63e4-48ac-aeb6-8de8115d0067",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SUP_U19_CT",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SUP_U19_CT F.Cu 13ba7f1d"
+      },
+      {
+       "id": "59b969f4-dc23-4869-a8a1-b955272f58b6",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/SUP_U19_CT",
+       "locked": false,
+       "origin": "input",
+       "label": "via /SUP_U19_CT 59b969f4"
+      },
+      {
+       "id": "pad:U19.5",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U19",
+       "pad": "5",
+       "net": "/SUP_U19_CT",
+       "locked": false,
+       "label": "pad U19.5 /SUP_U19_CT"
+      },
+      {
+       "id": "pad:U21.5",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U21",
+       "pad": "5",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad U21.5 /+3V3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 12,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 11,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 7,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.7508,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 19,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 0.1414 mm",
+     "uuid": "4c50f3b6-ffd6-4302-a004-37426c142129",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      58.8,
+      34.3
+     ],
+     "reported_position_mm": [
+      58.8,
+      34.3
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 0.4243 mm",
+     "uuid": "ab790cbb-f706-4b1c-84e1-3b4003f09415",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      59.1,
+      34.6
+     ],
+     "reported_position_mm": [
+      59.1,
+      34.6
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "40c733a9-93c2-4e74-9487-84036689a3c3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 40c733a9"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.4243,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 20,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 4.5255 mm",
+     "uuid": "ce4a78d8-bc0e-4904-9f5a-f7e3269fd74c",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      56.1,
+      4.1
+     ],
+     "reported_position_mm": [
+      56.1,
+      4.1
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of U10 on F.Cu",
+     "uuid": "cf03d013-5ef8-57f3-b614-dfbbbb013f80",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U10",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      59.3125,
+      2.6514
+     ],
+     "reported_position_mm": [
+      59.3125,
+      2.6514
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "7c3a4e2d-4e5c-4a42-97e2-34c75a2d04c4",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GNSS_LNA_EN",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GNSS_LNA_EN F.Cu 7c3a4e2d"
+      },
+      {
+       "id": "pad:R24.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "R24",
+       "pad": "1",
+       "net": "/GNSS_LNA_EN",
+       "locked": false,
+       "label": "pad R24.1 /GNSS_LNA_EN"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "826d3c0c-29d8-457a-8e20-6549dcff2072",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TWAI_RX",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TWAI_RX In2.Cu 826d3c0c"
+      },
+      {
+       "id": "f5a635c3-be4a-47f6-9c6b-f65b02be4197",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/WHEEL_REAR_CAPTURE",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /WHEEL_REAR_CAPTURE In2.Cu f5a635c3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.524,
+   "best_layer": "B.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 21,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 1.4142 mm",
+     "uuid": "bfb37dea-dc89-4012-95ab-8c3687a99412",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      62.8,
+      40.1
+     ],
+     "reported_position_mm": [
+      62.8,
+      40.1
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of U16 on F.Cu",
+     "uuid": "a9d35a8b-6f84-59aa-a81b-6ceec3cdcf82",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U16",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      62.27,
+      37.8011
+     ],
+     "reported_position_mm": [
+      62.27,
+      37.8011
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "0656a408-ad55-46c5-b642-7adfbfd19bb4",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 0656a408"
+      },
+      {
+       "id": "6a1c754b-8888-4e1c-82d1-1fd356b56173",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 6a1c754b"
+      },
+      {
+       "id": "d812262a-06cc-4e45-9b8d-75d64a3adac1",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu d812262a"
+      },
+      {
+       "id": "pad:U16.3",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U16",
+       "pad": "3",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad U16.3 /+3V3"
+      },
+      {
+       "id": "pad:U4.16",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U4",
+       "pad": "16",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad U4.16 /+3V3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 8,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 11,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 5,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "c1004599-3144-45a5-89c6-ac12538c84bf",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN2",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN2 In2.Cu c1004599"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "036c5493-a87b-4a7a-8e2f-8d66abe1b64b",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_U28_AIN2",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_U28_AIN2 B.Cu 036c5493"
+      },
+      {
+       "id": "66ba5654-a2f7-4f9f-93be-6794d0fa61ce",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_REF_2V5",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_REF_2V5 B.Cu 66ba5654"
+      },
+      {
+       "id": "b972db2a-514d-45ca-a0b0-03d7de8bfc7e",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_REF_2V5",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_REF_2V5 B.Cu b972db2a"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.3592,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 22,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Pad 2 [/GND] of U28 on F.Cu",
+     "uuid": "c93f59db-9ee8-5842-92bd-f90323de5ef9",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U28",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      65.7881,
+      34.4761
+     ],
+     "reported_position_mm": [
+      65.7881,
+      34.4761
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 3.0000 mm",
+     "uuid": "9bec65b2-75d6-471f-b0ee-e1213daa06b0",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      65.7,
+      38.2
+     ],
+     "reported_position_mm": [
+      65.7,
+      38.2
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 8,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "056c9ec2-6070-4d9d-a0ce-57917c4ae70b",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu 056c9ec2"
+      },
+      {
+       "id": "a842dbe7-2195-4486-a3ec-7ecf53ebae04",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 F.Cu a842dbe7"
+      },
+      {
+       "id": "0a0e5990-52ef-40dc-b6bf-d0c71de706bc",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_U28_AIN3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_U28_AIN3 F.Cu 0a0e5990"
+      },
+      {
+       "id": "9e9111b4-2256-4580-a30d-d4837b26d291",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_U28_AIN2",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_U28_AIN2 F.Cu 9e9111b4"
+      },
+      {
+       "id": "pad:U28.3",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U28",
+       "pad": "3",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad U28.3 /+3V3"
+      },
+      {
+       "id": "pad:U28.6",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U28",
+       "pad": "6",
+       "net": "/DIAG_U28_AIN3",
+       "locked": false,
+       "label": "pad U28.6 /DIAG_U28_AIN3"
+      },
+      {
+       "id": "pad:U28.7",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U28",
+       "pad": "7",
+       "net": "/DIAG_U28_AIN2",
+       "locked": false,
+       "label": "pad U28.7 /DIAG_U28_AIN2"
+      },
+      {
+       "id": "pad:U28.8",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "U28",
+       "pad": "8",
+       "net": "unconnected-(U28-REFN-Pad8)",
+       "locked": false,
+       "label": "pad U28.8 unconnected-(U28-REFN-Pad8)"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 8,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 8,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 8,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 6,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "2e93a66f-8743-4325-8096-def89a9e7c68",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 2e93a66f"
+      },
+      {
+       "id": "6fc685b5-2abf-4bf7-8b26-175f3dec6066",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 6fc685b5"
+      },
+      {
+       "id": "82ad5b38-60b1-4991-85c9-f0fa0d5b6b20",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 82ad5b38"
+      },
+      {
+       "id": "8be70369-6b91-4296-8e0a-38aae745534e",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 B.Cu 8be70369"
+      },
+      {
+       "id": "7c252a05-e7f5-4756-a804-61bd89a7c464",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_U28_AIN2",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_U28_AIN2 B.Cu 7c252a05"
+      },
+      {
+       "id": "98ff32e9-e943-4574-96fb-c0c4a7f7b8f0",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SUP_U18_TOP_SERIES",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SUP_U18_TOP_SERIES B.Cu 98ff32e9"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 7,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 6,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 7,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.7249,
+   "best_layer": "In2.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 23,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 4.6000 mm",
+     "uuid": "ea444797-7cf5-4b7b-b145-23d5b622ee24",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      64.4,
+      32.3
+     ],
+     "reported_position_mm": [
+      64.4,
+      32.3
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.4243 mm",
+     "uuid": "46c662e0-2544-4492-b356-3d8e8e7d2a34",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      68.1,
+      30.8
+     ],
+     "reported_position_mm": [
+      68.1,
+      30.8
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_vertical_first",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "873df505-5592-4512-a1ff-a6a6c695e965",
+       "kind": "via",
+       "category": "input_copper",
+       "net": "/MCU_EN",
+       "locked": false,
+       "origin": "input",
+       "label": "via /MCU_EN 873df505"
+      },
+      {
+       "id": "pad:C84.1",
+       "kind": "pad",
+       "category": "footprint",
+       "footprint": "C84",
+       "pad": "1",
+       "net": "/+3V3",
+       "locked": false,
+       "label": "pad C84.1 /+3V3"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 4,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "1d676831-afd2-46b8-8ac6-f60e5402763a",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SUP_U16_SENSE",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SUP_U16_SENSE In2.Cu 1d676831"
+      },
+      {
+       "id": "ad27667d-78ac-4c4f-8f46-4eb274eb79a2",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/MCU_EN",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /MCU_EN In2.Cu ad27667d"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 3,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 3,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "33cc7e0e-ba2d-4edd-99c7-68d95a78b663",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/MCU_EN",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /MCU_EN B.Cu 33cc7e0e"
+      },
+      {
+       "id": "e33d4ee5-3cae-4cbb-96e7-6d24ade4a703",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SPI_MOSI",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SPI_MOSI B.Cu e33d4ee5"
+      },
+      {
+       "id": "a0f52cf9-05c4-40f9-9e2b-be8dd0d9a3a1",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SPI_MISO",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SPI_MISO B.Cu a0f52cf9"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 3,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 5,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.9925,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 24,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on In2.Cu, length 1.0000 mm",
+     "uuid": "ad651528-ade9-4bcc-b192-fdbb87442685",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      72.5,
+      40.7
+     ],
+     "reported_position_mm": [
+      72.5,
+      40.7
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.0520 mm",
+     "uuid": "a12ed655-ae24-4f47-8484-0d06beed585c",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      71.3,
+      40.3
+     ],
+     "reported_position_mm": [
+      71.3,
+      40.3
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "74a31470-6f6f-4eff-856c-42d53de7c05d",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SPI_SCK",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SPI_SCK F.Cu 74a31470"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "e8c17325-8b73-47bb-b290-1d2baf409400",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_REF_2V5",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_REF_2V5 In2.Cu e8c17325"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "a1786cff-6bd1-4073-ad83-e0663e9bd145",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_U28_AIN3",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_U28_AIN3 B.Cu a1786cff"
+      },
+      {
+       "id": "055d1cad-3c93-42fc-b492-089734cb577d",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/TIRE_CAN_TERM",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /TIRE_CAN_TERM B.Cu 055d1cad"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 1.2649,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 25,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.4000 mm",
+     "uuid": "a97c8562-d903-41d6-bc11-19ecdaf2bdb4",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      76.9,
+      20.4
+     ],
+     "reported_position_mm": [
+      76.9,
+      20.4
+     ]
+    },
+    {
+     "description": "Track [/GND] on In2.Cu, length 1.2000 mm",
+     "uuid": "3c58b739-9917-470c-9594-118c4b0b060d",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "In2.Cu"
+     ],
+     "position_mm": [
+      78.1,
+      20.4
+     ],
+     "reported_position_mm": [
+      78.1,
+      20.4
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "38dc2b18-bc7e-4a4a-accd-8f42f9a983b1",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/DIAG_I2C_SDA",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /DIAG_I2C_SDA B.Cu 38dc2b18"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 1.2,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 26,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on B.Cu, length 2.9000 mm",
+     "uuid": "a75a1aa7-5606-4472-9bde-7c937e9c0e03",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "B.Cu"
+     ],
+     "position_mm": [
+      76.9,
+      20.4
+     ],
+     "reported_position_mm": [
+      76.9,
+      20.4
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.4000 mm",
+     "uuid": "a97c8562-d903-41d6-bc11-19ecdaf2bdb4",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      76.9,
+      20.4
+     ],
+     "reported_position_mm": [
+      76.9,
+      20.4
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 0.0,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 27,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 0.0533 mm",
+     "uuid": "9f45bb0c-caab-4a4f-a69d-85ad83214ad4",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      78.2,
+      46.8
+     ],
+     "reported_position_mm": [
+      78.2,
+      46.8
+     ]
+    },
+    {
+     "description": "Track [/GND] on F.Cu, length 0.8000 mm",
+     "uuid": "a79f5047-e0bb-43f7-86e8-224c473c8c41",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      76.0,
+      46.3
+     ],
+     "reported_position_mm": [
+      76.0,
+      46.3
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN3",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN3 F.Cu 954c8e27"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "fb413981-cd9c-4b23-aa97-f5a0980c50d3",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN5",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN5 In2.Cu fb413981"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 1,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "2d2a222b-b718-4ac5-ab5f-45d48616732b",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN6",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN6 B.Cu 2d2a222b"
+      },
+      {
+       "id": "59a6fc2a-6803-4364-90df-44e9fcb46364",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN6",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN6 B.Cu 59a6fc2a"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.2561,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 1
+  },
+  {
+   "index": 28,
+   "net": "/GND",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Track [/GND] on F.Cu, length 1.9799 mm",
+     "uuid": "8dbeaf47-ff09-4d4b-97ff-7e64a928bbda",
+     "kind": "track",
+     "net": "/GND",
+     "footprint": null,
+     "pad": null,
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      81.3,
+      28.0
+     ],
+     "reported_position_mm": [
+      81.3,
+      28.0
+     ]
+    },
+    {
+     "description": "Pad 2 [/GND] of U18 on F.Cu",
+     "uuid": "6168aff5-319d-58c5-93ed-8e4a06728d04",
+     "kind": "pad",
+     "net": "/GND",
+     "footprint": "U18",
+     "pad": "2",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      81.16,
+      25.97
+     ],
+     "reported_position_mm": [
+      81.16,
+      25.97
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-6-RF-reference",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-6-RF-reference",
+       "net": null,
+       "restrictions": [
+        "tracks",
+        "vias"
+       ],
+       "label": "keepout 'D-PCB-6-RF-reference'"
+      },
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 2,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "9ad038ba-33cc-40e3-a56f-325b2647387f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/+3V3",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /+3V3 In2.Cu 9ad038ba"
+      },
+      {
+       "id": "rule_area:D-PCB-6-RF-reference",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-6-RF-reference",
+       "net": null,
+       "restrictions": [
+        "tracks",
+        "vias"
+       ],
+       "label": "keepout 'D-PCB-6-RF-reference'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 2,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 0,
+     "soft_count": 0,
+     "hard": [],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 0,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 0,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 2.0348,
+   "best_layer": "F.Cu",
+   "best_layer_hard_count": 0
+  },
+  {
+   "index": 29,
+   "net": "/SENSOR_POWER_AUX_DVDT",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Pad 8 [/SENSOR_POWER_AUX_DVDT] of U30 on F.Cu",
+     "uuid": "6173de31-b1f9-5388-bee5-c6c5d1096c39",
+     "kind": "pad",
+     "net": "/SENSOR_POWER_AUX_DVDT",
+     "footprint": "U30",
+     "pad": "8",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      57.735,
+      46.55
+     ],
+     "reported_position_mm": [
+      57.735,
+      46.55
+     ]
+    },
+    {
+     "description": "Pad 1 [/SENSOR_POWER_AUX_DVDT] of C126 on F.Cu",
+     "uuid": "91c8e914-1cc2-55b9-aa11-d6c1187e3e79",
+     "kind": "pad",
+     "net": "/SENSOR_POWER_AUX_DVDT",
+     "footprint": "C126",
+     "pad": "1",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      56.98,
+      43.445
+     ],
+     "reported_position_mm": [
+      56.98,
+      43.445
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu 05605e70"
+      },
+      {
+       "id": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu 2ab16e53"
+      },
+      {
+       "id": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu d478b9a7"
+      },
+      {
+       "id": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN1 F.Cu 5c214022"
+      },
+      {
+       "id": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN1 F.Cu eb6bbff4"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 9,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 9,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "26465439-302b-4df1-b027-79d449f83c6e",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_5V_SENSOR",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_5V_SENSOR In2.Cu 26465439"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "cf897860-4128-43c4-a37d-9b5d9896d4ce",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_TIRE_RTN",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_TIRE_RTN B.Cu cf897860"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.1955,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 1
+  }
+ ]
+}

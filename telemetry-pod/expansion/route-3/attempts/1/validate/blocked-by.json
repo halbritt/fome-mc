@@ -1,0 +1,667 @@
+{
+ "schema": "kicad-route/blocked/2",
+ "version": 2,
+ "source": "run",
+ "heuristic": true,
+ "method": "straight and L-shaped corridors (net-class track width + 2 x clearance) between the two endpoints of each unconnected item, per copper layer; heuristic pointer, not a proof",
+ "boards": {
+  "input_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+  "candidate_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4",
+  "graded_sha256": "f62c581934d0fb6235b520a3e4242f3f92e410c29073624bc4b0f7b07cedc2f4"
+ },
+ "nets_considered": [
+  "/SENSOR_POWER_AUX_DVDT"
+ ],
+ "copper_layers": [
+  "F.Cu",
+  "In1.Cu",
+  "In2.Cu",
+  "B.Cu"
+ ],
+ "connections_analyzed": 1,
+ "unobstructed_connections": 0,
+ "category_notes": {
+  "keepout": "rule area: part of the design's constraints; route around it, never edit it",
+  "input_copper": "copper from the attempt's input: moving it needs the owner's permission (--protect locked frees only unlocked input copper)",
+  "new_copper": "the backend's own output in this attempt: cheap to rip (re-route in another order or scope)",
+  "footprint": "pads of other nets: placement is fixed for routing; go around or change layer",
+  "board_edge": "the corridor leaves the board outline"
+ },
+ "ranking": {
+  "keepout": [
+   {
+    "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+    "kind": "rule_area",
+    "name": "D-PCB-7v2-In1-no-tracks",
+    "net": null,
+    "restrictions": [
+     "tracks"
+    ],
+    "rule_area_layers": [
+     "In1.Cu"
+    ],
+    "bbox_mm": [
+     0.0,
+     0.0,
+     90.0,
+     65.0
+    ],
+    "category": "keepout",
+    "blocks": 1,
+    "blocks_any_layer": 1,
+    "layers": [
+     "In1.Cu"
+    ],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu"
+   }
+  ],
+  "input_copper": [
+   {
+    "id": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+    "kind": "track",
+    "net": "/ADC_AIN1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.8,
+     44.3
+    ],
+    "end_mm": [
+     57.5,
+     44.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /ADC_AIN1 F.Cu (input, unlocked) 5c214022"
+   },
+   {
+    "id": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+    "kind": "track",
+    "net": "/ADC_AIN1",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+    "width_mm": 0.2,
+    "start_mm": [
+     54.6,
+     46.5
+    ],
+    "end_mm": [
+     56.8,
+     44.3
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /ADC_AIN1 F.Cu (input, unlocked) eb6bbff4"
+   },
+   {
+    "id": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.2,
+     45.5
+    ],
+    "end_mm": [
+     57.6,
+     45.5
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) 05605e70"
+   },
+   {
+    "id": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.9,
+     45.8
+    ],
+    "end_mm": [
+     57.2,
+     45.5
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) 2ab16e53"
+   },
+   {
+    "id": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+    "kind": "track",
+    "net": "/GND",
+    "layer": "F.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+    "width_mm": 0.2,
+    "start_mm": [
+     56.4,
+     45.8
+    ],
+    "end_mm": [
+     56.9,
+     45.8
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /GND F.Cu (input, unlocked) d478b9a7"
+   },
+   {
+    "id": "26465439-302b-4df1-b027-79d449f83c6e",
+    "kind": "track",
+    "net": "/POD_5V_SENSOR",
+    "layer": "In2.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "26465439-302b-4df1-b027-79d449f83c6e",
+    "width_mm": 0.2,
+    "start_mm": [
+     55.9,
+     43.9
+    ],
+    "end_mm": [
+     58.3,
+     43.9
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /POD_5V_SENSOR In2.Cu (input, unlocked) 26465439"
+   },
+   {
+    "id": "cf897860-4128-43c4-a37d-9b5d9896d4ce",
+    "kind": "track",
+    "net": "/SENSOR_POWER_TIRE_RTN",
+    "layer": "B.Cu",
+    "locked": false,
+    "origin": "input",
+    "uuid": "cf897860-4128-43c4-a37d-9b5d9896d4ce",
+    "width_mm": 0.2,
+    "start_mm": [
+     57.3,
+     41.4
+    ],
+    "end_mm": [
+     57.3,
+     53.6
+    ],
+    "category": "input_copper",
+    "blocks": 0,
+    "blocks_any_layer": 1,
+    "layers": [],
+    "nets_blocked": [
+     "/SENSOR_POWER_AUX_DVDT"
+    ],
+    "label": "track /SENSOR_POWER_TIRE_RTN B.Cu (input, unlocked) cf897860"
+   }
+  ],
+  "new_copper": [],
+  "footprint": [],
+  "board_edge": [],
+  "input_copper_by_net": [
+   {
+    "net": "/GND",
+    "items": 3,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/ADC_AIN1",
+    "items": 2,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/POD_5V_SENSOR",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   },
+   {
+    "net": "/SENSOR_POWER_TIRE_RTN",
+    "items": 1,
+    "locked": 0,
+    "blocks": 0
+   }
+  ],
+  "new_copper_by_net": [],
+  "truncated": {}
+ },
+ "top": [
+  {
+   "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+   "category": "keepout",
+   "kind": "rule_area",
+   "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+   "net": null,
+   "blocks": 1,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /ADC_AIN1 F.Cu (input, unlocked) 5c214022",
+   "net": "/ADC_AIN1",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /ADC_AIN1 F.Cu (input, unlocked) eb6bbff4",
+   "net": "/ADC_AIN1",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /GND F.Cu (input, unlocked) 05605e70",
+   "net": "/GND",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /GND F.Cu (input, unlocked) 2ab16e53",
+   "net": "/GND",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /GND F.Cu (input, unlocked) d478b9a7",
+   "net": "/GND",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "26465439-302b-4df1-b027-79d449f83c6e",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /POD_5V_SENSOR In2.Cu (input, unlocked) 26465439",
+   "net": "/POD_5V_SENSOR",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  {
+   "id": "cf897860-4128-43c4-a37d-9b5d9896d4ce",
+   "category": "input_copper",
+   "kind": "track",
+   "label": "track /SENSOR_POWER_TIRE_RTN B.Cu (input, unlocked) cf897860",
+   "net": "/SENSOR_POWER_TIRE_RTN",
+   "locked": false,
+   "origin": "input",
+   "blocks": 0,
+   "blocks_any_layer": 1,
+   "nets_blocked": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  }
+ ],
+ "nets": {
+  "/SENSOR_POWER_AUX_DVDT": {
+   "connections": 1,
+   "best_layer": "In1.Cu",
+   "hard_blockers_on_best_layer": 1,
+   "blockers": [
+    "keepout 'D-PCB-7v2-In1-no-tracks'"
+   ]
+  }
+ },
+ "footprints": {
+  "C126": {
+   "reference": "C126",
+   "value": "10nF 50V C0G 10%",
+   "position_mm": [
+    56.98,
+    42.67
+   ],
+   "orientation_deg": 90.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    0
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  },
+  "U30": {
+   "reference": "U30",
+   "value": "TPS26625DRCR",
+   "position_mm": [
+    59.21,
+    46.55
+   ],
+   "orientation_deg": 180.0,
+   "layer": "F.Cu",
+   "side": "front",
+   "locked": false,
+   "blocks": [],
+   "blocks_any_layer": [],
+   "terminates": [
+    0
+   ],
+   "pads_blocking": [],
+   "nets_blocked": [],
+   "nets_terminated": [
+    "/SENSOR_POWER_AUX_DVDT"
+   ]
+  }
+ },
+ "connections": [
+  {
+   "index": 0,
+   "net": "/SENSOR_POWER_AUX_DVDT",
+   "netclass": "Default",
+   "corridor_width_mm": 0.6,
+   "endpoints": [
+    {
+     "description": "Pad 8 [/SENSOR_POWER_AUX_DVDT] of U30 on F.Cu",
+     "uuid": "6173de31-b1f9-5388-bee5-c6c5d1096c39",
+     "kind": "pad",
+     "net": "/SENSOR_POWER_AUX_DVDT",
+     "footprint": "U30",
+     "pad": "8",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      57.735,
+      46.55
+     ],
+     "reported_position_mm": [
+      57.735,
+      46.55
+     ]
+    },
+    {
+     "description": "Pad 1 [/SENSOR_POWER_AUX_DVDT] of C126 on F.Cu",
+     "uuid": "91c8e914-1cc2-55b9-aa11-d6c1187e3e79",
+     "kind": "pad",
+     "net": "/SENSOR_POWER_AUX_DVDT",
+     "footprint": "C126",
+     "pad": "1",
+     "layers": [
+      "F.Cu"
+     ],
+     "position_mm": [
+      56.98,
+      43.445
+     ],
+     "reported_position_mm": [
+      56.98,
+      43.445
+     ]
+    }
+   ],
+   "layers": {
+    "F.Cu": {
+     "corridor": "L_horizontal_first",
+     "hard_count": 5,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "05605e70-77e4-48b6-a715-0aa22c69d6be",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu 05605e70"
+      },
+      {
+       "id": "2ab16e53-6302-4d7d-a56f-3404a9100785",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu 2ab16e53"
+      },
+      {
+       "id": "d478b9a7-eb47-442f-8121-4fb0c154189f",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/GND",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /GND F.Cu d478b9a7"
+      },
+      {
+       "id": "5c214022-cdc8-457d-a074-ec10d4f3e55d",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN1 F.Cu 5c214022"
+      },
+      {
+       "id": "eb6bbff4-ba3c-4169-9ac1-387d177f56e6",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/ADC_AIN1",
+       "layer": "F.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /ADC_AIN1 F.Cu eb6bbff4"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 9,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 5,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 9,
+       "soft": 0
+      }
+     }
+    },
+    "In1.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+       "kind": "rule_area",
+       "category": "keepout",
+       "name": "D-PCB-7v2-In1-no-tracks",
+       "net": null,
+       "restrictions": [
+        "tracks"
+       ],
+       "label": "keepout 'D-PCB-7v2-In1-no-tracks'"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "In2.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "26465439-302b-4df1-b027-79d449f83c6e",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/POD_5V_SENSOR",
+       "layer": "In2.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /POD_5V_SENSOR In2.Cu 26465439"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    },
+    "B.Cu": {
+     "corridor": "straight",
+     "hard_count": 1,
+     "soft_count": 0,
+     "hard": [
+      {
+       "id": "cf897860-4128-43c4-a37d-9b5d9896d4ce",
+       "kind": "track",
+       "category": "input_copper",
+       "net": "/SENSOR_POWER_TIRE_RTN",
+       "layer": "B.Cu",
+       "locked": false,
+       "origin": "input",
+       "label": "track /SENSOR_POWER_TIRE_RTN B.Cu cf897860"
+      }
+     ],
+     "soft": [],
+     "corridors": {
+      "straight": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_horizontal_first": {
+       "hard": 1,
+       "soft": 0
+      },
+      "L_vertical_first": {
+       "hard": 2,
+       "soft": 0
+      }
+     }
+    }
+   },
+   "length_mm": 3.1955,
+   "best_layer": "In1.Cu",
+   "best_layer_hard_count": 1
+  }
+ ]
+}
