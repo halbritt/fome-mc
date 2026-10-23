@@ -1,0 +1,112 @@
+{
+  "schema": "agentee494.sealed-interface/1",
+  "selection_status": "OUT_OF_SCOPE;HISTORICAL_BULKHEAD_PIGTAIL_CAPTURE_ONLY",
+  "internal_board_connector": "Amphenol RF 132134; published pattern",
+  "historical_capture": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "selection_status": "Proposed interface concept; 095-902-570-006 source claims UNRESOLVED/unsourced in this package; no full ingress qualification",
+      "internal_board_connector": "Amphenol132134, standard SMA female50ohm; unsealed, inside enclosure",
+      "pigtail": "095-902-570-006 is a candidate only. Reported right-angle standard SMA plug / IP67 bulkhead female / RG316 / 6-inch description is UNRESOLVED/unsourced without a retained source capture; writer must not use orientation or dimensions as sourced.",
+      "primary_product": "https://www.amphenolrf.com/en-us/part/095-902-570-006/9372/",
+      "primary_drawing": "https://www.amphenolrf.com/en-us/assets/file/4068761521/",
+      "drawing_identification": "UNRESOLVED/unsourced: browser-extracted description reported 95-902-570-XXX rev A,17-Jan-2022,sheet2of2. No drawing bytes and sha256 retained.",
+      "primary_family_datasheet": "https://www.amphenolrf.com/library/download/link/link_id/599161/parent/095-902-569M025/",
+      "important_conflict": "UNRESOLVED/unsourced: browser extraction reported a 569/570 straight-versus-RA conflict. No retained capture resolves orientation; do not adopt RA as established.",
+      "interface": "Concept: a compatible standard SMA plug connects to internal132134, with a sealed SMA bulkhead female as the only SMA wall penetration. Exact candidate interface, O-ring/nut/washer stack and orientation require retained source evidence before adoption.",
+      "hole_recipe": "UNRESOLVED/unsourced and not consumable as a panel-cut recipe: browser extraction reported nominal \u00d86.60 and6.10flat dimension, and5.85connectorD-flat. No retained figure or tolerance capture supports these values.",
+      "panel_and_ingress_remaining": [
+        "No qualified panel thickness range or nut engagement captured for this exact assembly. Do not borrow132397or90110813values.",
+        "No sourced panel finish/flatness/O-ring compression or torque captured. Select local thickness within measured/confirmed hardware engagement and follow exactmakerassemblyprocess.",
+        "UNRESOLVED/unsourced here: reported IP67 component rating, not evidence of completed enclosure IP67. Whole assembly test remains requirement; no alternate ingress acceptance invented."
+      ],
+      "cable_budget": {
+        "status": "UNRESOLVED/unsourced; no qualified candidate cable length or combined allocation",
+        "internal_nominal_mm": null,
+        "drawing_tolerance_mm": null,
+        "internal_max_mm": null,
+        "external_combined_allocation_mm": null,
+        "owner_external_antenna_limit_mm": 500,
+        "owner_limit_source": "Frozen REQUIREMENTS.md line70, sha256 dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+        "combined_path_option": "UNRESOLVED/unsourced: reported158.75=152.4+6.35 and341.25=500-158.75 are arithmetic on uncaptured inputs. Do not use158.75 or341.25 as sourced cable bounds or writer constraints.",
+        "existing_457mm_external": "UNRESOLVED/unsourced: no exact457mmexternal assembly is bound here, and the claim that457mmfails a combined allocation is withdrawn as an established limit. Both actual lengths and intended path accounting require binding."
+      },
+      "penetrations": [
+        "Existing AMPSEAL",
+        "ONE SMA bulkhead of095-902-570-006"
+      ],
+      "not_selected": "132170-12-EE IP68adapter investigated but not needed; no BOMchange to132134selection or boardstackup.",
+      "uncaptured_claims": {
+        "internal_nominal_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 152.4,
+          "writer_may_consume_as_sourced": false
+        },
+        "drawing_tolerance_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 6.35,
+          "writer_may_consume_as_sourced": false
+        },
+        "internal_max_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 158.75,
+          "writer_may_consume_as_sourced": false
+        },
+        "external_combined_allocation_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 341.25,
+          "writer_may_consume_as_sourced": false
+        },
+        "mounting_hole_diameter_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 6.6,
+          "writer_may_consume_as_sourced": false
+        },
+        "mounting_hole_flat_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 6.1,
+          "writer_may_consume_as_sourced": false
+        },
+        "connector_D_flat_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 5.85,
+          "writer_may_consume_as_sourced": false
+        },
+        "mate_wrench_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 8,
+          "writer_may_consume_as_sourced": false
+        },
+        "bulkhead_wrench_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 11,
+          "writer_may_consume_as_sourced": false
+        },
+        "plug_orientation": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": "right-angle (RA)",
+          "writer_may_consume_as_sourced": false
+        },
+        "existing_external_example_mm": {
+          "status": "UNRESOLVED",
+          "provenance_class": "unsourced",
+          "reported_unverified_value": 457,
+          "writer_may_consume_as_sourced": false
+        }
+      }
+    }
+  },
+  "active_BOM_recommendation": false,
+  "adoption_release_gate": false,
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "agentee494b.ranked-interface/1",
+  "status": "CANCELLED;SMT_SEARCH_AND_RANKING_HISTORICAL_ONLY",
+  "common_wall_interface": "OUT_OF_SCOPE; enclosure/bulkhead/pigtail not part of board-side adoption or release gates",
+  "common_admission_boundary": "OUT_OF_SCOPE; enclosure/bulkhead/pigtail not part of board-side adoption or release gates",
+  "adoption_owner": "Owner selected 132134; agent-530 lands PARTIAL writer input after ONE same-Fable HIGH 10-minute delta",
+  "historical_ranking": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "ranking": [
+      {
+        "rank": 1,
+        "part": "W\u00fcrth60312102114405",
+        "kind": "ONE evaluated all-SMT RF alternative",
+        "reason": "Published land pattern and native3-pad/no-drill geometry avoid132134pin-to-hole fit, annulus-registration andBpinprojection uncertainty. Preserves standardSMA,50ohm and activeantennaDCpath.",
+        "temperature_C": [
+          -65,
+          165
+        ],
+        "temperature_source": "sources/60312102114405-rev002.pdf p2",
+        "electrical_source": "Same p2: DC..18GHz, centrecontactinitial\u22643m\u03a9,aftertest\u22644m\u03a9; no seriescapacitor is introduced.",
+        "mechanical_source": "Same p1:6.35square nominal,8.84height nominal, DINISO2768-1m; sources/ISO2768-1-1989.pdf Table1 gives\u00b1.2 for6..30. Thus6.55square,9.04height dimensionalupperbounds before assemblylift.",
+        "scope_limit": "Manufacturer drawing recommends a land pattern; it does not qualify solder-process robustness or actual product automotive vibration.",
+        "application_conditions": "Captured datasheet conditions restrict high-safety/transport-control uses and call for application evaluation. This monitoring pod has no control outputs per REQUIREMENTS, but no manufacturer automotive approval is claimed; chief must disposition applicability before production release without unauthorized vendor contact.",
+        "tradeoff": "SMT retention/counterhold and RF launch require review. Removes through-hole fit uncertainty but does not prove the complete assembled interface."
+      },
+      {
+        "rank": 2,
+        "part": "Amphenol132134",
+        "kind": "Retain selected direction if preferred by chief",
+        "reason": "Known165C standardSMA and retained drawing, but proposed2.0/2.4holes remain conditional on pin-axis datum and solder process. Not fabrication permission.",
+        "remaining_material_joint_boundary": "Mounting-pattern\u00b1.10 is not a physical pin true-position guarantee; larger-hole wetting/retention andsolderedprojection need a process contract."
+      }
+    ]
+  },
+  "ranking": [],
+  "selected_board_connector": "Amphenol RF 132134 with published pattern; see ../agentee-494-j2/pad-map.json",
+  "historical_common_wall_interface": "Amphenol095-902-570-006 standardSMA RAplug to IP67 straightbulkheadfemale,RG31650ohm, capturedexactdrawing. Boardjack remains inside. OnlyAMPSEAL+SMA penetrate.",
+  "historical_common_admission_boundary": "The complete assembled board-jack-to-bulkhead installation lacks a qualified seating/engagement, seal-stack and assembly-envelope contract. Finite selected assembly limits below are review/packing proposals, not published maxima or proof of placement admissibility. Source drawing10.50REF is not usable as a guaranteed bulkhead engagement or mateheight.",
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
+}

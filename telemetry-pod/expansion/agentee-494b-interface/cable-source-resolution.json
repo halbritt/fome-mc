@@ -1,0 +1,52 @@
+{
+  "schema": "agentee494b.cable-resolution/1",
+  "status": "OUT_OF_SCOPE;HISTORICAL_SOURCE_CAPTURE_ONLY",
+  "historical_capture": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "supersedes": "494packetuncapturedclaimsONLYfortheexactvaluesnowvisiblyretainedin95-902-570-XXXrevAdrawing;doesnotretroactivelymakeoldwebextractionacapture.",
+      "captured_published": {
+        "MPN_candidate": "095-902-570-006 linkedtodrawing95-902-570-XXX",
+        "orientation": "RAstandardSMAplug;straightIP67bulkheadfemale;MIL-STD-348",
+        "impedance_ohm": 50,
+        "frequency_GHz": "DC..6",
+        "continuity": "Markeddesignrequirement",
+        "L_nominal_mm": 152.4,
+        "L_tolerance_mm": 6.35,
+        "L_range_mm": [
+          146.05,
+          158.75
+        ],
+        "panel_Dhole_nominal_mm": {
+          "diameter": 6.6,
+          "flat_to_opposite": 6.1
+        },
+        "wrench_jaws_mm": [
+          8,
+          11
+        ]
+      },
+      "still_unresolved": [
+        "CompleteplugmaximumandmatedSMAseatingplane transform",
+        "Bulkhead10.50REFnotmaxpanelthickness,sealcompressionornutengagement",
+        "Panelmaterial/flatness/torque/sealstack,exactassemblytemperatureandminbendradius"
+      ],
+      "owner_rule": {
+        "source": "REQUIREMENTS.md:70,frozenhashdd6555f7...",
+        "external_antenna_cable_max_mm": 500,
+        "interpretation": "External457mmcabledoesNOTviolateownerexternal500mmrulemerelybecauseinternalpigtailwasadded. Bindactualexternalcablemaximumincludingitstolerance."
+      },
+      "engineering_proposal": {
+        "class": "default",
+        "proposed_combined_cable_budget_mm": 500,
+        "derived_external_allocation_mm": 341.25,
+        "derivation": "500-158.75;158.75isupperdrawingLdatumlength,notprovenroutedfreecable.",
+        "status": "ENGINEERING_PROPOSAL,notownerrequirement orhardpackingconstraint. Itmayberejectedorrevisedwithoutwaivingownerexternal500rule.",
+        "457_example": "457>341.25onlyundertheoptionalcombinedproposal;notanowner-ruleviolation."
+      }
+    }
+  },
+  "active_BOM_recommendation": false,
+  "adoption_release_gate": false,
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "agentee494b.pad-map/1",
+  "status": "CANCELLED;HISTORICAL_SMT_EVIDENCE_ONLY",
+  "historical_capture": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "reference": "J2",
+      "preserve_uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+      "footprint": "Agentee494b:SMA_Wurth_60312102114405_Vertical",
+      "native_pad_objects": [
+        {
+          "number": "1",
+          "local_xy": [
+            0,
+            0
+          ],
+          "shape": "circle1.73diameter",
+          "net": "/POD_GNSS_RF"
+        },
+        {
+          "number": "2",
+          "local_xy": [
+            0,
+            -2.8
+          ],
+          "shape": "native custom groundbar",
+          "net": "/GND"
+        },
+        {
+          "number": "2",
+          "local_xy": [
+            0,
+            2.8
+          ],
+          "shape": "native custom groundbar",
+          "net": "/GND"
+        }
+      ],
+      "manufacturer_pattern_comparison": "Native pattern is rotated90degrees relative to manufacturerpage1view: circle1.73; outerwidth7.121 includingpolygonstroke vs7.11\u00b1.05;halfheight3.5555 vs3.56\u00b1.05;nominalinneropening2.41 andcircle4.09 notch. Preserve actual custompads andfourpastewindows, do not replace by anchor1x1rectangles.",
+      "drills": "NONE;0mm in all3nativepads",
+      "candidate": {
+        "proposed_outline_frame": [
+          103,
+          40,
+          0
+        ],
+        "saved_frame_candidate_only": [
+          83,
+          28,
+          0
+        ],
+        "mapping_scope": "Only oldRFpadpoint86.96,28\u2194106.96,40 and proposedRFpadpoint83,28\u2194103,40. No transformation of any other geometry.",
+        "no_saved_pose_or_edge_clearance_proof": true
+      },
+      "bias_preservation": "L3 pad1 /ANT_BIAS, pad2 /POD_GNSS_RF; J2 pad1 remains directly onRFnet. C42 pad1ANT_BIAS/pad2GND; D3 pad1RF/pad2GND. Do not insertDCblockingcomponent or groundedcentrecontact. Capturedcable drawing markscontinuity,DC..6GHz.",
+      "BOM_route": {
+        "MPN": "60312102114405",
+        "not_assembled": true,
+        "named_purchase_source": "Mouser710-60312102114405",
+        "url": "https://www.mouser.com/ProductDetail/Wurth-Elektronik/60312102114405",
+        "instructions": "Record exactdeviation. ExcludeJ2fromJLCassemblyBOM/CPL,retain schematic/PCB electricalmembership; qualifiedmanualreflow usingpublishedprofile. No LCSC/stock/availability claim and noorder."
+      },
+      "consequences": [
+        "J2MPN/librarymodel/localpadgeometry/physicalpadcount changes;electricalpin1RF/pin2GND membership preserved.",
+        "OrdinaryRF.293/.2032 unchanged pending492; centrepadlaunch/taper andlocalgroundtransition requireactualsavedgeometry review.",
+        "RemoveoldPTHproposalantipads; anyIn1reference/keepoutchanges mustbeproven,not copied.",
+        "Regenerateandbindactualgeometry andbothboardRFareas460352a8-dace-51a2-842b-c1e4ef7ad212,93d1ddf1-382d-5ed8-abfa-2bf617ad0cae afteradoption; no blanketoffset."
+      ],
+      "model_binding": "Stock footprint model path is visualization only; no 3D model/mating transform qualification is claimed. Published dimensional bounds and explicitly selected advisory bins are separately recorded."
+    }
+  },
+  "active_BOM_recommendation": false,
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
+}

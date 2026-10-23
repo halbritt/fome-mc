@@ -1,0 +1,65 @@
+{
+  "schema": "agentee494b.sources/1",
+  "start_head": "de2cc15b5f9c8b65d3a393ca23fb8c503db7ac42",
+  "ancestor_reviewed_head": "58eac58faa424457252aefd8cf69225a13aaa039",
+  "frozen_requirements": {
+    "path": "telemetry-pod/REQUIREMENTS.md",
+    "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+  },
+  "request": "afd61829-c95a-4b27-a03a-06a42cdd9dde@1",
+  "request_body_sha256": "e60522310d3e9b3cac401db90e85ce822afd56302aab4dc92ac95927a8579a4a",
+  "replacement_work_window": [
+    "2026-10-23T15:01:34Z",
+    "2026-10-23T15:31:34Z"
+  ],
+  "authority": "Historical 494b scope superseded by owner selection of Amphenol 132134; SMT cancelled and enclosure removed from board scope; agent-530 current integrator.",
+  "captures": [
+    {
+      "file": "sources/60312102114405-rev002.pdf",
+      "issuer": "W\u00fcrth Elektronik",
+      "class": "manufacturer-datasheet",
+      "edition": "002.000,2019-08-07,7pages",
+      "primary_url": "https://www.we-online.com/components/products/datasheet/60312102114405.pdf",
+      "capture_url": "https://www.ic-components.com/files/b5/60312102114405.pdf",
+      "sha256": "b33c2251c45a9966981fab42e26cbff2a804af164184afeb6fb1ece570802e5f",
+      "validation": "PDF header,7pagepdfinfo, exactMPN/revision, visually inspectedpage1, textpage2; mirror of manufacturer-authored document, not broker specifications",
+      "current_use": "HISTORICAL_SOURCE_CAPTURE_ONLY; no active SMT, bulkhead/pigtail or enclosure recommendation"
+    },
+    {
+      "file": "sources/95-902-570-XXX-revA.pdf",
+      "issuer": "AmphenolRF",
+      "class": "manufacturer-drawing",
+      "edition": "A,17-Jan-2022,customeroutline sheet2of2,onePDFpage",
+      "primary_url": "https://www.amphenolrf.com/en-us/assets/file/4068761521/",
+      "capture_url": "https://s3.us-west-2.amazonaws.com/catsy.582/95-902-570-XXX+Customer+Drawing.pdf",
+      "discovery": "Exact095-902-570-006 Mouser page links this manufacturer resource; literalplus URL returned PDF, percent-encodedplus URL403 is not a capture.",
+      "sha256": "e58abfb8db5b623073ceebae28b26b8703300853fc133ab8d94cba42fed52c76",
+      "validation": "PDF header, actualpage render inspected; RAplug,IP67bulkheadjack,6inlengthrow,tolerance,tools andDhole visiblypresent",
+      "current_use": "HISTORICAL_SOURCE_CAPTURE_ONLY; no active SMT, bulkhead/pigtail or enclosure recommendation"
+    },
+    {
+      "file": "sources/ISO2768-1-1989.pdf",
+      "issuer": "ISO",
+      "class": "standard",
+      "edition": "ISO2768-1:1989(E), Table1",
+      "capture_url": "https://www.eurotools.eu/sub/eurotools.eu/images/downloads/General_Tolerance_Standard_ISO-2768-1pdf.pdf?17247513=",
+      "sha256": "9d19c25b371f154e7f7f116784bb32cc917f634fe9d0404e9f4f6a77aab6f556",
+      "validation": "Retained standard text Table1 medium row; used only for general tolerance called by2019W\u00fcrthdrawing, not a claim about a later standard edition.",
+      "current_use": "HISTORICAL_SOURCE_CAPTURE_ONLY; no active SMT, bulkhead/pigtail or enclosure recommendation"
+    }
+  ],
+  "failed_capture_rule": "HTTP403/challenge/error body is never accepted as a drawing/page capture. No failed body is included as source evidence.",
+  "stock_footprint": {
+    "path": "/usr/share/kicad/footprints/Connector_Coaxial.pretty/SMA_Wurth_60312102114405_Vertical.kicad_mod",
+    "sha256": "bb57ad63617467448acc24c27dc7a0eae443c9a375a3da26dbad59746f51c01f",
+    "changes": "None; package-local copy only; canonical library/design unchanged.",
+    "status": "HISTORICAL_CANCELLED_SMT_ALTERNATIVE"
+  },
+  "current_correction": {
+    "author": "agent-535",
+    "source": "4fc935cf@1, eb6187fc@1, de8f30ed@1 and owner successor/addendum direction",
+    "scope": "PARTIAL board-side input only; agent-530 integrates after one same-Fable HIGH 10-minute delta",
+    "contract": "../agentee-494-j2/board-side-correction.json",
+    "historical_records": "HISTORICAL / SUPERSEDED; no active recommendation or board-side adoption/release gate; see OWNER-CORRECTION.md"
+  }
+}

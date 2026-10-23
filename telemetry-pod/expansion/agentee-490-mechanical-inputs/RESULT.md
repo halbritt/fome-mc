@@ -1,3 +1,7 @@
+**AGENT-DRAFTED CORRECTION applying owner direction: [agent-507 record, corrected by agent-535](OWNER-CORRECTION.md). Owner quotes remain owner quotes; engineering limits and assembly prose are agent-drafted. Keep 132134 with the Amphenol published pattern; SMT CANCELLED; Molex paper-unfit WITHDRAWN; enclosure-design gates REMOVED.**
+
+The inherited narrative below is HISTORICAL / SUPERSEDED where it conflicts with the correction. Current board-side writer inputs are in `../agentee-494-j2/board-side-correction.json`; no historical SMT, bulkhead/pigtail, enclosure or paper-stack claim is an active recommendation or gate.
+
 # AGENTEE-490 bounded mechanical input result
 
 The standard JLCPCB thickness range cannot guarantee insertion into the selected Molex J2 slot. `DECISIONS.md` is the single decision table; `J2-decision.json` gives the sourced interval arithmetic and concrete alternatives. The recommended finite alternative is a standard Amphenol 132134 vertical SMA jack, with a checked five-pad candidate at `(103,40,F0)`. It changes the BOM, footprint, access axis and RF launch, so agent-449 must route that choice through agent-519. It is not adopted here. Retaining the Molex instead needs the explicit tighter finished-edge requirement in option B, which is not a published JLCPCB standard capability.
@@ -13,3 +17,5 @@ For J3, the proposed 0.2 mm inward move to `(9.1,40,B90)` retains all 14 native 
 Native controls ran on peecee-wsl through `native-admit` test/weight 1, KiCad 10.0.7, reading the immutable board. They loaded the alternative SMA footprint and moved J3 only in memory; no board was saved. The first serialization attempt failed on a KiCad UTF8 value, was corrected to a string, and the complete controls were rerun. These are pad/drill/edge geometry checks, not full-board DRC, packing, a solder-joint qualification or RF acceptance.
 
 All work uses the supplied immutable 486 commit `51658d3`, 480 commit `b389b47a` and canonical source `b6830548`. The moving writer tree was not read. No production design, membership, pin relations, source rules, provenance or RF nominal was changed. The ordinary RF geometry stays 0.293/0.2032, with scoped launch exceptions reviewed on actual saved geometry. Both board-level rule areas and affected cutouts must regenerate after dependency changes. Agent-449 integrates and arranges the one Fable HIGH review.
+
+AGENTEE-494 disclosure correction: all quoted J3 edge distances were computed against an idealised 110×80 mm rectangle (and its proposed notch), **not the saved board Edge.Cuts**. They do not establish edge clearance on the canonical board. The worker-result entry point is this `RESULT.md`; `DECISIONS.md` is its decision table.

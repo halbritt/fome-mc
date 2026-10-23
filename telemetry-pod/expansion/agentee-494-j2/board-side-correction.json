@@ -1,0 +1,111 @@
+{
+  "schema": "agentee494.board-side-correction/1",
+  "status": "PARTIAL_WRITER_INPUT;PENDING_ONE_SAME_FABLE_HIGH_10_MIN_DELTA",
+  "author": "agent-535, successor to agent-507",
+  "source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23",
+  "part": "Amphenol RF 132134 vertical THT SMA",
+  "footprint": "Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod",
+  "pattern_source": "Amphenol RF 132134 Rev C sheet 3 PCB MOUNTING HOLES; https://www.amphenolrf.com/en-us/assets/file/4065789557/",
+  "pattern": {
+    "centre": {
+      "xy_mm": [
+        0,
+        0
+      ],
+      "drill_mm": 1.5,
+      "size_mm": [
+        2.05,
+        2.05
+      ]
+    },
+    "ground": {
+      "xy_mm": [
+        [
+          -2.54,
+          -2.54
+        ],
+        [
+          -2.54,
+          2.54
+        ],
+        [
+          2.54,
+          -2.54
+        ],
+        [
+          2.54,
+          2.54
+        ]
+      ],
+      "drill_mm": 1.7,
+      "size_mm": [
+        2.25,
+        2.25
+      ]
+    },
+    "type": "thru_hole",
+    "shape": "circle",
+    "layers": [
+      "*.Cu",
+      "*.Mask"
+    ],
+    "nominal_annulus_mm": 0.275,
+    "annulus_class": "agent-calculated from stock copper and published drills"
+  },
+  "J2_uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+  "pad_nets": {
+    "1": "/POD_GNSS_RF",
+    "2": "/GND"
+  },
+  "final_pose": "WRITER chooses and binds actual final saved-board pose; candidate lineage (103,40,F0) and saved-frame (83,28,F0) do not establish placement.",
+  "frame_limit": "(-20,-12) correspondence applies only to old saved RF point (86.96,28) / lineage (106.96,40), and candidate lineage (103,40) / saved (83,28); no other geometry.",
+  "advisory_bins": {
+    "class": "default",
+    "author": "agent-507",
+    "F_body_mm": [
+      9,
+      9,
+      10
+    ],
+    "B_depth_mm": 3.2,
+    "mate": "u[-10,30], v[-12,12], w[8,38], clock toward +u, advisory only",
+    "tool": "phase-only r175 w[5,43], advisory only"
+  },
+  "writer_duties": [
+    "Preserve J2 UUID and rebind adopted footprint, pad/net mapping and source to final pose.",
+    "Regenerate RF endpoint/launch/PTH antipads/ground transitions and dependent cutouts; review actual launch/antipad and connected In1 reference.",
+    "Rebind both RF board-area UUIDs 460352a8-dace-51a2-842b-c1e4ef7ad212 and 93d1ddf1-382d-5ed8-abfa-2bf617ad0cae to final saved geometry.",
+    "Check actual Edge.Cuts and body/mating/tool/cable clearance and native DRC/parity after canonical adoption.",
+    "Preserve ordinary 0.293/0.2032 pending AGENTEE-492; no net-wide waiver or stackup change.",
+    "Implement J2 not_assembled BOM/CPL omission with electrical membership preserved; DigiKey ACX1230-ND is a source pointer, not a stock claim.",
+    "Preserve actual 105C component suitability and L3 ANT_BIAS -> POD_GNSS_RF -> J2 active-antenna DC route; no new temperature exception."
+  ],
+  "dispositions": {
+    "H5": "CORRECTED: three agent-drafted titles, four banners, engineering paragraphs attributed to 507; owner quotes remain owner.",
+    "H6": "SUPERSEDED: 519 all-five over-read corrected by de8f30ed; published geometry restored, stock-pad-comparison.json proves identity.",
+    "F1": "CANCELLED: SMT ranking empty; prior ranking is historical.",
+    "F2": "WITHDRAWN: Molex paper-unfit JSON and row; exact owner fit ruling retained, no measured-fit claim.",
+    "F3": "OUT_OF_SCOPE: unselected bulkhead/pigtail/SMT/enclosure installation gates removed.",
+    "F4": "OUT_OF_SCOPE: unselected bulkhead/pigtail temperature not an open board blocker; actual board component suitability preserved."
+  },
+  "enclosure": "REMOVED from board design/adoption/release gates; enclosure follows PCB and is 3D-printed to fit. Historical captures do not select a part.",
+  "qualification": "No whole-board, placement, routing, fabrication, RF or IP67 acceptance.",
+  "native_evidence": "Geometry-identical to reviewed 8756e38 and stock; only name/Value and hidden Datasheet metadata differ from stock. Reuse native494 for unchanged geometry only; no new native suite for wording. SMT native494b historical only.",
+  "drawing_provenance": {
+    "class": "manufacturer-published",
+    "file": "132134-revC.pdf",
+    "repository_path": "telemetry-pod/expansion/agentee-494-j2/132134-revC.pdf",
+    "sha256": "1ec1d365bf5bf9e1598cf7cf2c90747ba11f06607f4c6a28ca6d30a0aab56034",
+    "source_url": "https://www.amphenolrf.com/en-us/assets/file/4065789557/",
+    "document": "Amphenol RF 132134 Rev C, sheet 3 of 3",
+    "sheet_title": "PCB MOUNTING HOLES",
+    "verbatim_callouts": {
+      "centre": "1,5 [.059]",
+      "ground": "4- 1,7 [.067]",
+      "square": "5,08 [.200]"
+    },
+    "drawing_symbols": "Diameter symbols accompany the centre and four-ground callouts in the retained drawing.",
+    "correction_history": "519 over-read all five holes as 1.7 mm in a2c805ec; corrected explicitly by de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1. Published dimensions belong to Amphenol, not the owner."
+  },
+  "writer_acquisition_followup": "Add 132134-revC to canonical-parts acquisition via its producer in writer 489. Existing agent_ee.datasheet_capture --import-historical creates a new acquisition; it does not append to the existing canonical manifest. Bind it to the actual adopted J2 selection and regenerate bindings_sha256 through the producer; never hand-edit canonical-parts/acquisition/manifest.json."
+}

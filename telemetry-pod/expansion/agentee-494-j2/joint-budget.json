@@ -1,0 +1,66 @@
+{
+  "schema": "agentee494.joint-budget/1",
+  "units": "mm",
+  "status": "HISTORICAL_CONDITIONAL_ARITHMETIC;NOT_A_FIT_OR_ADOPTION_GATE",
+  "sources": {
+    "drawing": "132134 rev C 2014-11-10, sha256 1ec1d365bf5bf9e1598cf7cf2c90747ba11f06607f4c6a28ca6d30a0aab56034",
+    "process": "https://jlcpcb.com/capabilities/pcb-capabilities/; retained490 snapshot 3ff35da1166304f885ac2e8e390d34874d5d8f552db94ff080ad719878d91cb4"
+  },
+  "finished_board": [
+    1.44,
+    1.76
+  ],
+  "finished_hole_offset": [
+    -0.08,
+    0.13
+  ],
+  "pcb_hole_position_per_axis_bound": 0.075,
+  "interpretation": "Conservatively treat published \u00b10.075 as per axis, radial bound sqrt(2)*.075. Not a received job guarantee.",
+  "pin_signal_max": 1.37,
+  "pin_ground_square_max": 1.17,
+  "pin_ground_square_derivation": "Conservative independent outer span 6.10\u00b10.20 and inner gap 4.06\u00b10.10: max pin side=(6.30-3.96)/2=1.17. Four pins treated square; catalog supports nominal 1.02 square; rev C lacks a separate square pin tolerance.",
+  "pin_ground_circumscribed_max": 1.6546298679765212,
+  "component_position_per_axis_assumed": 0.1,
+  "position_budget_status": "CONDITIONAL: drawing recommended pattern coordinates 2.54/5.08 use \u00b10.10 general tolerance. Applying that as physical pin-axis location about centre pin is an assembly interpretation, not separately published true-position control. Must verify actual pin axes/corners on received part or obtain manufacturer datum guarantee.",
+  "combined_radial_misregistration": 0.24748737341529164,
+  "stock": {
+    "signal_hole": 1.5,
+    "ground_hole": 1.7,
+    "signal_radial_margin_after_position": -0.22248737341529173,
+    "ground_radial_margin_after_position": -0.2648023074035523,
+    "verdict": "NO WORST-CASE INSERTION GUARANTEE"
+  },
+  "conditional_adjustment": {
+    "signal_hole": 2.0,
+    "ground_hole": 2.4,
+    "signal_pad_diameter": 2.8,
+    "ground_pad_diameter": 3.2,
+    "signal_radial_margin_after_position": 0.027512626584708266,
+    "ground_radial_margin_after_position": 0.08519769259644766,
+    "annulus_nominal": 0.4,
+    "annulus_max_hole_before_registration": 0.335,
+    "annulus_after_conservative_radial_registration": 0.22893398282201788,
+    "annulus_status": "Arithmetic only: requires actual pad etch/registration process confirmation; \u00b10.075 hole position is not a separate drill-to-copper guarantee. JLC recommendation multilayer1oz0.20, absolute0.15, not an RF launch rule.",
+    "solder_fit": "Larger holes increase solder volume; joint fill, wetting, pin retention, thermal relief and vibration remain unqualified. Do not classify arithmetic PASS as process qualification."
+  },
+  "projection": {
+    "seat_to_tip": [
+      3.54,
+      4.34
+    ],
+    "board": [
+      1.44,
+      1.76
+    ],
+    "bare_pin_below_B_with_zero_standoff": [
+      1.78,
+      2.9
+    ],
+    "equation": "PbelowB = Llead - tBoard - sF; positive sF lifts connector, reduces projection. AboveF =9.73+sF.",
+    "sF_class": "assembly variable, not specified maximum",
+    "soldered_extent_equation": "Bside = max(2.90-sF, fB); Fside=max(9.73+sF,fF). fB/fF are actual solder fillet extents relative to board surfaces.",
+    "missing": "No published maximum solder fillet or trim allowance. No fabricated numeric soldered maximum. Keep B-side body/tool recipe parametric and qualify actual assembly before final packing."
+  },
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23",
+  "current_pattern": "Use stock manufacturer pattern; no conditional enlargement or true-position/tolerance study is required."
+}

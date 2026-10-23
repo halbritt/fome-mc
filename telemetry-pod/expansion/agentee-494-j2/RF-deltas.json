@@ -1,0 +1,76 @@
+{
+  "schema": "agentee494.rf-deltas/1",
+  "ordinary_width_gap_mm": [
+    0.293,
+    0.2032
+  ],
+  "status": "Preserved pending492; no recalculation/acceptance claimed",
+  "endpoint_delta": "Proposed 110x80 lineage frame: old Molex RF pad1 (106.96,40) to candidate132134 pad1 (103,40). Corresponding saved 90x65 frame: old pad1 (86.96,28) to candidate (83,28), by saved=lineage+(-20,-12). Final pose and board frame remain writer-owned.",
+  "invalidate": [
+    "OldJ2endlaunch/taper/terminal geometry",
+    "SignalPTHbarrelanti-padsonIn1/In2andanycopper-layerpadgeometry",
+    "Ground-pinentrythermal/solidtiesandconnectedIn1reference",
+    "J2support/cable/toolcutouts",
+    "Board-level460352a8-dace-51a2-842b-c1e4ef7ad212and93d1ddf1-382d-5ed8-abfa-2bf617ad0cae aftergeometrydependencieschange"
+  ],
+  "writer_checks": [
+    "StableJ2UUIDandpin1RF/fourpad2GNDmapping",
+    "FinitePTHlaunchgeometryreviewwithactualpads/antipads; no netwideRFwaiver",
+    "Regenerateactualboard-levelareas/cutouts; footprintownedareasfollownewselectedbinding",
+    "NativeDRC/netparityandconnected-referenceprobeonfinalsavedboard",
+    "PackingagainstfinalsavedEdge.Cuts and actualmate/toolvolumes",
+    "After adoption regenerate actual geometry and bind board-area UUIDs460352a8-dace-51a2-842b-c1e4ef7ad212 and93d1ddf1-382d-5ed8-abfa-2bf617ad0cae to final saved board geometry; no blanket frame translation."
+  ],
+  "source_scope": "No canonicalboard/rules/BOM/intent edit in this packet.",
+  "coordinate_frame": {
+    "name": "proposed_110x80_lineage",
+    "proposed_outline_mm": [
+      110,
+      80
+    ],
+    "saved_board_frame": {
+      "name": "saved_f6c7ec25_90x65",
+      "outline_mm": [
+        90,
+        65
+      ],
+      "edge_cuts_bounds_mm": [
+        0,
+        0,
+        90,
+        65
+      ],
+      "J2_footprint_xy_rotation": [
+        85.24,
+        28,
+        180
+      ],
+      "old_Molex_RF_pad1_xy": [
+        86.96,
+        28
+      ]
+    },
+    "lineage_old_Molex_RF_pad1_xy": [
+      106.96,
+      40
+    ],
+    "translation_lineage_to_saved_mm": [
+      -20,
+      -12
+    ],
+    "equation": "For these two J2 RF-pad point correspondences only: lineage=saved+(20,12), or saved=lineage+(-20,-12).",
+    "candidate_lineage_xy": [
+      103,
+      40
+    ],
+    "candidate_saved_xy": [
+      83,
+      28
+    ],
+    "use_limit": "Do not apply this offset to any other saved geometry, footprints, supports, cutouts, outlines, rule areas or pads by inference. CandidateF(103,40,0) is proposed-outline-frame only; it proves neither a saved pose nor edge clearance. Writer must regenerate and bind actual adopted geometry and both RF board-area UUIDs to the final saved source.",
+    "mapping_applies_only_to": [
+      "The old J2 RF-pad endpoint correspondence: saved(86.96,28), proposed-lineage(106.96,40).",
+      "The explicitly proposed J2 RF-pad anchor: lineage(103,40), saved-frame candidate(83,28), without asserting it exists on the saved board."
+    ]
+  }
+}

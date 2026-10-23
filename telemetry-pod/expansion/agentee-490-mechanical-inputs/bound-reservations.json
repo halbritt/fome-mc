@@ -1,7 +1,7 @@
 {
   "schema": "agentee-490.bound-reservations/1",
   "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
-  "binding": "Ref+nativeUUID+part binding fromimmutable313source. Geometryrecipesfollowfinalface/pose andphase; canonicalwriter sources/capturesqualifiedbounds, callerpolicycannotselfqualifyhardprovenance.",
+  "binding": "Ref+nativeUUID+part binding fromimmutable313source. Geometryrecipesfollowfinalface/pose andphase; canonicalwriter sources/capturesqualifiedbounds, callerpolicycannotselfqualifyhardprovenance. No enclosure/panel/seal/cylinder reservation or adoption gate. J2 current contract: ../agentee-494-j2/board-side-correction.json.",
   "base_486_items": [
     {
       "id": "H1/ISO7089-washer@F.Cu",
@@ -1669,8 +1669,8 @@
       "id": "J2/132134-part-optionA",
       "reference": "J2",
       "uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
-      "activation": "ONLYif449/519adoptsoptionAandwriterrebindsnewpart/footprint",
-      "datum": "Pad1centre=(103,40),seatingplaneF",
+      "activation": "Owner-selected 132134; writer binds final adopted source/pose; default reserves advisory.",
+      "datum": "RF pad1 centre, final writer pose; lineage (103,40) is a candidate only; see ../agentee-494-j2/pad-map.json",
       "geometry": {
         "kind": "box",
         "xy_half_mm": [
@@ -1689,7 +1689,7 @@
     {
       "id": "J2/132134-assembly-expansion",
       "reference": "J2",
-      "activation": "OptionAonly",
+      "activation": "Owner-selected 132134; writer binds final adopted source/pose; default reserves advisory.",
       "phase": "installed+benchSMAattach",
       "geometry": {
         "above_F_extra_mm": 0.1,
@@ -1699,20 +1699,6 @@
       },
       "class": "default",
       "source": "Selected Huber74_Z-0-0-21max14.5handle/115lengthretained486; .1/.5arechosenassemblyreservesnotmanufacturerlimits. ActualtoolorientationonverticalSMAandjointtorqueremainrequired."
-    },
-    {
-      "id": "J1/external-mate",
-      "reference": "J1",
-      "uuid": "de37aacc-2cc8-5e42-919d-34ea70b8cae5",
-      "datum": "Actualheaderpanel/matingface,tobereboundbywriter",
-      "phase": "benchmate+installedexternalharness",
-      "geometry": {
-        "kind": "axial_cylinder",
-        "diameter_mm": 66,
-        "length_mm": 80
-      },
-      "class": "manufacturerclearanceopening+defaulttravel",
-      "note": "Neverworldpolywithoutdatumbinding; no claimthatall66x80volumeisinstalledpart."
     },
     {
       "id": "J3/card-and-flat-tool",
@@ -1741,24 +1727,10 @@
       },
       "class": "default",
       "note": "No notchadopted. Actualcard/socketZstillunknown; neverhardqualifiedbychosenbox."
-    },
-    {
-      "id": "J2/Molex-both-face-conditional",
-      "reference": "J2",
-      "uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
-      "activation": "RetainedMolexONLYafterboard/slotprocessqualified",
-      "datum": "UppercentrecontacttangentseatedonactualFplane; needactualnativebodyregistration",
-      "geometry": {
-        "above_F_part_max_mm": 4.5466,
-        "below_F_part_max_mm": 3.8608,
-        "below_B_part_max_for_board_min1p44_mm": 2.4208
-      },
-      "class": "manufacturerdimensions+publishedboardrange underexplicitseatingassumption",
-      "note": "2.1082mmislegthickness,notunconditionalassembledBprotrusion;addactualsolder/seatingallowanceandregistrationbeforeuse."
     }
   ],
   "hardware": {
-    "selection": "RetainM3x8top/ISO7089washers/HarwinR30-1611200female-female12mm. ChooseM3x6bottomasfiniteproposedalternativetoopposing8mmunderfloor; no purchase.",
+    "selection": "Retain sourced board-side M3 hardware/washer/standoff dimensions and tool access. Historical floor/screw-stack proposal is not an enclosure gate.",
     "sourced_standoff": {
       "part": "R30-1611200",
       "length_min_max_mm": [
@@ -1774,23 +1746,28 @@
       "source_path": "/home/halbritt/.cache/agentee-490-agent507/harwin-r30-161.pdf",
       "sha256": "35dd465b26949b006ff38bae89c74fdf30b218679dc49af1fb6d24f4ffc4fc01"
     },
-    "opposed_screw_condition": "eTop=max(0,Ltop\u2212tBoard\u2212wF\u2212wB);eBottom=max(0,Lbottom\u2212tFloor\u2212wFloor). Requiremax(eTop+eBottom)<minimumstandofflength and threadengagement/torque qualified.",
-    "nominal_example_mm": {
-      "top_L": 8,
-      "bottom_L": 6,
-      "board": 1.6,
-      "wF": 0.5,
-      "wB": 0.5,
-      "floor": 2,
-      "wFloor": 0.5,
-      "eTop": 5.4,
-      "eBottom": 3.5,
-      "sum": 8.9,
-      "standoff_min": 11.7,
-      "nominal_free_length_against_min": 2.8
-    },
-    "scope": "Screwlength/floortolerancesnotretained, soexampleisnotstackPASS. No nylonpull-out/vibrationtorquequalification.",
-    "finite_alternative": "M3x6bottomreducesopposingtipriskby2mmvs8bottom; ifthermal/strengthboundsabsent, use12mmmetalM3FFspacerwithinsulatingwashersandexplicitbonding/torquechoice, thenrebindthermal/electrical/mechanicalstack."
+    "historical_floor_stack": {
+      "status": "HISTORICAL / SUPERSEDED; no active recommendation or board-side adoption/release gate; see OWNER-CORRECTION.md",
+      "record": {
+        "opposed_screw_condition": "eTop=max(0,Ltop\u2212tBoard\u2212wF\u2212wB);eBottom=max(0,Lbottom\u2212tFloor\u2212wFloor). Requiremax(eTop+eBottom)<minimumstandofflength and threadengagement/torque qualified.",
+        "nominal_example_mm": {
+          "top_L": 8,
+          "bottom_L": 6,
+          "board": 1.6,
+          "wF": 0.5,
+          "wB": 0.5,
+          "floor": 2,
+          "wFloor": 0.5,
+          "eTop": 5.4,
+          "eBottom": 3.5,
+          "sum": 8.9,
+          "standoff_min": 11.7,
+          "nominal_free_length_against_min": 2.8
+        },
+        "scope": "Screwlength/floortolerancesnotretained, soexampleisnotstackPASS. No nylonpull-out/vibrationtorquequalification.",
+        "finite_alternative": "M3x6bottomreducesopposingtipriskby2mmvs8bottom; ifthermal/strengthboundsabsent, use12mmmetalM3FFspacerwithinsulatingwashersandexplicitbonding/torquechoice, thenrebindthermal/electrical/mechanicalstack."
+      }
+    }
   },
   "phases": [
     "solderJP/inspectbeforehardwareandharness",
@@ -1806,9 +1783,48 @@
     "J3_operating_limit_C": 85,
     "source": "RetainedHirosecatalogp2 includes current-inducedtemperaturerise; notautomotivewholeboardqualification.",
     "nylon_service_temperature": "UNKNOWNfromretaineddrawing; UL94V-2flammabilityisnotcontinuousservicetemperature.",
-    "substack_formula_max": "actualfloor +12.3standoff +.5Bwasher +1.76board +max(actualqualifiedcomponentheight,optionA9.73+actualseatinggap) +actualcase/lid/matingterms",
-    "full_stack": "CannotclosewhileJ1/J3assembledbounds,thermalriseandcase/harnesstermsunknown; ~90mmHEIGHTestimateisnotcap.",
-    "finite_alternatives": "UseexternallymatedJ1; chooseverticalJ2onlyaftercoordinator; keepB-sidecardservicebareboard; ifnylonthermalproofmissingchoosedocumentedmetalspacer+insulatinginterface,notanassumednylonlimit."
+    "board_scope": "Preserve actual component/hardware thermal suitability; enclosure designed after PCB; no enclosure/full-height gate."
   },
-  "mutations": "Anyoutline/part/face/pose/stack/widthchangeinvalidatesaffectedbody/accesspolys;regenerateboardlevel460352a8...and93d1ddf1...,owned6areasfollowactualnativeplacement;RFordinary.293/.2032unchanged."
+  "mutations": "Anyoutline/part/face/pose/stack/widthchangeinvalidatesaffectedbody/accesspolys;regenerateboardlevel460352a8...and93d1ddf1...,owned6areasfollowactualnativeplacement;RFordinary.293/.2032unchanged.",
+  "historical_removed_reservations": {
+    "status": "HISTORICAL / SUPERSEDED; no active recommendation or board-side adoption/release gate; see OWNER-CORRECTION.md",
+    "records": [
+      {
+        "id": "J1/external-mate",
+        "reference": "J1",
+        "uuid": "de37aacc-2cc8-5e42-919d-34ea70b8cae5",
+        "datum": "Actualheaderpanel/matingface,tobereboundbywriter",
+        "phase": "benchmate+installedexternalharness",
+        "geometry": {
+          "kind": "axial_cylinder",
+          "diameter_mm": 66,
+          "length_mm": 80
+        },
+        "class": "manufacturerclearanceopening+defaulttravel",
+        "note": "Neverworldpolywithoutdatumbinding; no claimthatall66x80volumeisinstalledpart."
+      },
+      {
+        "id": "J2/Molex-both-face-conditional",
+        "reference": "J2",
+        "uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+        "activation": "RetainedMolexONLYafterboard/slotprocessqualified",
+        "datum": "UppercentrecontacttangentseatedonactualFplane; needactualnativebodyregistration",
+        "geometry": {
+          "above_F_part_max_mm": 4.5466,
+          "below_F_part_max_mm": 3.8608,
+          "below_B_part_max_for_board_min1p44_mm": 2.4208
+        },
+        "class": "manufacturerdimensions+publishedboardrange underexplicitseatingassumption",
+        "note": "2.1082mmislegthickness,notunconditionalassembledBprotrusion;addactualsolder/seatingallowanceandregistrationbeforeuse."
+      }
+    ]
+  },
+  "historical_full_stack": {
+    "status": "HISTORICAL / SUPERSEDED; no active recommendation or board-side adoption/release gate; see OWNER-CORRECTION.md",
+    "record": {
+      "substack_formula_max": "actualfloor +12.3standoff +.5Bwasher +1.76board +max(actualqualifiedcomponentheight,optionA9.73+actualseatinggap) +actualcase/lid/matingterms",
+      "full_stack": "CannotclosewhileJ1/J3assembledbounds,thermalriseandcase/harnesstermsunknown; ~90mmHEIGHTestimateisnotcap.",
+      "finite_alternatives": "UseexternallymatedJ1; chooseverticalJ2onlyaftercoordinator; keepB-sidecardservicebareboard; ifnylonthermalproofmissingchoosedocumentedmetalspacer+insulatinginterface,notanassumednylonlimit."
+    }
+  }
 }

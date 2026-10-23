@@ -1,0 +1,124 @@
+{
+  "schema": "agentee494.reservations/1",
+  "units": "mm",
+  "binding": {
+    "uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
+    "pose_candidate": [
+      103,
+      40,
+      0
+    ],
+    "side": "F",
+    "frame": "local u,v in board plane; w positive out of F. Fsurface w=0; Bsurface w=-tBoard. Transform every recipe with final writer pose, do not reuse fixed world bounds after movement.",
+    "coordinate_frame": {
+      "name": "proposed_110x80_lineage",
+      "proposed_outline_mm": [
+        110,
+        80
+      ],
+      "saved_board_frame": {
+        "name": "saved_f6c7ec25_90x65",
+        "outline_mm": [
+          90,
+          65
+        ],
+        "edge_cuts_bounds_mm": [
+          0,
+          0,
+          90,
+          65
+        ],
+        "J2_footprint_xy_rotation": [
+          85.24,
+          28,
+          180
+        ],
+        "old_Molex_RF_pad1_xy": [
+          86.96,
+          28
+        ]
+      },
+      "lineage_old_Molex_RF_pad1_xy": [
+        106.96,
+        40
+      ],
+      "translation_lineage_to_saved_mm": [
+        -20,
+        -12
+      ],
+      "equation": "For these two J2 RF-pad point correspondences only: lineage=saved+(20,12), or saved=lineage+(-20,-12).",
+      "candidate_lineage_xy": [
+        103,
+        40
+      ],
+      "candidate_saved_xy": [
+        83,
+        28
+      ],
+      "use_limit": "Do not apply this offset to any other saved geometry, footprints, supports, cutouts, outlines, rule areas or pads by inference. CandidateF(103,40,0) is proposed-outline-frame only; it proves neither a saved pose nor edge clearance. Writer must regenerate and bind actual adopted geometry and both RF board-area UUIDs to the final saved source.",
+      "mapping_applies_only_to": [
+        "The old J2 RF-pad endpoint correspondence: saved(86.96,28), proposed-lineage(106.96,40).",
+        "The explicitly proposed J2 RF-pad anchor: lineage(103,40), saved-frame candidate(83,28), without asserting it exists on the saved board."
+      ]
+    }
+  },
+  "parameters": {
+    "sF": "actual seating lift above F; no sourced maximum",
+    "fB": "maximum actual solder fillet projection beyond B",
+    "fF": "maximum actual solder projection beyond F",
+    "mate": "Board-side compatible SMA mate; geometry proposal only; unselected bulkhead/pigtail is out of scope.",
+    "Tmate": "Mate from MIL-STD-348 SMA mating reference planes, not tip-to-tip, origin or visual overlap",
+    "tool": "UNRESOLVED/unsourced: reported8mm and11mm wrench sizes have no retained capture. Select actual compatible tools from captured part data; no jaw/head/handle dimensions are established."
+  },
+  "recipes": [
+    {
+      "id": "J2-F-body",
+      "phase": "all",
+      "shape": "box u,v[-3.6,3.6],w[sF,sF+9.73]",
+      "class": "drawing dimensional bound; independent tolerances; not model max",
+      "allowance": "Any additional placement/case clearance must be explicitly default/advisory unless sourced."
+    },
+    {
+      "id": "J2-B-pins-and-solder",
+      "phase": "soldered",
+      "shape": "Union of four square-pin and signal-pin cylinders at pad-map centres, plus actual fillet solids; conservative XY may use pad-union as an advisory envelope. Relative B depth max(2.90-sF,fB).",
+      "class": "Agent-507 source lead/board arithmetic with unresolved actual fillet; use advisory 3.2 mm B bin from 494b; no worst-case seating/process gate."
+    },
+    {
+      "id": "J2-F-mate",
+      "phase": "installed cable",
+      "shape": "Tboard*Tmate*Raxis(theta)*(actual plug solid plus dimensional tolerances); union with cable strain relief and swept cable tube",
+      "class": "Candidate interface and orientation UNRESOLVED/unsourced; complete max shape, datum and10.50REF claim also uncaptured. No sourced mate envelope."
+    },
+    {
+      "id": "J2-F-mate-insertion",
+      "phase": "bare-board mating/service",
+      "shape": "Union of J2-F-mate translated along F normal from disconnected clear-start to fully seated; start travel determined by actual mating thread engagement, not an invented distance",
+      "class": "recipe; requires plane/engagement data"
+    },
+    {
+      "id": "J2-wrench",
+      "phase": "bare-board mating",
+      "shape": "Sweep the actual compatible wrench jaw/head/handle around the SMA axis through tightening/regrip angles, with counterhold fixture; do not transmit tightening torque through solder pins. Reported8mm tool size is UNRESOLVED/unsourced.",
+      "class": "All tool dimensions, including reported8mm jaw, are UNRESOLVED/unsourced; no consumable sourced tool envelope."
+    },
+    {
+      "id": "J2-iron-B",
+      "phase": "bare board hand fit",
+      "shape": "For each of all five pads, sweep selected iron-tip/head solid from unobstructed B-side entry to actual fillet. Union with solder-wire approach and inspection line-of-sight; exclude case/floor/board supports until after soldering",
+      "class": "phase sequencing and recipe; tool model and contact clearance require qualification"
+    }
+  ],
+  "acceptance": "PARTIAL board-side recipes; transform with final writer pose; default bins remain advisory. No enclosure design, fit or qualification gate. Preserve ESP32 antenna and unrelated keepouts.",
+  "historical_out_of_scope_recipes": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "recipes": [
+      {
+        "id": "SMA-wall",
+        "phase": "installed enclosure",
+        "shape": "Concept: one sealed SMA bulkhead jack crosses the wall;132134 stays inside. Bind exact compatible O-ring/washer/nut stack, continuous sealing land, strain relief and counterhold tools from captured sources. Reported11mm bulkhead/8mm mate wrench sizes are UNRESOLVED/unsourced.",
+        "class": "Recipe only; candidate orientation, panel cutout, tools, thickness, surface finish, compression and torque remain UNRESOLVED."
+      }
+    ]
+  }
+}

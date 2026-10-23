@@ -1,0 +1,167 @@
+{
+  "schema_version": "decision-receipt/2",
+  "receipt_id": "agentee494-j2-conditional",
+  "question": "Can the selected standard thickness SMA joint and sealed interface be admitted on retained source and tolerance evidence?",
+  "scope": [
+    "HISTORICAL agent-drafted engineering judgment, superseded by OWNER-CORRECTION.md; no active SMT, conditional-hole, enclosure or paper-unfit recommendation.",
+    "Joint budget, proposed local footprints and writer reservation recipes; no production adoption"
+  ],
+  "status": "abstained",
+  "authority_boundary": {
+    "owner": "agent-449 integrator; agent-529 coordinator decision, agent-relayed, not owner-stated",
+    "authority_source": "17e078f5-2638-476a-adc6-e0b85eb1f54a@1;AGENTEE-494",
+    "authorized_scope": [
+      "Twentyminute13:26:21..13:46:21Z,branchfromf6c7ec25;no merge;no order/upload/newsession/netwidewaiver"
+    ]
+  },
+  "evidence": [
+    {
+      "schema_version": "evidence-record/1",
+      "id": "494-authority",
+      "evidence_class": "evidence-repository-contracts",
+      "summary": "Frozen input f6c7ec25, exact twenty minute request, no merge;449 integrates and arranges independentreview.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/source-manifest.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "351334fda58a74f5dfbf92b5e006bb070da9f096a9cc796e5973d241e698724d"
+        }
+      ],
+      "satisfies": [
+        "explicit task authority",
+        "task scope and authority statement",
+        "target repository and task scope",
+        "repository contract",
+        "user instruction and authority"
+      ]
+    },
+    {
+      "schema_version": "evidence-record/1",
+      "id": "494-budget",
+      "evidence_class": "evidence-generated-artifacts",
+      "summary": "Arithmetic explicitly conditional on pinaxis interpretation. Stock holes do not guarantee insertion; widened proposal not a solderprocess orRFqualification.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/joint-budget.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "cea45759d36c3996509a3d589f7ceaa824dbb8b2917ffc778b35ff5089f1644a"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/sealed-interface.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "e25c563fa786da4511ebabb967e0dcc4497d5a35a5c931b8eba159224252d1fe"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/RF-deltas.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "78f471c2659e5b5446ebed00257fa00301d0dafb044b4afd273fc5d08e361949"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/manual-fit.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "2e6e5ec0040625d4d9cf35f35fc08a87b24e18d3427d9af19434e580ccc1ae2f"
+        },
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/reservations.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "70ac2ba433aa92fdc78d3da1c222153ec98bd35cb1571ea72e3400ac397284f1"
+        }
+      ],
+      "satisfies": [
+        "a bounded decision question",
+        "alternatives including no change where viable",
+        "observations",
+        "evidence connecting the proposed action to the condition",
+        "accepted policy or current relied-upon constraint"
+      ]
+    },
+    {
+      "schema_version": "evidence-record/1",
+      "id": "494-native",
+      "evidence_class": "evidence-generated-artifacts",
+      "summary": "Native10.0.7 loads exact5padfootprints; size/drill/patternandidealrectangleonly;no savedboardclearanceclaim.",
+      "provenance": [
+        {
+          "locator": "/home/halbritt/.cache/agent-worktrees/fome-mc/agentee494-agent507/telemetry-pod/expansion/agentee-494-j2/native494.json",
+          "method": "Direct source read or retained native output; no physical qualification inferred",
+          "content_sha256": "82ef26119838f6e62f9fe214bd83f4a8ccdd307df0b25a737511892876c976a4"
+        }
+      ],
+      "satisfies": [
+        "discriminating checks",
+        "claim-relative observation such as accepted requirement, reproduction, incident, recurring change, operational constraint, or representative measurement"
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "id": "stock-arithmetic",
+      "type": "observation",
+      "text": "Retained budget has negative stock margins under stated conditional positional envelope; stock hole qualification unsupported.",
+      "evidence": [
+        "494-budget"
+      ]
+    },
+    {
+      "id": "native-geometry",
+      "type": "observation",
+      "text": "Both exact proposed footprint files loaded and all five native pad sizes/drills checked; no finalboardacceptance.",
+      "evidence": [
+        "494-native"
+      ]
+    },
+    {
+      "id": "qualification-boundary",
+      "type": "recommendation",
+      "text": "HISTORICAL / SUPERSEDED: Return the conditional footprint and sealed-interface concept with uncaptured095-902-570-006 dimensions/orientation UNRESOLVED; abstain from complete mechanical/RF/IP67 qualification until listed material gaps close.",
+      "depends_on": [
+        "stock-arithmetic",
+        "native-geometry"
+      ],
+      "alternatives": [
+        "Claim stockjoint qualified",
+        "Replace selected132134 orstackup without need",
+        "Return onlyOPEN withoutboundedimplementation"
+      ],
+      "tradeoffs": [
+        "The enlarged-hole proposal retains the solder-fill and RF-launch burden. A compatible sealed-pigtail concept would preserve the selected board connector and one SMA wall penetration, but this candidate requires captured source evidence."
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "option": "Conditionalproposalwithmaterialgapsexplicit",
+      "disposition": "selected",
+      "evidence": [
+        "494-authority",
+        "494-budget",
+        "494-native"
+      ]
+    },
+    {
+      "option": "Productionqualificationfromnominalfootprint/IP67componentrating",
+      "disposition": "rejected",
+      "evidence": [
+        "494-budget"
+      ]
+    }
+  ],
+  "source_locators": [
+    "source-manifest.json",
+    "joint-budget.json",
+    "native494.json",
+    "sealed-interface.json",
+    "reservations.json"
+  ],
+  "corpus_version": "corpus-2026-07-12-a11702cc9217",
+  "retriever_version": "retriever-ec995ecdd083b2c8",
+  "reopening_conditions": [
+    "HISTORICAL / SUPERSEDED: Physicalpinaxisandprocessdatumsconfirmed",
+    "HISTORICAL / SUPERSEDED: Solderfill/projectionandretentionqualified",
+    "HISTORICAL / SUPERSEDED: Exactmate/panel/torquetool/sealcompressionandinstalledingresstestavailable",
+    "HISTORICAL / SUPERSEDED: FinalsavedboardRFlaunch/referenceandEdge.Cutsnativechecks"
+  ],
+  "residual_risk": [
+    "HISTORICAL scope and obligations, superseded where conflicting with current board-side correction: Materialmissing: pinaxisdatum,actualpadregistration/etch,solderjointprocess/filletmax,matingsolid/datum,panelsealstack/torque/strainrelief,cable/antennabinding,finalRFlaunch/reference/packing. No full admission conclusion. Genericsoftwareabstraction/async/cochange/metricsobligationsnonmaterialtothisnonproductionphysicalpacket."
+  ]
+}
