@@ -48,8 +48,8 @@ def items(entry):
 
 
 def normalize(report, key):
-    return sorted({'type': v['type'], 'severity': v['severity'], 'description': v['description'], 'items': items(v)}
-                  for v in report.get(key, [])), key=lambda v: json.dumps(v, sort_keys=True))
+    return sorted(({'type': v['type'], 'severity': v['severity'], 'description': v['description'], 'items': items(v)}
+                   for v in report.get(key, [])), key=lambda v: json.dumps(v, sort_keys=True))
 
 
 def copper(board):
