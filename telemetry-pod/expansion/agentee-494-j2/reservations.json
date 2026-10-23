@@ -9,15 +9,62 @@
       0
     ],
     "side": "F",
-    "frame": "local u,v in board plane; w positive out of F. Fsurface w=0; Bsurface w=-tBoard. Transform every recipe with final writer pose, do not reuse fixed world bounds after movement."
+    "frame": "local u,v in board plane; w positive out of F. Fsurface w=0; Bsurface w=-tBoard. Transform every recipe with final writer pose, do not reuse fixed world bounds after movement.",
+    "coordinate_frame": {
+      "name": "proposed_110x80_lineage",
+      "proposed_outline_mm": [
+        110,
+        80
+      ],
+      "saved_board_frame": {
+        "name": "saved_f6c7ec25_90x65",
+        "outline_mm": [
+          90,
+          65
+        ],
+        "edge_cuts_bounds_mm": [
+          0,
+          0,
+          90,
+          65
+        ],
+        "J2_footprint_xy_rotation": [
+          85.24,
+          28,
+          180
+        ],
+        "old_Molex_RF_pad1_xy": [
+          86.96,
+          28
+        ]
+      },
+      "lineage_old_Molex_RF_pad1_xy": [
+        106.96,
+        40
+      ],
+      "translation_lineage_to_saved_mm": [
+        -20,
+        -12
+      ],
+      "equation": "saved_xy = lineage_xy + (-20,-12); rotation unchanged for this coordinate correspondence",
+      "candidate_lineage_xy": [
+        103,
+        40
+      ],
+      "candidate_saved_xy": [
+        83,
+        28
+      ],
+      "use_limit": "Coordinates and ideal 110x80 margins belong to a proposed lineage layout, not the saved 90x65 Edge.Cuts. This mapping does not enlarge or translate the saved board and does not establish final placement or saved-board clearance. Writer must bind the chosen final board frame."
+    }
   },
   "parameters": {
     "sF": "actual seating lift above F; no sourced maximum",
     "fB": "maximum actual solder fillet projection beyond B",
     "fF": "maximum actual solder projection beyond F",
-    "mate": "095-902-570-006 right-angle SMA plug, keyed only by screw interface; clocking theta is free; final route must select it",
+    "mate": "095-902-570-006 candidate; RA orientation UNRESOLVED/unsourced. Capture compatible interface and orientation before evaluating the mating solid or cable clocking.",
     "Tmate": "Mate from MIL-STD-348 SMA mating reference planes, not tip-to-tip, origin or visual overlap",
-    "tool": "actual 8mm open wrench jaw/head solid plus handle, 11mm wrench at bulkhead; dimensions on 95-902-570-XXX revA. No inferred head OD or handle length."
+    "tool": "UNRESOLVED/unsourced: reported8mm and11mm wrench sizes have no retained capture. Select actual compatible tools from captured part data; no jaw/head/handle dimensions are established."
   },
   "recipes": [
     {
@@ -37,7 +84,7 @@
       "id": "J2-F-mate",
       "phase": "installed cable",
       "shape": "Tboard*Tmate*Raxis(theta)*(actual plug solid plus dimensional tolerances); union with cable strain relief and swept cable tube",
-      "class": "concrete mate selected, complete max shape and datum still unqualified; 10.50 REF on assembly drawing is not maximum"
+      "class": "Candidate interface and orientation UNRESOLVED/unsourced; complete max shape, datum and10.50REF claim also uncaptured. No sourced mate envelope."
     },
     {
       "id": "J2-F-mate-insertion",
@@ -48,8 +95,8 @@
     {
       "id": "J2-wrench",
       "phase": "mate before lid closure",
-      "shape": "Sweep actual 8mm open wrench jaw/head/handle around SMA axis through achievable tightening/regrip angles, plus counterhold fixture; never transmit cable tightening torque through solder pins",
-      "class": "8mm jaw is source dimension; all other tool dimensions/torque are unresolved"
+      "shape": "Sweep the actual compatible wrench jaw/head/handle around the SMA axis through tightening/regrip angles, with counterhold fixture; do not transmit tightening torque through solder pins. Reported8mm tool size is UNRESOLVED/unsourced.",
+      "class": "All tool dimensions, including reported8mm jaw, are UNRESOLVED/unsourced; no consumable sourced tool envelope."
     },
     {
       "id": "J2-iron-B",
@@ -60,8 +107,8 @@
     {
       "id": "SMA-wall",
       "phase": "installed enclosure",
-      "shape": "Use selected cable bulkhead jack, supplied O-ring and washer/nut stack with one D-hole; seat O-ring on continuous compatible panel land. Counterhold at11mm and mate-tool8mm; strain-relieve inside. Only this jack crosses wall;132134 remains entirely inside.",
-      "class": "local interface only; panel thickness, flatness/finish, seal compression, assembly torque and actual access must be bound before IP67 acceptance"
+      "shape": "Concept: one sealed SMA bulkhead jack crosses the wall;132134 stays inside. Bind exact compatible O-ring/washer/nut stack, continuous sealing land, strain relief and counterhold tools from captured sources. Reported11mm bulkhead/8mm mate wrench sizes are UNRESOLVED/unsourced.",
+      "class": "Recipe only; candidate orientation, panel cutout, tools, thickness, surface finish, compression and torque remain UNRESOLVED."
     }
   ],
   "acceptance": "These recipes are writer inputs, not proof of packing, installed fit, vibration survival or ingress. Preserve no-metal ESP32 antenna region and all unrelated reservations."

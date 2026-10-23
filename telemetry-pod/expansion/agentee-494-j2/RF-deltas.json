@@ -5,7 +5,7 @@
     0.2032
   ],
   "status": "Preserved pending492; no recalculation/acceptance claimed",
-  "endpoint_delta": "OldMolexpad1(106.96,40) to candidate132134pad1(103,40); final pose writerowned.",
+  "endpoint_delta": "Proposed 110x80 lineage frame: old Molex RF pad1 (106.96,40) to candidate132134 pad1 (103,40). Corresponding saved 90x65 frame: old pad1 (86.96,28) to candidate (83,28), by saved=lineage+(-20,-12). Final pose and board frame remain writer-owned.",
   "invalidate": [
     "OldJ2endlaunch/taper/terminal geometry",
     "SignalPTHbarrelanti-padsonIn1/In2andanycopper-layerpadgeometry",
@@ -20,5 +20,52 @@
     "NativeDRC/netparityandconnected-referenceprobeonfinalsavedboard",
     "PackingagainstfinalsavedEdge.Cuts and actualmate/toolvolumes"
   ],
-  "source_scope": "No canonicalboard/rules/BOM/intent edit in this packet."
+  "source_scope": "No canonicalboard/rules/BOM/intent edit in this packet.",
+  "coordinate_frame": {
+    "name": "proposed_110x80_lineage",
+    "proposed_outline_mm": [
+      110,
+      80
+    ],
+    "saved_board_frame": {
+      "name": "saved_f6c7ec25_90x65",
+      "outline_mm": [
+        90,
+        65
+      ],
+      "edge_cuts_bounds_mm": [
+        0,
+        0,
+        90,
+        65
+      ],
+      "J2_footprint_xy_rotation": [
+        85.24,
+        28,
+        180
+      ],
+      "old_Molex_RF_pad1_xy": [
+        86.96,
+        28
+      ]
+    },
+    "lineage_old_Molex_RF_pad1_xy": [
+      106.96,
+      40
+    ],
+    "translation_lineage_to_saved_mm": [
+      -20,
+      -12
+    ],
+    "equation": "saved_xy = lineage_xy + (-20,-12); rotation unchanged for this coordinate correspondence",
+    "candidate_lineage_xy": [
+      103,
+      40
+    ],
+    "candidate_saved_xy": [
+      83,
+      28
+    ],
+    "use_limit": "Coordinates and ideal 110x80 margins belong to a proposed lineage layout, not the saved 90x65 Edge.Cuts. This mapping does not enlarge or translate the saved board and does not establish final placement or saved-board clearance. Writer must bind the chosen final board frame."
+  }
 }
