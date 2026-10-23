@@ -7,7 +7,7 @@
   "sha256": "987941dd041228db8c02ed48d77497450833f76f21140a78420895fd676dba9c",
   "locator": "base_486_items + board_side_access_closure.rows",
   "classification": "engineering",
-  "author": "AGENT engineering: original486/490 recipe by agent-507; ten-row485 board-side closure by agent-535;489 materialization"
+  "author": "AGENT engineering: original486/490 recipe by agent-507; ten-row485 board-side closure by agent-535;489 materialization;JP producer carriage by agent-534"
  },
  "reservations": [
   {
@@ -3028,6 +3028,566 @@
     "Agent-535 chooses a finite normal approach column radius1.07mm,length20mm on the TP own face. This represents probe approach only, not a fixture, hand, or full clip body; no enclosure access. Dimensions are engineering defaults, not manufacturer maxima.",
     "Transform from actual TP footprint position/angle and own face at placement/final native check; no post-generation datum is needed to declare this local column.",
     "bench-only pogo access per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP1/iron-pad1@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP1",
+    "uuid": "e622fd7b-8fcf-5643-b14a-e4117c3359de",
+    "pad": {
+     "number": "1",
+     "uuid": "f9140397-0429-55be-8869-52c13362fb81"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP1/iron-pad2@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP1",
+    "uuid": "e622fd7b-8fcf-5643-b14a-e4117c3359de",
+    "pad": {
+     "number": "2",
+     "uuid": "b72d8224-6fd6-5b43-b789-e97cacaa7849"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP2/iron-pad1@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP2",
+    "uuid": "9b942fb1-7bd9-5c7f-88b5-0ad3749b9741",
+    "pad": {
+     "number": "1",
+     "uuid": "fb7a5a3d-016e-5a74-ab01-09cfde7bf6d7"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP2/iron-pad2@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP2",
+    "uuid": "9b942fb1-7bd9-5c7f-88b5-0ad3749b9741",
+    "pad": {
+     "number": "2",
+     "uuid": "4e507f2c-2a60-5bf7-8690-4d429971e282"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP3/iron-pad1@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP3",
+    "uuid": "52a7710f-296d-5909-8c8a-2195b40f22c3",
+    "pad": {
+     "number": "1",
+     "uuid": "5c762c3d-e7cf-5f79-bfdc-993ccdad1309"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP3/iron-pad2@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP3",
+    "uuid": "52a7710f-296d-5909-8c8a-2195b40f22c3",
+    "pad": {
+     "number": "2",
+     "uuid": "b074aed4-7679-5517-bc36-cde46802105c"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP4/iron-pad1@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP4",
+    "uuid": "90309004-bda6-542b-a1e2-1e137f14d2f5",
+    "pad": {
+     "number": "1",
+     "uuid": "7114a139-83d3-5d9d-990e-9dd5dc7bee9f"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP4/iron-pad2@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP4",
+    "uuid": "90309004-bda6-542b-a1e2-1e137f14d2f5",
+    "pad": {
+     "number": "2",
+     "uuid": "e68e9c57-cbac-52ad-99dc-c62df2cca93b"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP5/iron-pad1@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP5",
+    "uuid": "30c1519b-37e5-590e-a8b4-5846188edba5",
+    "pad": {
+     "number": "1",
+     "uuid": "00150781-2724-5b34-9e05-be198defd05a"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
+   ]
+  },
+  {
+   "id": "JP5/iron-pad2@actual-face",
+   "required": true,
+   "kind": "access",
+   "frame": "pad",
+   "owner": {
+    "ref": "JP5",
+    "uuid": "30c1519b-37e5-590e-a8b4-5846188edba5",
+    "pad": {
+     "number": "2",
+     "uuid": "652c285d-37a6-5e72-95e2-96f7eaad0d9f"
+    }
+   },
+   "geometry": {
+    "polygons_nm": [
+     [
+      [
+       -1150000,
+       -950000
+      ],
+      [
+       1150000,
+       -950000
+      ],
+      [
+       1150000,
+       950000
+      ],
+      [
+       -1150000,
+       950000
+      ]
+     ]
+    ]
+   },
+   "faces": [
+    "same"
+   ],
+   "height_nm": null,
+   "phases": [
+    "bare-board-soldering"
+   ],
+   "self_exclusion": true,
+   "coverage": {
+    "projection": "conservative-per-face",
+    "height": "unknown",
+    "access": "unknown",
+    "basis": "Qualified native custom-pad copper bounding box, inverse native pad rotation, Minkowski sum with source chisel rectangle [1.3, 0.4] mm; outward integer-nm rounding; tip-only projection, not complete iron/hand access."
+   },
+   "uncertainty": [
+    "full hot-taper/barrel/solder-feed-hand envelope not sourced; cannot pass complete iron-access qualification",
+    "TIP_ONLY;no full iron/probe/hand clearance acceptance from owner usage",
+    "recompute from actual pad pose after479 placement;old480 world coordinates are not transferred",
+    "one-time bare-board soldering per owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed"
    ]
   },
   {

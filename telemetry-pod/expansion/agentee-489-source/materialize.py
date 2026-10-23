@@ -19,11 +19,13 @@ Rules kept here (agent-ee docs/mechanical-reservations.md):
   not a circular pre-generation geometry-completeness requirement;
 - cylinders become circumscribed regular 16-gons, vertices rounded outward to integer nm, so the
   per-face projection covers the cylinder (conservative-per-face);
-- owners with custom pads (JP1..JP5, shape 6) are refused by the consumer binding and are listed
-  in UNMATERIALIZED rather than silently dropped or bound to a fake frame.
-Usage: python3 -I materialize.py <repo-root>
+- JP custom-pad access uses the qualified native copper outer bound plus the existing chisel
+  rectangle in the pad-local frame. Unknown iron height/access stays unknown after carriage.
+Usage (native KiCad environment, via native-admit):
+  PYTHONPATH=<frozen-agent-ee>/src python3 -B materialize.py <repo-root>
 """
-import hashlib, json, math, re, sys
+import hashlib, json, math, re, shutil, sys, tempfile
+from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(sys.argv[1]).resolve()
@@ -35,7 +37,7 @@ OUT = POD / 'expansion/agentee-489-source'
 BOARD_REL = 'mechanics/original-board.kicad_pcb'
 SRC_REL = 'mechanics/agentee-490-bound-reservations.json'
 NM = 1_000_000
-AUTHOR = 'AGENT engineering: original486/490 recipe by agent-507; ten-row485 board-side closure by agent-535;489 materialization'
+AUTHOR = 'AGENT engineering: original486/490 recipe by agent-507; ten-row485 board-side closure by agent-535;489 materialization;JP producer carriage by agent-534'
 OWNER_CITE = ('owner answers a13a1ba8@2 / 842b3689@1, relayed via AGENTEE-486 (agent-449), class owner-relayed')
 
 
@@ -71,24 +73,87 @@ PHASE = {'installed': 'installed', 'bench-fastening-before-lid': 'bench-fastenin
          'bare-board-bench-only': 'bare-board-bench', 'bare-board-one-time-soldering': 'bare-board-soldering'}
 
 
+
+def native_capture():
+    """Use the same board-only native binding as the production mechanical source."""
+    from agent_ee.placement_probe import extract
+    before = sha(BOARD)
+    with tempfile.TemporaryDirectory(prefix='ee489-native-') as tmp:
+        board = Path(tmp) / BOARD.name
+        shutil.copyfile(BOARD, board)
+        capture = extract(board)
+    if capture['board_sha256'] != before or sha(BOARD) != before:
+        raise ValueError('mechanical source board changed during native capture')
+    return capture
+
+
+def iron_row(r, capture):
+    """Conservative pad-copper AABB Minkowski sum with the recipe's chisel rectangle."""
+    from agent_ee.mechanical_reservations import _custom_geometry
+    from agent_ee.placer import rotate
+    g = r['geometry']
+    owners = [f for f in capture['footprints'] if f['ref'] == r['reference'] and f['uuid'] == r['uuid']]
+    if len(owners) != 1:
+        raise ValueError('iron owner reference/UUID differs from native capture: ' + r['id'])
+    fp = owners[0]
+    pads = [p for p in fp['pads'] if p['uuid'] == g['pad_uuid'] and p['number'] == g['pad_number']]
+    if len(pads) != 1 or r['relative'] != {'origin': 'pad', 'number': g['pad_number'], 'follows_pose': True}:
+        raise ValueError('iron pad number/UUID/frame differs from native capture: ' + r['id'])
+    pad = pads[0]
+    if pad['shape'] != g['captured_pad_shape'] or pad['size_nm'] != [round(v * NM) for v in g['captured_pad_size_mm']]:
+        raise ValueError('iron pad shape/anchor size differs from recipe: ' + r['id'])
+    box = _custom_geometry(pad)['bbox_nm']
+    angle = pad['rotation_deg']
+    if not math.isfinite(angle) or angle % 90:
+        raise ValueError('iron pad requires an exact quarter-turn native angle')
+    local = [rotate([x - pad['position_nm'][0], y - pad['position_nm'][1]], -int(angle) // 90)
+             for x in (box[0], box[2]) for y in (box[1], box[3])]
+    tip = [Decimal(str(v)) * NM / 2 for v in g['tip_width_thickness_mm']]
+    if len(tip) != 2 or any(not v.is_finite() or v <= 0 for v in tip):
+        raise ValueError('iron chisel needs two positive finite dimensions')
+    x0, y0 = [math.floor(min(v[i] for v in local) - tip[i]) for i in (0, 1)]
+    x1, y1 = [math.ceil(max(v[i] for v in local) + tip[i]) for i in (0, 1)]
+    h = interval(g['z_outward_from_face_mm'])
+    return {'id': r['id'], 'required': True, 'kind': 'access', 'frame': 'pad',
+            'owner': {'ref': r['reference'], 'uuid': r['uuid'],
+                      'pad': {'number': pad['number'], 'uuid': pad['uuid']}},
+            'geometry': {'polygons_nm': [[[x0, y0], [x1, y0], [x1, y1], [x0, y1]]]},
+            'faces': ['same'], 'height_nm': h, 'phases': [PHASE[r['phase']]], 'self_exclusion': True,
+            'coverage': {'projection': 'conservative-per-face', 'height': 'covered' if h else 'unknown',
+                         'access': 'unknown',
+                         'basis': 'Qualified native custom-pad copper bounding box, inverse native pad rotation, '
+                                  'Minkowski sum with source chisel rectangle '
+                                  + str(g['tip_width_thickness_mm']) + ' mm; outward integer-nm rounding; '
+                                  'tip-only projection, not complete iron/hand access.'},
+            'uncertainty': [r['unknown'], r['qualification'], r['phase_gate'],
+                            'one-time bare-board soldering per ' + OWNER_CITE]}
+
+
+def require_coverage(recipe, rows):
+    expected = [r['id'] for r in recipe['base_486_items'] + recipe['board_side_access_closure']['rows']]
+    actual = [r['id'] for r in rows]
+    if len(set(expected)) != len(expected) or sorted(actual) != sorted(expected):
+        raise ValueError('materialized reservation IDs differ from complete source recipe inventory')
+
+
 def main():
     recipe = json.loads(SRC.read_text())
     if recipe['schema'] != 'agentee-490.bound-reservations/1':
         raise SystemExit('unexpected recipe schema')
     text = BOARD.read_text()
     side = sides(text)
+    capture = native_capture()
     rows, skipped = [], []
     for r in recipe['base_486_items']:
         uuid, ref = r['uuid'], r['reference']
         if uuid not in side:
             raise SystemExit(f'{ref} {uuid} not in snapshot')
         g = r['geometry']
-        if g['kind'] != 'axial_cylinder':
-            skipped.append({'id': r['id'], 'owner': {'ref': ref, 'uuid': uuid},
-                            'reason': 'owner has custom pads (shape 6); agent-ee mechanical binding refuses '
-                                      'custom-pad owners, so no attached frame is available',
-                            'recipe': g['kind'], 'status': 'UNMATERIALIZED_REQUIRED'})
+        if g['kind'] == 'native_pad_bound_minkowski_chisel_rectangle_recipe':
+            rows.append(iron_row(r, capture))
             continue
+        if g['kind'] != 'axial_cylinder':
+            raise ValueError('unsupported mechanical recipe: ' + g['kind'])
         face = r['face'][0]
         rel = 'same' if (r['id'].endswith('@actual-face') or face == side[uuid]) else 'opposite'
         h = interval(g['z_outward_from_face_mm'])
@@ -144,16 +209,23 @@ def main():
                                   'access': 'covered',
                                   'basis': r['basis'] + ' Dimension class: ' + r['dimension_class'] + '. ' + citations},
                      'uncertainty': r['uncertainty']})
+    require_coverage(recipe, rows)
     doc = {'schema': 'agent-ee.mechanical-reservations/1', 'original_board_path': BOARD_REL,
-           'original_board_sha256': sha(BOARD),
+           'original_board_sha256': capture['board_sha256'],
            'source': {'path': SRC_REL, 'sha256': sha(SRC), 'locator': 'base_486_items + board_side_access_closure.rows',
                       'classification': 'engineering', 'author': AUTHOR},
            'reservations': rows}
+    from agent_ee.mechanical_reservations import bind
+    bind(doc, capture)  # Validate every declared pad frame before publishing either file.
+    if sha(BOARD) != capture['board_sha256']:
+        raise ValueError('mechanical source board changed before publication')
     (OUT / 'reservations.json').write_text(json.dumps(doc, indent=1) + '\n')
     (OUT / 'unmaterialized.json').write_text(json.dumps(
         {'schema': 'agentee-489.unmaterialized/1', 'rows': skipped,
-         'note': 'Required reservations the consumer cannot bind; they are NOT satisfied and block acceptance.'}, indent=1) + '\n')
+         'note': 'Producer carriage inventory only. Empty rows means all source recipes were emitted; '
+                 'unknown height/access remains in reservations.json and is not acceptance.'}, indent=1) + '\n')
     print(len(rows), 'rows;', len(skipped), 'unmaterialized')
 
 
-main()
+if __name__ == '__main__':
+    main()
