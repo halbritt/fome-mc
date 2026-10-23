@@ -95,3 +95,132 @@ At 14:40:58Z I ran one read-only `docker ps` outside native-admit, to check for 
 2. Re-pin `hand-fit-policy.json` `composition/parts.json` to 82c1e33d… (J1 `/parts/303` unchanged), then commit.
 3. Run `production_run.sh` once before the stock goes stale (2026-10-24 14:08Z).
 4. Then do retention, check, proof, checks and delta.
+
+---
+
+# Attempt 2 (agent-529 7f608f2a@2): COMPLETE
+
+Clock: 15:07:43Z to the 15:37:43Z cutoff. Work finished at about 15:26Z.
+
+## Heads
+
+| Head | Commit | What |
+|---|---|---|
+| Frozen input | 272ab0b54bdc706b81422aee21ca4d28d0f36d30 | |
+| Reviewed source input | **8ecee9c9011827259b8eb0fc37e050d01d3d7a9f** | Producer composition installed, J1 citation rebound. Production ran from this head. |
+| Retention + install + evidence | **170f60994aa54d858757e8963784891e8702d8a0** | |
+| Final | this result.md commit (see `git log`) | Tree clean. |
+
+## Preserved failed run (da649598)
+
+- **Log:** `completion-491c/production-da64959.log`, fe14a998….
+- **Elapsed:** 14:40:58Z to 14:44:09Z (3 min 11 s).
+- **Run outputs:** moved, not deleted, to `scratch/a484r/failed-da64959/` (`cap/`, `pipe/`, `fome/`, log).
+
+## 1. Composition install and J1 citation rebind
+
+- **Composition:** the producer output is the 22 GENERATED files plus `reconstruction.json`, from the da64959 build-out.
+  - The build inputs are identical at 272ab0b, which differs from da64959 only in evidence files.
+  - This run's own build-out produced the same `parts.json` again: **82c1e33d…**, as expected.
+- **Rebind:** in `assembly/hand-fit-policy.json`, the `composition/parts.json` sha256 changed from bce5a138… to 82c1e33d…, and nothing else. The policy file itself changed from e93fe7aa… to 626b67d4….
+  - `HAND_FIT_CHAIN` does not pin `composition/parts.json`. Its four pins are unchanged and verified.
+- **Meaning:** `/parts/303` is still `connector/J1`, C596198 1-776163-1, `PodConnector:AMPSEAL_35_1-776163-1`.
+  - Its only change is `selection.decision_ref.sha256`, the intent hash b43a815b… → 46ee821d….
+  - `composition/deviations.json` (the owner_hand_fit manual-fit disposition) is byte-identical.
+- **Unchanged:** guards, the historical receipts and evidence directories (52 historical files cite bce5a138… and none was touched).
+
+## 2. Preflight and invalidated bindings
+
+- **Preflight:** `completion-491c/preflight-handfit.txt`, exit 0. It ran `pipeline.py`'s own `hand_fit_chain` source (extracted, through the owner_hand_fit deviation check) over the complete regenerated composition, the policy and the source chain: `PREFLIGHT-OK`.
+  - All 4 HAND_FIT_CHAIN pins: True.
+  - All 5 citations: True.
+- **Derived bindings the rebind invalidates or regenerates (complete list, one list):**
+  1. `assembly/hand-fit-policy.json` `composition/parts.json` sha256, rebound.
+  2. `composition/parts.json`.
+  3. `composition/refs.json`.
+  4. `composition/intent.writer.json`.
+  5. `composition/binding-ledger.json`.
+  6. `composition/binding-migration.json`.
+  7. `composition/captured-rule-areas.json` (it embeds the parts.json sha; now 82c1e33d…, with 0 bce5a138 left).
+  8. `reconstruction.json`.
+
+  Items 2–8 are producer-regenerated, not hand-edited. No other non-evidence file cites bce5a138… or the old policy hash e93fe7aa….
+
+## Missing-preflight incident (for the reusable generation workflow)
+
+In attempt 1, the 491 source change (intent and part records) altered `composition/parts.json`, but I did not regenerate the composition and re-pin the J1 hand-fit citation before production, although I had done exactly that in 484 (b296769) and 488 (3caf492). `pipeline.py:284` refused 3 min into the admitted run.
+
+**Workflow rule:** after ANY change to build inputs (intent, part records, additions or rebindings), the sequence is:
+1. Run build-out.
+2. Install the GENERATED files.
+3. Re-pin every citation of a generated file.
+4. Run the `hand_fit_chain` preflight (as in `preflight-handfit.txt`) and a `git grep` for the old hashes outside `evidence/`.
+5. Commit.
+6. Only then launch production.
+
+## 3. Production (ONE admitted run)
+
+- **Command:** `native-admit run --class suite --weight 4 --label ee491c-production-2 -- bash RUN/fome/telemetry-pod/expansion/production-capture/production_run.sh RUN`.
+- **Run dir:** `RUN/fome` = `git archive 8ecee9c`, with fresh `cap/` and `pipe/`.
+- **Timing:** 15:08:48Z to 15:23:17Z (`completion-491c/production-8ecee9c.log`, 230c78e5…).
+
+| Step | Exit |
+|---|---|
+| build-out | 0 |
+| build-check | 0 |
+| pipeline | 0 |
+| observe | 0 |
+| steps | done |
+| outer | 0 |
+
+### Post-run results
+
+| Check | Exit | Result |
+|---|---|---|
+| `retain.py RUN/pipe --install` | 0 | 417 retained files, 568 design inputs (365 repository paths), 8 installed project files, prepared tree 4272 files (88 blobs) |
+| `retain.py --check` (composed tree, worktree) | 0 | same summary |
+| Fresh git-archive proof (`git archive 170f6099` → `/tmp/a491c/fresh`) | 0 | `sha256sum -c SHA256SUMS` exit 0 on 417 entries; `retain.py --check` in the extract exit 0 |
+| ERC (`kicad-cli sch erc --severity-all`) | 0 | **0 violations** (`erc.json` 66d7caa1…) |
+| Correspondence (`agentee-484-decoupling/correspondence.py`) | 0 | 309 schematic / 313 board; H1–H4 board-only; 2 findings, both the inherited U3 pad 18/19 `/`-escaping names (`correspondence.json` 37cdf80f…; native.xml 43c051d7…) |
+| Validator (`validate_coverage.py`) | 0 | **PASS** 313 footprints, 26 blocks / 297 members, 10 fixed, 6 shared, 0 unassigned, 0 duplicates (`validator-coverage-report.json` 5025ca01…) |
+
+- **Validator scope:** it ran on a scratch copy of `agentee-478-prep` whose `allocation-v2.json` board binding was rebound to the new extract. The committed 478 data is unchanged.
+
+### Retention and installed project
+
+- `SHA256SUMS`: 8749c5ba…; `MANIFEST.json`: 450795fb….
+- Installed `.kicad_pcb`: **fa7c2ca67e7ba3b832c0b89268052c6701695454bb17756af01854ef3ecaf46e**.
+- `.kicad_sch`: 21965aeb…; `.kicad_pro`: eba1a9b2…; `.kicad_dru`: d4ce8f95… (the merged 186 RF rules).
+
+### Board delta vs cbfea9be (`board-delta-vs-cbfea9be.txt`, 9ef26644…)
+
+The comparison is a read-only pcbnew extract of both boards: 313 footprints each, with no reference added or removed.
+
+- **Electrical:** exactly 6 value changes. fpid (`Resistor_SMD:R_0603_1608Metric`) and every pad net are unchanged.
+  - R74, R78, R82: 68.1 kohm → 75 kohm 0.1% 25ppm/K (C723587).
+  - R75, R79, R83: 215 kohm → 208 kohm 0.1% 25ppm/K (C861219).
+  - The C84/C133 (/+5V_CAN) and C18 (C694521 22 uF 1210) deltas are already in cbfea9be (488c), so they show no difference here.
+- **Geometry:** 0 position, rotation or side changes across all 313 footprints. The emission stage placed every footprint at the identical pose. This is this run's own emission, not reused acceptance.
+
+## 4. Native CAD qualification in this run's admitted runtime
+
+- **Evidence:** `production-8ecee9c.log` lines 88–93, in the build-out of this admitted run (image sha256:d96f8e00…, native-admit, `apparmor=unconfined` as recorded in `production_run.sh`): `"qualify_manifest": {"cad": {"coverage": "complete", "execution": "ok", "outcome": "pass"}`.
+- **build-check:** its `qualify_manifest` is the same.
+- **bwrap:** no `bwrap` or namespace error occurred anywhere in the log. The SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm failure from agent-529 368ce1dc did NOT reproduce in this runtime.
+- No bypass, no AppArmor change, no infrastructure work.
+
+## 5. F1: plane polygons and add-planes timing on the actual saved board
+
+- **Saved board:** fa7c2ca6, read-only `pcbnew.LoadBoard`, hash unchanged after the read, wall 0.33 s.
+- **Zones:** it has NO In1.Cu `/GND` and NO In2.Cu `/+3V3` net plane zones. Its only zones are two netless In1.Cu zones (rule areas): 4 outline vertices each, unfilled, 0 fill vertices.
+- **add-planes:** this production is preparation plus emission. `add_planes.step` is accepted at log line 244 as a declared routing-turn step and is not executed. So there is NO add-planes inspection wall time against this saved board; none was run, and none is claimed.
+- The plane vertex counts and inspection time become measurable only after the routing-turn add-planes runs on a placed board.
+
+## Rules
+
+- No stock recapture: the 83-id capture c26cca7b… is valid until 2026-10-24 14:08Z.
+- No stale checksum patching; no reuse of prior board acceptance.
+- Every container ran under native-admit in this attempt. The one earlier breach (attempt 1's `docker ps`) is disclosed above.
+- No retry and no extension.
+- No orders, uploads, cloud or reviews.
+- The historical 7d5b0d4d generation identity is preparation evidence only. It does not satisfy 485's current receipts.
