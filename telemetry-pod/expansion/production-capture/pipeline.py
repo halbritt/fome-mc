@@ -895,7 +895,13 @@ def production_content(scaffold_out, work):
     if not scaffold_out.exists():
         raise ValueError('scaffold not available')
     shutil.copytree(scaffold_out / 'inputs', work)
-    scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs)
+    # AGENTEE-485 B0: the content writer validates against the same-root capture (agent-ee c69bf8b3+ accepts
+    # captured=(files, work); earlier runtimes have no such parameter and are called unchanged).
+    import inspect
+    extra = {}
+    if 'captured' in inspect.signature(scaffold.write_envelope_content).parameters:
+        extra['captured'] = ({p.relative_to(work).as_posix(): sha(p) for p in work.rglob('*') if p.is_file()}, work)
+    scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs, **extra)
     import pcbnew
     board = pcbnew.LoadBoard(str(work / BOARD))
     return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
