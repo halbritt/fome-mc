@@ -1,0 +1,80 @@
+{
+  "net": "/IMU_CS",
+  "seed": [
+    12.5,
+    9.0875
+  ],
+  "layers": [
+    "F.Cu",
+    "In2.Cu",
+    "B.Cu"
+  ],
+  "step_mm": 0.05403,
+  "track_mm": 0.2,
+  "via_mm": 0.6,
+  "bottleneck_mm": 0.52957,
+  "wide_open": false,
+  "verdict": "PASSABLE",
+  "measured": true,
+  "margin_um": 329.57,
+  "target_cells": 459,
+  "via_legal_fraction": 0.4873,
+  "grid": [
+    1200,
+    332
+  ],
+  "view": [
+    8.5,
+    5.088,
+    73.325,
+    23.0
+  ],
+  "note": "COARSE: the widened step 0.05403mm is more than a quarter of the 0.2mm track, and a bottleneck is resolved to +/- one step -- treat this verdict as a locate, then re-measure the throat on a small --view at --step 0.01",
+  "throat": {
+    "x": 12.6333,
+    "y": 8.7345,
+    "layer": "F.Cu"
+  },
+  "clearance_mm": 0.2,
+  "gap_mm": 0.92957,
+  "gap_need_mm": 0.6,
+  "gap_blockers": 2,
+  "near": [
+    {
+      "kind": "pad",
+      "ref": "U2",
+      "pad": "U2.11",
+      "net": "unconnected-(U2-NC-Pad11)",
+      "net_id": 158,
+      "clearance": 0.2,
+      "x": 13.1625,
+      "y": 9.25,
+      "layer": "F.Cu",
+      "dist": 0.40359
+    },
+    {
+      "kind": "pad",
+      "ref": "U2",
+      "pad": "U2.13",
+      "net": "/SPI_SCK",
+      "net_id": 142,
+      "clearance": 0.2,
+      "x": 12.0,
+      "y": 9.0875,
+      "layer": "F.Cu",
+      "dist": 0.46008
+    }
+  ],
+  "auto_widened": {
+    "view": [
+      8.5,
+      5.09,
+      73.33,
+      23.0
+    ],
+    "step_mm": 0.05403,
+    "nearest_island_mm": 57.68,
+    "coarse": true,
+    "coarse_note": "COARSE: the widened step 0.05403mm is more than a quarter of the 0.2mm track, and a bottleneck is resolved to +/- one step -- treat this verdict as a locate, then re-measure the throat on a small --view at --step 0.01"
+  }
+}

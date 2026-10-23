@@ -1,0 +1,86 @@
+{
+ "kind": "defect-record",
+ "version": 1,
+ "count": 1,
+ "defects": [
+  {
+   "kind": "throat",
+   "verdict": "CAGED",
+   "net": "/IMU_CS",
+   "seed": {
+    "x": 12.5,
+    "y": 9.0875,
+    "layer": "F.Cu"
+   },
+   "at": {
+    "x": 43.9167,
+    "y": 5.1145,
+    "layer": "In2.Cu"
+   },
+   "refs": [],
+   "pads": [],
+   "measure": {
+    "space": "track_width",
+    "have_mm": 0.03224,
+    "need_mm": 0.2,
+    "short_mm": 0.16776,
+    "resolution_mm": 0.05403,
+    "gap_mm": 0.43224,
+    "gap_need_mm": 0.6,
+    "gap_blockers": 2,
+    "derived_from": "have_mm + span.a.clearance + span.b.clearance (the clearance in force at each blocker forming the throat, NOT 2 x the base clearance)"
+   },
+   "view": [
+    8.5,
+    5.0875,
+    73.325,
+    23.0
+   ],
+   "relief": [],
+   "instrument": {
+    "source": "check_reachability",
+    "floors": {
+     "clearance": {
+      "value": 0.2,
+      "source": "board netclass"
+     },
+     "track_width": {
+      "value": 0.2,
+      "source": "board netclass"
+     },
+     "via_diameter": {
+      "value": 0.6,
+      "source": "board netclass"
+     }
+    },
+    "step_mm": 0.05403,
+    "search_view": [
+     8.5,
+     5.0875,
+     73.325,
+     23.0
+    ]
+   },
+   "span": {
+    "a": {
+     "x": 44.0,
+     "y": 5.6,
+     "layer": null,
+     "kind": "via",
+     "net": "/ANT_BIAS",
+     "clearance": 0.2
+    },
+    "b": {
+     "x": 44.0,
+     "y": 5.6,
+     "layer": "In2.Cu",
+     "kind": "segment",
+     "net": "/ANT_BIAS",
+     "clearance": 0.2
+    }
+   }
+  }
+ ],
+ "board": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/route-1/out/runs/project/route-1/20261023T065308.671261Z/candidate/project/telemetry-pod.kicad_pcb",
+ "board_sha": "19ed7954ab305b39f29d19f08fb619b4399cb6522869fba21b7712a52a310bdf"
+}

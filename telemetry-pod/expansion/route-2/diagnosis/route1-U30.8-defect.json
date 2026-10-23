@@ -1,0 +1,86 @@
+{
+ "kind": "defect-record",
+ "version": 1,
+ "count": 1,
+ "defects": [
+  {
+   "kind": "throat",
+   "verdict": "CAGED",
+   "net": "/SENSOR_POWER_AUX_DVDT",
+   "seed": {
+    "x": 57.735,
+    "y": 46.55,
+    "layer": "F.Cu"
+   },
+   "at": {
+    "x": 56.89,
+    "y": 45.625,
+    "layer": "B.Cu"
+   },
+   "refs": [],
+   "pads": [],
+   "measure": {
+    "space": "track_width",
+    "have_mm": 0.2,
+    "need_mm": 0.2,
+    "short_mm": 0.0,
+    "resolution_mm": 0.01,
+    "gap_mm": 0.6,
+    "gap_need_mm": 0.6,
+    "gap_blockers": 2,
+    "derived_from": "have_mm + span.a.clearance + span.b.clearance (the clearance in force at each blocker forming the throat, NOT 2 x the base clearance)"
+   },
+   "view": [
+    53.735,
+    42.55,
+    61.735,
+    50.55
+   ],
+   "relief": [],
+   "instrument": {
+    "source": "check_reachability",
+    "floors": {
+     "clearance": {
+      "value": 0.2,
+      "source": "board netclass"
+     },
+     "track_width": {
+      "value": 0.2,
+      "source": "board netclass"
+     },
+     "via_diameter": {
+      "value": 0.6,
+      "source": "board netclass"
+     }
+    },
+    "step_mm": 0.01,
+    "search_view": [
+     53.735,
+     42.55,
+     61.735,
+     50.55
+    ]
+   },
+   "span": {
+    "a": {
+     "x": 56.3,
+     "y": 45.7,
+     "layer": null,
+     "kind": "via",
+     "net": "/GND",
+     "clearance": 0.2
+    },
+    "b": {
+     "x": 57.3,
+     "y": 41.4,
+     "layer": "B.Cu",
+     "kind": "segment",
+     "net": "/SENSOR_POWER_TIRE_RTN",
+     "clearance": 0.2
+    }
+   }
+  }
+ ],
+ "board": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/route-1/out/runs/project/route-1/20261023T065308.671261Z/candidate/project/telemetry-pod.kicad_pcb",
+ "board_sha": "19ed7954ab305b39f29d19f08fb619b4399cb6522869fba21b7712a52a310bdf"
+}

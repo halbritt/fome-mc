@@ -1,0 +1,26 @@
+{
+  "schema_version": "evidence-record/1",
+  "id": "route-2-repository-contract",
+  "evidence_class": "evidence-static-source-structure",
+  "summary": "Repository and local routing instructions require isolated snapshots, native KiCad grading and preservation without relaxed rules. The executed routing code stayed at clean b5774496 and the original input boards are unchanged. The source-bound receipts establish the runtime and preserved state. No routing software implementation changed.",
+  "provenance": [
+    {
+      "locator": "/home/halbritt/git/fome-mc/AGENTS.md",
+      "method": "read repository contract",
+      "content_sha256": "4ea0acef9d09ca526e5c9dc11a0fd82d5c771331501c625ab281077d3e0aae33"
+    },
+    {
+      "locator": "/home/halbritt/git/kicad-route@b5774496d8466b67ffa0362b6665fee2108155a3",
+      "method": "git HEAD and empty porcelain verified; executed tool identity clean"
+    }
+  ],
+  "satisfies": [
+    "repository contract",
+    "accepted ADR, RFC, API, compatibility, generation, build, and test contracts",
+    "current source, configuration, and relevant runtime state",
+    "repository instructions from root through target path",
+    "change-type classification",
+    "per-edit change classification",
+    "preservation boundary and semantic authority"
+  ]
+}
