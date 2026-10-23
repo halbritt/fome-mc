@@ -1,0 +1,78 @@
+{
+  "schema": "agentee-490.J3-access-decision/1",
+  "reference": "J3",
+  "uuid": "c4f5153d-f022-576c-a234-98fe27f874d1",
+  "part": "DM3AT-SF-PEJM5",
+  "decision": "Select forreview B90 at(9.1,40) with plainleftedge and bare-board B-side access beforehardware/lid; usefiniteflatpushblade recipe. No notchadoption. This is a planning/assemblychoice, notqualifiedbodyorcardZ tolerance.",
+  "native_evidence": "native-j3-inward.json",
+  "native_geometry": {
+    "pose_mm_deg": [
+      9.1,
+      40,
+      90
+    ],
+    "side": "B",
+    "pad_count": 14,
+    "drilled_pad_count": 0,
+    "minimum_nominal_pad_edge_mm": 0.775,
+    "process_outline_tolerance_mm": 0.2,
+    "conservative_min_with_regular_edge_tolerance_mm": 0.575,
+    "edge_datum_used_mm": 0.5,
+    "edge_datum_scope": "Priorengineeringedgedatum,notnewhardmanufacturerlimit; arithmeticexplicitlyincludespublishedJLCregular\u00b1.2. NativeDRC usesactualsourcerules."
+  },
+  "nominal_card_motion": {
+    "source_path": "/home/halbritt/.cache/agentee-490-agent507/j3catalog.pdf",
+    "sha256": "ab978e9d023b8b2d3a5acfe31ead6e9bf1d63b439d21f7f4db662a1e4e3b56af",
+    "page": 3,
+    "body_length_mm": 15.95,
+    "body_width_mm": 13.85,
+    "body_height_nominal_mm": 1.68,
+    "overstroke_lock_eject_from_rear_mm": [
+      16.75,
+      17.55,
+      21.55
+    ],
+    "nominal_press_stroke_mm": 0.8,
+    "nominal_eject_stroke_mm": 4.0,
+    "rear_body_x_mm": 17.075,
+    "nominal_card_front_x_overstroke_lock_eject_mm": [
+      0.325,
+      -0.475,
+      -4.475
+    ],
+    "derivation": "Currentinward9.1 +half15.95=17.075rear;subtractcatalogpositions. Cataloguefigureisreference-onlyandpose-tobodydatumstillmustberegistered; theseareNOTtolerancebounds.",
+    "correction": "The retainedab978catalogitselfshows17.55/21.55; no needtoassumeseparateold17.5/21.35valuesorrefetchsamecatalog."
+  },
+  "service_recipe": {
+    "phase": "bareboard,aftersoldering, beforestandoffs/harness/lid; caninvertunsupportedboardfixtureforBaccess",
+    "flat_push_blade_mm": [
+      20,
+      2,
+      0.4
+    ],
+    "class": "default",
+    "construction": "Finiteengineeringtoolprofile,notclaimedWihaactualshaftgeometry. Tipcontactsoutwardcardedge; flatbladeparallelBplane,roundbarrel/handle keptoutsidePCB projection.",
+    "tip_required_reach_x_mm": 0.5,
+    "handle_box_mm": [
+      -100,
+      25,
+      -15,
+      55
+    ],
+    "z_reference": "Cardedgecentre relativeBplane isunqualified. RequireflatbladeentirelyoutwardofactualBplane; no assumednegativeFR4collisionorzeroZtol.",
+    "card_swept_box_mm": "16x12x2chosenadvisoryboxfollowsactualslotaxis/face; height2isnotmanufacturermax."
+  },
+  "finite_alternatives": [
+    {
+      "option": "Apreferred",
+      "action": "No outlinechange; bareboardBside flat0.4x2blade access, handleoutsideedge; finiteapproach above. Finalsource/customermaxcardZ stillmustvalidate."
+    },
+    {
+      "option": "Bfallback",
+      "action": "Reviewed1x4mmnotch x0..1,y38..42withsame9.1pose;nativeall14padsinsideandnone drilled,minedge.775. Keepasproposaluntildrawing/toolZ andreviewestablishneed; thenwriteremitsoutlineandrerunsnativechecks."
+    }
+  ],
+  "remaining_exact_evidence": "Exactcustomer-drawingbounds forsocket/cardthickness and cardedgeZ atoverstroke, plusnativeFab/bodyreferencedatummatch. IfthosefactsinvalidateA, useBfinitefallback; no board-thicknesschange or blindoutwardmove.",
+  "final_board_check": "Actualselectedside/pose; all14pad/drill/edge and5ownedruleareas aftereverymove/flip; referencedcardstroke/toolvolume andcaseaccess byphase; actualsavedoutlineandnativeDRC.",
+  "admission": "PARTIAL;nominalaccessarrangement+nativeedgechecks, no fullaccessorheightmaxPASS."
+}
