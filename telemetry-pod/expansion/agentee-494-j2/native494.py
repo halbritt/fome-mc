@@ -2,7 +2,8 @@ import json,sys,math,hashlib
 from pathlib import Path
 import pcbnew as K
 c=Path(sys.argv[1]);out=[]
-for name in ['SMA_Amphenol_132134_Manufacturer','SMA_Amphenol_132134_494_Conditional']:
+# The superseded conditional variant lives in historical-superseded/ as evidence only.
+for name in ['SMA_Amphenol_132134_Manufacturer']:
  f=K.FootprintLoad(str(c/'Agentee494.pretty'),name);assert f
  f.SetPosition(K.VECTOR2I(K.FromMM(103),K.FromMM(40))); f.SetOrientationDegrees(0)
  rows=[]
