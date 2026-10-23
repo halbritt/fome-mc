@@ -1,35 +1,87 @@
 {
-  "verdict": "PASS: declaration/source controls only; full critical-pin acceptance unresolved",
-  "native_footprints": 313,
-  "blocks": 26,
-  "effective_roles": 26,
-  "historical_rows": 211,
-  "unmapped_historical_rows": 197,
-  "byte_equal_relationships": true,
-  "native_endpoint_resolutions": 52,
-  "real_consumer_positive": true,
+  "verdict": "SUPPORTED INCREMENT IMPLEMENTED; full acceptance UNRESOLVED and consumer refuses pass by required unknowns",
+  "consumer_head": "8e3b382b0f48525742cfd520e3f306b12e78a468",
+  "real_consumer_declaration_positive": "PASS",
+  "real_consumer_full_check_status": "unknown",
+  "native_endpoint_resolutions": 236,
+  "all_source_primary_endpoint_resolutions": 428,
+  "source_rows": 214,
+  "cross_face_rows": 211,
+  "source_rows_with_supported_bindings": 68,
+  "unresolved_source_rows": 154,
+  "required_unknown_guards": 154,
+  "full_check_unknown_counts": {
+    "eligibility_requirement_unresolved": 23,
+    "required_numeric_authority_missing": 118,
+    "block_pin_relationships_missing": 23
+  },
   "negative_controls": [
     {
-      "control": "unbound template cannot be consumed as bound contract",
-      "refusal": "allocation is not bound to this original board"
+      "control": "omitted adopted VIO relationship against authenticated full corrected policy",
+      "result": "REFUSE",
+      "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "stale board binding",
-      "refusal": "allocation is not bound to this original board"
+      "control": "same-net wrong physical EN3 instead of VIN2 against corrected policy",
+      "result": "REFUSE",
+      "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "missing native allocation member",
-      "refusal": "unallocated native footprints: C130"
+      "control": "stale cA 12-obligation effective policy",
+      "result": "REFUSE",
+      "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "different effective locality bytes/semantics",
-      "refusal": "contract relationships differ from effective policy electrical_locality"
+      "control": "unauthorized named VIO-to-VCC return relaxed to generic GND",
+      "result": "REFUSE",
+      "reason": "contract relationships differ from effective policy electrical_locality"
     },
     {
-      "control": "invented historical ID as effective ID",
-      "refusal": "template instance is duplicate or names an unknown relationship/role"
+      "control": "wrong physical native PG4 claimed as protected supply",
+      "result": "REFUSE",
+      "reason": "native pad net differs from declaration"
+    },
+    {
+      "control": "unauthorized opposite-side support: U6.8-C16-ldo-cap",
+      "result": "DEFECT",
+      "reason": "same_face_required"
+    },
+    {
+      "control": "unauthorized opposite-side support: U12.8-C20-ldo-cap",
+      "result": "DEFECT",
+      "reason": "same_face_required"
+    },
+    {
+      "control": "unauthorized opposite-side support: U27.12-C118-hf-decoupler",
+      "result": "DEFECT",
+      "reason": "same_face_required"
+    },
+    {
+      "control": "unauthorized opposite-side support: U28.12-C120-hf-decoupler",
+      "result": "DEFECT",
+      "reason": "same_face_required"
+    },
+    {
+      "control": "unauthorized opposite-side support: U29.12-C122-hf-decoupler",
+      "result": "DEFECT",
+      "reason": "same_face_required"
     }
   ],
-  "consumer_head": "8e3b382b0f48525742cfd520e3f306b12e78a468",
-  "consumer_source_identity": "selected consumer module blobs verified against frozen commit"
+  "gap_controls": [
+    {
+      "gap": "G1_SINGLE_LEG_SCHEMA",
+      "result": "UNSUPPORTED_REFUSAL",
+      "reason": "locality obligation needs id, metric, supply and return; optional switch"
+    },
+    {
+      "gap": "G2_NO_VIA_EVIDENCE",
+      "result": "UNSUPPORTED_REFUSAL",
+      "reason": "locality obligation needs id, metric, supply and return; optional switch"
+    }
+  ],
+  "limitations": [
+    "Full check does not pass; all numeric maxima remain ADVISORY.",
+    "Equality negatives compare against the authenticated corrected effective policy; consumer does not independently interpret primary datasheets.",
+    "Side fault controls mutate only in-memory capture copies; no native board/schematic edits or routed-via qualification."
+  ]
 }

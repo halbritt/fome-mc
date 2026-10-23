@@ -1,6 +1,10 @@
 [
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.2-C3-hot-loop-input"
+    ],
+    "obligation": "u5-input-hf-C3",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/POD_12V_PROTECTED",
@@ -8,63 +12,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C3"
       }
     },
-    "effective_id": "u5-input-hf-C3",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C3"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C3-hot-loop-input",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: hot loop; a via pair adds loop inductance"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.2-C3-hot-loop-input"
+    ],
+    "obligation": "u5-input-hf-C3",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -72,70 +37,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C3"
       }
     },
-    "effective_id": "u5-input-hf-C3",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U5"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C3"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C3-hot-loop-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: hot loop; a via pair adds loop inductance"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.8-L1-switch-inductor"
+    ],
+    "obligation": "u5-input-hf-C3",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/SW_PRE",
@@ -143,128 +62,49 @@
         "reference": "U5"
       },
       "max_distance_nm": 5500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/SW_PRE",
         "pad": "1",
         "reference": "L1"
       }
     },
-    "effective_id": "u5-input-hf-C3",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/SW_PRE",
-          "pad": "8",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 5.0,
-      "to": [
-        {
-          "net": "/SW_PRE",
-          "pad": "1",
-          "reference": "L1"
-        }
-      ]
-    },
-    "historical_relationship": "U5.8-L1-switch-inductor",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "switch",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 28,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8. Keep the switch area small. Keep the copper area connecting the SW pin to the inductor as short and wide as possible"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node area (dv/dt)"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "switch"
   },
   {
-    "effective": {
-      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+    "historical_relationships": [
+      "U5.2-C1-bulk-input"
+    ],
+    "obligation": "u5-input-bulk-C1",
+    "pair": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius; A2 source correction: TI LMR36520 retained pin table p.4 identifies VIN2 and EN3; layout p.27 item1 requires VIN/PGND locality. Same net is not the same physical pin.",
       "from": {
         "net": "/POD_12V_PROTECTED",
-        "pad": "3",
+        "pad": "2",
         "reference": "U5"
       },
       "max_distance_nm": 7000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C1"
       }
     },
-    "effective_id": "u5-input-bulk-C1",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C1"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C1-bulk-input",
-    "historical_role": "supply",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.2-C1-bulk-input"
+    ],
+    "obligation": "u5-input-bulk-C1",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -272,135 +112,49 @@
         "reference": "U5"
       },
       "max_distance_nm": 7000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C1"
       }
     },
-    "effective_id": "u5-input-bulk-C1",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U5"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C1"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C1-bulk-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
-      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+    "historical_relationships": [
+      "U5.2-C2-bulk-input"
+    ],
+    "obligation": "u5-input-bulk-C2",
+    "pair": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius; A2 source correction: TI LMR36520 retained pin table p.4 identifies VIN2 and EN3; layout p.27 item1 requires VIN/PGND locality. Same net is not the same physical pin.",
       "from": {
         "net": "/POD_12V_PROTECTED",
-        "pad": "3",
+        "pad": "2",
         "reference": "U5"
       },
       "max_distance_nm": 9000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C2"
       }
     },
-    "effective_id": "u5-input-bulk-C2",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C2"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C2-bulk-input",
-    "historical_role": "supply",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.2-C2-bulk-input"
+    ],
+    "obligation": "u5-input-bulk-C2",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -408,70 +162,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 9000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C2"
       }
     },
-    "effective_id": "u5-input-bulk-C2",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U5"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C2"
-        }
-      ]
-    },
-    "historical_relationship": "U5.2-C2-bulk-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.6-C4-vcc-bias"
+    ],
+    "obligation": "u5-vcc-C4",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/VCC_PRE",
@@ -479,63 +187,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/VCC_PRE",
         "pad": "1",
         "reference": "C4"
       }
     },
-    "effective_id": "u5-vcc-C4",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/VCC_PRE",
-          "pad": "6",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "to": [
-        {
-          "net": "/VCC_PRE",
-          "pad": "1",
-          "reference": "C4"
-        }
-      ]
-    },
-    "historical_relationship": "U5.6-C4-vcc-bias",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "2. Place the bypass capacitor for VCC close to the VCC pin ... short, wide traces to the VCC and GND pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "return may close through the In1 GND plane"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.6-C4-vcc-bias"
+    ],
+    "obligation": "u5-vcc-C4",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -543,70 +212,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 8500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C4"
       }
     },
-    "effective_id": "u5-vcc-C4",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U5"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 6.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C4"
-        }
-      ]
-    },
-    "historical_relationship": "U5.6-C4-vcc-bias",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "2. Place the bypass capacitor for VCC close to the VCC pin ... short, wide traces to the VCC and GND pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "return may close through the In1 GND plane"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.7-C5-bootstrap"
+    ],
+    "obligation": "u5-boot-C5",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/BOOT_PRE",
@@ -614,61 +237,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/BOOT_PRE",
         "pad": "1",
         "reference": "C5"
       }
     },
-    "effective_id": "u5-boot-C5",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/BOOT_PRE",
-          "pad": "7",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 3.5,
-      "to": [
-        {
-          "net": "/BOOT_PRE",
-          "pad": "1",
-          "reference": "C5"
-        }
-      ]
-    },
-    "historical_relationship": "U5.7-C5-bootstrap",
-    "historical_role": "supply",
-    "notes": [],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "3. Place CBOOT close to the device with short, wide traces to the BOOT and SW pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node referenced; vias add radiating area"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U5.7-C5-bootstrap"
+    ],
+    "obligation": "u5-boot-C5",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/SW_PRE",
@@ -676,63 +262,24 @@
         "reference": "U5"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/SW_PRE",
         "pad": "2",
         "reference": "C5"
       }
     },
-    "effective_id": "u5-boot-C5",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U5"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U5"
-        }
-      ],
-      "max_distance_mm": 3.5,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": []
-    },
-    "historical_relationship": "U5.7-C5-bootstrap",
-    "historical_role": "return",
-    "notes": [
-      "Historical generic GND selector has no return pair; effective explicit SW return retained."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "3. Place CBOOT close to the device with short, wide traces to the BOOT and SW pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node referenced; vias add radiating area"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.2-C10-hot-loop-input"
+    ],
+    "obligation": "u7-input-hf-C10",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/POD_12V_PROTECTED",
@@ -740,63 +287,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C10"
       }
     },
-    "effective_id": "u7-input-hf-C10",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C10"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C10-hot-loop-input",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: hot loop; a via pair adds loop inductance"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.2-C10-hot-loop-input"
+    ],
+    "obligation": "u7-input-hf-C10",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -804,70 +312,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C10"
       }
     },
-    "effective_id": "u7-input-hf-C10",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U7"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C10"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C10-hot-loop-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: hot loop; a via pair adds loop inductance"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.8-L2-switch-inductor"
+    ],
+    "obligation": "u7-input-hf-C10",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/SW_3V3",
@@ -875,128 +337,49 @@
         "reference": "U7"
       },
       "max_distance_nm": 5500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/SW_3V3",
         "pad": "1",
         "reference": "L2"
       }
     },
-    "effective_id": "u7-input-hf-C10",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/SW_3V3",
-          "pad": "8",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 5.0,
-      "to": [
-        {
-          "net": "/SW_3V3",
-          "pad": "1",
-          "reference": "L2"
-        }
-      ]
-    },
-    "historical_relationship": "U7.8-L2-switch-inductor",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "switch",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 28,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8. Keep the switch area small. Keep the copper area connecting the SW pin to the inductor as short and wide as possible"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node area (dv/dt)"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "switch"
   },
   {
-    "effective": {
-      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+    "historical_relationships": [
+      "U7.2-C8-bulk-input"
+    ],
+    "obligation": "u7-input-bulk-C8",
+    "pair": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius; A2 source correction: TI LMR36520 retained pin table p.4 identifies VIN2 and EN3; layout p.27 item1 requires VIN/PGND locality. Same net is not the same physical pin.",
       "from": {
         "net": "/POD_12V_PROTECTED",
-        "pad": "3",
+        "pad": "2",
         "reference": "U7"
       },
       "max_distance_nm": 7000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C8"
       }
     },
-    "effective_id": "u7-input-bulk-C8",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C8"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C8-bulk-input",
-    "historical_role": "supply",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.2-C8-bulk-input"
+    ],
+    "obligation": "u7-input-bulk-C8",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -1004,135 +387,49 @@
         "reference": "U7"
       },
       "max_distance_nm": 7000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C8"
       }
     },
-    "effective_id": "u7-input-bulk-C8",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U7"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C8"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C8-bulk-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
-      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+    "historical_relationships": [
+      "U7.2-C9-bulk-input"
+    ],
+    "obligation": "u7-input-bulk-C9",
+    "pair": {
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 (second VIN pin 3). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius; A2 source correction: TI LMR36520 retained pin table p.4 identifies VIN2 and EN3; layout p.27 item1 requires VIN/PGND locality. Same net is not the same physical pin.",
       "from": {
         "net": "/POD_12V_PROTECTED",
-        "pad": "3",
+        "pad": "2",
         "reference": "U7"
       },
       "max_distance_nm": 9000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/POD_12V_PROTECTED",
         "pad": "1",
         "reference": "C9"
       }
     },
-    "effective_id": "u7-input-bulk-C9",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "2",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "to": [
-        {
-          "net": "/POD_12V_PROTECTED",
-          "pad": "1",
-          "reference": "C9"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C9-bulk-input",
-    "historical_role": "supply",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.2-C9-bulk-input"
+    ],
+    "obligation": "u7-input-bulk-C9",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 hot loop. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -1140,70 +437,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 9000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C9"
       }
     },
-    "effective_id": "u7-input-bulk-C9",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U7"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 8.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C9"
-        }
-      ]
-    },
-    "historical_relationship": "U7.2-C9-bulk-input",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "8.5.1: the loop formed by the input capacitors and power ground ... traces wide and short, loop area as small as possible; 1. Place the input capacitors as close as possible to the VIN and GND terminals"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: parallel member of the same hot loop"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.6-C11-vcc-bias"
+    ],
+    "obligation": "u7-vcc-C11",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2: VCC bypass capacitor close to the VCC pin with short wide traces to VCC and GND. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/VCC_3V3",
@@ -1211,63 +462,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/VCC_3V3",
         "pad": "1",
         "reference": "C11"
       }
     },
-    "effective_id": "u7-vcc-C11",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/VCC_3V3",
-          "pad": "6",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "to": [
-        {
-          "net": "/VCC_3V3",
-          "pad": "1",
-          "reference": "C11"
-        }
-      ]
-    },
-    "historical_relationship": "U7.6-C11-vcc-bias",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "2. Place the bypass capacitor for VCC close to the VCC pin ... short, wide traces to the VCC and GND pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "return may close through the In1 GND plane"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.6-C11-vcc-bias"
+    ],
+    "obligation": "u7-vcc-C11",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 2. Pin 1 PGND is 5.97 mm from pin 6 across the HSOIC body, so this bound keeps the capacitor on the device; the intended return is the exposed pad/ground plane (repeated pad 9, needs AGENTEE-328 UUID selection). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -1275,70 +487,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 8500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C11"
       }
     },
-    "effective_id": "u7-vcc-C11",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U7"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 6.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C11"
-        }
-      ]
-    },
-    "historical_relationship": "U7.6-C11-vcc-bias",
-    "historical_role": "return",
-    "notes": [
-      "Endpoint/selector difference, not an ID rename. Preserve effective endpoints.",
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "2. Place the bypass capacitor for VCC close to the VCC pin ... short, wide traces to the VCC and GND pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "return may close through the In1 GND plane"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.7-C12-bootstrap"
+    ],
+    "obligation": "u7-boot-C12",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3: CBOOT close to the device with short wide traces to BOOT and SW. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/BOOT_3V3",
@@ -1346,61 +512,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/BOOT_3V3",
         "pad": "1",
         "reference": "C12"
       }
     },
-    "effective_id": "u7-boot-C12",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/BOOT_3V3",
-          "pad": "7",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 3.5,
-      "to": [
-        {
-          "net": "/BOOT_3V3",
-          "pad": "1",
-          "reference": "C12"
-        }
-      ]
-    },
-    "historical_relationship": "U7.7-C12-bootstrap",
-    "historical_role": "supply",
-    "notes": [],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "3. Place CBOOT close to the device with short, wide traces to the BOOT and SW pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node referenced; vias add radiating area"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U7.7-C12-bootstrap"
+    ],
+    "obligation": "u7-boot-C12",
+    "pair": {
       "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 3 (SW leg of the bootstrap capacitor). agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/SW_3V3",
@@ -1408,63 +537,24 @@
         "reference": "U7"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/SW_3V3",
         "pad": "2",
         "reference": "C12"
       }
     },
-    "effective_id": "u7-boot-C12",
-    "exact_endpoint_mapping": false,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "1",
-          "reference": "U7"
-        },
-        {
-          "net": "/GND",
-          "pad": "9",
-          "reference": "U7"
-        }
-      ],
-      "max_distance_mm": 3.5,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": []
-    },
-    "historical_relationship": "U7.7-C12-bootstrap",
-    "historical_role": "return",
-    "notes": [
-      "Historical generic GND selector has no return pair; effective explicit SW return retained."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 27,
-          "requirement": "qualitative",
-          "sha256": "c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b",
-          "source": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
-          "text": "3. Place CBOOT close to the device with short, wide traces to the BOOT and SW pins"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "topology: switch-node referenced; vias add radiating area"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "same-face-only"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U26.8-C97-hf-decoupler"
+    ],
+    "obligation": "u26-bypass-C97",
+    "pair": {
       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/PRE_6V3",
@@ -1472,63 +562,24 @@
         "reference": "U26"
       },
       "max_distance_nm": 3500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/PRE_6V3",
         "pad": "1",
         "reference": "C97"
       }
     },
-    "effective_id": "u26-bypass-C97",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/PRE_6V3",
-          "pad": "8",
-          "reference": "U26"
-        }
-      ],
-      "max_distance_mm": 3.0,
-      "to": [
-        {
-          "net": "/PRE_6V3",
-          "pad": "1",
-          "reference": "C97"
-        }
-      ]
-    },
-    "historical_relationship": "U26.8-C97-hf-decoupler",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 18,
-          "requirement": "qualitative",
-          "sha256": "8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6",
-          "source": "telemetry-pod/expansion/interface-preparation/wheel-input/lm2903b-q1.pdf",
-          "text": "A bypass capacitor is recommended on the supply pin"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "single-pin HF decoupler"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U26.8-C97-hf-decoupler"
+    ],
+    "obligation": "u26-bypass-C97",
+    "pair": {
       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -1536,64 +587,24 @@
         "reference": "U26"
       },
       "max_distance_nm": 8500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C97"
       }
     },
-    "effective_id": "u26-bypass-C97",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/GND",
-          "pad": "4",
-          "reference": "U26"
-        }
-      ],
-      "max_distance_mm": 5.0,
-      "selector": "nearest GND pad pair; empty selector is unsatisfied",
-      "to": [
-        {
-          "net": "/GND",
-          "pad": "2",
-          "reference": "C97"
-        }
-      ]
-    },
-    "historical_relationship": "U26.8-C97-hf-decoupler",
-    "historical_role": "return",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 18,
-          "requirement": "qualitative",
-          "sha256": "8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6",
-          "source": "telemetry-pod/expansion/interface-preparation/wheel-input/lm2903b-q1.pdf",
-          "text": "A bypass capacitor is recommended on the supply pin"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "single-pin HF decoupler"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "return"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U26.8-C98-secondary-decoupler"
+    ],
+    "obligation": "u26-bypass-C98",
+    "pair": {
       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18: bypass capacitor between the supply voltage and ground, placed close to the supply pin. V+ pin 8. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/PRE_6V3",
@@ -1601,63 +612,24 @@
         "reference": "U26"
       },
       "max_distance_nm": 5500000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/PRE_6V3",
         "pad": "1",
         "reference": "C98"
       }
     },
-    "effective_id": "u26-bypass-C98",
-    "exact_endpoint_mapping": true,
-    "historical_leg": {
-      "from": [
-        {
-          "net": "/PRE_6V3",
-          "pad": "8",
-          "reference": "U26"
-        }
-      ],
-      "max_distance_mm": 12.0,
-      "to": [
-        {
-          "net": "/PRE_6V3",
-          "pad": "1",
-          "reference": "C98"
-        }
-      ]
-    },
-    "historical_relationship": "U26.8-C98-secondary-decoupler",
-    "historical_role": "supply",
-    "notes": [
-      "Numeric bounds differ; preserve effective ADVISORY value and citation."
-    ],
-    "role": "supply",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 18,
-          "requirement": "qualitative",
-          "sha256": "8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6",
-          "source": "telemetry-pod/expansion/interface-preparation/wheel-input/lm2903b-q1.pdf",
-          "text": "A bypass capacitor is recommended on the supply pin"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "additional capacitor of a multi-capacitor supply set"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
-    },
-    "template": "decoupler-under-device"
+    "role": "supply"
   },
   {
-    "effective": {
+    "historical_relationships": [
+      "U26.8-C98-secondary-decoupler"
+    ],
+    "obligation": "u26-bypass-C98",
+    "pair": {
       "citation": "TI LM2903B-Q1 datasheet, retained PDF sha256 8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6, section 4.4.1 Layout Guidelines p.18. GND pin 4 is diagonally opposite V+ (6.25 mm) on SOIC-8, so the return bound exceeds the supply bound. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
       "from": {
         "net": "/GND",
@@ -1665,43 +637,2352 @@
         "reference": "U26"
       },
       "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "unchanged effective ADVISORY bound; no manufacturer numeric radius"
+      },
       "to": {
         "net": "/GND",
         "pad": "2",
         "reference": "C98"
       }
     },
-    "effective_id": "u26-bypass-C98",
-    "exact_endpoint_mapping": false,
-    "historical_leg": null,
-    "historical_relationship": "U26.8-C98-secondary-decoupler",
-    "historical_role": "return",
-    "notes": [
-      "No corresponding historical leg/bound; current effective leg retained."
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U6.8-C16-ldo-cap"
     ],
-    "role": "return",
-    "source": {
-      "cross_face_templates": "telemetry-pod/expansion/agentee-478-prep/cross-face-templates.json",
-      "provenance": [
-        {
-          "class": "MFR",
-          "page": 18,
-          "requirement": "qualitative",
-          "sha256": "8cbcb98d99ad3fd2fa78c58c806890088c0da409310d257bb15e8dee3116dfb6",
-          "source": "telemetry-pod/expansion/interface-preparation/wheel-input/lm2903b-q1.pdf",
-          "text": "A bypass capacitor is recommended on the supply pin"
-        },
-        {
-          "class": "TOPOLOGY",
-          "text": "additional capacitor of a multi-capacitor supply set"
-        },
-        {
-          "class": "ENGINEERING-JUDGEMENT",
-          "text": "ENGINEERING JUDGEMENT (agent, AGENTEE-478, labelled; not owner- or manufacturer-set): numeric value of the bound"
-        }
-      ],
-      "relationship_bounds": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
+    "obligation": "U6.8-C16-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U6.8-C16-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "8",
+        "reference": "U6"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C16"
+      }
     },
-    "template": "decoupler-under-device"
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U6.8-C16-ldo-cap"
+    ],
+    "obligation": "U6.8-C16-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U6.8-C16-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U6"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C16"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U6.1-C17-ldo-cap"
+    ],
+    "obligation": "U6.1-C17-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U6.1-C17-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_5V_SENSOR",
+        "pad": "1",
+        "reference": "U6"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_5V_SENSOR",
+        "pad": "1",
+        "reference": "C17"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U6.1-C17-ldo-cap"
+    ],
+    "obligation": "U6.1-C17-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U6.1-C17-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9.",
+      "from": {
+        "net": "/GND",
+        "pad": "3",
+        "reference": "U6"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C17"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U12.8-C20-ldo-cap"
+    ],
+    "obligation": "U12.8-C20-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.8-C20-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "8",
+        "reference": "U12"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C20"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U12.8-C20-ldo-cap"
+    ],
+    "obligation": "U12.8-C20-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.8-C20-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U12"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C20"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U12.1-C19-ldo-cap"
+    ],
+    "obligation": "U12.1-C19-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.1-C19-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+5V_CAN",
+        "pad": "1",
+        "reference": "U12"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+5V_CAN",
+        "pad": "1",
+        "reference": "C19"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U12.1-C19-ldo-cap"
+    ],
+    "obligation": "U12.1-C19-ldo-cap",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.1-C19-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9.",
+      "from": {
+        "net": "/GND",
+        "pad": "3",
+        "reference": "U12"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C19"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U1.2-C46-hf-decoupler"
+    ],
+    "obligation": "U1.2-C46-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U1.2-C46-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "2",
+        "reference": "U1"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C46"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U1.2-C46-hf-decoupler"
+    ],
+    "obligation": "U1.2-C46-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U1.2-C46-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U1"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C46"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U1.2-C50-hf-decoupler"
+    ],
+    "obligation": "U1.2-C50-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U1.2-C50-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "2",
+        "reference": "U1"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C50"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U1.2-C50-hf-decoupler"
+    ],
+    "obligation": "U1.2-C50-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U1.2-C50-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "1",
+        "reference": "U1"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C50"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U100.3-C100-hf-decoupler"
+    ],
+    "obligation": "U100.3-C100-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.3-C100-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+5V_CAN",
+        "pad": "3",
+        "reference": "U100"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+5V_CAN",
+        "pad": "1",
+        "reference": "C100"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U100.3-C100-hf-decoupler"
+    ],
+    "obligation": "U100.3-C100-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.3-C100-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U100"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C100"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U13.4-C62-hf-decoupler"
+    ],
+    "obligation": "U13.4-C62-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U13.4-C62-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "U13"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C62"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U13.4-C62-hf-decoupler"
+    ],
+    "obligation": "U13.4-C62-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U13.4-C62-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "11",
+        "reference": "U13"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C62"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U16.4-C72-hf-decoupler"
+    ],
+    "obligation": "U16.4-C72-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U16.4-C72-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "U16"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C72"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U16.4-C72-hf-decoupler"
+    ],
+    "obligation": "U16.4-C72-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U16.4-C72-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U16"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C72"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U18.4-C76-hf-decoupler"
+    ],
+    "obligation": "U18.4-C76-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U18.4-C76-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "U18"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C76"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U18.4-C76-hf-decoupler"
+    ],
+    "obligation": "U18.4-C76-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U18.4-C76-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U18"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C76"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U19.4-C78-hf-decoupler"
+    ],
+    "obligation": "U19.4-C78-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U19.4-C78-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "U19"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C78"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U19.4-C78-hf-decoupler"
+    ],
+    "obligation": "U19.4-C78-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U19.4-C78-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U19"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C78"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U20.14-C79-hf-decoupler"
+    ],
+    "obligation": "U20.14-C79-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.14-C79-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "14",
+        "reference": "U20"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C79"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U20.14-C79-hf-decoupler"
+    ],
+    "obligation": "U20.14-C79-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.14-C79-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "7",
+        "reference": "U20"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C79"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U21.3-C83-hf-decoupler"
+    ],
+    "obligation": "U21.3-C83-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.3-C83-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+5V_CAN",
+        "pad": "3",
+        "reference": "U21"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+5V_CAN",
+        "pad": "1",
+        "reference": "C83"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U21.3-C83-hf-decoupler"
+    ],
+    "obligation": "U21.3-C83-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.3-C83-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U21"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C83"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U21.5-C84-hf-decoupler"
+    ],
+    "obligation": "U21.5-C84-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.5-C84-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "5",
+        "reference": "U21"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C84"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U21.5-C84-hf-decoupler"
+    ],
+    "obligation": "U21.5-C84-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.5-C84-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Preserve adopted 488 VIO-to-VCC named return, agent-529 061a1b20@2. No GND substitution.",
+      "from": {
+        "net": "/+5V_CAN",
+        "pad": "3",
+        "reference": "U21"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Preserve adopted 488 VIO-to-VCC named return, agent-529 061a1b20@2. No GND substitution."
+      },
+      "to": {
+        "net": "/+5V_CAN",
+        "pad": "2",
+        "reference": "C84"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U22.5-C85-hf-decoupler"
+    ],
+    "obligation": "U22.5-C85-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sources/sn74lvc1g132.pdf sha256 fae33d78fe46834ab99230aaa1106f58321f23cf06c65be9cf08ea9c0dbcb623 p.14; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U22.5-C85-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "5",
+        "reference": "U22"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C85"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U22.5-C85-hf-decoupler"
+    ],
+    "obligation": "U22.5-C85-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sources/sn74lvc1g132.pdf sha256 fae33d78fe46834ab99230aaa1106f58321f23cf06c65be9cf08ea9c0dbcb623 p.14; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U22.5-C85-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "3",
+        "reference": "U22"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C85"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U23.1-C86-hotswap-input"
+    ],
+    "obligation": "U23.1-C86-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U23.1-C86-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "U23"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C86"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U23.1-C86-hotswap-input"
+    ],
+    "obligation": "U23.1-C86-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U23.1-C86-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U23"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C86"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U24.1-C89-hotswap-input"
+    ],
+    "obligation": "U24.1-C89-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U24.1-C89-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "U24"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C89"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U24.1-C89-hotswap-input"
+    ],
+    "obligation": "U24.1-C89-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U24.1-C89-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U24"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C89"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U25.1-C92-hotswap-input"
+    ],
+    "obligation": "U25.1-C92-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U25.1-C92-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "U25"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C92"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U25.1-C92-hotswap-input"
+    ],
+    "obligation": "U25.1-C92-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U25.1-C92-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U25"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C92"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U30.1-C124-hotswap-input"
+    ],
+    "obligation": "U30.1-C124-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U30.1-C124-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_5V_SENSOR",
+        "pad": "1",
+        "reference": "U30"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_5V_SENSOR",
+        "pad": "1",
+        "reference": "C124"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U30.1-C124-hotswap-input"
+    ],
+    "obligation": "U30.1-C124-hotswap-input",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U30.1-C124-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U30"
+      },
+      "max_distance_nm": 4000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C124"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U27.12-C118-hf-decoupler"
+    ],
+    "obligation": "U27.12-C118-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.12-C118-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "12",
+        "reference": "U27"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C118"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U27.12-C118-hf-decoupler"
+    ],
+    "obligation": "U27.12-C118-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.12-C118-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "5",
+        "reference": "U27"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C118"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U27.13-C119-hf-decoupler"
+    ],
+    "obligation": "U27.13-C119-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.13-C119-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "13",
+        "reference": "U27"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C119"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U27.13-C119-hf-decoupler"
+    ],
+    "obligation": "U27.13-C119-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.13-C119-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U27"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C119"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U28.12-C120-hf-decoupler"
+    ],
+    "obligation": "U28.12-C120-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.12-C120-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "12",
+        "reference": "U28"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C120"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U28.12-C120-hf-decoupler"
+    ],
+    "obligation": "U28.12-C120-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.12-C120-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "5",
+        "reference": "U28"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C120"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U28.13-C121-hf-decoupler"
+    ],
+    "obligation": "U28.13-C121-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.13-C121-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "13",
+        "reference": "U28"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C121"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U28.13-C121-hf-decoupler"
+    ],
+    "obligation": "U28.13-C121-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.13-C121-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U28"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C121"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U29.12-C122-hf-decoupler"
+    ],
+    "obligation": "U29.12-C122-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.12-C122-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "12",
+        "reference": "U29"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C122"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U29.12-C122-hf-decoupler"
+    ],
+    "obligation": "U29.12-C122-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.12-C122-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "5",
+        "reference": "U29"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C122"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U29.13-C123-hf-decoupler"
+    ],
+    "obligation": "U29.13-C123-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.13-C123-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "13",
+        "reference": "U29"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C123"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U29.13-C123-hf-decoupler"
+    ],
+    "obligation": "U29.13-C123-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.13-C123-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U29"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C123"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "J3.4-C65-hf-decoupler"
+    ],
+    "obligation": "J3.4-C65-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/J3.4-C65-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "J3"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C65"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "J3.4-C65-hf-decoupler"
+    ],
+    "obligation": "J3.4-C65-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/J3.4-C65-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "J3"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C65"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U2.8-C38-hf-decoupler"
+    ],
+    "obligation": "U2.8-C38-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf sha256 d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7 p.53; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U2.8-C38-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "8",
+        "reference": "U2"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C38"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U2.8-C38-hf-decoupler"
+    ],
+    "obligation": "U2.8-C38-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf sha256 d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7 p.53; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U2.8-C38-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent GND7/GND6 (LSM6DSO32 pin description p.24); exclude grounded SDx/SCx signal pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "7",
+        "reference": "U2"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent GND7/GND6 (LSM6DSO32 pin description p.24); exclude grounded SDx/SCx signal pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C38"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U2.5-C41-hf-decoupler"
+    ],
+    "obligation": "U2.5-C41-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf sha256 d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7 p.53; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U2.5-C41-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "5",
+        "reference": "U2"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C41"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U2.5-C41-hf-decoupler"
+    ],
+    "obligation": "U2.5-C41-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf sha256 d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7 p.53; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U2.5-C41-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent GND7/GND6 (LSM6DSO32 pin description p.24); exclude grounded SDx/SCx signal pins.",
+      "from": {
+        "net": "/GND",
+        "pad": "6",
+        "reference": "U2"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designation of adjacent GND7/GND6 (LSM6DSO32 pin description p.24); exclude grounded SDx/SCx signal pins."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C41"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U3.23-C44-hf-decoupler"
+    ],
+    "obligation": "U3.23-C44-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.81; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U3.23-C44-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "23",
+        "reference": "U3"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C44"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U3.23-C44-hf-decoupler"
+    ],
+    "obligation": "U3.23-C44-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.81; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U3.23-C44-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "24",
+        "reference": "U3"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C44"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U3.22-C44-hf-decoupler"
+    ],
+    "obligation": "U3.22-C44-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.71; telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.81; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U3.22-C44-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "22",
+        "reference": "U3"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C44"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U3.22-C44-hf-decoupler"
+    ],
+    "obligation": "U3.22-C44-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.71; telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf sha256 fd4fcb8e8db2da98515f168b21c7adb9e5b8869380ecc0aed430897ac2f91e4b p.81; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U3.22-C44-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "24",
+        "reference": "U3"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C44"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U10.1-C43-hf-decoupler"
+    ],
+    "obligation": "U10.1-C43-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf sha256 88e453700cea2b263cdb5b44fce1e883e0f6d3b975457f879ac1423eeea42071 p.25; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U10.1-C43-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "U10"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C43"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U10.1-C43-hf-decoupler"
+    ],
+    "obligation": "U10.1-C43-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf sha256 88e453700cea2b263cdb5b44fce1e883e0f6d3b975457f879ac1423eeea42071 p.25; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U10.1-C43-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U10"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C43"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U11.2-C18-hf-decoupler"
+    ],
+    "obligation": "U11.2-C18-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/ref50.pdf sha256 33b13191ad54693f9a4f52e226b354757ad092d2cec6b2c31dba2fecb710d0c6 p.29; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U11.2-C18-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/PRE_6V3",
+        "pad": "2",
+        "reference": "U11"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/PRE_6V3",
+        "pad": "1",
+        "reference": "C18"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U11.2-C18-hf-decoupler"
+    ],
+    "obligation": "U11.2-C18-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/ref50.pdf sha256 33b13191ad54693f9a4f52e226b354757ad092d2cec6b2c31dba2fecb710d0c6 p.29; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U11.2-C18-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "4",
+        "reference": "U11"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C18"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U4.16-C130-hf-decoupler"
+    ],
+    "obligation": "U4.16-C130-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/native-candidate/sources/mcp3208.pdf sha256 89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20 p.23; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U4.16-C130-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "16",
+        "reference": "U4"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C130"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U4.16-C130-hf-decoupler"
+    ],
+    "obligation": "U4.16-C130-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/native-candidate/sources/mcp3208.pdf sha256 89bc1e17c35e2bb1c7b8fbf0b775b3729ce9fe4d27f7e9c052a774757afc0c20 p.23; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U4.16-C130-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim.",
+      "from": {
+        "net": "/GND",
+        "pad": "14",
+        "reference": "U4"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Engineering designated functional power-ground pin from retained native netlist pin functions; no numeric manufacturer-radius claim."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C130"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U8.4-C131-hf-decoupler"
+    ],
+    "obligation": "U8.4-C131-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U8.4-C131-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "4",
+        "reference": "U8"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C131"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U8.4-C131-hf-decoupler"
+    ],
+    "obligation": "U8.4-C131-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U8.4-C131-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "11",
+        "reference": "U8"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C131"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U9.5-C132-hf-decoupler"
+    ],
+    "obligation": "U9.5-C132-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf sha256 6ad9e31b95374c9bd582b821c528c91cb5813772e74e68f80cf81d0c10772b13 p.28; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U9.5-C132-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "5",
+        "reference": "U9"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C132"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U9.5-C132-hf-decoupler"
+    ],
+    "obligation": "U9.5-C132-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf sha256 6ad9e31b95374c9bd582b821c528c91cb5813772e74e68f80cf81d0c10772b13 p.28; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U9.5-C132-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "from": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "U9"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Unique captured GND pad; retained relationship declares a GND return."
+      },
+      "to": {
+        "net": "/GND",
+        "pad": "2",
+        "reference": "C132"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U100.5-C133-hf-decoupler"
+    ],
+    "obligation": "U100.5-C133-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.5-C133-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/+3V3",
+        "pad": "5",
+        "reference": "U100"
+      },
+      "max_distance_nm": 3000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/+3V3",
+        "pad": "1",
+        "reference": "C133"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U100.5-C133-hf-decoupler"
+    ],
+    "obligation": "U100.5-C133-hf-decoupler",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.5-C133-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Preserve adopted 488 VIO-to-VCC named return, agent-529 061a1b20@2. No GND substitution.",
+      "from": {
+        "net": "/+5V_CAN",
+        "pad": "3",
+        "reference": "U100"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 ADVISORY engineering return default",
+        "pin_selection_reason": "Preserve adopted 488 VIO-to-VCC named return, agent-529 061a1b20@2. No GND substitution."
+      },
+      "to": {
+        "net": "/+5V_CAN",
+        "pad": "2",
+        "reference": "C133"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U20.5-Y1-crystal"
+    ],
+    "obligation": "paired:U20.5-Y1-crystal|U20.6-Y1-crystal",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.5-Y1-crystal; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_OSC2",
+        "pad": "5",
+        "reference": "U20"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_OSC2",
+        "pad": "3",
+        "reference": "Y1"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U20.6-Y1-crystal"
+    ],
+    "obligation": "paired:U20.5-Y1-crystal|U20.6-Y1-crystal",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.6-Y1-crystal; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_OSC1",
+        "pad": "6",
+        "reference": "U20"
+      },
+      "max_distance_nm": 6000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_OSC1",
+        "pad": "1",
+        "reference": "Y1"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "J1.29-D101-esd-connector"
+    ],
+    "obligation": "paired:J1.29-D101-esd-connector|U21.6-D101-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/J1.29-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_H",
+        "pad": "29",
+        "reference": "J1"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_H",
+        "pad": "1",
+        "reference": "D101"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U21.6-D101-esd-connector"
+    ],
+    "obligation": "paired:J1.29-D101-esd-connector|U21.6-D101-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.6-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_L",
+        "pad": "6",
+        "reference": "U21"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_L",
+        "pad": "2",
+        "reference": "D101"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U21.6-D101-esd-connector"
+    ],
+    "obligation": "paired:U21.6-D101-esd-connector|U21.7-D101-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.6-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_L",
+        "pad": "6",
+        "reference": "U21"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_L",
+        "pad": "2",
+        "reference": "D101"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U21.7-D101-esd-connector"
+    ],
+    "obligation": "paired:U21.6-D101-esd-connector|U21.7-D101-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.7-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/TIRE_CAN_H",
+        "pad": "7",
+        "reference": "U21"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/TIRE_CAN_H",
+        "pad": "1",
+        "reference": "D101"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U23.2-R74-sense-network"
+    ],
+    "obligation": "paired:U23.2-R74-sense-network|U23.3-R74-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U23.2-R74-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_FRONT_UVLO",
+        "pad": "2",
+        "reference": "U23"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_FRONT_UVLO",
+        "pad": "1",
+        "reference": "R74"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U23.3-R74-sense-network"
+    ],
+    "obligation": "paired:U23.2-R74-sense-network|U23.3-R74-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U23.3-R74-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_FRONT_OVP",
+        "pad": "3",
+        "reference": "U23"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_FRONT_OVP",
+        "pad": "2",
+        "reference": "R74"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U24.2-R78-sense-network"
+    ],
+    "obligation": "paired:U24.2-R78-sense-network|U24.3-R78-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U24.2-R78-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_REAR_UVLO",
+        "pad": "2",
+        "reference": "U24"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_REAR_UVLO",
+        "pad": "1",
+        "reference": "R78"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U24.3-R78-sense-network"
+    ],
+    "obligation": "paired:U24.2-R78-sense-network|U24.3-R78-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U24.3-R78-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_REAR_OVP",
+        "pad": "3",
+        "reference": "U24"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_REAR_OVP",
+        "pad": "2",
+        "reference": "R78"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U25.2-R82-sense-network"
+    ],
+    "obligation": "paired:U25.2-R82-sense-network|U25.3-R82-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U25.2-R82-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_TIRE_UVLO",
+        "pad": "2",
+        "reference": "U25"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_TIRE_UVLO",
+        "pad": "1",
+        "reference": "R82"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U25.3-R82-sense-network"
+    ],
+    "obligation": "paired:U25.2-R82-sense-network|U25.3-R82-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U25.3-R82-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_TIRE_OVP",
+        "pad": "3",
+        "reference": "U25"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_TIRE_OVP",
+        "pad": "2",
+        "reference": "R82"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U30.2-R163-sense-network"
+    ],
+    "obligation": "paired:U30.2-R163-sense-network|U30.3-R163-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U30.2-R163-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_AUX_UVLO",
+        "pad": "2",
+        "reference": "U30"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_AUX_UVLO",
+        "pad": "1",
+        "reference": "R163"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U30.3-R163-sense-network"
+    ],
+    "obligation": "paired:U30.2-R163-sense-network|U30.3-R163-sense-network",
+    "pair": {
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U30.3-R163-sense-network; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/SENSOR_POWER_AUX_OVP",
+        "pad": "3",
+        "reference": "U30"
+      },
+      "max_distance_nm": 5000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/SENSOR_POWER_AUX_OVP",
+        "pad": "2",
+        "reference": "R163"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "J1.1-D100-esd-connector"
+    ],
+    "obligation": "paired:J1.1-D100-esd-connector|U100.6-D100-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/J1.1-D100-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_P",
+        "pad": "1",
+        "reference": "J1"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_P",
+        "pad": "2",
+        "reference": "D100"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U100.6-D100-esd-connector"
+    ],
+    "obligation": "paired:J1.1-D100-esd-connector|U100.6-D100-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.6-D100-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_N",
+        "pad": "6",
+        "reference": "U100"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_N",
+        "pad": "1",
+        "reference": "D100"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U100.6-D100-esd-connector"
+    ],
+    "obligation": "paired:U100.6-D100-esd-connector|U100.7-D100-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.6-D100-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_N",
+        "pad": "6",
+        "reference": "U100"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_N",
+        "pad": "1",
+        "reference": "D100"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U100.7-D100-esd-connector"
+    ],
+    "obligation": "paired:U100.6-D100-esd-connector|U100.7-D100-esd-connector",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.7-D100-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_P",
+        "pad": "7",
+        "reference": "U100"
+      },
+      "max_distance_nm": 10000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_P",
+        "pad": "2",
+        "reference": "D100"
+      }
+    },
+    "role": "return"
+  },
+  {
+    "historical_relationships": [
+      "U100.6-R100-termination"
+    ],
+    "obligation": "paired:U100.6-R100-termination|U100.7-R100-termination",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.6-R100-termination; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_N",
+        "pad": "6",
+        "reference": "U100"
+      },
+      "max_distance_nm": 15000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_N",
+        "pad": "2",
+        "reference": "R100"
+      }
+    },
+    "role": "supply"
+  },
+  {
+    "historical_relationships": [
+      "U100.7-R100-termination"
+    ],
+    "obligation": "paired:U100.6-R100-termination|U100.7-R100-termination",
+    "pair": {
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U100.7-R100-termination; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "from": {
+        "net": "/POD_CAN_P",
+        "pad": "7",
+        "reference": "U100"
+      },
+      "max_distance_nm": 15000000,
+      "provenance": {
+        "class": "default",
+        "numeric_provenance": "retained 478 engineering default, not manufacturer or owner numeric authority"
+      },
+      "to": {
+        "net": "/POD_CAN_P",
+        "pad": "1",
+        "reference": "R100"
+      }
+    },
+    "role": "return"
   }
 ]
