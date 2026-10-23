@@ -19,7 +19,7 @@ placer ran. Compilation and the configuration probe are preparation evidence onl
 | File | Producer | Content |
 | --- | --- | --- |
 | `spec-record.json`, `spec-record.receipt.json` | `agent_ee.spec_record capture` (agent-ee `1da2763`, same arguments as `../spec-record.receipt.json`) | 59 requirements and 20 prose entries; all 11 acceptance criteria |
-| `revision-delta.json` | comparison with `../spec-record.json` | One entry added (`POD-CD-STORAGE`), none changed or removed |
+| `revision-delta.json` | comparison with `../spec-record.json` (`make_revision_delta.py`) | One entry added (`POD-CD-STORAGE`), one changed (`POD-ME-1`, accepted height-estimate correction, AGENTEE-488c), none removed |
 | `requirement-map.json` | authored, derived from `../requirement-map.json` | Scope template and dispositions (below) |
 | `datasheet-ratings.json` | authored | Datasheet citations for parts rated below 105 °C |
 | `temperature_ratings.py`, `temperature-ratings.json` | script and its output | Rating inventory of all 309 references from captured catalog records |

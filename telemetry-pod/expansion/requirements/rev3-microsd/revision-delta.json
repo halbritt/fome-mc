@@ -16,23 +16,32 @@
       "sha256": "e71dcca744f4b520fc4698402202d7d9efff2d316f8ad3c5eb6403cdf9d036c6"
     }
   },
-  "changed": [],
+  "changed": [
+    {
+      "id": "POD-ME-1",
+      "before_text": "Board outline sized to fit inside the rear seat cowl (the earlier 80 mm by 50 mm figure was not an owner requirement; owner decision 2026-10-19: \"I don't know how the size got fixed. I didn't specify, there's room in the cowl, that said, a double-sided part seems fine\"), double-sided component placement permitted (preserving the ESP32 module antenna keep-out, the F.Cu over In1.Cu GNSS RF path, and connector mechanical constraints), mounting holes in all four corners. The earlier 12 mm component-height limit was an agent-drafted assumption, not an owner requirement (owner correction 2026-10-20: \"I never set 12mm, that was arbitrary.\"). Actual enclosure/cowl height clearance remains unknown and must be measured; 12 mm is not a hard pass/fail limit, and no connector-specific exception is pending. The rear seat cowl is large, so the envelope is not tight.",
+      "after_text": "Board outline sized to fit inside the rear seat cowl (the earlier 80 mm by 50 mm figure was not an owner requirement; owner decision 2026-10-19: \"I don't know how the size got fixed. I didn't specify, there's room in the cowl, that said, a double-sided part seems fine\"), double-sided component placement permitted (preserving the ESP32 module antenna keep-out, the F.Cu over In1.Cu GNSS RF path, and connector mechanical constraints), mounting holes in all four corners. The earlier 12 mm component-height limit was an agent-drafted assumption, not an owner requirement (owner correction 2026-10-20: \"I never set 12mm, that was arbitrary.\"). Owner-relayed correction dated 2026-10-23 (a13a1ba8 v2): \"90mm height, the length and width are quite a bit more than that\". About 90 mm HEIGHT is an estimate, not a measured limit or cap; length and width are larger. No measurement task is requested. Actual fit remains uncertain until the complete installed stack is checked, including enclosure floor/lid, supports, board, both-face components, connector mates, harness and cable bends. The earlier 12 mm figure is not a hard pass/fail limit, and no connector-specific exception is pending.",
+      "before_text_sha256": "d865a76d53f44c1c275964a9dbcd98585cf70d6ac68af5e44e66767713c3b9bb",
+      "after_text_sha256": "09c89ce3dad63794da060b1d81d8aff112fc199ce8ad06ed144ad3430590fc36",
+      "authority": "owner-relayed a13a1ba8@2; accepted AGENTEE-486 / 27c51f73: height ESTIMATE correction, not a measured 90 mm cap and not a new owner measurement request; the same ID transfers no earlier acceptance"
+    }
+  ],
   "counts": {
     "added": 1,
-    "changed": 0,
+    "changed": 1,
     "removed": 0,
-    "unchanged": 78
+    "unchanged": 77
   },
   "current": {
-    "commit": "b6ba9a09e7b4f572a3d8e5ad109107fd30ccc5c5",
     "path": "telemetry-pod/REQUIREMENTS.md",
-    "record_sha256": "33234dd75666f9fd5722df813cd18990d3947461b6d68b5ac09fb1c6ee65c9de",
+    "record_sha256": "21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5",
     "repository": "fome-mc",
     "spec": {
-      "bytes": 23262,
+      "bytes": 23585,
       "name": "REQUIREMENTS.md",
-      "sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7"
-    }
+      "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+    },
+    "note": "identity by content hash (the accepted revision; no commit pin)"
   },
   "purpose": "Inventory change only; no requirement is discharged by this comparison. Same ID does not imply equivalent text or transferable evidence.",
   "removed": [],
