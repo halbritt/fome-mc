@@ -1,0 +1,100 @@
+{
+  "schema": "agentee-490.J1-decision/1",
+  "reference": "J1",
+  "source_uuid": "de37aacc-2cc8-5e42-919d-34ea70b8cae5",
+  "part": "1-776163-1",
+  "mating_plug": "776164-1black",
+  "contacts": "770854-3goldloosesockets20..16AWG",
+  "decision": "Recommend external straight mating through the published local panel interface; reserve an exterior assembly approach. Do not consume rejected CAD poses as an installedmate witness. No full enclosure design or canonical adoption.",
+  "drawing_sources": [
+    {
+      "path": "/home/halbritt/Downloads/ENG_CD_776163_K1.pdf",
+      "sha256": "7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7",
+      "pages": [
+        1,
+        2
+      ]
+    },
+    {
+      "path": "/home/halbritt/Downloads/ENG_CD_2293782_E5.pdf",
+      "sha256": "a692de19592374817583725c4dc00bfb60121cc05295e2ab89071febbac56aea",
+      "pages": [
+        1
+      ]
+    },
+    {
+      "path": "/home/halbritt/Downloads/ENG_SS_114-16016_S3.pdf",
+      "sha256": "645a74cb6e245a15ae3f8c3a2380e577cf16627d146fe1db6a08ee68250d0c55",
+      "pages": [
+        8,
+        9,
+        11
+      ]
+    }
+  ],
+  "manufacturer_facts": {
+    "plug_axial_length_max_mm": 39.69,
+    "derivation": "38.29\u00b11.40 in2293782E5 selected35posfamily; drawing explicitly lists776164-1.",
+    "completed_plug_clearance_opening_diameter_mm": 66,
+    "opening_scope": "114-16016S3section3.5G/Fig12: opening that clears completed35posplugassembly, not the header sealing-panel cutout or a rawguaranteedbodydiameter.",
+    "local_panel_cutout_35pos": {
+      "width_mm": [
+        60.0,
+        60.5
+      ],
+      "height_mm": [
+        24.2,
+        25.2
+      ],
+      "corner_radius_mm": [
+        6.6,
+        6.8
+      ],
+      "fastener_pitch_mm": [
+        66.4,
+        18.1
+      ],
+      "holes_diameter_mm": [
+        3.0,
+        3.3
+      ],
+      "panel_thickness_mm": [
+        2.0,
+        5.0
+      ],
+      "source": "776163K1sheet2 and114-16016S3Fig14",
+      "note": "Use exact manufacturer datum/sealing-surface symbol and flush requirements; flatness0.5shown. Roughness callout is not transcribed as a new numerical requirement here. Not a fullcase design."
+    },
+    "header_fasteners": "TE suggests2.5mmselftappingthreadformingscrews; mountingscrewsize/type and applicationstrengthnotvalidatedhere. These are not the M3PCBcornerfasteners.",
+    "assembly_state": "Headerflushallaroundpanelbeforefinalcross-patterntorque perprimarydrawing; matchingblackkey; retainedsocketscorrectfamily. No physicalpre-fabtestgate added."
+  },
+  "reused_evidence": {
+    "all35tail_nominalgrid_registration": "486J1-registration.json; nominalmesh/padgrid only, not numberedmatingpinidentity, hardstop/contact/seal/latchqualification.",
+    "rejected_mate_cases_mm3": [
+      398.01204491951466,
+      1115.0944606490616,
+      436.10744266518003
+    ],
+    "no_repeat": "No repeatedsameCADposes or open-endedsearch.",
+    "retained_model_revision_gap": "Headerandplugstepmatchesnamedpartsbutplugmodelaxialspan33.8 differsdrawinglength38.29\u00b11.4; drawingcontrols dimensions; do notfitmodelwitharbitrarypenetration."
+  },
+  "finite_reservations": {
+    "header": "Use sourceboundactualnativecourtyard and partheight UNKNOWN until correctedregisteredbodyprojection; do not writezero.",
+    "external_plug_approach": "Panel-frame recipe: cylinderdiam66 along outwardnormal frommatingentrance, length80mm AGENTapproachtravel(>39.69partlength); classmixed manufacturer clearance recommendation+engineeringtravel,notanacceptedphysicalupperbodybound.",
+    "wire_exit": "SelectedengineeringbundleOD20,bendradius50,P-clampat50mmstraightclearancepastwireexit;actualwireMPN/minbend and strainreliefstrength remainunqualified."
+  },
+  "remaining_exact_evidence": "A single datumregistered fullylatched stop transform tying actual headerpanel/sealingface, plugmatingface and contact/seal/latch engagement; body-heightmaxandparttolerances, plusselectedwirebend/strainrelief evidence.",
+  "finite_alternatives": [
+    {
+      "option": "Apreferred",
+      "action": "Put matchedplugandstrainreliefoutside localpublishedheaderpanel interface; usepublishedcutout and openexterior approach; keepunknowninternalmatedplugvolumeoutofboardpacking.",
+      "source_changes": "Localpanel/harnessassemblydatum andcaseopeningchoice only; J1part/pinrelationsretained. Canonicalwriter mustregisteredheaderbodyandsavedorientation."
+    },
+    {
+      "option": "B",
+      "action": "If plug mustremaininside, allocate a finite80mm axial by66mm diameter servicecylinder in panelcoordinates and permitonlysourcequalified collisionfree mate insideit; otherwise reselectJ1orientation/anchor withnativepin/edgechecks.",
+      "source_changes": "Packing/anchororlocalcaseinterface changes, no arbitraryCADdepth orrulewaiver."
+    }
+  ],
+  "native_final_check": "Actual35numberedpads/drawingorientation; holes/edges and headerprojectionbothfaces; paneldatum/mating/approach volumes materialized fromfinalpose; collisionwithpeers/washer/harness and nativeDRC. No currentmatefitPASS."
+}
