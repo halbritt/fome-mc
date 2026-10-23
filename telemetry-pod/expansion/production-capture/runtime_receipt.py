@@ -320,8 +320,10 @@ def image_identity_local(d, report, config_blob, config, save_manifest, oci, oci
 def invocation(run_dir, producer_mount):
     """The exact pod campaign command in the production image (agent-ee docs/pod-driver.md), with the container options
     of this preparation run (run.sh). Not executed here."""
-    pre = ['/usr/bin/python3', '-B', '/pod/runtime_receipt.py', 'observe', '/pod/prepared', '/pod/pre-launch.json',
-           '/pod/export']
+    sel = runtime()['_selection']
+    selection_arg = '/pod/runtime-manifest.json' if sel['kind'] == 'manifest' else 'historical-j6b'
+    pre = ['/usr/bin/python3', '-B', '/pod/runtime_receipt.py', '--runtime', selection_arg, 'observe', '/pod/prepared',
+           '/pod/pre-launch.json', '/pod/export']
     argv = ['/usr/bin/python3', '-B', '-m', 'agent_ee.cli', 'campaign', '/pod/prepared/campaign.json', '--out',
             '/pod/out/campaign']
     container = ['docker', 'run', '--rm', '--label', 'native-admission.lease=$NATIVE_ADMISSION_LEASE',
@@ -331,7 +333,9 @@ def invocation(run_dir, producer_mount):
                  '-e', 'PYTHONPATH=/opt/agent-ee/src', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
                  '-w', '/opt/agent-ee', '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',
                  '-v', f'EXPORT_7D5B0D4D/src:{producer_mount}:ro', '-v', 'RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro',
-                 '-v', 'NEW_OUTPUT_PARENT:/pod/out', runtime()['config']]
+                 '-v', 'NEW_OUTPUT_PARENT:/pod/out',
+                 *(['-v', 'RUNTIME_MANIFEST:/pod/runtime-manifest.json:ro'] if sel['kind'] == 'manifest' else []),
+                 runtime()['config']]
     return {'image': {'by': 'config digest (proximal classic store)', 'reference': runtime()['config'],
                       'tag_on_c4': runtime().get('image_tag'), 'c4_index': runtime().get('c4_index')},
             'pre_launch_identity_check': {'argv': pre, 'requires': 'exit 0 and problems []'},
@@ -342,6 +346,7 @@ def invocation(run_dir, producer_mount):
                                    'container path the campaign steps name',
                 'RUNTIME_RECEIPT_PY': 'this script at the integrated fome-mc commit',
                 'NEW_OUTPUT_PARENT': 'a new, empty directory', 'UID:GID': 'the launching user',
+                'RUNTIME_MANIFEST': 'the selected runtime manifest bound in runtime_selection (path and sha256)',
                 '$NATIVE_ADMISSION_*': 'the admitted native-admit lease the launch runs in'},
             'preparation_run': {'script': rel_here(OUT / 'production_run.sh'),
                                 'steps': rel_here(OUT / 'production_steps.py'), 'run_dir': str(run_dir)},
@@ -378,7 +383,7 @@ def write(observation, image_dir, run_dir):
         raise SystemExit(f'{RECEIPT} exists; the receipt is immutable')
     (OUT / 'image').mkdir(exist_ok=True)
     kept = {}
-    for f in [*identity_files, EE466 / 'scratch/image-c4-oci.txt']:
+    for f in [*identity_files, *([EE466 / 'scratch/image-c4-oci.txt'] if 'c4_index' in runtime() else [])]:
         shutil.copyfile(f, OUT / 'image' / f.name)
         kept['image/' + f.name] = sha(f)
     shutil.copyfile(observation, OUT / 'observation.json')
@@ -415,12 +420,14 @@ def write(observation, image_dir, run_dir):
         'image': {
             'proximal_config_digest': runtime()['config'], 'tag_on_c4': runtime().get('image_tag'),
             'c4_oci_index': runtime().get('c4_index'), 'c4_amd64_manifest': runtime().get('amd64_manifest'),
-            'relation': ('c4 OCI index -> linux/amd64 manifest -> config blob, which equals the proximal image config '
-                         '(AGENTEE-466 evidence image-c4-oci.txt, verified by its independent review; c4 itself is not '
-                         'contacted by this lane)'),
+            'relation': (('c4 OCI index -> linux/amd64 manifest -> config blob, which equals the proximal image config '
+                          '(AGENTEE-466 evidence image-c4-oci.txt, verified by its independent review; c4 itself is not '
+                          'contacted by this lane)') if 'c4_index' in runtime() else
+                         'not selected: the image is bound by its proximal docker-save identity only'),
             'recomputed_on_proximal': found, 'created': config.get('created'),
             'entrypoint': config['config'].get('Entrypoint'), 'files': kept,
-            'ee466_review': {'path': str(EE466_REVIEW), 'sha256': sha(EE466_REVIEW), 'verdict': found['review_verdict']}},
+            **({'ee466_review': {'path': str(EE466_REVIEW), 'sha256': sha(EE466_REVIEW), 'verdict': found['review_verdict']}}
+               if 'c4_index' in runtime() else {'ee466_review': 'not selected'})},
         'router': {'checkout': router['checkout'], 'commit': router['preflight']['commit'],
                    'source_sha256': router['source_sha256_recomputed'],
                    'extension': router['extension'], 'interpreter': router['interpreter'],
@@ -463,19 +470,47 @@ def validate_source_commit(commit, run_dir):
         raise SystemExit(f'run copy differs from source commit {commit}: {differ[:10]}')
 
 
+def identity_problems(selected, receipt, obs, pipeline):
+    """AGENTEE-487 H4: every SELECTED runtime identity must equal the receipt's, the observation's and the pipeline's."""
+    router = obs.get('router', {})
+    pairs = {
+        'agent_ee_commit': [receipt.get('agent_ee', {}).get('commit'), pipeline.get('agent_ee', {}).get('commit')],
+        'router_commit': [receipt.get('router', {}).get('commit'), router.get('preflight', {}).get('commit'),
+                          obs.get('runtime_agent_ee', {}).get('pinned_router')],
+        'source_sha256': [receipt.get('router', {}).get('source_sha256'), router.get('source_sha256_recomputed')],
+        'extension_sha256': [receipt.get('router', {}).get('extension', {}).get('sha256_recomputed'),
+                             router.get('extension', {}).get('sha256_recomputed')],
+        'config': [receipt.get('image', {}).get('proximal_config_digest')]}
+    problems = []
+    for key, values in pairs.items():
+        want = selected.get(key)
+        if not isinstance(want, str) or any(v != want for v in values):
+            problems.append(f'selected {key} {want} differs from receipt/observation/pipeline {values}')
+    if obs.get('runtime_agent_ee', {}).get('equals_export') is not True:
+        problems.append('observed image agent-ee does not equal the export')
+    return problems
+
+
 def check():
     receipt = json.loads(RECEIPT.read_text())
     global RUNTIME
     selected = receipt.get('runtime_selection')
+    if selected is not None and (not isinstance(selected, dict) or selected.get('kind') not in ('manifest', 'historical-j6b')):
+        raise SystemExit(f'unknown runtime selection kind in receipt: {selected!r}')
     if RUNTIME is None:
         if not selected:
             raise SystemExit('receipt has no runtime selection (historical): pass --runtime historical-j6b explicitly')
         RUNTIME = select_runtime(selected['path'] if selected['kind'] == 'manifest' else 'historical-j6b')
-    if selected and selected.get('kind') == 'manifest' and RUNTIME['_selection'].get('sha256') != selected.get('sha256'):
-        raise SystemExit('selected runtime manifest differs from the one the receipt bound')
+    if selected:
+        mine = RUNTIME['_selection']
+        if mine.get('kind') != selected['kind'] or (selected['kind'] == 'manifest' and mine.get('sha256') != selected.get('sha256')):
+            raise SystemExit('selected runtime differs from the one the receipt bound')
+    elif RUNTIME['_selection']['kind'] != 'historical-j6b':
+        raise SystemExit('a legacy receipt (no runtime_selection) can only be checked with --runtime historical-j6b')
     problems = [f'{name}: {item["path"]}' for name, item in receipt['binding'].items()
                 if 'path' in item and sha(HERE / item['path']) != item['sha256']]
     pipeline = json.loads((EVIDENCE / 'pipeline.json').read_text())
+    problems += identity_problems(runtime(), receipt, json.loads((HERE / receipt['observation']['path']).read_text()), pipeline)
     if pipeline['initial_candidate']['candidate_id'] != receipt['binding']['initial_candidate']['candidate_id']:
         problems.append('initial candidate differs from the retained pipeline')
     if sha(HERE / receipt['observation']['path']) != receipt['observation']['sha256']:
