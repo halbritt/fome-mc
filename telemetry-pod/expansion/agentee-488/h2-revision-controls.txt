@@ -1,0 +1,10 @@
+PASS positive: exact accepted delta on the real pinned/current records
+PASS negative: a different text under the allowed ID refuses
+PASS negative: POD-ME-1 changed outside its text refuses
+PASS negative: an unrelated changed row refuses
+PASS negative: a removed row refuses
+PASS negative: stale spec pin refuses
+PASS negative: stale record pin refuses
+PASS negative: the correction absent (pinned text kept) refuses
+PASS negative: prose change refuses
+9/9 passed
