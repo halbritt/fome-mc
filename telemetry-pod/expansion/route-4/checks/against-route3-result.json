@@ -1,0 +1,364 @@
+{
+  "validation": {
+    "status": "PASS",
+    "reasons": [],
+    "dir": "/home/halbritt/.cache/route-4-agent507/final-against-route3",
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/route-4-agent507/final-against-route3/candidate-refill.json",
+          "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project",
+        "log": "/home/halbritt/.cache/route-4-agent507/final-against-route3/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.628
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/route-4-agent507/final-against-route3/candidate-drc.json",
+          "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project",
+        "log": "/home/halbritt/.cache/route-4-agent507/final-against-route3/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.722
+      }
+    ],
+    "validated_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "candidate_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "refill_modified_board": false,
+    "parity_performed": null,
+    "drc": {
+      "violations_total": 138,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "preexisting_violations": 138,
+      "resolved_violations": 2,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "native_terminal_evidence": {
+      "reference": "/home/halbritt/.cache/route-4-agent507/final-against-route3/reference-terminal-components.json",
+      "candidate": "/home/halbritt/.cache/route-4-agent507/final-against-route3/candidate-terminal-components.json",
+      "metrics": {
+        "reference": {
+          "terminal_nets": 235,
+          "incomplete_nets": 47,
+          "component_deficit": 77
+        },
+        "candidate": {
+          "terminal_nets": 235,
+          "incomplete_nets": 47,
+          "component_deficit": 75
+        }
+      }
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 188,
+      "nets_lost": [],
+      "split_components": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "existing_unlocked_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 27,
+    "unconnected_total": 75,
+    "baseline_unconnected_total": 77,
+    "unrouted_nets": [
+      "/GND"
+    ],
+    "stats": {
+      "new_tracks": 0,
+      "new_vias": 1,
+      "new_track_length_mm": 0,
+      "new_track_length_mm_by_layer": {},
+      "new_copper_nets": 1,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/route-4-agent507/final-against-route3/blocked-by.json",
+      "connections_analyzed": 27,
+      "unobstructed_connections": 17,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+          "net": null,
+          "blocks": 6,
+          "blocks_any_layer": 27,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "2a71f153-80ce-429b-82a1-1e4cea5b5533",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /+3V3 F.Cu (input, unlocked) 2a71f153",
+          "net": "/+3V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "954c8e27-0f13-42c9-b230-ae86c9a28114",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /ADC_AIN3 F.Cu (input, unlocked) 954c8e27",
+          "net": "/ADC_AIN3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "c4ab06d1-0a7a-4dc1-a08e-9fbfb67defa9",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /+3V3 (input, unlocked) c4ab06d1",
+          "net": "/+3V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "44e65acd-112f-4c07-b265-758d1d76f0a5",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_12V_PROTECTED (input, unlocked) 44e65acd",
+          "net": "/POD_12V_PROTECTED",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "cc0d9153-fb9c-4051-a514-399102d4eb05",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /POD_CAN_P (input, unlocked) cc0d9153",
+          "net": "/POD_CAN_P",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "4505d775-6855-45c8-abba-6a21b4654817",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /PRE_6V3 (input, unlocked) 4505d775",
+          "net": "/PRE_6V3",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "caf036e5-4571-4da3-bf63-a3b05959b2cb",
+          "category": "input_copper",
+          "kind": "via",
+          "label": "via /WHEEL_FRONT_OUT (input, unlocked) caf036e5",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 1,
+          "blocks_any_layer": 1,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "b5ed4d57-d986-41d2-a410-936d2b3a2ba3",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /SENSOR_POWER_TIRE_UVLO B.Cu (input, unlocked) b5ed4d57",
+          "net": "/SENSOR_POWER_TIRE_UVLO",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        },
+        {
+          "id": "9cf8bf9b-6a51-4fc4-8816-4d1d2d3d869f",
+          "category": "input_copper",
+          "kind": "track",
+          "label": "track /WHEEL_FRONT_OUT In2.Cu (input, unlocked) 9cf8bf9b",
+          "net": "/WHEEL_FRONT_OUT",
+          "locked": false,
+          "origin": "input",
+          "blocks": 0,
+          "blocks_any_layer": 2,
+          "nets_blocked": [
+            "/GND"
+          ]
+        }
+      ],
+      "nets": {
+        "/GND": {
+          "connections": 27,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /POD_12V_PROTECTED 44e65acd",
+            "via /PRE_6V3 4505d775",
+            "keepout 'D-PCB-7v2-In1-no-tracks'",
+            "via /WHEEL_FRONT_OUT caf036e5",
+            "via /POD_CAN_P cc0d9153"
+          ]
+        }
+      }
+    }
+  },
+  "reference_context": {
+    "board": "telemetry-pod.kicad_pcb",
+    "reference_dir": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/reference/project",
+    "reference_facts": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/reference-facts.json",
+    "input_fingerprint": "e4d3e7c0ff9db5473192531223eba99c4a1c6184ee3f1af07ddbb11dde1babc4",
+    "baseline": {
+      "report": "/home/halbritt/git/kicad-route/build/kicad-route/.cache/baseline/8d7f5ecfd58c773545f2adc39b2086650870276c73752f4cbe1553c0cf5519c8/generation-5nh1nj7p/baseline-drc.json",
+      "identity": {
+        "schema": 2,
+        "input": "e4d3e7c0ff9db5473192531223eba99c4a1c6184ee3f1af07ddbb11dde1babc4",
+        "board": "telemetry-pod.kicad_pcb",
+        "kicad_cli": {
+          "path": "/usr/bin/kicad-cli",
+          "version": "10.0.7",
+          "sha256": "0dd2a47a1cb8642513d623152a1815c493c4909a879db1bae95b5ac13caaaa61"
+        },
+        "pcbnew": "10.0.7-10.0.7~ubuntu24.04.1",
+        "pour_schema": 1,
+        "native_terminals": {
+          "schema": 1,
+          "producer": {
+            "native_components.py": "fc5099d821f972212b0a2e30bfb15b9755336684902cea933d6db88446b361e0",
+            "kicad/native_components.py": "071b5624884586e9a8ea83b7b253c292267b352623f58c3291ddd1ae7ec14fb6",
+            "kicad/facts.py": "d47a3fd2eb40518b7beba5457b679b901150c64e3988f86537d67f373bef8c52"
+          },
+          "tool": {
+            "version": "10.0.7-10.0.7~ubuntu24.04.1",
+            "module": {
+              "path": "/usr/bin/_pcbnew.kiface",
+              "sha256": "ba821c4719fbb6e51c378ae98f7db4254a214eb9e39e4822bb88833c986513f8"
+            },
+            "binding": {
+              "path": "/usr/lib/python3/dist-packages/pcbnew.py",
+              "sha256": "50740b1aeed153349ffe000c7e2c39d9fd75d1cdf49118897f5df5bf957b8458"
+            },
+            "python": {
+              "path": "/usr/bin/python3.12",
+              "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+            }
+          }
+        },
+        "grading": {
+          "baselinecache.py": "3a36d87ddcdc19fdae6c330e51202ca091bf59e4b1ee583a9c8b4ff9c8eb202f",
+          "cli.py": "d43569e4d81a4355712d356efec35ec40167f3318c9155c8172792164dcd01b1",
+          "pour.py": "1583883ee1682bf0f72d709b1e146384d37b481a423584de9bd564ac18f1b6b7",
+          "kicad/pour.py": "a49f64c51854720e8ea680d81b94969dc8242da0c3ee93b72c8948a57b908c14",
+          "contract.py": "5f6c7acd40138f5f13d140bcdda7539aacf1edcd011daa8f36a76e72663bb698"
+        },
+        "result_schemas": {
+          "result-1.json": "7f23d6a7495edfdf7cbe5e238a5548bc8e2c81ec63d987e863f5562f2c17dd55",
+          "result-2.json": "cafaab23c9a0ee379f54f03436243193ef41dbf2a1b51b52f15c9df18895ed7f",
+          "result-campaign-2.json": "2ca7cbf0beb2c2d86f6d21a3598dedf623ebd122eef85888a145825f71e9cf35"
+        }
+      },
+      "generation": "generation-5nh1nj7p"
+    },
+    "settings": {
+      "protect": "locked"
+    },
+    "floor": null
+  },
+  "reference_context_dir": "/home/halbritt/.cache/route-4-agent507/target1-attempt1",
+  "scope": [
+    "/GND"
+  ],
+  "candidate_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+  "method": "Native grade API with exact source-bound native-only context; no backend or ancestry claim"
+}

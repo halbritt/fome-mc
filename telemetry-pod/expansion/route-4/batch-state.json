@@ -1,0 +1,39 @@
+{
+  "task_source": "fa01175e-3b6f-408c-b4d8-6e462c4a3c28@1",
+  "native_context": "/home/halbritt/.local/share/cairn/coordination/state/codex-three/inbox/cc7ca88a-e2b5-4d04-b499-c43398f69d5a.json",
+  "start_utc": "2026-10-23T08:05:42Z",
+  "deadline_utc": "2026-10-23T08:50:42Z",
+  "backend_cap_s": 1200,
+  "current_candidate": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project",
+  "current_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+  "current_opens": 75,
+  "targets": [
+    {
+      "target": "GND junction49.4,14.1",
+      "status": "retained",
+      "opens_before": 77,
+      "opens_after": 75,
+      "attempts": 1,
+      "backend_s": 0
+    },
+    {
+      "target": "/SUP_U18_CT",
+      "status": "failed_native_precheck_reverted",
+      "attempts": 1,
+      "backend_s": 0,
+      "residual": "B.Cu crossings of SENSOR_POWER_AUX_RTN; new via82.7,26.6 forbidden RF-reference; partial GND split detected. Incumbent unchanged."
+    },
+    {
+      "target": "/SENSOR_POWER_REAR_UVLO",
+      "status": "failed_reverted",
+      "attempts": 2,
+      "residual": "Protected route failed. Direct escape:9clearance+8shorting native findings; rejected, exact source75opens preserved."
+    }
+  ],
+  "consecutive_target_failures": 2,
+  "no_further_batch": true,
+  "batch_stopped": true,
+  "stop_reason": "Two consecutive target failures. No further target/attempt authorized in this batch.",
+  "backend_command_s": 33.518,
+  "backend_envelope_s": 35.009
+}

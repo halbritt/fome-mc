@@ -1,0 +1,1193 @@
+{
+  "validation": {
+    "status": "FAIL",
+    "reasons": [
+      "58 new DRC violations: via_dangling 33, track_dangling 25"
+    ],
+    "dir": "/home/halbritt/.cache/route-4-agent507/final-against-r5",
+    "rules_files": {
+      "project": "telemetry-pod.kicad_pro",
+      "custom_rules": "telemetry-pod.kicad_dru",
+      "not_loaded": []
+    },
+    "restored_project_files": [],
+    "delivered_project_files": [],
+    "delivered_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "drc_commands": [
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--refill-zones",
+          "--save-board",
+          "--format",
+          "json",
+          "-o",
+          "/home/halbritt/.cache/route-4-agent507/final-against-r5/candidate-refill.json",
+          "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project",
+        "log": "/home/halbritt/.cache/route-4-agent507/final-against-r5/candidate-refill.log",
+        "exit_code": 0,
+        "duration_s": 2.61
+      },
+      {
+        "argv": [
+          "kicad-cli",
+          "pcb",
+          "drc",
+          "--format",
+          "json",
+          "--severity-all",
+          "--schematic-parity",
+          "--units",
+          "mm",
+          "-o",
+          "/home/halbritt/.cache/route-4-agent507/final-against-r5/candidate-drc.json",
+          "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project/telemetry-pod.kicad_pcb"
+        ],
+        "cwd": "/home/halbritt/.cache/route-4-agent507/target1-attempt1/candidate/project",
+        "log": "/home/halbritt/.cache/route-4-agent507/final-against-r5/candidate-drc.log",
+        "exit_code": 0,
+        "duration_s": 2.595
+      }
+    ],
+    "validated_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "candidate_board_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+    "refill_modified_board": false,
+    "parity_performed": true,
+    "drc": {
+      "violations_total": 138,
+      "parity_total": 0,
+      "new_violations": {
+        "count": 58,
+        "by_type": {
+          "via_dangling": 33,
+          "track_dangling": 25
+        },
+        "by_severity": {
+          "warning": 58
+        }
+      },
+      "preexisting_violations": 80,
+      "resolved_violations": 0,
+      "new_parity": {
+        "count": 0,
+        "by_type": {},
+        "by_severity": {}
+      },
+      "resolved_parity": 0
+    },
+    "native_terminal_evidence": {
+      "reference": "/home/halbritt/.cache/route-4-agent507/final-against-r5/reference-terminal-components.json",
+      "candidate": "/home/halbritt/.cache/route-4-agent507/final-against-r5/candidate-terminal-components.json",
+      "metrics": {
+        "reference": {
+          "terminal_nets": 235,
+          "incomplete_nets": 182,
+          "component_deficit": 701
+        },
+        "candidate": {
+          "terminal_nets": 235,
+          "incomplete_nets": 47,
+          "component_deficit": 75
+        }
+      }
+    },
+    "net_completion": {
+      "status": "PASS",
+      "nets_connected_in_input": 53,
+      "nets_lost": [],
+      "split_components": []
+    },
+    "preservation": {
+      "project_files": "PASS",
+      "board_outline": "PASS",
+      "layers": "PASS",
+      "stackup": "PASS",
+      "board_setup": "PASS",
+      "nets_and_netclasses": "PASS",
+      "pad_connectivity": "PASS",
+      "footprints": "PASS",
+      "zones": "PASS",
+      "keepouts": "PASS",
+      "copper_graphics": "PASS",
+      "protected_copper": "PASS",
+      "new_copper_netclass_geometry": "PASS",
+      "routing_scope": "PASS",
+      "net_completion": "PASS",
+      "pour_integrity": "PASS"
+    }
+  },
+  "routing": {
+    "status": "INCOMPLETE",
+    "unconnected_in_scope": 75,
+    "unconnected_total": 75,
+    "baseline_unconnected_total": 499,
+    "unrouted_nets": [
+      "/+3V3",
+      "/ADC_AIN4",
+      "/ADC_AIN7",
+      "/AFE_BUF3",
+      "/AFE_BUF7",
+      "/AFE_DIV0",
+      "/AFE_DIV5",
+      "/AFE_DIV6",
+      "/AFE_DIV7",
+      "/DIAG_I2C_SCL",
+      "/DIAG_U27_AIN2",
+      "/DIAG_U28_AIN1",
+      "/DIAG_U28_AIN2_UPPER1",
+      "/DIAG_U28_AIN2_UPPER2",
+      "/DIAG_U29_AIN1",
+      "/GND",
+      "/IMU_CS",
+      "/POD_5V_SENSOR",
+      "/POD_AUX3_SIGNAL",
+      "/POD_AUX4_SIGNAL",
+      "/POD_FRONT_BRAKE_SIGNAL",
+      "/POD_GNSS_RF",
+      "/POD_WHEEL_FRONT_SUPPLY",
+      "/PRE_6V3",
+      "/SD_DAT0",
+      "/SD_DAT1",
+      "/SD_DAT2",
+      "/SD_DAT3",
+      "/SENSOR_POWER_AUX_ILIM",
+      "/SENSOR_POWER_FRONT_DVDT",
+      "/SENSOR_POWER_FRONT_ILIM",
+      "/SENSOR_POWER_FRONT_OVP",
+      "/SENSOR_POWER_FRONT_UVLO",
+      "/SENSOR_POWER_REAR_ILIM",
+      "/SENSOR_POWER_REAR_UVLO",
+      "/SENSOR_POWER_TIRE_DVDT",
+      "/SENSOR_POWER_TIRE_ILIM",
+      "/SENSOR_POWER_TIRE_OVP",
+      "/SENSOR_POWER_TIRE_UVLO",
+      "/SETPOINT_5V",
+      "/SPI_MOSI",
+      "/SPI_SCK",
+      "/SUP_U18_CT",
+      "/SUP_U19_SENSE",
+      "/THERM_BIAS_MID",
+      "/THERM_EXC_2V495",
+      "/TIRE_CAN_OSC2"
+    ],
+    "stats": {
+      "new_tracks": 5893,
+      "new_vias": 688,
+      "new_track_length_mm": 7528.144,
+      "new_track_length_mm_by_layer": {
+        "B.Cu": 2280.286,
+        "F.Cu": 2892.841,
+        "In2.Cu": 2355.017
+      },
+      "new_copper_nets": 181,
+      "removed_existing_tracks": 0,
+      "removed_existing_vias": 0
+    },
+    "blocked_by": {
+      "schema": "kicad-route/blocked/2",
+      "version": 2,
+      "report": "/home/halbritt/.cache/route-4-agent507/final-against-r5/blocked-by.json",
+      "connections_analyzed": 75,
+      "unobstructed_connections": 18,
+      "method": "heuristic corridors; see docs/blocked.md",
+      "top": [
+        {
+          "id": "rule_area:D-PCB-7v2-In1-no-tracks",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-7v2-In1-no-tracks' (no tracks) on In1.Cu",
+          "net": null,
+          "blocks": 49,
+          "blocks_any_layer": 75,
+          "nets_blocked": [
+            "/+3V3",
+            "/ADC_AIN4",
+            "/ADC_AIN7",
+            "/AFE_BUF3",
+            "/AFE_BUF7",
+            "/AFE_DIV0",
+            "/AFE_DIV5",
+            "/AFE_DIV6",
+            "/AFE_DIV7",
+            "/DIAG_I2C_SCL",
+            "/DIAG_U27_AIN2",
+            "/DIAG_U28_AIN1",
+            "/DIAG_U28_AIN2_UPPER1",
+            "/DIAG_U28_AIN2_UPPER2",
+            "/DIAG_U29_AIN1",
+            "/GND",
+            "/IMU_CS",
+            "/POD_5V_SENSOR",
+            "/POD_AUX3_SIGNAL",
+            "/POD_AUX4_SIGNAL",
+            "/POD_FRONT_BRAKE_SIGNAL",
+            "/POD_GNSS_RF",
+            "/POD_WHEEL_FRONT_SUPPLY",
+            "/PRE_6V3",
+            "/SD_DAT0",
+            "/SD_DAT1",
+            "/SD_DAT2",
+            "/SD_DAT3",
+            "/SENSOR_POWER_AUX_ILIM",
+            "/SENSOR_POWER_FRONT_DVDT",
+            "/SENSOR_POWER_FRONT_ILIM",
+            "/SENSOR_POWER_FRONT_OVP",
+            "/SENSOR_POWER_FRONT_UVLO",
+            "/SENSOR_POWER_REAR_ILIM",
+            "/SENSOR_POWER_REAR_UVLO",
+            "/SENSOR_POWER_TIRE_DVDT",
+            "/SENSOR_POWER_TIRE_ILIM",
+            "/SENSOR_POWER_TIRE_OVP",
+            "/SENSOR_POWER_TIRE_UVLO",
+            "/SETPOINT_5V",
+            "/SPI_MOSI",
+            "/SPI_SCK",
+            "/SUP_U18_CT",
+            "/SUP_U19_SENSE",
+            "/THERM_BIAS_MID",
+            "/THERM_EXC_2V495",
+            "/TIRE_CAN_OSC2"
+          ]
+        },
+        {
+          "id": "footprint:J1",
+          "category": "footprint",
+          "kind": "footprint",
+          "label": "footprint J1 pads 19, 20, 21, 22, 10, 11 +11 more (/POD_AUX3_SIGNAL, /POD_AUX4_SIGNAL, /POD_5V_AUX +9 more)",
+          "locked": true,
+          "blocks": 7,
+          "blocks_any_layer": 7,
+          "nets_blocked": [
+            "/POD_WHEEL_FRONT_SUPPLY",
+            "/SENSOR_POWER_FRONT_ILIM",
+            "/SENSOR_POWER_FRONT_OVP",
+            "/SENSOR_POWER_FRONT_UVLO",
+            "/SENSOR_POWER_REAR_ILIM",
+            "/SENSOR_POWER_TIRE_ILIM",
+            "/SENSOR_POWER_TIRE_OVP"
+          ]
+        },
+        {
+          "id": "footprint:U6",
+          "category": "footprint",
+          "kind": "footprint",
+          "label": "footprint U6 pads 9, 9''''', 9'''''', 9''''''', 9'''''''', 8 +10 more (/GND, /PRE_6V3, unconnected-(U6-NC-Pad7) +2 more)",
+          "locked": false,
+          "blocks": 5,
+          "blocks_any_layer": 10,
+          "nets_blocked": [
+            "/AFE_BUF3",
+            "/DIAG_U28_AIN2_UPPER2",
+            "/POD_WHEEL_FRONT_SUPPLY",
+            "/SENSOR_POWER_FRONT_ILIM",
+            "/SENSOR_POWER_FRONT_OVP",
+            "/SENSOR_POWER_FRONT_UVLO",
+            "/SENSOR_POWER_TIRE_ILIM",
+            "/SENSOR_POWER_TIRE_OVP",
+            "/SETPOINT_5V",
+            "/THERM_BIAS_MID"
+          ]
+        },
+        {
+          "id": "rule_area:D-PCB-6-RF-reference",
+          "category": "keepout",
+          "kind": "rule_area",
+          "label": "keepout 'D-PCB-6-RF-reference' (no tracks, no vias) on In1.Cu, In2.Cu",
+          "net": null,
+          "blocks": 5,
+          "blocks_any_layer": 7,
+          "nets_blocked": [
+            "/ADC_AIN7",
+            "/DIAG_U27_AIN2",
+            "/GND",
+            "/POD_5V_SENSOR",
+            "/POD_AUX4_SIGNAL",
+            "/POD_GNSS_RF",
+            "/SENSOR_POWER_AUX_ILIM"
+          ]
+        },
+        {
+          "id": "footprint:U1",
+          "category": "footprint",
+          "kind": "footprint",
+          "label": "footprint U1 pads 41', 41'''', 41'''''', 41''''''', 41'''''''''', 41'''''''''''' +31 more (/GND, /TIRE_CAN_CS, /IMU_INT1 +22 more)",
+          "locked": true,
+          "blocks": 4,
+          "blocks_any_layer": 18,
+          "nets_blocked": [
+            "/AFE_BUF7",
+            "/AFE_DIV6",
+            "/AFE_DIV7",
+            "/DIAG_U28_AIN2_UPPER1",
+            "/IMU_CS",
+            "/POD_AUX3_SIGNAL",
+            "/POD_FRONT_BRAKE_SIGNAL",
+            "/POD_GNSS_RF",
+            "/SD_DAT0",
+            "/SD_DAT1",
+            "/SD_DAT2",
+            "/SD_DAT3",
+            "/SENSOR_POWER_AUX_ILIM",
+            "/SPI_MOSI",
+            "/SPI_SCK",
+            "/SUP_U19_SENSE",
+            "/THERM_EXC_2V495"
+          ]
+        },
+        {
+          "id": "4cb26db9-a582-48b1-8d3d-8a671c3c271a",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /TIRE_CAN_INT_N (new, unlocked) 4cb26db9",
+          "net": "/TIRE_CAN_INT_N",
+          "locked": false,
+          "origin": "new",
+          "blocks": 4,
+          "blocks_any_layer": 6,
+          "nets_blocked": [
+            "/AFE_BUF7",
+            "/POD_AUX3_SIGNAL",
+            "/SD_DAT1",
+            "/SD_DAT3",
+            "/SPI_MOSI",
+            "/THERM_EXC_2V495"
+          ]
+        },
+        {
+          "id": "87fe860f-34f0-45de-b0c2-ea5c090a685b",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /PRE_6V3 (new, unlocked) 87fe860f",
+          "net": "/PRE_6V3",
+          "locked": false,
+          "origin": "new",
+          "blocks": 4,
+          "blocks_any_layer": 5,
+          "nets_blocked": [
+            "/SENSOR_POWER_FRONT_ILIM",
+            "/SENSOR_POWER_FRONT_OVP",
+            "/SENSOR_POWER_FRONT_UVLO",
+            "/SENSOR_POWER_TIRE_ILIM",
+            "/SETPOINT_5V"
+          ]
+        },
+        {
+          "id": "c96d0d9e-cf22-4711-9ecc-8195fc394d30",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /SD_CLK (new, unlocked) c96d0d9e",
+          "net": "/SD_CLK",
+          "locked": false,
+          "origin": "new",
+          "blocks": 4,
+          "blocks_any_layer": 5,
+          "nets_blocked": [
+            "/ADC_AIN7",
+            "/AFE_DIV6",
+            "/AFE_DIV7",
+            "/SENSOR_POWER_AUX_ILIM",
+            "/SUP_U19_SENSE"
+          ]
+        },
+        {
+          "id": "8eb41072-02bb-4da2-a8aa-c29aa67d327a",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /ADC_AIN7 (new, unlocked) 8eb41072",
+          "net": "/ADC_AIN7",
+          "locked": false,
+          "origin": "new",
+          "blocks": 3,
+          "blocks_any_layer": 5,
+          "nets_blocked": [
+            "/DIAG_U28_AIN2_UPPER2",
+            "/POD_5V_SENSOR",
+            "/SENSOR_POWER_AUX_ILIM",
+            "/SUP_U19_SENSE",
+            "/THERM_EXC_2V495"
+          ]
+        },
+        {
+          "id": "9198e7d3-02bc-4387-b3f3-0752b09b523c",
+          "category": "new_copper",
+          "kind": "via",
+          "label": "via /ADC_CS (new, unlocked) 9198e7d3",
+          "net": "/ADC_CS",
+          "locked": false,
+          "origin": "new",
+          "blocks": 3,
+          "blocks_any_layer": 4,
+          "nets_blocked": [
+            "/AFE_BUF7",
+            "/POD_GNSS_RF",
+            "/SPI_SCK",
+            "/SUP_U19_SENSE"
+          ]
+        }
+      ],
+      "nets": {
+        "/+3V3": {
+          "connections": 1,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/ADC_AIN4": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 9,
+          "blockers": [
+            "via /+3V3 5a7b3a9b",
+            "via /+3V3 e034c21f",
+            "via /GND 52fca7fc",
+            "via /GND e05fb130",
+            "via /MCU_EN 41d2ab00"
+          ]
+        },
+        "/ADC_AIN7": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /+3V3 fca18a4b",
+            "via /GND 2ba981db",
+            "via /GND fd4faa72",
+            "via /SD_CLK c96d0d9e",
+            "via /DIAG_U27_AIN2 8c1fcf00"
+          ]
+        },
+        "/AFE_BUF3": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 14,
+          "blockers": [
+            "via /+3V3 2da996ce",
+            "via /GND 5ed74b9c",
+            "via /GND aa1c3b5a",
+            "via /PRE_6V3 6e0c7eed",
+            "via /PRE_6V3 f0711e35"
+          ]
+        },
+        "/AFE_BUF7": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 17,
+          "blockers": [
+            "via /GND 0181102a",
+            "via /PRE_6V3 6f64066f",
+            "via /PRE_6V3 86af45db",
+            "via /SUP_U19_SENSE e303eaa0",
+            "via /SETPOINT_5V a94cca75"
+          ]
+        },
+        "/AFE_DIV0": {
+          "connections": 1,
+          "best_layer": "In2.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /AFE_BUF0 bcd19415"
+          ]
+        },
+        "/AFE_DIV5": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/AFE_DIV6": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 4,
+          "blockers": [
+            "via /GND b2e5b46d",
+            "via /SD_CLK c96d0d9e",
+            "via /SD_DAT1 976ac82a",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/AFE_DIV7": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 5,
+          "blockers": [
+            "via /GND bed42dd7",
+            "via /AFE_DIV4 823ef923",
+            "via /AFE_BUF5 1c7c079c",
+            "via /SD_CLK c96d0d9e",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/DIAG_I2C_SCL": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 0,
+          "blockers": []
+        },
+        "/DIAG_U27_AIN2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 14,
+          "blockers": [
+            "via /+3V3 9237cfed",
+            "via /+3V3 e034c21f",
+            "via /+3V3 ef51bb65",
+            "via /GND c56de894",
+            "via /SUP_U16_SENSE cc335b2f"
+          ]
+        },
+        "/DIAG_U28_AIN1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 12,
+          "blockers": [
+            "via /GND a7636e79",
+            "via /ADC_AIN1 34387625",
+            "via /THERM_BIAS_IN 240d9a77",
+            "via /POD_5V_SENSOR 4ab20ffb",
+            "via /POD_AUX2_SIGNAL 605310d8"
+          ]
+        },
+        "/DIAG_U28_AIN2_UPPER1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 21,
+          "blockers": [
+            "via /+3V3 0f18e895",
+            "via /+3V3 5e5738d7",
+            "via /GND 1335568d",
+            "via /GND cc8f3f15",
+            "via /SD_DAT0 5177aafa"
+          ]
+        },
+        "/DIAG_U28_AIN2_UPPER2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 15,
+          "blockers": [
+            "via /+3V3 56cda127",
+            "via /+3V3 76fc2d4a",
+            "via /GND 227988e6",
+            "via /GND 3e4f203d",
+            "via /GND cc8f3f15"
+          ]
+        },
+        "/DIAG_U29_AIN1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 9,
+          "blockers": [
+            "via /DIAG_I2C_SCL 9a4295d2",
+            "via /DIAG_U27_AIN1 e6d6ab61",
+            "via /TIRE_CAN_OSC1 045618ed",
+            "via /MCU_EN 5e0191f3",
+            "via /MCU_EN 92d0fad5"
+          ]
+        },
+        "/GND": {
+          "connections": 27,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 2,
+          "blockers": [
+            "via /POD_12V_PROTECTED 44e65acd",
+            "via /PRE_6V3 4505d775",
+            "keepout 'D-PCB-7v2-In1-no-tracks'",
+            "via /WHEEL_FRONT_OUT caf036e5",
+            "via /POD_CAN_P cc0d9153"
+          ]
+        },
+        "/IMU_CS": {
+          "connections": 2,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "via /TWAI_RX f08c1b70",
+            "via /DIAG_U27_AIN1_UPPER2 49eef282",
+            "via /GNSS_PPS 424fdc3f",
+            "via /GNSS_LNA_EN 48cab06e",
+            "footprint U1"
+          ]
+        },
+        "/POD_5V_SENSOR": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 13,
+          "blockers": [
+            "via /GND 0b263272",
+            "via /SUP_U16_SENSE 5ce5c539",
+            "via /THERM_EXC_2V495 be976b0b",
+            "via /SUP_U16_CT 8aed29a3",
+            "via /SENSOR_POWER_AUX_ILIM 872b06ed"
+          ]
+        },
+        "/POD_AUX3_SIGNAL": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 14,
+          "blockers": [
+            "via /GND 453982e2",
+            "via /GND cea19363",
+            "via /TIRE_CAN_TX c67fc1c6",
+            "via /POD_WHEEL_FRONT_SUPPLY 6c14441f",
+            "via /DIAG_I2C_SDA da9beb13"
+          ]
+        },
+        "/POD_AUX4_SIGNAL": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 7,
+          "blockers": [
+            "via /GND 0b263272",
+            "via /GND 8b83bf9d",
+            "via /DIAG_U29_AIN1 3e0490ca",
+            "via /SUP_U18_SENSE eeb93f48",
+            "footprint J2"
+          ]
+        },
+        "/POD_FRONT_BRAKE_SIGNAL": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 12,
+          "blockers": [
+            "via /GND 2917da2a",
+            "via /GND 30e4b0db",
+            "via /GND a5b8d53c",
+            "via /TIRE_CAN_L e2c8b211",
+            "via /ADC_AIN1 34387625"
+          ]
+        },
+        "/POD_GNSS_RF": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 7,
+          "blockers": [
+            "via /DIAG_U27_AIN1 8bfa345d",
+            "via /ADC_CS 9198e7d3",
+            "via /IMU_CS a8fa9bac",
+            "via /SPI_MOSI 57154508",
+            "via /TIRE_CAN_TX_ENABLE 8217578c"
+          ]
+        },
+        "/POD_WHEEL_FRONT_SUPPLY": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "via /TIRE_CAN_H 533a7216",
+            "via /POD_AUX4_SIGNAL 2051f969",
+            "footprint J1",
+            "footprint U6",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/PRE_6V3": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SD_DAT0": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 13,
+          "blockers": [
+            "via /GND b2e5b46d",
+            "via /TIRE_CAN_CS 2abd956d",
+            "via /TIRE_CAN_CS 740ef632",
+            "via /TIRE_CAN_CS ee4bb7f0",
+            "via /SPI_MISO 6b183a27"
+          ]
+        },
+        "/SD_DAT1": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 12,
+          "blockers": [
+            "via /GND 017e3228",
+            "via /GND 88ac9182",
+            "via /GND fb59ebdd",
+            "via /SUP_U19_CT da4c253c",
+            "via /TWAI_RX acb5f885"
+          ]
+        },
+        "/SD_DAT2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /+3V3 ef322667",
+            "via /GND 5f3c0e6e",
+            "via /POD_GNSS_RF d38855b1",
+            "via /WHEEL_REAR_PULLUP 28441044",
+            "via /WHEEL_FRONT_CAPTURE eb5c0a2b"
+          ]
+        },
+        "/SD_DAT3": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 10,
+          "blockers": [
+            "via /+3V3 ef322667",
+            "via /+3V3 f3e4d508",
+            "via /GND 250f586e",
+            "via /GND d97a8a9e",
+            "via /GND e05fb130"
+          ]
+        },
+        "/SENSOR_POWER_AUX_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 12,
+          "blockers": [
+            "via /+3V3 5a7b3a9b",
+            "via /GND b638c9c5",
+            "via /GND cbdac525",
+            "via /DIAG_U28_AIN2 60d1f30f",
+            "via /DIAG_I2C_SDA 8e9b590c"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_DVDT": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 3,
+          "blockers": [
+            "via /GND 0181102a",
+            "via /SETPOINT_5V 78ae79b3",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 7,
+          "blockers": [
+            "via /GND a7636e79",
+            "via /PRE_6V3 15b1c80d",
+            "via /TIRE_CAN_H 9ed3165c",
+            "footprint J1",
+            "footprint U6"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_OVP": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 10,
+          "blockers": [
+            "via /PRE_6V3 87fe860f",
+            "via /TIRE_CAN_H edce3e6c",
+            "via /ADC_AIN1 a60b2d15",
+            "via /DIAG_U28_AIN3 769d7f2d",
+            "via /POD_5V_AUX f4dbaa21"
+          ]
+        },
+        "/SENSOR_POWER_FRONT_UVLO": {
+          "connections": 2,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /POD_WHEEL_FRONT_SUPPLY 9a0b18db",
+            "via /SETPOINT_5V 6777d313",
+            "keepout 'D-PCB-7v2-In1-no-tracks'",
+            "via /PRE_6V3 87fe860f",
+            "via /TIRE_CAN_H edce3e6c"
+          ]
+        },
+        "/SENSOR_POWER_REAR_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 7,
+          "blockers": [
+            "via /POD_WHEEL_REAR_SUPPLY 13bd1b02",
+            "via /THERM_AUX3_SELECT 6992b43d",
+            "via /WHEEL_REAR_DIODE_OUT 0b3af345",
+            "via /POD_AUX3_SIGNAL 9410949f",
+            "footprint J1"
+          ]
+        },
+        "/SENSOR_POWER_REAR_UVLO": {
+          "connections": 1,
+          "best_layer": "F.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "footprint U24"
+          ]
+        },
+        "/SENSOR_POWER_TIRE_DVDT": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 3,
+          "blockers": [
+            "via /GND 68ae2a07",
+            "via /SENSOR_POWER_TIRE_RTN f5c845e2",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SENSOR_POWER_TIRE_ILIM": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /PRE_6V3 87fe860f",
+            "via /POD_5V_AUX 2eef38c3",
+            "footprint J1",
+            "footprint U6",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SENSOR_POWER_TIRE_OVP": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /PRE_6V3 69b224e3",
+            "via /ADC_AIN6 c268d9c7",
+            "footprint J1",
+            "footprint U6",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SENSOR_POWER_TIRE_UVLO": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SETPOINT_5V": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 3,
+          "blockers": [
+            "via /PRE_6V3 87fe860f",
+            "via /POD_TIRE_SUPPLY af1146b8",
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        },
+        "/SPI_MOSI": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "via /TWAI_RX f08c1b70",
+            "via /DIAG_U27_AIN1_UPPER2 49eef282",
+            "via /GNSS_PPS 424fdc3f",
+            "via /TIRE_CAN_INT_N 4cb26db9",
+            "via /GNSS_LNA_EN 48cab06e"
+          ]
+        },
+        "/SPI_SCK": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 8,
+          "blockers": [
+            "via /+3V3 8a080e35",
+            "via /GND 2917da2a",
+            "via /GND 7e64e96e",
+            "via /ANT_BIAS d0daf1ad",
+            "via /POWER_FAIL_N b7fd9e87"
+          ]
+        },
+        "/SUP_U18_CT": {
+          "connections": 1,
+          "best_layer": "B.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "via /GND e41ee1dc"
+          ]
+        },
+        "/SUP_U19_SENSE": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 6,
+          "blockers": [
+            "via /GND 7e64e96e",
+            "via /AFE_DIV7 68de9f5e",
+            "via /TIRE_CAN_CS 4759efcb",
+            "via /ADC_CS 9198e7d3",
+            "via /IMU_CS a8fa9bac"
+          ]
+        },
+        "/THERM_BIAS_MID": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 14,
+          "blockers": [
+            "via /GND 61fc2871",
+            "via /GND 8b83bf9d",
+            "via /GND a7636e79",
+            "via /AFE_BUF1 0f2275f7",
+            "via /ADC_AIN1 a02da15e"
+          ]
+        },
+        "/THERM_EXC_2V495": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 12,
+          "blockers": [
+            "via /GND 017e3228",
+            "via /GND 2917da2a",
+            "via /GND 4963ff12",
+            "via /ADC_AIN7 8eb41072",
+            "via /SUP_U19_SENSE 73dba9a6"
+          ]
+        },
+        "/TIRE_CAN_OSC2": {
+          "connections": 1,
+          "best_layer": "In1.Cu",
+          "hard_blockers_on_best_layer": 1,
+          "blockers": [
+            "keepout 'D-PCB-7v2-In1-no-tracks'"
+          ]
+        }
+      }
+    }
+  },
+  "reference_context_dir": "/tmp/agent-ee-burndown-20261017/workers/pod-capture-j6b2/scratch/route-1/out/runs/project/route-1/20261023T065308.671261Z",
+  "scope": [
+    "/+3V3",
+    "/+5V_CAN",
+    "/ADC_AIN0",
+    "/ADC_AIN1",
+    "/ADC_AIN2",
+    "/ADC_AIN3",
+    "/ADC_AIN4",
+    "/ADC_AIN5",
+    "/ADC_AIN6",
+    "/ADC_AIN7",
+    "/ADC_CS",
+    "/AFE_BUF0",
+    "/AFE_BUF1",
+    "/AFE_BUF2",
+    "/AFE_BUF3",
+    "/AFE_BUF4",
+    "/AFE_BUF5",
+    "/AFE_BUF6",
+    "/AFE_BUF7",
+    "/AFE_DIV0",
+    "/AFE_DIV1",
+    "/AFE_DIV2",
+    "/AFE_DIV3",
+    "/AFE_DIV4",
+    "/AFE_DIV5",
+    "/AFE_DIV6",
+    "/AFE_DIV7",
+    "/ANT_BIAS",
+    "/ANT_LIMITED",
+    "/BOOT_3V3",
+    "/BOOT_PRE",
+    "/DIAG_I2C_SCL",
+    "/DIAG_I2C_SDA",
+    "/DIAG_U27_AIN0",
+    "/DIAG_U27_AIN0_UPPER1",
+    "/DIAG_U27_AIN0_UPPER2",
+    "/DIAG_U27_AIN1",
+    "/DIAG_U27_AIN1_UPPER1",
+    "/DIAG_U27_AIN1_UPPER2",
+    "/DIAG_U27_AIN2",
+    "/DIAG_U27_AIN2_UPPER1",
+    "/DIAG_U27_AIN2_UPPER2",
+    "/DIAG_U28_AIN1",
+    "/DIAG_U28_AIN1_UPPER1",
+    "/DIAG_U28_AIN1_UPPER2",
+    "/DIAG_U28_AIN2",
+    "/DIAG_U28_AIN2_UPPER1",
+    "/DIAG_U28_AIN2_UPPER2",
+    "/DIAG_U28_AIN3",
+    "/DIAG_U28_AIN3_UPPER1",
+    "/DIAG_U28_AIN3_UPPER2",
+    "/DIAG_U29_AIN0",
+    "/DIAG_U29_AIN0_UPPER1",
+    "/DIAG_U29_AIN0_UPPER2",
+    "/DIAG_U29_AIN1",
+    "/DIAG_U29_AIN1_UPPER1",
+    "/DIAG_U29_AIN1_UPPER2",
+    "/DIAG_U29_AIN2",
+    "/DIAG_U29_AIN2_UPPER1",
+    "/DIAG_U29_AIN2_UPPER2",
+    "/FB_3V3",
+    "/FB_3V3_SERIES",
+    "/FB_PRE",
+    "/FB_PRE_SERIES",
+    "/GND",
+    "/GNSS_ANT_FAULT_N",
+    "/GNSS_LNA_EN",
+    "/GNSS_PPS",
+    "/GNSS_RX_IN",
+    "/GNSS_TX_OUT",
+    "/IMU_CS",
+    "/IMU_INT1",
+    "/MCU_BOOT",
+    "/MCU_BOOT46",
+    "/MCU_EN",
+    "/POD_12V_IN",
+    "/POD_12V_PROTECTED",
+    "/POD_5V_AUX",
+    "/POD_5V_SENSOR",
+    "/POD_AUX1_SIGNAL",
+    "/POD_AUX2_SIGNAL",
+    "/POD_AUX3_SIGNAL",
+    "/POD_AUX4_SIGNAL",
+    "/POD_CAN_N",
+    "/POD_CAN_P",
+    "/POD_FRONT_BRAKE_SIGNAL",
+    "/POD_FRONT_FORK_SIGNAL",
+    "/POD_GNSS_RF",
+    "/POD_REAR_BRAKE_SIGNAL",
+    "/POD_REAR_SHOCK_SIGNAL",
+    "/POD_TIRE_SUPPLY",
+    "/POD_UART_RX",
+    "/POD_UART_TX",
+    "/POD_WHEEL_FRONT_SIGNAL",
+    "/POD_WHEEL_FRONT_SUPPLY",
+    "/POD_WHEEL_REAR_SIGNAL",
+    "/POD_WHEEL_REAR_SUPPLY",
+    "/POWER_FAIL_N",
+    "/PRE_6V3",
+    "/REF_CAP_NODE",
+    "/REF_DIV",
+    "/REF_NR",
+    "/REVERSE_GATE",
+    "/SD_CD",
+    "/SD_CLK",
+    "/SD_CMD",
+    "/SD_DAT0",
+    "/SD_DAT1",
+    "/SD_DAT2",
+    "/SD_DAT3",
+    "/SENSOR_FAULT_N",
+    "/SENSOR_POWER_AUX_DVDT",
+    "/SENSOR_POWER_AUX_ILIM",
+    "/SENSOR_POWER_AUX_OVP",
+    "/SENSOR_POWER_AUX_RTN",
+    "/SENSOR_POWER_AUX_UVLO",
+    "/SENSOR_POWER_FRONT_DVDT",
+    "/SENSOR_POWER_FRONT_ILIM",
+    "/SENSOR_POWER_FRONT_OVP",
+    "/SENSOR_POWER_FRONT_RTN",
+    "/SENSOR_POWER_FRONT_UVLO",
+    "/SENSOR_POWER_REAR_DVDT",
+    "/SENSOR_POWER_REAR_ILIM",
+    "/SENSOR_POWER_REAR_OVP",
+    "/SENSOR_POWER_REAR_RTN",
+    "/SENSOR_POWER_REAR_UVLO",
+    "/SENSOR_POWER_TIRE_DVDT",
+    "/SENSOR_POWER_TIRE_ILIM",
+    "/SENSOR_POWER_TIRE_OVP",
+    "/SENSOR_POWER_TIRE_RTN",
+    "/SENSOR_POWER_TIRE_UVLO",
+    "/SENSOR_REF_2V5",
+    "/SETPOINT_5V",
+    "/SPI_MISO",
+    "/SPI_MOSI",
+    "/SPI_SCK",
+    "/SUP_U16_CT",
+    "/SUP_U16_SENSE",
+    "/SUP_U18_CT",
+    "/SUP_U18_SENSE",
+    "/SUP_U18_TOP_SERIES",
+    "/SUP_U19_CT",
+    "/SUP_U19_SENSE",
+    "/SW_3V3",
+    "/SW_PRE",
+    "/THERM_AUX1_SELECT",
+    "/THERM_AUX2_SELECT",
+    "/THERM_AUX3_SELECT",
+    "/THERM_AUX4_SELECT",
+    "/THERM_BIAS_IN",
+    "/THERM_BIAS_MID",
+    "/THERM_EXC_2V495",
+    "/TIRE_CAN_CS",
+    "/TIRE_CAN_GPIO1",
+    "/TIRE_CAN_H",
+    "/TIRE_CAN_INT_N",
+    "/TIRE_CAN_L",
+    "/TIRE_CAN_OSC1",
+    "/TIRE_CAN_OSC2",
+    "/TIRE_CAN_RX",
+    "/TIRE_CAN_SILENT",
+    "/TIRE_CAN_TERM",
+    "/TIRE_CAN_TX",
+    "/TIRE_CAN_TX_ENABLE",
+    "/TWAI_RX",
+    "/TWAI_TX",
+    "/VCC_3V3",
+    "/VCC_PRE",
+    "/WHEEL_FRONT_CAPTURE",
+    "/WHEEL_FRONT_DIODE_OUT",
+    "/WHEEL_FRONT_FILTERED",
+    "/WHEEL_FRONT_OUT",
+    "/WHEEL_FRONT_PULLUP",
+    "/WHEEL_FRONT_PULLUP_MID",
+    "/WHEEL_FRONT_THRESHOLD",
+    "/WHEEL_REAR_CAPTURE",
+    "/WHEEL_REAR_DIODE_OUT",
+    "/WHEEL_REAR_FILTERED",
+    "/WHEEL_REAR_OUT",
+    "/WHEEL_REAR_PULLUP",
+    "/WHEEL_REAR_PULLUP_MID",
+    "/WHEEL_REAR_THRESHOLD",
+    "unconnected-(D105-K2-Pad2)",
+    "unconnected-(J1-Pin_35-Pad35)",
+    "unconnected-(U1-IO3-Pad15)",
+    "unconnected-(U1-IO36-Pad29)",
+    "unconnected-(U1-IO37-Pad30)",
+    "unconnected-(U1-IO45-Pad26)",
+    "unconnected-(U1-USB_D+-Pad14)",
+    "unconnected-(U1-USB_D--Pad13)",
+    "unconnected-(U11-DNC-Pad1)",
+    "unconnected-(U11-DNC-Pad8)",
+    "unconnected-(U11-NC-Pad7)",
+    "unconnected-(U11-Temp-Pad3)",
+    "unconnected-(U12-NC-Pad2)",
+    "unconnected-(U12-NC-Pad7)",
+    "unconnected-(U2-INT2-Pad9)",
+    "unconnected-(U2-NC-Pad10)",
+    "unconnected-(U2-NC-Pad11)",
+    "unconnected-(U20-CLKO_SOF-Pad3)",
+    "unconnected-(U23-FLT-Pad9)",
+    "unconnected-(U23-SHDN-Pad4)",
+    "unconnected-(U24-FLT-Pad9)",
+    "unconnected-(U24-SHDN-Pad4)",
+    "unconnected-(U25-FLT-Pad9)",
+    "unconnected-(U25-SHDN-Pad4)",
+    "unconnected-(U27-AIN3-Pad6)",
+    "unconnected-(U27-DRDY_N-Pad14)",
+    "unconnected-(U27-REFN-Pad8)",
+    "unconnected-(U27-REFP-Pad9)",
+    "unconnected-(U28-AIN0-Pad11)",
+    "unconnected-(U28-DRDY_N-Pad14)",
+    "unconnected-(U28-REFN-Pad8)",
+    "unconnected-(U28-REFP-Pad9)",
+    "unconnected-(U29-AIN3-Pad6)",
+    "unconnected-(U29-DRDY_N-Pad14)",
+    "unconnected-(U29-REFN-Pad8)",
+    "unconnected-(U29-REFP-Pad9)",
+    "unconnected-(U3-EXTINT-Pad4)",
+    "unconnected-(U3-RESERVED-Pad15)",
+    "unconnected-(U3-RESERVED-Pad16)",
+    "unconnected-(U3-RESERVED-Pad17)",
+    "unconnected-(U3-SCL{slash}SPI_CLK-Pad19)",
+    "unconnected-(U3-SDA{slash}~{SPI_CS}-Pad18)",
+    "unconnected-(U3-USB_DM-Pad5)",
+    "unconnected-(U3-USB_DP-Pad6)",
+    "unconnected-(U3-VCC_RF-Pad9)",
+    "unconnected-(U3-~{RESET}-Pad8)",
+    "unconnected-(U3-~{SAFEBOOT}-Pad1)",
+    "unconnected-(U30-FLT-Pad9)",
+    "unconnected-(U30-SHDN-Pad4)",
+    "unconnected-(U5-PG-Pad4)",
+    "unconnected-(U6-NC-Pad2)",
+    "unconnected-(U6-NC-Pad7)",
+    "unconnected-(U7-PG-Pad4)"
+  ],
+  "candidate_sha256": "5690da57e291dff46f80b239c1c81f164d0622c6d4c0d03b65437e653f025825",
+  "method": "Existing native grade API against original R5; no ancestry claim"
+}
