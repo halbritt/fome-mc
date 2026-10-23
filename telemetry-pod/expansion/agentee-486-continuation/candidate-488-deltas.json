@@ -1,0 +1,54 @@
+{
+  "schema": "agentee-486.candidate-delta/1",
+  "adopted": false,
+  "activation": "explicitsourceowneradoption+newnativebinding; switch overlay status only after exact source313/314 identity checked",
+  "authority": "4f45ed17@1;488 candidate reviewpending",
+  "base_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "operations": [
+    {
+      "reference": "C18",
+      "operation": "replace-part-and-footprint",
+      "native_uuid": "10a4c557-7d20-50ee-9fd1-cbe7ed54bef5",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "lcsc": "C694521",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "height_max_mm": 2.8,
+      "height_authority": "relayed488 candidate bound4f45ed17@1; exactdatasheet acquisitionneededbeforeadoption",
+      "conservative_xy_square_mm": null,
+      "adjacent_to": "U11.2",
+      "nets": [
+        "PRE_6V3",
+        "/GND"
+      ],
+      "landpattern_rebind_required": true
+    },
+    {
+      "reference": "C134",
+      "operation": "new",
+      "native_uuid": null,
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "lcsc": "C76711",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "height_max_mm": 0.9,
+      "conservative_xy_square_mm": 1.7,
+      "datasheet_sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d",
+      "source_fact_key": "CGA3E2X7R1H104KT0Y0N",
+      "adjacent_to": "U21.5VIO",
+      "nets": [
+        "/+3V3",
+        "/+5V_CAN"
+      ],
+      "native_binding": "UNRESOLVEDuntilsourcewriteremits"
+    },
+    {
+      "reference": "C133",
+      "operation": "net-only",
+      "native_uuid": "4ab8aee9-068a-52e5-adda-a58d9b365e3a",
+      "pin": "2",
+      "old_net": "/GND",
+      "new_net": "/+5V_CAN",
+      "height_or_body_change": false
+    }
+  ],
+  "packing_admission": "OPEN; no automatic candidate adoption"
+}
