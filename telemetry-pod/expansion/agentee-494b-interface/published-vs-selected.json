@@ -1,87 +1,8 @@
 {
   "schema": "agentee494b.bound-classes/1",
   "units": "mm unlessstated",
-  "published": [
-    {
-      "item": "SMTbody",
-      "nominal": [
-        6.35,
-        6.35,
-        8.84
-      ],
-      "general_tolerance": ".2foreachdimension bymanufacturerDINISO2768-1m reference +capturedISOtable",
-      "upper": [
-        6.55,
-        6.55,
-        9.04
-      ],
-      "source": "W\u00fcrthp1+ISOtable1"
-    },
-    {
-      "item": "SMTcontactcoplanarity",
-      "range": [
-        0,
-        0.07
-      ],
-      "meaning": "Manufacturerp1signalcontactrelativegroundfootdatum;notasolderstandoffguarantee"
-    },
-    {
-      "item": "SMAinterface",
-      "value": "MIL-STD-348 standardSMAjack",
-      "source": "W\u00fcrthp2;cablep1standardSMAplug"
-    },
-    {
-      "item": "SMTmatingtorque",
-      "value_Nm": 0.57,
-      "meaning": "Manufacturer recommended57Ncm, nottestedboardretention",
-      "source": "W\u00fcrthp2"
-    },
-    {
-      "item": "pigtailnominalL",
-      "value": 152.4,
-      "tolerance": 6.35,
-      "range": [
-        146.05,
-        158.75
-      ],
-      "source": "AmphenolrevAsheet2length6.00in row, \u00b1.25in;inchconversionexact. L isdrawingdatumlength, notaseparatelyspecifiedfreecableorinstalledroute."
-    },
-    {
-      "item": "pigtailstrainrelief",
-      "plug_tube_length": [
-        24.13,
-        26.67
-      ],
-      "bulkhead_tube_length": [
-        24.4,
-        26.4
-      ],
-      "source": "AmphenolrevA25.4\u00b11.27 and25.4\u00b11.00;no OD/bend-radius/maxmateheight guarantee."
-    },
-    {
-      "item": "tools",
-      "jaw_mm": [
-        8,
-        11
-      ],
-      "meaning": "Publishedwrenchjawdimensions,nothead/handlevolumes",
-      "source": "AmphenolrevA"
-    },
-    {
-      "item": "panelDhole",
-      "diameter_nominal": 6.6,
-      "flat_to_opposite_nominal": 6.1,
-      "meaning": "Publishedrecommendedshape;do not confusewith5.85barrelDflat or make10.50REF amaxpanelthickness.",
-      "source": "AmphenolrevA"
-    }
-  ],
   "selected_conservative_assembly_limits": {
     "class": "default",
-    "authority": "Engineering proposal forchief/reviewer; advisoryplanningvalues,notownerrequirements/manufacturerprocesscapabilities or hardgates. Actualassemblyprocesscontractmustbindthem before relyingonadmission.",
-    "SMT_seating_lift_max": 0.2,
-    "F_solder_extent_max": 0.5,
-    "SMT_total_F_body_envelope_height": 10,
-    "SMT_body_XY_square": 8,
     "THT_seating_lift_max": 0.2,
     "THT_B_soldered_depth_max": 3.2,
     "THT_F_body_envelope_height": 10,
@@ -97,13 +18,118 @@
     ],
     "tool_handle_length_max": 150,
     "tool_motion_radius": 175,
-    "cable_bend_radius_min": 10,
-    "cable_swept_radius": 3,
-    "strain_clamp_box_xyz": [
-      10,
-      10,
-      8
-    ],
-    "warning": "These finite limits can be drawn and reviewed; they are not tests proving actualparts fit. No selectedvalue may be treatedas a publishedpass/failrule or silentlyblock a layout."
+    "authority": "Agent-507 engineering proposals, class: default; advisory, no acceptance gate. No enclosure content is active."
+  },
+  "historical_published": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "records": [
+      {
+        "item": "SMTbody",
+        "nominal": [
+          6.35,
+          6.35,
+          8.84
+        ],
+        "general_tolerance": ".2foreachdimension bymanufacturerDINISO2768-1m reference +capturedISOtable",
+        "upper": [
+          6.55,
+          6.55,
+          9.04
+        ],
+        "source": "W\u00fcrthp1+ISOtable1"
+      },
+      {
+        "item": "SMTcontactcoplanarity",
+        "range": [
+          0,
+          0.07
+        ],
+        "meaning": "Manufacturerp1signalcontactrelativegroundfootdatum;notasolderstandoffguarantee"
+      },
+      {
+        "item": "SMAinterface",
+        "value": "MIL-STD-348 standardSMAjack",
+        "source": "W\u00fcrthp2;cablep1standardSMAplug"
+      },
+      {
+        "item": "SMTmatingtorque",
+        "value_Nm": 0.57,
+        "meaning": "Manufacturer recommended57Ncm, nottestedboardretention",
+        "source": "W\u00fcrthp2"
+      },
+      {
+        "item": "pigtailnominalL",
+        "value": 152.4,
+        "tolerance": 6.35,
+        "range": [
+          146.05,
+          158.75
+        ],
+        "source": "AmphenolrevAsheet2length6.00in row, \u00b1.25in;inchconversionexact. L isdrawingdatumlength, notaseparatelyspecifiedfreecableorinstalledroute."
+      },
+      {
+        "item": "pigtailstrainrelief",
+        "plug_tube_length": [
+          24.13,
+          26.67
+        ],
+        "bulkhead_tube_length": [
+          24.4,
+          26.4
+        ],
+        "source": "AmphenolrevA25.4\u00b11.27 and25.4\u00b11.00;no OD/bend-radius/maxmateheight guarantee."
+      },
+      {
+        "item": "tools",
+        "jaw_mm": [
+          8,
+          11
+        ],
+        "meaning": "Publishedwrenchjawdimensions,nothead/handlevolumes",
+        "source": "AmphenolrevA"
+      },
+      {
+        "item": "panelDhole",
+        "diameter_nominal": 6.6,
+        "flat_to_opposite_nominal": 6.1,
+        "meaning": "Publishedrecommendedshape;do not confusewith5.85barrelDflat or make10.50REF amaxpanelthickness.",
+        "source": "AmphenolrevA"
+      }
+    ]
+  },
+  "published": [],
+  "historical_selected_limits": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "class": "default",
+      "authority": "Engineering proposal forchief/reviewer; advisoryplanningvalues,notownerrequirements/manufacturerprocesscapabilities or hardgates. Actualassemblyprocesscontractmustbindthem before relyingonadmission.",
+      "SMT_seating_lift_max": 0.2,
+      "F_solder_extent_max": 0.5,
+      "SMT_total_F_body_envelope_height": 10,
+      "SMT_body_XY_square": 8,
+      "THT_seating_lift_max": 0.2,
+      "THT_B_soldered_depth_max": 3.2,
+      "THT_F_body_envelope_height": 10,
+      "mate_bin_xyz": [
+        40,
+        24,
+        30
+      ],
+      "tool_head_max_xyz": [
+        25,
+        25,
+        5
+      ],
+      "tool_handle_length_max": 150,
+      "tool_motion_radius": 175,
+      "cable_bend_radius_min": 10,
+      "cable_swept_radius": 3,
+      "strain_clamp_box_xyz": [
+        10,
+        10,
+        8
+      ],
+      "warning": "These finite limits can be drawn and reviewed; they are not tests proving actualparts fit. No selectedvalue may be treatedas a publishedpass/failrule or silentlyblock a layout."
+    }
   }
 }

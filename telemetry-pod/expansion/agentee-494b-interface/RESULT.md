@@ -1,4 +1,6 @@
-**CURRENT AUTHORITY: [2026-10-23 owner correction](OWNER-CORRECTION.md) supersedes conflicting historical findings below. Keep 132134; SMT search cancelled; paper fit-blocker withdrawn.**
+**AGENT-DRAFTED CORRECTION applying owner direction: [agent-507 record, corrected by agent-535](OWNER-CORRECTION.md). Owner quotes remain owner quotes; engineering limits and assembly prose are agent-drafted. Keep 132134 with the Amphenol published pattern; SMT CANCELLED; Molex paper-unfit WITHDRAWN; enclosure-design gates REMOVED.**
+
+The inherited narrative below is HISTORICAL / SUPERSEDED where it conflicts with the correction. Current board-side writer inputs are in `../agentee-494-j2/board-side-correction.json`; no historical SMT, bulkhead/pigtail, enclosure or paper-stack claim is an active recommendation or gate.
 
 # AGENTEE-494b interface continuation
 

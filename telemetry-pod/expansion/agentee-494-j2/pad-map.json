@@ -18,7 +18,18 @@
         0,
         0
       ],
-      "net": "/POD_GNSS_RF"
+      "net": "/POD_GNSS_RF",
+      "drill_mm": 1.5,
+      "size_mm": [
+        2.05,
+        2.05
+      ],
+      "shape": "circle",
+      "type": "thru_hole",
+      "layers": [
+        "*.Cu",
+        "*.Mask"
+      ]
     },
     {
       "number": "2",
@@ -26,7 +37,18 @@
         -2.54,
         -2.54
       ],
-      "net": "/GND"
+      "net": "/GND",
+      "drill_mm": 1.7,
+      "size_mm": [
+        2.25,
+        2.25
+      ],
+      "shape": "circle",
+      "type": "thru_hole",
+      "layers": [
+        "*.Cu",
+        "*.Mask"
+      ]
     },
     {
       "number": "2",
@@ -34,7 +56,18 @@
         -2.54,
         2.54
       ],
-      "net": "/GND"
+      "net": "/GND",
+      "drill_mm": 1.7,
+      "size_mm": [
+        2.25,
+        2.25
+      ],
+      "shape": "circle",
+      "type": "thru_hole",
+      "layers": [
+        "*.Cu",
+        "*.Mask"
+      ]
     },
     {
       "number": "2",
@@ -42,7 +75,18 @@
         2.54,
         -2.54
       ],
-      "net": "/GND"
+      "net": "/GND",
+      "drill_mm": 1.7,
+      "size_mm": [
+        2.25,
+        2.25
+      ],
+      "shape": "circle",
+      "type": "thru_hole",
+      "layers": [
+        "*.Cu",
+        "*.Mask"
+      ]
     },
     {
       "number": "2",
@@ -50,11 +94,22 @@
         2.54,
         2.54
       ],
-      "net": "/GND"
+      "net": "/GND",
+      "drill_mm": 1.7,
+      "size_mm": [
+        2.25,
+        2.25
+      ],
+      "shape": "circle",
+      "type": "thru_hole",
+      "layers": [
+        "*.Cu",
+        "*.Mask"
+      ]
     }
   ],
   "models": "Retain stock zero transform model as visualization only; source max body reservations govern. Stable canonical UUID mapping performed by writer, not random regenerated library UUIDs.",
-  "adoption": "Conditional proposal has unqualified pin-location/solder-process assumptions; do not promote to production-qualified footprint.",
+  "adoption": "Published manufacturer pattern selected; conditional enlarged-hole footprint is historical and not consumable. Final pose, UUID/net rebind and native actual-board checks belong to writer; no worst-case joint gate.",
   "coordinate_frame": {
     "name": "proposed_110x80_lineage",
     "proposed_outline_mm": [
@@ -106,7 +161,7 @@
       "The explicitly proposed J2 RF-pad anchor: lineage(103,40), saved-frame candidate(83,28), without asserting it exists on the saved board."
     ]
   },
-  "owner_hole_amendment": {
+  "historical_owner_hole_amendment": {
     "source": "a2c805ec-e762-4b4e-9386-7899d4287ff6@1",
     "owner_verbatim": "1.7mm holes are required.",
     "interpretation_519": "all five holes",
@@ -114,6 +169,53 @@
     "pad_diameter_mm": 2.25,
     "nominal_annular_ring_mm": 0.275,
     "manufacturer_conflict": "Centre RF recommended hole 1.5mm replaced by owner 1.7mm; pad2.05 becomes2.25. GND unchanged. Filename historical; centre geometry now owner modified.",
-    "review": "RF launch/antipad and actual adopted geometry remain for writer review; no worst-case fit study."
+    "review": "RF launch/antipad and actual adopted geometry remain for writer review; no worst-case fit study.",
+    "status": "SUPERSEDED: agent-519 over-read, explicitly corrected by de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1"
+  },
+  "published_hole_pattern": {
+    "class": "manufacturer-published",
+    "source": "Amphenol RF 132134 Rev C sheet 3 PCB MOUNTING HOLES; https://www.amphenolrf.com/en-us/assets/file/4065789557/",
+    "sha256": "1ec1d365bf5bf9e1598cf7cf2c90747ba11f06607f4c6a28ca6d30a0aab56034",
+    "centre_drill_mm": 1.5,
+    "ground_drill_mm": 1.7,
+    "ground_square_mm": 5.08,
+    "copper_source": "Stock KiCad footprint; stock-pad-comparison.json"
+  },
+  "drawing_provenance": {
+    "class": "manufacturer-published",
+    "file": "132134-revC.pdf",
+    "repository_path": "telemetry-pod/expansion/agentee-494-j2/132134-revC.pdf",
+    "sha256": "1ec1d365bf5bf9e1598cf7cf2c90747ba11f06607f4c6a28ca6d30a0aab56034",
+    "source_url": "https://www.amphenolrf.com/en-us/assets/file/4065789557/",
+    "document": "Amphenol RF 132134 Rev C, sheet 3 of 3",
+    "sheet_title": "PCB MOUNTING HOLES",
+    "verbatim_callouts": {
+      "centre": "1,5 [.059]",
+      "ground": "4- 1,7 [.067]",
+      "square": "5,08 [.200]"
+    },
+    "drawing_symbols": "Diameter symbols accompany the centre and four-ground callouts in the retained drawing.",
+    "correction_history": "519 over-read all five holes as 1.7 mm in a2c805ec; corrected explicitly by de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1. Published dimensions belong to Amphenol, not the owner."
+  },
+  "footprint_record": {
+    "file": "Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod",
+    "sha256": "2b65c583e2be87150cf7beef0debc1495f942537eb22253f53bf5fa481012b4a",
+    "drawing": {
+      "class": "manufacturer-published",
+      "file": "132134-revC.pdf",
+      "repository_path": "telemetry-pod/expansion/agentee-494-j2/132134-revC.pdf",
+      "sha256": "1ec1d365bf5bf9e1598cf7cf2c90747ba11f06607f4c6a28ca6d30a0aab56034",
+      "source_url": "https://www.amphenolrf.com/en-us/assets/file/4065789557/",
+      "document": "Amphenol RF 132134 Rev C, sheet 3 of 3",
+      "sheet_title": "PCB MOUNTING HOLES",
+      "verbatim_callouts": {
+        "centre": "1,5 [.059]",
+        "ground": "4- 1,7 [.067]",
+        "square": "5,08 [.200]"
+      },
+      "drawing_symbols": "Diameter symbols accompany the centre and four-ground callouts in the retained drawing.",
+      "correction_history": "519 over-read all five holes as 1.7 mm in a2c805ec; corrected explicitly by de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1. Published dimensions belong to Amphenol, not the owner."
+    },
+    "geometry_comparison": "stock-pad-comparison.json"
   }
 }

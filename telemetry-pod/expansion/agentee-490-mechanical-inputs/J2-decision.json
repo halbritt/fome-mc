@@ -2,8 +2,7 @@
   "schema": "agentee-490.J2-slot-decision/1",
   "immutable_source_commit": "b68305484aa388410a11778101a5f43106c1b44c",
   "J2_uuid": "18c6ebf4-5f6a-5227-b278-be0fa33a91c9",
-  "status": "STANDARD_THICKNESS_PAIRING_NOT_GUARANTEED;FINITE_ALTERNATIVES_FOR449_519",
-  "selected_Molex": "732511150;commonSD73251-115B1geometrywith1153libraryvariant",
+  "status": "MOLEX_PAPER_UNFIT_WITHDRAWN;KEEP_AMPHENOL_132134_PUBLISHED_PATTERN",
   "source_slot": {
     "url": "https://media.digikey.com/pdf/Data%20Sheets/Molex%20PDFs/SD-732511153.pdf",
     "path": "/home/halbritt/.cache/agentee-486-cont-agent507/SD-732511153.pdf",
@@ -27,20 +26,8 @@
     ],
     "claim": "General published capability, not a received order-specific stackup guarantee."
   },
-  "fit_arithmetic": {
-    "worst_clearance_mm": -0.1598,
-    "thickest_board_vs_widest_slot_mm": -0.0074,
-    "no_solder_allowance_needed_to_demonstrate_conflict": true,
-    "interpretation": "Some allowed board and connector dimension combinations interfere. This is a tolerance guarantee failure, not a claim every actual assembly fails."
-  },
-  "assembly_allowance": {
-    "value_mm": 0.05,
-    "class": "default",
-    "purpose": "Explicit engineering design allowance for solder/finish/assembly, not a manufacturer specified universal minimum and not an acceptance rule.",
-    "required_max_edge_thickness_mm": 1.5502
-  },
   "option_A": {
-    "recommendation": "Preferred finite alternative for coordinator decision: standard SMA jack Amphenol132134 vertical through-hole, retain electrical J2membership and RF/GND pin relations. Not adopted by507.",
+    "recommendation": "Keep owner-selected Amphenol 132134; published centre 1.5 / four GND 1.7 on 5.08 square, drawing credited. Canonical writer adopts and binds final pose.",
     "primary_product_url": "https://www.amphenolrf.com/en-us/part/132134/662/",
     "primary_drawing_url": "https://www.amphenolrf.com/en-us/assets/file/4065789557/",
     "retained_manufacturer_drawing_mirror": "https://www.ariat-tech.fi/datasheet/ac/132134.pdf",
@@ -71,19 +58,10 @@
       "CPWendpoint106.96,40mustterminateat103,40andRFlaunchkeepout/cutoutsregenerated"
     ],
     "RF_consequence": "Preserve ordinary0.293/.2032. Centre through-hole launch/anti-pad requires scoped reviewed geometry exception and connectedIn1referencecheck, not a net-wide waiver; no new impedance result claimed.",
-    "remaining_evidence": "Drawing nominal recommendedholes1.5RF/1.7GND must be reconciled with actual finished-hole/positional tolerance and solderprocess. Stockfootprintnativecheck establishesgeometryonly. Actualmatingplug/cable/toolmaxandfinalcourtyard/DRCremainrequired.",
-    "finite_fallback_if_hole_joint_not_qualified": "Use specificallyengineeredlargerdrill/pad THTlandpatternafter finished-hole/pin-position budget, or select documentedSMAcablebulkhead pigtailtermination as nextboundedsourcechange; do not assertstockfootprintqualification."
+    "remaining_evidence": "Writer checks actual board Edge.Cuts, pad/net/UUID, body/mating/tool/cable clearance, launch/antipad/connected reference and DRC/parity. Published pattern is sufficient; no hole-position reconciliation or joint worst-case gate.",
+    "finite_fallback_if_hole_joint_not_qualified": "REMOVED: published mounting pattern governs; conditional enlarged-hole and pigtail fallbacks are not active."
   },
-  "option_B": {
-    "recommendation": "Retain Molex only with an explicit documented finished-clamping-edge requirement1.50\u00b10.03mm INCLUDINGcoatings, plus0.05mm AGENTassembly allowance.",
-    "max_board_mm": 1.53,
-    "min_clearance_mm": 0.0702,
-    "after_advisory_allowance_mm": 0.0202,
-    "class": "Engineering alternative fabrication requirement,notanavailableJLCstandardcapability",
-    "changes": "Boardthickness/stackup/sourcefabricationnotes; retain H1dielectric.2104/Er4.4 and all RFnominalparameters only if producer can documentthatstack; currentstandard1.6\u00b110%doesnotmeetthisrequirement.",
-    "remaining_evidence": "No publishedJLC1.50\u00b1.03 capability/order-specificconfirmation retained; do not placeorder or alterstackup unilaterally. J1thicknessguidanceandallsupportheightsrebind."
-  },
-  "choice_owner": "449->519 owner-reserved BOM/connectororientation/fabricationprocess choice with these concrete options.",
+  "choice_owner": "Owner direction selects 132134; chief scope correction above; agent-530 integrates reviewed PARTIAL input.",
   "native_final_board_checks": [
     "ActualselectedJ2part/pad1RF/allpad2GND;noextramembership",
     "Allpad/drillannuliinsideoutlinewithactualedgeconstraints",
@@ -93,15 +71,55 @@
   ],
   "scope": "No production design/BOM/rules/source edits or fabrication acceptance.",
   "edge_connector_datum_correction": {
-    "drawing_read": "Frontview.171\u00b1.008frombodytop tolowercontacttangent;slot.066\u00b1.003fromtangenttolowergroundleguppersurface;.075\u00b1.008lowerlegthickness. PCB referenceplaneisaseatingassumption, notaseparatepartdimension.",
-    "assumption": "UppercentrecontactlowergeneratrixseatedonactualFplane; no solderstand-off.",
-    "above_F_max_mm": 4.5466,
-    "lowest_below_F_max_mm": 3.8608,
-    "lower_leg_material_thickness_max_mm": 2.1082,
-    "below_B_max_with_min_JLC_board_mm": 2.4208,
-    "derivation": "(.066+.003+.075+.008)*25.4\u22121.44=2.4208. The previous4862.1082isnotanassembledbelowBmaximumwithoutlowerseatingdatum.",
-    "solder_standoff": "AboveF =4.5466+sF; belowB =3.8608\u2212tBoard\u2212sF underthisdatum. sFmaximumunqualified. No simultaneoustop/bottomseatingassumed.",
-    "native_datum": "CurrentstocknativeRFpad1loc+1.72fromFPcentreat180deg; body/modelseatingoriginnotqualifiedbycopperpadcentre. DrawingPCBpatternisREFERENCEONLY; mould/slotregistrationmustbesourcedbeforecanonicalworldvolume.",
-    "finite_alternative": "132134axis centredonpad1anditsplanarseat; orfixedMolexthickness/processoptionB; keepoldworldbodyprojectioninactiveuntilbinding."
-  }
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "drawing_read": "Frontview.171\u00b1.008frombodytop tolowercontacttangent;slot.066\u00b1.003fromtangenttolowergroundleguppersurface;.075\u00b1.008lowerlegthickness. PCB referenceplaneisaseatingassumption, notaseparatepartdimension.",
+      "assumption": "UppercentrecontactlowergeneratrixseatedonactualFplane; no solderstand-off.",
+      "above_F_max_mm": 4.5466,
+      "lowest_below_F_max_mm": 3.8608,
+      "lower_leg_material_thickness_max_mm": 2.1082,
+      "below_B_max_with_min_JLC_board_mm": 2.4208,
+      "derivation": "(.066+.003+.075+.008)*25.4\u22121.44=2.4208. The previous4862.1082isnotanassembledbelowBmaximumwithoutlowerseatingdatum.",
+      "solder_standoff": "AboveF =4.5466+sF; belowB =3.8608\u2212tBoard\u2212sF underthisdatum. sFmaximumunqualified. No simultaneoustop/bottomseatingassumed.",
+      "native_datum": "CurrentstocknativeRFpad1loc+1.72fromFPcentreat180deg; body/modelseatingoriginnotqualifiedbycopperpadcentre. DrawingPCBpatternisREFERENCEONLY; mould/slotregistrationmustbesourcedbeforecanonicalworldvolume.",
+      "finite_alternative": "132134axis centredonpad1anditsplanarseat; orfixedMolexthickness/processoptionB; keepoldworldbodyprojectioninactiveuntilbinding."
+    }
+  },
+  "historical_selected_Molex": "732511150;commonSD73251-115B1geometrywith1153libraryvariant",
+  "selected_J2": "Amphenol RF 132134 vertical THT SMA; owner: keep the vertical SMA",
+  "historical_fit_arithmetic": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "worst_clearance_mm": -0.1598,
+      "thickest_board_vs_widest_slot_mm": -0.0074,
+      "no_solder_allowance_needed_to_demonstrate_conflict": true,
+      "interpretation": "Some allowed board and connector dimension combinations interfere. This is a tolerance guarantee failure, not a claim every actual assembly fails."
+    }
+  },
+  "fit_arithmetic": {
+    "status": "WITHDRAWN_AS_UNFIT_OR_ACCEPTANCE_GATE",
+    "owner_verbatim": "The old connector would've been fine, it may've had some interference which is a good thing.",
+    "source": "0bb47bec-f6b0-44b0-be73-76403f0f34aa@1, owner-direct relayed by agent-519",
+    "measured_fit_claim": false,
+    "interpretation": "Owner fit ruling retained; no new measured production fit test."
+  },
+  "historical_assembly_allowance": {
+    "value_mm": 0.05,
+    "class": "default",
+    "purpose": "Explicit engineering design allowance for solder/finish/assembly, not a manufacturer specified universal minimum and not an acceptance rule.",
+    "required_max_edge_thickness_mm": 1.5502
+  },
+  "historical_option_B": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "recommendation": "Retain Molex only with an explicit documented finished-clamping-edge requirement1.50\u00b10.03mm INCLUDINGcoatings, plus0.05mm AGENTassembly allowance.",
+      "max_board_mm": 1.53,
+      "min_clearance_mm": 0.0702,
+      "after_advisory_allowance_mm": 0.0202,
+      "class": "Engineering alternative fabrication requirement,notanavailableJLCstandardcapability",
+      "changes": "Boardthickness/stackup/sourcefabricationnotes; retain H1dielectric.2104/Er4.4 and all RFnominalparameters only if producer can documentthatstack; currentstandard1.6\u00b110%doesnotmeetthisrequirement.",
+      "remaining_evidence": "No publishedJLC1.50\u00b1.03 capability/order-specificconfirmation retained; do not placeorder or alterstackup unilaterally. J1thicknessguidanceandallsupportheightsrebind."
+    }
+  },
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
 }

@@ -1,24 +1,52 @@
 {
   "schema": "agentee494b.phases/1",
-  "before_canonical_adoption_or_fab_release": [
-    "ChiefdispositionsrankedSMTalternative anditsmanufacturerapplicationconditions;chooseexactJ2MPN/footprintBOMdeviation.",
-    "Capture/bindexactmatedinstallationcontract:fullmategeometry,datums,bulkheadpanel/O-ring/engagement/torque,exactcableassemblytemperature\u2265105Corotheractuallyapplicableexistingrequirement;no newtemperatureexception.",
-    "Selectassemblyprocess/stencil/reflow/retention/fixtureplan;publishedW\u00fcrthprofileisprocessinput,notproofselectedlift/filletmaximaaremet. Defaultbinsremainadvisoryuntilboundedprocessisadopted.",
-    "Writerregeneratesactualadoptedgeometry,sourcebindings,BOM/CPLnot_assembleddeviationandbothRFboardareas;checkactualsavedEdge.Cuts,localRFlaunch,connectedIn1andnativeDRC/parity."
+  "status": "BOARD_SIDE_ONLY;ENCLOSURE_GATES_REMOVED",
+  "historical_superseded": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "record": {
+      "before_canonical_adoption_or_fab_release": [
+        "ChiefdispositionsrankedSMTalternative anditsmanufacturerapplicationconditions;chooseexactJ2MPN/footprintBOMdeviation.",
+        "Capture/bindexactmatedinstallationcontract:fullmategeometry,datums,bulkheadpanel/O-ring/engagement/torque,exactcableassemblytemperature\u2265105Corotheractuallyapplicableexistingrequirement;no newtemperatureexception.",
+        "Selectassemblyprocess/stencil/reflow/retention/fixtureplan;publishedW\u00fcrthprofileisprocessinput,notproofselectedlift/filletmaximaaremet. Defaultbinsremainadvisoryuntilboundedprocessisadopted.",
+        "Writerregeneratesactualadoptedgeometry,sourcebindings,BOM/CPLnot_assembleddeviationandbothRFboardareas;checkactualsavedEdge.Cuts,localRFlaunch,connectedIn1andnativeDRC/parity."
+      ],
+      "assembly_sequence": [
+        "KeepJ2SMTlandpatternandfourpastewindowsunchanged;clean/inspectbareboard,maskseparatequalifiedmanualreflowoperationfromalreadyassembledparts.",
+        "UsequalifiedsolderpasteandactualthermalprofilewithinpublishedW\u00fcrthreflowclassification;verifygroundfeetandcentrecontactwetting. Keepselectedlift\u2264.20/Ffillet\u2264.50 onlyasprocessproposaluntilqualified.",
+        "InspectandcheckDCcontinuityRFpad1tocentrepin,shieldpad2tobody;verifyisolationRFtoGNDandL3biaspathwithoutshortingtheactiveantennafeed.",
+        "Withboardonfixtureandconnectorbodycounterheld,matetheRApigtailbeforelidclosure;usemanufacturerrecommended.57NmtorqueforW\u00fcrthinterfaceandcompatiblecounterhold,nevertorquethroughSMTpads.",
+        "Routeandclampjacketwithreviewedslack/bends;installbulkheadwithactualcapturedsealstack. Noextraenclosurepenetrations.",
+        "RetainexternalstandardSMAandownerexternalantenna\u2264500mm. Anexternal457mmcabledoesnotviolatethatrulebecauseaninternalpigtailwasadded."
+      ],
+      "later_built_assembly_qualification": [
+        "Measureactualseating/solderandmate/tool/cableenvelopes;inspectjointfillandretention;vibrationandstrainreliefqualification.",
+        "PoweredactiveantennaDCbias/current/faultchecksandGNSS/RFperformance;connectorDCspecdoesnotproveend-to-endpoweredperformance.",
+        "VerifycompleteinstalledenclosureIP67usingactualpanel/seals/matedstate;nopre-buildingresstestclaimed.",
+        "Thermalrisewithactualenclosureandoperatingload;manufacturercomponentratingisnotthermalqualification."
+      ],
+      "single_remaining_admission_boundary": "Complete source-bound assembledinstallationcontract:exactseating/engagement/sealstackandactualprocessenvelopes(includingexactcabletemperature). This packet closesdrawingcaptureandSMTpadgeometry;itdoesnotclaimthiscontractisqualified."
+    }
+  },
+  "before_canonical_adoption_or_fab_release": [],
+  "writer_board_side_duties": [
+    "Adopt 132134 published pattern; preserve J2 UUID and pad1 RF/all pad2 GND; bind final actual pose and Edge.Cuts.",
+    "Regenerate endpoint, THT launch/antipad/ground transition and both RF board areas; check connected reference and native DRC/parity.",
+    "Implement and verify J2 not_assembled BOM/CPL handling; preserve actual 105C component suitability and active-antenna DC path."
   ],
   "assembly_sequence": [
-    "KeepJ2SMTlandpatternandfourpastewindowsunchanged;clean/inspectbareboard,maskseparatequalifiedmanualreflowoperationfromalreadyassembledparts.",
-    "UsequalifiedsolderpasteandactualthermalprofilewithinpublishedW\u00fcrthreflowclassification;verifygroundfeetandcentrecontactwetting. Keepselectedlift\u2264.20/Ffillet\u2264.50 onlyasprocessproposaluntilqualified.",
-    "InspectandcheckDCcontinuityRFpad1tocentrepin,shieldpad2tobody;verifyisolationRFtoGNDandL3biaspathwithoutshortingtheactiveantennafeed.",
-    "Withboardonfixtureandconnectorbodycounterheld,matetheRApigtailbeforelidclosure;usemanufacturerrecommended.57NmtorqueforW\u00fcrthinterfaceandcompatiblecounterhold,nevertorquethroughSMTpads.",
-    "Routeandclampjacketwithreviewedslack/bends;installbulkheadwithactualcapturedsealstack. Noextraenclosurepenetrations.",
-    "RetainexternalstandardSMAandownerexternalantenna\u2264500mm. Anexternal457mmcabledoesnotviolatethatrulebecauseaninternalpigtailwasadded."
+    "Agent-507 draft: hand solder RF and all four GND pins, inspect wetting/bridges/seating, continuity and RF-to-GND isolation before power; counterhold connector body during cable mating."
   ],
   "later_built_assembly_qualification": [
-    "Measureactualseating/solderandmate/tool/cableenvelopes;inspectjointfillandretention;vibrationandstrainreliefqualification.",
-    "PoweredactiveantennaDCbias/current/faultchecksandGNSS/RFperformance;connectorDCspecdoesnotproveend-to-endpoweredperformance.",
-    "VerifycompleteinstalledenclosureIP67usingactualpanel/seals/matedstate;nopre-buildingresstestclaimed.",
-    "Thermalrisewithactualenclosureandoperatingload;manufacturercomponentratingisnotthermalqualification."
+    "Actual board solder/retention, powered active-antenna bias/current/fault and GNSS/RF performance remain later board qualification."
   ],
-  "single_remaining_admission_boundary": "Complete source-bound assembledinstallationcontract:exactseating/engagement/sealstackandactualprocessenvelopes(includingexactcabletemperature). This packet closesdrawingcaptureandSMTpadgeometry;itdoesnotclaimthiscontractisqualified."
+  "single_remaining_admission_boundary": "REMOVED; no enclosure installation/process contract gates board-side adoption or release.",
+  "F3": {
+    "status": "OUT_OF_SCOPE",
+    "scope": "Unselected bulkhead/pigtail installation, panel/seal and cancelled SMT process; no board adoption/release blocker."
+  },
+  "F4": {
+    "status": "OUT_OF_SCOPE",
+    "scope": "Unselected 095-902-570-006 temperature is not a board purchase/fab blocker; actual board components still require the existing 105C suitability rule."
+  },
+  "supersession_source": "Cairn eb6187fc-2e7d-464f-8f69-22e7afe3b309@1; 4fc935cf-17bf-407b-b80d-2ffcee91b3bb@1; de8f30ed-ea69-4eb3-93ff-ed53bfe1c8e1@1; owner successor assignment 2026-10-23"
 }

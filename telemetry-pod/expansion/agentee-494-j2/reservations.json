@@ -66,7 +66,7 @@
     "sF": "actual seating lift above F; no sourced maximum",
     "fB": "maximum actual solder fillet projection beyond B",
     "fF": "maximum actual solder projection beyond F",
-    "mate": "095-902-570-006 candidate; RA orientation UNRESOLVED/unsourced. Capture compatible interface and orientation before evaluating the mating solid or cable clocking.",
+    "mate": "Board-side compatible SMA mate; geometry proposal only; unselected bulkhead/pigtail is out of scope.",
     "Tmate": "Mate from MIL-STD-348 SMA mating reference planes, not tip-to-tip, origin or visual overlap",
     "tool": "UNRESOLVED/unsourced: reported8mm and11mm wrench sizes have no retained capture. Select actual compatible tools from captured part data; no jaw/head/handle dimensions are established."
   },
@@ -82,7 +82,7 @@
       "id": "J2-B-pins-and-solder",
       "phase": "soldered",
       "shape": "Union of four square-pin and signal-pin cylinders at pad-map centres, plus actual fillet solids; conservative XY may use pad-union as an advisory envelope. Relative B depth max(2.90-sF,fB).",
-      "class": "source lead/board arithmetic plus unresolved fillet bound; cannot emit a qualified finite solid until fB and sF are bound"
+      "class": "Agent-507 source lead/board arithmetic with unresolved actual fillet; use advisory 3.2 mm B bin from 494b; no worst-case seating/process gate."
     },
     {
       "id": "J2-F-mate",
@@ -92,13 +92,13 @@
     },
     {
       "id": "J2-F-mate-insertion",
-      "phase": "assembly/service before closing lid",
+      "phase": "bare-board mating/service",
       "shape": "Union of J2-F-mate translated along F normal from disconnected clear-start to fully seated; start travel determined by actual mating thread engagement, not an invented distance",
       "class": "recipe; requires plane/engagement data"
     },
     {
       "id": "J2-wrench",
-      "phase": "mate before lid closure",
+      "phase": "bare-board mating",
       "shape": "Sweep the actual compatible wrench jaw/head/handle around the SMA axis through tightening/regrip angles, with counterhold fixture; do not transmit tightening torque through solder pins. Reported8mm tool size is UNRESOLVED/unsourced.",
       "class": "All tool dimensions, including reported8mm jaw, are UNRESOLVED/unsourced; no consumable sourced tool envelope."
     },
@@ -107,13 +107,18 @@
       "phase": "bare board hand fit",
       "shape": "For each of all five pads, sweep selected iron-tip/head solid from unobstructed B-side entry to actual fillet. Union with solder-wire approach and inspection line-of-sight; exclude case/floor/board supports until after soldering",
       "class": "phase sequencing and recipe; tool model and contact clearance require qualification"
-    },
-    {
-      "id": "SMA-wall",
-      "phase": "installed enclosure",
-      "shape": "Concept: one sealed SMA bulkhead jack crosses the wall;132134 stays inside. Bind exact compatible O-ring/washer/nut stack, continuous sealing land, strain relief and counterhold tools from captured sources. Reported11mm bulkhead/8mm mate wrench sizes are UNRESOLVED/unsourced.",
-      "class": "Recipe only; candidate orientation, panel cutout, tools, thickness, surface finish, compression and torque remain UNRESOLVED."
     }
   ],
-  "acceptance": "These recipes are writer inputs, not proof of packing, installed fit, vibration survival or ingress. Preserve no-metal ESP32 antenna region and all unrelated reservations."
+  "acceptance": "PARTIAL board-side recipes; transform with final writer pose; default bins remain advisory. No enclosure design, fit or qualification gate. Preserve ESP32 antenna and unrelated keepouts.",
+  "historical_out_of_scope_recipes": {
+    "status": "HISTORICAL / SUPERSEDED: retained for provenance only; no active BOM recommendation, enclosure work or acceptance gate. See OWNER-CORRECTION.md.",
+    "recipes": [
+      {
+        "id": "SMA-wall",
+        "phase": "installed enclosure",
+        "shape": "Concept: one sealed SMA bulkhead jack crosses the wall;132134 stays inside. Bind exact compatible O-ring/washer/nut stack, continuous sealing land, strain relief and counterhold tools from captured sources. Reported11mm bulkhead/8mm mate wrench sizes are UNRESOLVED/unsourced.",
+        "class": "Recipe only; candidate orientation, panel cutout, tools, thickness, surface finish, compression and torque remain UNRESOLVED."
+      }
+    ]
+  }
 }
