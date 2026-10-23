@@ -13,35 +13,36 @@
   "stock_footprint_source": "KiCad SMA_Molex_73251-1153_EdgeMount_Horizontal.kicad_mod description linksMolex732511150_sd.pdf; actualnativefootprint geometry mustremainbound",
   "published_bounds_mm": {
     "width": {
-      "nom": 9.52,
-      "tol": 0.2,
-      "max": 9.72
+      "max": 9.7282,
+      "derivation": "(.375+.008)inch*25.4"
     },
     "mating_nose_to_rear_length": {
-      "max": 14.6,
-      "derivation": "9.52+.13+4.75+.20"
+      "max": 14.605,
+      "derivation": "(.375+.005+.187+.008)inch*25.4"
     },
     "above_board_F_plane": {
-      "max": 4.54,
-      "derivation": "frontdrawing4.34\u00b1.20 fromPCBtopplane"
+      "max": 4.5466,
+      "derivation": "(.171+.008)inch*25.4"
     },
     "PCB_slot": {
-      "min": 1.6,
-      "nom": 1.68,
-      "max": 1.76
+      "min": 1.6002,
+      "nom": 1.6764,
+      "max": 1.7526,
+      "derivation": "(.066\u00b1.003)inch*25.4"
     },
     "lower_leg_below_B_plane": {
-      "max": 2.1,
-      "derivation": "1.90\u00b1.20"
+      "max": 2.1082,
+      "derivation": "(.075+.008)inch*25.4"
     },
     "lowest_part_below_F_plane": {
-      "max": 3.86,
-      "derivation": "slotmax1.76+lowerlegmax2.10"
+      "max": 3.8608,
+      "derivation": "(.066+.003+.075+.008)inch*25.4"
     }
   },
   "native_board_thickness_nom_mm": 1.6,
-  "board_slot_fit": "UNRESOLVED: nominalboard1.60equalsminimumslot1.60; actualfinishedboardtol,solderassemblygap,landpattern/solderqualification needed. Do not inferpositiveclearance.",
+  "board_slot_fit": "UNRESOLVED: nominal1.6000mm PCB is only.0002mm smaller than controllingminimumslot1.6002; finishedboardtol/soldergapneeded,notpositivequalifiedmargin",
   "land_pattern": "drawingPCBlandisREFERENCEONLY; exact.030\u00b1.002contact andPCB.038refholes neednativeoverlay+assemblyqualification; sourcegeomcommonnotpackagingacceptance",
   "model": "existingname1153samecommonmechanicalgeometry; MODEL_ORIGIN/seatingaxisindependentlyunqualified",
-  "status": "COMMON_VARIANT_GEOMETRY_CLOSED;ASSEMBLY_TOLERANCE_AND_MODEL_ALIGNMENT_OPEN"
+  "status": "COMMON_VARIANT_GEOMETRY_CLOSED;ASSEMBLY_TOLERANCE_AND_MODEL_ALIGNMENT_OPEN",
+  "controlling_dimension_units": "INCH; rounded bracketed millimetres must not be used to underbound maxima"
 }
