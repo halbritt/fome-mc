@@ -640,8 +640,11 @@ locality = {'schema': 'agent-ee.electrical-locality/1', 'obligations': []}
 for r in rels:
     if r.get('return'):
         dv, sp, ret = r['device'], r['support'], r['return']
+        # Consumer schema (agent-ee electrical_locality.validate, a085fbfa): a pair carries only from, to,
+        # max_distance_nm, citation and a provenance OBJECT. The 3/5 mm values are unsourced agent defaults:
+        # class 'default' with no basis, so the consumer classifies them ADVISORY (no invented hard authority).
         prov = {'citation': '; '.join(f"{x.get('source', x['class'])} p{x.get('page')}" if x.get('page') else x['class'] for x in r['provenance']),
-                'numeric_provenance': EJ, 'decision': 'agent-529 061a1b20 v2 (VIO-to-VCC)'}
+                'provenance': {'class': 'default', 'numeric_provenance': EJ, 'decision': 'agent-529 061a1b20 v2 (VIO-to-VCC)'}}
         locality['obligations'].append({'id': r['id'], 'metric': 'pad-centre-to-centre',
             'supply': {'from': {'reference': dv['ref'], 'pad': dv['pin'], 'net': dv['net']},
                        'to': {'reference': sp['ref'], 'pad': '1', 'net': dv['net']},

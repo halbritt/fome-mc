@@ -138,7 +138,7 @@ BLOCK_OBLIGATIONS = 'composition/block-obligations.json'
 HAND_FIT = HERE / 'assembly/hand-fit-policy.json'
 # agent-509 notes/509-j1-handfit-chain.txt: the four chain sources and their recorded SHA-256.
 HAND_FIT_CHAIN = {
-    'telemetry-pod/REQUIREMENTS.md': '0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7',
+    'telemetry-pod/REQUIREMENTS.md': 'dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208',
     'telemetry-pod/expansion/design-rules/constraints.json': 'e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4',
     'telemetry-pod/expansion/j1-historical-source/C596198.json': 'f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5',
     'telemetry-pod/expansion/complete-parts-manifest/parts.json': '759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff'}
