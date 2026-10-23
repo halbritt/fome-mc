@@ -286,14 +286,14 @@ def image_identity(image_dir):
         'layers_equal_diff_ids': layers == config['rootfs']['diff_ids'],
         'blobs_hash_to_names': report['large_blob_name_equals_sha256'], 'docker_save_rc': report['docker_save_rc'],
         'c4_amd64_manifest': amd64, 'c4_save_config': c4_save['Config'].replace('blobs/sha256/', 'sha256:'),
-        'c4_index_in_save': runtime()['c4_index'].split(':')[1] in c4,
+        'c4_index_in_save': runtime().get('c4_index').split(':')[1] in c4,
         'c4_evidence_sha256_listed': sums.get('image-c4-oci.txt') == sha(EE466 / 'scratch/image-c4-oci.txt'),
         'review_verdict': review.splitlines()[0]}
     problems = [k for k, ok in (
         ('config blob', found['config_blob_sha256'] == runtime()['config']),
         ('proximal OCI manifest', found['oci_manifest_config'] == runtime()['config']),
         ('diff_ids', found['layers_equal_diff_ids']), ('blobs', found['blobs_hash_to_names'] and report['docker_save_rc'] == 0),
-        ('c4 manifest', amd64 == [runtime()['amd64_manifest']]), ('c4 config', found['c4_save_config'] == runtime()['config']),
+        ('c4 manifest', amd64 == [runtime().get('amd64_manifest')]), ('c4 config', found['c4_save_config'] == runtime()['config']),
         ('c4 index', found['c4_index_in_save']), ('c4 evidence hash', found['c4_evidence_sha256_listed'])) if not ok]
     if problems:
         raise SystemExit(f'image identity not established: {problems}: {found}')
@@ -333,7 +333,7 @@ def invocation(run_dir, producer_mount):
                  '-v', f'EXPORT_7D5B0D4D/src:{producer_mount}:ro', '-v', 'RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro',
                  '-v', 'NEW_OUTPUT_PARENT:/pod/out', runtime()['config']]
     return {'image': {'by': 'config digest (proximal classic store)', 'reference': runtime()['config'],
-                      'tag_on_c4': runtime()['image_tag'], 'c4_index': runtime()['c4_index']},
+                      'tag_on_c4': runtime().get('image_tag'), 'c4_index': runtime().get('c4_index')},
             'pre_launch_identity_check': {'argv': pre, 'requires': 'exit 0 and problems []'},
             'campaign_command': argv, 'container': container, 'cwd': '/opt/agent-ee',
             'placeholders': {
@@ -413,8 +413,8 @@ def write(observation, image_dir, run_dir):
                      'image_files': obs['runtime_agent_ee']['files'], 'producer_mounts': obs['producer_mounts'],
                      'same_for_producer_and_runtime': True},
         'image': {
-            'proximal_config_digest': runtime()['config'], 'tag_on_c4': runtime()['image_tag'],
-            'c4_oci_index': runtime()['c4_index'], 'c4_amd64_manifest': runtime()['amd64_manifest'],
+            'proximal_config_digest': runtime()['config'], 'tag_on_c4': runtime().get('image_tag'),
+            'c4_oci_index': runtime().get('c4_index'), 'c4_amd64_manifest': runtime().get('amd64_manifest'),
             'relation': ('c4 OCI index -> linux/amd64 manifest -> config blob, which equals the proximal image config '
                          '(AGENTEE-466 evidence image-c4-oci.txt, verified by its independent review; c4 itself is not '
                          'contacted by this lane)'),
