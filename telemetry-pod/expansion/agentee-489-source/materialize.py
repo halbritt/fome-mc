@@ -7,6 +7,12 @@ a RECIPE contract). Output: reservations.json, bound to the immutable native boa
 Rules kept here (agent-ee docs/mechanical-reservations.md):
 - every row stays classification engineering (AGENT), never manufacturer or owner;
 - an UNKNOWN height or access bound is height_nm null / coverage "unknown", never zero;
+- AGENTEE-485 item 5 (chief agent-531 3dfa0a5f, relayed by integrator agent-530; coordinator decision, not owner
+  text): a driver tolerance stated as UNKNOWN alone is NOT a worst-case-stack gate. A driver row with concrete nominal
+  geometry (radius and z interval) keeps a concrete nominal board/tool access check (access "covered" on the nominal
+  sweep, the unknown tolerance kept in uncertainty); only truly missing geometry (height_nm null) stays "unknown";
+- J2 follows the 494-j2 correction (OWNER-CORRECTION.md, agent-drafted, applying owner-relayed direction): the published
+  Amphenol 132134 Rev C pattern and the Manufacturer footprint; the old J2 slot/thickness ambiguity is NOT a gate;
 - unresolved conditional geometry (J2 132134 before the 485 footprint rebind, J1 internal mate,
   J3 card/blade Z) is polygons_nm null with required true, so it cannot pass;
 - cylinders become circumscribed regular 16-gons, vertices rounded outward to integer nm, so the
@@ -86,6 +92,10 @@ def main():
         h = interval(g['z_outward_from_face_mm'])
         access = r['source'].startswith('driver') or ref.startswith('TP')
         unc = [r.get('note', '')] + ([r['phase_gate']] if r.get('phase_gate') else [])
+        if access and h and 'UNKNOWN' in r.get('note', ''):
+            unc.append('nominal access check on the concrete nominal sweep; the UNKNOWN driver tolerance is recorded, '
+                       'not a worst-case-stack gate (AGENTEE-485 item 5, chief agent-531 3dfa0a5f relayed by agent-530; '
+                       'coordinator decision, not owner text)')
         if ref.startswith('TP'):
             unc.append('bench-only pogo access per ' + OWNER_CITE)
         rows.append({
@@ -94,20 +104,24 @@ def main():
             'geometry': {'polygons_nm': [ngon(g['radius_mm'])]}, 'faces': [rel], 'height_nm': h,
             'phases': [PHASE[r['phase']]], 'self_exclusion': True,
             'coverage': {'projection': 'conservative-per-face', 'height': 'covered' if h else 'unknown',
-                         'access': ('unknown' if 'UNKNOWN' in r.get('note', '') or h is None else 'covered')
-                         if access else 'covered',
+                         'access': ('unknown' if h is None else 'covered') if access else 'covered',
                          'basis': f"axial cylinder r={g['radius_mm']} mm about the footprint centre, circumscribed "
                                   f"16-gon rounded outward; class: {r['class']} (engineering)"},
             'uncertainty': [u for u in unc if u]})
     j1 = re.search(r'\(uuid "([0-9a-f-]+)"\)\s*\(at [^)]*\)\s*(?:\(descr[^\n]*\)\s*)?(?:\(tags[^\n]*\)\s*)?\(property "Reference" "J1"', text)
     cond = {
         'J2/132134-part-optionA': ('J2', '18c6ebf4-5f6a-5227-b278-be0fa33a91c9', 'solid', ['same', 'opposite'], ['installed'],
-            'J2 = Amphenol 132134 (agent-529 82f08e7a v1; owner "keep the vertical SMA" relayed by agent-519). Snapshot J2 '
-            'still carries the Molex 73251-1153 edge footprint; the box (xy +-3.6 about RF pad1, above F 0..9.73, below B 2.90) '
-            'is materialized only after the AGENTEE-485 rebind to Agentee494.pretty/SMA_Amphenol_132134_Manufacturer (2b65c583).'),
+            'J2 = Amphenol 132134 vertical THT SMA (owner "keep the vertical SMA", relayed by agent-519 0bb47bec@1; '
+            'agent-drafted correction ../agentee-494-j2/OWNER-CORRECTION.md). Pattern: the published Amphenol RF 132134 Rev C '
+            'PCB mounting holes (centre 1.5 mm, four ground 1.7 mm on a 5.08 mm square) in '
+            'Agentee494.pretty/SMA_Amphenol_132134_Manufacturer (2b65c583), not the enlarged-hole variant; the old J2 '
+            'slot/thickness ambiguity is not a gate. Geometry is unresolved ONLY because this snapshot J2 still carries the '
+            'Molex 73251-1153 edge footprint: the box (xy +-3.6 about RF pad1, above F 0..9.73, below B 2.90) is '
+            'materialized after the AGENTEE-485 regeneration rebinds J2 (UUID kept).'),
         'J2/132134-assembly-expansion': ('J2', '18c6ebf4-5f6a-5227-b278-be0fa33a91c9', 'access', ['same', 'opposite'], ['installed', 'bench-sma-attach'],
             'Chosen reserves +0.1 above F / +0.5 below B and the 7.25 mm, 115 mm tool sweep are AGENT assembly choices, not '
-            'manufacturer limits; actual tool orientation on the vertical SMA and joint torque remain required.'),
+            'manufacturer limits. Normal THT assembly and hand soldering per ../agentee-494-j2/OWNER-CORRECTION.md; the '
+            'Wurth torque is not imported; the sweep follows the final connector pose after the AGENTEE-485 rebind.'),
         'J3/card-and-flat-tool': ('J3', 'c4f5153d-f022-576c-a234-98fe27f874d1', 'access', ['same'], ['bare-board-sd-access'],
             'J3 plain-edge B (9.1,40,90) bare-board blade access selected, no notch (agent-529 82f08e7a v1); actual card/socket '
             'Z unknown; the 490 J3 study used an idealised 110x80 rectangle, not the saved Edge.Cuts; card/tool tolerance open.'),

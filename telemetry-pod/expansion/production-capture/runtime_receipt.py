@@ -184,15 +184,78 @@ def tree(root):
     return found
 
 
+def export_tree_problems(export, git, commit):
+    """AGENTEE-485 R1: the mounted export must be exactly COMMIT's tree in GIT, every blob by its git hash."""
+    listing = subprocess.run(['git', '-C', str(git), 'ls-tree', '-r', '-z', '--full-tree', commit], capture_output=True)
+    if listing.returncode:
+        return [f'agent-ee {commit} is not in {git}']
+    expected = {}
+    for entry in filter(None, listing.stdout.split(b'\0')):
+        meta, path = entry.split(b'\t', 1)
+        mode, kind, oid = meta.decode().split()
+        if kind != 'blob':
+            return [f'agent-ee {commit} entry {path!r} is a {kind}']
+        expected[path.decode()] = (mode, oid)
+    export = Path(export)
+    found = {p.relative_to(export).as_posix() for p in export.rglob('*')
+             if (p.is_file() or p.is_symlink()) and '__pycache__' not in p.parts}
+    differ = set(found ^ set(expected))
+    for rel, (mode, oid) in expected.items():
+        path = export / rel
+        data = os.readlink(path).encode() if mode == '120000' else path.read_bytes() if path.is_file() else None
+        if data is None or hashlib.sha1(b'blob %d\0' % len(data) + data).hexdigest() != oid:
+            differ.add(rel)
+    return [f'mounted export {export} is not the tree of {commit}: {sorted(differ)[:10]}'] if differ else []
+
+
+def rust_source_problems(receipt_path, export):
+    """AGENTEE-485 R1: the mounted Rust build receipt's sources must be the mounted export's files, byte for byte."""
+    try:
+        sources = json.loads(Path(receipt_path).read_text())['source_sha256']
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return [f'rust build receipt has no source_sha256: {exc}']
+    if not isinstance(sources, dict) or not sources:
+        return ['rust build receipt source_sha256 is empty']
+    differ = sorted(rel for rel, want in sources.items()
+                    if not (Path(export) / rel).is_file() or sha(Path(export) / rel) != want)
+    return [f'rust build receipt sources differ from the mounted export: {differ[:10]}'] if differ else []
+
+
 def observe(prepared, out, export):
-    """Inside the production image; the runtime agent-ee is the image's /opt/agent-ee/src."""
-    sys.path[:0] = ['/opt/agent-ee/src']
+    """Inside the production image. The runtime agent-ee is the image's /opt/agent-ee/src, or (AGENTEE-485 R1, a
+    runtime manifest with runtime_agent_ee 'mounted-export') the MOUNTED export of the selected commit, verified blob
+    by blob against AGENT_EE_GIT, with the MOUNTED Rust binary and build receipt (--rust-binary/--rust-receipt) whose
+    binary digest and sources must match. Any mismatch is a problem; nothing is waived."""
+    mounted = runtime().get('runtime_agent_ee', 'image') == 'mounted-export'
+    if runtime().get('runtime_agent_ee', 'image') not in ('image', 'mounted-export'):
+        raise SystemExit(f"unknown runtime_agent_ee {runtime().get('runtime_agent_ee')!r}")
+    runtime_src = str(Path(export).resolve() / 'src') if mounted else '/opt/agent-ee/src'
+    sys.path[:0] = [runtime_src]
     from agent_ee import candidate, pod_driver, routing_adapter as adapter, kicad_route_attempt as attempt
     from agent_ee import tool_source
     prepared, problems = Path(prepared).resolve(), []
     image_tree, export_tree = tree('/opt/agent-ee'), tree(export)
     differ = sorted(k for k in set(image_tree) | set(export_tree) if image_tree.get(k) != export_tree.get(k))
-    if differ:
+    rust, export_problems = None, []
+    if mounted:
+        if not str(Path(candidate.__file__).resolve()).startswith(runtime_src + '/'):
+            problems.append(f'agent_ee loaded from {candidate.__file__}, not the mounted export {runtime_src}')
+        git = os.environ.get('AGENT_EE_GIT')
+        export_problems = (export_tree_problems(export, git, runtime()['agent_ee_commit']) if git
+                           else ['AGENT_EE_GIT is not set; the mounted export cannot be verified'])
+        problems += export_problems
+        if not (PARAMS['rust_binary'] and PARAMS['rust_receipt']):
+            problems.append('a mounted-export runtime requires the mounted --rust-binary and --rust-receipt')
+        else:
+            problem = rust_receipt_problem(PARAMS['rust_binary'], PARAMS['rust_receipt'])
+            problems += [problem] if problem else []
+            problems += rust_source_problems(PARAMS['rust_receipt'], export)
+            receipt_doc = json.loads(Path(PARAMS['rust_receipt']).read_text()) if not problem else {}
+            rust = {'binary': {'path': PARAMS['rust_binary'], 'sha256': sha(PARAMS['rust_binary'])},
+                    'receipt': {'path': PARAMS['rust_receipt'], 'sha256': sha(PARAMS['rust_receipt'])},
+                    'receipt_schema': receipt_doc.get('schema'), 'receipt_sources': len(receipt_doc.get('source_sha256', {})),
+                    'sources_equal_export': not rust_source_problems(PARAMS['rust_receipt'], export)}
+    elif differ:
         problems.append(f'image /opt/agent-ee differs from the {runtime()["agent_ee_commit"]} export: {differ[:10]}')
     preflight = adapter.preflight(CHECKOUT)
     manifest = json.loads((CHECKOUT / 'manifest.json').read_text())
@@ -223,8 +286,12 @@ def observe(prepared, out, export):
                        'equals_export_src': files == export_src}
     result = {
         'schema': 'pod-capture.runtime-observation/2',
-        'runtime_agent_ee': {'path': '/opt/agent-ee', 'files': len(image_tree), 'equals_export': not differ,
-                             'export': str(export), 'pinned_router': attempt.PIN},
+        'runtime_agent_ee': {'path': runtime_src if mounted else '/opt/agent-ee', 'files': len(image_tree),
+                             'equals_export': not export_problems if mounted else not differ, 'export': str(export),
+                             'pinned_router': attempt.PIN, 'mode': 'mounted-export' if mounted else 'image',
+                             **({'image_opt_agent_ee_equals_export': not differ,
+                                 'export_verified_against_git': not export_problems} if mounted else {})},
+        'rust': rust,
         'router': {'checkout': str(CHECKOUT), 'preflight': preflight,
                    'manifest': {'path': str(CHECKOUT / 'manifest.json'), 'sha256': sha(CHECKOUT / 'manifest.json'),
                                 'krt': {k: krt.get(k) for k in ('commit', 'generation', 'describe', 'source_sha256',

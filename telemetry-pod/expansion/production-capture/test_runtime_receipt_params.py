@@ -153,5 +153,38 @@ case('H4: current runtime path names no historical c4 index', inv['image']['c4_i
 hist = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'), '--runtime', 'historical-j6b', 'check'],
                       capture_output=True, text=True)
 case('historical j6b receipt checks with explicit --runtime historical-j6b', hist.returncode == 0 and 'runtime receipt OK' in hist.stdout)
+# AGENTEE-485 R1: the mounted export and the mounted Rust binary/receipt are verified, failing closed on mismatch.
+import hashlib, json
+m = load()
+with tempfile.TemporaryDirectory() as tmp:
+    tmp = Path(tmp)
+    src, export = tmp / 'src', tmp / 'export'
+    (src / 'crates/placement-engine').mkdir(parents=True)
+    (src / 'crates/placement-engine/main.rs').write_text('fn main() {}\n')
+    git = ['git', '-c', 'user.email=t@t', '-c', 'user.name=t', '-C', str(src)]
+    subprocess.run(['git', 'init', '-q', str(src)], check=True)
+    subprocess.run([*git, 'add', '-A'], check=True)
+    subprocess.run([*git, 'commit', '-qm', 't'], check=True)
+    commit = subprocess.run([*git, 'rev-parse', 'HEAD'], capture_output=True, text=True, check=True).stdout.strip()
+    export.mkdir()
+    subprocess.run(f'git -C {src} archive {commit} | tar -x -C {export}', shell=True, check=True)
+    case('R1: the exact export of the selected commit verifies', m.export_tree_problems(export, src, commit) == [])
+    binary = tmp / 'agent-ee-placement'
+    binary.write_bytes(b'\x7fELF fake')
+    rs = export / 'crates/placement-engine/main.rs'
+    receipt = tmp / 'agent-ee-placement.json'
+    receipt.write_text(json.dumps({'schema': m.RUST_RECEIPT_SCHEMA, 'binary_sha256': hashlib.sha256(binary.read_bytes()).hexdigest(),
+                                   'source_sha256': {'crates/placement-engine/main.rs': m.sha(rs)}}))
+    case('R1: a matching binary/receipt pair binds', m.rust_receipt_problem(binary, receipt) is None)
+    case('R1: receipt sources equal to the mounted export bind', m.rust_source_problems(receipt, export) == [])
+    rs.write_text('fn main() { changed() }\n')
+    case('R1: an export differing from the commit is refused', m.export_tree_problems(export, src, commit) != [])
+    case('R1: receipt sources differing from the mounted export are refused', m.rust_source_problems(receipt, export) != [])
+    binary.write_bytes(b'\x7fELF other')
+    case('R1: a binary differing from the receipt digest is refused', m.rust_receipt_problem(binary, receipt) is not None)
+    case('R1: an unknown commit is refused', m.export_tree_problems(export, src, '0' * 40) != [])
+m = load()
+m.configure(runtime='telemetry-pod/expansion/production-capture/runtime/agentee-485r1.json')
+case('R1: agentee-485r1 selects the mounted-export runtime', m.runtime().get('runtime_agent_ee') == 'mounted-export')
 print(f"{sum(ok for _, ok in results)}/{len(results)} passed")
 sys.exit(0 if all(ok for _, ok in results) else 1)

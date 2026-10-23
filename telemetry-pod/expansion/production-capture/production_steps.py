@@ -10,7 +10,8 @@ first failure; never retries. Each step's exit status is printed on its own line
 AGENTEE-485: POD_BUILD_OPTIN (production_run.sh passes it through), e.g. "--mechanical-reservations
 --stackup-materials", adds a build-optin step after build-check: build.py EXPORT --out /work/cap-optin with those
 flags, and the pipeline then consumes that capture. Steps 1-2 still reproduce the committed (non-opt-in) capture.
-POD_RUNTIME selects the observe runtime record (default runtime/agentee-484r2.json).
+POD_RUNTIME selects the observe runtime record (default runtime/agentee-484r2.json). A mounted /work/rust (POD_RUST_DIR)
+is passed to observe as --rust-binary/--rust-receipt.
 """
 import os
 import ast
@@ -49,6 +50,8 @@ if optin:
     step('build-optin', [*py, HERE / 'build.py', EXPORT, '--out', CAP, *optin])
 step('pipeline', [*py, HERE / 'pipeline.py', EXPORT, '/opt/kicad-route', SCOPE, CAP, PIPE])
 runtime = HERE / os.environ.get('POD_RUNTIME', 'runtime/agentee-484r2.json')
-step('observe', [*py, HERE / 'runtime_receipt.py', '--runtime', runtime, 'observe', PIPE / 'prepared',
+RUST = W / 'rust'  # AGENTEE-485 R1: the mounted Rust planner and its build receipt (production_run.sh POD_RUST_DIR)
+rust = ['--rust-binary', RUST / 'agent-ee-placement', '--rust-receipt', RUST / 'agent-ee-placement.json'] if RUST.is_dir() else []
+step('observe', [*py, HERE / 'runtime_receipt.py', '--runtime', runtime, *rust, 'observe', PIPE / 'prepared',
                   W / 'observation.json', EXPORT])  # AGENTEE-487 H4: explicit runtime selection
 print('\nsteps=done', flush=True)
