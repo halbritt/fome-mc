@@ -203,7 +203,7 @@ class ProjectScripts(unittest.TestCase):
         original_bytes = (REPO / 'contracts/telemetry-pod.interface.json').read_bytes()
         original = json.loads(original_bytes)
         cfg = dict(verify.eda.project_config('telemetry-pod'), path=project)
-        for rel in (verify.POD_RECORD,):
+        for rel in (verify.POD_RECORD, verify.POD_RECEIPT):
             shutil.copyfile(REPO / rel, self.root / rel)
         # The candidate is a committed revision of the real repository.
         candidate = verify.pod_candidate_config(verify.eda.project_config('telemetry-pod'))
@@ -250,7 +250,7 @@ class ProjectScripts(unittest.TestCase):
                 self.assertEqual(result, 1, output)
                 self.assertIn('FAIL:', output)
                 if mutation == 'same-net-swap':
-                    self.assertIn('differs from fresh AGENTEE-188 compile', output)
+                    self.assertIn('differs from a fresh compile by the agent-ee on PATH', output)
                 if mutation in ('drop-wireless', 'missing'):
                     # Every record row must stay cited; agent-ee's loader refuses first.
                     self.assertIn('qualification record rows are not all cited', output)
@@ -279,7 +279,7 @@ class ProjectScripts(unittest.TestCase):
         bindings_path.write_text(json.dumps(bindings))
         result, output = run(original)
         self.assertEqual(result, 1, output)
-        self.assertIn('differs from fresh AGENTEE-188 compile', output)
+        self.assertIn('differs from a fresh compile by the agent-ee on PATH', output)
         bindings_path.write_bytes(raw_bindings)
 
         paths_path = project / 'pinout-checks/paths.json'
@@ -313,6 +313,29 @@ class ProjectScripts(unittest.TestCase):
             descriptor = verify.pod_capability()
             rows = verify.read_project_rows(self.root / verify.POD_CSV)
             return descriptor, verify.check_pod_history(descriptor, rows)
+
+    def test_pod_compile_receipt_records_the_agent_ee_on_path(self):
+        """No pin: the receipt names the agent-ee on PATH that compiled the committed contract."""
+        receipt = json.loads((REPO / verify.POD_RECEIPT).read_bytes())
+        self.assertEqual(receipt['compiler']['commit'], verify.AGENT_EE['commit'])
+        self.assertEqual(receipt['compiler']['modules'], verify.AGENT_EE['modules'])
+        self.assertEqual(receipt['outputs'][verify.POD_CONTRACT],
+                         verify.hashlib.sha256((REPO / verify.POD_CONTRACT).read_bytes()).hexdigest())
+        self.assertEqual(verify.check_pod_compilation(REPO / verify.POD_CONTRACT), [])
+        pins = (REPO / 'toolchain/versions.toml').read_text()
+        self.assertNotIn('upstream.agent-ee', pins)
+        # A receipt from another agent-ee is refused, even with identical contract bytes.
+        for rel in ('telemetry-pod/io-map.csv', verify.POD_REQUIREMENTS, 'telemetry-pod/pinout-checks/bindings.json',
+                    'telemetry-pod/pinout-checks/paths.json', verify.POD_HISTORY, verify.POD_V9_ORIGIN,
+                    verify.POD_CONTRACT, verify.POD_RECORD):
+            (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(REPO / rel, self.root / rel)
+        receipt['compiler']['commit'] = 'f' * 40
+        (self.root / verify.POD_RECEIPT).write_text(json.dumps(receipt, indent=2) + '\n')
+        with patch.object(verify, 'REPO', self.root):
+            errors = '\n'.join(verify.check_pod_compilation(self.root / verify.POD_CONTRACT))
+        self.assertIn(f"{verify.POD_RECEIPT} differs from a fresh compile", errors)
+        self.assertIn(f"records agent-ee {'f' * 40}; the agent-ee on PATH is {verify.AGENT_EE['commit']}", errors)
 
     def test_pod_carried_citations_stay_unqualified_through_agent_ee(self):
         contract, record = self.pod_inputs()

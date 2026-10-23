@@ -18,17 +18,57 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from agent_ee_pin import pinned_src  # noqa: E402
+# fome-mc pins no agent-ee: it uses the agent-ee CLI on PATH. This asks that CLI's own
+# interpreter where agent_ee lives and digests the modules the pod contract depends on.
+AGENT_EE_PROBE = """
+import hashlib, importlib.metadata, json
+from pathlib import Path
+import agent_ee
+pkg = Path(agent_ee.__file__).resolve().parent
+dist = importlib.metadata.distribution("agent-ee")
+print(json.dumps({"src": str(pkg.parent), "version": dist.version,
+                  "direct_url": json.loads(dist.read_text("direct_url.json") or "null"),
+                  "modules": {"agent_ee/" + n: hashlib.sha256((pkg / n).read_bytes()).hexdigest()
+                              for n in ("io_map.py", "hardware_interface.py", "symbol_library.py")}}))
+"""
 
-# The pinned agent-ee (toolchain/versions.toml [upstream.agent-ee]), never the live checkout.
-AGENT_EE_SRC = pinned_src()
-sys.path.insert(0, str(AGENT_EE_SRC))
 
-from agent_ee.hardware_interface import (  # noqa: E402
-    atom, capability, declared_pins, evaluate, qualify_global_names, read_inventory,
-    resolve_components, strict_json, verify_contract,
-)
+def agent_ee_on_path() -> dict:
+    """The agent-ee CLI on PATH: its interpreter, the source it imports and that source's commit."""
+    cli = shutil.which("agent-ee")
+    if cli is None:
+        raise SystemExit("agent-ee is not on PATH; fome-mc uses the installed agent-ee CLI")
+    script = Path(cli).resolve()
+    shebang = script.read_bytes().split(b"\n", 1)[0]
+    if not shebang.startswith(b"#!"):
+        raise SystemExit(f"agent-ee on PATH ({script}) is not a Python console script")
+    python = shebang[2:].decode().strip()
+    probe = subprocess.run([python, "-I", "-c", AGENT_EE_PROBE], capture_output=True, text=True, check=False)
+    if probe.returncode != 0:
+        raise SystemExit(f"agent-ee on PATH ({cli}) does not import agent_ee: {probe.stderr.strip()}")
+    info = json.loads(probe.stdout)
+    src = Path(info["src"])
+    git = ["git", "-C", str(src)]
+    commit = subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True, check=False).stdout.strip()
+    dirty = subprocess.run(git + ["status", "--porcelain", "--", "."], capture_output=True, text=True,
+                           check=False).stdout.strip() if commit else ""
+    if not commit:
+        commit = ((info["direct_url"] or {}).get("vcs_info") or {}).get("commit_id", "")
+    return {"cli": cli, "python": python, "src": src, "version": info["version"], "commit": commit,
+            "dirty": bool(dirty), "modules": info["modules"]}
+
+
+AGENT_EE = agent_ee_on_path()
+sys.path.insert(0, str(AGENT_EE["src"]))
+
+try:
+    from agent_ee.hardware_interface import (  # noqa: E402
+        atom, capability, declared_pins, evaluate, qualify_global_names, read_inventory,
+        resolve_components, strict_json, verify_contract,
+    )
+except ImportError as exc:
+    raise SystemExit(f"agent-ee on PATH ({AGENT_EE['cli']}, {AGENT_EE['src']} @ {AGENT_EE['commit'] or 'unknown'}) "
+                     f"lacks the AGENTEE-188 qualification-record loader: {exc}") from exc
 from agent_ee.symbol_library import children, field, parse_sexpr  # noqa: E402
 
 REPO = Path(subprocess.check_output(
@@ -156,8 +196,22 @@ PROJECT_MAP_COLUMNS = [
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--project", default="fome-mc", help="Project from toolchain/versions.toml")
+    ap.add_argument("--compile", action="store_true",
+                    help="telemetry-pod only: regenerate the contract, record and compile receipt with the "
+                         "agent-ee on PATH, then stop")
     args = ap.parse_args()
     cfg = eda.project_config(args.project)
+    if args.compile:
+        if args.project != "telemetry-pod":
+            ap.error("--compile applies to --project telemetry-pod")
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
+        run_dir = REPO / "build/runs/verify-io/telemetry-pod" / stamp
+        run_dir.mkdir(parents=True)
+        for rel, path in compile_pod(run_dir).items():
+            shutil.copyfile(path, REPO / rel)
+            print(f"wrote {rel}")
+        print(f"compiler: agent-ee {AGENT_EE['version']} @ {AGENT_EE['commit']} ({AGENT_EE['cli']})")
+        return 0
     if args.project != "fome-mc":
         try:
             return verify_project_io(cfg)
@@ -383,39 +437,77 @@ def read_project_map(path: Path) -> dict[str, str]:
     return {identity: row["Net"] for identity, row in read_project_rows(path).items()}
 
 
+def compile_pod(out_dir: Path) -> dict[str, Path]:
+    """The one pod compile path: the agent-ee on PATH compiles the contract and its record, and
+    a receipt records that compiler's identity. Regeneration and verification both use this."""
+    if not AGENT_EE["commit"] or AGENT_EE["dirty"]:
+        raise ValueError(f"agent-ee on PATH ({AGENT_EE['cli']}, source {AGENT_EE['src']}) has "
+                         f"{'uncommitted changes' if AGENT_EE['dirty'] else 'no recoverable commit'}; "
+                         "the compile receipt must name an exact commit")
+    out = {POD_CONTRACT: out_dir / Path(POD_CONTRACT).name, POD_RECORD: out_dir / Path(POD_RECORD).name,
+           POD_RECEIPT: out_dir / Path(POD_RECEIPT).name}
+    def arguments(contract, record):
+        return ["telemetry-pod/io-map.csv", "--csv-path", "telemetry-pod/io-map.csv",
+                "--requirement", "POD-AC-1-pinout", "--source", POD_REQUIREMENTS,
+                "--locator", "Acceptance criteria / item 1", "--require-source-sha256",
+                "--bindings", "telemetry-pod/pinout-checks/bindings.json",
+                "--paths", "telemetry-pod/pinout-checks/paths.json",
+                "--history", POD_HISTORY, "--history-source", POD_V9_ORIGIN,
+                "--record-path", POD_RECORD, "--record-out", record, "--out", contract]
+    proc = subprocess.run([AGENT_EE["python"], "-m", "agent_ee.io_map",
+                           *arguments(str(out[POD_CONTRACT]), str(out[POD_RECORD]))], cwd=REPO,
+                          env=eda.tool_env(), capture_output=True, text=True, check=False)
+    (out_dir / "compile.log").write_text(f"agent-ee on PATH: {AGENT_EE['cli']} -> {AGENT_EE['python']}, "
+                                         f"source {AGENT_EE['src']} @ {AGENT_EE['commit']}\n"
+                                         + proc.stdout + proc.stderr)
+    if proc.returncode != 0 or not out[POD_CONTRACT].is_file():
+        raise ValueError(f"pod contract compile failed (rc={proc.returncode}); see {out_dir / 'compile.log'}")
+    digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()  # noqa: E731
+    inputs = ["telemetry-pod/io-map.csv", POD_REQUIREMENTS, "telemetry-pod/pinout-checks/bindings.json",
+              "telemetry-pod/pinout-checks/paths.json", POD_HISTORY, POD_V9_ORIGIN]
+    receipt = {
+        "schema": "fome-mc.pod-contract-compile/1",
+        "compiler": {"distribution": "agent-ee", "version": AGENT_EE["version"], "commit": AGENT_EE["commit"],
+                     "modules": AGENT_EE["modules"],
+                     "entry": "python -m agent_ee.io_map, run by the interpreter of the agent-ee CLI on PATH"},
+        "arguments": arguments(POD_CONTRACT, POD_RECORD),
+        "inputs": {path: digest(REPO / path) for path in inputs},
+        "outputs": {POD_CONTRACT: digest(out[POD_CONTRACT]), POD_RECORD: digest(out[POD_RECORD])},
+        "note": ("Provenance of the committed pod contract and qualification record: the agent-ee that compiled "
+                 "them. Written by scripts/verify_io_map.py --project telemetry-pod --compile, never by hand; "
+                 "verify-io recompiles with the agent-ee on PATH and requires all three files byte for byte."),
+    }
+    out[POD_RECEIPT].write_text(json.dumps(receipt, indent=2) + "\n")
+    return out
+
+
 def check_pod_compilation(contract_path: Path) -> list[str]:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     run_dir = REPO / "build/runs/verify-io/telemetry-pod" / stamp
     run_dir.mkdir(parents=True)
-    compiled, record = run_dir / "compiled.interface.json", run_dir / "compiled.qualification.json"
-    proc = subprocess.run(
-        [sys.executable, "-m", "agent_ee.io_map", "telemetry-pod/io-map.csv",
-         "--csv-path", "telemetry-pod/io-map.csv", "--requirement", "POD-AC-1-pinout",
-         "--source", "telemetry-pod/REQUIREMENTS.md", "--locator", "Acceptance criteria / item 1",
-         "--bindings", "telemetry-pod/pinout-checks/bindings.json",
-         "--paths", "telemetry-pod/pinout-checks/paths.json", "--require-source-sha256",
-         "--history", "telemetry-pod/pinout-checks/history.json",
-         "--history-source", POD_V9_ORIGIN, "--record-path", POD_RECORD,
-         "--record-out", str(record), "--out", str(compiled)],
-        cwd=REPO, env={**eda.tool_env(), "PYTHONPATH": str(AGENT_EE_SRC)},
-        capture_output=True, text=True, check=False,
-    )
-    (run_dir / "compile.log").write_text(proc.stdout + proc.stderr)
-    if proc.returncode != 0 or not compiled.is_file():
-        return [f"pod contract compile failed (rc={proc.returncode}); see {run_dir / 'compile.log'}"]
+    try:
+        fresh = compile_pod(run_dir)
+    except ValueError as exc:
+        return [str(exc)]
     errors = []
-    if compiled.read_bytes() != contract_path.read_bytes():
-        errors.append("telemetry-pod.interface.json differs from fresh AGENTEE-188 compile; "
-                      "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)")
-    committed = REPO / POD_RECORD
-    if not committed.is_file() or record.read_bytes() != committed.read_bytes():
-        errors.append(f"{POD_RECORD} differs from fresh AGENTEE-188 compile; "
-                      "regenerate from committed inputs (see telemetry-pod/IO_MAP.md)")
+    for rel, path in fresh.items():
+        committed = REPO / rel
+        if not committed.is_file() or path.read_bytes() != committed.read_bytes():
+            errors.append(f"{rel} differs from a fresh compile by the agent-ee on PATH; "
+                          "regenerate with --compile (see telemetry-pod/IO_MAP.md)")
+    receipt = REPO / POD_RECEIPT
+    if receipt.is_file():
+        recorded = json.loads(receipt.read_text()).get("compiler", {}).get("commit")
+        if recorded != AGENT_EE["commit"]:
+            errors.append(f"{POD_RECEIPT} records agent-ee {recorded}; the agent-ee on PATH is "
+                          f"{AGENT_EE['commit']} ({AGENT_EE['src']})")
     return errors
 
 
 POD_CONTRACT = "contracts/telemetry-pod.interface.json"
 POD_RECORD = "contracts/telemetry-pod.qualification.json"
+POD_RECEIPT = "contracts/telemetry-pod.compile-receipt.json"
+POD_HISTORY = "telemetry-pod/pinout-checks/history.json"
 POD_CSV = "telemetry-pod/io-map.csv"
 POD_V9_ORIGIN = "telemetry-pod/pinout-checks/v9-pilot/io-map.csv"
 POD_REQUIREMENTS = "telemetry-pod/REQUIREMENTS.md"

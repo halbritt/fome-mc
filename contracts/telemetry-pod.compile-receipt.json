@@ -1,0 +1,53 @@
+{
+  "schema": "fome-mc.pod-contract-compile/1",
+  "compiler": {
+    "distribution": "agent-ee",
+    "version": "0.1.0",
+    "commit": "e906c9c7546043e75e45009de5bc08990c470e93",
+    "modules": {
+      "agent_ee/io_map.py": "94f016c0dbc15018611eede007b5f97283041d802af85f61d322bbb91bcb0728",
+      "agent_ee/hardware_interface.py": "5159914b9fd1db5fe2c47b77eba81c2f92979741c6a29ec815a72bab8b08c579",
+      "agent_ee/symbol_library.py": "e8958a96e164e7c4f646a2da2aa776b7f6b7bb2fac84042ff9ac4a83bef0af92"
+    },
+    "entry": "python -m agent_ee.io_map, run by the interpreter of the agent-ee CLI on PATH"
+  },
+  "arguments": [
+    "telemetry-pod/io-map.csv",
+    "--csv-path",
+    "telemetry-pod/io-map.csv",
+    "--requirement",
+    "POD-AC-1-pinout",
+    "--source",
+    "telemetry-pod/REQUIREMENTS.md",
+    "--locator",
+    "Acceptance criteria / item 1",
+    "--require-source-sha256",
+    "--bindings",
+    "telemetry-pod/pinout-checks/bindings.json",
+    "--paths",
+    "telemetry-pod/pinout-checks/paths.json",
+    "--history",
+    "telemetry-pod/pinout-checks/history.json",
+    "--history-source",
+    "telemetry-pod/pinout-checks/v9-pilot/io-map.csv",
+    "--record-path",
+    "contracts/telemetry-pod.qualification.json",
+    "--record-out",
+    "contracts/telemetry-pod.qualification.json",
+    "--out",
+    "contracts/telemetry-pod.interface.json"
+  ],
+  "inputs": {
+    "telemetry-pod/io-map.csv": "db90fc6e60f3c3630e04790039e5d7e6c78d329dbe9fdbf240af60c22d60070c",
+    "telemetry-pod/REQUIREMENTS.md": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7",
+    "telemetry-pod/pinout-checks/bindings.json": "014b65bc90b799b43d8af49954e10eef66b160148db30904cddb3cc3c87304ec",
+    "telemetry-pod/pinout-checks/paths.json": "4d8e3effa496b310654c4eef5a3a550e6b226257dc840e3134b5f3665d2b9895",
+    "telemetry-pod/pinout-checks/history.json": "0ef86441f440cbb7d732732bbddfe38daf36d32419289ffa6b6415852688e1db",
+    "telemetry-pod/pinout-checks/v9-pilot/io-map.csv": "be690c01194f2f77e9f3079e1e26d868d0d679c659c53afa457e4feb855b40ea"
+  },
+  "outputs": {
+    "contracts/telemetry-pod.interface.json": "87879d58a50cbad7ab02674219cfca6f146f9e590335dacf4ce8606baeba9d2b",
+    "contracts/telemetry-pod.qualification.json": "2a3ce44f6c0e8c992c44b5304f584c732322f76f88f5c35ff9c8b2dab7596043"
+  },
+  "note": "Provenance of the committed pod contract and qualification record: the agent-ee that compiled them. Written by scripts/verify_io_map.py --project telemetry-pod --compile, never by hand; verify-io recompiles with the agent-ee on PATH and requires all three files byte for byte."
+}

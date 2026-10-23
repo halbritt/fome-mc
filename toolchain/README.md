@@ -128,14 +128,15 @@ pilot at the project root. The gate checks that schematic's pinned SHA-256 and
 builds its native inventory from it. It requires `pinout-checks/generate.py --check`
 to reproduce the map, bindings, paths and `pinout-checks/history.json`
 byte-identically from its netlist. The pod contract is qualification-bound
-(AGENTEE-188): a fresh compile with the pinned agent-ee must reproduce both the
-contract and `contracts/telemetry-pod.qualification.json`. The contract is read only
+(AGENTEE-188): a fresh compile with the agent-ee on PATH must reproduce the contract,
+`contracts/telemetry-pod.qualification.json` and the compile receipt
+`contracts/telemetry-pod.compile-receipt.json`, which records the agent-ee commit used. The contract is read only
 through agent-ee's `capability()` with a scope that pins that record. Carried
 `POD-IF-*` citations stay `unqualified-carryover`, and a `sourced` one fails. The
 same contract is also graded on the actual candidate pinned in `source.json`
-`candidate`. The agent-ee used by verify-io is pinned once, in `versions.toml`
-`[upstream.agent-ee]`, and exported by `scripts/agent_ee_pin.py` (see the pod notes
-for the development-pin status).
+`candidate`. fome-mc pins no agent-ee: verify-io uses the `agent-ee` CLI on PATH
+(its interpreter and source), and the receipt is that compiler's provenance (see the
+pod notes).
 Regeneration instructions are in [the pod input notes](../telemetry-pod/IO_MAP.md).
 
 For projects other than `fome-mc`, the CSV header must match FOMEMC-30 exactly,
@@ -167,8 +168,8 @@ map; regenerate the contract after changing its input. The pod gate also recompi
 its CSV, bindings and paths with AGENTEE-188 and requires byte identity with the
 committed contract. A compiler failure or any byte difference fails verification;
 fresh JSON and compiler logs are retained under `build/runs/verify-io/telemetry-pod/`. This command checks
-connectivity using the `agent-ee.hardware_interface` evaluator at the pinned commit,
-exported from `~/git/agent-ee`; it does not generate design content.
+connectivity using the `agent-ee.hardware_interface` evaluator of the `agent-ee` CLI
+on PATH; it does not generate design content.
 
 `make fab-package PROJECT=<name>` and `make verify-fab-package PROJECT=<name>` take
 project directories and native filenames from `toolchain/versions.toml`. Packaging

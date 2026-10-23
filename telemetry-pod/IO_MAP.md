@@ -84,29 +84,44 @@ reverse-polarity FET and the GNSS receiver are not crossed.
 
 ## Regenerate and verify
 
-agent-ee is pinned once, in `toolchain/versions.toml` `[upstream.agent-ee]`.
-`scripts/agent_ee_pin.py` exports exactly that commit's `src/` with `git archive` from
-the local checkout into `build/agent-ee/<commit>/src` and prints the path.
-`verify_io_map.py` imports from there and never from the live checkout. The pin is
-`e906c9c7546043e75e45009de5bc08990c470e93`, the AGENTEE-188 compiler and
-qualification-record loader that agent-521 accepted (35ff0e93). **This is a
-development pin.** e906c9c7 is not on agent-ee main yet. Before fome-mc lands, the pin
-must move to the landed agent-ee main commit that contains e906c9c7.
+fome-mc pins no agent-ee. `verify_io_map.py` and the compile use the `agent-ee` CLI on
+PATH. They ask that CLI's own interpreter where `agent_ee` lives, import the evaluator
+and loader from there, and compile with that interpreter's `python -m agent_ee.io_map`
+(the CLI has no io-map subcommand). The CLI's source must be a clean git checkout (or
+an install that records its VCS commit), so the compiler identity is exact.
 
-From the repository root:
+The compiler identity is provenance. `contracts/telemetry-pod.compile-receipt.json`
+(`fome-mc.pod-contract-compile/1`) records it:
+
+- the agent-ee commit, distribution version and module digests (`io_map.py`,
+  `hardware_interface.py`, `symbol_library.py`);
+- the exact arguments, and the input and output digests.
+
+It is written only by the compile path, alongside the contract and record. The current
+receipt records agent-ee `e906c9c7546043e75e45009de5bc08990c470e93`, the AGENTEE-188
+compiler and qualification-record loader that agent-521 accepted (35ff0e93). That
+commit is not on agent-ee main yet. Before fome-mc lands, regenerate with the landed
+agent-ee main (which contains e906c9c7) on PATH, so that the receipt records that SHA.
+An agent-ee on PATH without the AGENTEE-188 loader fails verify-io, naming the
+checkout and commit it found.
+
+From the repository root, with the intended agent-ee first on PATH:
 
 ```sh
-python3 telemetry-pod/pinout-checks/generate.py            # or --check to compare only
-PYTHONPATH=$(python3 scripts/agent_ee_pin.py) python3 -m agent_ee.io_map telemetry-pod/io-map.csv \
-  --csv-path telemetry-pod/io-map.csv --requirement POD-AC-1-pinout \
-  --source telemetry-pod/REQUIREMENTS.md --locator 'Acceptance criteria / item 1' --require-source-sha256 \
-  --bindings telemetry-pod/pinout-checks/bindings.json --paths telemetry-pod/pinout-checks/paths.json \
-  --history telemetry-pod/pinout-checks/history.json \
-  --history-source telemetry-pod/pinout-checks/v9-pilot/io-map.csv \
-  --record-path contracts/telemetry-pod.qualification.json \
-  --record-out contracts/telemetry-pod.qualification.json --out contracts/telemetry-pod.interface.json
+python3 telemetry-pod/pinout-checks/generate.py                 # or --check to compare only
+python3 scripts/verify_io_map.py --project telemetry-pod --compile # contract, record and receipt
 make verify-io PROJECT=telemetry-pod
 ```
+
+`--compile` runs, with the CLI's interpreter, `python -m agent_ee.io_map
+telemetry-pod/io-map.csv --csv-path telemetry-pod/io-map.csv --requirement
+POD-AC-1-pinout --source telemetry-pod/REQUIREMENTS.md --locator 'Acceptance criteria /
+item 1' --require-source-sha256 --bindings telemetry-pod/pinout-checks/bindings.json
+--paths telemetry-pod/pinout-checks/paths.json --history
+telemetry-pod/pinout-checks/history.json --history-source
+telemetry-pod/pinout-checks/v9-pilot/io-map.csv --record-path
+contracts/telemetry-pod.qualification.json --record-out … --out …`. It then writes the
+receipt.
 
 The contract and its record are generated, never hand-edited. The contract has 194
 invariants: 193 wired ones (78 indirect paths) and the unresolved `BLE-RADIO:net`.
@@ -117,8 +132,9 @@ declaration changed. Each invariant binds `REQUIREMENTS.md` (revision 3) by SHA-
 `make verify-io PROJECT=telemetry-pod` fails on any of these:
 
 - the source digest differs, or `generate.py --check` does not reproduce;
-- a fresh compile with the pinned compiler does not reproduce both the contract and
-  the record byte for byte;
+- a fresh compile with the agent-ee on PATH does not reproduce the contract, the
+  record and the compile receipt byte for byte; in particular, a receipt that names
+  another agent-ee commit fails;
 - the contract is not accepted by agent-ee's `capability()` under a scope that pins
   `contracts/telemetry-pod.qualification.json`;
 - the history checks below fail;

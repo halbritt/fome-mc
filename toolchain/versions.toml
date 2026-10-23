@@ -32,17 +32,6 @@ license = "MIT"
 # Skills exposed to agents (renamed with a kicad-happy- prefix; see toolchain/sync_skills.py).
 skills = ["kicad", "spice", "datasheets"]
 
-[upstream.agent-ee]
-# The one agent-ee pin for scripts/verify_io_map.py (the hardware_interface evaluator and the
-# AGENTEE-188 io_map compiler and qualification-record loader). scripts/agent_ee_pin.py exports
-# exactly this commit's src/ from the local checkout into build/agent-ee/<commit>/.
-# DEVELOPMENT PIN: e906c9c7 is the AGENTEE-188 commit accepted by agent-521 (35ff0e93, coordinator
-# decision) and is not yet on agent-ee main. Before fome-mc lands, move `commit` to the landed
-# agent-ee main commit that contains e906c9c7 (the integrator supplies that SHA).
-repo = "~/git/agent-ee"
-commit = "e906c9c7546043e75e45009de5bc08990c470e93"
-status = "development"
-
 [libraries.fome]
 # FOME-Tech/kicad-libraries: the shared library repository. Polygonus-Universal-112
 # pins it as the `fome-kicad-libs` submodule; fome-mc references it as ../kicad-libraries.
