@@ -1,0 +1,73 @@
+{
+  "schema": "agentee-486.antenna-case-metal/1",
+  "status": "PARTIAL_DEFINITION;installed case/metal mapping OPEN",
+  "module": "ESP32-S3-WROOM-1-N8,PCBantenna(not1U)",
+  "selected_pose_mm_deg": [
+    55,
+    6.5,
+    0
+  ],
+  "selected_case": "antenna extends outside upperboard edge;feedclose-toedge intention",
+  "source_CAD_exclusion": "transformed-footprint-rules.json U1;preserved exactalllayer flags;CAD is not manufacturer housingminimum",
+  "manufacturer_recommendation": {
+    "housing_clearance_mm": 15,
+    "scope": "all directions aroundantenna,housing recommendation distinct from symmetric baseboardcopper exclusion",
+    "source": "474 primary Espressif hardwaredesignguide PDFp33,sec1.4.7,figs24-26,retained sourcehashmanifest"
+  },
+  "selected_A2_hardware_checks": [
+    {
+      "reference": "H1",
+      "selected_washer_xy_bbox_mm": [
+        0.5,
+        0.5,
+        7.5,
+        7.5
+      ],
+      "distance_to_transformed_CAD_antenna_exclusion_mm": 23.511965039102964,
+      "intersects_CAD_exclusion": false
+    },
+    {
+      "reference": "H2",
+      "selected_washer_xy_bbox_mm": [
+        102.5,
+        0.5,
+        109.5,
+        7.5
+      ],
+      "distance_to_transformed_CAD_antenna_exclusion_mm": 23.511965039102964,
+      "intersects_CAD_exclusion": false
+    },
+    {
+      "reference": "H3",
+      "selected_washer_xy_bbox_mm": [
+        102.5,
+        72.5,
+        109.5,
+        79.5
+      ],
+      "distance_to_transformed_CAD_antenna_exclusion_mm": 76.45137343436022,
+      "intersects_CAD_exclusion": false
+    },
+    {
+      "reference": "H4",
+      "selected_washer_xy_bbox_mm": [
+        0.5,
+        72.5,
+        7.5,
+        79.5
+      ],
+      "distance_to_transformed_CAD_antenna_exclusion_mm": 76.45137343436022,
+      "intersects_CAD_exclusion": false
+    }
+  ],
+  "definition_checks": "all4washerbounds disjoint from conservative CADantenna exclusion at selectedanchors",
+  "remaining": [
+    "explicit modulefeed/radiator datum mapping and manufacturer caseapplicability",
+    "enclosure innerfloor/lid/sidewall3Dsurfaces",
+    "other installed metal/harness/screens and fullplacement",
+    "actual transformed saved coordinates and RF installationvalidation"
+  ],
+  "housing_or_RF_acceptance": false,
+  "cowl_height_estimate_mm": 90,
+  "cowl_policy": "fullinstalled stack;heightestimate not cap;no90x65outline limit;bench tools not installed stack"
+}

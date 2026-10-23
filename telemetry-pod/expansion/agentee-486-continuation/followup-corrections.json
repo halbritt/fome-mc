@@ -1,0 +1,131 @@
+{
+  "schema": "agentee-486.followup-corrections/1",
+  "source": "1023f164-da86-47eb-a68a-d098161b29f8@1",
+  "source_body_sha256": "0cc17883efa5fa12d6add4ae24470321b1807bd96a065755ce1d79e9555ac00d",
+  "scope": "Post-completion data corrections only. Original timed run and frozen3410691 remain closed; no native consumer or saved-board run is claimed.",
+  "F1": {
+    "status": "RESOLVED_IN_BRANCH",
+    "commit": "7a1cdd920f8e48a5d89d4b961ca370e81fa531be",
+    "detail": "Canonical height wording already corrected; integration remains agent-449."
+  },
+  "F2": {
+    "status": "REBIND_STATIC_EVIDENCE_ONLY_RUNTIME_NOT_RERUN",
+    "current_source_commit": "b68305484aa388410a11778101a5f43106c1b44c",
+    "inputs": [
+      {
+        "path": "telemetry-pod/telemetry-pod.kicad_pcb",
+        "sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac"
+      },
+      {
+        "path": "telemetry-pod/telemetry-pod.kicad_sch",
+        "sha256": "cef8e4c7f3b60e1afd434da171a0e431cead68f6df465d987a1e7118035a6d9c"
+      },
+      {
+        "path": "telemetry-pod/telemetry-pod.kicad_pro",
+        "sha256": "33ab13e734fb424cfbc77f113d46a877c8f1cc6fb180e00086617f4fd491b3f7"
+      },
+      {
+        "path": "telemetry-pod/telemetry-pod.kicad_dru",
+        "sha256": "2769902a266944f8f9a5a47785e65beec19be74804d3776cd8007b6b7f288271"
+      }
+    ],
+    "rules_match_484r_697b2b3": true,
+    "current_custom_rule_names": [
+      "agent_ee_netclass_RF_50",
+      "fine-pitch intra-footprint pad clearance (D-PCB-1)",
+      "supervisor intra-footprint pad clearance U16 (D-PCB-1)",
+      "supervisor intra-footprint pad clearance U17 (D-PCB-1)",
+      "supervisor intra-footprint pad clearance U18 (D-PCB-1)",
+      "supervisor intra-footprint pad clearance U19 (D-PCB-1)"
+    ],
+    "project_inventory_settings_count": 32,
+    "project_inventory_native_rules_entries": 0,
+    "observation": "Current project inventory contains no native_rules.* entries; current rules still declare six custom rules. Current PCB retains exact 313-part source identity.",
+    "supersedes": "Old ff622083 rules binding is historical only; current rules are 2769902a266944f8f9a5a47785e65beec19be74804d3776cd8007b6b7f288271.",
+    "runtime_result": "NOT_RUN on current rules; prior REFUSED result is historical, not a new current-native result. Six-rule refusal remains a structural prediction until source-owner repair/re-emission and current runtime check.",
+    "owner": "487 source owner; do not mutate or bypass provenance here"
+  },
+  "F3": {
+    "status": "REGENERATION_CONTRACT_EXPLICIT",
+    "board_level_rule_areas": [
+      {
+        "uuid": "460352a8-dace-51a2-842b-c1e4ef7ad212",
+        "name": "D-PCB-7v2-In1-no-tracks",
+        "layers": [
+          "In1.Cu"
+        ],
+        "forbid": {
+          "tracks": true,
+          "vias": false,
+          "pads": false,
+          "footprints": false,
+          "copper_pours": false
+        },
+        "policy": "regenerate-on-pose-change; never preserve old world polygons after relevant changes",
+        "dependencies": [
+          "outline",
+          "board stack/layers"
+        ],
+        "on_change": "Invalidate stale source hash; regenerate through canonical source writer; preserve intended layers/forbid policy; rebind and inspect final saved board."
+      },
+      {
+        "uuid": "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae",
+        "name": "D-PCB-6-RF-reference",
+        "layers": [
+          "In1.Cu",
+          "In2.Cu"
+        ],
+        "forbid": {
+          "tracks": true,
+          "vias": true,
+          "pads": false,
+          "footprints": false,
+          "copper_pours": false
+        },
+        "policy": "regenerate-on-pose-change; never preserve old world polygons after relevant changes",
+        "dependencies": [
+          "U3/RF_IN native pose/face",
+          "J2 pose/face",
+          "RF corridor geometry",
+          "outline/stack/layers"
+        ],
+        "on_change": "Invalidate stale source hash; regenerate through canonical source writer; preserve intended layers/forbid policy; rebind and inspect final saved board."
+      }
+    ],
+    "footprint_owned_areas": "Six existing native owned areas follow native move/Flip; two board-level areas require explicit regeneration.",
+    "runtime_status": "No native source was changed or regenerated here; final production proof remains open."
+  },
+  "F4": {
+    "status": "PACKAGE_NATIVE_DERIVATION_PRESENT_FINAL_SAVED_POSE_AND_SILK_OPEN",
+    "derivation_commit": "0eb9362b9859c3418beea0e280d7140afe383ee2",
+    "evidence": [
+      "axis-transform.json",
+      "axis-native.json"
+    ],
+    "negative_controls": "All eight face/quarter-turn transforms evaluated; mismatched alternative cases retained in axis-transform.json.",
+    "selected_mounting_frame": "RH board(native+x,native-y,Fnormal) = bike(forward,left,up), U2 F0 derived under that selected installation.",
+    "remaining": "Independent delta review plus final saved pose/axis/silk validation by writer. No physical pre-fabrication mounting test is introduced.",
+    "assembly_instruction": "Install using the selected verified geometric frame: F face upward, board +x forward, native -y left; preserve U2 derived F0; final writer must verify actual saved pose and marks."
+  },
+  "C18": {
+    "status": "RETAINED_MANUFACTURER_CHARACTERIZATION_BOUND",
+    "evidence": [
+      {
+        "path": "/home/halbritt/.local/share/agent-ee/reviews/2026-10-23-ee488-agent522/tdk-c6-characterization.pdf",
+        "sha256": "bee79427c7260a12e7d1b7f6ee84d4ece9a247547af91c94019a5d47ae346355"
+      },
+      {
+        "path": "/home/halbritt/.local/share/agent-ee/reviews/2026-10-23-ee488-agent522/tdk-c6-characterization.png",
+        "sha256": "7b8643fafba775fb7efa95846b068bafff4b19cff97e7ca8acfdeeb1e312208d"
+      }
+    ],
+    "maximum_lwh_mm": [
+      3.6,
+      2.8,
+      2.8
+    ],
+    "assembled_tolerance_status": "Not qualified by package dimensions",
+    "overlay_active": false,
+    "C134_exists_in_candidate": false
+  }
+}

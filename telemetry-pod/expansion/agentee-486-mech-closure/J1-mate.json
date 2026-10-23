@@ -1,0 +1,204 @@
+{
+  "schema": "agentee-486.J1-mate/1",
+  "status": "OPEN_NOT_QUALIFIED",
+  "header_mpn": "1-776163-1",
+  "plug": "776164-1;blackkey match toblackheader perTE drawings",
+  "header_model": {
+    "path": "/home/halbritt/git/fome-mc/telemetry-pod/expansion/storage-microsd/inputs/models/c-1-776163-1-t-3d.stp",
+    "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473",
+    "solid_bound_mm": {
+      "min": [
+        -38.45,
+        -16.05,
+        -37.8
+      ],
+      "max": [
+        38.45,
+        16.05,
+        0.0
+      ],
+      "size": [
+        76.9,
+        32.1,
+        37.8
+      ]
+    }
+  },
+  "plug_model": {
+    "path": "/home/halbritt/.local/share/agent-ee/vendor-models/te/agentee-486/c-776164-1-f-3d.stp",
+    "sha256": "81d69bbdf51f28d79922828f515bf3917da6dbd75866e9304209e340dea4eb4c",
+    "solid_bounds": [
+      {
+        "bbox_mm": {
+          "min": [
+            -31.7,
+            -13.8,
+            -23.2
+          ],
+          "max": [
+            31.7,
+            20.8,
+            10.6
+          ],
+          "size": [
+            63.4,
+            34.6,
+            33.8
+          ]
+        },
+        "volume_mm3": 36432.90122640243
+      },
+      {
+        "bbox_mm": {
+          "min": [
+            -31.7,
+            -6.5,
+            -20.6
+          ],
+          "max": [
+            -28.01109742746,
+            6.5,
+            -18.1
+          ],
+          "size": [
+            3.688902572539998,
+            13.0,
+            2.5
+          ]
+        },
+        "volume_mm3": 78.03139573921389
+      },
+      {
+        "bbox_mm": {
+          "min": [
+            28.01109742746,
+            -6.5,
+            -20.6
+          ],
+          "max": [
+            31.7,
+            6.5,
+            -18.1
+          ],
+          "size": [
+            3.688902572539998,
+            13.0,
+            2.5
+          ]
+        },
+        "volume_mm3": 78.03139573921243
+      }
+    ]
+  },
+  "header_to_board_RH_nominal_hypothesis": {
+    "rotation": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "translation_mm": [
+      0,
+      -31.8,
+      11.72
+    ],
+    "method": "nominal model tailplanes/4mm PCBrows and existingmodeloffset;matrix in RH coordinates,not a newlywrittenKiCadmodeldeclaration",
+    "all_35_pad_overlay": "NOT_QUALIFIED"
+  },
+  "plug_to_header_nominal_hypothesis": {
+    "rotation": [
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ]
+    ],
+    "translation_mm": [
+      0,
+      0,
+      -9.4
+    ],
+    "method": "180deg aboutheaderCADY;axial candidate from nominalsectionnose/backwall alignment;engineering hypothesis,not a mated-stop source datum",
+    "consumption": "MUST_NOT admit as qualified mated transform"
+  },
+  "diagnostics": {
+    "status": "DIAGNOSTIC_ONLY;no contact/key/seal qualification",
+    "cases": [
+      {
+        "rotation180_axis": [
+          0,
+          1,
+          0
+        ],
+        "translation_z_mm": -9.4,
+        "intersection_volume_mm3": 398.01204491951466,
+        "elapsed_seconds": 1.741057061124593
+      },
+      {
+        "rotation180_axis": [
+          0,
+          1,
+          0
+        ],
+        "translation_z_mm": -10.4,
+        "intersection_volume_mm3": 1115.0944606490616,
+        "elapsed_seconds": 2.1477200540248305
+      },
+      {
+        "rotation180_axis": [
+          1,
+          0,
+          0
+        ],
+        "translation_z_mm": -9.4,
+        "intersection_volume_mm3": 436.10744266518003,
+        "elapsed_seconds": 1.7648189929313958
+      }
+    ]
+  },
+  "drawing_check": {
+    "header": "776163K1 rightangle header mates776164;housing colorskeyed;panel/headerfastening usesfour\u00d82.5 threadforming screws,distinctfromfourPCB M3holes",
+    "plug": "2293782E5 shows35posA63.4,C27.45 andcommonaxial38.29\u00b11.40;localSTEPmainbodyZspan33.8;matchingdatums/modelcontents/revisions mustbereconciled,not assumed equivalent",
+    "wire": "114-16016S3p2 SWS20-16AWG insulation\u00d81.7..2.7mm;doesnot give selectedharnessminimum bendradius"
+  },
+  "selected_harness_proposal": {
+    "exit": "outward fromloweredge,keep harness offantenna region",
+    "wire_MPN": null,
+    "bend_radius_mm": null,
+    "full_swept_envelope": null,
+    "status": "OPEN;no genericbendmultiplier or arbitraryhandlane substituted"
+  },
+  "tool_and_latch_sweep": {
+    "status": "OPEN",
+    "missing": "latchtravel/toolcontactgeometry,hardstop/matingdepth and installedpaneldatum"
+  },
+  "full_stack": {
+    "available_height_estimate_mm": 90,
+    "assembled_upperbound_mm": null,
+    "headroom_mm": null,
+    "status": "UNKNOWN",
+    "scope": "includesfloor,lid,M3supports,board,bothfaces,J1+harness,J2+cable;benchtools excluded"
+  },
+  "source_references": "owner-inputs.json recordslocalpaths/fullsha256;no vendorbytescommitted"
+}

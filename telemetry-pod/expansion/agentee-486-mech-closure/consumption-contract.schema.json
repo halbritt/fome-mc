@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGENTEE486 provisional mechanical checkpoint contract",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "phase_gates",
+    "unknown_policy",
+    "qualified_packing_acceptance",
+    "independent_verification"
+  ],
+  "properties": {
+    "schema": {
+      "const": "agentee-486.mechanical-inputs/1"
+    },
+    "status": {
+      "const": "PROVISIONAL_CHECKPOINT_NOT_PACKING_ACCEPTANCE"
+    },
+    "phase_gates": {
+      "type": "object",
+      "required": [
+        "before_packing",
+        "after_routing",
+        "installed_release"
+      ]
+    },
+    "qualified_packing_acceptance": {
+      "const": false
+    },
+    "post_route_RF_pass": {
+      "const": false
+    },
+    "unknown_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "independent_verification": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

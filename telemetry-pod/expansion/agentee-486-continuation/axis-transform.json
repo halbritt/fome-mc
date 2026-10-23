@@ -1,0 +1,257 @@
+{
+  "schema": "agentee-486.axis-transform/1",
+  "scope": "manufacturer package axes to saved native footprint and selected board-to-bike installation; no claim of actual bike installation measurement",
+  "source_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
+  "source_U2_uuid": "61835ab9-4a81-5478-a1fd-cfb321d95af5",
+  "source_datasheet_sha256": "d1776336f5060da06c4fa4c3aac293372e20cffa4f9d72fe3296b9a56ed6c0b7",
+  "manufacturer_figure": "ST LSM6DSO32 DocID032891rev1 PDFp22 Fig3 inspected; top-view acceleration/gyro triads plus bottom-view numbered pad map",
+  "pin_frame_derivation": [
+    "Fig3bottommap pin1upperright,pin4lowerright,pin5bottomright,pin8lowerleft,pin11upperleft,pin12topleft,pin14topright.",
+    "Reflect bottommap left/right to obtain top view: pin1NW,pin4SW,pin5SWinner,pin8SE,pin11NE,pin12NEinner,pin14NWinner. Native F0 pad centroids agree for all14 numbered pads.",
+    "Flatten Fig3top-view isometric triad using top-side pin1 dot and numbered pin frame: +X runs from pin1/top-left side toward opposite upper/right edge (native+x); +Y runs from front/bottom toward pin1/top edge (native-y); +Z points out of package top. Angular-rate rotations follow corresponding right-hand axes."
+  ],
+  "native_display_basis": "xright,ydown; use right-handed board frame B=(native+x,native-y,Foutwardnormal)",
+  "board_to_vehicle_selection": {
+    "class": "AGENT engineering installation assumption, relayedc7adf503; FnormalUP",
+    "B_X": "bikeforward",
+    "B_Y": "bikeleft",
+    "B_Z": "bikeup",
+    "matrix": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "translation": "does not affect axis mapping; no U2XY restriction"
+  },
+  "sensor_to_B_at_F0": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "derived_face": "F",
+  "derived_native_rotation_deg": 0,
+  "derived_basis": "Fsideup fixespackageZup; choosingboardXforward/BYleft makesF0 the sole equivalent quarterturn pose with sensorXYZ matchingvehicleXYZ withoutsoftware rotation. B is incompatible withthis installation choice because it reversesZ; not a permanent MFRFonly rule.",
+  "checks": [
+    {
+      "face": "F",
+      "native_rotation_deg": 0,
+      "sensor_to_vehicle_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": true
+    },
+    {
+      "face": "F",
+      "native_rotation_deg": 90,
+      "sensor_to_vehicle_matrix": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "F",
+      "native_rotation_deg": 180,
+      "sensor_to_vehicle_matrix": [
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "F",
+      "native_rotation_deg": 270,
+      "sensor_to_vehicle_matrix": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "B",
+      "native_rotation_deg": 0,
+      "sensor_to_vehicle_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          -1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "B",
+      "native_rotation_deg": 90,
+      "sensor_to_vehicle_matrix": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "B",
+      "native_rotation_deg": 180,
+      "sensor_to_vehicle_matrix": [
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          -1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    },
+    {
+      "face": "B",
+      "native_rotation_deg": 270,
+      "sensor_to_vehicle_matrix": [
+        [
+          0,
+          -1,
+          0
+        ],
+        [
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1
+        ]
+      ],
+      "matches_Xforward_Yleft_Zup": false
+    }
+  ],
+  "native_read": "PASS;peecee-wsl native-admit test/w1;KiCad10.0.7;all14padsread;source unchanged",
+  "selected_candidate_xy_mm": [
+    15,
+    15
+  ],
+  "selected_xy_status": "engineering variable only",
+  "physical_geometric_transform": "DERIVED_AND_CHECKED against manufacturer diagram and native pin frame; independentreviewrequested",
+  "actual_installed_mount_or_hardware_measurement": "Not a pre-fabrication prerequisite; install according to selected verified geometric frame. No physical mounting measurement was performed or required here.",
+  "silkscreen_axis_mark": "NOT_RUN; finalwriter obligation",
+  "on_move_or_flip": [
+    "rederive transformedaxis endpoints fromsaved nativepads+pose",
+    "composewithcurrentboard-to-bikeframe",
+    "refuse geometrical axis mismatch; no software compensation assumed",
+    "recheck transformedphysicalkeepouts and verify silkmarks fromfinalsavedsource"
+  ],
+  "pad_frame_check": {
+    "status": "PASS",
+    "count": 14,
+    "method": "allnumberedpadsidegroups match top-view reflection of manufacturerBOTTOM VIEW;corner/index pads1/4/8/11 andinneredge5/7/12/14 checked",
+    "native_pad_relative_coordinates": "axis-native.json"
+  }
+}

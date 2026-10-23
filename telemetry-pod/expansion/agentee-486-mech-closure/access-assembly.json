@@ -1,0 +1,76 @@
+{
+  "schema": "agentee-486.access-assembly/1",
+  "status": "INCOMPLETE_PREPACKING",
+  "sequence": [
+    "SMT assembly/reflow and inspect",
+    "set JP1-5 once on bareboard;full tool clearance must be qualified at that coordinate",
+    "handheld pogo TP1-6 on bareboard before enclosure;tip model0.64mm from480, no fixture/postseal requirement",
+    "fasten board at four corners with bothface hardware and chosen driver;bench returnarm highZ is not an installed cowl item",
+    "install/connect J1 harness,J2 cable,J3 card as selectedenclosure sequence permits;verify swept/hand volumes",
+    "close enclosure;BLE OTA afterwards"
+  ],
+  "items": {
+    "C21_iron": {
+      "status": "OPEN",
+      "defined": "WellerRTM013S1.3x0.4tip approach from480",
+      "missing": [
+        "full hot barrel/taper/handpiece dimensions and datum",
+        "solder-feed/tool hand swept envelope",
+        "final placed JP coordinates and actual neighbors"
+      ]
+    },
+    "TP1_6": {
+      "status": "PROVISIONAL_TIP_DEFINITION_ONLY_ON_484",
+      "defined": "normalB tip approach pad landing locus plus\u00d80.64 source tip;currentUUID rebound",
+      "limitation": "480 scoped approachPASS was on08066170,not current0b68;must rerun afterreal placement"
+    },
+    "J3": {
+      "status": "PROVISIONAL_CARD_TRANSLATION;FULL_ACCESS_OPEN",
+      "mpn": "DM3AT-SF-PEJM5",
+      "source": "HiroseDM3 catalogp3,exactsourcehashab978e9d... inmanifest",
+      "catalog_nominal": {
+        "socket_xy_mm": [
+          13.85,
+          15.95
+        ],
+        "socket_height_mm": 1.68,
+        "card_width_mm": 11,
+        "stroke_positions_from_socket_rear_mm": {
+          "overstroke": 16.75,
+          "locked": 17.5,
+          "ejected": 21.35
+        },
+        "press_to_overstroke_mm": 0.75,
+        "lock_to_eject_mm": 3.85
+      },
+      "selected_direction": "B90 ejects offleftedge atselected(8.9,40)",
+      "missing": [
+        "card/socket dimension tolerances and full card thickness upperbound",
+        "selectedfinger/tool/enclosureopening envelope",
+        "final transformed no-copper areas and body/neighbor checks"
+      ],
+      "old15mm_lane": "agent/default historical lane;not promoted to manufacturer handclearance"
+    },
+    "J2": {
+      "status": "OPEN_PART_GEOMETRY_AND_CABLE_TOOL",
+      "actual_mpn": "732511150",
+      "lcsc": "C841205",
+      "footprint_and_model": "73251-1153 EdgeMountHorizontal",
+      "source": "retainedMolex73251-1150productsheetp1 namesdrawingSD-73251-115,recommendedPCB1.60mm",
+      "missing": [
+        "exact1150vs1153 landpattern/body qualification",
+        "actualmate/cable selection and minimum bend data",
+        "wrench/head/sweep and torque tool dimensions"
+      ],
+      "selected_direction": "rightedge/outward;physical mating interface retained"
+    },
+    "J1": {
+      "status": "OPEN;seeJ1-mate.json",
+      "missing": [
+        "qualified all35terminal/contact/latch matingstop transform",
+        "matching full plug dimensions and source/model revision applicability",
+        "wire/harness minimum bend and tool/latch sweep"
+      ]
+    }
+  }
+}

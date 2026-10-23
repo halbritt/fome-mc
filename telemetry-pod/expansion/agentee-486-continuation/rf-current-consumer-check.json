@@ -1,0 +1,65 @@
+{
+  "schema": "agentee-486.production-helper-check/1",
+  "consumer_commit": "9d3a2a50b85688535f418d7e831281e57681b60c",
+  "source_hashes": {
+    "placer.py": "dc8f153023bb7797449f5c83187ad4c43c6343a96192d3be1757159055a20477",
+    "placement_adapter.py": "eea6e80ab763a3c733ab9d13f81579cb3911e68918fba648c8d0f9ecb7911401",
+    "placement.py": "a98137b9d3b1daf94404cf0143feac208f12d30322fd08ed765192b6d98a2d5e",
+    "placement_predicates.py": "861e5def1b2058e4e21f78878bb645ed22f42a226da133a931a0aa3138506d39",
+    "block_variants.py": "5abf621b207fb3fbd74bc68e67ef59f4432af3b2cbf0aacf519c42efddf8a009"
+  },
+  "status": "PASS_SCOPED_HELPER_OBSERVATIONS;NOT_END_TO_END_PRODUCTION_ACCEPTANCE",
+  "parsed_obstacles": 10,
+  "CPW_polygons": 41,
+  "cases": [
+    {
+      "case": "F@(90000000, 40000000)",
+      "blocked": true,
+      "expected": true
+    },
+    {
+      "case": "F@(90000000, 50000000)",
+      "blocked": false,
+      "expected": false
+    },
+    {
+      "case": "B@(90000000, 40000000)",
+      "blocked": true,
+      "expected": true
+    },
+    {
+      "case": "B@(90000000, 50000000)",
+      "blocked": false,
+      "expected": false
+    },
+    {
+      "case": "ownednativekeepouttranslate",
+      "oldlocation_released": true,
+      "newlocation_blocked": true
+    },
+    {
+      "case": "ownedkeepoutquarterturn",
+      "rotatedlocation_blocked": true
+    },
+    {
+      "case": "height_not_consumed_by_2Dpredicate",
+      "same_result_for_0.1_and1000mm": true,
+      "interpretation": "notZclearanceproof"
+    },
+    {
+      "case": "callerobstacleprovenance",
+      "rejected": true,
+      "reason": "obstacle provenance is never accepted from the packing policy; a sourced keep-out comes from a captured envelope as a native rule area"
+    }
+  ],
+  "API_axis_examples": {
+    "F0localXplus": "x+",
+    "F0localYminus": "y-",
+    "B0localYminus": "y+"
+  },
+  "congested_underside": "Bcollisionnegativecontrolonly; full479regressionNOTRUNhere andstillrequired",
+  "scope": "Current Git snapshot pure helper controls on newly selected0.293 planning fragment only; no native board or end-to-end production run.",
+  "fragment_sha256": "42e35acba50a30e50c4c35632fbab8ef8853744849c3fd1266f0854ceb005f61",
+  "source_snapshot": "/home/halbritt/.cache/agentee-486-cont-agent507/consumer-rf-9d3a2a50b856",
+  "production_path_status": "Not inspected or qualified by these pure helper controls. Previous09c0076 integration findings remain historical; named canonical writer/479/510/449 must qualify current end-to-end consumption/final saved checks."
+}
