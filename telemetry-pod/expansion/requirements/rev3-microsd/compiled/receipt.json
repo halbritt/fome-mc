@@ -1,5 +1,5 @@
 {
-  "baseline_id": "8020c3708c487987ab24d41ffbf8ef1a42901dc893e39216f6df20278a7ada5a",
+  "baseline_id": "a64054d51ef4cc7014366df2152a7462d5929ce917f04bee7a2aaf702c307da3",
   "compiler": {
     "module": "agent_ee.requirement_map",
     "source_sha256": "f796fd7328f975f7586ca6a52bcff58cda57995c40e59a26472be9b138bd77df",
@@ -9,7 +9,7 @@
   "limitations": [
     "No expanded placed or routed PCB exists for this scope. The pod driver scaffold supplies scaffold/project; never substitute the historical v9 pilot, a diagnostic placement (iteration-7, iter8n) or a historical route.",
     "Stage order is schematic, placement, routing, verification, as pod_driver requires. Fab stays outside stages.order until AGENTEE-146-compatible pod step wiring exists; the fab_package done check grades the verification stage.",
-    "Stage subjects are the 309 native references of the current microSD schematic (telemetry-pod/expansion/storage-microsd/project/telemetry-pod.kicad_sch sha256 6395930bbb8bdbd0fd7d3527db276bfc1bda05e5a9994b20ddd02159dc56519f). The placement subject also expects the four board-only corner mounting holes H1-H4 (313 footprints; POD-ME-HOLES). No other board-only footprint is an expected subject.",
+    "Stage subjects are the 309 native references of the current microSD schematic (telemetry-pod/expansion/storage-microsd/project/telemetry-pod.kicad_sch sha256 4e5236ac34d76eca0d29da6217e5731f9817cad23eb94a356ae2133af856b0e6). The placement subject also expects the four board-only corner mounting holes H1-H4 (313 footprints; POD-ME-HOLES). No other board-only footprint is an expected subject.",
     "Review profile pod-rf-review-v1 (agent-ee profiles/pod-review.json sha256 885e17074b9c367f296eb6acc4c2a2f65fb29108f332f0a55fb622a38ae858da) declares the rf reviewer that the pod RF applicability gate requires. A declared reviewer is not an RF review result; a fresh RF review of a routed current-placement candidate is still owed.",
     "Routing-stage copper geometry reports facts only. No pod-wide numeric track-width gate is declared here because none has a cited source in this scope; net-class widths are graded by native DRC from the captured project rules.",
     "POD-AC-6: NOT CHECKED beyond the fab_package done gate: the owner uploads the sealed Gerber package to JLCPCB once and binds the saved DFM report to the package hash, and confirms every PREVIEW_REQUIRED CPL rotation in the placement preview before ordering. Local geometry and package checks do not replace either; this scope authorizes no upload or order.",
@@ -92,7 +92,7 @@
     "POD-ED-P3: NOT CHECKED: Regenerate expanded candidate and repeat placement/routing/review; v9 pilot schematic, PCB, BOM, IO map and compiled contract are historical evidence only.",
     "POD-AC-P1: NOT CHECKED: All eleven criteria require evidence. File checks alone do not close AC6 owner DFM/preview or AC8-11 built-board obligations; this scope has incomplete acceptance coverage."
   ],
-  "map_sha256": "1e5e8505c22966017bb6be47f33cf06ac370122c23727a71f52fe26a1001f000",
+  "map_sha256": "1ca75c5212ce4ac16ca9b538d1633061da6731281fa25baf16c4cd9cc98281b9",
   "requirements": [
     {
       "id": "POD-FN-LATERAL-LONGITUDINAL-VERTICAL-ACCELERATION",
@@ -2268,7 +2268,7 @@
     }
   ],
   "schema": "agent-ee.requirement-map-receipt/1",
-  "scope_sha256": "534b9223bae6d48f7f770a23f01796e2ca81442ab0736340de5ee6b080db34f5",
+  "scope_sha256": "53430e3aa185fc16b9bf3837ccddc95f93058dd861ce8b2cbd279f2876918a3b",
   "spec_record_sha256": "33234dd75666f9fd5722df813cd18990d3947461b6d68b5ac09fb1c6ee65c9de",
   "spec_sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7"
 }
