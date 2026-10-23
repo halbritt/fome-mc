@@ -566,3 +566,11 @@ netlist on a temporary copy; no design file is re-saved.
   `--runtime runtime/agentee-484r2.json` and a validated `--source-commit`.
   - The image identity is read from the j6b docker-save evidence of the same config digest (not re-saved).
   - No Rust binary runs in the preparation, so `run_bindings.rust` is null.
+
+## Runtime receipt production-runtime-484r2-v2 (agent-529 582c157c v1, after the Astra H4 re-fix)
+
+`evidence/production-runtime-484r2-v2/receipt.json` is the CURRENT receipt for the 484r2 preparation.
+- **Script:** written by the H4-fixed `runtime_receipt.py`. It compares every selected identity with the receipt, the observation and the pipeline. The pre-launch command carries and mounts the selected manifest, and no unselected c4 evidence is used.
+- **Inputs:** the retained 484r2 observation and the same selected manifest `runtime/agentee-484r2.json`.
+- **Source commit:** 92dc5acf, validated against a `git archive` reconstruction of that commit. The original run copy was not retained.
+- **Superseded:** `evidence/production-runtime-484r2/` was written before the H4 fix. It is unchanged and kept as history. It is NOT relabelled as qualified.
