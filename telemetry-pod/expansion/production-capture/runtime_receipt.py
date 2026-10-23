@@ -28,6 +28,10 @@ Usage:
   (inside the image) python3 runtime_receipt.py observe PREPARED OBSERVATION.json EXPORT
   /usr/bin/python3 telemetry-pod/expansion/production-capture/runtime_receipt.py write OBSERVATION.json IMAGE_DIR RUN_DIR
   /usr/bin/python3 telemetry-pod/expansion/production-capture/runtime_receipt.py check
+
+Options before MODE (AGENTEE-487): --evidence DIR (default: retain.py DEST) --receipt-dir DIR (default: the
+historical evidence/production-runtime-j6b; write refuses an existing receipt) --authority TEXT --source-commit SHA
+--contract PATH (repeatable) --rust-binary PATH --rust-receipt PATH --native PATH.
 """
 import hashlib
 import json
@@ -41,9 +45,45 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
-EVIDENCE = HERE / 'evidence/emission-7d5b0d4d'
+# AGENTEE-487 (agent-529 decision 783ad032): the retained candidate, the receipt directory, the authority text and
+# the consumed bindings are PARAMETERS, not constants. The retained evidence defaults to retain.py's DEST (one source
+# of truth); the receipt directory defaults to the historical j6b receipt, which `write` never overwrites.
+def retained_default():
+    m = re.search(r"^DEST = HERE / '([^']+)'", (HERE / 'retain.py').read_text(), re.M)
+    if not m:
+        raise SystemExit('retain.py declares no DEST')
+    return HERE / m.group(1)
+EVIDENCE = retained_default()
 OUT = HERE / 'evidence/production-runtime-j6b'
 RECEIPT = OUT / 'receipt.json'
+PARAMS = {'authority': 'not stated: the coordinator supplies --authority for each run', 'source_commit': None,
+          'contracts': [], 'rust_binary': None, 'rust_receipt': None, 'native': None}
+
+
+def configure(evidence=None, receipt_dir=None, **params):
+    """Bind the run being described: retained evidence dir, receipt dir and the PARAMS (paths are fome-mc-relative
+    or absolute). Returns the resolved (EVIDENCE, OUT)."""
+    global EVIDENCE, OUT, RECEIPT
+    if evidence:
+        EVIDENCE = (ROOT / evidence) if not Path(evidence).is_absolute() else Path(evidence)
+    if receipt_dir:
+        OUT = (ROOT / receipt_dir) if not Path(receipt_dir).is_absolute() else Path(receipt_dir)
+    RECEIPT = OUT / 'receipt.json'
+    for k, v in params.items():
+        if k not in PARAMS:
+            raise SystemExit(f'unknown parameter {k}')
+        if v is not None:
+            PARAMS[k] = v
+    return EVIDENCE, OUT
+
+
+def rel_here(path):
+    return Path(path).resolve().relative_to(HERE.resolve()).as_posix()
+
+
+def bound_file(path):
+    path = Path(path) if Path(path).is_absolute() else ROOT / path
+    return {'path': str(path), 'sha256': sha(path)}
 # The coordinator's selection (agent-449, j6b2 corrected order; not owner-stated). Every value is recomputed from
 # the actual artifacts and compared, never assumed.
 REQUIRED = {
@@ -221,15 +261,17 @@ def invocation(run_dir, producer_mount):
                 'RUNTIME_RECEIPT_PY': 'this script at the integrated fome-mc commit',
                 'NEW_OUTPUT_PARENT': 'a new, empty directory', 'UID:GID': 'the launching user',
                 '$NATIVE_ADMISSION_*': 'the admitted native-admit lease the launch runs in'},
-            'preparation_run': {'script': 'evidence/production-runtime-j6b/production_run.sh',
-                                'steps': 'evidence/production-runtime-j6b/production_steps.py', 'run_dir': str(run_dir)},
+            'preparation_run': {'script': rel_here(OUT / 'production_run.sh'),
+                                'steps': rel_here(OUT / 'production_steps.py'), 'run_dir': str(run_dir)},
             'router': "the image's own /opt/kicad-route (no override, no legacy /tool/kicad-route mount)",
             'open': ("Network and inference-provider credentials for the review profile belong to the launcher's "
-                     'environment (agent-521 authorizes the single bounded run); this receipt does not choose them. '
+                     'environment (launch authority: the --authority parameter of this receipt); this receipt does not choose them. '
                      'The preparation ran with --network none.')}
 
 
 def write(observation, image_dir, run_dir):
+    if RECEIPT.exists():
+        raise SystemExit(f'{RECEIPT} exists; receipts are history and are never overwritten (use --receipt-dir)')
     obs = json.loads(Path(observation).read_text())
     if obs['problems']:
         raise SystemExit(f'observation has problems: {obs["problems"]}')
@@ -262,22 +304,27 @@ def write(observation, image_dir, run_dir):
         shutil.copyfile(HERE / name, OUT / name)
     receipt = {
         'schema': 'pod-capture.production-runtime-receipt/2',
-        'authority': ('Coordinator decision (agent-449, relaying agent-521 a9cb03ad/2fbe5f08; corrected order Cairn '
-                      '154cc9f6): repin the pod preparation to the AGENTEE-466 qualified runtime agent-ee 7d5b0d4d and '
-                      'bind its exact image. Not owner-stated.'),
-        'launch': 'NOT launched. Preparation only; agent-521 authorizes the single bounded run after review and integration.',
+        'authority': PARAMS['authority'],
+        'launch': 'NOT launched by this receipt. Launch authority is the authority parameter above, not this script.',
         'binding': {
-            'plan': {'path': 'evidence/emission-7d5b0d4d/prepared/plan.json', 'sha256': retained['plan.json']},
-            'scope': {'path': 'evidence/emission-7d5b0d4d/prepared/scope.json', 'sha256': retained['scope.json']},
-            'campaign': {'path': 'evidence/emission-7d5b0d4d/prepared/campaign.json', 'sha256': retained['campaign.json']},
-            'driver_receipt': {'path': 'evidence/emission-7d5b0d4d/prepared/driver-receipt.json',
+            'plan': {'path': rel_here(EVIDENCE / 'prepared/plan.json'), 'sha256': retained['plan.json']},
+            'scope': {'path': rel_here(EVIDENCE / 'prepared/scope.json'), 'sha256': retained['scope.json']},
+            'campaign': {'path': rel_here(EVIDENCE / 'prepared/campaign.json'), 'sha256': retained['campaign.json']},
+            'driver_receipt': {'path': rel_here(EVIDENCE / 'prepared/driver-receipt.json'),
                                'sha256': retained['driver-receipt.json']},
-            'prepared_tree': {'path': 'evidence/emission-7d5b0d4d/prepared-tree.json',
+            'prepared_tree': {'path': rel_here(EVIDENCE / 'prepared-tree.json'),
                               'sha256': sha(EVIDENCE / 'prepared-tree.json'), 'files': len(tree_record['files'])},
             'initial_candidate': {'candidate_id': initial['candidate_id'], 'files': initial['files'],
                                   'dry_run_candidate_sha256': retained['dry-run/candidate.json']},
-            'pipeline': {'path': 'evidence/emission-7d5b0d4d/pipeline.json', 'sha256': sha(EVIDENCE / 'pipeline.json')},
-            'retained_manifest': {'path': 'evidence/emission-7d5b0d4d/MANIFEST.json', 'sha256': sha(EVIDENCE / 'MANIFEST.json')}},
+            'pipeline': {'path': rel_here(EVIDENCE / 'pipeline.json'), 'sha256': sha(EVIDENCE / 'pipeline.json')},
+            'retained_manifest': {'path': rel_here(EVIDENCE / 'MANIFEST.json'), 'sha256': sha(EVIDENCE / 'MANIFEST.json')}},
+        'run_bindings': {
+            'source_commit': PARAMS['source_commit'],
+            'contracts': [bound_file(c) for c in PARAMS['contracts']],
+            'mounted_python_source': obs['producer_mounts'],
+            'rust_binary': bound_file(PARAMS['rust_binary']) if PARAMS['rust_binary'] else None,
+            'rust_receipt': bound_file(PARAMS['rust_receipt']) if PARAMS['rust_receipt'] else None,
+            'native_artifact': bound_file(PARAMS['native']) if PARAMS['native'] else None},
         'agent_ee': {**pipeline['agent_ee'], 'image_equals_export': obs['runtime_agent_ee']['equals_export'],
                      'image_files': obs['runtime_agent_ee']['files'], 'producer_mounts': obs['producer_mounts'],
                      'same_for_producer_and_runtime': True},
@@ -296,7 +343,7 @@ def write(observation, image_dir, run_dir):
                    'manifest': router['manifest'], 'install_record': router['install_record'],
                    'preflight_problems': router['preflight']['problems']},
         'runtime_validation': obs['runtime_validation'],
-        'observation': {'path': 'evidence/production-runtime-j6b/observation.json', 'sha256': sha(observation)},
+        'observation': {'path': rel_here(OUT / 'observation.json'), 'sha256': sha(observation)},
         'invocation': invocation(run_dir, next(iter(obs['producer_mounts'])))}
     checks = {'agent_ee_commit': receipt['agent_ee']['commit'], 'router_commit': receipt['router']['commit'],
               'source_sha256': receipt['router']['source_sha256'],
@@ -318,6 +365,10 @@ def check():
         problems.append('initial candidate differs from the retained pipeline')
     if sha(HERE / receipt['observation']['path']) != receipt['observation']['sha256']:
         problems.append('observation differs')
+    for key, item in (receipt.get('run_bindings') or {}).items():  # AGENTEE-487 bindings (absent in older receipts)
+        for entry in (item if isinstance(item, list) else [item]):
+            if isinstance(entry, dict) and 'path' in entry and 'sha256' in entry and sha(entry['path']) != entry['sha256']:
+                problems.append(f'{key}: {entry["path"]} differs')
     problems += [f'image file {rel}' for rel, digest in receipt['image']['files'].items() if sha(OUT / rel) != digest]
     config = OUT / 'image' / ('blobs__sha256__' + REQUIRED['config'].split(':')[1])
     if 'sha256:' + sha(config) != receipt['image']['proximal_config_digest']:
@@ -329,8 +380,21 @@ def check():
           f"candidate {receipt['binding']['initial_candidate']['candidate_id']}")
 
 
+def parse(argv):
+    """Leading --name value options configure the run; the rest is MODE ARGS. --contract may repeat."""
+    opts, contracts = {}, []
+    while argv and argv[0].startswith('--'):
+        key, value, argv = argv[0][2:].replace('-', '_'), argv[1], argv[2:]
+        if key == 'contract':
+            contracts.append(value)
+        else:
+            opts[key] = value
+    configure(contracts=contracts or None, **opts)
+    return argv
+
+
 if __name__ == '__main__':
-    mode, *args = sys.argv[1:]
+    mode, *args = parse(sys.argv[1:])
     if mode == 'observe':
         sys.exit(observe(*args))
     elif mode == 'write':
