@@ -1,0 +1,96 @@
+{
+  "schema": "agentee-486.part-binding-checks/1",
+  "inventory_binding": "PASS",
+  "canonical_parts": 309,
+  "board_only_mounting_holes": 4,
+  "all_313_bound": true,
+  "new_capacitors": {
+    "C130": {
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "lcsc": "C76706",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "datasheet_sha256": "ff9b0a373980f01928802dd577ef6ccc96176e5223d34766228b417ca1bf9592"
+    },
+    "C131": {
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "lcsc": "C76711",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "datasheet_sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+    },
+    "C132": {
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "lcsc": "C76711",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "datasheet_sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+    },
+    "C133": {
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "lcsc": "C76711",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "datasheet_sha256": "8951f7833e66860611146aca8f3d3758fb0622c407e6b68320a3f2f4589d255d"
+    }
+  },
+  "height_summary": {
+    "SOURCED_PACKAGE_LIMIT": 272,
+    "NO_COMPONENT_BODY": 15,
+    "UNKNOWN": 26
+  },
+  "negative_controls": [
+    {
+      "case": "wrong_MPN",
+      "status": "PASS",
+      "observed": "rejected ('C84', 'MPN/LCSC binding')"
+    },
+    {
+      "case": "wrong_LCSC",
+      "status": "PASS",
+      "observed": "rejected ('C84', 'MPN/LCSC binding')"
+    },
+    {
+      "case": "missing_footprint",
+      "status": "PASS",
+      "observed": "rejected inventory coverage/duplicate"
+    },
+    {
+      "case": "wrong_footprint",
+      "status": "PASS",
+      "observed": "rejected ('C84', 'footprint binding')"
+    }
+  ],
+  "assembled_height_acceptance": false,
+  "native_datasheet_variants_with_independent_agreement": {
+    "refs": [
+      "R112",
+      "R113",
+      "R115",
+      "R121",
+      "R122",
+      "R124",
+      "R170",
+      "R171",
+      "R172",
+      "R173",
+      "R46",
+      "R47",
+      "R48",
+      "R49",
+      "R50",
+      "R55",
+      "R57",
+      "R61",
+      "R63",
+      "R64",
+      "R65",
+      "R66",
+      "R67",
+      "R68",
+      "R69",
+      "R71",
+      "R72"
+    ],
+    "mpn": "RT0603BRD0710KL",
+    "native_source_sha256": "7c733886b966128aff1066a1f97d61fc9f442240f111d9cfa3130f00140efa16",
+    "height_source_sha256": "0a729d144519a7021c82a0ef242b064e467c70d44afcf9eabd6c7ffdc4b673a3"
+  },
+  "inventory_binding_scope": "native/manifest identity equality only,not package geometric compatibility"
+}

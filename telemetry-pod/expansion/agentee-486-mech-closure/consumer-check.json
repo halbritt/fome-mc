@@ -1,0 +1,34 @@
+{
+  "schema": "agentee-486.consumer-check/1",
+  "consumer_source": "agent-ee479/src/agent_ee/placer.py:_validate_policy",
+  "consumer_source_sha256": "dc8f153023bb7797449f5c83187ad4c43c6343a96192d3be1757159055a20477",
+  "runtime_policy_validation": "PASS",
+  "source_refs": 313,
+  "selected_hardware_obstacles_consumed": 8,
+  "negative_controls": [
+    {
+      "case": "bad_obstacle_face",
+      "result": "REJECTED",
+      "reason": "obstacle side required"
+    },
+    {
+      "case": "missing_polygon",
+      "result": "REJECTED",
+      "reason": "missing or excessive polygons"
+    },
+    {
+      "case": "foreign_fixed_ref",
+      "result": "REJECTED",
+      "reason": "unknown declared reference"
+    }
+  ],
+  "phase": "prepacking data syntax/geometry consumption only;no pack/board apply",
+  "baseline_gap_edge_values": "existing advisory defaults0.25/0.5 retained;no source promotion or full search performed",
+  "unsupported_remaining": [
+    "height/Z/tool/full access not consumed by this2D API",
+    "native full placement capture refused provenance inventory",
+    "actual proposed anchors/outline not yet materialized in savedPCB",
+    "unknown heights and unqualified access prevent packing acceptance"
+  ],
+  "packing_acceptance": false
+}
