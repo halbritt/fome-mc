@@ -65,7 +65,7 @@ Usage (fome-mc root, system python with pcbnew, inside the pinned agent-ee CI im
 SCOPE_DIR is a compiled Rev-3 scope directory (scope.json plus requirements-map/). STOCK_CAPTURE_DIR is
 an agent-ee.jlc-catalog/1 producer capture (catalog.json plus responses/); it defaults to
 sources/assembly-stock-20261022. REPACK_DIR is a repack.py output (repack.json, block-obligations.json,
-cand/, logs/); it defaults to evidence/repack-a9dac2f-j5. AGENT_EE_GIT is a git checkout holding
+cand/, logs/); it defaults to evidence/repack-8ab3b0b9-485c (AGENTEE-485 R1). AGENT_EE_GIT is a git checkout holding
 AGENT_EE_PIN.
 """
 import copy
@@ -82,7 +82,9 @@ from pathlib import Path
 A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
 HERE = Path(__file__).resolve().parent
 STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261023-491b'  # AGENTEE-491: 81 ids + C723587/C861219, one capture
-REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-a9dac2f-j5'
+# AGENTEE-485 R1: the repack of the A3-locality policy (policy.py, afd1e2f7) with agent-ee 8ab3b0b9; repack-a9dac2f-j5
+# binds the superseded 12-obligation policy 5fab430a and stays as history.
+REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-8ab3b0b9-485c'
 # agent-ee main 7d5b0d4d, the AGENTEE-466 qualified runtime (contains the AGENTEE-454 read-once fix, the AGENTEE-450
 # router pin b5774496 and everything of the earlier 81e387ee pin): explicitly repinned by agent-449 for the j6b2
 # preparation (coordinator decision relaying agent-521 a9cb03ad/2fbe5f08; not owner-stated). The preparation runs in
@@ -196,6 +198,45 @@ shutil.copytree(CAPTURE, planning, symlinks=False)
 (planning / 'reconstruction.json').unlink()
 shutil.copyfile(X / 'design-rules/planes.json', planning / 'composition/planes.json')
 shutil.copyfile(COMPOSED / 'placement-policy.json', planning / 'composition/placement-policy.json')
+# AGENTEE-485 R2 (C1): the stage-owned block-variant inputs (agent-ee block_variant_stage, 485-A). The immutable
+# recipe is the A3 packet's unbound templates and its block-allocation/1 bridge (26 blocks) plus the iter8n
+# arrangement (advisory terms only); each is pinned by sha256. The producer outputs start as empty captured
+# placeholders and the report as the producer/1 pending marker, so placement refuses until the campaign's own
+# block-variants step (after forward-annotate) has produced /1 sets on the native board.
+A3_BLOCKS = X / 'agentee-485-blocks'
+BLOCK_STAGE = 'composition/block-stage/'
+BLOCK_STAGE_SOURCES = {  # captured path -> (source, sha256)
+    'allocation.json': (A3_BLOCKS / 'allocation-bridge.json',
+                        'd15969302cd7de8aa3b0c9eb60f8a81c4c439e12534049fb4653fc2004166eb9'),
+    'arrangement.json': (ITER8N / 'arrangement.json',  # iter8n SHA256SUMS
+                         '32711f182eedca99b38f5ba9fe255b2a83fc360870a8b42c27ea8766b082384e'),
+    'eligibility-template.json': (A3_BLOCKS / 'eligibility-template.json',
+                                  'a63bac6db79778b44c972b4a478249963e736afe8fce4489e1275b11f5855066'),
+    'contract-template.json': (A3_BLOCKS / 'block-contract-template.json',
+                               '289e2d63fa3b7108ae6618b4086e68037ca5779ea74422fac9fa29f41d03c06c')}
+block_allocation = json.loads(BLOCK_STAGE_SOURCES['allocation.json'][0].read_text())
+block_section = {
+    'netlist': BLOCK_STAGE + 'native.xml', 'arrangement': BLOCK_STAGE + 'arrangement.json',
+    'allocation': BLOCK_STAGE + 'allocation.json',
+    'candidates': [f'{BLOCK_STAGE}cand/{i:02d}-{b["id"]}.json' for i, b in enumerate(block_allocation['blocks'], 1)],
+    'side_eligibility': BLOCK_STAGE + 'eligibility.json', 'contract': BLOCK_STAGE + 'contract.json',
+    'stage_owned': {'eligibility': BLOCK_STAGE + 'eligibility-template.json',
+                    'contract': BLOCK_STAGE + 'contract-template.json', 'report': BLOCK_STAGE + 'producer.json'}}
+
+
+def stage_block_inputs():
+    for name, (source, want) in BLOCK_STAGE_SOURCES.items():
+        if sha(source) != want:
+            raise SystemExit(f'{source} is {sha(source)}, not the pinned {want}')
+        (planning / BLOCK_STAGE).mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, planning / BLOCK_STAGE / name)
+    for path in [block_section['netlist'], block_section['side_eligibility'], block_section['contract'],
+                 *block_section['candidates']]:
+        (planning / path).parent.mkdir(parents=True, exist_ok=True)
+        (planning / path).write_bytes(b'')
+    (planning / block_section['stage_owned']['report']).write_text(
+        json.dumps({'schema': 'agent-ee.block-variant-producer/1', 'status': 'pending'}, indent=2, sort_keys=True) + '\n')
+stage_block_inputs()
 project = planning / 'project'
 project.mkdir(exist_ok=True)  # the capture holds project/inputs/models/ (FOMEMC-34, build.py project_models)
 shutil.copyfile(X / 'design-rules/board-setup.kicad_pro', project / 'telemetry-pod.kicad_pro')
@@ -1045,6 +1086,16 @@ stage('routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)',
                {k: p[k] for k in ('commit', 'pin', 'checkout')})(routing_adapter.preflight(R)))
 implementation = [s for s in (steps.get('fill'), *(steps.get('schematic', {}).get('implementation_steps', [])),
                               steps.get('planes')) if s is not None]
+# AGENTEE-485 R2 (C1): the opt-in stage-owned block request and its owned block-variants producer, scheduled
+# immediately after forward-annotate (pod_driver STEPS order); pod_driver.build validates its exact contract.
+from agent_ee import block_variant_stage
+adapter['blocks'] = block_section
+block_mutable = sorted(set(scope.get('mutable_inputs', [scope['board'], scope['schematic']]))
+                       | {writer, inputs['deviations']} | {p for s in implementation for p in s['writes']}
+                       | set(block_variant_stage.output_paths(block_section)))
+block_step = block_variant_stage.step(SRC, scope=scope, declaration=adapter, mutable_inputs=block_mutable)
+_annotate = [s['step'] for s in implementation].index('forward-annotate')
+implementation.insert(_annotate + 1, block_step)
 if not AUTHORIZED['placement_timeout_s'][0] <= adapter['timeout_s'] <= AUTHORIZED['placement_timeout_s'][1]:
     raise SystemExit('placement timeout_s outside the authorized 900-1500 s')
 # The bound is explicit; max_seconds is left to the driver's derivation (two routing receipts plus review).
@@ -1135,8 +1186,10 @@ def emit_schematic():
     config = json.loads((prepared / 'campaign.json').read_text())
     candidate = json.loads((prepared / 'dry-run/candidate.json').read_text())
     specs = [s for s in config['implementation_steps'] if s['stage'] == 'schematic']
-    if [s['step'] for s in specs] != ['binding-fill', 'emit-schematic', 'forward-annotate']:
+    # AGENTEE-485 R2: the owned block-variants producer follows forward-annotate; it runs in its own C1 stage below.
+    if [s['step'] for s in specs] != ['binding-fill', 'emit-schematic', 'forward-annotate', 'block-variants']:
         raise ValueError(f"unexpected schematic-stage steps {[s['step'] for s in specs]}")
+    specs = specs[:3]
     design = OUT / EMISSION / 'design'
     shutil.copytree(prepared / 'inputs', design)
     before = stage_receipts.file_tree(design)[0]
@@ -1167,6 +1220,83 @@ def emit_schematic():
             'native_components': len(refs), 'native_nets': len(native.get('nets', {})),
             'intent': {'path': bound, 'sha256': after.get(bound)}}
 stage('emission.schematic_stage production (AGENTEE-445)', emit_schematic)
+
+
+def block_variants_c1():
+    """AGENTEE-485 R2 (C1): the prepared campaign's own block-variants step on a copy of the emitted design.
+
+    Pending control: the production consumer (placement_adapter.binding, require_produced) refuses the pending
+    report. The step then runs and is adopted through agent-ee's stage receipts; the consumer accepts the produced
+    /1 sets with the same campaign recipe binding. The legal-underside count is the produced B variants the
+    eligibility admits. Stale controls: a moved, rotated or flipped footprint refuses in run_placement_iteration
+    before any helper launch. No placement runs here."""
+    import time
+    import pcbnew
+    from agent_ee import stage_receipts, placement_adapter as pa
+    config = json.loads((OUT / PREPARED / 'campaign.json').read_text())
+    prepared_scope = json.loads((OUT / PREPARED / 'scope.json').read_text())
+    declaration, mutable = config['placement_adapter'], prepared_scope['mutable_inputs']
+    spec = next(s for s in config['implementation_steps'] if s['step'] == block_variant_stage.STEP)
+    block_variant_stage.validate_step_contract(spec, prepared_scope, declaration, mutable)
+    root = OUT / EMISSION / 'block-variants'
+    design = root / 'design'
+    shutil.copytree(OUT / EMISSION / 'design', design)
+
+    def manifest():
+        files, other = stage_receipts.file_tree(design)
+        if other:
+            raise ValueError(f'links or non-files in the design copy: {other[:5]}')
+        return {'candidate_id': 'emission', 'scope': prepared_scope, 'files': files}
+    initial = pa.binding(declaration, manifest(), design, mutable)[0]
+    try:
+        pa.binding(declaration, manifest(), design, mutable, require_produced=True)
+        raise AssertionError('pending block variants were consumed')
+    except ValueError as exc:
+        pending = str(exc)
+    receipt = stage_receipts.run_step(root / 'receipt', design, spec, {'emission': 'AGENTEE-485 C1',
+                                      'receipt_index': 4}, deadline=time.monotonic() + spec['timeout_s'])
+    stage_receipts.adopt(root / 'receipt', receipt, design)
+    produced = pa.binding(declaration, manifest(), design, mutable, require_produced=True)[0]
+    if produced != initial:
+        raise ValueError('the campaign recipe binding changed across stage generation')
+    sets = {p: json.loads((design / p).read_text())
+            for p in block_section['candidates']}
+    faces = {s['block_id']: {f: v.get('status') for f, v in s['variants'].items()} for s in sets.values()}
+    if any(s['schema'] != 'agent-ee.block-candidate-set/1' for s in sets.values()):
+        raise ValueError('a produced candidate is not a /1 set')
+    underside = sorted(b for b, f in faces.items() if f.get('B') == 'packed')
+    report = json.loads((design / block_section['stage_owned']['report']).read_text())
+    board = design / prepared_scope['board']
+    original, stale = board.read_bytes(), {}
+    probe_ref = next(m['ref'] for s in sets.values() for m in s['captured_members'])
+    for n, mutation in enumerate(('move', 'rotate', 'flip'), 1):
+        b = pcbnew.LoadBoard(str(board))
+        fp = next(f for f in b.GetFootprints() if f.GetReference() == probe_ref)
+        if mutation == 'move':
+            fp.SetPosition(fp.GetPosition() + pcbnew.VECTOR2I(1000000, 0))
+        elif mutation == 'rotate':
+            fp.SetOrientationDegrees(fp.GetOrientationDegrees() + 90)
+        else:
+            fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+        pcbnew.SaveBoard(str(board), b)
+        work = root / 'stale' / str(n)
+        copy_ = work / 'review-work/implementation/design'
+        shutil.copytree(design, copy_)
+        state = {'history': [{'earliest_failing_stage': 'placement'}], 'mutable_inputs': mutable, 'stage_receipts': {}}
+        try:
+            pa.run_placement_iteration(work, copy_, design, manifest(), state, declaration, time.monotonic() + 60)
+            raise AssertionError(f'stale {mutation} was consumed')
+        except ValueError as exc:
+            if 'stale' not in str(exc) or (work / 'receipts').exists():
+                raise
+            stale[mutation] = str(exc)
+        board.write_bytes(original)
+    return {'step': spec['step'], 'receipt_sha256': sha(root / 'receipt/receipt.json'),
+            'exit': (receipt.get('execution') or {}).get('exit_code', receipt.get('status')),
+            'pending_refusal': pending, 'binding_stable': True, 'report_sha256': sha(design / block_section['stage_owned']['report']),
+            'report_board': report['board'], 'sets': len(sets), 'faces': faces,
+            'legal_underside_packed': underside, 'stale_probe_ref': probe_ref, 'stale_refusals': stale}
+stage('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', block_variants_c1)
 MODELS = 'composition/project-models.json'
 
 

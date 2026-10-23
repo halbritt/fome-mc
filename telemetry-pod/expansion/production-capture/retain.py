@@ -52,7 +52,9 @@ ROOT = HERE.parents[2]
 # AGENTEE-488c: NEW retention composed on fome-mc main 33c5ba8 (486 REQUIREMENTS.md correction) + 60f6a78d + 488/186.
 # AGENTEE-485: NEW retention for the production regeneration preparation (runtime agentee-485d.json, agent-ee 8ab3b0b9,
 # fome-mc composed 01398586: A3 all-211 locality + B-JP2 access); emission-7d5b0d4d-agentee491/ stays unchanged.
-DEST = HERE / 'evidence/emission-8ab3b0b9-agentee485'
+# AGENTEE-485 correction (R1 A3 policy + repack, R2 stage-owned block variants): a NEW retention; emission-8ab3b0b9-agentee485/
+# stays unchanged.
+DEST = HERE / 'evidence/emission-8ab3b0b9-agentee485c'
 SUPERSEDED = HERE / 'evidence/emission-81e387ee'  # j6/j6b retention (producer 81e387ee); removed at j6b2
 POD = ROOT / 'telemetry-pod'
 REPO_SUBTREE = 'telemetry-pod/'

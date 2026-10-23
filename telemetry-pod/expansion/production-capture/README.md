@@ -523,6 +523,32 @@ PYTHONPATH=AGENT_EE_EXPORT/src /usr/bin/python3 -m agent_ee.jlc_stock_capture --
 coordinator's iter8n cache (seed, netlist, allocation, library entries). The build exports the microSD
 netlist on a temporary copy; no design file is re-saved.
 
+## AGENTEE-485 correction (R1-R3)
+
+- **R1 policy.** `policy.py ITER8N_POLICY [--check]` is the producer of `composition/placement-policy.json`: the
+  recorded derivation (iter8n policy `63138a34…` minus `fixed_overhangs`) with the embedded `electrical_locality`
+  replaced by the scope's A3 document (`electrical-locality.json` `9852c3ed…`, 201 obligations), so
+  `placement_adapter.bind_locality` binds it. The repack of that policy is `evidence/repack-8ab3b0b9-485c/` (agent-ee
+  `8ab3b0b9`, the pipeline REPACK default); `repack-a9dac2f-j5/` binds the superseded `5fab430a` and stays as history.
+- **R2 block variants.** pipeline.py stages the 485-A stage-owned block request (`composition/block-stage/`: the A3
+  templates, the A3 allocation bridge, the iter8n arrangement, empty producer placeholders and the pending report),
+  declares it as `placement_adapter.blocks`, and inserts agent-ee's own `block-variants` step after forward-annotate.
+  The stage `blocks.stage_owned_variants C1` runs that step on a copy of the emission and records the pending
+  refusal, the consumed /1 sets, the legal-underside count and the stale move/rotate/flip refusals.
+- **R3 launch.** Preparation (`production_run.sh`, `retain.py`, `runtime_receipt.py write`) and launch are separate.
+  The one launch command, from the fome-mc root of the integrated commit (RUN as for production_run.sh):
+
+  ```sh
+  POD_RUST_DIR=~/.cache/agent-ee-evidence/agentee-485-runtime-503 ~/.local/bin/native-admit run --class suite \
+    --weight 4 --label LANE -- /usr/bin/python3 -I -B telemetry-pod/expansion/production-capture/launch.py \
+    telemetry-pod/expansion/production-capture/evidence/RECEIPT_DIR RUN NEW_OUT [--preflight]
+  ```
+
+  `launch.py` refuses unless the committed receipt checks, `retain.py --check` passes, the materialized prepared tree
+  hashes to the receipt's campaign/plan/driver bindings, the mounted Rust pair hashes to the receipt, the image is
+  present by digest and the receipt's pre-launch identity check (observe) reports no problems. `--preflight` stops
+  there; without it the receipt's own `agent_ee.cli campaign` command runs. It is the existing runner, unchanged.
+
 ## Remaining
 
 - **Launch.** The prepared two-iteration campaign is not launched. agent-521 (telemetry-pod lead since
