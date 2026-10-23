@@ -81,6 +81,20 @@ def rel_here(path):
     return Path(path).resolve().relative_to(HERE.resolve()).as_posix()
 
 
+def rust_pair(binary, receipt):
+    """The Rust binary actually used and its build receipt: any pair is accepted, but the receipt must name the
+    binary's sha256 (no hard-coded binary identity; a mismatched pair refuses)."""
+    if not binary and not receipt:
+        return None
+    if not (binary and receipt):
+        raise SystemExit('--rust-binary and --rust-receipt must be given together')
+    b, r = bound_file(binary), bound_file(receipt)
+    text_ = Path(r['path']).read_text(errors='replace')
+    if b['sha256'] not in text_:
+        raise SystemExit(f"rust receipt {r['path']} does not name the binary sha256 {b['sha256']}")
+    return {'binary': b, 'receipt': r}
+
+
 def bound_file(path):
     path = Path(path) if Path(path).is_absolute() else ROOT / path
     return {'path': str(path), 'sha256': sha(path)}
@@ -322,8 +336,7 @@ def write(observation, image_dir, run_dir):
             'source_commit': PARAMS['source_commit'],
             'contracts': [bound_file(c) for c in PARAMS['contracts']],
             'mounted_python_source': obs['producer_mounts'],
-            'rust_binary': bound_file(PARAMS['rust_binary']) if PARAMS['rust_binary'] else None,
-            'rust_receipt': bound_file(PARAMS['rust_receipt']) if PARAMS['rust_receipt'] else None,
+            'rust': rust_pair(PARAMS['rust_binary'], PARAMS['rust_receipt']),
             'native_artifact': bound_file(PARAMS['native']) if PARAMS['native'] else None},
         'agent_ee': {**pipeline['agent_ee'], 'image_equals_export': obs['runtime_agent_ee']['equals_export'],
                      'image_files': obs['runtime_agent_ee']['files'], 'producer_mounts': obs['producer_mounts'],
@@ -365,7 +378,11 @@ def check():
         problems.append('initial candidate differs from the retained pipeline')
     if sha(HERE / receipt['observation']['path']) != receipt['observation']['sha256']:
         problems.append('observation differs')
+    rust = (receipt.get('run_bindings') or {}).get('rust')
+    if rust and rust['binary']['sha256'] not in Path(rust['receipt']['path']).read_text(errors='replace'):
+        problems.append('rust receipt does not name the bound binary')
     for key, item in (receipt.get('run_bindings') or {}).items():  # AGENTEE-487 bindings (absent in older receipts)
+        item = list(item.values()) if key == 'rust' and isinstance(item, dict) else item
         for entry in (item if isinstance(item, list) else [item]):
             if isinstance(entry, dict) and 'path' in entry and 'sha256' in entry and sha(entry['path']) != entry['sha256']:
                 problems.append(f'{key}: {entry["path"]} differs')

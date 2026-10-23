@@ -43,6 +43,20 @@ case('no hard-coded retained-evidence or receipt binding paths remain',
      "'evidence/emission-7d5b0d4d/" not in code and "'evidence/production-runtime-j6b/" not in code)
 case('receipt authority is the neutral parameter (no agent-521 text in the receipt body)',
      'agent-521' not in code.split('def write', 1)[1].split('def check', 1)[0])
+m = load()
+with tempfile.TemporaryDirectory() as tmp:
+    binary = Path(tmp) / 'placement-engine'; binary.write_bytes(b'any actual binary bytes')
+    import hashlib
+    good = Path(tmp) / 'build-receipt.json'; good.write_text('{"binary_sha256": "%s"}' % hashlib.sha256(binary.read_bytes()).hexdigest())
+    bad = Path(tmp) / 'other-receipt.json'; bad.write_text('{"binary_sha256": "%s"}' % ('0' * 64))
+    pair = m.rust_pair(str(binary), str(good))
+    case('rust: any actual binary + its receipt is accepted', pair['binary']['sha256'] == hashlib.sha256(binary.read_bytes()).hexdigest())
+    try:
+        m.rust_pair(str(binary), str(bad)); rejected = False
+    except SystemExit as exc:
+        rejected = 'does not name the binary' in str(exc)
+    case('rust: a mismatched binary/receipt pair is rejected', rejected)
+case('rust: no hard-coded 5261cb13 binary identity', '5261cb13' not in SCRIPT.read_text())
 hist = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'), 'check'],
                       capture_output=True, text=True)
 case('historical j6b receipt still checks against its own evidence', hist.returncode == 0 and 'runtime receipt OK' in hist.stdout)

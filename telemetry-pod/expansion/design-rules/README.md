@@ -200,12 +200,13 @@ and a reference-plane check (AGENTEE-480).
 
 ## Plane plan island policy (AGENTEE-487)
 
-`planes.json` → `/+3V3` on In2.Cu now uses `island_removal: "never"`. `/GND` on In1.Cu stays `"always"`.
+The final policy is `island_removal: "always"` for both `/GND` (In1.Cu) and `/+3V3` (In2.Cu).
 
-The declared `add-planes` producer is a campaign routing-turn step. It runs on the placed board before the router. On the placed board the In2 `/+3V3` zone is wholly unconnected, because every `/+3V3` load is SMD and nothing connects In2 before routing. agent-ee `docs/add-planes.md` "Island removal" says a wholly unconnected `always` zone is refused, and engineering must choose the policy in the captured plan. With `always` the step refused (`plane_production_refused`, isolated copper), so a campaign routing turn could never produce the planes.
+Checkpoint `e780472` had changed `/+3V3` to `never`. agent-529 rejected that (76150ac4), and it is reverted here.
 
-`never` keeps the disconnected In2 copper until routing connects it with vias. The routing phase owns two checks:
-- the post-routing connectivity and dead-island checks;
-- the 480 reference-continuity check on In1.
+The underlying defect was that the declared routing-turn `add-planes` producer refused a wholly unconnected `always` zone. Before routing, In2 `/+3V3` has no connection, because every `/+3V3` load is SMD. This is repaired in the producer:
+- **Change:** agent-ee `add_planes` (AGENTEE-487 branch) keeps such a zone's definition and its `always` policy, and reports it as `deferred_connectivity`.
+- **Obligation:** connected fill under `always` after routing.
+- **Still refused:** partial isolation, missing nets and unplanned zones.
 
-Evidence: `../agentee-487-planes/`.
+Evidence and the before/after regression are in `../agentee-487-planes/`.

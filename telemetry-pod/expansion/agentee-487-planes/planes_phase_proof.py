@@ -10,6 +10,9 @@ from agent_ee import stage_receipts
 import pcbnew
 pipe, work, out, plan = Path(sys.argv[1]), Path(sys.argv[2]), Path(sys.argv[3]), Path(sys.argv[4])
 spec = next(s for s in json.loads((pipe / 'prepared/plan.json').read_text())['implementation_steps'] if s['step'] == 'add-planes')
+import os
+if os.environ.get('MOUNT_OVERRIDE'):  # AGENTEE-487: run the declared step with a candidate producer source
+    spec['mounts'] = [dict(m, source=os.environ['MOUNT_OVERRIDE']) if m['at'] == '/tool/agent-ee' else m for m in spec['mounts']]
 sha = lambda p: hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def zones(path):
     b = pcbnew.LoadBoard(str(path))
@@ -32,7 +35,7 @@ for arg in sys.argv[5:]:
     except Exception as exc:  # recorded, not hidden
         adopted = f'{type(exc).__name__}: {exc}'
     after_path = design / 'project/telemetry-pod.kicad_pcb'
-    res[label] = {'input_board_sha256': sha(board), 'zones_before': before, 'exit': exit_code, 'adopted': adopted,
+    res[label] = {'input_board_sha256': sha(board), 'zones_before': before, 'exit': exit_code, 'adopted': adopted, 'producer_mount': spec['mounts'][0]['source'], 'report': json.loads((rdir / 'run/out/planes.json').read_text()) if (rdir / 'run/out/planes.json').exists() else None,
                   'output_board_sha256': sha(after_path), 'zones_after': zones(after_path),
                   'receipt_sha256': sha(rdir / 'receipt.json')}
 out.write_text(json.dumps(res, indent=1) + '\n')
