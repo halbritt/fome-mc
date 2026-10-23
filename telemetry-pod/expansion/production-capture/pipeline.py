@@ -1398,7 +1398,20 @@ def exceeded_advisories(value, where=''):
         for i, v in enumerate(value):
             found += exceeded_advisories(v, f'{where}/{i}')
     return found
-stage('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', block_variants_c1)
+# AGENTEE-485 R4: one explicit, recorded emission-validation mode. POD_C1=held-owner-pause-AGENTEE-507 records C1 as
+# NOT_RUN and does not invoke the block-variants producer. C1 stays REQUIRED (X1), so such a run exits 3 with no
+# receipt and no retention, and launch.py refuses it; it is validation evidence only. Any other value refuses.
+C1_HOLD = 'held-owner-pause-AGENTEE-507'
+C1_MODE = os.environ.get('POD_C1', '')
+if C1_MODE == C1_HOLD:
+    stages['blocks.stage_owned_variants C1 (AGENTEE-485 R2)'] = {
+        'status': 'NOT_RUN', 'mode': 'POD_C1=' + C1_HOLD, 'reason': 'owner pause, AGENTEE-507',
+        'error': 'NOT_RUN: owner pause, AGENTEE-507 (POD_C1=' + C1_HOLD + '); the block-variants producer was not invoked'}
+    print('NOT_RUN   blocks.stage_owned_variants C1 (AGENTEE-485 R2): owner pause, AGENTEE-507', flush=True)
+elif C1_MODE:
+    raise SystemExit(f'POD_C1={C1_MODE!r} is not the one recorded hold mode {C1_HOLD!r}')
+else:
+    stage('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', block_variants_c1)
 MODELS = 'composition/project-models.json'
 
 

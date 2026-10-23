@@ -128,7 +128,7 @@ class RequiredStages(unittest.TestCase):
 
     def test_every_pipeline_stage_is_classified(self):
         import re
-        names = re.findall(r"^stage\('([^']+)'", (HERE / 'pipeline.py').read_text(), re.M)
+        names = re.findall(r"^\s*stage\('([^']+)'", (HERE / 'pipeline.py').read_text(), re.M)  # R4: C1 sits under the POD_C1 branch
         self.assertEqual(sorted(names), sorted(required_stages.REQUIRED))
         self.assertEqual(sorted(set(DELIVERED['stages']) | {'blocks.stage_owned_variants C1 (AGENTEE-485 R2)'}),
                          sorted(required_stages.REQUIRED))
@@ -148,6 +148,31 @@ class RequiredStages(unittest.TestCase):
         stages = {name: {'status': 'accepted'} for name in required_stages.REQUIRED}
         stages['new.unclassified'] = {'status': 'accepted'}
         self.assertTrue(any('not classified' in p for p in required_stages.problems(stages)))
+
+    def test_c1_hold_mode_is_not_run_and_refuses(self):
+        """AGENTEE-485 R4: POD_C1=held-owner-pause-AGENTEE-507 records C1 NOT_RUN without invoking the producer;
+        C1 stays required, so the stage records are not a valid candidate (no receipt, no retention, no launch)."""
+        text = (HERE / 'pipeline.py').read_text()
+        self.assertIn("C1_HOLD = 'held-owner-pause-AGENTEE-507'", text)
+        hold = text[text.index('if C1_MODE == C1_HOLD:'):text.index('elif C1_MODE:')]
+        self.assertNotIn('block_variants_c1', hold)
+        self.assertIn("'status': 'NOT_RUN'", hold)
+        self.assertIn('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', required_stages.REQUIRED)
+        stages = {name: {'status': 'accepted'} for name in required_stages.REQUIRED}
+        stages['blocks.stage_owned_variants C1 (AGENTEE-485 R2)'] = {
+            'status': 'NOT_RUN', 'reason': 'owner pause, AGENTEE-507',
+            'error': 'NOT_RUN: owner pause, AGENTEE-507'}
+        found = required_stages.problems(stages)
+        self.assertEqual(len(found), 1)
+        self.assertIn("is 'NOT_RUN'", found[0])
+        self.assertFalse(required_stages.summary(stages)['valid_candidate'])
+        runtime_receipt = load('runtime_receipt')
+        self.assertTrue(runtime_receipt.required_stage_problems({'stages': stages}))
+        retain = load('retain')
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / 'pipeline.json').write_text(json.dumps({'stages': stages}))
+            with self.assertRaises(SystemExit):
+                retain.retain(tmp)
 
     def test_receipt_write_and_retain_refuse_a_refused_required_stage(self):
         runtime_receipt = load('runtime_receipt')
