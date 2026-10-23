@@ -526,12 +526,17 @@ ROLE = {
         'anchor': 'XY (72.5, 6.5) rot 0 on F: AGENT baseline, not a manufacturer-mandated XY',
         'face_decision': 'F as engineering anchor (AGENT), reconsiderable with the antenna-case check'},
  'U2': {'sourced': [{'entry': 'C14', 'class': 'OWNER/project', 'restriction': 'REQUIRED installed axes X forward, Y left, Z up, marked on silkscreen, without a software rotation (REQUIREMENTS.md:69); tall/heavy parts kept away (R:68, no numeric distance)'}],
-        'anchor': 'XY (12, 10) rot 0: AGENT historical pose (E:120-128); no owner/manufacturer source for XY or F-only (C14)',
-        'face_decision': ('OPEN for agent-529. Evidence: R:69 requires sensor Z up with no software rotation, so U2 must sit on the board face '
-                          'that points UP when installed, at the rotation that maps sensor X forward / Y left. The installed board '
-                          'orientation (which face is up, which edge is forward) is not sourced (C14 board-to-bike transform UNKNOWN; C22). '
-                          'Either face is physically possible; neither is inherited. Candidate start: F, labelled AGENT, valid only under '
-                          'the assumption F faces up; any face/rotation must pass the final axis check')},
+        'anchor': ('XY and rotation NOT frozen: the historical XY (12, 10) rot 0 (E:120-128) is a starting pose only. Rotation is DERIVED '
+                   '(see face_decision); XY is chosen by placement subject to the R:68 tall/heavy separation'),
+        'assembly_assumption': {'label': 'ASSUMPTION (engineering assembly choice, agent-529 decision c7adf503)',
+                                'statement': 'the board F-side normal faces UP when installed',
+                                'rebind_on_change': 'a later frame change means rebinding and re-checking U2 axes, side eligibility, keepouts and silkscreen'},
+        'face_decision': ('DERIVED (agent-529 decision c7adf503), not owner-mandated F-only: U2 face and rotation follow from the '
+                          'manufacturer package axes plus the explicit board-to-bike transform so that native X is forward, Y left and '
+                          'Z up with no software rotation (R:69). Under the assumption that the F-side normal faces up, F is expected. '
+                          'rot0 is not inherited; the rotation is whatever the package-axis transform requires. The physical '
+                          'package-axis transform is verified by agent-507 in AGENTEE-486 (referenced, not duplicated); the final '
+                          'face/rotation must pass the axis check')},
  'U3': {'sourced': [{'entry': 'C15', 'class': 'OWNER/project', 'restriction': 'F.Cu over In1 GNSS RF path REQUIRED (R:65); RF_IN pad 11 on the F.Cu path'}],
         'anchor': 'pose is placement-derived (staged off-board in the emitted board); component-relative RF corridor and anchor belong to AGENTEE-480 (agent-507, landed b389b47) and are referenced, not duplicated',
         'face_decision': 'F, required by the F-over-In1 RF path (sourced)'},
@@ -547,6 +552,7 @@ for f, ids in FIXED.items():
         'engineering_anchor': {'pose': ROLE[f]['anchor'], 'label': 'AGENT', 'reconsiderable': True, 'rule': ANCHOR_RULE,
                                'disposition': 'retained as the candidate anchor for AGENTEE-479 packing unless reconsidered'},
         'face_decision': ROLE[f]['face_decision'],
+        **({'assembly_assumption': ROLE[f]['assembly_assumption']} if 'assembly_assumption' in ROLE[f] else {}),
         'starting_poses': {'label': 'captured start state only, never a constraint',
                            'r5': {'x_mm': r5['x'], 'y_mm': r5['y'], 'rot_deg': r5['rot'], 'side': r5['side']},
                            'emitted': {k: em.get(k) for k in ('x', 'y', 'rot', 'side')}},
@@ -633,6 +639,7 @@ for f in FIXED:
                                'engineering_anchor': {'pose': ROLE[f]['anchor'], 'label': 'AGENT', 'reconsiderable': True,
                                                       'rule': ANCHOR_RULE},
                                'face_decision': ROLE[f]['face_decision'],
+                               **({'assembly_assumption': ROLE[f]['assembly_assumption']} if 'assembly_assumption' in ROLE[f] else {}),
                                'starting_poses': {'label': 'captured start state only, never a constraint',
                                                   'r5': {'x_mm': fp['x'], 'y_mm': fp['y'], 'rot_deg': fp['rot'], 'side': fp['side']},
                                                   'emitted': {k: BOARD[f].get(k) for k in ('x', 'y', 'rot', 'side')}},

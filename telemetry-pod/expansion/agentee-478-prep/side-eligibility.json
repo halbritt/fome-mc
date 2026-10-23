@@ -2552,13 +2552,18 @@
    ],
    "register": "agentee-474-constraints/RESULT.md",
    "engineering_anchor": {
-    "pose": "XY (12, 10) rot 0: AGENT historical pose (E:120-128); no owner/manufacturer source for XY or F-only (C14)",
+    "pose": "XY and rotation NOT frozen: the historical XY (12, 10) rot 0 (E:120-128) is a starting pose only. Rotation is DERIVED (see face_decision); XY is chosen by placement subject to the R:68 tall/heavy separation",
     "label": "AGENT",
     "reconsiderable": true,
     "rule": "chosen BEFORE packing; reconsiderable within the authorized repair with an explicit disposition; any reconsidered anchor needs final transformed keepout and axis checks (AGENTEE-479 acceptance item)",
     "disposition": "retained as the candidate anchor for AGENTEE-479 packing unless reconsidered"
    },
-   "face_decision": "OPEN for agent-529. Evidence: R:69 requires sensor Z up with no software rotation, so U2 must sit on the board face that points UP when installed, at the rotation that maps sensor X forward / Y left. The installed board orientation (which face is up, which edge is forward) is not sourced (C14 board-to-bike transform UNKNOWN; C22). Either face is physically possible; neither is inherited. Candidate start: F, labelled AGENT, valid only under the assumption F faces up; any face/rotation must pass the final axis check",
+   "face_decision": "DERIVED (agent-529 decision c7adf503), not owner-mandated F-only: U2 face and rotation follow from the manufacturer package axes plus the explicit board-to-bike transform so that native X is forward, Y left and Z up with no software rotation (R:69). Under the assumption that the F-side normal faces up, F is expected. rot0 is not inherited; the rotation is whatever the package-axis transform requires. The physical package-axis transform is verified by agent-507 in AGENTEE-486 (referenced, not duplicated); the final face/rotation must pass the axis check",
+   "assembly_assumption": {
+    "label": "ASSUMPTION (engineering assembly choice, agent-529 decision c7adf503)",
+    "statement": "the board F-side normal faces UP when installed",
+    "rebind_on_change": "a later frame change means rebinding and re-checking U2 axes, side eligibility, keepouts and silkscreen"
+   },
    "starting_poses": {
     "label": "captured start state only, never a constraint",
     "r5": {

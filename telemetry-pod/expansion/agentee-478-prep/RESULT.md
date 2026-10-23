@@ -294,3 +294,14 @@ The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../
 | H1–H4 | corner holes (C03 OWNER); M3, agents pick (C04) | XY at the 4 mm corners, AGENT | n/a (NPTH, both faces) |
 
 The 478b owner answers (commits `93adc6c` and `6e0aea2` on the j6b2 branch) were carried onto this branch so the data is coherent. Validator: PASS, 313 footprints, 0 unassigned, 0 duplicates.
+
+## AGENTEE-478d: U2 face settled as DERIVED (agent-529 decision c7adf503)
+
+U2 was OPEN in 478c. It is now **DERIVED from an engineering assembly choice**, not owner-mandated F-only.
+- **Assumption:** the board's F-side normal faces UP when installed.
+- **Derivation:** U2's face and rotation follow from the manufacturer package axes plus the explicit board-to-bike transform, so that native X is forward, Y left and Z up with no software rotation (R:69). Under this frame, F is expected.
+- **Not inherited:** rot 0. XY is not frozen; the historical (12, 10) is a starting pose only.
+- **Verification:** agent-507 verifies the physical package-axis transform in AGENTEE-486 (referenced, not duplicated). The final face and rotation must pass the axis check.
+- **If the frame changes:** rebind and re-check U2's axes, eligibility, keepouts and silkscreen.
+
+Changed: `fixed.U2` in `side-eligibility.json` and `fixed-shared-rules.json` (`anchor`, `face_decision`, and a new `assembly_assumption`). Validator: PASS, 313 footprints, 0 unassigned, 0 duplicates.
