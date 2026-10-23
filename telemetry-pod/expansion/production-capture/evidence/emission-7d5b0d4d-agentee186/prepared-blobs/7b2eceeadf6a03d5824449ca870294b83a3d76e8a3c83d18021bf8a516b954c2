@@ -1,0 +1,2590 @@
+{
+  "baseline_id": "befc7e870fdfb30570140287e46f309386745fcbd4862fcac435f0f4c99cac99",
+  "candidate_id": "e0bcabd367c5a16ae0482c3f297f5c021f1ae79ba5e5a7a52d8a9dd6f04ca001",
+  "coverage": {
+    "checks": 27,
+    "checks_without_entity_mapping": [
+      "antenna-facts",
+      "assembly",
+      "drc",
+      "electrical-locality",
+      "envelope-containment",
+      "envelope-fab-profile",
+      "envelope-fixed-j1",
+      "envelope-fixed-j2",
+      "envelope-fixed-j3",
+      "envelope-fixed-u1",
+      "envelope-fixed-u2",
+      "envelope-hole-h1",
+      "envelope-hole-h2",
+      "envelope-hole-h3",
+      "envelope-hole-h4",
+      "envelope-keepout-d-pcb-6-rf-reference",
+      "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+      "envelope-keepout-radio-antenna",
+      "envelope-layer-count",
+      "envelope-outline",
+      "envelope-stackup",
+      "erc",
+      "fab-package",
+      "netlist",
+      "parts",
+      "placement-drc",
+      "routing-geometry"
+    ],
+    "diagnostics": [
+      {
+        "check": "netlist",
+        "path": "work/netlist/design.xml",
+        "reason": "native inventory unavailable"
+      },
+      {
+        "check": "routing-geometry",
+        "path": "work/routing-geometry/geometry.json",
+        "reason": "native inventory unavailable"
+      }
+    ],
+    "entities_without_consumer_mapping": 0,
+    "fallback_entities": 0,
+    "limitations": [
+      "Supported native inventory only; no hierarchy completeness, physical equivalence or acceptance inferred."
+    ],
+    "observed_entities": 0,
+    "requirements": 23,
+    "status": "unavailable",
+    "unresolved_entities": 0
+  },
+  "entries": [
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "assembly_readiness/1",
+        "check_id": "assembly",
+        "immutable_inputs": [
+          "assembly-stock/catalog.json",
+          "assembly-stock/responses/C105579.json",
+          "assembly-stock/responses/C105588.json",
+          "assembly-stock/responses/C108080.json",
+          "assembly-stock/responses/C110776.json",
+          "assembly-stock/responses/C112305.json",
+          "assembly-stock/responses/C114218.json",
+          "assembly-stock/responses/C122538.json",
+          "assembly-stock/responses/C122970.json",
+          "assembly-stock/responses/C124196.json",
+          "assembly-stock/responses/C127833.json",
+          "assembly-stock/responses/C129339.json",
+          "assembly-stock/responses/C130055.json",
+          "assembly-stock/responses/C136970.json",
+          "assembly-stock/responses/C14675.json",
+          "assembly-stock/responses/C1509297.json",
+          "assembly-stock/responses/C151279.json",
+          "assembly-stock/responses/C1525.json",
+          "assembly-stock/responses/C154901.json",
+          "assembly-stock/responses/C17288249.json",
+          "assembly-stock/responses/C1864162.json",
+          "assembly-stock/responses/C190245.json",
+          "assembly-stock/responses/C19947708.json",
+          "assembly-stock/responses/C2045384.json",
+          "assembly-stock/responses/C2073505.json",
+          "assembly-stock/responses/C208539.json",
+          "assembly-stock/responses/C2167136.json",
+          "assembly-stock/responses/C2167328.json",
+          "assembly-stock/responses/C2167386.json",
+          "assembly-stock/responses/C2168350.json",
+          "assembly-stock/responses/C2174822.json",
+          "assembly-stock/responses/C22787.json",
+          "assembly-stock/responses/C27804.json",
+          "assembly-stock/responses/C2862873.json",
+          "assembly-stock/responses/C2879422.json",
+          "assembly-stock/responses/C2913198.json",
+          "assembly-stock/responses/C2979740.json",
+          "assembly-stock/responses/C3018567.json",
+          "assembly-stock/responses/C307542.json",
+          "assembly-stock/responses/C3659057.json",
+          "assembly-stock/responses/C38695.json",
+          "assembly-stock/responses/C3988368.json",
+          "assembly-stock/responses/C403723.json",
+          "assembly-stock/responses/C40919.json",
+          "assembly-stock/responses/C452747.json",
+          "assembly-stock/responses/C452751.json",
+          "assembly-stock/responses/C469656.json",
+          "assembly-stock/responses/C5119087.json",
+          "assembly-stock/responses/C513565.json",
+          "assembly-stock/responses/C515607.json",
+          "assembly-stock/responses/C5311564.json",
+          "assembly-stock/responses/C552486.json",
+          "assembly-stock/responses/C596198.json",
+          "assembly-stock/responses/C626758.json",
+          "assembly-stock/responses/C694521.json",
+          "assembly-stock/responses/C701613.json",
+          "assembly-stock/responses/C705764.json",
+          "assembly-stock/responses/C705785.json",
+          "assembly-stock/responses/C7224519.json",
+          "assembly-stock/responses/C723532.json",
+          "assembly-stock/responses/C725712.json",
+          "assembly-stock/responses/C728587.json",
+          "assembly-stock/responses/C728588.json",
+          "assembly-stock/responses/C7353633.json",
+          "assembly-stock/responses/C76706.json",
+          "assembly-stock/responses/C76711.json",
+          "assembly-stock/responses/C841205.json",
+          "assembly-stock/responses/C85973.json",
+          "assembly-stock/responses/C861094.json",
+          "assembly-stock/responses/C861156.json",
+          "assembly-stock/responses/C861226.json",
+          "assembly-stock/responses/C861279.json",
+          "assembly-stock/responses/C861295.json",
+          "assembly-stock/responses/C861410.json",
+          "assembly-stock/responses/C861458.json",
+          "assembly-stock/responses/C861510.json",
+          "assembly-stock/responses/C861521.json",
+          "assembly-stock/responses/C861605.json",
+          "assembly-stock/responses/C907839.json",
+          "assembly-stock/responses/C92494.json",
+          "assembly-stock/responses/C95204.json",
+          "assembly-stock/responses/C98080.json",
+          "composition/parts.json",
+          "telemetry-pod/REQUIREMENTS.md",
+          "telemetry-pod/expansion/complete-parts-manifest/parts.json",
+          "telemetry-pod/expansion/design-rules/constraints.json",
+          "telemetry-pod/expansion/j1-historical-source/C596198.json"
+        ],
+        "kind": "assembly_readiness",
+        "predicates": [
+          "assembly:bom-properties",
+          "assembly:lcsc-binding",
+          "assembly:stock-coverage",
+          "assembly:passive-ratings"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "assembly",
+        "kind": "assembly_readiness",
+        "params": {
+          "boards": 1,
+          "catalog": "assembly-stock/catalog.json",
+          "deviations": "composition/deviations.json",
+          "hand_fit_policy": {
+            "identities": [
+              {
+                "lcsc": "C596198",
+                "mpn": "1-776163-1"
+              }
+            ],
+            "line": 139,
+            "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+            "selection": {
+              "category": "AMPSEAL",
+              "line": 175,
+              "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+              "records": [
+                {
+                  "pointer": "",
+                  "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+                  "source": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+                },
+                {
+                  "pointer": "/parts/326",
+                  "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+                  "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+                },
+                {
+                  "pointer": "/parts/303",
+                  "sha256": "bce5a138f711616e88d0bf003ce3e0e05fe9e5e816488754e7d22396944dd80a",
+                  "source": "composition/parts.json"
+                }
+              ],
+              "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+              "source": "telemetry-pod/expansion/design-rules/constraints.json"
+            },
+            "sha256": "0f52e0ae17f62be348525a5cfab2d9ea5c823df7bc5f580700ed7dd10cbcaae7",
+            "source": "telemetry-pod/REQUIREMENTS.md"
+          },
+          "max_age_hours": 24,
+          "require_passive_ratings": true
+        },
+        "stage": "verification"
+      },
+      "evidence": [
+        "work/assembly/stage-subject/execution.json",
+        "work/assembly/stage-subject/console.log",
+        "work/assembly/stage-subject/native-netlist.xml",
+        "work/assembly/stage-subject/native-observation.json",
+        "work/assembly/stage-subject/references.json",
+        "work/assembly/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "assembly",
+      "kind": "assembly_readiness",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/25",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-hole-h1",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:mounting-holes/1:H1"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-hole-h1",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "mounting-holes/1",
+          "envelope": "composition/envelope.json",
+          "id": "H1"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-hole-h1/stage-subject/execution.json",
+        "work/envelope-hole-h1/stage-subject/console.log",
+        "work/envelope-hole-h1/stage-subject/native-observation.json",
+        "work/envelope-hole-h1/stage-subject/references.json",
+        "work/envelope-hole-h1/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-hole-h1",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/8",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-hole-h2",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:mounting-holes/1:H2"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-hole-h2",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "mounting-holes/1",
+          "envelope": "composition/envelope.json",
+          "id": "H2"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-hole-h2/stage-subject/execution.json",
+        "work/envelope-hole-h2/stage-subject/console.log",
+        "work/envelope-hole-h2/stage-subject/native-observation.json",
+        "work/envelope-hole-h2/stage-subject/references.json",
+        "work/envelope-hole-h2/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-hole-h2",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/9",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-hole-h3",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:mounting-holes/1:H3"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-hole-h3",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "mounting-holes/1",
+          "envelope": "composition/envelope.json",
+          "id": "H3"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-hole-h3/stage-subject/execution.json",
+        "work/envelope-hole-h3/stage-subject/console.log",
+        "work/envelope-hole-h3/stage-subject/native-observation.json",
+        "work/envelope-hole-h3/stage-subject/references.json",
+        "work/envelope-hole-h3/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-hole-h3",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/10",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-hole-h4",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:mounting-holes/1:H4"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-hole-h4",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "mounting-holes/1",
+          "envelope": "composition/envelope.json",
+          "id": "H4"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-hole-h4/stage-subject/execution.json",
+        "work/envelope-hole-h4/stage-subject/console.log",
+        "work/envelope-hole-h4/stage-subject/native-observation.json",
+        "work/envelope-hole-h4/stage-subject/references.json",
+        "work/envelope-hole-h4/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-hole-h4",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/11",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-keepout-d-pcb-6-rf-reference",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:keepouts/1:D-PCB-6-RF-reference"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-keepout-d-pcb-6-rf-reference",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "keepouts/1",
+          "envelope": "composition/envelope.json",
+          "id": "D-PCB-6-RF-reference"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-keepout-d-pcb-6-rf-reference/stage-subject/execution.json",
+        "work/envelope-keepout-d-pcb-6-rf-reference/stage-subject/console.log",
+        "work/envelope-keepout-d-pcb-6-rf-reference/stage-subject/native-observation.json",
+        "work/envelope-keepout-d-pcb-6-rf-reference/stage-subject/references.json",
+        "work/envelope-keepout-d-pcb-6-rf-reference/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-keepout-d-pcb-6-rf-reference",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/14",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:keepouts/1:D-PCB-7v2-In1-no-tracks"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "keepouts/1",
+          "envelope": "composition/envelope.json",
+          "id": "D-PCB-7v2-In1-no-tracks"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-keepout-d-pcb-7v2-in1-no-tracks/stage-subject/execution.json",
+        "work/envelope-keepout-d-pcb-7v2-in1-no-tracks/stage-subject/console.log",
+        "work/envelope-keepout-d-pcb-7v2-in1-no-tracks/stage-subject/native-observation.json",
+        "work/envelope-keepout-d-pcb-7v2-in1-no-tracks/stage-subject/references.json",
+        "work/envelope-keepout-d-pcb-7v2-in1-no-tracks/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/13",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-keepout-radio-antenna",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:keepouts/1:radio-antenna"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "antenna-facts",
+            "kind": "datasheet_facts"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-keepout-radio-antenna",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "keepouts/1",
+          "envelope": "composition/envelope.json",
+          "id": "radio-antenna"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-keepout-radio-antenna/stage-subject/execution.json",
+        "work/envelope-keepout-radio-antenna/stage-subject/console.log",
+        "work/envelope-keepout-radio-antenna/stage-subject/native-observation.json",
+        "work/envelope-keepout-radio-antenna/stage-subject/references.json",
+        "work/envelope-keepout-radio-antenna/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-keepout-radio-antenna",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/12",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-layer-count",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:layers/1"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-layer-count",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "layers/1",
+          "envelope": "composition/envelope.json"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-layer-count/stage-subject/execution.json",
+        "work/envelope-layer-count/stage-subject/console.log",
+        "work/envelope-layer-count/stage-subject/native-observation.json",
+        "work/envelope-layer-count/stage-subject/references.json",
+        "work/envelope-layer-count/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-layer-count",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/6",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-outline",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:outline/1"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-outline",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "outline/1",
+          "envelope": "composition/envelope.json"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-outline/stage-subject/execution.json",
+        "work/envelope-outline/stage-subject/console.log",
+        "work/envelope-outline/stage-subject/native-observation.json",
+        "work/envelope-outline/stage-subject/references.json",
+        "work/envelope-outline/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-outline",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/5",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "board_envelope/1",
+        "check_id": "envelope-stackup",
+        "immutable_inputs": [
+          "composition/envelope.json",
+          "composition/fab-profile.json",
+          "sources/jlcpcb-capabilities.txt",
+          "sources/jlcpcb-stackup.txt",
+          "sources/jlcpcb-thickness.txt"
+        ],
+        "kind": "board_envelope",
+        "predicates": [
+          "envelope:stackup/1"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-stackup",
+        "kind": "board_envelope",
+        "params": {
+          "criterion": "stackup/1",
+          "envelope": "composition/envelope.json"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-stackup/stage-subject/execution.json",
+        "work/envelope-stackup/stage-subject/console.log",
+        "work/envelope-stackup/stage-subject/native-observation.json",
+        "work/envelope-stackup/stage-subject/references.json",
+        "work/envelope-stackup/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-stackup",
+      "kind": "board_envelope",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/7",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": false,
+        "capability_version": "datasheet_facts/1",
+        "check_id": "antenna-facts",
+        "immutable_inputs": [
+          "composition/antenna-facts.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf"
+        ],
+        "kind": "datasheet_facts",
+        "predicates": [],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "antenna-facts",
+        "kind": "datasheet_facts",
+        "params": {
+          "extractor": {
+            "path": "/usr/bin/pdftotext",
+            "sha256": "88263e2333fa712d6eadfc69dd2daf826792a67abb14f4d2110673d5f195b154",
+            "version": "pdftotext version 24.02.0"
+          },
+          "facts": "composition/antenna-facts.json"
+        },
+        "stage": "schematic"
+      },
+      "evidence": [
+        "work/antenna-facts/stage-subject/execution.json",
+        "work/antenna-facts/stage-subject/console.log",
+        "work/antenna-facts/stage-subject/native-netlist.xml",
+        "work/antenna-facts/stage-subject/native-observation.json",
+        "work/antenna-facts/stage-subject/references.json",
+        "work/antenna-facts/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "antenna-facts",
+      "kind": "datasheet_facts",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/3",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "drc/1",
+        "check_id": "drc",
+        "immutable_inputs": [
+          "project/telemetry-pod.kicad_dru",
+          "project/telemetry-pod.kicad_pro"
+        ],
+        "kind": "drc",
+        "predicates": [
+          "native:drc:violations"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "drc",
+        "kind": "drc",
+        "params": {},
+        "stage": "routing"
+      },
+      "evidence": [
+        "work/drc/stage-subject/execution.json",
+        "work/drc/stage-subject/console.log",
+        "work/drc/stage-subject/native-observation.json",
+        "work/drc/stage-subject/references.json",
+        "work/drc/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "drc",
+      "kind": "drc",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/22",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "drc/1",
+        "check_id": "placement-drc",
+        "immutable_inputs": [
+          "project/telemetry-pod.kicad_dru",
+          "project/telemetry-pod.kicad_pro"
+        ],
+        "kind": "drc",
+        "predicates": [
+          "native:drc:placement-stage/1"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "placement-drc",
+        "kind": "drc",
+        "params": {
+          "projection": "placement-stage/1"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/placement-drc/stage-subject/execution.json",
+        "work/placement-drc/stage-subject/console.log",
+        "work/placement-drc/stage-subject/native-observation.json",
+        "work/placement-drc/stage-subject/references.json",
+        "work/placement-drc/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "placement-drc",
+      "kind": "drc",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/4",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "erc/1",
+        "check_id": "erc",
+        "immutable_inputs": [
+          "project/telemetry-pod.kicad_dru",
+          "project/telemetry-pod.kicad_pro"
+        ],
+        "kind": "erc",
+        "predicates": [
+          "native:erc:violations"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "erc",
+        "kind": "erc",
+        "params": {},
+        "stage": "schematic"
+      },
+      "evidence": [
+        "work/erc/stage-subject/execution.json",
+        "work/erc/stage-subject/console.log",
+        "work/erc/stage-subject/native-netlist.xml",
+        "work/erc/stage-subject/native-observation.json",
+        "work/erc/stage-subject/references.json",
+        "work/erc/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "erc",
+      "kind": "erc",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/0",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "fab_package/1",
+        "check_id": "fab-package",
+        "immutable_inputs": [
+          "authored-cad/CANClock.kicad_sym",
+          "authored-cad/CANJumper.kicad_sym",
+          "authored-cad/PodCAN.kicad_sym",
+          "authored-cad/PodDiagnostic.kicad_sym",
+          "authored-cad/PodPower.kicad_sym",
+          "authored-cad/PodPrimarySPI.kicad_sym",
+          "authored-cad/PodSensorPower.kicad_sym",
+          "authored-cad/PodStorage.kicad_sym",
+          "authored-cad/PodSupervisor.kicad_sym",
+          "authored-cad/PodThermistor.kicad_sym",
+          "authored-cad/PodWheel.kicad_sym",
+          "composition/assignments.json",
+          "composition/datasheet-source-selection.json",
+          "composition/declarations.json",
+          "composition/footprints.json",
+          "composition/intent.json",
+          "composition/parts.json",
+          "core/symbols/Analog_ADC.kicad_sym",
+          "core/symbols/RF_GPS.kicad_sym",
+          "core/symbols/RF_Module.kicad_sym",
+          "footprints/Capacitor_SMD.pretty/C_0402_1005Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_0603_1608Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod",
+          "footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod",
+          "footprints/Connector_Coaxial.pretty/SMA_Molex_73251-1153_EdgeMount_Horizontal.kicad_mod",
+          "footprints/Crystal.pretty/Crystal_SMD_SeikoEpson_FA238-4Pin_3.2x2.5mm.kicad_mod",
+          "footprints/Diode_SMD.pretty/D_SMC.kicad_mod",
+          "footprints/Diode_SMD.pretty/D_SOD-123.kicad_mod",
+          "footprints/Inductor_SMD.pretty/L_0603_1608Metric.kicad_mod",
+          "footprints/Jumper.pretty/SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm.kicad_mod",
+          "footprints/Package_BGA.pretty/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.kicad_mod",
+          "footprints/Package_LGA.pretty/LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-16_3.9x9.9mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/TSSOP-14_4.4x5mm_P0.65mm.kicad_mod",
+          "footprints/Package_SO.pretty/TSSOP-16_4.4x5mm_P0.65mm.kicad_mod",
+          "footprints/Package_SON.pretty/Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm.kicad_mod",
+          "footprints/Package_SON.pretty/VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23-6.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-323_SC-70.kicad_mod",
+          "footprints/PodConnector.pretty/AMPSEAL_35_1-776163-1.kicad_mod",
+          "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "footprints/PodPower.pretty/DDA0008B.kicad_mod",
+          "footprints/PodPower.pretty/DDA0008J_C02.kicad_mod",
+          "footprints/PodPower.pretty/DMP6023LE_SOT223.kicad_mod",
+          "footprints/PodPower.pretty/SOD882BD.kicad_mod",
+          "footprints/PodPower.pretty/SRP7050TA.kicad_mod",
+          "footprints/PodPower.pretty/SRP7050WA.kicad_mod",
+          "footprints/PodStoragePower.pretty/SRP4020TA.kicad_mod",
+          "footprints/PodSupervisor.pretty/DSE0006A.kicad_mod",
+          "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+          "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_0805_2012Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod",
+          "libraries/Block_63616e_446576696365.kicad_sym",
+          "libraries/Block_63616e_496e746572666163655f43414e5f4c494e.kicad_sym",
+          "project/telemetry-pod.kicad_pro",
+          "symbols/Connector.kicad_sym",
+          "symbols/Connector_Generic.kicad_sym",
+          "symbols/Device.kicad_sym",
+          "symbols/PodFeatures.kicad_sym",
+          "symbols/Reference_Voltage.kicad_sym",
+          "symbols/Regulator_Switching.kicad_sym",
+          "symbols/Transistor_FET.kicad_sym",
+          "symbols/power.kicad_sym",
+          "telemetry-pod/expansion/canonical-parts/acquisition/0d15b97013acded49221450ce2ff25bee74441e68bee202233b619154fc9fa56.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/0f145d25816460ffc79c2c04ac1e10cc938e1451362a1b50e7c2b818f4f194da.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/112096bdb0917a95af2e6cee25949d7fb337973c30a7a74e45c1452609572a54.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/16f980677ea482e18e146a20541227c68554f1b47aed28ceed0732be06c806a4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/177b17add6ead1e50a07e3b02fb00ffb7351d51b42faea04f3d910d1d7904ff7.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/1efc265e7fa0c45509774ca6c9b4c1fd304bfad4493163cad37114e6208e3f6a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/23041acfc27570bf605a0d07efe440b6c0c53725463517878dd2e46013d2bb5e.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/23807de8379663c55c9fef22dfb8cb930333301b150e2290b22da633b8a619e2.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/249fea71b819e4fd6d4f1dd06b849e55f744b17d9356aa90b3512153c784d2b1.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/2b7d0c7c9019a936ec2df67fab4b7bbb17e8f4b8e5951672cc92261d20d174a4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/2d53fb098111e4c938b4a7517ff68185c82b1afda9fd1cde9f70f6a839f31921.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/3162ed454e08df0f3ecfeabe89b51594271e1be83c21940f1e0c0c942b72aa49.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/32892ff2f82bbf60aec26a45e2cced9335a09d061c504a7b214a318df67a7af9.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/32f06c9b4e6531b96b1382ef71db84080686a27579d0534712268862a6776bad.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/35b829a00b477f7a876aa5857a61d23c1273d070fd0c8ba56038666583d91725.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/3f27a400a4d145eb44e3b00384efe45f49615781c8a5236367425230811703bc.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/4fa69c19bbfa46c9f4f78e619f718d42dd714a73b63efa84affde1eb77bc3e3d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/57b556e738e55f009cd8ff2c24127afb851d0710334a77e9819b18964c077966.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/5faed14b096a4ed41f8b571a2f12de123834ce3f4ebea378fa2f38f5a4813c6d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/6146959f2f716dfa57bfb9dd5a55dc8ea58a9aac4ccedb39f7f27a043f49ba2a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/739ae59162879e9d7442a1d14f71b297f975996b05456d28caa4bff3259951ce.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/7b0eaeddbacc25a6964994e7abfebc396fff581b126374284acf15fd13138762.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/8140cdb2b057a6a77808b807118fb64e04d436d0024d2c08e5affe8e758d05f3.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/88f0c4497aa7806031d197aa4b4dfa91717510626c6875d318437e1c917f2f4e.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/8cdbe099d9092b0fb6fa19be44bff424962fb0efd22d643077024510c0b38331.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/9dfb203a8ee03e24deb5e2a847796f8a9a83bbeea909b2ab17d98d90cf13b64d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a0c7b312fb10c26cde3d25d17395c8a398577ee6817b48cf2bd0e5db5543e057.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a344a860eeb8a125ccac3227cff5b32a48cb6ba782d120e8adde383350391412.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a493f04957d616980d5aa800808a67337fb846a85e0bbd21a55df88776ba3b0c.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a532d9af778af423c886fd94847f746eabb3839964d816fbe4d6bad87c6e03ca.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ac4fb3b2360d5f102fe0ea6deb48cc838f5d5c1a54cfda4a089a70b8b00f7fbe.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/b1fb125187b9f27178ced48b2ef422e356187fa305bc750b855e66839fda191d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/b7bdecedb67453efb08bd5504879eff63e207fa05b205b9fa0819e45a9714586.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/bde5bb72b101ab4a53ac4aaf06e4908308ee9aa9e21ec694ed53dfaa56d27e85.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/c0af0c769313c5f4b2bcb5f88c4e4bc495a1c38478b622c7225505d051f2a782.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/c4a24470983c67da07668e3329c1379074651e40792e9b785f0889436437517f.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/cd66a8a0c408b52e69dc5463f5e6634df10108915a6b48a1fcde536cf9b73a17.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/d9c04c642a96925f27314e707ac444f98756753dcec9fbee051a1464f73cb6e4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/e908c91382dc7bd63d65d22f8336d0bb878b95257e335ad2d55d044cf56b5038.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ebbf46470bd018e1f0d753507b78c7d59d4a9dd31e1d7d21067f95981fa7761a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ef4da20ad515a5564c4a25139563699de7458856e744e7a8011d1a2958cd3a97.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f0c1ab0550b4daefa5dbe36b881b52b682f9d62b98c9062df04403bff3b53f83.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f10a327a10e2fa2f881c0d6e828111006a31c650cdc98cbf63fccc3fb4d2bb82.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f3a3a11e0288e14f1d3d46bafd8fa843dfc8b0edddb55ac6b45669bc43208920.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f3fac3f4eb334a1d5d5763978f7c1310c4f7a09fdfe4938959ec2716f8d0dbc0.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/fa48a9e0b41700edceb04567044320b9859712d209ceea35c2fcc18d9905a4ad.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/fdcf83bd7f5162aad92513140d5c67330845f54c7a7f64a435a6496d8ea394f3.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/manifest.json",
+          "telemetry-pod/expansion/canonical-parts/records/C105579-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C105588-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C108080-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C110776-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C112305-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C122538-48b00bcecf42.json",
+          "telemetry-pod/expansion/canonical-parts/records/C122970-c87a37708b28.json",
+          "telemetry-pod/expansion/canonical-parts/records/C124196-0fbd7d137524.json",
+          "telemetry-pod/expansion/canonical-parts/records/C127833-5efeab7b7691.json",
+          "telemetry-pod/expansion/canonical-parts/records/C129339-a045677f8bb2.json",
+          "telemetry-pod/expansion/canonical-parts/records/C130055-ae020244567f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C136970-2d7cb368ed2d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C14675-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1509297-ee79599730e7.json",
+          "telemetry-pod/expansion/canonical-parts/records/C151279-6e610db955ed.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1525-96baebe4bd0c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C154901-175824e1809b.json",
+          "telemetry-pod/expansion/canonical-parts/records/C17288249-c983a26f83ea.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1864162-d1776336f506.json",
+          "telemetry-pod/expansion/canonical-parts/records/C190245-ed2e90697de4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C19947708-3f16305b69b0.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2045384-5a7926dd7ffb.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2073505-58cf3900f2ab.json",
+          "telemetry-pod/expansion/canonical-parts/records/C208539-f3228b64a892.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2167328-45736551c293.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2167386-2c6df244340c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2168350-7f26c635b6da.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2174822-1a2a7314b6a9.json",
+          "telemetry-pod/expansion/canonical-parts/records/C22787-11cd644d5d8a.json",
+          "telemetry-pod/expansion/canonical-parts/records/C27804-33b13191ad54.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2862873-ff038eaa557f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2879422-c5be6bd4f8a4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2913198-27d71971da07.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2979740-89bc1e17c35e.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3018567-6a3487307cbb.json",
+          "telemetry-pod/expansion/canonical-parts/records/C307542-d8b97e97fcdc.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3659057-8cbcb98d99ad.json",
+          "telemetry-pod/expansion/canonical-parts/records/C38695-6637cd500dda.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3988368-d98ab9005f4d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C403723-fae33d78fe46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C40919-c09cdf672eb4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C452751-4746ff205f5d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C469656-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C5119087-e21b35c1a4fd.json",
+          "telemetry-pod/expansion/canonical-parts/records/C513565-1551e0f23160.json",
+          "telemetry-pod/expansion/canonical-parts/records/C515607-ce5043512015.json",
+          "telemetry-pod/expansion/canonical-parts/records/C5311564-571f24a8367f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C552486-ca36f3ab77f4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C626758-0041b5bddb2a.json",
+          "telemetry-pod/expansion/canonical-parts/records/C694521-ff9b0a373980.json",
+          "telemetry-pod/expansion/canonical-parts/records/C701613-32237c38221c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C705764-175ebb75f367.json",
+          "telemetry-pod/expansion/canonical-parts/records/C705785-2e7e1c025c46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C7224519-4bc30f50aa2b.json",
+          "telemetry-pod/expansion/canonical-parts/records/C725712-c85214b1213f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C728587-72f20f2f3f7d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C728588-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C7353633-05ad521853cc.json",
+          "telemetry-pod/expansion/canonical-parts/records/C76706-ff9b0a373980.json",
+          "telemetry-pod/expansion/canonical-parts/records/C76711-8951f7833e66.json",
+          "telemetry-pod/expansion/canonical-parts/records/C841205-252330f9eaf1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C85973-3f5a339eb515.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861094-0063dfc59a46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861156-eabf1d25a4b1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861226-90bf8b8411bd.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861279-91683c42ccb1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861295-3557bf498727.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861410-ee5f8ddec519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861458-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861510-fc277cce1432.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861521-ecb56be7b859.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861605-9529dc68ae10.json",
+          "telemetry-pod/expansion/canonical-parts/records/C907839-b1cae7e9b190.json",
+          "telemetry-pod/expansion/canonical-parts/records/C92494-6ad9e31b9537.json",
+          "telemetry-pod/expansion/canonical-parts/records/C95204-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C95204-7c733886b966.json",
+          "telemetry-pod/expansion/canonical-parts/records/C98080-fc7b222019dd.json",
+          "telemetry-pod/expansion/component-fit/stock/catalog.json",
+          "telemetry-pod/expansion/component-fit/stock/responses/C7224519.json",
+          "telemetry-pod/expansion/component-fit/stock/responses/C7353633.json",
+          "telemetry-pod/expansion/interface-preparation/sensor-power/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/sensor-power/stock/responses/C2862873.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/responses/C1160698.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/responses/C38695.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/responses/C552486.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/responses/C7826.json",
+          "telemetry-pod/expansion/interface-preparation/stock-schmitt/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-schmitt/responses/C403723.json",
+          "telemetry-pod/expansion/interface-preparation/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C18213008.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C626758.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C725712.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/responses/C3659057.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/responses/C40919.json",
+          "telemetry-pod/expansion/j1-historical-source/C596198.json",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7.pdf",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/manifest.json",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/source-note.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C190245.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C2979740.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C701613.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/catalog.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C2167386.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C5341638.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C85973.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C127833.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2167136.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2168350.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2174822.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C3018567.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C452747.json",
+          "telemetry-pod/expansion/part-bindings/connector-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/connector-stock/responses/C596198.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/responses/C2073505.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/responses/C3988368.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C122538.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C122970.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C513565.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C705785.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C728587.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861094.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861141.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861156.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861226.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861279.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861295.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861410.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861510.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861521.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861605.json",
+          "telemetry-pod/expansion/part-bindings/resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/resistor-stock/responses/C95204.json",
+          "telemetry-pod/expansion/part-selection/stock/catalog.json",
+          "telemetry-pod/expansion/part-selection/stock/responses/C515607.json",
+          "telemetry-pod/expansion/part-selection/stock/responses/C723532.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/acquisition-molex-retry/51952567592f862257faf27ada51ab65d688858349be5a4763cc3804d1cbd2e4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/acquisition-molex-retry/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/stock-sma/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/stock-sma/responses/C841205.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/77a91ad2ec0cb517250cf68189d10140001682ec6b9c40cc264afb36ff9d972e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/7cdf4f56dd2ee4a581372db4f54b0460f24080b359e20336f56a93bcecfc0715.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/b0cadbda0fc05c619ebdfee6b96c09d99814bba70e534c0fdbbfe7ffe3f241ac.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/6b1f4a5c0e27cb364413b0026a3a3dd89a5e667554df78583448d756f907cc4c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/a02be00fc3187b19989ad92a989faf04a320a11231c2d8ccdd017eda6bd19883.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/e445b401ee1a15a7c907976a895e8588445660220d8a0dd6d71b13d0e31ae9b8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-can-decoupling/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-can-decoupling/responses/C1525.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C22787.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C38695.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C907839.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C107363.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C1864162.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C2913198.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C5119087.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/1b0bcb3b671fc2fcfa8ab1938e74d5191322da58252000488f4085c424f6037e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/c9a2236e061021db944581507b83a6c66725c43d3de8498e19665bb16c3ebab4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/bc52d3a949459c00dc1c341919a9735c6bf0b82406b40a636efe79188076b7fd.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/f5cba5a82253f88a6d50a684e00fe78826165c5a8a2d1a42f9d41bb28b00befa.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-final-adopt/2610fbb215351b8b45475fdc807dffe3aa2ffc609a4eaf561e79f61b81ae8ba7.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-final-adopt/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passive-exact/7f8040ff30575f0dea0a4805d4d71f5a69f97d78179a1331486678f83e69a9dc.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passive-exact/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/31dcfee0c881aec5faa07dff6cbb1538c3b56d14b890cce930ca276dceea4ae4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/568de3f85af600c6d92620d18e52e9e44383e6e90efdecf23313283a831b82e7.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/5f048753376f883d75ac1ccf8c9476540f2b77646df70b155c64fb54512af18c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/87ba60f5cd72a5004b42569fcfefef4e0d310099f554d2377291860cdb27d01c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/88073ff1a0234062435905a9d33e3c30b77832ee019dc8ee9c5a599025151782.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/9a0da6593a9c6b20af96671eae5970d69de21848208b73ae7f1e171889843d53.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/c78a8563c100bc6ebee75a66191cd136f1f5df59b1e8bc56871c92be445ba737.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/cd526507a4888c45b384362d29899a9fec04747d73fde571846dcb726ce954f8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/e12952a5717dc6a69bf62d260ace66561db142307a7991a0cb5b033c81a81d7b.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/e171be81af1fd58fcb06f260ba912d6d565041a69a7e6dd28d81f471710e97b2.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f0af36c4610db770cddb3187f5886f7dfecee94bebb3cbfbaa2a5814081aebab.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f18f5ecadcf0226f50c08c8c79b5421051058049b4113d69c876494f87443bd6.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f95024639ad15fbd3ad968ee32ca3f0ce53faef2e965907fd3a868dacd13b689.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/51ccf8d88415271513905842ff6d9aa7a8955cf1a534b673238dc2a1edaffeaf.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/a2680f573d31682972abd2fec94ee7324caadc2af6d0e7e025e029c7040ad332.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-retry/ce3f0562457e47306cef36edf6ef8b428a01724f1d6acdf8310872bc43d5f0ce.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-retry/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/120215f78f3abcdf1719371f93b746ffeba97d637f352d4cc131baf373fc88cc.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/1dc767476fed5a9be7fa02315690660bb392383f9aec1d3c6cf50fe8983e4e2c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection/d11833e51c114e81f0a87f6758def7d1e4b4d82130e7797a8a1c3341bc6ae91e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/afc93a93d54d32630e2b1821fd3bd325907bdfe92605ebc0fe22cdfcb0b46999.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/e6af2a2fa244eda794e2840cd76eba2c0faa226ef1f0f4e132dfcb53b3abc930.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-tracker/f0068c8d96247b629703e6eacc46990097dff6779f4204d95b88ed3118e22827.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-tracker/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/1ca62229550d6563985708be4c25d8cd1df2bd312d7e838a0bad3f2799006fb6.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/afc93a93d54d32630e2b1821fd3bd325907bdfe92605ebc0fe22cdfcb0b46999.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/e6af2a2fa244eda794e2840cd76eba2c0faa226ef1f0f4e132dfcb53b3abc930.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/2b09978c5a36002dc49ca4300f119423ba99e96ccefbd1cd5eae582fb1690617.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/31757ce81cf7a7b021f5f859736b428c4a5e5003a27545549aab9b9ac86f03a4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C329955.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C694521.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76706.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76711.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-choke/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-choke/responses/C98080.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-input-tvs/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-input-tvs/responses/C151279.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C110776.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C124196.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C14675.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C1591.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C17288249.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C19947708.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C2045384.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C2167328.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C307542.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C309062.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C452751.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C469656.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C59782.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C728588.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C861458.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C95204.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C105579.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C105588.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C108080.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C112305.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/responses/C224045.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/responses/C5311564.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C130055.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C154901.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C208539.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C2879422.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C523802.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C545190.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C81563.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C129339.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C27804.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C92494.json",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/7059663a2a7162b7315ebf55be1a1d3dcffa2066e159a59e5c75b234466d1207.pdf",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/manifest.json",
+          "telemetry-pod/expansion/series-divider/stock/catalog.json",
+          "telemetry-pod/expansion/series-divider/stock/responses/C136970.json",
+          "telemetry-pod/expansion/series-divider/stock/responses/C705764.json",
+          "telemetry-pod/expansion/source-revision/C2167136.json",
+          "telemetry-pod/expansion/source-revision/C452747.json",
+          "telemetry-pod/expansion/source-revision/C723532.json",
+          "telemetry-pod/expansion/storage-candidate/supervisor-sources/stock/catalog.json",
+          "telemetry-pod/expansion/storage-candidate/supervisor-sources/stock/responses/C1509297.json",
+          "telemetry-pod/expansion/storage-microsd/stock/catalog.json",
+          "telemetry-pod/expansion/storage-microsd/stock/responses/C114218.json"
+        ],
+        "kind": "fab_package",
+        "predicates": [
+          "fab-export:jlcpcb-package/1",
+          "fab-package:inventory",
+          "fab-package:designator-parity",
+          "fab-package:lcsc-footprint",
+          "fab-package:cpl-side",
+          "fab-package:cpl-coordinates",
+          "fab-package:3d-models",
+          "fab-package:build-log",
+          "fab-package:done-gate",
+          "fab-package:sealed-artifacts"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "netlist",
+            "kind": "netlist"
+          },
+          {
+            "check_id": "routing-geometry",
+            "kind": "geometry"
+          },
+          {
+            "check_id": "parts",
+            "kind": "parts_subset"
+          },
+          {
+            "check_id": "parts",
+            "kind": "parts_subset"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "fab-package",
+        "kind": "fab_package",
+        "params": {
+          "assembly_exclusion": "JLCPCB_Assembly=not_assembled",
+          "copper_features": [
+            "JP1",
+            "JP2",
+            "JP3",
+            "JP4",
+            "JP5"
+          ],
+          "netlist_check": "netlist",
+          "probe_manifest": "composition/parts.json"
+        },
+        "stage": "verification"
+      },
+      "evidence": [
+        "work/fab-package/stage-subject/execution.json",
+        "work/fab-package/stage-subject/console.log",
+        "work/fab-package/stage-subject/native-netlist.xml",
+        "work/fab-package/stage-subject/native-observation.json",
+        "work/fab-package/stage-subject/references.json",
+        "work/fab-package/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "fab-package",
+      "kind": "fab_package",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/26",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "fab_profile/1",
+        "check_id": "envelope-fab-profile",
+        "immutable_inputs": [
+          "composition/fab-profile.json",
+          "project/telemetry-pod.kicad_dru",
+          "project/telemetry-pod.kicad_pro",
+          "sources/jlcpcb-capabilities.txt",
+          "sources/jlcpcb-stackup.txt",
+          "sources/jlcpcb-thickness.txt"
+        ],
+        "kind": "fab_profile",
+        "predicates": [
+          "fab:clearance",
+          "fab:edge",
+          "fab:holes",
+          "fab:layers",
+          "fab:size",
+          "fab:trace",
+          "fab:via-drill",
+          "fab:via-pad"
+        ],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fab-profile",
+        "kind": "fab_profile",
+        "params": {
+          "fab_profile": "composition/fab-profile.json"
+        },
+        "stage": "routing"
+      },
+      "evidence": [
+        "work/envelope-fab-profile/stage-subject/execution.json",
+        "work/envelope-fab-profile/stage-subject/console.log",
+        "work/envelope-fab-profile/stage-subject/native-observation.json",
+        "work/envelope-fab-profile/stage-subject/references.json",
+        "work/envelope-fab-profile/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fab-profile",
+      "kind": "fab_profile",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/24",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": false,
+        "capability_version": "geometry/1",
+        "check_id": "routing-geometry",
+        "immutable_inputs": [],
+        "kind": "geometry",
+        "predicates": [],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "routing-geometry",
+        "kind": "geometry",
+        "params": {},
+        "stage": "routing"
+      },
+      "evidence": [
+        "work/routing-geometry/stage-subject/execution.json",
+        "work/routing-geometry/stage-subject/console.log",
+        "work/routing-geometry/stage-subject/native-observation.json",
+        "work/routing-geometry/stage-subject/references.json",
+        "work/routing-geometry/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "routing-geometry",
+      "kind": "geometry",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/23",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": false,
+        "capability_version": "netlist/1",
+        "check_id": "netlist",
+        "immutable_inputs": [],
+        "kind": "netlist",
+        "predicates": [],
+        "prerequisites": [],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "netlist",
+        "kind": "netlist",
+        "params": {},
+        "stage": "schematic"
+      },
+      "evidence": [
+        "work/netlist/stage-subject/execution.json",
+        "work/netlist/stage-subject/console.log",
+        "work/netlist/stage-subject/native-netlist.xml",
+        "work/netlist/stage-subject/native-observation.json",
+        "work/netlist/stage-subject/references.json",
+        "work/netlist/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "netlist",
+      "kind": "netlist",
+      "native_coverage": {
+        "schematic_files": null,
+        "sheet_instances": null
+      },
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/1",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "parts_subset/1",
+        "check_id": "parts",
+        "immutable_inputs": [
+          "authored-cad/CANClock.kicad_sym",
+          "authored-cad/CANJumper.kicad_sym",
+          "authored-cad/PodCAN.kicad_sym",
+          "authored-cad/PodDiagnostic.kicad_sym",
+          "authored-cad/PodPower.kicad_sym",
+          "authored-cad/PodPrimarySPI.kicad_sym",
+          "authored-cad/PodSensorPower.kicad_sym",
+          "authored-cad/PodStorage.kicad_sym",
+          "authored-cad/PodSupervisor.kicad_sym",
+          "authored-cad/PodThermistor.kicad_sym",
+          "authored-cad/PodWheel.kicad_sym",
+          "composition/assignments.json",
+          "composition/datasheet-source-selection.json",
+          "composition/declarations.json",
+          "composition/footprints.json",
+          "composition/intent.json",
+          "composition/parts.json",
+          "core/symbols/Analog_ADC.kicad_sym",
+          "core/symbols/RF_GPS.kicad_sym",
+          "core/symbols/RF_Module.kicad_sym",
+          "footprints/Capacitor_SMD.pretty/C_0402_1005Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_0603_1608Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_0805_2012Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_1206_3216Metric.kicad_mod",
+          "footprints/Capacitor_SMD.pretty/C_1210_3225Metric.kicad_mod",
+          "footprints/Connector_Card.pretty/microSD_HC_Hirose_DM3AT-SF-PEJM5.kicad_mod",
+          "footprints/Connector_Coaxial.pretty/SMA_Molex_73251-1153_EdgeMount_Horizontal.kicad_mod",
+          "footprints/Crystal.pretty/Crystal_SMD_SeikoEpson_FA238-4Pin_3.2x2.5mm.kicad_mod",
+          "footprints/Diode_SMD.pretty/D_SMC.kicad_mod",
+          "footprints/Diode_SMD.pretty/D_SOD-123.kicad_mod",
+          "footprints/Inductor_SMD.pretty/L_0603_1608Metric.kicad_mod",
+          "footprints/Jumper.pretty/SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm.kicad_mod",
+          "footprints/Package_BGA.pretty/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.kicad_mod",
+          "footprints/Package_LGA.pretty/LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-16_3.9x9.9mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/SOIC-8_3.9x4.9mm_P1.27mm.kicad_mod",
+          "footprints/Package_SO.pretty/TSSOP-14_4.4x5mm_P0.65mm.kicad_mod",
+          "footprints/Package_SO.pretty/TSSOP-16_4.4x5mm_P0.65mm.kicad_mod",
+          "footprints/Package_SON.pretty/Texas_DSG0008A_WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm.kicad_mod",
+          "footprints/Package_SON.pretty/VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23-6.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+          "footprints/Package_TO_SOT_SMD.pretty/SOT-323_SC-70.kicad_mod",
+          "footprints/PodConnector.pretty/AMPSEAL_35_1-776163-1.kicad_mod",
+          "footprints/PodFeatures.pretty/PogoPad_D1.5mm.kicad_mod",
+          "footprints/PodPower.pretty/DDA0008B.kicad_mod",
+          "footprints/PodPower.pretty/DDA0008J_C02.kicad_mod",
+          "footprints/PodPower.pretty/DMP6023LE_SOT223.kicad_mod",
+          "footprints/PodPower.pretty/SOD882BD.kicad_mod",
+          "footprints/PodPower.pretty/SRP7050TA.kicad_mod",
+          "footprints/PodPower.pretty/SRP7050WA.kicad_mod",
+          "footprints/PodStoragePower.pretty/SRP4020TA.kicad_mod",
+          "footprints/PodSupervisor.pretty/DSE0006A.kicad_mod",
+          "footprints/RF_GPS.pretty/ublox_NEO.kicad_mod",
+          "footprints/RF_Module.pretty/ESP32-S3-WROOM-1.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_0805_2012Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod",
+          "footprints/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod",
+          "libraries/Block_63616e_446576696365.kicad_sym",
+          "libraries/Block_63616e_496e746572666163655f43414e5f4c494e.kicad_sym",
+          "symbols/Connector.kicad_sym",
+          "symbols/Connector_Generic.kicad_sym",
+          "symbols/Device.kicad_sym",
+          "symbols/PodFeatures.kicad_sym",
+          "symbols/Reference_Voltage.kicad_sym",
+          "symbols/Regulator_Switching.kicad_sym",
+          "symbols/Transistor_FET.kicad_sym",
+          "symbols/power.kicad_sym",
+          "telemetry-pod/expansion/canonical-parts/acquisition/0d15b97013acded49221450ce2ff25bee74441e68bee202233b619154fc9fa56.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/0f145d25816460ffc79c2c04ac1e10cc938e1451362a1b50e7c2b818f4f194da.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/112096bdb0917a95af2e6cee25949d7fb337973c30a7a74e45c1452609572a54.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/16f980677ea482e18e146a20541227c68554f1b47aed28ceed0732be06c806a4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/177b17add6ead1e50a07e3b02fb00ffb7351d51b42faea04f3d910d1d7904ff7.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/1efc265e7fa0c45509774ca6c9b4c1fd304bfad4493163cad37114e6208e3f6a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/23041acfc27570bf605a0d07efe440b6c0c53725463517878dd2e46013d2bb5e.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/23807de8379663c55c9fef22dfb8cb930333301b150e2290b22da633b8a619e2.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/249fea71b819e4fd6d4f1dd06b849e55f744b17d9356aa90b3512153c784d2b1.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/2b7d0c7c9019a936ec2df67fab4b7bbb17e8f4b8e5951672cc92261d20d174a4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/2d53fb098111e4c938b4a7517ff68185c82b1afda9fd1cde9f70f6a839f31921.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/3162ed454e08df0f3ecfeabe89b51594271e1be83c21940f1e0c0c942b72aa49.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/32892ff2f82bbf60aec26a45e2cced9335a09d061c504a7b214a318df67a7af9.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/32f06c9b4e6531b96b1382ef71db84080686a27579d0534712268862a6776bad.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/35b829a00b477f7a876aa5857a61d23c1273d070fd0c8ba56038666583d91725.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/3f27a400a4d145eb44e3b00384efe45f49615781c8a5236367425230811703bc.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/4fa69c19bbfa46c9f4f78e619f718d42dd714a73b63efa84affde1eb77bc3e3d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/57b556e738e55f009cd8ff2c24127afb851d0710334a77e9819b18964c077966.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/5faed14b096a4ed41f8b571a2f12de123834ce3f4ebea378fa2f38f5a4813c6d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/6146959f2f716dfa57bfb9dd5a55dc8ea58a9aac4ccedb39f7f27a043f49ba2a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/739ae59162879e9d7442a1d14f71b297f975996b05456d28caa4bff3259951ce.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/7b0eaeddbacc25a6964994e7abfebc396fff581b126374284acf15fd13138762.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/8140cdb2b057a6a77808b807118fb64e04d436d0024d2c08e5affe8e758d05f3.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/88f0c4497aa7806031d197aa4b4dfa91717510626c6875d318437e1c917f2f4e.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/8cdbe099d9092b0fb6fa19be44bff424962fb0efd22d643077024510c0b38331.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/9dfb203a8ee03e24deb5e2a847796f8a9a83bbeea909b2ab17d98d90cf13b64d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a0c7b312fb10c26cde3d25d17395c8a398577ee6817b48cf2bd0e5db5543e057.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a344a860eeb8a125ccac3227cff5b32a48cb6ba782d120e8adde383350391412.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a493f04957d616980d5aa800808a67337fb846a85e0bbd21a55df88776ba3b0c.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/a532d9af778af423c886fd94847f746eabb3839964d816fbe4d6bad87c6e03ca.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ac4fb3b2360d5f102fe0ea6deb48cc838f5d5c1a54cfda4a089a70b8b00f7fbe.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/b1fb125187b9f27178ced48b2ef422e356187fa305bc750b855e66839fda191d.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/b7bdecedb67453efb08bd5504879eff63e207fa05b205b9fa0819e45a9714586.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/bde5bb72b101ab4a53ac4aaf06e4908308ee9aa9e21ec694ed53dfaa56d27e85.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/c0af0c769313c5f4b2bcb5f88c4e4bc495a1c38478b622c7225505d051f2a782.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/c4a24470983c67da07668e3329c1379074651e40792e9b785f0889436437517f.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/cd66a8a0c408b52e69dc5463f5e6634df10108915a6b48a1fcde536cf9b73a17.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/d9c04c642a96925f27314e707ac444f98756753dcec9fbee051a1464f73cb6e4.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/e908c91382dc7bd63d65d22f8336d0bb878b95257e335ad2d55d044cf56b5038.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ebbf46470bd018e1f0d753507b78c7d59d4a9dd31e1d7d21067f95981fa7761a.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/ef4da20ad515a5564c4a25139563699de7458856e744e7a8011d1a2958cd3a97.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f0c1ab0550b4daefa5dbe36b881b52b682f9d62b98c9062df04403bff3b53f83.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f10a327a10e2fa2f881c0d6e828111006a31c650cdc98cbf63fccc3fb4d2bb82.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f3a3a11e0288e14f1d3d46bafd8fa843dfc8b0edddb55ac6b45669bc43208920.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/f3fac3f4eb334a1d5d5763978f7c1310c4f7a09fdfe4938959ec2716f8d0dbc0.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/fa48a9e0b41700edceb04567044320b9859712d209ceea35c2fcc18d9905a4ad.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/fdcf83bd7f5162aad92513140d5c67330845f54c7a7f64a435a6496d8ea394f3.pdf",
+          "telemetry-pod/expansion/canonical-parts/acquisition/manifest.json",
+          "telemetry-pod/expansion/canonical-parts/records/C105579-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C105588-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C108080-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C110776-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C112305-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C122538-48b00bcecf42.json",
+          "telemetry-pod/expansion/canonical-parts/records/C122970-c87a37708b28.json",
+          "telemetry-pod/expansion/canonical-parts/records/C124196-0fbd7d137524.json",
+          "telemetry-pod/expansion/canonical-parts/records/C127833-5efeab7b7691.json",
+          "telemetry-pod/expansion/canonical-parts/records/C129339-a045677f8bb2.json",
+          "telemetry-pod/expansion/canonical-parts/records/C130055-ae020244567f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C136970-2d7cb368ed2d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C14675-e7dbabb06119.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1509297-ee79599730e7.json",
+          "telemetry-pod/expansion/canonical-parts/records/C151279-6e610db955ed.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1525-96baebe4bd0c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C154901-175824e1809b.json",
+          "telemetry-pod/expansion/canonical-parts/records/C17288249-c983a26f83ea.json",
+          "telemetry-pod/expansion/canonical-parts/records/C1864162-d1776336f506.json",
+          "telemetry-pod/expansion/canonical-parts/records/C190245-ed2e90697de4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C19947708-3f16305b69b0.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2045384-5a7926dd7ffb.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2073505-58cf3900f2ab.json",
+          "telemetry-pod/expansion/canonical-parts/records/C208539-f3228b64a892.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2167328-45736551c293.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2167386-2c6df244340c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2168350-7f26c635b6da.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2174822-1a2a7314b6a9.json",
+          "telemetry-pod/expansion/canonical-parts/records/C22787-11cd644d5d8a.json",
+          "telemetry-pod/expansion/canonical-parts/records/C27804-33b13191ad54.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2862873-ff038eaa557f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2879422-c5be6bd4f8a4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2913198-27d71971da07.json",
+          "telemetry-pod/expansion/canonical-parts/records/C2979740-89bc1e17c35e.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3018567-6a3487307cbb.json",
+          "telemetry-pod/expansion/canonical-parts/records/C307542-d8b97e97fcdc.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3659057-8cbcb98d99ad.json",
+          "telemetry-pod/expansion/canonical-parts/records/C38695-6637cd500dda.json",
+          "telemetry-pod/expansion/canonical-parts/records/C3988368-d98ab9005f4d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C403723-fae33d78fe46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C40919-c09cdf672eb4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C452751-4746ff205f5d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C469656-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C5119087-e21b35c1a4fd.json",
+          "telemetry-pod/expansion/canonical-parts/records/C513565-1551e0f23160.json",
+          "telemetry-pod/expansion/canonical-parts/records/C515607-ce5043512015.json",
+          "telemetry-pod/expansion/canonical-parts/records/C5311564-571f24a8367f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C552486-ca36f3ab77f4.json",
+          "telemetry-pod/expansion/canonical-parts/records/C626758-0041b5bddb2a.json",
+          "telemetry-pod/expansion/canonical-parts/records/C694521-ff9b0a373980.json",
+          "telemetry-pod/expansion/canonical-parts/records/C701613-32237c38221c.json",
+          "telemetry-pod/expansion/canonical-parts/records/C705764-175ebb75f367.json",
+          "telemetry-pod/expansion/canonical-parts/records/C705785-2e7e1c025c46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C7224519-4bc30f50aa2b.json",
+          "telemetry-pod/expansion/canonical-parts/records/C725712-c85214b1213f.json",
+          "telemetry-pod/expansion/canonical-parts/records/C728587-72f20f2f3f7d.json",
+          "telemetry-pod/expansion/canonical-parts/records/C728588-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C7353633-05ad521853cc.json",
+          "telemetry-pod/expansion/canonical-parts/records/C76706-ff9b0a373980.json",
+          "telemetry-pod/expansion/canonical-parts/records/C76711-8951f7833e66.json",
+          "telemetry-pod/expansion/canonical-parts/records/C841205-252330f9eaf1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C85973-3f5a339eb515.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861094-0063dfc59a46.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861156-eabf1d25a4b1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861226-90bf8b8411bd.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861279-91683c42ccb1.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861295-3557bf498727.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861410-ee5f8ddec519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861458-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861510-fc277cce1432.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861521-ecb56be7b859.json",
+          "telemetry-pod/expansion/canonical-parts/records/C861605-9529dc68ae10.json",
+          "telemetry-pod/expansion/canonical-parts/records/C907839-b1cae7e9b190.json",
+          "telemetry-pod/expansion/canonical-parts/records/C92494-6ad9e31b9537.json",
+          "telemetry-pod/expansion/canonical-parts/records/C95204-0a729d144519.json",
+          "telemetry-pod/expansion/canonical-parts/records/C95204-7c733886b966.json",
+          "telemetry-pod/expansion/canonical-parts/records/C98080-fc7b222019dd.json",
+          "telemetry-pod/expansion/component-fit/stock/catalog.json",
+          "telemetry-pod/expansion/component-fit/stock/responses/C7224519.json",
+          "telemetry-pod/expansion/component-fit/stock/responses/C7353633.json",
+          "telemetry-pod/expansion/interface-preparation/sensor-power/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/sensor-power/stock/responses/C2862873.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/responses/C1160698.json",
+          "telemetry-pod/expansion/interface-preparation/stock-clock-can/responses/C38695.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/responses/C552486.json",
+          "telemetry-pod/expansion/interface-preparation/stock-protection/responses/C7826.json",
+          "telemetry-pod/expansion/interface-preparation/stock-schmitt/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock-schmitt/responses/C403723.json",
+          "telemetry-pod/expansion/interface-preparation/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C18213008.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C626758.json",
+          "telemetry-pod/expansion/interface-preparation/stock/responses/C725712.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/catalog.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/responses/C3659057.json",
+          "telemetry-pod/expansion/interface-preparation/wheel-input/stock/responses/C40919.json",
+          "telemetry-pod/expansion/j1-historical-source/C596198.json",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/7ed1f2a5f6ebf57aeaefefa4b2bf5c165de0343a4317719d7771c2aabbc285a7.pdf",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/manifest.json",
+          "telemetry-pod/expansion/j1-historical-source/acquisition/source-note.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C190245.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C2979740.json",
+          "telemetry-pod/expansion/part-bindings/adc-shunt-stock/responses/C701613.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/catalog.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C2167386.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C5341638.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock-v2/responses/C85973.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C127833.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2167136.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2168350.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C2174822.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C3018567.json",
+          "telemetry-pod/expansion/part-bindings/capacitor-stock/responses/C452747.json",
+          "telemetry-pod/expansion/part-bindings/connector-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/connector-stock/responses/C596198.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/responses/C2073505.json",
+          "telemetry-pod/expansion/part-bindings/power-resistor-stock/responses/C3988368.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C122538.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C122970.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C513565.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C705785.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C728587.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861094.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861141.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861156.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861226.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861279.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861295.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861410.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861510.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861521.json",
+          "telemetry-pod/expansion/part-bindings/remaining-resistor-stock/responses/C861605.json",
+          "telemetry-pod/expansion/part-bindings/resistor-stock/catalog.json",
+          "telemetry-pod/expansion/part-bindings/resistor-stock/responses/C95204.json",
+          "telemetry-pod/expansion/part-selection/stock/catalog.json",
+          "telemetry-pod/expansion/part-selection/stock/responses/C515607.json",
+          "telemetry-pod/expansion/part-selection/stock/responses/C723532.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/acquisition-molex-retry/51952567592f862257faf27ada51ab65d688858349be5a4763cc3804d1cbd2e4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/acquisition-molex-retry/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/stock-sma/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/connector-source/stock-sma/responses/C841205.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/77a91ad2ec0cb517250cf68189d10140001682ec6b9c40cc264afb36ff9d972e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/7cdf4f56dd2ee4a581372db4f54b0460f24080b359e20336f56a93bcecfc0715.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/b0cadbda0fc05c619ebdfee6b96c09d99814bba70e534c0fdbbfe7ffe3f241ac.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/bcd526f54b8de686cec4db67219e36ea7ace50cddb0c92f3dfdac49cf99ffd2e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-core/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/6b1f4a5c0e27cb364413b0026a3a3dd89a5e667554df78583448d756f907cc4c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/a02be00fc3187b19989ad92a989faf04a320a11231c2d8ccdd017eda6bd19883.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/e445b401ee1a15a7c907976a895e8588445660220d8a0dd6d71b13d0e31ae9b8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/fce1bf36cb460a31e2d1f3ede054b5d2e68f07b8f9039cb09062522e9bcf4e2c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/datasheets-current/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-can-decoupling/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-can-decoupling/responses/C1525.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C22787.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C38695.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-first/responses/C907839.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C107363.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C1864162.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C2913198.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/core/stock-core-second/responses/C5119087.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/1b0bcb3b671fc2fcfa8ab1938e74d5191322da58252000488f4085c424f6037e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/c9a2236e061021db944581507b83a6c66725c43d3de8498e19665bb16c3ebab4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/d6b3c62b2d37a5cb6776d49d62cc4a48cd4fe7226fbd93e52583822adbdae3d0.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-adoption/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/3730fc86031735264f0a038d01d213d5b806f7e15aa01dbf0a2df46e67d78712.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/af7ab261cd82a89576086a52e1dde1aaa9fdf1d8a1364544153fd90567a31812.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/bc52d3a949459c00dc1c341919a9735c6bf0b82406b40a636efe79188076b7fd.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/f5cba5a82253f88a6d50a684e00fe78826165c5a8a2d1a42f9d41bb28b00befa.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-auto-caps/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-final-adopt/2610fbb215351b8b45475fdc807dffe3aa2ffc609a4eaf561e79f61b81ae8ba7.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-final-adopt/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passive-exact/7f8040ff30575f0dea0a4805d4d71f5a69f97d78179a1331486678f83e69a9dc.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passive-exact/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/12d35a93a218663b64b6926e3333c283c954263d84e3645b3079af51f4f26ac8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/31dcfee0c881aec5faa07dff6cbb1538c3b56d14b890cce930ca276dceea4ae4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/568de3f85af600c6d92620d18e52e9e44383e6e90efdecf23313283a831b82e7.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/5f048753376f883d75ac1ccf8c9476540f2b77646df70b155c64fb54512af18c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/701aae6bb1d93d647e4d20b9f04771729ee51fb9cb1a633c53e8fcbb9e75f7c8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/7de2372d6ac89f25ba79d9ba640029f49edcca877e6cb3a1e21659d367cb41b2.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/87ba60f5cd72a5004b42569fcfefef4e0d310099f554d2377291860cdb27d01c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/88073ff1a0234062435905a9d33e3c30b77832ee019dc8ee9c5a599025151782.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/9a0da6593a9c6b20af96671eae5970d69de21848208b73ae7f1e171889843d53.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/c78a8563c100bc6ebee75a66191cd136f1f5df59b1e8bc56871c92be445ba737.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/cd526507a4888c45b384362d29899a9fec04747d73fde571846dcb726ce954f8.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/e12952a5717dc6a69bf62d260ace66561db142307a7991a0cb5b033c81a81d7b.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/e171be81af1fd58fcb06f260ba912d6d565041a69a7e6dd28d81f471710e97b2.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f0af36c4610db770cddb3187f5886f7dfecee94bebb3cbfbaa2a5814081aebab.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f18f5ecadcf0226f50c08c8c79b5421051058049b4113d69c876494f87443bd6.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/f95024639ad15fbd3ad968ee32ca3f0ce53faef2e965907fd3a868dacd13b689.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-1/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/51ccf8d88415271513905842ff6d9aa7a8955cf1a534b673238dc2a1edaffeaf.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/a2680f573d31682972abd2fec94ee7324caadc2af6d0e7e025e029c7040ad332.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/e3d2e2d81040d65adc04a563bd574a4165452761455af7aa856285e69f035797.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-2/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-retry/ce3f0562457e47306cef36edf6ef8b428a01724f1d6acdf8310872bc43d5f0ce.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-passives-retry/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/120215f78f3abcdf1719371f93b746ffeba97d637f352d4cc131baf373fc88cc.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/1dc767476fed5a9be7fa02315690660bb392383f9aec1d3c6cf50fe8983e4e2c.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection-resolved/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection/d11833e51c114e81f0a87f6758def7d1e4b4d82130e7797a8a1c3341bc6ae91e.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-protection/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/afc93a93d54d32630e2b1821fd3bd325907bdfe92605ebc0fe22cdfcb0b46999.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/e6af2a2fa244eda794e2840cd76eba2c0faa226ef1f0f4e132dfcb53b3abc930.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-supplement/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-tracker/f0068c8d96247b629703e6eacc46990097dff6779f4204d95b88ed3118e22827.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-tracker/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/1ca62229550d6563985708be4c25d8cd1df2bd312d7e838a0bad3f2799006fb6.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/afc93a93d54d32630e2b1821fd3bd325907bdfe92605ebc0fe22cdfcb0b46999.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/e6af2a2fa244eda794e2840cd76eba2c0faa226ef1f0f4e132dfcb53b3abc930.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition-ua-supplement/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/2b09978c5a36002dc49ca4300f119423ba99e96ccefbd1cd5eae582fb1690617.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/31757ce81cf7a7b021f5f859736b428c4a5e5003a27545549aab9b9ac86f03a4.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/402991ee7566b52693f3ab3400d2e42d878be51ba4de90e8cac049be6104f524.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/7438702fe3f737612ed5c8f133f60b81eda9c68e3b74ddeffe913858f59c4892.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/cb8ebe03bcc7860306c5e291bd6d892cb951f20cf5f21f15ecbcd8efd3029dd1.pdf",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/acquisition/manifest.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C329955.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C694521.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76706.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-auto-caps/responses/C76711.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-choke/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-choke/responses/C98080.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-input-tvs/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-input-tvs/responses/C151279.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C110776.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C124196.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C14675.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C1591.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C17288249.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C19947708.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C2045384.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C2167328.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C307542.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C309062.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C452751.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C469656.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C59782.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C728588.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C861458.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-1/responses/C95204.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C105579.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C105588.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C108080.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-passives-2/responses/C112305.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/responses/C224045.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-protection/responses/C5311564.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C130055.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C154901.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C208539.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C2879422.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C523802.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C545190.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-shortlist/responses/C81563.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/catalog.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C129339.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C27804.json",
+          "telemetry-pod/expansion/parts-closure/recovered-pilot/power-source/stock-tracker-reference/responses/C92494.json",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/7059663a2a7162b7315ebf55be1a1d3dcffa2066e159a59e5c75b234466d1207.pdf",
+          "telemetry-pod/expansion/production-capture/sources/j3-datasheet/acquisition-digikey/manifest.json",
+          "telemetry-pod/expansion/series-divider/stock/catalog.json",
+          "telemetry-pod/expansion/series-divider/stock/responses/C136970.json",
+          "telemetry-pod/expansion/series-divider/stock/responses/C705764.json",
+          "telemetry-pod/expansion/source-revision/C2167136.json",
+          "telemetry-pod/expansion/source-revision/C452747.json",
+          "telemetry-pod/expansion/source-revision/C723532.json",
+          "telemetry-pod/expansion/storage-candidate/supervisor-sources/stock/catalog.json",
+          "telemetry-pod/expansion/storage-candidate/supervisor-sources/stock/responses/C1509297.json",
+          "telemetry-pod/expansion/storage-microsd/stock/catalog.json",
+          "telemetry-pod/expansion/storage-microsd/stock/responses/C114218.json"
+        ],
+        "kind": "parts_subset",
+        "predicates": [
+          "parts:declared-membership-multiplicity/1"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "netlist",
+            "kind": "netlist"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "parts",
+        "kind": "parts_subset",
+        "params": {
+          "manifest": "composition/parts.json",
+          "netlist_check": "netlist",
+          "requirement_id": "POD-DERIVED-PARTS-MEMBERSHIP"
+        },
+        "stage": "schematic"
+      },
+      "evidence": [
+        "work/parts/stage-subject/execution.json",
+        "work/parts/stage-subject/console.log",
+        "work/parts/stage-subject/native-netlist.xml",
+        "work/parts/stage-subject/native-observation.json",
+        "work/parts/stage-subject/references.json",
+        "work/parts/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "parts",
+      "kind": "parts_subset",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/2",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "electrical-locality",
+        "immutable_inputs": [
+          "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:electrical-locality/1"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "electrical-locality",
+        "kind": "placement",
+        "params": {
+          "criterion": "electrical-locality/1",
+          "drc_check": "placement-drc",
+          "locality": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/electrical-locality/stage-subject/execution.json",
+        "work/electrical-locality/stage-subject/console.log",
+        "work/electrical-locality/stage-subject/native-observation.json",
+        "work/electrical-locality/stage-subject/references.json",
+        "work/electrical-locality/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "electrical-locality",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/21",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-containment",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:outline-containment/1"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-containment",
+        "kind": "placement",
+        "params": {
+          "criterion": "outline-containment/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-containment/stage-subject/execution.json",
+        "work/envelope-containment/stage-subject/console.log",
+        "work/envelope-containment/stage-subject/native-observation.json",
+        "work/envelope-containment/stage-subject/references.json",
+        "work/envelope-containment/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-containment",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/20",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-fixed-j1",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:connector-edge/1:J1"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fixed-j1",
+        "kind": "placement",
+        "params": {
+          "criterion": "connector-edge/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json",
+          "reference": "J1"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-fixed-j1/stage-subject/execution.json",
+        "work/envelope-fixed-j1/stage-subject/console.log",
+        "work/envelope-fixed-j1/stage-subject/native-observation.json",
+        "work/envelope-fixed-j1/stage-subject/references.json",
+        "work/envelope-fixed-j1/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fixed-j1",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/15",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-fixed-j2",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:connector-edge/1:J2"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fixed-j2",
+        "kind": "placement",
+        "params": {
+          "criterion": "connector-edge/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json",
+          "reference": "J2"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-fixed-j2/stage-subject/execution.json",
+        "work/envelope-fixed-j2/stage-subject/console.log",
+        "work/envelope-fixed-j2/stage-subject/native-observation.json",
+        "work/envelope-fixed-j2/stage-subject/references.json",
+        "work/envelope-fixed-j2/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fixed-j2",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/16",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-fixed-j3",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:connector-edge/1:J3"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fixed-j3",
+        "kind": "placement",
+        "params": {
+          "criterion": "connector-edge/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json",
+          "reference": "J3"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-fixed-j3/stage-subject/execution.json",
+        "work/envelope-fixed-j3/stage-subject/console.log",
+        "work/envelope-fixed-j3/stage-subject/native-observation.json",
+        "work/envelope-fixed-j3/stage-subject/references.json",
+        "work/envelope-fixed-j3/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fixed-j3",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/19",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-fixed-u1",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:connector-edge/1:U1"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fixed-u1",
+        "kind": "placement",
+        "params": {
+          "criterion": "connector-edge/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json",
+          "reference": "U1"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-fixed-u1/stage-subject/execution.json",
+        "work/envelope-fixed-u1/stage-subject/console.log",
+        "work/envelope-fixed-u1/stage-subject/native-observation.json",
+        "work/envelope-fixed-u1/stage-subject/references.json",
+        "work/envelope-fixed-u1/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fixed-u1",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/17",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "capability": {
+        "can_evaluate_bound": true,
+        "capability_version": "placement/1",
+        "check_id": "envelope-fixed-u2",
+        "immutable_inputs": [
+          "composition/envelope.json"
+        ],
+        "kind": "placement",
+        "predicates": [
+          "placement:connector-edge/1:U2"
+        ],
+        "prerequisites": [
+          {
+            "check_id": "placement-drc",
+            "kind": "drc"
+          }
+        ],
+        "status": "supported",
+        "unsupported_reasons": []
+      },
+      "criteria": {
+        "id": "envelope-fixed-u2",
+        "kind": "placement",
+        "params": {
+          "criterion": "connector-edge/1",
+          "drc_check": "placement-drc",
+          "envelope": "composition/envelope.json",
+          "reference": "U2"
+        },
+        "stage": "placement"
+      },
+      "evidence": [
+        "work/envelope-fixed-u2/stage-subject/execution.json",
+        "work/envelope-fixed-u2/stage-subject/console.log",
+        "work/envelope-fixed-u2/stage-subject/native-observation.json",
+        "work/envelope-fixed-u2/stage-subject/references.json",
+        "work/envelope-fixed-u2/stage-subject.json"
+      ],
+      "execution": "ok",
+      "id": "envelope-fixed-u2",
+      "kind": "placement",
+      "native_coverage": null,
+      "outcome": "defect",
+      "source": {
+        "locator": "/scope/checks/18",
+        "path": "candidate.json",
+        "scope_semantic_sha256": "c71508a1102a39974e803eb23fc44528b177dfad01d2ed3678fabf830663aaf5"
+      },
+      "type": "check"
+    },
+    {
+      "checks": [
+        "erc",
+        "netlist",
+        "placement-drc",
+        "drc"
+      ],
+      "id": "POD-AC-3",
+      "intent": "acceptance",
+      "source": {
+        "locator": "{\"byte_end\": 20729, \"byte_start\": 20437, \"cells\": {}, \"heading_path\": [\"Telemetry pod requirements\", \"Acceptance criteria\"], \"item\": 3, \"list\": 1, \"row\": null, \"table\": null}",
+        "path": "requirements-map/spec.md"
+      },
+      "statement": "ERC and DRC report zero errors and zero unwaived warnings under the fome-mc toolchain rules. A warning is waived only by an owner-recorded disposition bound to the exact violation (rule, items, reason, location hash); a moved or new violation needs a new disposition, and agents do not waive.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "netlist",
+        "routing-geometry",
+        "fab-package"
+      ],
+      "id": "POD-AC-6",
+      "intent": "acceptance",
+      "source": {
+        "locator": "{\"byte_end\": 21919, \"byte_start\": 21397, \"cells\": {}, \"heading_path\": [\"Telemetry pod requirements\", \"Acceptance criteria\"], \"item\": 6, \"list\": 1, \"row\": null, \"table\": null}",
+        "path": "requirements-map/spec.md"
+      },
+      "statement": "The fab package contains Gerbers, drill files, BOM and CPL in JLCPCB's formats, and a JLCPCB DFM check on the Gerbers passes: the owner uploads the sealed Gerber package to JLCPCB once and the saved DFM report is bound to the package hash as evidence; geometry pre-checks against JLCPCB's captured capability limits run in the pipeline but do not replace it. CPL rotations the captured policy cannot verify are listed as PREVIEW\\_REQUIRED obligations for the owner to confirm in JLCPCB's placement preview before ordering.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "assembly"
+      ],
+      "id": "POD-DERIVED-AC-5-ASSEMBLY",
+      "intent": "acceptance",
+      "source": {
+        "locator": "{\"byte_end\": 21393, \"byte_start\": 20944, \"cells\": {}, \"heading_path\": [\"Telemetry pod requirements\", \"Acceptance criteria\"], \"item\": 5, \"list\": 1, \"row\": null, \"table\": null}",
+        "path": "requirements-map/spec.md"
+      },
+      "statement": "Purchased BOM components carry LCSC binding and BOM properties, captured passive ratings with the binding-fill receipt as rating provenance, and JLC stock captured within 24 hours of generation for one board (POD-AC-5 \"on the day of generation\"). Hand-fit exclusions and owner obligations stay separate.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "antenna-facts"
+      ],
+      "id": "POD-DERIVED-ANTENNA-FACTS",
+      "intent": "informational",
+      "source": {
+        "locator": "/facts",
+        "path": "composition/antenna-facts.json"
+      },
+      "statement": "The ESP32-S3-WROOM-1 datasheet facts of composition/antenna-facts.json occur verbatim on their cited pages (text occurrence only, not applicability or clearance).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "electrical-locality"
+      ],
+      "id": "POD-DERIVED-ELECTRICAL-LOCALITY",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/obligations",
+        "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json"
+      },
+      "statement": "Every declared pad-centre electrical locality obligation of telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json holds on the placed board (bounds advisory per its README).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-containment"
+      ],
+      "id": "POD-DERIVED-OVERHANG-CONTAINMENT",
+      "intent": "acceptance",
+      "source": {
+        "locator": "D-PCB-13 microSD card envelope in the J3 courtyard (2026-10-21)",
+        "path": "telemetry-pod/expansion/design-rules/constraints.json"
+      },
+      "statement": "Every footprint courtyard lies inside the board outline except within the courtyard_overhangs composition/envelope.json declares for its fixed footprints (J3 card lane D-PCB-13 v3, U1 antenna D-PCB-16).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "parts"
+      ],
+      "id": "POD-DERIVED-PARTS-MEMBERSHIP",
+      "intent": "acceptance",
+      "source": {
+        "locator": "components",
+        "path": "composition/intent.json"
+      },
+      "statement": "Every populated purchased instance matches its declared symbol, footprint and supplier identity in composition/parts.json, and every required reference is present (captured membership, not approval or suitability).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fab-profile"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fab-profile",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fab_profile",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fab_profile: the board satisfies captured fabricator capability profile jlc04161h-7628 (sha256 4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fixed-j1"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fixed-J1",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fixed_footprints/0",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fixed_footprints/0: footprint J1 is fixed on the front side (F.Cu) with its origin 45 mm along edge bottom and 9.5 mm inward, at (45, 55.5) mm, rotation 0 deg, within 0 mm; it is mated from_top (mating axis z-). Its courtyard may extend beyond the outline only by at most 22.85 mm across edge bottom.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fixed-j2"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fixed-J2",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fixed_footprints/1",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fixed_footprints/1: footprint J2 is fixed on the front side (F.Cu) with its origin 28 mm along edge right and 4.76 mm inward, at (85.24, 28) mm, rotation 180 deg, within 0 mm; it is mated through_edge (mating axis x+). Its courtyard may extend beyond the outline only by at most 9.73 mm across edge right.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fixed-j3"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fixed-J3",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fixed_footprints/4",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fixed_footprints/4: footprint J3 is fixed on the back side (B.Cu) with its origin 33 mm along edge left and 8.9 mm inward, at (8.9, 32) mm, rotation 90 deg, within 0 mm; it is mated through_edge (mating axis x-). Its courtyard may extend beyond the outline only by at most 20.3 mm across edge left.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fixed-u1"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fixed-U1",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fixed_footprints/2",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fixed_footprints/2: footprint U1 is fixed on the front side (F.Cu) with its origin 72.5 mm along edge top and 6.5 mm inward, at (72.5, 6.5) mm, rotation 0 deg, within 0 mm; it is mated from_top (mating axis z-). Its courtyard may extend beyond the outline only by at most 21.25 mm across edge top; 6.5 mm across edge right, and into the corner between two adjacent declared edges.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-fixed-u2"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-fixed-U2",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/fixed_footprints/3",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /fixed_footprints/3: footprint U2 is fixed on the front side (F.Cu) with its origin 12 mm along edge top and 10 mm inward, at (12, 10) mm, rotation 0 deg, within 0 mm; it is mated from_top (mating axis z-).",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-hole-h1"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-hole-H1",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/mounting_holes/0",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /mounting_holes/0: mounting hole H1 is a non-plated 3.2 mm hole centred at (4, 4) mm within 0 mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-hole-h2"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-hole-H2",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/mounting_holes/1",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /mounting_holes/1: mounting hole H2 is a non-plated 3.2 mm hole centred at (86, 4) mm within 0 mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-hole-h3"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-hole-H3",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/mounting_holes/2",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /mounting_holes/2: mounting hole H3 is a non-plated 3.2 mm hole centred at (86, 61) mm within 0 mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-hole-h4"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-hole-H4",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/mounting_holes/3",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /mounting_holes/3: mounting hole H4 is a non-plated 3.2 mm hole centred at (4, 61) mm within 0 mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-keepout-d-pcb-6-rf-reference"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-6-RF-reference",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/keepouts/2",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /keepouts/2: keepout D-PCB-6-RF-reference forbids tracks, vias on In1.Cu, In2.Cu inside polygon (76, 26.5), (88, 26.5), (88, 30.6), (76, 30.6) mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-keepout-d-pcb-7v2-in1-no-tracks"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-7v2-In1-no-tracks",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/keepouts/1",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /keepouts/1: keepout D-PCB-7v2-In1-no-tracks forbids tracks on In1.Cu inside polygon (0, 0), (90, 0), (90, 65), (0, 65) mm.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-keepout-radio-antenna"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-keepout-radio-antenna",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/keepouts/0",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /keepouts/0: keepout radio-antenna forbids footprints, tracks, vias, pads, copper_pours on F.Cu, In1.Cu, In2.Cu, B.Cu inside polygon a source-qualified ESP32-S3-WROOM-1 placement-case polygon (currently unresolved) owned by U1 requiring qualification from antenna-facts facts.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-layer-count"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-layer-count",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/layer_count",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /layer_count: the board has exactly 4 copper layers: F.Cu, In1.Cu, In2.Cu, B.Cu.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-outline"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-outline",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/outline",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /outline: the Edge.Cuts board outline is exactly the closed polygon top (0, 0) to (90, 0); right (90, 0) to (90, 65); bottom (90, 65) to (0, 65); left (0, 65) to (0, 0) mm, with no other outline geometry.",
+      "type": "requirement"
+    },
+    {
+      "checks": [
+        "envelope-stackup"
+      ],
+      "id": "R-envelope-expanded-pod-microsd-production-stackup",
+      "intent": "acceptance",
+      "source": {
+        "locator": "/stackup",
+        "path": "composition/envelope.json"
+      },
+      "statement": "Envelope expanded-pod-microsd-production field /stackup: the saved design and manufacturing request specify 1.6 mm thickness and stackup, top to bottom: F.Cu copper 0.035 mm 1 oz; dielectric 1 dielectric 0.2104 mm; In1.Cu copper 0.0152 mm 0.5 oz; dielectric 2 dielectric 1.065 mm; In2.Cu copper 0.0152 mm 0.5 oz; dielectric 3 dielectric 0.2104 mm; B.Cu copper 0.035 mm 1 oz.",
+      "type": "requirement"
+    }
+  ],
+  "index_id": "7ac1355f248e696eaca77ae28fb0f50b2b1644d0dc87a1b6c862abfbe2c713aa",
+  "schema": "agent-ee.packet-index/1"
+}

@@ -1,0 +1,2075 @@
+{
+ "annotations": [
+  {
+   "annotates": "qualification[storage/J3]",
+   "component": "storage/J3",
+   "date": "2026-10-22",
+   "limitations": [
+    "Source is the DigiKey mirror of the Hirose DM3 Series MicroSD 2010.6 reference catalog, not the latest engineering drawing; the official Hirose site returned HTTP 403 (retained failed acquisitions).",
+    "PDF page 3 names DM3AT-SF-PEJM5 with code 609-0031-0.",
+    "The card detection switches A/B are normally open and close on card insertion; the JLCPCB attribute \"Additional Card Detection Pins: No\" is contradicted by this manufacturer evidence and does not override it.",
+    "Detect mapping verified by agent-509's delegated reviewer for these sources: manufacturer B is pad 9 (DET_B, SD_CD), manufacturer A is pad 10 (DET_A, GND).",
+    "PDF page 2 operating temperature -25 to +85 C includes current-induced temperature rise. This shows the source exists; it does not qualify the actual board thermal or DFM."
+   ],
+   "statement": "The historical statement above is retained verbatim. Since it was written, the J3 datasheet has been captured: the DigiKey mirror of the Hirose DM3 Series MicroSD 2010.6 reference catalog (sha256 ab978e9d023b8b2d3a5acfe31ead6e9bf1d63b439d21f7f4db662a1e4e3b56af), canonical record telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json. It is not the latest engineering drawing. Assembly and operating qualification remain pending."
+  }
+ ],
+ "authority": "agent-509 binding composition decision 2026-10-22 (sources/j3-datasheet/review/509-binding-composition-20261022.txt): project-authored limitations, not producer bindings. They stay visible here and in the review inputs; none is waived or satisfied by this move.",
+ "field_migrations": [
+  {
+   "component": "can/C308",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"1eb663ac0c3453f74a29043aea5fee5c58ce8ac3f88a182edc21e30cf2e55712\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C100"
+  },
+  {
+   "component": "can/R9",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"c85c5d64e96921301d6bfc7df34164a89576993b6c4767d6ad0a87233534543b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R100"
+  },
+  {
+   "component": "power/C1",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"d8e824543029a56b467a563dc6ef5240fea7f09d1a65e3619803d693c6aacd5c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C1"
+  },
+  {
+   "component": "power/C10",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"7b14d59faaeecb5f2e3bf2a72a98cff5d4b56c3b3cd3381fae54aef2545edb2a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C10"
+  },
+  {
+   "component": "power/C11",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"5e4ef14638fd6041d8951bd2b0c63abc1613da340f0f2f2894e176dd6eedd309\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C11"
+  },
+  {
+   "component": "power/C12",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"2c4dfb95d005ea0cea6344e8791a94a7f34120876b841076f1ddd2eb9730a95f\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C12"
+  },
+  {
+   "component": "power/C13",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"958f8b0776737e272efafc49ed70592e4bedd1cec8095f2f70de28718ebaae0c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C13"
+  },
+  {
+   "component": "power/C14",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"1add79c44cdeb404b52ec680c112e99f6f4804d0da2a7bf1f64060e0afbba1de\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C14"
+  },
+  {
+   "component": "power/C15",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"5fd9fb708611d17e144d5562f89bb9f4225cefbe0e6333b8ea307ed73c523706\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C15"
+  },
+  {
+   "component": "power/C16",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"0110e36915f53c3ced24fc5c656b8b3257372b405475c0d09d290bb8a7b69514\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C16"
+  },
+  {
+   "component": "power/C17",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"efb8b1e7e192bfaa173ec61a67fc9240bbef69ec9cd0e4866f24530480a59e47\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C17"
+  },
+  {
+   "component": "power/C18",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"958f8b0776737e272efafc49ed70592e4bedd1cec8095f2f70de28718ebaae0c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C18"
+  },
+  {
+   "component": "power/C19",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"e15b8da8f90502995cd7d2c7ca5639a6d6eb8d0bb7af661c9cf95ca1608346c4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C19"
+  },
+  {
+   "component": "power/C2",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"55baeec9341a4cc693b8355d7c7c0e730b63d18424cf5242ccab8333798de69a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C2"
+  },
+  {
+   "component": "power/C20",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"01f50dfce8c2f42409c51b3fd9440e51bd2af8a47dd7ff2b4068e99e61acb54c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C20"
+  },
+  {
+   "component": "power/C21",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"76e85dcb7bfdf644f5086715f3eb1ecf9d98e209a665839dc1a6bb5525d5737d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C21"
+  },
+  {
+   "component": "power/C22",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"383141557dbdce7991f479c21ca0a649adbd4ff64781fa1fa4df5479affe0955\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C22"
+  },
+  {
+   "component": "power/C3",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"ca85cce41b6f927c10864a04fd709ced08401058c912425559b8894cd0111a6c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C3"
+  },
+  {
+   "component": "power/C30",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"71594f51a271fe437eb9ef6e209766fd82233d305bdfb8c23908a0a78673570e\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C30"
+  },
+  {
+   "component": "power/C31",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"2ef3f037976b92989e3baf1d41997debf95231b06a1f6911d7555ae126e89920\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C31"
+  },
+  {
+   "component": "power/C32",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"cb0c9672c8d01ad99502d662f62f08198b35ad6268c815c1fe32b331460abb8a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C32"
+  },
+  {
+   "component": "power/C33",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"19a7e78ea355767a36427ac4d979f94873a5b382b0feae4ec64bed30cebf88cb\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C33"
+  },
+  {
+   "component": "power/C34",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"362601e2de7a34c9426662ffc0a6ea355bfa0ca2d81d3040649d2f0359aadbbd\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C34"
+  },
+  {
+   "component": "power/C35",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"5820ac30d57334649ccebde2b8b800e819dccbbee75c5f34c634dd4bb22086b6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C35"
+  },
+  {
+   "component": "power/C36",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"cc0d133d147ac809fa3ac5dd3268f507beeba9573a4cb60b630b19086429040b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C36"
+  },
+  {
+   "component": "power/C37",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"a985d6e4570edb2fad301ed072088c430d6af35fc7d5dfd4df5b291bcc5698e4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C37"
+  },
+  {
+   "component": "power/C38",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C38"
+  },
+  {
+   "component": "power/C39",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"1e047b2657a0004c7240497edd5a18933d38ee1295e337167e74e7b9bfd78d62\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C39"
+  },
+  {
+   "component": "power/C4",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"17e2bb53ea459376ee953b02a0acbe91ca95bab1e6d1f1466ca8c91ae6362929\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C4"
+  },
+  {
+   "component": "power/C40",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"7a4e6d009b0da5ec13d15106e100efab9d9cd23fd3aa5c0d148ac4024ebd2559\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C40"
+  },
+  {
+   "component": "power/C41",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"1e2af3f2f4a0a4067831d8ea2bfe11d26c724f26a1a49e1941ad7b759872040f\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C41"
+  },
+  {
+   "component": "power/C42",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"4880bdb0336315216150d16f1fa85df5f0f8ba066a78e228c2fad2d6c1cde0f8\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C42"
+  },
+  {
+   "component": "power/C43",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"38587a095744db0238cfea0065294222227d520d097f245a458b0b9edff953f2\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C43"
+  },
+  {
+   "component": "power/C44",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"32f4901df51469a95f7e2c87923ed37c511a9337cde3c80f762d7b20e76bb3a6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C44"
+  },
+  {
+   "component": "power/C5",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"45081501eb06d3b73650f8a8f9b5a4eeacf97a2866f5c006e5acc6a29f7c43b2\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C5"
+  },
+  {
+   "component": "power/C6",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"e2e19f88ef5dde5ab92e556d0e5f3b65eafe795a2141dc88a2ef8892da8f221e\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C6"
+  },
+  {
+   "component": "power/C7",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"7612ed9b5235ac693f4afeac94d7d0c502511d85c11eb7af450cae4e96291470\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C7"
+  },
+  {
+   "component": "power/C8",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"5831a79856b89051a1dff3aa4b6807bf383b8c969a0c6529e263fa7a0925fdb1\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C8"
+  },
+  {
+   "component": "power/C9",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"100V\"},\"record_sha256\":\"8fe49fc0e870d3422b0330a7bc060c0f21e8b476774c40cc38d226ac81f2db42\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C9"
+  },
+  {
+   "component": "power/R1",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"8e5e56d94703d19a2aa1f2893144d387b6decc73dfe999f081f9873e11e613ea\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R1"
+  },
+  {
+   "component": "power/R10",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"11ebdec84da43670aab258259068ed015563c41032bc34739245a282c080746c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R10"
+  },
+  {
+   "component": "power/R11",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"a899abf18c77dea129c27a68236139cb347013d4dba900b5acc50e2855b1c41a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R11"
+  },
+  {
+   "component": "power/R12",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"dd1cab5bd8351b23f8813ebdbf74c6e4fdbe88a2cfcfff9e53b6f738ab1c5dea\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R12"
+  },
+  {
+   "component": "power/R13",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"e6448ba99a960419066bfa43ccccb0bd41ce3ccd0c9f6ede33efb04e9caa3447\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R13"
+  },
+  {
+   "component": "power/R14",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"98f9f033c80be94cf05c9bf3005f06dcfaf833fc6c3a1d90cab6119c6a422ee6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R14"
+  },
+  {
+   "component": "power/R15",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"67d9bb3bbcb0883f3166f2299cee18002d490d120a152fa690bb9f44303f94a2\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R15"
+  },
+  {
+   "component": "power/R16",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"e9c202a14172489614391c6b858427b4b8b95c3379f3fe13e357ddfb1127a19a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R16"
+  },
+  {
+   "component": "power/R17",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"ca4f38326f26d68a300f03cc5ecfe1540ac3fb1d4c606c60a4fc76cc0f4885a1\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R17"
+  },
+  {
+   "component": "power/R18",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"3d8462f0aa26861cdc9f244b5f3eba8d679f747bf22d705c6a2e78abd2e97e3b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R18"
+  },
+  {
+   "component": "power/R19",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"5c50ae14e4873ce90de0ace6ed5a79770d3aecb9575a5a7175e987d09706a351\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R19"
+  },
+  {
+   "component": "power/R2",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"bf7499cdb4e7d6b964e3f13bc3e774b4ba57e297ba21046abb974d53fa4855bf\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R2"
+  },
+  {
+   "component": "power/R20",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"f7a3a47f9d09b49ae2dfe6fdd14a62f0e13e22346159dbec7749708fbda7b146\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R20"
+  },
+  {
+   "component": "power/R21",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"9cc148ffa8786cdf4a6636d2474d7e09bdbbbbd875323f7765ba1cdeaa38ba2a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R21"
+  },
+  {
+   "component": "power/R22",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"46ff70557501db1aae29ebbfc50a3658a3d1435bff954b2a601db12020f46e43\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R22"
+  },
+  {
+   "component": "power/R23",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"ae430b59c91e6ce1e41189e7f98a3c6f307ff6b0d99e75b0c2d061d8eb0a7479\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R23"
+  },
+  {
+   "component": "power/R24",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"32e8f2b6571ce0f19618cd116202a6163be6b3fba49504fbe2d9051728b76337\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R24"
+  },
+  {
+   "component": "power/R25",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"5b1a73af53c01498ab57652f77e7d85bda68a8fd2e6b86a7cc40d6bd51913668\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R25"
+  },
+  {
+   "component": "power/R26",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"250mW\"},\"record_sha256\":\"acb21f2f654b929e87c18df54c0d50b985bf86ab05960975e5b21d46f0d43d5a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R26"
+  },
+  {
+   "component": "power/R27",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"27f3abe7d15abdf9d70901fe1a127b6e27a2699068b9cb76fa9bf23b94e83473\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R27"
+  },
+  {
+   "component": "power/R28",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"89141b81c17e92ca4ac8d1fffb09ec8f1c4afefc1c795b0cd1a45bce653e84c4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R28"
+  },
+  {
+   "component": "power/R3",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"ac4eba8601047e065e4f08bf6c1fa20a01cf5dee917538e34b9c6c4b0ff27c2b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R3"
+  },
+  {
+   "component": "power/R4",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"e3206e1ff55600ea1c79b584dbc965bb73db6f278fab0b7d12698459ddc2811a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R4"
+  },
+  {
+   "component": "power/R5",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"ed9ec80ee3cfacc1ec982efc49287af4f6131432407188070dcb3fb7d98c8d01\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R5"
+  },
+  {
+   "component": "power/R6",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"00a6f4b1eab1380a74194c1f081b6a888c8db29876d17b6355075e5290ab4e3b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R6"
+  },
+  {
+   "component": "power/R7",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"3e0f9b483ffb7d8c2ec45399048b957833e8a74436eb4ffbf67587799206b907\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R7"
+  },
+  {
+   "component": "support/C45",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"25V\"},\"record_sha256\":\"54689c799c8ae9e5a6b1fffb6adc65be9b6ccb2e131f04b6ef366858737965da\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C45"
+  },
+  {
+   "component": "support/C46",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"a8d8a773fd7993445f9512154a0bbdab8046d4f7d19bac79db3b23cf0621ac09\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C46"
+  },
+  {
+   "component": "support/C48",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"0d841baca1e2fe41ba12205fb9f1f58045bd55bba8fea66ba7847bfaaa7cbac2\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C48"
+  },
+  {
+   "component": "support/C49",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"129ccd84e722dc9c0f635549d424f4137352360f518e3fbe9cd1bbe2eec88b2c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C49"
+  },
+  {
+   "component": "support/C50",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"0bd6f35f3e7b4c1583083c127c8bce01fab452440bbb5838561f722e484617d7\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C50"
+  },
+  {
+   "component": "support/C51",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"9d9e8e89336b543f4380deeba908a90ac2f6e9bb536f4d69b272dbdacbeeb454\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C51"
+  },
+  {
+   "component": "support/C52",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"1fc1fe8d4f6a9ec6450015b8aba4e30b62188b450c2fdd4eb15a49d4eaf0891a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C52"
+  },
+  {
+   "component": "support/C53",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"ca92cc78d323f27530f8b8af2c0bb0a72143e410200ab0520666ffda5cac8ee4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C53"
+  },
+  {
+   "component": "support/R30",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"dedbd17430dbf10b1d5cbc18ea6fcecb46f17584c06076353254a6b3ba1782e8\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R30"
+  },
+  {
+   "component": "support/R31",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"d6317204b501599119f6a92b5fba532793cb119614cd73bfe70b0cce797363b3\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R31"
+  },
+  {
+   "component": "support/R32",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"0be694e78d2ddf0c2a409baf29d513c48d4510e2d0acb948fe5ef94e4cbaf7be\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R32"
+  },
+  {
+   "component": "support/R33",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"134e1dad3d84db999231e84fe917226c560751127373ed32718fed5af49f98ee\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R33"
+  },
+  {
+   "component": "expansion/R34",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"11ebdec84da43670aab258259068ed015563c41032bc34739245a282c080746c\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R34"
+  },
+  {
+   "component": "expansion/R35",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"a899abf18c77dea129c27a68236139cb347013d4dba900b5acc50e2855b1c41a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R35"
+  },
+  {
+   "component": "expansion/R36",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"dd1cab5bd8351b23f8813ebdbf74c6e4fdbe88a2cfcfff9e53b6f738ab1c5dea\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R36"
+  },
+  {
+   "component": "expansion/R37",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"e6448ba99a960419066bfa43ccccb0bd41ce3ccd0c9f6ede33efb04e9caa3447\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R37"
+  },
+  {
+   "component": "expansion/R38",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"98f9f033c80be94cf05c9bf3005f06dcfaf833fc6c3a1d90cab6119c6a422ee6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R38"
+  },
+  {
+   "component": "expansion/R39",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"67d9bb3bbcb0883f3166f2299cee18002d490d120a152fa690bb9f44303f94a2\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R39"
+  },
+  {
+   "component": "expansion/R40",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"e9c202a14172489614391c6b858427b4b8b95c3379f3fe13e357ddfb1127a19a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R40"
+  },
+  {
+   "component": "expansion/R41",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"ca4f38326f26d68a300f03cc5ecfe1540ac3fb1d4c606c60a4fc76cc0f4885a1\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R41"
+  },
+  {
+   "component": "expansion/R42",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"3d8462f0aa26861cdc9f244b5f3eba8d679f747bf22d705c6a2e78abd2e97e3b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R42"
+  },
+  {
+   "component": "expansion/R43",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"5c50ae14e4873ce90de0ace6ed5a79770d3aecb9575a5a7175e987d09706a351\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R43"
+  },
+  {
+   "component": "expansion/R44",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"f7a3a47f9d09b49ae2dfe6fdd14a62f0e13e22346159dbec7749708fbda7b146\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R44"
+  },
+  {
+   "component": "expansion/R45",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Power\":\"100mW\"},\"record_sha256\":\"9cc148ffa8786cdf4a6636d2474d7e09bdbbbbd875323f7765ba1cdeaa38ba2a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "R45"
+  },
+  {
+   "component": "expansion/C54",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"71594f51a271fe437eb9ef6e209766fd82233d305bdfb8c23908a0a78673570e\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C54"
+  },
+  {
+   "component": "expansion/C55",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"2ef3f037976b92989e3baf1d41997debf95231b06a1f6911d7555ae126e89920\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C55"
+  },
+  {
+   "component": "expansion/C56",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"cb0c9672c8d01ad99502d662f62f08198b35ad6268c815c1fe32b331460abb8a\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C56"
+  },
+  {
+   "component": "expansion/C57",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"19a7e78ea355767a36427ac4d979f94873a5b382b0feae4ec64bed30cebf88cb\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C57"
+  },
+  {
+   "component": "expansion/C58",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"362601e2de7a34c9426662ffc0a6ea355bfa0ca2d81d3040649d2f0359aadbbd\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C58"
+  },
+  {
+   "component": "expansion/C59",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"5820ac30d57334649ccebde2b8b800e819dccbbee75c5f34c634dd4bb22086b6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C59"
+  },
+  {
+   "component": "expansion/C60",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"cc0d133d147ac809fa3ac5dd3268f507beeba9573a4cb60b630b19086429040b\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C60"
+  },
+  {
+   "component": "expansion/C61",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"a985d6e4570edb2fad301ed072088c430d6af35fc7d5dfd4df5b291bcc5698e4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C61"
+  },
+  {
+   "component": "expansion/C62",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"ca92cc78d323f27530f8b8af2c0bb0a72143e410200ab0520666ffda5cac8ee4\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C62"
+  },
+  {
+   "component": "storage/J3",
+   "field": "Datasheet",
+   "original": "https://www.lcsc.com/datasheet/lcsc_datasheet_2410121938_HRS-Hirose-DM3AT-SF-PEJM5_C114218.pdf",
+   "producer_source": {
+    "locator": "datasheet_url",
+    "path": "telemetry-pod/expansion/production-capture/sources/j3-datasheet/C114218.part-record.json",
+    "sha256": "1f590e541bfa547720eeb38b33bd53b3d1aade4431ec768548159d5096d6e6ab"
+   },
+   "producer_value": "https://media.digikey.com/pdf/Data%20Sheets/Hirose%20PDFs/DM3_Series_MicroSD.pdf",
+   "reason": "The historical URL served no PDF (sources/j3-capture-attempt, outcome missing; sources/j3-datasheet/acquisition-direct, J3-lcsc). binding-fill writes Datasheet and PARAM_Datasheet from the captured C114218 record; an unequal writer value would refuse.",
+   "reference": "J3"
+  },
+  {
+   "component": "adc/C130",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"16V\"},\"record_sha256\":\"32f4901df51469a95f7e2c87923ed37c511a9337cde3c80f762d7b20e76bb3a6\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C130"
+  },
+  {
+   "component": "power/C131",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C131"
+  },
+  {
+   "component": "power/C132",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C132"
+  },
+  {
+   "component": "can/C133",
+   "field": "AGENT_EE_Ratings",
+   "original": "{\"ratings\":{\"Voltage\":\"50V\"},\"record_sha256\":\"53aaf9803c252338ca7e778fc2362d6e04be650e383dffbbf2b7757069e1234d\",\"schema\":\"agent-ee.passive-rating-binding/1\"}",
+   "producer_value": "binding-fill --ratings (composition/rating-sources.json)",
+   "reason": "The field pins the v9 pilot rating record by hash; that record names the pilot part id and pilot-root response path. Its rating values stay in the writer intent and must be regenerated exactly; the record difference is explained in rating-comparison.json.",
+   "reference": "C133"
+  }
+ ],
+ "qualification": {
+  "adc": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U4",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/C124": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C124",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/C125": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C125",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/C126": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C126",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/C127": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C127",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R162": {
+   "class": "package-selection",
+   "field": "Qualification",
+   "reference": "R162",
+   "text": "Identity and package selection only; assembly and operating qualification pending",
+   "text_sha256": "2af3f19455fce62bbbe9ff028189077d15bfdb8a17f98060e9d0435b2cd38bcf"
+  },
+  "aux-power/R163": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R163",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R164": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R164",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R165": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R165",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R166": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R166",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R167": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R167",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R168": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R168",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/R169": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R169",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "aux-power/U30": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U30",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C79": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C79",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C80": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C80",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C81": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C81",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C82": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C82",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C83": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C83",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C84": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C84",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/C85": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C85",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/D101": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "D101",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R66": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R66",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R67": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R67",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R68": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R68",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R69": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R69",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R70": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R70",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R71": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R71",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/R72": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R72",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/U20": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U20",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/U21": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U21",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/U22": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U22",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "can2/Y1": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "Y1",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "connector/J1": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "J1",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C110": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C110",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C111": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C111",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C112": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C112",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C114": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C114",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C115": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C115",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C116": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C116",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C117": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C117",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C118": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C118",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C119": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C119",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C120": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C120",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C121": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C121",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C122": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C122",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/C123": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C123",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R128": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R128",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R129": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R129",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R130": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R130",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R131": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R131",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R132": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R132",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R133": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R133",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R134": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R134",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R135": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R135",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R136": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R136",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R137": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R137",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R138": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R138",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R139": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R139",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R144": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R144",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R145": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R145",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R146": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R146",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R147": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R147",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R148": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R148",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R149": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R149",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R150": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R150",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R151": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R151",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R152": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R152",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R153": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R153",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R154": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R154",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R155": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R155",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R156": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R156",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R157": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R157",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R158": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R158",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R159": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R159",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R160": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R160",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/R161": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R161",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/U27": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U27",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/U28": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U28",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "diagnostic/U29": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U29",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C86": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C86",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C87": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C87",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C88": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C88",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C89": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C89",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C90": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C90",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C91": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C91",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C92": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C92",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C93": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C93",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/C94": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C94",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R73": {
+   "class": "package-selection",
+   "field": "Qualification",
+   "reference": "R73",
+   "text": "Identity and package selection only; assembly and operating qualification pending",
+   "text_sha256": "2af3f19455fce62bbbe9ff028189077d15bfdb8a17f98060e9d0435b2cd38bcf"
+  },
+  "sensor-power/R74": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R74",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R75": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R75",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R76": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R76",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R77": {
+   "class": "package-selection",
+   "field": "Qualification",
+   "reference": "R77",
+   "text": "Identity and package selection only; assembly and operating qualification pending",
+   "text_sha256": "2af3f19455fce62bbbe9ff028189077d15bfdb8a17f98060e9d0435b2cd38bcf"
+  },
+  "sensor-power/R78": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R78",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R79": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R79",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R80": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R80",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R81": {
+   "class": "package-selection",
+   "field": "Qualification",
+   "reference": "R81",
+   "text": "Identity and package selection only; assembly and operating qualification pending",
+   "text_sha256": "2af3f19455fce62bbbe9ff028189077d15bfdb8a17f98060e9d0435b2cd38bcf"
+  },
+  "sensor-power/R82": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R82",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R83": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R83",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/R84": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R84",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/U23": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U23",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/U24": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U24",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "sensor-power/U25": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U25",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/C64": {
+   "class": "package-selection",
+   "field": "Qualification",
+   "reference": "C64",
+   "text": "Identity and package selection only; assembly and operating qualification pending",
+   "text_sha256": "2af3f19455fce62bbbe9ff028189077d15bfdb8a17f98060e9d0435b2cd38bcf"
+  },
+  "storage/C65": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C65",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/J3": {
+   "class": "historical-j3",
+   "field": "Qualification",
+   "reference": "J3",
+   "text": "Identity metadata only; JLCPCB stock captured 2026-10-21; datasheet capture pending because LCSC and Hirose gate the PDF; rated -25 to +85 C, an owner-visible exception on the U1, U2 and U4 terms; assembly and operating qualification pending",
+   "text_sha256": "f1c13f417e4fd301911172d343fe5a6147052903027bcf48c27813af0bcefc93"
+  },
+  "storage/R46": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R46",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/R47": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R47",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/R48": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R48",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/R49": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R49",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/R50": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R50",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "storage/R55": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R55",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C71": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C71",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C72": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C72",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C75": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C75",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C76": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C76",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C77": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C77",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/C78": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C78",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R181": {
+   "class": "series-divider",
+   "field": "Qualification",
+   "reference": "R181",
+   "text": "Identity and series-divider selection only; assembly and operating qualification pending",
+   "text_sha256": "ea88fb05111bb18199581e4bdd0a7c975ff9c6e401edc8b89130560a6b123756"
+  },
+  "supervisor/R56": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R56",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R57": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R57",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R60": {
+   "class": "series-divider",
+   "field": "Qualification",
+   "reference": "R60",
+   "text": "Identity and series-divider selection only; assembly and operating qualification pending",
+   "text_sha256": "ea88fb05111bb18199581e4bdd0a7c975ff9c6e401edc8b89130560a6b123756"
+  },
+  "supervisor/R61": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R61",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R62": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R62",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R63": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R63",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R64": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R64",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/R65": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R65",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/U16": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U16",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/U18": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U18",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "supervisor/U19": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U19",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "support/C47": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C47",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "support/R29": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R29",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/C128": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C128",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/C129": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C129",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/D105": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "D105",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R170": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R170",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R171": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R171",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R172": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R172",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R173": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R173",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R174": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R174",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R175": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R175",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R176": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R176",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R177": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R177",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R178": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R178",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R179": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R179",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/R180": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R180",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "thermistor/U31": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U31",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/C95": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C95",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/C96": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C96",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/C97": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C97",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/C98": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "C98",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/D102": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "D102",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/D103": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "D103",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/D104": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "D104",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R110": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R110",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R111": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R111",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R112": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R112",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R113": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R113",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R114": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R114",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R115": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R115",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R116": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R116",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R117": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R117",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R118": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R118",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R119": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R119",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R120": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R120",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R121": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R121",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R122": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R122",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R123": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R123",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R124": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R124",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R125": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R125",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R126": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R126",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/R127": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "R127",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  },
+  "wheel-input/U26": {
+   "class": "identity-only",
+   "field": "Qualification",
+   "reference": "U26",
+   "text": "Identity metadata only; assembly and operating qualification pending",
+   "text_sha256": "e6917991a08ae37ee8a30fbc4d094b80902ebcb553459bd0710b7e968b588c31"
+  }
+ },
+ "schema": "pod-capture.binding-ledger/1",
+ "source_intent": {
+  "identity": "7dd7364ea5bcbc03b5ca2818b9c7b515062b49b7ab14db608ba32d24bc7a75f0",
+  "path": "composition/intent.json",
+  "sha256": "b43a815b062536d1ad41e08bc7f46eac255e33461551741a25dd110bb1494014"
+ }
+}

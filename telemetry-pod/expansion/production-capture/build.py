@@ -851,8 +851,19 @@ def build(out, agent_ee):
     # Existing named records, probes and copper features, re-verified against the microSD intent.
     old = json.loads(OLD_PARTS.read_text())
     parts, kept = [], {}
+    rebind = {r['reference']: r for r in json.loads(ADDITIONS.read_text()).get('rebindings', [])}  # AGENTEE-488
+    old_by_ref = {p['instances'][0]['reference']: p for p in old['parts'] if len(p['instances']) == 1}
+    rebound = {}
     for part in old['parts']:
         refs = [i['reference'] for i in part['instances']]
+        if refs and refs[0] in rebind:  # take the template's verified part with this reference's identity
+            r = rebind[refs[0]]
+            tmpl = old_by_ref[r['template']]
+            if physical[refs[0]]['part_binding'] != physical[r['template']]['part_binding']:
+                raise ValueError('rebound part differs from its template binding: ' + refs[0])
+            part = {**copy.deepcopy(tmpl), 'id': r['id'], 'selection_id': r['id'],
+                    'role': f"Expanded pod {refs[0]} {physical[refs[0]]['value']}", 'instances': copy.deepcopy(part['instances'])}
+            rebound[r['id']] = tmpl['id']
         if not set(refs) <= set(physical):
             if set(refs) & set(physical):
                 raise ValueError('partly removed part: ' + part['id'])
@@ -923,7 +934,8 @@ def build(out, agent_ee):
     manifest_blob = root.write('composition/footprints.json', manifest)
     old_assignments = {c['reference']: c for c in json.loads(OLD_ASSIGNMENTS.read_text())['components']}
     assignments = {'schema': 'agent-ee.footprint-assignments-input/1', 'libraries': intent['libraries'],
-                   'components': [old_assignments.get(p['id']) or (
+                   'components': [({**old_assignments[rebound[p['id']]], 'reference': p['id']} if p['id'] in rebound else None) or
+                                  old_assignments.get(p['id']) or (
                        {**old_assignments[added[p['id']]], 'reference': p['id']} if p['id'] in added else None) or {
                        'reference': p['id'], 'lib_id': p['lib_id'], 'footprint': p['footprint'],
                        'assembly': 'smd', 'connector': None} for p in parts]}

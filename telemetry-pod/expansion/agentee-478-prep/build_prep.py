@@ -15,7 +15,7 @@ SCH, NETS = net['components'], net['nets']
 ALLOC_PATH = EXP / 'blocks/allocation.json'
 ALLOC = json.loads(ALLOC_PATH.read_text())
 EXTRACT = {k: json.loads((OUT / 'extract' / f).read_text()) for k, f in
-           [('emitted', 'emitted-0b68a0ac.json'),  # AGENTEE-484 regenerated emission (was emitted-2f1c9557.json)
+           [('emitted', 'emitted-cbfea9be.json'),  # AGENTEE-488 regenerated emission (484: emitted-0b68a0ac.json; earlier emitted-2f1c9557.json)
              ('r5', 'r5-8f3bc234.json'), ('route3', 'route3-08066170.json')]}
 BOARD = dict(EXTRACT['emitted']['footprints'])
 # AGENTEE-484: parts added by the source repair exist in the regenerated schematic but on no board yet.
@@ -66,7 +66,7 @@ move(['C44'], None, 'gnss-receiver-support',
 move(['C130'], None, 'adc', 'AGENTEE-484 added: 1 uF U4.16 Vdd bypass (MCP3208: 1 uF is recommended)', 'source intent adc/C130')
 move(['C131'], None, 'afe', 'AGENTEE-484 added: 100 nF U8.4 V+ bypass', 'source intent power/C131')
 move(['C132'], None, 'sensor-ref', 'AGENTEE-484 added: 100 nF U9.5 V+ bypass (OPA320: 0.1-uF bypass close to the supply pins)', 'source intent power/C132')
-move(['C133'], None, 'can', 'AGENTEE-484 added: 100 nF U100.5 VIO bypass', 'source intent can/C133')
+move(['C133'], None, 'can', 'AGENTEE-484 added: 100 nF U100.5 VIO bypass; AGENTEE-488: VIO-to-VCC (pin 2 on /+5V_CAN)', 'source intent can/C133')
 move(['R33'], None, 'mcu',
      'R33 (10 k) pulls U1 IO46 (/MCU_BOOT46) to GND: a strap of the module. mcu is the U1 support block '
      'anchored on the fixed U1, so a member reachable only through the fixed anchor is expected and valid.',
@@ -230,33 +230,12 @@ GAPS = [  # IC supply pins with no dedicated decoupler in the emitted schematic
     ('U100', '5', 'VIO', None, None), ('U11', '2', 'Vin', None, None)]
 GAPS = []  # AGENTEE-484: every former gap now has a disposition (see dispositions.json)
 
-def pad(fp, number, netname=None):
-    c = [p for p in fp['pads'] if p['number'] == number and (netname is None or p['net'] == netname)]
-    return c[0] if c else None
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from relationship_measure import pad, dist, leg, gnd_return_leg as return_leg, named_return_leg, verdict  # noqa: E402
+# AGENTEE-488 (agent-529 061a1b20 v2): VIO-to-VCC capacitors with NAMED supply and return endpoints (no GND inference)
+NAMED_RETURN = {('U100', '5', 'C133'): {'device_pad': '3', 'support_pad': '2', 'net': '/+5V_CAN'},
+                ('U21', '5', 'C84'): {'device_pad': '3', 'support_pad': '2', 'net': '/+5V_CAN'}}
 
-def dist(fa, pa, fb, pb):
-    dz = 0.0 if fa['side'] == fb['side'] else 1.6
-    return round(math.sqrt((pa['x'] - pb['x']) ** 2 + (pa['y'] - pb['y']) ** 2 + dz ** 2), 3)
-
-def leg(board, ra, pna, rb, netname, pnb=None):
-    if ra not in board or rb not in board or board[rb].get('on_board') is False:
-        return None
-    fa, fb = board[ra], board[rb]
-    a = pad(fa, pna)
-    bs = [p for p in fb['pads'] if p['net'] == netname and (pnb is None or p['number'] == pnb)]
-    if not a or not bs:
-        return None
-    return min(dist(fa, a, fb, b) for b in bs)
-
-def return_leg(board, ic, cap):
-    if ic not in board or cap not in board or board[cap].get('on_board') is False:
-        return None
-    fi, fc = board[ic], board[cap]
-    gi = [p for p in fi['pads'] if p['net'] == '/GND']
-    gc = [p for p in fc['pads'] if p['net'] == '/GND']
-    if not gi or not gc:
-        return None
-    return min(dist(fi, a, fc, b) for a in gi for b in gc)
 
 def measure(rel):
     out = {}
@@ -267,19 +246,16 @@ def measure(rel):
                       'verdict': 'not-on-board (added by AGENTEE-484; measured after regeneration and placement)'}
             continue
         s = leg(bd, rel['device']['ref'], rel['device']['pin'], rel['support']['ref'], rel['device']['net'])
-        r = return_leg(bd, rel['device']['ref'], rel['support']['ref']) if rel['bound'].get('return_leg_max_mm') else None
+        if not rel['bound'].get('return_leg_max_mm'):
+            r = None
+        elif rel.get('return'):
+            r = named_return_leg(bd, rel['device']['ref'], rel['support']['ref'], rel['return'])
+        else:
+            r = return_leg(bd, rel['device']['ref'], rel['support']['ref'])
         same = bd[rel['device']['ref']]['side'] == bd[rel['support']['ref']]['side']
         res = {'supply_leg_mm': s, 'return_leg_mm': r, 'faces': [bd[rel['device']['ref']]['side'],
                                                                  bd[rel['support']['ref']]['side']]}
-        b = rel['bound']
-        if b.get('status') == 'UNRESOLVED' or s is None:
-            res['verdict'] = 'n/a'
-        else:
-            ok = s <= b['supply_leg_max_mm'] and (r is None or b.get('return_leg_max_mm') is None or
-                                                  r <= b['return_leg_max_mm'])
-            if b.get('same_face_required') and not same:
-                ok = False
-            res['verdict'] = 'within' if ok else 'exceeds'
+        res['verdict'] = verdict(rel['bound'], s, r, same)
         out[k] = res
     return out
 
@@ -316,11 +292,14 @@ def add(kind, ic, pin, sup, bound_cls, cite=None, note=None, unresolved=None, ga
         bound = {'status': 'UNRESOLVED', 'reason': unresolved}
     kind = kind or 'decoupling-gap'
     rid = f"{ic}.{pin}-{sup or 'none'}-{kind}"
+    named_return = NAMED_RETURN.get((ic, pin, sup))
     rel = {'id': rid, 'kind': kind,
            'device': {'ref': ic, 'pin': pin, 'pin_function': fn, 'net': netname},
            'support': {'ref': sup, 'pin_net': netname} if sup else None,
            'membership': {'device': member_of.get(ic), 'support': member_of.get(sup) if sup else None},
            'bound': bound, 'provenance': prov}
+    if named_return:
+        rel['return'] = dict(named_return, device=ic, support=sup)
     if note:
         rel['note'] = note
     if gap_alt:
@@ -656,6 +635,21 @@ fixed_rules['shared']['JP1-JP5 (block members)'] = {'role': 'assembly configurat
 for rail in RAILS:
     fixed_rules['rails'][rail] = {'parts': 'none: rails are nets, not memberships; rail capacitors are bound to their device pins in relationship-bounds.json', 'merge_rule': 'a common rail never merges blocks'}
 
+# AGENTEE-488: the named-return relationships in agent-524's agent-ee.electrical-locality/1 interface
+locality = {'schema': 'agent-ee.electrical-locality/1', 'obligations': []}
+for r in rels:
+    if r.get('return'):
+        dv, sp, ret = r['device'], r['support'], r['return']
+        prov = {'citation': '; '.join(f"{x.get('source', x['class'])} p{x.get('page')}" if x.get('page') else x['class'] for x in r['provenance']),
+                'numeric_provenance': EJ, 'decision': 'agent-529 061a1b20 v2 (VIO-to-VCC)'}
+        locality['obligations'].append({'id': r['id'], 'metric': 'pad-centre-to-centre',
+            'supply': {'from': {'reference': dv['ref'], 'pad': dv['pin'], 'net': dv['net']},
+                       'to': {'reference': sp['ref'], 'pad': '1', 'net': dv['net']},
+                       'max_distance_nm': int(round(r['bound']['supply_leg_max_mm'] * 1e6)), **prov},
+            'return': {'from': {'reference': dv['ref'], 'pad': ret['device_pad'], 'net': ret['net']},
+                       'to': {'reference': sp['ref'], 'pad': ret['support_pad'], 'net': ret['net']},
+                       'max_distance_nm': int(round(r['bound']['return_leg_max_mm'] * 1e6)), **prov}})
+
 # ---------------------------------------------------------------- write
 def anchor_of(b):
     a = anchors.get(b)
@@ -663,7 +657,7 @@ def anchor_of(b):
 alloc2 = {'schema': 'agent-ee.block-allocation/2 (proposed; /1 consumers ignore fixed/shared)',
           'derived_from': {'path': 'telemetry-pod/expansion/blocks/allocation.json', 'sha256': sha(ALLOC_PATH)},
           'board_sha256': EXTRACT['emitted']['sha256'],
-          'inventory': {'board_sha256': EXTRACT['emitted']['sha256'], 'board_extract': 'extract/emitted-0b68a0ac.json', 'schematic_netlist': 'extract/' + NETLIST.name,
+          'inventory': {'board_sha256': EXTRACT['emitted']['sha256'], 'board_extract': 'extract/emitted-cbfea9be.json', 'schematic_netlist': 'extract/' + NETLIST.name,
                         'schematic_netlist_sha256': sha(NETLIST), 'schematic_only_not_yet_on_board': SCHEMATIC_ONLY},
           'blocks': [{'id': b, 'references': sorted(rs, key=nat), 'anchor': anchor_of(b),
                       'interfaces_to_fixed': FIXED_ANCHOR.get(b)} for b, rs in sorted(blocks.items())],
@@ -676,7 +670,8 @@ for name, doc in [('allocation-v2.json', alloc2), ('side-eligibility.json', elig
                                                 'metric_note': 'pad-centre distance is a lower bound of trace length; routed length is measured only after routing',
                                                 'bound_classes': {k: {'supply_leg_max_mm': v[0], 'return_leg_max_mm': v[1], 'same_face_required': v[2], 'topology': v[3], 'numeric_provenance': EJ} for k, v in BOUND.items()},
                                                 'sources': SRC, 'old_obligations_disposition': old_dispo, 'relationships': rels}),
-                  ('cross-face-templates.json', templates), ('fixed-shared-rules.json', fixed_rules)]:
+                  ('cross-face-templates.json', templates), ('fixed-shared-rules.json', fixed_rules),
+                  ('electrical-locality-named-returns.json', locality)]:
     (OUT / name).write_text(json.dumps(doc, indent=1) + '\n')
 print('blocks', len(blocks), 'members', sum(len(v) for v in blocks.values()), 'fixed', len(FIXED), 'shared', len(SHARED),
       'relationships', len(rels), 'unresolved', sum(1 for r in rels if r['bound'].get('status') == 'UNRESOLVED'))

@@ -1,0 +1,640 @@
+{
+ "constraint_provenance": {
+  "/fixed_footprints/1": {
+   "class": "derived",
+   "derivation": "D-PCB-4: J2 anchor x 85.24 mm on the right edge gives inset 4.76 mm at y 28 mm.",
+   "facts": [
+    {
+     "quote": "Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge",
+     "source": {
+      "path": "telemetry-pod/expansion/design-rules/constraints.json",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     }
+    }
+   ]
+  },
+  "/fixed_footprints/4": {
+   "class": "derived",
+   "derivation": "D-PCB-13 v3: J3 anchor (8.9, 32.0) on B.Cu, rotation 90, mouth at the left edge, gives inset 8.9 mm and position 33 mm from the left edge start (0, 65); the card lane overhangs the left edge by 20.3 mm.",
+   "facts": [
+    {
+     "quote": "J3 is fixed at (8.9, 32.0) on B, rotation 90, mouth at the left board edge",
+     "source": {
+      "path": "telemetry-pod/expansion/design-rules/constraints.json",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     }
+    },
+    {
+     "quote": "declared overhang band, left edge, 20.3 mm",
+     "source": {
+      "path": "telemetry-pod/expansion/design-rules/constraints.json",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     }
+    }
+   ]
+  },
+  "/keepouts/1": {
+   "class": "derived",
+   "derivation": "D-PCB-7 v2: In1.Cu no-tracks rule area over the board outline (0,0)-(90,65).",
+   "facts": [
+    {
+     "quote": "In1.Cu stays a pure GND reference (no-tracks rule area over the outline",
+     "source": {
+      "path": "telemetry-pod/expansion/design-rules/constraints.json",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     }
+    }
+   ]
+  },
+  "/keepouts/2": {
+   "class": "derived",
+   "derivation": "D-PCB-6: no tracks and no vias on In1.Cu and In2.Cu in x 76..88 mm, y 26.5..30.6 mm.",
+   "facts": [
+    {
+     "quote": "keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm",
+     "source": {
+      "path": "telemetry-pod/expansion/design-rules/constraints.json",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     }
+    }
+   ]
+  }
+ },
+ "fab_profile": {
+  "name": "jlc04161h-7628",
+  "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
+ },
+ "fixed_footprints": [
+  {
+   "courtyard_overhangs": [
+    {
+     "edge": "bottom",
+     "max_mm": 22.85
+    }
+   ],
+   "edge": "bottom",
+   "insertion": "from_top",
+   "inset_mm": 9.5,
+   "position_mm": 45,
+   "reference": "J1",
+   "rotation_deg": 0,
+   "side": "front",
+   "tolerance_mm": 0
+  },
+  {
+   "courtyard_overhangs": [
+    {
+     "edge": "right",
+     "max_mm": 9.73
+    }
+   ],
+   "edge": "right",
+   "insertion": "through_edge",
+   "inset_mm": 4.76,
+   "position_mm": 28,
+   "reference": "J2",
+   "rotation_deg": 180,
+   "side": "front",
+   "tolerance_mm": 0
+  },
+  {
+   "courtyard_overhangs": [
+    {
+     "edge": "top",
+     "max_mm": 21.25
+    },
+    {
+     "edge": "right",
+     "max_mm": 6.5
+    }
+   ],
+   "edge": "top",
+   "insertion": "from_top",
+   "inset_mm": 6.5,
+   "position_mm": 72.5,
+   "reference": "U1",
+   "rotation_deg": 0,
+   "side": "front",
+   "tolerance_mm": 0
+  },
+  {
+   "edge": "top",
+   "insertion": "from_top",
+   "inset_mm": 10,
+   "position_mm": 12,
+   "reference": "U2",
+   "rotation_deg": 0,
+   "side": "front",
+   "tolerance_mm": 0
+  },
+  {
+   "courtyard_overhangs": [
+    {
+     "edge": "left",
+     "max_mm": 20.3
+    }
+   ],
+   "edge": "left",
+   "insertion": "through_edge",
+   "inset_mm": 8.9,
+   "position_mm": 33,
+   "reference": "J3",
+   "rotation_deg": 90,
+   "side": "back",
+   "tolerance_mm": 0
+  }
+ ],
+ "id": "expanded-pod-microsd-production",
+ "keepouts": [
+  {
+   "antenna": {
+    "facts_check": "antenna-facts",
+    "reference": "U1"
+   },
+   "forbid": [
+    "footprints",
+    "tracks",
+    "vias",
+    "pads",
+    "copper_pours"
+   ],
+   "id": "radio-antenna",
+   "layers": [
+    "F.Cu",
+    "In1.Cu",
+    "In2.Cu",
+    "B.Cu"
+   ]
+  },
+  {
+   "forbid": [
+    "tracks"
+   ],
+   "id": "D-PCB-7v2-In1-no-tracks",
+   "layers": [
+    "In1.Cu"
+   ],
+   "polygon": [
+    [
+     0,
+     0
+    ],
+    [
+     90,
+     0
+    ],
+    [
+     90,
+     65
+    ],
+    [
+     0,
+     65
+    ]
+   ]
+  },
+  {
+   "forbid": [
+    "tracks",
+    "vias"
+   ],
+   "id": "D-PCB-6-RF-reference",
+   "layers": [
+    "In1.Cu",
+    "In2.Cu"
+   ],
+   "polygon": [
+    [
+     76,
+     26.5
+    ],
+    [
+     88,
+     26.5
+    ],
+    [
+     88,
+     30.6
+    ],
+    [
+     76,
+     30.6
+    ]
+   ]
+  }
+ ],
+ "layer_count": 4,
+ "mounting_holes": [
+  {
+   "at": [
+    4,
+    4
+   ],
+   "drill_mm": 3.2,
+   "id": "H1",
+   "plated": false,
+   "tolerance_mm": 0
+  },
+  {
+   "at": [
+    86,
+    4
+   ],
+   "drill_mm": 3.2,
+   "id": "H2",
+   "plated": false,
+   "tolerance_mm": 0
+  },
+  {
+   "at": [
+    86,
+    61
+   ],
+   "drill_mm": 3.2,
+   "id": "H3",
+   "plated": false,
+   "tolerance_mm": 0
+  },
+  {
+   "at": [
+    4,
+    61
+   ],
+   "drill_mm": 3.2,
+   "id": "H4",
+   "plated": false,
+   "tolerance_mm": 0
+  }
+ ],
+ "obligations": [
+  {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/mounting_holes/0"
+     },
+     {
+      "locator": "/mounting_holes/1"
+     },
+     {
+      "locator": "/mounting_holes/2"
+     },
+     {
+      "locator": "/mounting_holes/3"
+     }
+    ],
+    "open": [
+     {
+      "id": "hole-authority",
+      "stage": "physical_qualification",
+      "statement": "H1-H4 drill, plating, inset and coordinates are generator-selected values carried from placement-inputs/envelope.json (POD-ME-HOLES); no owner, manufacturer or standard source fixes them. The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; the mounting interface is sourced from it once designed."
+     },
+     {
+      "id": "fabricated-holes",
+      "stage": "physical_qualification",
+      "statement": "Fabricated hole position, drill and plating are not verified; generation witnesses only the declared holes on the candidate board."
+     }
+    ]
+   },
+   "id": "corner-holes",
+   "owner_items": [
+    "AGENTEE-177",
+    "AGENTEE-179"
+   ],
+   "requirement_ids": [
+    "POD-ME-1",
+    "POD-AC-7"
+   ],
+   "statement": "Provide four corner mounting holes; generator selects drill, plating, inset and coordinates."
+  },
+  {
+   "coverage": {
+    "generation": [],
+    "open": [
+     {
+      "id": "candidate-heights",
+      "stage": "candidate_assessment",
+      "statement": "Component heights of a generated candidate are assessed from captured part heights; no height cap is adopted."
+     },
+     {
+      "id": "cowl-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; fit under the tail cowl is verified against it."
+     },
+     {
+      "id": "underside-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; back-side clearance, J3 included, is verified against it."
+     },
+     {
+      "id": "connector-fit",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; J1 and J2 installed height and access are verified against it."
+     },
+     {
+      "id": "mating-plug-fit",
+      "stage": "physical_qualification",
+      "statement": "The mated AMPSEAL plug envelope against the enclosure is not established (connector-candidate/mating-interface records it as unresolved)."
+     },
+     {
+      "id": "harness-fit",
+      "stage": "physical_qualification",
+      "statement": "The harness is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; its routing and bend clearance are verified against it."
+     }
+    ]
+   },
+   "id": "height",
+   "owner_items": [
+    "AGENTEE-177",
+    "AGENTEE-179"
+   ],
+   "requirement_ids": [
+    "POD-ME-1"
+   ],
+   "statement": "No 12 mm height limit is adopted. Actual cowl, underside, connector, mating-plug and harness clearances require enclosure validation for the expanded pod."
+  },
+  {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/fixed_footprints/0"
+     },
+     {
+      "criterion": "outline-containment/1",
+      "locator": "/fixed_footprints/0"
+     },
+     {
+      "criterion": "part-identity/1",
+      "locator": "/fixed_footprints/0"
+     }
+    ],
+    "open": [
+     {
+      "id": "panel-cutout",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; the J1 panel cutout is verified against it."
+     },
+     {
+      "id": "mating-plug",
+      "stage": "physical_qualification",
+      "statement": "Engagement of the mating plug and the mated envelope are not established (connector-candidate/mating-interface)."
+     },
+     {
+      "id": "retention",
+      "stage": "physical_qualification",
+      "statement": "Board-lock and plug retention are not established; no PCB retention is inferred from contact retention."
+     },
+     {
+      "id": "thickness-tolerance",
+      "stage": "physical_qualification",
+      "statement": "Board thickness [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2]. Relayed board choice: Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"accept the standard JLCPCB four-layer 1.6 mm nominal finished-board choice and its published standard tolerance.\" Relayed checks: Cairn d162e001-8f44-47cb-8960-d68ac9484d14 (verbatim): \"Keep normal footprint, finished-hole/pad, retention and solder-joint checks; a narrower requirement would need a concrete source or observed failure.\" Agent reasoning (not owner text): the J1 footprint, finished-hole, pad, board-lock and solder-tail checks against the TE drawing for the fabricated board therefore stay open here, and no thickness limit is adopted. The fabricator finished-thickness tolerance is a board-side fact; the component-side through-hole fit screening is a separate rule (Cairn 9561cd0c-759a-461e-955d-8f32829a5a73 (verbatim): \"Do not conflate these two tolerances.\"; agent-ee AGENTEE-448) and is not evaluated by this item."
+     },
+     {
+      "id": "harness-clearance",
+      "stage": "physical_qualification",
+      "statement": "The harness is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; clearance at the J1 edge is verified against it."
+     }
+    ]
+   },
+   "id": "harness-edge",
+   "owner_items": [
+    "AGENTEE-177",
+    "AGENTEE-179"
+   ],
+   "requirement_ids": [
+    "POD-CD-HARNESS-CONNECTOR",
+    "POD-ME-2"
+   ],
+   "statement": "Place selected TE 1-776163-1 35-position harness connector at the board edge using its captured K1 drawing and exact footprint. Panel cutout, mating plug, retention, board thickness tolerance and harness clearance remain unqualified."
+  },
+  {
+   "coverage": {
+    "generation": [
+     {
+      "locator": "/fixed_footprints/2"
+     },
+     {
+      "criterion": "outline-containment/1",
+      "locator": "/fixed_footprints/2"
+     },
+     {
+      "locator": "/keepouts/0"
+     }
+    ],
+    "open": [
+     {
+      "id": "feed-point-side",
+      "stage": "physical_qualification",
+      "statement": "The antenna feed-point side relative to the installed orientation is not qualified."
+     },
+     {
+      "id": "housing-pocket",
+      "stage": "physical_qualification",
+      "statement": "The enclosure is an open design deliverable, not a blocker to candidate generation [owner-relayed, agent-drafted, unconfirmed; telemetry-pod/expansion/connector-candidate/mating-interface/sources/owner-decision-2026-10-22-board-thickness.txt sha256 e190ade5ee8e7c75deb131cd00446e16a265bcd9e1177586d6a175f141429ac2], Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 (verbatim): \"Keep the owner direction that enclosure/harness are future design deliverables\"; the non-metallic antenna pocket (D-PCB-16) is verified against it."
+     },
+     {
+      "id": "nearby-metal",
+      "stage": "physical_qualification",
+      "statement": "Metal near the installed antenna (frame, cowl fixings, harness) is not assessed."
+     },
+     {
+      "id": "support",
+      "stage": "physical_qualification",
+      "statement": "Mechanical support of the overhanging module in the enclosure is not established."
+     },
+     {
+      "id": "rf-performance",
+      "stage": "physical_qualification",
+      "statement": "Installed RF performance needs a bench measurement (POD-AC-9)."
+     }
+    ]
+   },
+   "id": "antenna",
+   "owner_items": [
+    "AGENTEE-177",
+    "AGENTEE-179"
+   ],
+   "requirement_ids": [
+    "POD-CD-MCU-AND-RADIO",
+    "POD-AC-7"
+   ],
+   "statement": "ESP32-S3-WROOM-1 antenna overhangs the top edge (D-PCB-16, owner 2026-10-21: outside-board placement case, Espressif hardware design guidelines Section 1.4.7, page 33). The module-owned keepout rule area is retained from the captured footprint; datasheet Figure 11-1 module dimensions define no base-board clearance (AGENTEE-211). Feed-point side, housing clearance and RF performance remain unqualified."
+  },
+  {
+   "coverage": {
+    "generation": [],
+    "open": [
+     {
+      "id": "placement-assessment",
+      "stage": "candidate_assessment",
+      "statement": "The generated candidate is assessed for tall or heavy parts near U2 (J1, the SMA, electrolytic capacitors and L1); no numeric keep-apart threshold is adopted, and L1 near U2 stays an unresolved concern, not a pass."
+     },
+     {
+      "id": "vibration-coupling",
+      "stage": "physical_qualification",
+      "statement": "Vibration coupling into the IMU on the installed pod needs bench or installed evidence."
+     }
+    ]
+   },
+   "id": "imu-separation",
+   "owner_items": [
+    "AGENTEE-177",
+    "AGENTEE-179"
+   ],
+   "requirement_ids": [
+    "POD-ME-4"
+   ],
+   "statement": "Keep tall or heavy parts, including harness connector, SMA and electrolytic capacitors, away from the IMU."
+  }
+ ],
+ "outline": {
+  "edges": [
+   {
+    "end": [
+     90,
+     0
+    ],
+    "name": "top",
+    "start": [
+     0,
+     0
+    ]
+   },
+   {
+    "end": [
+     90,
+     65
+    ],
+    "name": "right",
+    "start": [
+     90,
+     0
+    ]
+   },
+   {
+    "end": [
+     0,
+     65
+    ],
+    "name": "bottom",
+    "start": [
+     90,
+     65
+    ]
+   },
+   {
+    "end": [
+     0,
+     0
+    ],
+    "name": "left",
+    "start": [
+     0,
+     65
+    ]
+   }
+  ]
+ },
+ "schema": "agent-ee.envelope/2",
+ "stackup": {
+  "layers": [
+   {
+    "copper_weight_oz": 1,
+    "kind": "copper",
+    "name": "F.Cu",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.035
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 1",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "7628 / prepreg: 0.21040 mm",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.2104
+   },
+   {
+    "copper_weight_oz": 0.5,
+    "kind": "copper",
+    "name": "In1.Cu",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.0152
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 2",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "core: 1.065 mm",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 1.065
+   },
+   {
+    "copper_weight_oz": 0.5,
+    "kind": "copper",
+    "name": "In2.Cu",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.0152
+   },
+   {
+    "kind": "dielectric",
+    "name": "dielectric 3",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "7628 / prepreg: 0.21040 mm",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.2104
+   },
+   {
+    "copper_weight_oz": 1,
+    "kind": "copper",
+    "name": "B.Cu",
+    "source": {
+     "as_of": "2026-10-18",
+     "page": 1,
+     "path": "sources/jlcpcb-stackup.txt",
+     "quote": "F.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n",
+     "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+     "source": "https://jlcpcb.com/impedance#JLC04161H-7628"
+    },
+    "thickness_mm": 0.035
+   }
+  ],
+  "nominal_thickness_mm": 1.6,
+  "physical_thickness_mm": 1.5862
+ }
+}
