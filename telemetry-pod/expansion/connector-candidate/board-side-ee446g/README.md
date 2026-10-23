@@ -42,7 +42,8 @@ stays UNKNOWN. The addendum then compares each fact with the rows below:
 - a8 stays consistent (nominal). JLC's ±0.1 mm precision-routing option is recorded with its published
   conditions (minimum 50*50 mm, 3 tooling holes ≥ 1.5 mm) and left unqualified.
 - a2, a4, a7 → documented uncertainty (published tolerance bands do not nest).
-- a6, b1 and registration stay unknown.
+- a6, b1 and registration stay unknown. Registration (U1) is "not stated in the retrieved page; no other page
+  was fetched."
 
 The tables below are the accepted packet as reviewed; the addendum supersedes their verdicts where it says so.
 

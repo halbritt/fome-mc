@@ -47,7 +47,7 @@ published tolerances: no source or physical check shows a failing feature, so no
 | F8 | Dimension Tolerance (PCB specifications table) | "±0.1mm(Precision) and ±0.2mm(Regular) for CNC routing, and ±0.4mm for V-scoring" | The precision option is conditional. Outline table, Routed row, item ③: "③ Dimension tolerance for routed board edges: ±0.2 mm (regular precision); ±0.1 mm (high precision)". Item ④: "④ Minimum dimension 50*50mm for high precision, and at least 3 tooling holes with minimum 1.5mm diameter on different corners." Applicability to this board is **unqualified** (not demonstrated, selected or assumed); the regular ±0.2 applies by default |
 | F9 | Thickness Tolerance | "e.g. For the 1.6mm board thickness, the finished board thickness ranges from 1.44mm(T-1.6×10%) to 1.76mm(T+1.6×10%)" | Thickness ≥ 1.0 mm |
 | F10 | NPTH pad annular ring | "Recommended 0.45 mm or more." | NPTH with a copper pad; the J1 locators have none |
-| U1 | Layer / drill-to-copper registration | **UNKNOWN** | Not stated on the page; no capabilities sub-page is linked; no other JLC URL was fetched |
+| U1 | Layer / drill-to-copper registration | **UNKNOWN** | not stated in the retrieved page; no other page was fetched. |
 | U2 | TE 108-1329 board-lock / retention leg | **UNKNOWN** | HTTP 403 (above) |
 
 ## Row-by-row comparison
