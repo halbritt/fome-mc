@@ -268,6 +268,21 @@ def observe(prepared, out, export):
     interpreter = CHECKOUT / '.venv-krt/bin/python'
     version = subprocess.run([str(interpreter), '-I', '-c', 'import sys; print(sys.version.split()[0])'],
                              capture_output=True, text=True, check=True).stdout.strip()
+    if not (prepared / 'campaign.json').is_file():
+        # AGENTEE-485 R1: the runtime identities are still recorded when the preparation produced no campaign; the
+        # missing campaign is a problem (fail closed), never a pass.
+        problems.append(f'prepared campaign {prepared / "campaign.json"} is missing; the preparation was refused')
+        result = {'schema': 'pod-capture.runtime-observation/2', 'problems': problems, 'rust': rust,
+                  'runtime_agent_ee': {'path': runtime_src, 'mode': 'mounted-export' if mounted else 'image',
+                                       'equals_export': not export_problems if mounted else not differ,
+                                       'image_opt_agent_ee_equals_export': not differ, 'export': str(export),
+                                       'pinned_router': attempt.PIN},
+                  'router': {'checkout': str(CHECKOUT), 'preflight': preflight, 'source_sha256_recomputed': source,
+                             'extension': {'path': str(module), 'sha256_recomputed': sha(module)},
+                             'krt': {k: krt.get(k) for k in ('commit', 'source_sha256', 'extension_module')}}}
+        Path(out).write_text(text(result))
+        print(json.dumps({'problems': problems, 'rust': rust and rust['binary']['sha256']}))
+        return 1
     campaign = json.loads((prepared / 'campaign.json').read_text())
     declaration = campaign['routing_adapter']
     adapter.validate_declaration(declaration)
