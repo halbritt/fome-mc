@@ -80,7 +80,7 @@ The 37 former residual parts:
   - C06, B: the J1 PTH pin field, for the 11 blocks around J1.
 - **Material unknowns carried per block:**
   - C19: heights, both faces. The owner cowl estimate (C22) is context only, not a per-face budget (478b).
-  - C22: enclosure. The owner estimate is "~90mm or more" for an unspecified dimension: not a cap and not measured. The outline is not cowl-constrained (478b).
+  - C22: enclosure. The owner estimate is about 90 mm of provisional available HEIGHT for the full stack (enclosure floor and lid, standoffs, board, both-face parts, connector bodies, cable/harness). It is not a measured rigid cap. Length and width are substantially larger, and the outline has no numeric cowl constraint (478b, corrected per a13a1ba8 v2).
   - C04: H1–H4 hardware is M3, selected by agents (owner answer). The envelope radius stays UNKNOWN on both faces, pending AGENTEE-480 (478b).
   - C23: thermal, for the regulator, MCU and switch blocks.
   - The opposite-face area under the U5/U7 exposed pad is reserved for thermal vias (LMR36520 p28 item 7); its size is UNKNOWN.
@@ -245,14 +245,14 @@ The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../
 |---|---|
 | C20 | "Pogo clip on bench" |
 | C21 | "Once, on the bench" |
-| C22 / C19 | "I'm sure it's ~90mm or more." |
+| C22 / C19 | "I'm sure it's ~90mm or more." (fd5bea71@1); correction: "90mm height, the length and width are quite a bit more than that" (27c51f73@1) |
 | C04 | "Agents pick M3 hardware" |
 
 **Engineering interpretation** (`owner_answer.interpretation`):
 - **C20:** a hand-held pogo clip or probes on the bare board before enclosure. Bottom-side TPs are allowed, BLE OTA is used after sealing, and there is no fixed fixture pattern and no post-seal access. Only probe-tip approach clearance is reserved: no tall part or screw hardware over or around the pads. Its size is UNKNOWN.
 - **C21:** one-time soldering-iron access on the bare board before enclosure.
-- **C22 / C19:** an owner estimate of about 90 mm or more for an **unspecified** cowl dimension. It is not a cap, not an assumed smallest dimension and not a measured fit. The outline is not cowl-constrained; fit stays with bench/install verification.
-  - **Discrepancy:** the 519 brief relays this as "90mm height, the length and width are quite a bit more than that". The single reference does not contain that wording and says "unspecified dimension", so the data keeps the dimension unspecified. 449/529 may confirm.
+- **C22 / C19 (per a13a1ba8 v2, which supersedes the v1 cowl paragraph):** about 90 mm is the provisional available **HEIGHT**, an owner estimate and not a measured rigid cap. It covers the full vertical stack: enclosure floor and lid, standoffs, board, both-face parts, connector bodies, and cable/harness. Length and width are substantially larger, with no numeric outline constraint. Final fit stays with bench/install verification. The per-face height budget remains UNKNOWN; no clearance PASS.
+  - The earlier v1 "unspecified dimension" reading, and the discrepancy note about it, are superseded; they remain in git history (`93adc6c`).
 - **C04:** M3 hardware, selected and sourced by agent-507 in AGENTEE-480 (pending). The selection is not duplicated here; the head/washer/standoff/driver envelope stays UNKNOWN on both faces until AGENTEE-480 supplies it.
 
 **Changed entries (before → after):**
@@ -265,7 +265,7 @@ The 10 decoupling-gap entries are replaced by sourced per-pin dispositions (`../
 | side-eligibility `test_assembly_access_plan.purpose` / `.JP1-JP5` | factory programming before sealing / during assembly before sealing | bench pogo clip before enclosure, BLE OTA after, no post-seal access / once, on the bench, bare board before enclosure |
 | side-eligibility `shared.JP1-JP5` | solder-iron access before sealing; unknown: tool angle / access footprint / timing | one-time soldering-iron access on the bare board before enclosure; unknown: access-zone size (timing decided) |
 | side-eligibility `blocks.*.material_unknowns` C04 ×4 | radius UNKNOWN; envelope UNKNOWN | M3 hardware (owner); radius and envelope UNKNOWN pending AGENTEE-480; no clearance PASS |
-| side-eligibility `blocks.*.material_unknowns` C19 / C22 | heights / "enclosure / cowl / harness envelope" | the same UNKNOWN, plus the owner estimate as context (not a cap, not measured, unspecified dimension, outline not cowl-constrained) |
+| side-eligibility `blocks.*.material_unknowns` C19 / C22 | heights / "enclosure / cowl / harness envelope" | the same UNKNOWN, plus the owner estimate as context (about 90 mm provisional available HEIGHT for the full stack, not a measured cap; length/width substantially larger; outline not cowl-constrained) |
 | fixed-shared-rules `fixed.H1-H4.access` | hardware envelope UNKNOWN F/B (C04) | M3 hardware (owner: "Agents pick M3 hardware"); envelope UNKNOWN F/B pending AGENTEE-480 (C04) |
 | fixed-shared-rules `shared.TP1-TP6` | side_rule: one common face, either | adds `access` (hand clip/probes, approach clearance only, no fixture pattern, no post-seal access) and `owner_answer`; side_rule: either face per pad, common face only an optional labelled convenience |
 | fixed-shared-rules `shared.JP1-JP5` | role / membership / side_rule only | adds `access` (one-time iron access on the bare board before enclosure, zone size UNKNOWN) and `owner_answer` |

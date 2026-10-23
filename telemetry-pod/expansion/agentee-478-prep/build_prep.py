@@ -459,8 +459,10 @@ OWNER = {
             'interpretation': 'hand-held pogo clip / probes on the bare board, on the bench, before enclosure; bottom-side TPs allowed; BLE OTA after sealing. No fixed fixture pattern, no post-seal access. Reserve probe-tip approach clearance only (no tall parts or screw hardware over or around the pads)'},
     'C21': {'quote': 'Once, on the bench', 'source': OWNER_SRC,
             'interpretation': 'one-time soldering-iron access on the bare board before enclosure only'},
-    'C22': {'quote': "I'm sure it's ~90mm or more.", 'source': OWNER_SRC,
-            'interpretation': 'owner estimate of ~90 mm or more for an UNSPECIFIED cowl dimension (529 notice): not a hard cap, not an assumed smallest dimension, not a measured fit. The 519 brief relays it as "90mm height, the length and width are quite a bit more than that"; that wording is not in the single reference, so the dimension stays unspecified here. The board outline is not cowl-constrained by this answer. Physical fit stays with bench/install verification'},
+    'C22': {'quote': "I'm sure it's ~90mm or more.",
+            'quote_correction': '90mm height, the length and width are quite a bit more than that',
+            'source': OWNER_SRC + '; cowl paragraph superseded by a13a1ba8 v2 (owner relays fd5bea71@1 and correction 27c51f73@1)',
+            'interpretation': 'about 90 mm is the provisional available HEIGHT (owner estimate, not a measured rigid cap) for the full vertical stack: enclosure floor and lid, standoffs, board, both-face parts, connector bodies, cable/harness. Length and width are substantially larger, with no numeric outline constraint; the outline is not cowl-constrained. Final physical fit stays with bench/install verification. The v1 unspecified/smallest-dimension reading is superseded'},
     'C04': {'quote': 'Agents pick M3 hardware', 'source': OWNER_SRC,
             'interpretation': 'hardware is M3, selected and sourced by agents: agent-507 in AGENTEE-480 (pending). Head/washer/standoff/driver geometry is reserved on the relevant faces once AGENTEE-480 supplies it; not duplicated here'},
 }
@@ -468,8 +470,8 @@ HOLES = [{'id': 'C04', 'face': 'F,B', 'region': f'around {h} ({x},{y}), radius U
           'rule': 'M3 hardware (owner: "Agents pick M3 hardware"); head/washer/standoff/driver envelope UNKNOWN on both faces until AGENTEE-480 supplies the selected geometry; hole courtyard only is enforced; no clearance PASS',
           'owner_answer': OWNER['C04']}
          for h, x, y in [('H1', 4, 4), ('H2', 86, 4), ('H3', 86, 61), ('H4', 4, 61)]]
-UNKNOWNS_ALL = [{'id': 'C19', 'what': 'installed heights of all parts on both faces; enclosure clearance per face (the owner ~90 mm-or-more estimate for an unspecified cowl dimension is context only, not a height budget per face)', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']},
-                {'id': 'C22', 'what': 'enclosure / cowl / harness envelope: owner estimate "~90mm or more" for an unspecified dimension; not a cap, not measured; outline not cowl-constrained; fit carried to bench/install verification', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']}]
+UNKNOWNS_ALL = [{'id': 'C19', 'what': 'installed heights of all parts on both faces; enclosure clearance per face (owner: about 90 mm provisional available HEIGHT for the full stack incl. enclosure floor/lid, standoffs, board, both-face parts, connector bodies, cable/harness; not a measured cap; per-face heights still UNKNOWN)', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']},
+                {'id': 'C22', 'what': 'enclosure / cowl / harness envelope: owner estimate about 90 mm available HEIGHT for the full stack (not a measured rigid cap); length/width substantially larger, no numeric outline constraint; fit carried to bench/install verification', 'region': 'whole board', 'face': 'F,B', 'owner_answer': OWNER['C22']}]
 THERMAL = {'pre-6v3', 'buck-3v3', 'supplies-5v', 'mcu', 'gnss-antenna-supply', 'storage-support',
            'sensor-power-front', 'sensor-power-rear', 'sensor-power-tire', 'aux-power'}
 NEAR_J1 = {'power-entry', 'can', 'tire-can', 'wheel-input', 'sensor-power-front', 'sensor-power-rear',
