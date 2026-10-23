@@ -64,6 +64,9 @@ MECHANICAL_SOURCES = {'mechanics/agentee-490-bound-reservations.json': X / 'agen
 # envelope stackup (agent-ee.envelope/2 dielectric_type/epsilon_r/loss_tangent); thickness, copper and every layer
 # source stay byte-identical, and a declaration that names another layer or thickness is refused.
 STACKUP_MATERIALS = MECHANICAL / 'stackup-materials.json'
+# AGENTEE-485 F6: the retained J2 132134 Rev C drawing (1ec1d365...) and its source/PCB-pattern bindings.
+J2_132134 = X / 'agentee-494-j2'
+J2_132134_CARRIED = ('132134-revC.pdf', 'source-manifest.json', 'pad-map.json')
 J3_CATALOG = MICROSD / 'stock/catalog.json'
 SOURCES = HERE / 'sources'
 GUIDELINES = SOURCES / 'esp32-guidelines'
@@ -1041,6 +1044,13 @@ def build(out, agent_ee, mechanical=False, materials=False):
             if root.copy(source, dest)['sha256'] != expected[dest]:
                 raise ValueError('mechanical reservations are stale against ' + rel(source))
         revised['mechanical_reservations'] = root.copy(MECHANICAL / 'reservations.json', 'mechanics/reservations.json')
+        # AGENTEE-485 F6 disposition: canonical acquisition is deferred, so the retained Amphenol 132134 Rev C
+        # drawing and its source/PCB-pattern bindings ride in the production capture at their fome-mc paths,
+        # each verified against the 494-j2 SHA256SUMS (provenance only; nothing reads them as acceptance).
+        sums = dict(line.split()[::-1] for line in (J2_132134 / 'SHA256SUMS').read_text().splitlines() if line.strip())
+        for name in J2_132134_CARRIED:
+            if root.copy(J2_132134 / name, rel(J2_132134 / name))['sha256'] != sums[name]:
+                raise ValueError(f'{rel(J2_132134 / name)} differs from its 494-j2 SHA256SUMS')
     if materials:
         stackup_materials = json.loads(STACKUP_MATERIALS.read_text())
         if stackup_materials.get('schema') != 'agentee-489.stackup-materials/1':

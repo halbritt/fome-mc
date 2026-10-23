@@ -811,7 +811,28 @@ derivation = {**derivation, 'schema': 'pod-capture.scope-composition/4',
               'assembly': {'check': next(c for c in assembled['checks'] if c['id'] == 'assembly'),
                            'stock': coverage, 'hand_fit': hand_fit},
               'blocks': obligation_record}
+# AGENTEE-485 P1 (agent-533 485-B contract, agent-ee docs/add-planes.md "Final DRC obligation binding"): the
+# composition names the exact plan link, the final full DRC check declares the in-campaign add-planes producer by
+# path and stage only (its report hash is resolved after production, never precomputed), and an EMPTY output slot
+# reserves the report path in the inventory. Runtimes without add_planes.report_path keep the unbound DRC params
+# and their unbound-obligation refusal; the binding mode is recorded either way.
+PLANES_PRODUCER = add_planes.report_path(inputs['planes']) if hasattr(add_planes, 'report_path') else None
+if PLANES_PRODUCER is not None:
+    derivation['planes'] = [{'path': inputs['planes'], 'sha256': sha(planning / inputs['planes'])}]
+derivation['planes_binding'] = 'stage-owned add-planes producer' if PLANES_PRODUCER else 'unsupported by runtime'
 (planning / 'composition/scope-composition.json').write_text(text(derivation))
+if PLANES_PRODUCER is not None:
+    final_drc = next(c for c in composed['checks'] if c['id'] == 'drc')
+    if final_drc['kind'] != 'drc' or final_drc['stage'] != 'routing' or final_drc['params'] != {}:
+        raise SystemExit(f'unexpected final DRC check {final_drc}')
+    if (planning / PLANES_PRODUCER).exists():
+        raise SystemExit(f'{PLANES_PRODUCER} already exists in the planning capture')
+    (planning / PLANES_PRODUCER).write_bytes(b'')
+    composed['checks'][composed['checks'].index(final_drc)] = {**final_drc, 'params': {'plane_obligations': [{
+        'plan': {'path': inputs['planes'], 'sha256': sha(planning / inputs['planes'])},
+        'producer': {'path': PLANES_PRODUCER, 'stage': 'add-planes'},
+        'composition': {'path': 'composition/scope-composition.json',
+                        'sha256': sha(planning / 'composition/scope-composition.json')}}]}}
 scope = write_scope(planning, composed)
 
 
