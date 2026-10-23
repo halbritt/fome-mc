@@ -1,3 +1,5 @@
+**CURRENT AUTHORITY: [2026-10-23 owner correction](OWNER-CORRECTION.md) supersedes conflicting historical findings below. Keep 132134; SMT search cancelled; paper fit-blocker withdrawn.**
+
 # AGENTEE-494b interface continuation
 
 Recommend **Würth 60312102114405** as the first alternative for chief review. It is the single SMT RF connector evaluated in this slice. Its published land pattern and reproduced native footprint remove the 132134 pin-to-hole fit problem while retaining standard SMA, the 105 °C part rule and the active-antenna DC path. Rank the selected-direction Amphenol 132134 second: its larger-hole joint still depends on an unpublished pin-axis interpretation and an unqualified solder process. Neither recommendation adopts a canonical part or authorizes fabrication.

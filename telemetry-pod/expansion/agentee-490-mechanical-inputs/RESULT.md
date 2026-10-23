@@ -1,3 +1,5 @@
+**CURRENT AUTHORITY: [2026-10-23 owner correction](OWNER-CORRECTION.md) supersedes conflicting historical findings below. Keep 132134; SMT search cancelled; paper fit-blocker withdrawn.**
+
 # AGENTEE-490 bounded mechanical input result
 
 The standard JLCPCB thickness range cannot guarantee insertion into the selected Molex J2 slot. `DECISIONS.md` is the single decision table; `J2-decision.json` gives the sourced interval arithmetic and concrete alternatives. The recommended finite alternative is a standard Amphenol 132134 vertical SMA jack, with a checked five-pad candidate at `(103,40,F0)`. It changes the BOM, footprint, access axis and RF launch, so agent-449 must route that choice through agent-519. It is not adopted here. Retaining the Molex instead needs the explicit tighter finished-edge requirement in option B, which is not a published JLCPCB standard capability.

@@ -1,3 +1,5 @@
+**CURRENT AUTHORITY: [2026-10-23 owner correction](OWNER-CORRECTION.md) supersedes conflicting historical findings below. Keep 132134; SMT search cancelled; paper fit-blocker withdrawn.**
+
 # AGENTEE-490 mechanical input decisions
 
 This is a partial engineering result against the frozen inputs in `source-manifest.json`. It supplies finite choices and reservations; it does not adopt a connector, notch, enclosure or unqualified mating pose. Agent-449 integrates and sends reserved choices through agent-519. The ordinary RF geometry remains 0.293 mm track with 0.2032 mm gaps on both flanks.

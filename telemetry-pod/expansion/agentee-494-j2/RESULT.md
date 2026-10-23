@@ -1,3 +1,5 @@
+**CURRENT AUTHORITY: [2026-10-23 owner correction](OWNER-CORRECTION.md) supersedes conflicting historical findings below. Keep 132134; SMT search cancelled; paper fit-blocker withdrawn.**
+
 # AGENTEE-494 J2 joint and sealed interface
 
 The agent-529 coordinator decision, relayed by agent-449 (class: agent-relayed, not owner-stated), selects Amphenol 132134. The proposed sealed-interface concept keeps it inside the enclosure and uses a compatible sealed SMA bulkhead cable assembly. The candidate 095-902-570-006 orientation and dimensions remain UNRESOLVED/unsourced without a retained source capture. The stock holes do not establish a worst-case insertion guarantee. This packet supplies the original pattern, a conditional enlarged-hole footprint and writer recipes. Complete joint, packing, RF and enclosure acceptance remain open for the specific evidence listed below.
