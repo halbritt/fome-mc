@@ -116,6 +116,40 @@ with tempfile.TemporaryDirectory() as tmp:
 nosel = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'), 'check'],
                        capture_output=True, text=True)
 case('H4: historical receipt without explicit selection is refused', nosel.returncode != 0 and 'historical-j6b' in (nosel.stdout + nosel.stderr))
+# H4 re-fix: identity comparison, selection kinds, legacy rule, pre-launch selection
+m = load()
+H = m.HISTORICAL_J6B
+with tempfile.TemporaryDirectory() as tmp:
+    def bound_receipt(manifest_doc, kind='manifest'):
+        rdir = Path(tempfile.mkdtemp(dir=tmp)); shutil.copytree(HERE / 'evidence/production-runtime-j6b', rdir / 'r')
+        man = rdir / 'manifest.json'; man.write_text(json.dumps(manifest_doc))
+        rec = json.loads((rdir / 'r/receipt.json').read_text())
+        rec['runtime_selection'] = {'kind': kind, 'path': str(man), 'sha256': hashlib.sha256(man.read_bytes()).hexdigest()}
+        (rdir / 'r/receipt.json').write_text(json.dumps(rec))
+        r = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'),
+                            '--receipt-dir', str(rdir / 'r'), 'check'], capture_output=True, text=True)
+        return r.returncode, r.stdout + r.stderr
+    agreeing = {'schema': m.RUNTIME_SCHEMA, **{k: H[k] for k in m.RUNTIME_KEYS}}
+    rc, out = bound_receipt(agreeing)
+    case('H4: receipt bound to an AGREEING manifest checks OK', rc == 0)
+    for key in ('agent_ee_commit', 'router_commit', 'source_sha256', 'extension_sha256', 'config'):
+        bad = dict(agreeing); bad[key] = ('sha256:' + 'a' * 64) if key == 'config' else ('a' * len(H[key]))
+        rc, out = bound_receipt(bad)
+        case(f'H4: contradictory selected {key} vs unchanged receipt FAILS', rc != 0)
+    rc, out = bound_receipt(agreeing, kind='mystery')
+    case('H4: unknown selection kind rejected', rc != 0 and 'unknown runtime selection kind' in out)
+    man = Path(tmp) / 'agree.json'; man.write_text(json.dumps(agreeing))
+    r = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'),
+                        '--runtime', str(man), 'check'], capture_output=True, text=True)
+    case('H4: legacy receipt checked with a manifest selection is refused (explicit historical only)',
+         r.returncode != 0 and 'historical-j6b' in (r.stdout + r.stderr))
+m = load()
+m.configure(runtime='telemetry-pod/expansion/production-capture/runtime/agentee-484r2.json')
+inv = m.invocation('/run', '/tool/agent-ee')
+pre = inv['pre_launch_identity_check']['argv']
+case('H4: pre-launch command passes the selected runtime', pre[pre.index('--runtime') + 1] == '/pod/runtime-manifest.json')
+case('H4: pre-launch container mounts the selected manifest', 'RUNTIME_MANIFEST:/pod/runtime-manifest.json:ro' in inv['container'])
+case('H4: current runtime path names no historical c4 index', inv['image']['c4_index'] is None)
 hist = subprocess.run([sys.executable, '-B', str(SCRIPT), '--evidence', str(HERE / 'evidence/emission-7d5b0d4d'), '--runtime', 'historical-j6b', 'check'],
                       capture_output=True, text=True)
 case('historical j6b receipt checks with explicit --runtime historical-j6b', hist.returncode == 0 and 'runtime receipt OK' in hist.stdout)
