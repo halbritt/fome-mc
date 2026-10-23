@@ -2,7 +2,7 @@
   "schema": "agentee-486.candidate-delta/1",
   "adopted": false,
   "activation": "Never activate from this administrative correction. Source owner must explicitly emit adopted part/net edits and new native bindings, then regenerate downstream data; existing base-part inventory stays unchanged.",
-  "authority": "4f45ed17-0afe-4a2b-bd17-14f48dba1eee@1, corrected by 0749f277-d948-46e9-8dd7-cd22f129a848@1; bounded correction 1023f164-da86-47eb-a68a-d098161b29f8@1",
+  "authority": "agent-529 061a1b20@2, relayed via519/449 in1023f164@1 andd56a843d@1; supersedes rejected v1 C134 proposal. Native source adoption remains explicit.",
   "base_board_sha256": "0b68a0ac4b3978b77faa497fd208b35a376c89d576f1b4e08b276966db997eac",
   "operations": [
     {
@@ -43,7 +43,12 @@
       "characterization_primary_url": "https://product.tdk.com/system/files/dam/doc/product/capacitor/ceramic/mlcc/charasheet/cga6p3x7r1e226m250ab.pdf",
       "characterization_binding": "Same existing C6/C7 part CGA6P3X7R1E226MT000N/C694521; sheet explicitly covers CGA6P3X7R1E226MT****. Manufacturer suffix M250AB is characterization designation, not a different selected MPN.",
       "decision_status": "Selected by 529 in 061a1b20@2 as relayed in 1023f164-da86-47eb-a68a-d098161b29f8@1; native source adoption is not performed by this evidence overlay.",
-      "decision_rationale": "Engineering margin within REF50xxI/AI section 9.3; not stability repair and no EI-to-AI stability minimum or margin ratio claimed"
+      "decision_rationale": "Engineering margin within REF50xxI/AI section 9.3; not stability repair and no EI-to-AI stability minimum or margin ratio claimed",
+      "superseded_original_part_evidence": {
+        "path": "/home/halbritt/.local/share/agent-ee/reviews/2026-10-23-ee488-agent522/tdk-c18.pdf",
+        "sha256": "f55c63a80ee3d73708c054e701c053f739231f66d75a1aa4ffbe0eac3669b06b",
+        "scope": "Original0603C18 part characterization only; selected1210C18 dimensions are supported by tdk-c6-characterization.pdf bee79427..."
+      }
     },
     {
       "reference": "C84",
