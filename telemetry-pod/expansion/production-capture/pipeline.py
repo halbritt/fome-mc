@@ -270,9 +270,10 @@ def stock_coverage():
     from agent_ee.jlc_stock_capture import validate_capture
     doc = read(STOCK_AT + '/catalog.json')
     info = validate_capture(doc, lambda rel: (planning / STOCK_AT / rel).read_bytes())
-    lcsc = {p['lcsc'] for p in read(inputs['parts'])['parts'] if p.get('lcsc')}
+    lcsc = {p['lcsc'] for p in read(inputs['parts'])['parts'] if p.get('lcsc', '').startswith('C')}
     observed = set(doc['parts']) | set(info['not_found'])
-    deviated = sorted(d['original']['lcsc'] for d in read(inputs['deviations'])['deviations'])
+    deviated = sorted(d['original']['lcsc'] for d in read(inputs['deviations'])['deviations']
+                      if d['original']['lcsc'] is not None)
     key = lambda c: int(c[1:])  # noqa: E731
     per_id = stock_status(doc, lcsc, deviated)
     return {'capture': {'path': STOCK_AT + '/catalog.json', 'sha256': sha(planning / STOCK_AT / 'catalog.json'),
@@ -280,6 +281,10 @@ def stock_coverage():
                         'endpoint': doc['source']['endpoint'], 'method': doc['source']['method'],
                         'requested': len(info['requested']), 'not_found': info['not_found'], 'failed': info['failed']},
             'bom_lcsc': len(lcsc), 'observed': len(lcsc & observed),
+            'external_parts': [{'reference': p['instances'][0]['reference'], 'mpn': p['mpn'],
+                                'lcsc': None, 'stock': None, 'assembly': 'not_assembled'}
+                               for p in read(inputs['parts'])['parts']
+                               if p.get('selection', {}).get('kind') == 'external'],
             'unobserved': sorted(lcsc - observed, key=key), 'outside_bom': sorted(observed - lcsc, key=key),
             'deviated': deviated, 'evaluated_at': EVALUATED_AT, 'max_age_hours': 24,
             'status_counts': {k: sum(1 for r in per_id.values() if r['status'] == k)
@@ -297,7 +302,7 @@ def stock_status(doc, lcsc, deviated):
     """Per BOM LCSC id: what this capture observed, when, from which source, and whether it is stale."""
     quantity = {}
     for p in read(inputs['parts'])['parts']:
-        if p.get('lcsc'):
+        if p.get('lcsc', '').startswith('C'):
             quantity[p['lcsc']] = quantity.get(p['lcsc'], 0) + len(p['instances'])
     requests = {r['lcsc']: r for r in doc['requests']}
     now = datetime.fromisoformat(EVALUATED_AT)
@@ -324,47 +329,22 @@ def stock_status(doc, lcsc, deviated):
 
 
 def hand_fit_chain():
-    """The J1 source chain (agent-509): recompute every link; ask the pinned export whether it can express it."""
-    declared = json.loads(HAND_FIT.read_text())['hand_fit_policy']
+    """Independent J1 and J2 approvals; validate captured quotes and engineering mapping with the runtime."""
+    declared = read('composition/hand-fit-policy.json')
     links = {}
     for rel, expected in HAND_FIT_CHAIN.items():
         links[rel] = {'sha256': sha(planning / rel), 'recorded_by_agent_509': expected,
                       'equals_fome_mc': (planning / rel).read_bytes() == (ROOT / rel).read_bytes()}
         if links[rel]['sha256'] != expected or not links[rel]['equals_fome_mc']:
             raise ValueError(f'hand-fit chain source {rel} is not the recorded bytes')
-    cited = [declared, declared['selection'], *declared['selection']['records']]
-    for c in cited:
-        if sha(planning / c['source']) != c['sha256']:
-            raise ValueError(f"declared hand-fit citation {c['source']} differs from its sha256")
-    line = (planning / declared['source']).read_text().split('\n')[declared['line'] - 1]
-    chosen = (planning / declared['selection']['source']).read_text().split('\n')[declared['selection']['line'] - 1]
-    if declared['quote'] not in line or declared['selection']['quote'] not in chosen:
-        raise ValueError('a hand-fit quote is not on its cited line')
-    record = sha(planning / 'telemetry-pod/expansion/j1-historical-source/C596198.json')
-    for r in declared['selection']['records']:
-        obj = json.loads((planning / r['source']).read_text())
-        for token in [t for t in r['pointer'].split('/')[1:]]:
-            obj = obj[int(token)] if isinstance(obj, list) else obj[token]
-        if (obj['mpn'], obj['lcsc']) != ('1-776163-1', 'C596198'):
-            raise ValueError(f"{r['source']}{r['pointer']} is not the selected J1 identity")
-        if 'selection' in obj and obj['selection'].get('part_record_sha256') != record:
-            raise ValueError(f"{r['source']}{r['pointer']} names another part record")
-    deviation = next(d for d in read(inputs['deviations'])['deviations'] if d.get('policy') == 'owner_hand_fit')
-    if deviation['original'] not in declared['identities']:
-        raise ValueError('the owner_hand_fit deviation identity is not the chain identity')
-    try:
-        validated = assembly_readiness._validate_hand_fit_policy(copy.deepcopy(declared), inputs['deviations'])
-        verified = assembly_readiness._verify_hand_fit_policy(planning, validated)
-        export = {'status': 'expressible', 'class': verified['class'],
-                  'association': verified.get('selection', {}).get('association'),
-                  'part_record_links': verified.get('selection', {}).get('part_record_links')}
-    except Exception as exc:  # the pinned validator's own refusal, kept verbatim
-        validated, export = None, {'status': 'refused by this agent-ee export', 'error': f'{type(exc).__name__}: {exc}'}
-    # The scope carries the declared citation, which the check validates again at run time; the validator's
-    # normalized result (with the reviewed decision fields) is not a check parameter.
-    return {'declared': {'path': HAND_FIT.relative_to(ROOT).as_posix(), 'sha256': sha(HAND_FIT)},
-            'links': links, 'deviation_identity': deviation['original'], 'agent_ee': export,
-            'declared_in_scope': validated is not None}, (copy.deepcopy(declared) if validated is not None else None)
+    validated = assembly_readiness._validate_hand_fit_policy(copy.deepcopy(declared), inputs['deviations'])
+    verified = assembly_readiness._verify_hand_fit_policy(planning, validated)
+    if len(verified) != 2:
+        raise ValueError('exactly two independent hand-fit approvals required')
+    return {'declared': {'path': 'composition/hand-fit-policy.json',
+                          'sha256': sha(planning / 'composition/hand-fit-policy.json')},
+            'links': links, 'agent_ee': {'status': 'expressible', 'approvals': verified},
+            'declared_in_scope': True}, declared
 
 
 # 0a. The assembly layer: one assembly_readiness check, so --ratings reaches rating_provenance.
@@ -721,7 +701,9 @@ def compose_scope(base):
     probes = sorted(i['reference'] for x in manifest['parts'] if x.get('kind') == 'bare_copper_probe' for i in x['instances'])
     hand_fit = sorted({(d['original']['mpn'], d['original']['lcsc']) for d in read(inputs['deviations'])['deviations']
                        if d.get('assembly') == 'hand_soldered'})
-    hand_fit_refs = sorted(i['reference'] for x in manifest['parts'] if (x.get('mpn'), x.get('lcsc')) in hand_fit
+    hand_fit_refs = sorted(i['reference'] for x in manifest['parts']
+                           if any(mpn == x.get('mpn') and (lcsc is None or lcsc == x.get('lcsc'))
+                                  for mpn, lcsc in hand_fit)
                            for i in x['instances'])
     # AGENTEE-485 J2: exactly J1 (POD-AC-5) and J2 (owner clarification ccbe2294@1), both owner_hand_fit.
     if hand_fit_refs != ['J1', 'J2']:
@@ -976,7 +958,22 @@ def production_content(scaffold_out, work):
     scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs, **extra)
     import pcbnew
     board = pcbnew.LoadBoard(str(work / BOARD))
+    j2 = next(f for f in board.GetFootprints() if f.GetReference() == 'J2')
+    if (not str(j2.m_Uuid.AsString()).startswith('18c6ebf4') or
+            j2.GetFPID().GetLibItemName() != 'SMA_Amphenol_132134_Manufacturer'):
+        raise ValueError('native J2 is not the adopted UUID/Amphenol footprint')
+    pattern = sorted((p.GetNumber(), round(pcbnew.ToMM(p.GetDrillSize().x), 3)) for p in j2.Pads())
+    if pattern != [('1', 1.5), ('2', 1.7), ('2', 1.7), ('2', 1.7), ('2', 1.7)]:
+        raise ValueError('native J2 drill pattern differs from published 132134')
+    access_out = OUT / 'access-rebound'
+    subprocess.run([sys.executable, '-B', str(X / 'agentee-489-source/materialize.py'), str(ROOT),
+                    '--board', str(work / BOARD), '--out', str(access_out)], check=True)
+    reservations = json.loads((access_out / 'reservations.json').read_text())
+    if len(reservations['reservations']) != 44:
+        raise ValueError('rederived mechanical access inventory must contain 44 rows')
     return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
+            'j2_native_pattern': pattern, 'access_rows': len(reservations['reservations']),
+            'access_sha256': sha(access_out / 'reservations.json'),
             'fixed': sorted(f.GetReference() for f in board.GetFootprints()
                             if f.GetReference() in {'J1', 'J2', 'J3', 'U1', 'U2', 'H1', 'H2', 'H3', 'H4'})}
 stage('scaffold.scaffold production scope', lambda: run_scaffold(planning, OUT / 'scaffold'))

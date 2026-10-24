@@ -1,0 +1,115 @@
+{
+ "anchor_mm": [
+  80,
+  28
+ ],
+ "class": "engineering",
+ "footprint": "Agentee494:SMA_Amphenol_132134_Manufacturer",
+ "ground_pads": {
+  "centres_mm": [
+   [
+    77.46,
+    25.46
+   ],
+   [
+    77.46,
+    30.54
+   ],
+   [
+    82.54,
+    25.46
+   ],
+   [
+    82.54,
+    30.54
+   ]
+  ],
+  "number": "2"
+ },
+ "insertion": "from_top",
+ "limitations": "Writer pose and advisory corridor; final native geometry checked separately. No routed RF or filled-return-path qualification.",
+ "polygon_mm": [
+  [
+   76,
+   26.5
+  ],
+  [
+   81.5,
+   26.5
+  ],
+  [
+   81.5,
+   30.6
+  ],
+  [
+   76,
+   30.6
+  ]
+ ],
+ "reference": "J2",
+ "rotation_deg": 0,
+ "rule_area_bindings": {
+  "460352a8-dace-51a2-842b-c1e4ef7ad212": {
+   "polygon_mm": [
+    [
+     0,
+     0
+    ],
+    [
+     90,
+     0
+    ],
+    [
+     90,
+     65
+    ],
+    [
+     0,
+     65
+    ]
+   ],
+   "role": "whole-board In1 no-tracks reference; unchanged",
+   "tracks_forbidden": true,
+   "vias_forbidden": false
+  },
+  "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae": {
+   "polygon_mm": [
+    [
+     76,
+     26.5
+    ],
+    [
+     81.5,
+     26.5
+    ],
+    [
+     81.5,
+     30.6
+    ],
+    [
+     76,
+     30.6
+    ]
+   ],
+   "role": "RF corridor rebound to chosen J2 pad 1",
+   "tracks_forbidden": true,
+   "vias_forbidden": true
+  }
+ },
+ "rule_area_uuids": [
+  "460352a8-dace-51a2-842b-c1e4ef7ad212",
+  "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae"
+ ],
+ "side": "front",
+ "signal_pad": {
+  "centre_mm": [
+   80,
+   28
+  ],
+  "number": "1"
+ },
+ "source": {
+  "path": "telemetry-pod/expansion/agentee-494-j2/pad-map.json",
+  "sha256": "d1fff305bab238a2e2ce003e05405742a39656e628a5ee527d897d9ee971879b"
+ }
+}

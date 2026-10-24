@@ -25,15 +25,21 @@ Rules kept here (agent-ee docs/mechanical-reservations.md):
 Usage (native KiCad environment, via native-admit):
   PYTHONPATH=<frozen-agent-ee>/src python3 -B materialize.py <repo-root>
 """
-import hashlib, json, math, re, shutil, sys, tempfile
+import argparse, hashlib, json, math, re, shutil, sys, tempfile
 from decimal import Decimal
 from pathlib import Path
 
-ROOT = Path(sys.argv[1]).resolve()
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('root', type=Path)
+parser.add_argument('--board', type=Path, help='fresh emitted candidate; source design is never changed')
+parser.add_argument('--out', type=Path, help='isolated materialization output directory')
+args = parser.parse_args()
+ROOT = args.root.resolve()
 POD = ROOT / 'telemetry-pod'
 SRC = POD / 'expansion/agentee-490-mechanical-inputs/bound-reservations.json'
-BOARD = POD / 'telemetry-pod.kicad_pcb'
-OUT = POD / 'expansion/agentee-489-source'
+BOARD = args.board.resolve() if args.board else POD / 'telemetry-pod.kicad_pcb'
+OUT = args.out.resolve() if args.out else POD / 'expansion/agentee-489-source'
+OUT.mkdir(parents=True, exist_ok=True)
 # Candidate-relative paths at which the production capture must place the bytes (see RESULT.md gap G1).
 BOARD_REL = 'mechanics/original-board.kicad_pcb'
 SRC_REL = 'mechanics/agentee-490-bound-reservations.json'

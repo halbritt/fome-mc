@@ -2,7 +2,7 @@
  "constraint_provenance": {
   "/fixed_footprints/1": {
    "class": "derived",
-   "derivation": "D-PCB-4: J2 anchor x 85.24 mm on the right edge gives inset 4.76 mm at y 28 mm.",
+   "derivation": "WRITER engineering pose: J2 top-side anchor (80,28), rotation 0, from_top; sourced 132134 body and courtyard inside board. Supersedes Molex edge datum; no owner pose claim.",
    "facts": [
     {
      "quote": "Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge",
@@ -48,7 +48,7 @@
   },
   "/keepouts/2": {
    "class": "derived",
-   "derivation": "D-PCB-6: no tracks and no vias on In1.Cu and In2.Cu in x 76..88 mm, y 26.5..30.6 mm.",
+   "derivation": "WRITER engineering rebind of D-PCB-6: U3 RF pad (77.5,29.1) to adopted J2 pad 1 (80,28); 1.5 mm advisory margin, x 76..81.5, y 26.5..30.6. Both inner-layer RF areas follow this sourced-endpoint corridor; no routing/return-path acceptance.",
    "facts": [
     {
      "quote": "keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm",
@@ -82,18 +82,12 @@
    "tolerance_mm": 0
   },
   {
-   "courtyard_overhangs": [
-    {
-     "edge": "right",
-     "max_mm": 9.73
-    }
-   ],
    "edge": "right",
-   "insertion": "through_edge",
-   "inset_mm": 4.76,
+   "insertion": "from_top",
+   "inset_mm": 10,
    "position_mm": 28,
    "reference": "J2",
-   "rotation_deg": 180,
+   "rotation_deg": 0,
    "side": "front",
    "tolerance_mm": 0
   },
@@ -209,11 +203,11 @@
      26.5
     ],
     [
-     88,
+     81.5,
      26.5
     ],
     [
-     88,
+     81.5,
      30.6
     ],
     [

@@ -68,6 +68,9 @@ MECHANICAL_SOURCES = {'mechanics/agentee-490-bound-reservations.json': X / 'agen
 STACKUP_MATERIALS = MECHANICAL / 'stackup-materials.json'
 # AGENTEE-485 F6: the retained J2 132134 Rev C drawing (1ec1d365...) and its source/PCB-pattern bindings.
 J2_132134 = X / 'agentee-494-j2'
+J2_SOURCE = X / 'j2-historical-source'
+J2_RECORD = J2_SOURCE / '132134.json'
+J2_FP = 'Agentee494:SMA_Amphenol_132134_Manufacturer'
 J2_132134_CARRIED = ('132134-revC.pdf', 'source-manifest.json', 'pad-map.json')
 J3_CATALOG = MICROSD / 'stock/catalog.json'
 SOURCES = HERE / 'sources'
@@ -98,7 +101,8 @@ GENERATED = ['refs.json', 'parts.json', 'footprints.json', 'assignments.json', '
              'part-refs.json', 'deviations.json', 'j3-source.json', 'envelope.json', 'antenna-facts.json',
              'captured-rule-areas.json', 'library-updates.json', 'intent.writer.json', 'binding-ledger.json',
              'binding-migration.json', 'rating-comparison.json', 'rating-sources.json', 'rating-facts.json',
-             'datasheet-source-selection.json', 'fab-profile.json', 'project-models.json']
+             'datasheet-source-selection.json', 'fab-profile.json', 'project-models.json', 'hand-fit-policy.json',
+             'j2-hand-fit-mapping.json', 'j2-rf-binding.json', 'J2.external-part-record.json', 'intent.adopted.json']
 # FOMEMC-34 (agent-449 pod lane): both 3D models bound into the prepared scope at the path the footprints name.
 MODELS_AT = 'project/inputs/models/'
 MODEL_REFERENCE = '${KIPRJMOD}/inputs/models/'
@@ -235,6 +239,8 @@ def libraries(root):
         root.copy(source, name)
     if len(updates) != 4 or len(patched) != 4 or len(bindings) != 1:
         raise ValueError('expected exactly the four patched footprints and the one U3 model binding')
+    root.copy(J2_132134 / 'Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod',
+              'footprints/Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod')
     return updates, bindings
 
 
@@ -328,6 +334,9 @@ def footprint_manifest(root, updates, bindings=()):
     missing = set(after) - {m['path'] for lib in manifest['libraries'] for m in lib['members']}
     if missing:
         raise ValueError('patched footprints absent from the manifest: ' + ', '.join(sorted(missing)))
+    manifest['libraries'].append({'name': 'Agentee494', 'members': [{
+        'path': 'footprints/Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod',
+        'sha256': sha(root.out / 'footprints/Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod')}]})
     return manifest
 
 
@@ -472,7 +481,8 @@ def envelope(constraints_blob):
     record = json.loads(ENVELOPE.read_text())
     record['id'] = 'expanded-pod-microsd-production'
     fixed = {f['reference']: f for f in record['fixed_footprints']}
-    fixed['J2']['inset_mm'] = 4.76
+    fixed['J2'].update(side='front', inset_mm=10, position_mm=28, rotation_deg=0, insertion='from_top')
+    fixed['J2'].pop('courtyard_overhangs', None)
     record['fixed_footprints'].append({
         'reference': 'J3', 'side': 'back', 'edge': 'left', 'position_mm': 33, 'inset_mm': 8.9,
         'rotation_deg': 90, 'insertion': 'through_edge', 'tolerance_mm': 0,
@@ -480,7 +490,7 @@ def envelope(constraints_blob):
     outline = [[0, 0], [90, 0], [90, 65], [0, 65]]
     record['keepouts'] += [
         {'id': 'D-PCB-7v2-In1-no-tracks', 'polygon': outline, 'layers': ['In1.Cu'], 'forbid': ['tracks']},
-        {'id': 'D-PCB-6-RF-reference', 'polygon': [[76, 26.5], [88, 26.5], [88, 30.6], [76, 30.6]],
+        {'id': 'D-PCB-6-RF-reference', 'polygon': [[76, 26.5], [81.5, 26.5], [81.5, 30.6], [76, 30.6]],
          'layers': ['In1.Cu', 'In2.Cu'], 'forbid': ['tracks', 'vias']}]
     for item in record['obligations']:
         if item['id'] == 'antenna':
@@ -501,7 +511,7 @@ def envelope(constraints_blob):
     record['constraint_provenance'] = {
         f"/fixed_footprints/{index['J2']}": {
             'class': 'derived',
-            'derivation': 'D-PCB-4: J2 anchor x 85.24 mm on the right edge gives inset 4.76 mm at y 28 mm.',
+            'derivation': 'WRITER engineering pose: J2 top-side anchor (80,28), rotation 0, from_top; sourced 132134 body and courtyard inside board. Supersedes Molex edge datum; no owner pose claim.',
             'facts': [fact('Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge')]},
         f"/fixed_footprints/{index['J3']}": {
             'class': 'derived',
@@ -516,7 +526,7 @@ def envelope(constraints_blob):
             'facts': [fact('In1.Cu stays a pure GND reference (no-tracks rule area over the outline')]},
         f"/keepouts/{len(record['keepouts']) - 1}": {
             'class': 'derived',
-            'derivation': 'D-PCB-6: no tracks and no vias on In1.Cu and In2.Cu in x 76..88 mm, y 26.5..30.6 mm.',
+            'derivation': 'WRITER engineering rebind of D-PCB-6: U3 RF pad (77.5,29.1) to adopted J2 pad 1 (80,28); 1.5 mm advisory margin, x 76..81.5, y 26.5..30.6. Both inner-layer RF areas follow this sourced-endpoint corridor; no routing/return-path acceptance.',
             'facts': [fact('keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm')]},
     }
     return record
@@ -831,7 +841,7 @@ def build(out, agent_ee, mechanical=False, materials=False):
                                             validate_declarations)
     from agent_ee.jlc_stock_capture import validate_capture
     from agent_ee.part_decisions import validate_deviation
-    from agent_ee.part_record import qualify_record
+    from agent_ee.part_record import qualify_record, qualify_external_record, prepare_external_record
     from agent_ee.parts_manifest import qualify_manifest, validate_manifest
     from agent_ee.scaffold_rule_areas import load_retention
     from agent_ee.storage import identity
@@ -847,8 +857,22 @@ def build(out, agent_ee, mechanical=False, materials=False):
     # Library closure and the writer-owned microSD intent, both unchanged except D-PCB-1/13.
     updates, bindings = libraries(root)
     intent_blob = root.copy(MICROSD / 'inputs/intent.json', 'composition/intent.json')
+    source_intent_blob = dict(intent_blob)
     root.copy(MICROSD / 'inputs/emitter-layout.json', 'composition/emitter-layout.json')
     intent = json.loads((out / intent_blob['path']).read_text())
+    j2 = next(c for c in intent['components'] if c['reference'] == 'J2')
+    j2_before = copy.deepcopy(j2)
+    record2 = json.loads(J2_RECORD.read_text())
+    if (record2['mpn'], record2['lcsc']) != ('132134', 'NO_LCSC'):
+        raise ValueError('J2 must be captured Amphenol 132134, never the Molex identity')
+    j2.update(footprint=J2_FP, value='132134')
+    j2['part_binding'] = {k: v for k, v in j2['part_binding'].items() if k == 'Qualification'}
+    j2['part_binding'].update(LCSC='NO_LCSC', Partnumber='132134', Manufacturer='Amphenol RF',
+                            Datasheet=record2['datasheet_url'], PARAM_Datasheet=json.dumps({
+                                'schema': 'agent-ee.datasheet-binding/1',
+                                'url': record2['datasheet_url'], 'sha256': record2['artifact']['sha256']},
+                                sort_keys=True, separators=(',', ':')))
+    intent_blob = root.write('composition/intent.adopted.json', intent)
     physical = {c['reference']: c for c in intent['components'] if not c['reference'].startswith('#')}
     additions = json.loads(ADDITIONS.read_text())['additions']
     if set(physical) != set(native['components']) or len(physical) != 305 + len(additions):
@@ -864,13 +888,33 @@ def build(out, agent_ee, mechanical=False, materials=False):
 
     # Existing named records, probes and copper features, re-verified against the microSD intent.
     old = json.loads(OLD_PARTS.read_text())
+    # Requalify the external record against the actual combined deviations document, not a detached J2 list.
+    root.copy(J2_RECORD, rel(J2_RECORD))
+    for path in qualify_external_record(record2, ROOT):
+        root.copy(ROOT / path, path)
+    j1_source = next(p for p in old['parts'] if p['instances'][0]['reference'] == 'J1')
+    production_deviations = {'schema': 'agent-ee.part-deviations/1',
+                            'deviations': [j1_deviation(spec_blob['path'], j1_source),
+                                           *json.loads((J2_SOURCE / 'deviations.json').read_text())['deviations']]}
+    production_deviations_blob = root.write('composition/deviations.json', production_deviations)
+    record2 = prepare_external_record(out, record2['identity_source'], record2['datasheets'], 'J2',
+                                      {**production_deviations_blob, 'index': 1})
+    record2_blob = root.write('composition/J2.external-part-record.json', record2)
     parts, kept = [], {}
     rebind = {r['reference']: r for r in json.loads(ADDITIONS.read_text()).get('rebindings', [])}  # AGENTEE-488
     old_by_ref = {p['instances'][0]['reference']: p for p in old['parts'] if len(p['instances']) == 1}
     rebound = {}
     for part in old['parts']:
         refs = [i['reference'] for i in part['instances']]
-        if refs and refs[0] in rebind and 'record' in rebind[refs[0]]:  # AGENTEE-491: identity from its canonical record
+        if refs == ['J2']:
+            part = {**copy.deepcopy(part), 'footprint': J2_FP,
+                    **{k: record2[k] for k in ('lcsc', 'mpn', 'manufacturer', 'package', 'stock')},
+                    'datasheet': {'status': 'captured', 'required': True, 'artifact': record2['artifact'],
+                                  'provenance': {**record2['datasheets'], 'locator': 'parts[id=J2]'}},
+                    'selection': {'kind': 'external', 'lcsc': 'NO_LCSC', 'part_record': record2_blob['path'],
+                                  'part_record_sha256': record2_blob['sha256'],
+                                  'decision_ref': {**intent_blob, 'locator': 'components[reference=J2]'}}}
+        elif refs and refs[0] in rebind and 'record' in rebind[refs[0]]:  # AGENTEE-491: identity from its canonical record
             r = rebind[refs[0]]
             record = json.loads((ROOT / r['record']).read_text())
             part = {**copy.deepcopy(part), 'role': f"Expanded pod {refs[0]} {physical[refs[0]]['value']}",
@@ -905,7 +949,8 @@ def build(out, agent_ee, mechanical=False, materials=False):
             if part['instances'][0]['nets'] != nets:
                 raise ValueError('copper feature nets differ: ' + ref)
         elif 'selection' in part:
-            record_path = ROOT / part['selection']['part_record']
+            record_root = out if ref == 'J2' else ROOT
+            record_path = record_root / part['selection']['part_record']
             record = json.loads(record_path.read_text())
             binding = comp['part_binding']
             sheet = json.loads(binding['PARAM_Datasheet'])
@@ -913,9 +958,12 @@ def build(out, agent_ee, mechanical=False, materials=False):
                     (binding['LCSC'], binding['Partnumber'], binding['Manufacturer']) or
                     (record['artifact']['sha256'], record['datasheet_url']) != (sheet['sha256'], sheet['url'])):
                 raise ValueError('binding differs from the canonical record: ' + ref)
-            root.copy(record_path, part['selection']['part_record'])
-            for path in qualify_record(record, ROOT):
-                root.copy(ROOT / path, path)
+            if ref != 'J2':
+                root.copy(record_path, part['selection']['part_record'])
+            qualifier = qualify_external_record if part['selection']['kind'] == 'external' else qualify_record
+            for path in qualifier(record, record_root):
+                if ref != 'J2':
+                    root.copy(ROOT / path, path)
             part['selection']['decision_ref'] = {**intent_blob, 'locator': f'components[reference={ref}]'}
         parts.append(part)
         kept[ref] = part['id']
@@ -964,6 +1012,8 @@ def build(out, agent_ee, mechanical=False, materials=False):
                        'assembly': 'smd', 'connector': None} for p in parts]}
     if sum(p['id'] not in old_assignments and p['id'] not in added for p in parts) != 1:
         raise ValueError('only J3 may lack an earlier footprint assignment')
+    a2 = next(a for a in assignments['components'] if a['reference'] == physical['J2']['id'])
+    a2.update(footprint=J2_FP, assembly='through_hole')
     assignments_blob = root.write('composition/assignments.json', assignments)
     declared = declarations()
     validate_declarations(declared)
@@ -981,6 +1031,26 @@ def build(out, agent_ee, mechanical=False, materials=False):
     parts_blob = root.write('composition/parts.json', document)
     qualification = qualify_manifest(document, out)
 
+    # Preserve J1's reviewed chain; J2 has its own verbatim approval and engineering identity mapping.
+    j1_policy = json.loads((HERE / 'assembly/hand-fit-policy.json').read_text())['hand_fit_policy']
+    for cited in j1_policy['selection']['records']:
+        if cited['source'] == 'composition/parts.json':
+            cited['sha256'] = parts_blob['sha256']
+            cited['pointer'] = '/parts/' + str(next(i for i, p in enumerate(parts)
+                                                   if p['instances'][0]['reference'] == 'J1'))
+    approval = J2_SOURCE / 'owner-handfit-ccbe2294.md'
+    approval_blob = root.copy(approval, rel(approval))
+    mapping = {'class': 'engineering', 'reference': 'J2', 'mpn': '132134', 'lcsc': None,
+               'approval': {'source': approval_blob['path'], 'sha256': approval_blob['sha256'],
+                            'record_id': 'ccbe2294@1'},
+               'context': {'source': rel(J2_RECORD), 'sha256': sha(J2_RECORD), 'pointer': ''}}
+    mapping_blob = root.write('composition/j2-hand-fit-mapping.json', mapping)
+    quote = approval.read_text().splitlines()[5]
+    root.write('composition/hand-fit-policy.json', [j1_policy, {
+        'source': approval_blob['path'], 'sha256': approval_blob['sha256'], 'line': 6, 'quote': quote,
+        'identities': [{'mpn': '132134', 'lcsc': None}],
+        'mapping': {'source': mapping_blob['path'], 'sha256': mapping_blob['sha256'], 'pointer': ''}}])
+
     # Part refs: every non-power component.
     refs = {'schema': 'agent-ee.part-refs/1',
             'components': {physical[r]['id']: {'part_ref': kept[r]} for r in sorted(kept)}}
@@ -991,7 +1061,8 @@ def build(out, agent_ee, mechanical=False, materials=False):
     # The actual deviations: J1 only (POD-AC-5 hand fit, zero captured stock).
     j1 = next(p for p in parts if p['instances'][0]['reference'] == 'J1')
     deviations = {'schema': 'agent-ee.part-deviations/1',
-                  'deviations': [j1_deviation(spec_blob['path'], j1)]}
+                  'deviations': [j1_deviation(spec_blob['path'], j1),
+                                 *json.loads((J2_SOURCE / 'deviations.json').read_text())['deviations']]}
     for d in deviations['deviations']:
         validate_deviation(d)
         for ref in d['evidence_refs']:
@@ -1065,6 +1136,23 @@ def build(out, agent_ee, mechanical=False, materials=False):
             layer.update({k: material[k] for k in ('dielectric_type', 'epsilon_r', 'loss_tangent')})
         root.copy(STACKUP_MATERIALS, 'mechanics/stackup-materials.json')
     envelope_blob = root.write('composition/envelope.json', revised)
+    root.write('composition/j2-rf-binding.json', {
+        'class': 'engineering', 'reference': 'J2', 'footprint': J2_FP,
+        'anchor_mm': [80, 28], 'side': 'front', 'rotation_deg': 0, 'insertion': 'from_top',
+        'signal_pad': {'number': '1', 'centre_mm': [80, 28]},
+        'ground_pads': {'number': '2', 'centres_mm': [[80 + x, 28 + y] for x in (-2.54, 2.54) for y in (-2.54, 2.54)]},
+        'rule_area_uuids': ['460352a8-dace-51a2-842b-c1e4ef7ad212', '93d1ddf1-382d-5ed8-abfa-2bf617ad0cae'],
+        'rule_area_bindings': {
+            '460352a8-dace-51a2-842b-c1e4ef7ad212': {
+                'role': 'whole-board In1 no-tracks reference; unchanged',
+                'polygon_mm': [[0, 0], [90, 0], [90, 65], [0, 65]], 'tracks_forbidden': True, 'vias_forbidden': False},
+            '93d1ddf1-382d-5ed8-abfa-2bf617ad0cae': {
+                'role': 'RF corridor rebound to chosen J2 pad 1',
+                'polygon_mm': [[76, 26.5], [81.5, 26.5], [81.5, 30.6], [76, 30.6]],
+                'tracks_forbidden': True, 'vias_forbidden': True}},
+        'polygon_mm': [[76, 26.5], [81.5, 26.5], [81.5, 30.6], [76, 30.6]],
+        'source': {'path': rel(J2_132134 / 'pad-map.json'), 'sha256': sha(J2_132134 / 'pad-map.json')},
+        'limitations': 'Writer pose and advisory corridor; final native geometry checked separately. No routed RF or filled-return-path qualification.'})
     files = {p.relative_to(out).as_posix(): sha(p) for p in out.rglob('*') if p.is_file()}
     record = board_envelope.validate((out / envelope_blob['path']).read_bytes(),
                                      profile=(out / profile_blob['path']).read_bytes(), captured=(files, out))
@@ -1112,6 +1200,10 @@ def build(out, agent_ee, mechanical=False, materials=False):
     # Writer intent: Qualification into the ledger; the bound projection is seeded with its bytes
     # (binding_fill.configuration(output=...) needs a captured output; the step replaces it).
     writer, ledger, migration = writer_intent(intent, intent_blob, j3_record)
+    ledger['j2_adoption'] = {'class': 'engineering', 'original': j2_before, 'adopted': physical['J2'],
+                            'source_intent': source_intent_blob, 'adopted_intent': intent_blob,
+                            'record': {'path': rel(J2_RECORD), 'sha256': sha(J2_RECORD)},
+                            'preserved': 'component id, UUID and electrical membership; writer pose is not owner text'}
     writer_blob = root.write('composition/intent.writer.json', writer)
     root.write('composition/intent.bound.json', writer)
     root.write('composition/binding-ledger.json', ledger)
