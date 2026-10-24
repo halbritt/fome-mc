@@ -1,0 +1,62 @@
+{
+  "step": "drc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "pcb",
+        "drc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--schematic-parity",
+        "--units",
+        "mm",
+        "-o",
+        "/work/fome-mc/build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/drc/drc.json",
+        "/work/fome-mc/build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/snapshot/project/telemetry-pod.kicad_pcb"
+      ],
+      "cwd": "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/snapshot/project",
+      "log": "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/drc/kicad-cli-drc.log",
+      "exit_code": 0,
+      "duration_s": 2.52
+    }
+  ],
+  "inputs": {
+    "telemetry-pod.kicad_pcb": "fec5170a497bfad0d56be7e12c8d2597fe4541a0ed2c1bb60c3980933a6704c9"
+  },
+  "outputs": {
+    "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/drc/drc.json": {
+      "sha256": "de4fdeb654ad7560b3250979458fc9a563da674bdce6c10837cef2d71e658191",
+      "bytes": 404294
+    }
+  },
+  "findings": {
+    "violations": 15,
+    "unconnected_items": 499,
+    "schematic_parity": 0,
+    "by_severity": {
+      "error": 500,
+      "warning": 14
+    },
+    "by_type": {
+      "unconnected_items": 499,
+      "text_thickness": 6,
+      "text_height": 6,
+      "lib_footprint_mismatch": 2,
+      "courtyards_overlap": 1
+    },
+    "ignored_checks": [
+      "missing_courtyard",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries",
+      "footprint_filters_mismatch",
+      "footprint_type_mismatch"
+    ]
+  },
+  "fill_mode": "asis",
+  "board_sha256_checked": "fec5170a497bfad0d56be7e12c8d2597fe4541a0ed2c1bb60c3980933a6704c9",
+  "design_clean": false
+}

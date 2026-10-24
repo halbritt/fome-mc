@@ -1,0 +1,354 @@
+fome-gate: fome-mc 49bf6c347ab0416499cd00a2f287eb7850e137c4, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+== system packages
+skipped (--no-apt)
+== python environment (/work/fome-mc/toolchain/.venv)
+Using CPython 3.12.3 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 28 packages in 242ms
+ + attrs==26.1.0
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.2
+ + colorama==0.4.6
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jsonschema==4.25.1
+ + jsonschema-specifications==2025.9.1
+ + kiauto==2.3.10
+ + kibot==1.9.1
+ + lark==1.3.1
+ + lxml==6.0.2
+ + markdown2==2.5.5
+ + numpy==2.3.3
+ + packaging==26.3
+ + pluggy==1.7.0
+ + psutil==7.2.2
+ + pygments==2.21.0
+ + pytest==8.4.2
+ + pyyaml==6.0.3
+ + qrcodegen==1.8.0
+ + referencing==0.37.0
+ + requests==2.34.2
+ + rpds-py==2026.9.1
+ + typing-extensions==4.16.0
+ + urllib3==2.8.0
+ + xlsxwriter==3.2.9
+ + xvfbwrapper==0.2.35
+== kicad-happy (pinned)
+kicad-happy @ 06840467ad0f5d76af45f64449b1f5ecb10f052f
+== agent skills
+skills: generated kicad-happy-kicad, kicad-happy-spice, kicad-happy-datasheets and .claude/skills links
+== doctor
+PASS         os                                                                 Linux-6.8.0-146-generic-x86_64-with-glibc2.39 x86_64
+PASS         apt kicad                                                          installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-symbols                                                  installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-footprints                                               installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-templates                                                installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt ngspice                                                        installed 42+ds-3build1, pinned 42+ds-3build1
+PASS         apt poppler-utils                                                  installed 24.02.0-1ubuntu9.10, pinned 24.02.0-1ubuntu9.10
+PASS         apt mupdf-tools                                                    installed 1.23.10+ds1-1build3, pinned 1.23.10+ds1-1build3
+PASS         apt librsvg2-bin                                                   installed 2.58.0+dfsg-1ubuntu0.1, pinned 2.58.0+dfsg-1ubuntu0.1
+PASS         apt ghostscript                                                    installed 10.02.1~dfsg1-0ubuntu7.9, pinned 10.02.1~dfsg1-0ubuntu7.9
+PASS         apt python3-wxgtk4.0                                               installed 4.2.1+dfsg-3build2, pinned 4.2.1+dfsg-3build2
+PASS         exe kicad-cli                                                      /usr/bin/kicad-cli
+PASS         exe ngspice                                                        /usr/bin/ngspice
+PASS         exe pdftotext                                                      /usr/bin/pdftotext
+PASS         exe pdftoppm                                                       /usr/bin/pdftoppm
+PASS         exe pdfinfo                                                        /usr/bin/pdfinfo
+PASS         exe mutool                                                         /usr/bin/mutool
+PASS         exe rsvg-convert                                                   /usr/bin/rsvg-convert
+PASS         exe git                                                            /usr/bin/git
+PASS         exe uv                                                             /usr/local/bin/uv
+PASS         kicad-cli version                                                  10.0.7 (pinned 10.0.7)
+PASS         ngspice version                                                    42 (pinned 42)
+PASS         capability kicad-cli sch erc --format json                         
+PASS         capability kicad-cli pcb drc --schematic-parity                    
+PASS         capability kicad-cli pcb drc --refill-zones --save-board           
+PASS         capability kicad-cli sch export netlist (spice format)             
+PASS         capability kicad-cli pcb export gerbers                            
+PASS         capability kicad-cli sch export bom                                
+PASS         python venv imports (pcbnew, wx, numpy, pytest, jsonschema, yaml)  3.12.3 10.0.7 4.2.1 2.3.3 8.4.2
+PASS         venv python                                                        3.12.3
+PASS         pcbnew bindings match kicad-cli                                    10.0.7
+PASS         venv matches uv.lock                                               Would make no changes
+PASS         kibot version                                                      1.9.1 (pinned 1.9.1)
+PASS         kiauto version                                                     2.3.10
+PASS         KiAuto eeschema_do on PATH                                         /work/fome-mc/toolchain/.venv/bin/eeschema_do
+PASS         kicad-happy checkout                                               toolchain/vendor/kicad-happy @ 06840467ad0f5d76af45f64449b1f5ecb10f052f (pinned v2.3.1 06840467ad0f)
+PASS         kicad-happy checkout unmodified                                    clean
+PASS         agent skills in sync with pinned upstream                          skills: OK
+PASS         skill kicad-happy-datasheets visible to Claude Code                .agents/skills/kicad-happy-datasheets
+PASS         skill fome-eda-toolchain visible to Claude Code                    .agents/skills/fome-eda-toolchain
+PASS         skill kicad-happy-spice visible to Claude Code                     .agents/skills/kicad-happy-spice
+PASS         skill kicad-happy-kicad visible to Claude Code                     .agents/skills/kicad-happy-kicad
+PASS         skill fome-pcb-routing visible to Claude Code                      .agents/skills/fome-pcb-routing
+PASS         stock symbol library                                               /usr/share/kicad/symbols
+PASS         stock footprint library                                            /usr/share/kicad/footprints
+PASS         stock 3D models                                                    Stock model library is optional; make render-3d can use a separate persistent model cache
+PASS         hermetic KiCad config (global lib tables)                          build/kicad-config/10.0
+PASS         FOME library repository                                            /work/kicad-libraries @ ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+PASS         FOME library repository clean                                      clean
+PASS         project fixture files                                              /work/fome-mc/toolchain/fixtures/rc_filter
+PASS         project fome-mc files                                              /work/fome-mc
+PASS         project telemetry-pod files                                        /work/fome-mc/telemetry-pod
+PASS         project universal-112 files                                        /work/home/git/Polygonus-Universal-112
+PASS         project universal-112 fome-kicad-libs pin matches FOME libs        submodule ab9c5f8a1517a04b9cada6880d67d190bfd48c05, library ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+
+doctor: PASS (54 checks, 0 required failures)
+ae-shim: /work/home/git/agent-ee/src/agent_ee/__init__.py
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_retention_snapshots.py' -v
+test_changed_prepared_manifest_refuses (test_retention_snapshots.HistoricalSnapshots.test_changed_prepared_manifest_refuses) ... ok
+test_live_composition_change_and_exact_reconstruction (test_retention_snapshots.HistoricalSnapshots.test_live_composition_change_and_exact_reconstruction) ... ok
+test_missing_recovery_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_missing_recovery_blob_refuses) ... ok
+test_recorded_commit_is_immutable_and_verified (test_retention_snapshots.HistoricalSnapshots.test_recorded_commit_is_immutable_and_verified) ... ok
+test_tampered_original_retained_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_tampered_original_retained_blob_refuses) ... ok
+test_tampered_recovery_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_tampered_recovery_blob_refuses) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.133s
+
+OK
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+separate repair store: 2 files (outside historical counts)
+retained emission OK: 5 retained files, 3 design inputs (1 repository paths), 0 installed project files, prepared tree 2 files (1 blobs)
+materialized 2 prepared files and 1 empty directories into /work/fome-mc/build/tmpri2qjbut/reconstructed
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_verify_j2.py' -v
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+test_exact_native_identity (test_verify_j2.J2Identity.test_exact_native_identity) ... ok
+test_same_prefix_wrong_uuid_refuses (test_verify_j2.J2Identity.test_same_prefix_wrong_uuid_refuses) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_all_prohibitions_are_checked (test_verify_j2.RuleAreaControls.test_all_prohibitions_are_checked) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_exact_native_identity (test_verify_j2.RuleAreaControls.test_exact_native_identity) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_same_prefix_wrong_uuid_refuses (test_verify_j2.RuleAreaControls.test_same_prefix_wrong_uuid_refuses) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_source_to_native_rules (test_verify_j2.RuleAreaControls.test_source_to_native_rules) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_wrong_layer_refuses (test_verify_j2.RuleAreaControls.test_wrong_layer_refuses) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_wrong_source_uuid_refuses (test_verify_j2.RuleAreaControls.test_wrong_source_uuid_refuses) ... 02:55:42: Debug: Adding duplicate image handler for 'PNG file'
+02:55:42: Debug: Adding duplicate image handler for 'JPEG file'
+02:55:42: Debug: Adding duplicate image handler for 'TIFF file'
+02:55:42: Debug: Adding duplicate image handler for 'GIF file'
+02:55:42: Debug: Adding duplicate image handler for 'PNM file'
+02:55:42: Debug: Adding duplicate image handler for 'PCX file'
+02:55:42: Debug: Adding duplicate image handler for 'IFF file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows icon file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+02:55:42: Debug: Adding duplicate image handler for 'TGA file'
+02:55:42: Debug: Adding duplicate image handler for 'XPM file'
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.247s
+
+OK
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_launch_preflight.py' -v
+test_active_default_is_the_delivered_retention_and_pending_is_explicit (test_launch_preflight.ActiveRetention.test_active_default_is_the_delivered_retention_and_pending_is_explicit) ... ok
+test_c1_timeout_is_explicit_and_pending (test_launch_preflight.AdvisoriesAndUnderside.test_c1_timeout_is_explicit_and_pending) ... ok
+test_f3_exceeded_advisories_are_surfaced_from_the_real_repack (test_launch_preflight.AdvisoriesAndUnderside.test_f3_exceeded_advisories_are_surfaced_from_the_real_repack) ... ok
+test_h3_relationship_references_cover_from_and_to (test_launch_preflight.AdvisoriesAndUnderside.test_h3_relationship_references_cover_from_and_to) ... ok
+test_485d_receipt_records_the_image_runner_and_refuses (test_launch_preflight.LaunchPreflight.test_485d_receipt_records_the_image_runner_and_refuses) ... ok
+test_committed_receipt_positive (test_launch_preflight.LaunchPreflight.test_committed_receipt_positive) ... ok
+test_image_positive (test_launch_preflight.LaunchPreflight.test_image_positive) ... ok
+test_import_problems_altered_export (test_launch_preflight.LaunchPreflight.test_import_problems_altered_export) ... ok
+test_mismatched_image_refuses (test_launch_preflight.LaunchPreflight.test_mismatched_image_refuses) ... ok
+test_mounted_runner_receipt_positive (test_launch_preflight.LaunchPreflight.test_mounted_runner_receipt_positive) ... ok
+test_stale_or_copied_receipt_refuses (test_launch_preflight.LaunchPreflight.test_stale_or_copied_receipt_refuses) ... ok
+test_all_accepted_positive_and_refused_c1_negative (test_launch_preflight.RequiredStages.test_all_accepted_positive_and_refused_c1_negative) ... ok
+test_c1_hold_mode_is_not_run_and_refuses (test_launch_preflight.RequiredStages.test_c1_hold_mode_is_not_run_and_refuses)
+AGENTEE-485 R4: POD_C1=validation-only-c1-not-in-scope records C1 NOT_RUN without invoking the producer; ... ok
+test_delivered_retention_has_a_refused_required_stage (test_launch_preflight.RequiredStages.test_delivered_retention_has_a_refused_required_stage) ... ok
+test_dispatch_five_are_required (test_launch_preflight.RequiredStages.test_dispatch_five_are_required) ... ok
+test_every_pipeline_stage_is_classified (test_launch_preflight.RequiredStages.test_every_pipeline_stage_is_classified) ... ok
+test_hand_fit_guard_admits_exactly_j1_and_j2 (test_launch_preflight.RequiredStages.test_hand_fit_guard_admits_exactly_j1_and_j2)
+AGENTEE-485 J2: the fab_package hand-fit guard runs from pipeline.py's own text; it admits exactly J1 + J2 ... ok
+test_launch_refuses_the_delivered_receipt (test_launch_preflight.RequiredStages.test_launch_refuses_the_delivered_receipt)
+The full launch preflight on the real committed 485d receipt refuses before any container (H1 runner, X1). ... ok
+test_receipt_write_and_retain_refuse_a_refused_required_stage (test_launch_preflight.RequiredStages.test_receipt_write_and_retain_refuse_a_refused_required_stage) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.439s
+
+OK
+fome-gate: make j2d-tests MAKEFILES=telemetry-pod/expansion/production-capture/diagnostics/ee485-J2d/validation/ee485-J2d.mk rc=0
+python3 -B telemetry-pod/expansion/production-capture/retain.py --check
+separate repair store: 572 files (outside historical counts)
+retained emission OK: 428 retained files, 576 design inputs (368 repository paths), 8 installed project files, prepared tree 4336 files (94 blobs)
+fome-gate: make j2d-retain MAKEFILES=telemetry-pod/expansion/production-capture/diagnostics/ee485-J2d/validation/ee485-J2d.mk rc=0
+cd telemetry-pod/expansion/agentee-494-j2 && sha256sum -c SHA256SUMS
+132134-revC.pdf: OK
+Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod: OK
+OWNER-CORRECTION.md: OK
+RESULT.md: OK
+RF-deltas.json: OK
+analysis/494-authority.json: OK
+analysis/494-budget.json: OK
+analysis/494-native.json: OK
+analysis/citation-classification.json: OK
+analysis/citations.json: OK
+analysis/decision-receipt.json: OK
+analysis/doctrine-discovery.json: OK
+analysis/doctrine-evidenced.json: OK
+analysis/obligation-classification.json: OK
+analysis/review-fixes.json: OK
+board-side-correction.json: OK
+historical-superseded/README.md: OK
+historical-superseded/SUPERSEDED-DO-NOT-USE_SMA_Amphenol_132134_494_Conditional.kicad_mod: OK
+joint-budget.json: OK
+manual-fit.json: OK
+native494.NOTE.md: OK
+native494.json: OK
+native494.py: OK
+pad-map.json: OK
+reservations.json: OK
+sealed-interface.json: OK
+source-manifest.json: OK
+stock-pad-comparison.json: OK
+verification.json: OK
+fome-gate: make j2d-f8 MAKEFILES=telemetry-pod/expansion/production-capture/diagnostics/ee485-J2d/validation/ee485-J2d.mk rc=0
+git diff --exit-code 037fe6c274d25967cc214e22d27e939b9d628446 -- fome-mc.kicad_sch fome-mc.kicad_pcb fome-mc.kicad_pro fome-mc.kicad_dru toolchain/versions.toml sheets
+git diff --exit-code 5a1cb6f531141f22937d3b1da0b200b0af2ba247 -- telemetry-pod/expansion/production-capture/evidence/emission-8ab3b0b9-agentee485 telemetry-pod/expansion/j2-historical-source telemetry-pod/telemetry-pod.kicad_pcb telemetry-pod/telemetry-pod.kicad_sch telemetry-pod/telemetry-pod.kicad_pro
+git diff --exit-code 037fe6c274d25967cc214e22d27e939b9d628446 -- telemetry-pod/expansion/agentee-494-j2
+git diff --exit-code 68c29ca28d5565c85f585059335175629823c960 -- telemetry-pod/expansion/production-capture/diagnostics/ee485-J2c telemetry-pod/expansion/production-capture/retention-repairs telemetry-pod/expansion/production-capture/build.py telemetry-pod/expansion/production-capture/sources telemetry-pod/expansion/production-capture/runtime telemetry-pod/expansion/agentee-489-source
+cd telemetry-pod/expansion/production-capture/diagnostics/ee485-J2c && sha256sum -c --quiet SHA256SUMS
+fome-gate: make j2d-source-guards MAKEFILES=telemetry-pod/expansion/production-capture/diagnostics/ee485-J2d/validation/ee485-J2d.mk rc=0
+
+exit=0

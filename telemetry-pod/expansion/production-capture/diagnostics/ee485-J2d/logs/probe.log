@@ -1,0 +1,33 @@
+{
+ "python": "/usr/bin/python3",
+ "pythonpath_parent": null,
+ "pythonpath_child": "/work/export/src",
+ "env_unchanged_except_pythonpath": true,
+ "old": {
+  "rc": 1,
+  "stderr_tail": [
+   "ModuleNotFoundError: No module named 'agent_ee'"
+  ]
+ },
+ "new_import": {
+  "rc": 0,
+  "file": "/work/export/src/agent_ee/placement_probe.py",
+  "stderr_tail": ""
+ },
+ "new_materialize": {
+  "rc": 0,
+  "stdout": "44 rows; 0 unmaterialized",
+  "stderr_tail": "./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined\n./kicad/include/properties/property.h(607): assert \"m_choices.GetCount() > 0\" failed in PROPERTY_ENUM(): No enum choices defined",
+  "rows": 44
+ },
+ "checks": {
+  "old_reproduces_missing_import": true,
+  "new_imports_pinned_export": true,
+  "new_materialize_completes": true,
+  "env_preserved": true
+ }
+}
+
+exit=0
+
+outer-exit=0

@@ -1,0 +1,48 @@
+{
+  "step": "erc",
+  "status": "PASS",
+  "reasons": [],
+  "commands": [
+    {
+      "argv": [
+        "kicad-cli",
+        "sch",
+        "erc",
+        "--format",
+        "json",
+        "--severity-all",
+        "--units",
+        "mm",
+        "-o",
+        "/work/fome-mc/build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/erc/erc.json",
+        "/work/fome-mc/build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/snapshot/project/telemetry-pod.kicad_sch"
+      ],
+      "cwd": "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/snapshot/project",
+      "log": "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/erc/kicad-cli-erc.log",
+      "exit_code": 0,
+      "duration_s": 2.664
+    }
+  ],
+  "inputs": {
+    "telemetry-pod.kicad_sch": "dcd2889df0b071f2762c5b3041882e1c9cfc2dee1bc4731c2e4c53dc9d4c006e"
+  },
+  "outputs": {
+    "build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/erc/erc.json": {
+      "sha256": "109e617c32a73883394fa2571078fda8d0b07723f52396891918400cb09c82f6",
+      "bytes": 1007
+    }
+  },
+  "findings": {
+    "sheets_checked": 1,
+    "violations": 0,
+    "by_severity": {},
+    "by_type": {},
+    "ignored_checks": [
+      "single_global_label",
+      "four_way_junction",
+      "simulation_model_issue",
+      "footprint_filter"
+    ]
+  },
+  "design_clean": true
+}

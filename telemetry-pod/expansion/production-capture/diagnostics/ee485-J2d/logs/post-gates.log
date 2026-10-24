@@ -1,0 +1,19 @@
+fome-gate: fome-mc 49bf6c347ab0416499cd00a2f287eb7850e137c4, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+timeout 450 python3 -B build/ee485-J2d-native.py
+erc PASS {'sheets_checked': 1, 'violations': 0, 'by_severity': {}, 'by_type': {}, 'ignored_checks': ['single_global_label', 'four_way_junction', 'simulation_model_issue', 'footprint_filter']}
+drc PASS {'violations': 15, 'unconnected_items': 499, 'schematic_parity': 0, 'by_severity': {'error': 500, 'warning': 14}, 'by_type': {'unconnected_items': 499, 'text_thickness': 6, 'text_height': 6, 'lib_footprint_mismatch': 2, 'courtyards_overlap': 1}, 'ignored_checks': ['missing_courtyard', 'track_not_centered_on_via', 'tuning_profile_track_geometries', 'footprint_filters_mismatch', 'footprint_type_mismatch']}
+kicad-cli pcb export pos --format csv --units mm --side both --exclude-dnp -o /work/fome-mc/build/ee485-J2d-run/native-positions.csv /work/fome-mc/build/runs/project/telemetry-pod-j2d/20261024T031246.261614Z/snapshot/project/telemetry-pod.kicad_pcb
+Wrote position data to '/work/fome-mc/build/ee485-J2d-run/native-positions.csv'.
+
+
+
+exit=0
+Native tools PASS; design findings remain explicit. Source bytes unchanged.
+fome-gate: make j2d-native MAKEFILES=build/ee485-J2d-post.mk rc=0
+PYTHONPATH=/work/home/git/agent-ee/src timeout 300 python3 -B telemetry-pod/expansion/production-capture/verify_j2.py build/ee485-J2d-run > build/ee485-J2d-verify.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+fome-gate: make j2d-verify MAKEFILES=build/ee485-J2d-post.mk rc=0
+
+exit=0
