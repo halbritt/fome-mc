@@ -47,13 +47,31 @@ def verify_inventory(board, native, intent, cap):
         raise ValueError('duplicate source component reference')
     excluded = [dict(reference=c['reference'], reason='source symbol has no footprint', lib_id=c['lib_id'])
                 for c in components.values() if not c['footprint']]
+    envelope = json.loads((cap / 'composition/envelope.json').read_text())
+    holes = {h['id']: h for h in envelope['mounting_holes']}
+    if len(holes) != len(envelope['mounting_holes']) or set(holes) & set(expected):
+        raise ValueError('ambiguous source mounting-hole identity')
     footprints = list(board.GetFootprints())
-    if Counter(f.GetReference() for f in footprints) != Counter({r: 1 for r in expected}):
+    if Counter(f.GetReference() for f in footprints) != Counter({r: 1 for r in set(expected) | set(holes)}):
         raise ValueError('native footprint inventory differs from frozen source references')
     actual_refs = set(native['components'])
     if actual_refs != set(expected):
         raise ValueError(f'native schematic inventory differs: missing {sorted(set(expected)-actual_refs)}, extra {sorted(actual_refs-set(expected))}')
     by_ref = {f.GetReference(): f for f in footprints}
+    board_only = []
+    for ref, hole in holes.items():
+        fp = by_ref[ref]
+        pads = list(fp.Pads())
+        required_flags = pcbnew.FP_BOARD_ONLY | pcbnew.FP_EXCLUDE_FROM_BOM | pcbnew.FP_EXCLUDE_FROM_POS_FILES
+        position = [pcbnew.ToMM(fp.GetPosition().x), pcbnew.ToMM(fp.GetPosition().y)]
+        if (len(pads) != 1 or position != hole.get('at_mm', hole.get('at'))
+                or bool(fp.GetAttributes() & required_flags == required_flags) is False or fp.IsDNP()
+                or pads[0].GetNumber() or pads[0].GetNetCode()
+                or pads[0].GetAttribute() != (pcbnew.PAD_ATTRIB_PTH if hole['plated'] else pcbnew.PAD_ATTRIB_NPTH)
+                or [pcbnew.ToMM(pads[0].GetDrillSize().x),pcbnew.ToMM(pads[0].GetDrillSize().y)] != [hole['drill_mm']]*2):
+            raise ValueError('native board-only mounting hole differs from frozen envelope: ' + ref)
+        board_only.append({'reference':ref,'uuid':fp.m_Uuid.AsString(),'source':hole,
+                           'reason':'frozen envelope mounting hole; no symbol, BOM or CPL membership'})
     source_parts = {}
     pad_inventory = {}
     for ref, comp in expected.items():
@@ -105,7 +123,7 @@ def verify_inventory(board, native, intent, cap):
                 raise ValueError(f'native numbered pad has no source mapping: {ref}.{pad["number"]}')
     return {'source_components': len(components), 'source_nets': len(intent['nets']),
             'source_no_connects': len(intent['no_connects']), 'native_footprints': len(footprints),
-            'symbol_only_exclusions': excluded, 'connected_terminals': checked,
+            'symbol_only_exclusions': excluded, 'board_only_mounting_holes': board_only, 'connected_terminals': checked,
             'part_identities': source_parts, 'physical_pads': pad_inventory,
             'lcsc_identities': sorted({p['LCSC'] for p in source_parts.values() if re.fullmatch(r'C[0-9]+', p.get('LCSC', ''))}),
             'external_parts': {r:p for r,p in source_parts.items() if p.get('LCSC') == 'NO_LCSC'},
@@ -170,23 +188,6 @@ def verify(run):
         raise ValueError('J2 overhangs the right edge')
     binding = json.loads((run / 'cap/composition/j2-rf-binding.json').read_text())
     found = verify_rule_areas(board, binding, run / 'cap/composition/envelope.json')
-    access_path = run / 'pipe/access-rebound/reservations.json'
-    access = json.loads(access_path.read_text())
-    source_access = json.loads((Path(__file__).parent.parent / 'agentee-489-source/reservations.json').read_text())
-    if len(access['reservations']) != 44 or sorted(r['id'] for r in access['reservations']) != sorted(
-            r['id'] for r in source_access['reservations']):
-        raise ValueError('44 access row identities changed')
-    migrations = json.loads((access_path.parent / 'owner-migrations.json').read_text())
-    if access['original_board_sha256'] != before or migrations['board_sha256'] != before:
-        raise ValueError('access rows were not derived from this final annotated board')
-    native_owners = {f.GetReference(): f for f in board.GetFootprints()}
-    for row in access['reservations']:
-        owner = row['owner']
-        native_fp = native_owners[owner['ref']]
-        if owner['uuid'] != native_fp.m_Uuid.AsString():
-            raise ValueError('access owner UUID differs: ' + row['id'])
-        if 'pad' in owner and not any(p.GetNumber() == owner['pad']['number'] and p.m_Uuid.AsString() == owner['pad']['uuid'] for p in native_fp.Pads()):
-            raise ValueError('access pad identity differs: ' + row['id'])
     # Read the emitted native netlist: the symbol still has signal pin 1 and ground pin 2.
     from agent_ee.native_netlist import read_native_inventory
     native = read_native_inventory(run / 'pipe/emission/native.xml')
@@ -237,6 +238,32 @@ def verify(run):
     (evidence / 'CPL.csv').write_text(render_cpl(positions))
     if digest(board_path) != before:
         raise ValueError('verification modified candidate board')
+    # Preserve successful native checks even when required access evidence is absent.
+    # This is a partial report; the strict access check below still refuses the CLI.
+    (evidence / 'native-checks.json').write_text(json.dumps({
+        'status': 'PARTIAL', 'scope': 'native checks only; required access check follows; no candidate acceptance',
+        'board_sha256': before, 'j2_uuid': fp.m_Uuid.AsString(), 'pose_mm': pose,
+        'pattern': actual, 'electrical_membership': membership, 'rf_areas': found,
+        'inventory': inventory, 'bom_cpl_excluded': full_excluded,
+        'bom_rows': len(rows), 'cpl_rows': len(positions),
+        'bom_sha256': digest(evidence / 'BOM.csv'), 'cpl_sha256': digest(evidence / 'CPL.csv')}, indent=1) + '\n')
+    access_path = run / 'pipe/access-rebound/reservations.json'
+    access = json.loads(access_path.read_text())
+    source_access = json.loads((Path(__file__).parent.parent / 'agentee-489-source/reservations.json').read_text())
+    if len(access['reservations']) != 44 or sorted(r['id'] for r in access['reservations']) != sorted(
+            r['id'] for r in source_access['reservations']):
+        raise ValueError('44 access row identities changed')
+    migrations = json.loads((access_path.parent / 'owner-migrations.json').read_text())
+    if access['original_board_sha256'] != before or migrations['board_sha256'] != before:
+        raise ValueError('access rows were not derived from this final annotated board')
+    native_owners = {f.GetReference(): f for f in board.GetFootprints()}
+    for row in access['reservations']:
+        owner = row['owner']
+        native_fp = native_owners[owner['ref']]
+        if owner['uuid'] != native_fp.m_Uuid.AsString():
+            raise ValueError('access owner UUID differs: ' + row['id'])
+        if 'pad' in owner and not any(p.GetNumber() == owner['pad']['number'] and p.m_Uuid.AsString() == owner['pad']['uuid'] for p in native_fp.Pads()):
+            raise ValueError('access pad identity differs: ' + row['id'])
     return {'board_sha256': before, 'j2_uuid': fp.m_Uuid.AsString(), 'pose_mm': pose,
             'pattern': actual, 'electrical_membership': membership, 'rf_areas': found,
             'bom_cpl_excluded': full_excluded, 'bom_rows': len(rows), 'cpl_rows': len(positions),

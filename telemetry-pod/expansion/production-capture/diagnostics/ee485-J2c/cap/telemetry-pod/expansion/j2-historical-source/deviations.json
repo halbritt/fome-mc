@@ -1,0 +1,29 @@
+{
+  "schema": "agent-ee.part-deviations/1",
+  "deviations": [
+    {
+      "requirement_id": "POD-AC-5",
+      "reason": "J2 (Amphenol RF 132134 SMA PCB jack, through-hole) is hand-fitted after delivery on the owner clarification relayed verbatim as Cairn ccbe2294@1; it is not JLC-assembled.",
+      "evidence_refs": [
+        {
+          "path": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md",
+          "locator": "lines 6-9 (owner words, verbatim)"
+        },
+        {
+          "path": "telemetry-pod/expansion/agentee-494-j2/132134-revC.pdf",
+          "locator": "sheet 3 of 3"
+        }
+      ],
+      "original": {
+        "mpn": "132134",
+        "lcsc": null
+      },
+      "assembly": "hand_soldered",
+      "stock_deviation": {
+        "reason": "Manual through-hole assembly is the owner-approved choice; supplier stock is not a gate on it. No LCSC id or stock figure exists for this part, and none is claimed."
+      },
+      "purchase_source": "Amphenol RF 132134 from a distributor of the owner's choice (no supplier row captured)",
+      "policy": "owner_hand_fit"
+    }
+  ]
+}

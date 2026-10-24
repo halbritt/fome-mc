@@ -959,9 +959,8 @@ def production_content(scaffold_out, work):
     import pcbnew
     board = pcbnew.LoadBoard(str(work / BOARD))
     j2 = next(f for f in board.GetFootprints() if f.GetReference() == 'J2')
-    if (not str(j2.m_Uuid.AsString()).startswith('18c6ebf4') or
-            j2.GetFPID().GetUniStringLibItemName() != 'SMA_Amphenol_132134_Manufacturer'):
-        raise ValueError('native J2 is not the adopted UUID/Amphenol footprint')
+    from verify_j2 import verify_identity
+    verify_identity(j2)
     pattern = sorted((p.GetNumber(), round(pcbnew.ToMM(p.GetDrillSize().x), 3)) for p in j2.Pads())
     if pattern != [('1', 1.5), ('2', 1.7), ('2', 1.7), ('2', 1.7), ('2', 1.7)]:
         raise ValueError('native J2 drill pattern differs from published 132134')

@@ -1,0 +1,23 @@
+fome-gate: fome-mc 3db711151c1c98edbe598f72f9a77d116eaf9f32, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+PYTHONPATH=/work/home/git/agent-ee/src timeout 180 python3 -B telemetry-pod/expansion/production-capture/verify_j2.py build/ee485-J2c-run > build/ee485-J2c-verify.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+Traceback (most recent call last):
+  File "/work/fome-mc/telemetry-pod/expansion/production-capture/verify_j2.py", line 279, in <module>
+    print(json.dumps(verify(args.run), indent=1))
+                     ^^^^^^^^^^^^^^^^
+  File "/work/fome-mc/telemetry-pod/expansion/production-capture/verify_j2.py", line 251, in verify
+    access = json.loads(access_path.read_text())
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'build/ee485-J2c-run/pipe/access-rebound/reservations.json'
+make: *** [build/ee485.mk:19: ee485-verify] Error 1
+fome-gate: make ee485-verify MAKEFILES=build/ee485.mk rc=2
+
+exit=2

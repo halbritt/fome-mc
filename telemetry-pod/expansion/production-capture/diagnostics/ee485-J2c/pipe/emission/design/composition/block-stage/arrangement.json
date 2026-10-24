@@ -1,0 +1,49 @@
+{
+ "schema": "agent-ee.block-arrangement/1",
+ "step_budget": 200000,
+ "priority_blocks": [
+  "pre-6v3",
+  "buck-3v3",
+  "wheel-input"
+ ],
+ "objective": {
+  "terms": [
+   "pad-locality",
+   "inter-block-wire",
+   "thermal-spread"
+  ],
+  "provenance": {
+   "enforcement": "advisory",
+   "reason": "default order"
+  }
+ },
+ "thermal": {
+  "sources": [
+   "U5",
+   "U7"
+  ],
+  "min_distance_nm": 15000000,
+  "provenance": {
+   "enforcement": "advisory",
+   "reason": "agent-chosen spread between the two bucks; no sourced limit"
+  }
+ },
+ "no_stacking": {
+  "references": [
+   "L1",
+   "L2"
+  ],
+  "margin_nm": 500000,
+  "provenance": {
+   "enforcement": "advisory",
+   "reason": "agent rule from the iteration-2 review (no parts through-board under the buck inductors); unsourced"
+  }
+ },
+ "no_block_over_fixed": {
+  "exempt_blocks": [],
+  "provenance": {
+   "enforcement": "advisory",
+   "reason": "agent rule; the storage block sat under U1 in iteration 5 by design"
+  }
+ }
+}

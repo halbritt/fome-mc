@@ -1,0 +1,181 @@
+{
+  "kind": "project",
+  "project": "fome-mc",
+  "label": "fome-mc",
+  "description": "FOME-MC integrated motorcycle ECU (STM32H753 + 2x STM32F042 WBO)",
+  "status": "PASS",
+  "started_utc": "2026-10-24T01:41:54.621654+00:00",
+  "finished_utc": "2026-10-24T01:50:05.910568+00:00",
+  "run_dir": "build/runs/project/fome-mc/20261024T014154.621454Z",
+  "fill_mode": "asis",
+  "tool_versions": {
+    "kicad-cli": "10.0.7",
+    "ngspice": "42",
+    "kibot": "1.9.1",
+    "kicad-happy": "06840467ad0f5d76af45f64449b1f5ecb10f052f",
+    "fome-kicad-libraries": "ab9c5f8a1517a04b9cada6880d67d190bfd48c05",
+    "python": "3.12.3"
+  },
+  "snapshot": {
+    "project": "fome-mc",
+    "source_dir": "/work/fome-mc",
+    "source": "working tree",
+    "source_git_head": "ec6ae4735a7fd479eb60af44369289e99d2eef02",
+    "source_dirty_files": [],
+    "schematic": "fome-mc.kicad_sch",
+    "pcb": "fome-mc.kicad_pcb",
+    "schematic_files": [
+      "fome-mc.kicad_sch",
+      "sheets/ign4.kicad_sch",
+      "sheets/lowside_quad.kicad_sch",
+      "sheets/mcu.kicad_sch",
+      "sheets/quad_analog.kicad_sch",
+      "sheets/psu.kicad_sch",
+      "sheets/quad_analog_pullup.kicad_sch",
+      "sheets/highside_quad.kicad_sch",
+      "sheets/triggers.kicad_sch",
+      "sheets/knock.kicad_sch",
+      "sheets/Keep_Alive.kicad_sch",
+      "sheets/ign_igbt.kicad_sch",
+      "sheets/etb-9201.kicad_sch",
+      "sheets/stepper_etb.kicad_sch",
+      "sheets/wbo1.kicad_sch",
+      "sheets/wbo2.kicad_sch"
+    ],
+    "sheet_instances": 21,
+    "sheet_case_aliases": [],
+    "missing_sheets": [],
+    "library_links": [
+      {
+        "path": "../kicad-libraries",
+        "target": "/work/kicad-libraries",
+        "library_head": "ab9c5f8a1517a04b9cada6880d67d190bfd48c05"
+      }
+    ],
+    "library_issues": []
+  },
+  "steps": {
+    "erc": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": true,
+      "findings": {
+        "sheets_checked": 21,
+        "violations": 0,
+        "by_severity": {},
+        "by_type": {},
+        "ignored_checks": [
+          "single_global_label",
+          "endpoint_off_grid",
+          "four_way_junction",
+          "simulation_model_issue",
+          "lib_symbol_issues",
+          "lib_symbol_mismatch",
+          "footprint_link_issues",
+          "footprint_filter"
+        ]
+      }
+    },
+    "drc": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": true,
+      "findings": {
+        "violations": 0,
+        "unconnected_items": 0,
+        "schematic_parity": 0,
+        "by_severity": {},
+        "by_type": {},
+        "ignored_checks": [
+          "missing_courtyard",
+          "solder_mask_bridge",
+          "track_not_centered_on_via",
+          "tuning_profile_track_geometries",
+          "footprint_filters_mismatch",
+          "pth_inside_courtyard",
+          "npth_inside_courtyard"
+        ]
+      }
+    },
+    "netlist": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": null,
+      "findings": {
+        "components": 510,
+        "nets": 491
+      }
+    },
+    "export": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": null,
+      "findings": {
+        "artifacts": {
+          "schematic PDF": 21,
+          "schematic SVG": 21,
+          "PCB PDF": 6,
+          "BOM CSV": 7391,
+          "kibot gerber F.Cu": 1,
+          "kibot gerber B.Cu": 1,
+          "kibot gerber Edge.Cuts": 1,
+          "kibot gerber job file": 1,
+          "kibot excellon drill": 1,
+          "kibot drill report": 1,
+          "kibot position files": 2,
+          "kibot BOM CSV": 1,
+          "kibot BOM HTML": 1,
+          "kibot schematic PDF": 1,
+          "kibot PCB print PDF": 1
+        }
+      }
+    },
+    "analyze": {
+      "status": "PASS",
+      "reasons": [],
+      "design_clean": null,
+      "findings": {
+        "schematic": {
+          "components": 510,
+          "nets": 489,
+          "findings": {
+            "error": 40,
+            "warning": 12,
+            "info": 330
+          },
+          "native_netlist_components": 510
+        },
+        "pcb": {
+          "footprints": 514,
+          "nets": 491,
+          "routing_complete": true,
+          "cross_reference_input": "schematic.json",
+          "power_net_resolution_source": "schematic",
+          "findings": {
+            "error": 32,
+            "warning": 118,
+            "info": 188
+          }
+        },
+        "cross_analysis": {
+          "checks_run": 10,
+          "findings": {
+            "error": 4,
+            "warning": 6,
+            "info": 0
+          }
+        },
+        "spice": {
+          "simulator": "/usr/bin/ngspice",
+          "summary": {
+            "total": 151,
+            "pass": 120,
+            "warn": 8,
+            "fail": 0,
+            "skip": 23
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,210 @@
+fome-gate: fome-mc ec6ae4735a7fd479eb60af44369289e99d2eef02, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+== system packages
+skipped (--no-apt)
+== python environment (/work/fome-mc/toolchain/.venv)
+Using CPython 3.12.3 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 28 packages in 257ms
+ + attrs==26.1.0
+ + certifi==2026.7.22
+ + charset-normalizer==3.5.2
+ + colorama==0.4.6
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jsonschema==4.25.1
+ + jsonschema-specifications==2025.9.1
+ + kiauto==2.3.10
+ + kibot==1.9.1
+ + lark==1.3.1
+ + lxml==6.0.2
+ + markdown2==2.5.5
+ + numpy==2.3.3
+ + packaging==26.3
+ + pluggy==1.7.0
+ + psutil==7.2.2
+ + pygments==2.21.0
+ + pytest==8.4.2
+ + pyyaml==6.0.3
+ + qrcodegen==1.8.0
+ + referencing==0.37.0
+ + requests==2.34.2
+ + rpds-py==2026.9.1
+ + typing-extensions==4.16.0
+ + urllib3==2.8.0
+ + xlsxwriter==3.2.9
+ + xvfbwrapper==0.2.35
+== kicad-happy (pinned)
+kicad-happy @ 06840467ad0f5d76af45f64449b1f5ecb10f052f
+== agent skills
+skills: generated kicad-happy-kicad, kicad-happy-spice, kicad-happy-datasheets and .claude/skills links
+== doctor
+PASS         os                                                                 Linux-6.8.0-146-generic-x86_64-with-glibc2.39 x86_64
+PASS         apt kicad                                                          installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-symbols                                                  installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-footprints                                               installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-templates                                                installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt ngspice                                                        installed 42+ds-3build1, pinned 42+ds-3build1
+PASS         apt poppler-utils                                                  installed 24.02.0-1ubuntu9.10, pinned 24.02.0-1ubuntu9.10
+PASS         apt mupdf-tools                                                    installed 1.23.10+ds1-1build3, pinned 1.23.10+ds1-1build3
+PASS         apt librsvg2-bin                                                   installed 2.58.0+dfsg-1ubuntu0.1, pinned 2.58.0+dfsg-1ubuntu0.1
+PASS         apt ghostscript                                                    installed 10.02.1~dfsg1-0ubuntu7.9, pinned 10.02.1~dfsg1-0ubuntu7.9
+PASS         apt python3-wxgtk4.0                                               installed 4.2.1+dfsg-3build2, pinned 4.2.1+dfsg-3build2
+PASS         exe kicad-cli                                                      /usr/bin/kicad-cli
+PASS         exe ngspice                                                        /usr/bin/ngspice
+PASS         exe pdftotext                                                      /usr/bin/pdftotext
+PASS         exe pdftoppm                                                       /usr/bin/pdftoppm
+PASS         exe pdfinfo                                                        /usr/bin/pdfinfo
+PASS         exe mutool                                                         /usr/bin/mutool
+PASS         exe rsvg-convert                                                   /usr/bin/rsvg-convert
+PASS         exe git                                                            /usr/bin/git
+PASS         exe uv                                                             /usr/local/bin/uv
+PASS         kicad-cli version                                                  10.0.7 (pinned 10.0.7)
+PASS         ngspice version                                                    42 (pinned 42)
+PASS         capability kicad-cli sch erc --format json                         
+PASS         capability kicad-cli pcb drc --schematic-parity                    
+PASS         capability kicad-cli pcb drc --refill-zones --save-board           
+PASS         capability kicad-cli sch export netlist (spice format)             
+PASS         capability kicad-cli pcb export gerbers                            
+PASS         capability kicad-cli sch export bom                                
+PASS         python venv imports (pcbnew, wx, numpy, pytest, jsonschema, yaml)  3.12.3 10.0.7 4.2.1 2.3.3 8.4.2
+PASS         venv python                                                        3.12.3
+PASS         pcbnew bindings match kicad-cli                                    10.0.7
+PASS         venv matches uv.lock                                               Would make no changes
+PASS         kibot version                                                      1.9.1 (pinned 1.9.1)
+PASS         kiauto version                                                     2.3.10
+PASS         KiAuto eeschema_do on PATH                                         /work/fome-mc/toolchain/.venv/bin/eeschema_do
+PASS         kicad-happy checkout                                               toolchain/vendor/kicad-happy @ 06840467ad0f5d76af45f64449b1f5ecb10f052f (pinned v2.3.1 06840467ad0f)
+PASS         kicad-happy checkout unmodified                                    clean
+PASS         agent skills in sync with pinned upstream                          skills: OK
+PASS         skill kicad-happy-datasheets visible to Claude Code                .agents/skills/kicad-happy-datasheets
+PASS         skill fome-eda-toolchain visible to Claude Code                    .agents/skills/fome-eda-toolchain
+PASS         skill kicad-happy-spice visible to Claude Code                     .agents/skills/kicad-happy-spice
+PASS         skill kicad-happy-kicad visible to Claude Code                     .agents/skills/kicad-happy-kicad
+PASS         skill fome-pcb-routing visible to Claude Code                      .agents/skills/fome-pcb-routing
+PASS         stock symbol library                                               /usr/share/kicad/symbols
+PASS         stock footprint library                                            /usr/share/kicad/footprints
+PASS         stock 3D models                                                    Stock model library is optional; make render-3d can use a separate persistent model cache
+PASS         hermetic KiCad config (global lib tables)                          build/kicad-config/10.0
+PASS         FOME library repository                                            /work/kicad-libraries @ ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+PASS         FOME library repository clean                                      clean
+PASS         project fixture files                                              /work/fome-mc/toolchain/fixtures/rc_filter
+PASS         project fome-mc files                                              /work/fome-mc
+PASS         project telemetry-pod files                                        /work/fome-mc/telemetry-pod
+PASS         project universal-112 files                                        /work/home/git/Polygonus-Universal-112
+PASS         project universal-112 fome-kicad-libs pin matches FOME libs        submodule ab9c5f8a1517a04b9cada6880d67d190bfd48c05, library ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+
+doctor: PASS (54 checks, 0 required failures)
+ae-shim: /work/home/git/agent-ee/src/agent_ee/__init__.py
+python3 telemetry-pod/expansion/production-capture/retain.py --repair-repository-snapshots
+recovered 570 immutable historical blobs; historical records unchanged
+fome-gate: make ee485-repair MAKEFILES=build/ee485.mk rc=0
+python3 telemetry-pod/expansion/production-capture/retain.py --check
+retained emission OK: 428 retained files, 576 design inputs (368 repository paths), 8 installed project files, prepared tree 4336 files (94 blobs)
+fome-gate: make ee485-retain MAKEFILES=build/ee485.mk rc=0
+cd telemetry-pod/expansion/agentee-494-j2 && sha256sum -c SHA256SUMS
+132134-revC.pdf: OK
+Agentee494.pretty/SMA_Amphenol_132134_Manufacturer.kicad_mod: OK
+OWNER-CORRECTION.md: OK
+RESULT.md: OK
+RF-deltas.json: OK
+analysis/494-authority.json: OK
+analysis/494-budget.json: OK
+analysis/494-native.json: OK
+analysis/citation-classification.json: OK
+analysis/citations.json: OK
+analysis/decision-receipt.json: OK
+analysis/doctrine-discovery.json: OK
+analysis/doctrine-evidenced.json: OK
+analysis/obligation-classification.json: OK
+analysis/review-fixes.json: OK
+board-side-correction.json: OK
+historical-superseded/README.md: OK
+historical-superseded/SUPERSEDED-DO-NOT-USE_SMA_Amphenol_132134_494_Conditional.kicad_mod: OK
+joint-budget.json: OK
+manual-fit.json: OK
+native494.NOTE.md: OK
+native494.json: OK
+native494.py: OK
+pad-map.json: OK
+reservations.json: OK
+sealed-interface.json: OK
+source-manifest.json: OK
+stock-pad-comparison.json: OK
+verification.json: OK
+fome-gate: make ee485-f8 MAKEFILES=build/ee485.mk rc=0
+/usr/bin/python3 toolchain/eda.py doctor
+PASS         os                                                                 Linux-6.8.0-146-generic-x86_64-with-glibc2.39 x86_64
+PASS         apt kicad                                                          installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-symbols                                                  installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-footprints                                               installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt kicad-templates                                                installed 10.0.7~ubuntu24.04.1, pinned 10.0.7~ubuntu24.04.1
+PASS         apt ngspice                                                        installed 42+ds-3build1, pinned 42+ds-3build1
+PASS         apt poppler-utils                                                  installed 24.02.0-1ubuntu9.10, pinned 24.02.0-1ubuntu9.10
+PASS         apt mupdf-tools                                                    installed 1.23.10+ds1-1build3, pinned 1.23.10+ds1-1build3
+PASS         apt librsvg2-bin                                                   installed 2.58.0+dfsg-1ubuntu0.1, pinned 2.58.0+dfsg-1ubuntu0.1
+PASS         apt ghostscript                                                    installed 10.02.1~dfsg1-0ubuntu7.9, pinned 10.02.1~dfsg1-0ubuntu7.9
+PASS         apt python3-wxgtk4.0                                               installed 4.2.1+dfsg-3build2, pinned 4.2.1+dfsg-3build2
+PASS         exe kicad-cli                                                      /usr/bin/kicad-cli
+PASS         exe ngspice                                                        /usr/bin/ngspice
+PASS         exe pdftotext                                                      /usr/bin/pdftotext
+PASS         exe pdftoppm                                                       /usr/bin/pdftoppm
+PASS         exe pdfinfo                                                        /usr/bin/pdfinfo
+PASS         exe mutool                                                         /usr/bin/mutool
+PASS         exe rsvg-convert                                                   /usr/bin/rsvg-convert
+PASS         exe git                                                            /usr/bin/git
+PASS         exe uv                                                             /usr/local/bin/uv
+PASS         kicad-cli version                                                  10.0.7 (pinned 10.0.7)
+PASS         ngspice version                                                    42 (pinned 42)
+PASS         capability kicad-cli sch erc --format json                         
+PASS         capability kicad-cli pcb drc --schematic-parity                    
+PASS         capability kicad-cli pcb drc --refill-zones --save-board           
+PASS         capability kicad-cli sch export netlist (spice format)             
+PASS         capability kicad-cli pcb export gerbers                            
+PASS         capability kicad-cli sch export bom                                
+PASS         python venv imports (pcbnew, wx, numpy, pytest, jsonschema, yaml)  3.12.3 10.0.7 4.2.1 2.3.3 8.4.2
+PASS         venv python                                                        3.12.3
+PASS         pcbnew bindings match kicad-cli                                    10.0.7
+PASS         venv matches uv.lock                                               Would make no changes
+PASS         kibot version                                                      1.9.1 (pinned 1.9.1)
+PASS         kiauto version                                                     2.3.10
+PASS         KiAuto eeschema_do on PATH                                         /work/fome-mc/toolchain/.venv/bin/eeschema_do
+PASS         kicad-happy checkout                                               toolchain/vendor/kicad-happy @ 06840467ad0f5d76af45f64449b1f5ecb10f052f (pinned v2.3.1 06840467ad0f)
+PASS         kicad-happy checkout unmodified                                    clean
+PASS         agent skills in sync with pinned upstream                          skills: OK
+PASS         skill kicad-happy-datasheets visible to Claude Code                .agents/skills/kicad-happy-datasheets
+PASS         skill fome-eda-toolchain visible to Claude Code                    .agents/skills/fome-eda-toolchain
+PASS         skill kicad-happy-spice visible to Claude Code                     .agents/skills/kicad-happy-spice
+PASS         skill kicad-happy-kicad visible to Claude Code                     .agents/skills/kicad-happy-kicad
+PASS         skill fome-pcb-routing visible to Claude Code                      .agents/skills/fome-pcb-routing
+PASS         stock symbol library                                               /usr/share/kicad/symbols
+PASS         stock footprint library                                            /usr/share/kicad/footprints
+PASS         stock 3D models                                                    Stock model library is optional; make render-3d can use a separate persistent model cache
+PASS         hermetic KiCad config (global lib tables)                          build/kicad-config/10.0
+PASS         FOME library repository                                            /work/kicad-libraries @ ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+PASS         FOME library repository clean                                      clean
+PASS         project fixture files                                              /work/fome-mc/toolchain/fixtures/rc_filter
+PASS         project fome-mc files                                              /work/fome-mc
+PASS         project telemetry-pod files                                        /work/fome-mc/telemetry-pod
+PASS         project universal-112 files                                        /work/home/git/Polygonus-Universal-112
+PASS         project universal-112 fome-kicad-libs pin matches FOME libs        submodule ab9c5f8a1517a04b9cada6880d67d190bfd48c05, library ab9c5f8a1517a04b9cada6880d67d190bfd48c05
+
+doctor: PASS (54 checks, 0 required failures)
+fome-gate: make doctor MAKEFILES=build/ee485.mk rc=0
+/usr/bin/python3 toolchain/eda.py run --project fome-mc --fill asis  --steps erc,drc,netlist,export,analyze
+[fome-mc] erc ...
+[fome-mc] erc: PASS
+[fome-mc] drc ...
+[fome-mc] drc: PASS
+[fome-mc] netlist ...
+[fome-mc] netlist: PASS
+[fome-mc] export ...
+[fome-mc] export: PASS
+[fome-mc] analyze ...
+[fome-mc] analyze: PASS
+[fome-mc] overall: PASS  ->  build/runs/project/fome-mc/20261024T014154.621454Z/SUMMARY.md
+fome-gate: make check MAKEFILES=build/ee485.mk rc=0
+
+exit=0

@@ -1,0 +1,181 @@
+{
+  "schema": "fome-mc.constraint-provenance/1",
+  "project": "telemetry-pod expanded board (4-layer FR-4, 1 oz outer / 0.5 oz inner copper, JLCPCB JLC04161H-7628 1.6 mm stackup)",
+  "classes": {
+    "owner": "stated by the owner; gates",
+    "manufacturer": "published fabricator capability; gates",
+    "datasheet": "component manufacturer land pattern or standard; gates",
+    "engineering": "agent-chosen margin above a cited manufacturer or datasheet value; the cited value is the floor and is what gates; the margin itself is advisory and revisable (owner direction 2026-10-21: limits are validated against a component spec or JLCPCB manufacturability)",
+    "default": "chosen by an agent or tool without a source; advisory only, never gates"
+  },
+  "manufacturer_source": {
+    "name": "JLCPCB Rigid PCB Manufacturing Capabilities",
+    "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+    "read": "2026-10-20",
+    "note": "page carries no revision; values quoted for multilayer (4-layer) FR-4 1 oz outer copper unless stated; where the 2-layer figure is stricter the stricter one is used"
+  },
+  "board_setup_rules": {
+    "min_clearance": {
+      "value_mm": 0.09,
+      "class": "manufacturer",
+      "basis": "JLCPCB multilayer 1 oz minimum trace spacing 0.09 mm and BGA pad-to-track 0.09 mm; the earlier 0.15 mm was an agent-chosen margin (advisory) and blocked any BGA escape at 0.5 mm pitch",
+      "replaces_default": 0.0,
+      "history": "0.15 (agent margin) -> 0.09 (JLCPCB figure) on 2026-10-21 for D-PCB-3"
+    },
+    "min_track_width": {
+      "value_mm": 0.09,
+      "class": "manufacturer",
+      "basis": "JLCPCB multilayer 1 oz minimum trace 0.09 mm (3 mil acceptable in BGA fan-outs); general nets keep the 0.20 mm Default net class",
+      "replaces_default": 0.2,
+      "history": "0.15 (agent margin) -> 0.09 (JLCPCB figure) on 2026-10-21"
+    },
+    "min_through_hole_diameter": {
+      "value_mm": 0.3,
+      "class": "engineering",
+      "basis": "JLCPCB min 0.15 mm; 0.2-0.25 mm holes under 0.45 mm via diameter cost extra; 0.30 mm is standard cost",
+      "replaces_default": 0.3
+    },
+    "min_via_diameter": {
+      "value_mm": 0.5,
+      "class": "engineering",
+      "basis": "JLCPCB published minimum via 0.25 mm diameter on a 0.15 mm hole (0.05 mm ring); 0.30 mm drill is standard cost; 0.50 mm gives a 0.10 mm ring, twice the published via minimum. The Default net class via stays 0.60/0.30 (0.15 mm ring)",
+      "replaces_default": 0.5
+    },
+    "min_via_annular_width": {
+      "value_mm": 0.1,
+      "class": "engineering",
+      "basis": "JLCPCB via 0.15/0.25 implies a 0.05 mm via ring; 0.10 mm doubles it. The PTH annular-ring figures (recommended 0.20 mm, absolute 0.15 mm multilayer) apply to component through-holes and are met by every PTH pad on the board",
+      "replaces_default": 0.1
+    },
+    "min_hole_to_hole": {
+      "value_mm": 0.25,
+      "class": "engineering",
+      "basis": "JLCPCB via hole-to-hole 0.20 mm; component PTH pad hole-to-hole 0.45 mm must be checked separately where PTH pads are adjacent",
+      "replaces_default": 0.25
+    },
+    "min_hole_clearance": {
+      "value_mm": 0.25,
+      "class": "engineering",
+      "basis": "JLCPCB via hole to track 0.20 mm; PTH to track 0.28 mm (0.35 mm recommended) applies to component holes",
+      "replaces_default": 0.25
+    },
+    "min_copper_edge_clearance": {
+      "value_mm": 0.3,
+      "class": "engineering",
+      "basis": "JLCPCB copper to routed edge 0.20 mm (0.40 mm at V-cut; no V-cut on this board)",
+      "replaces_default": 0.5
+    },
+    "min_silk_clearance": {
+      "value_mm": 0.15,
+      "class": "manufacturer",
+      "basis": "JLCPCB pad to silkscreen 0.15 mm",
+      "replaces_default": 0.0
+    },
+    "min_text_height": {
+      "value_mm": 1.0,
+      "class": "manufacturer",
+      "basis": "JLCPCB silkscreen text height 40 mil",
+      "replaces_default": 0.8
+    },
+    "min_text_thickness": {
+      "value_mm": 0.15,
+      "class": "manufacturer",
+      "basis": "JLCPCB silkscreen line width 0.15 mm",
+      "replaces_default": 0.08
+    },
+    "solder_mask_min_width": {
+      "value_mm": 0.1,
+      "class": "manufacturer",
+      "basis": "JLCPCB solder mask bridge 0.10 mm pad spacing at 1 oz (green); not a KiCad board-setup field, applied in mask settings",
+      "replaces_default": null
+    }
+  },
+  "custom_rules": {
+    "telemetry-pod.kicad_dru": [
+      {
+        "rule": "agent_ee_netclass_RF_50 track_width min 0.335 mm",
+        "class": "engineering",
+        "basis": "RF 50-ohm width from the retained stackup calculation (unchanged, inherited)"
+      },
+      {
+        "rule": "intra-footprint pad clearance 0.15 mm for U2, U16, U17, U18, U19",
+        "class": "datasheet",
+        "basis": "ST LSM6DSO32 land pattern p.149 Fig. 22 with TN0018 Rev 8 section 3.7; TI DSE0006A drawing 4220552/B p.25; within JLCPCB 0.15 mm pad-to-pad"
+      }
+    ]
+  },
+  "footprint_changes": {
+    "thermal_vias": {
+      "drill_mm": 0.3,
+      "diameter_mm": 0.7,
+      "class": "engineering",
+      "basis": "Same-net heatsink vias under exposed pads: 0.30 mm drill is standard cost (JLCPCB charges extra for 0.20/0.25 mm holes under 0.45 mm via diameter); 0.70 mm diameter gives a 0.20 mm ring for thermal copper, a deliberate choice above the 0.10 mm via minimum. The original 0.20/0.40 mm vias were within JLCPCB via capability but carried the small-hole surcharge and violated the project's 0.30 mm hole minimum",
+      "footprints": [
+        "PodPower:DDA0008B",
+        "PodPower:DDA0008J_C02",
+        "RF_Module:ESP32-S3-WROOM-1"
+      ],
+      "pads": 44
+    },
+    "microsd_card_envelope": {
+      "footprints": [
+        "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
+      ],
+      "courtyard_y_max_mm": 29.0,
+      "class": "engineering",
+      "basis": "D-PCB-13 v2: inserted-card envelope from the library's F.Fab drawing plus the 15 mm insertion lane, + 0.25 mm"
+    }
+  },
+  "owner_authorization": "2026-10-20: relax the clearance rules if you must, as long as JLCPCB can manufacture it, and it doesn't affect electrical performance.",
+  "superseded_defaults": {
+    "source": "agent-ee scaffold-generated .kicad_pro for the expanded project",
+    "values": {
+      "min_clearance": 0.0,
+      "min_track_width": 0.2,
+      "min_via_diameter": 0.5,
+      "min_via_annular_width": 0.1,
+      "min_copper_edge_clearance": 0.5,
+      "min_silk_clearance": 0.0,
+      "min_text_height": 0.8,
+      "min_text_thickness": 0.08
+    },
+    "status": "class default; never a gate"
+  },
+  "layer_stack": {
+    "copper_layers": 4,
+    "stackup": "JLC04161H-7628: F.Cu 0.035, prepreg 0.2104, In1.Cu 0.0152, core 1.065, In2.Cu 0.0152, prepreg 0.2104, B.Cu 0.035 (mm), epsilon_r 4.5",
+    "class": "engineering",
+    "basis": "D-PCB-2: U14 FEMDME008G eMMC is a 153-ball 0.5 mm BGA whose fanout needs inner layers; LMR36520 SNVSBF0C section 8.5.1 item 5 asks for a ground plane in a middle layer; GNSS RF_50 needs a defined reference; JLCPCB 4-layer is standard cost. The scaffold-generated stackup matches JLCPCB's published 4-layer 1.6 mm stackup, so it is adopted as a cited value, not a default. The owner's 'double-sided' target refers to component sides, not copper layer count.",
+    "decided": "2026-10-20"
+  },
+  "open_items": {},
+  "decisions_pending_next_seed": {
+    "D-PCB-4 J2 anchor": "Molex 73251-1150 edge-launch SMA (captured footprint 73251-1153 family, SHA 318c8b54...). The footprint's F.Fab edge datum is 0.50 mm outboard of its pad copper. At the historical anchor x=85.44 (rotation 180) the datum lands at x=90.20, 0.20 mm outside the board edge, and the pads at 89.70 (0.30 mm clearance, 5 copper_edge findings). Decision: move the J2 anchor to x=85.24 so the datum coincides with the edge (x=90.00) and the pads sit at 0.50 mm. Evidence: agent-491 J2 geometry review (~/.cache/agent491-sma-mechanical-review). Apply at the next seed; the manufacturer drawing SD-73251-115 B3 could not be downloaded and must still be inspected for launch geometry.",
+    "D-PCB-5 plane plan": "agent-ee.plane-plan/1 with In1.Cu = GND over the board outline and In2.Cu = +3V3 over the board outline (largest rail, the MCU/IMU/ADC logic supply); thermal reliefs 0.3/0.3, clearance 0.25, min width 0.20, island removal always. Basis: LMR36520 \u00a78.5.1 item 5 (ground plane in a middle layer), RF_50 reference for the GNSS line, JLC04161H-7628 stack. PRE_6V3, POD_12V_PROTECTED and the sensor rails are routed as tracks sized by net class. Recorded in planes.json; applied by kicad-route planes before the routing campaign.",
+    "D-PCB-6 RF reference keep-out": "Under the GNSS line from the U3 RF pad (77.5, 29.1) to the J2 pin (86.96, 28.0), keep In1.Cu (GND plane) unbroken and keep tracks and vias off In1.Cu and In2.Cu in x 76..88, y 26.5..30.6 mm: a native rule area (no tracks, no vias, layers In1.Cu and In2.Cu) added to the board before routing. Basis: 50-ohm microstrip referenced to the In1 plane (RF_50 net class), reviewer condition on iteration 3. Applied at the next routing pass of iteration 3.",
+    "D-PCB-7 plane layers carry no tracks": "In1.Cu (GND) and In2.Cu (+3V3) are plane layers: native rule areas over the board outline with no-tracks on both layers (vias allowed, so fan-out and layer changes still pass through). Basis: the planed iteration-3 route placed signal tracks on In1.Cu (blocked-by top entries TIRE_CAN_TX_ENABLE, TWAI_RX, MCU_BOOT46, TWAI_TX on In1.Cu), which cuts the GND reference the RF_50 line and the bucks depend on (LMR36520 SNVSBF0C \u00a78.5.1 item 5). Signal routing is F.Cu and B.Cu only; if two signal layers prove insufficient, the owner decision is a 6-layer stack, not tracks in the planes. Applied with D-PCB-6 before the next routing pass. REVISION v2 (2026-10-21): closing both inner layers starved routing (full pass on the D-PCB-3 board: 114 of 194 nets, versus 143-145 with four routable layers) and the kicad-route builtin engine ignored the inner-layer rule areas anyway (64 layer-change stubs placed inside them, reported to the kicad-route owner). Decision: In1.Cu stays a pure GND reference (no-tracks rule area over the outline; D-PCB-6 keeps vias out under the GNSS line); In2.Cu is opened to signal routing with the +3V3 pour filling around tracks (stack SIG / GND / PWR+SIG / SIG). If In2 routing still leaves power-distribution gaps, the owner decision is a 6-layer stack."
+  },
+  "net_classes": {
+    "Default": {
+      "clearance_mm": 0.2,
+      "track_width_mm": 0.2,
+      "via_diameter_mm": 0.6,
+      "via_drill_mm": 0.3,
+      "class": "engineering",
+      "basis": "general copper spacing, width and via above the board minimums; unchanged from the generated project; the via (0.15 mm ring) sits above the 0.10 mm board minimum",
+      "note": "inherited from the scaffold; retained as a deliberate margin, no longer a default"
+    }
+  },
+  "decisions": {
+    "D-PCB-8 silkscreen policy (2026-10-21)": "Reference/value fields and footprint silk graphics that KiCad's own DRC reports as silk_overlap, silk_over_copper or silk_edge_clearance are hidden (fields) or moved to the same side's Fab layer (graphics) by silk/apply-silk-policy.py before packing. Basis: silk is cosmetic and JLCPCB assembles from the position file; no electrical, courtyard or pose change; it removes the AGENTEE-320 artwork-gate refusals (iteration-3: 44 silk_over_copper + 13 silk_overlap + 1 silk_edge_clearance -> 0; 29 references hidden, 12 graphics moved, evidence/d-pcb-3-v3/derive-log.json). Owner may instead ask for a relocation pass; the script is the reversible default.",
+    "D-PCB-9 NEO-M9N 85 C rating exception (2026-10-21)": "U3 u-blox NEO-M9N (-40..85 C) is accepted as an exact 85 C exception on the same terms the owner set for U1, U2 and U4 (AGENTEE-209, 2026-10-20: 'tested against [their] actual limit', AGENTEE-310 reduced acceptance with captured thermal evidence). Basis: the only 105 C alternative, NEO-M9L-01A, has 0 JLC stock and changes three pin functions, so a swap is a redesign; the pod's GNSS is a 25 Hz position source, not a safety function. Reverse: substitute NEO-M9L-01A with a footprint and pin review when stocked. Decided autonomously; owner review after the fact.",
+    "D-PCB-11 layer count trigger (2026-10-21)": "Stay on the 4-layer JLC04161H-7628 stack (D-PCB-2). Move to 6 layers only on one measured trigger (trigger (a), filled-and-capped vias, was withdrawn with D-PCB-3 on 2026-10-21): the full routing campaign on the block-placed seed leaves +3V3 plane-net pads open or fails kicad-route pour_integrity on In2 after the In2-open variant (routing-diagnostic bg3 shows In2 open did not help on iteration 3). Decided autonomously; owner review after the fact.",
+    "D-PCB-3 eMMC interior fanout (RETIRED 2026-10-21)": "U14 FEMDME008G (BGA-153, 0.5 mm pitch, 0.24 mm pads) has 10 connected interior balls (EMMC_VCC_3V3 x4, GND x5, EMMC_DS at H5). A 0.60 mm via does not fit a dogbone between 0.5 mm balls (0.467 mm pad-edge diagonal gap). Candidate answers, to be decided by a bounded routing experiment: a BGA net class with JLCPCB's published BGA allowances (0.09 mm pad-to-track, 0.10 mm track, 0.25/0.15 mm via, surcharge) or via-in-pad with filled vias (JLCPCB lists filled and capped vias as default for 6 layers and above; availability as a 4-layer option must be confirmed on the order form). The first KRT diagnostic left all eMMC bus nets unrouted. Analysis 2026-10-20 (agent-499): of the ten interior balls, nine are GND (E7, G5, H10, J5, K8) and EMMC_VCC_3V3 (E6, F5, J10, K9), reachable by B.Cu (ball-side) pours under U14 without any via; the only interior signal is EMMC_DS at H5, which connects solely to pull-down R55 (10 k). The ESP32-S3 SD/MMC host has no HS400 mode, so DS is unused; if the FEMDME008G datasheet permits an unused DS to be left open or terminated at the device, the schematic can drop or relocate R55 and no interior dogbone via is needed at all. The perimeter signals (CLK, CMD, DAT0-7, VDDi at C2) escape on the surface. Leading answer: B.Cu GND/VCC pours under U14 plus a storage-stage schematic decision on DS; no via-in-pad and no BGA net class unless the DS decision fails. DECISION v2 (2026-10-21, experiment pending): U14 LFBGA-153 ball pads reduced from 0.24 to 0.22 mm NSMD (within IPC-7351 for 0.30 mm balls at 0.5 mm pitch; the FEMDME008G datasheet gives no land pattern, package per JEDEC MO-276 11.5x13 mm); net class BGA_EMMC 0.09/0.09 mm for the EMMC_* nets; board-setup clearance and track floors set to JLCPCB's 0.09 mm; B.Cu pours for GND and EMMC_VCC_3V3 under U14 with 0.09 mm clearance and 0.09 mm minimum width (solid connection). Geometry: 0.5 pitch - 0.22 pad = 0.28 mm between pad edges; a 0.09 mm track with 0.095 mm to each pad meets the 0.09 floor; a 0.10 mm pour web between balls meets the 0.09 minimum width. If the routing experiment cannot connect the interior GND/VCC balls this way, the next options are filled via-in-pad (JLCPCB option, cost) or leaving DS/unused balls open per datasheet; those are owner-visible decisions recorded here. EXPERIMENT RESULT (2026-10-21, kicad-route run --nets '/EMMC_*' on the planed iteration-3 board with D-PCB-3 v2 + D-PCB-6/7, receipts in routing-diagnostic/iteration-3/bga-exp/bga-emmc-only): routing COMPLETE for all EMMC_* nets, 126 tracks, 10 vias, 0 new DRC violations; the perimeter-row escape and the interior EMMC_VCC_3V3 balls work. The B.Cu GND pour under U14 fragmented (1.1 mm2 left, 11 polygons, isolated islands), so the five interior GND balls (E7, G5, H10, J5, K8) cannot be reached by a pour between 0.22 mm balls. Remaining spec-compliant answer for those five: filled and capped via-in-pad (JLCPCB option; cost; via 0.15 mm hole / 0.25 mm diameter inside a 0.25 mm pad), which is an owner cost decision; the alternative of leaving VSS balls open is not spec-compliant (JEDEC eMMC requires all VSS connected) and is not recommended. The GND pour under U14 is withdrawn from the plan; the EMMC_VCC_3V3 pour stays. DECISION v3 (2026-10-21, agent-499, autonomous under the owner's 2026-10-20 ruling; owner review after the fact): the five interior GND balls E7, G5, H10, J5, K8 are filled-and-capped via-in-pad, 0.15 mm hole / 0.25 mm diameter (0.05 mm ring), carried by the patched footprint footprints/Package_BGA.pretty/LFBGA-153_11.5x13mm_Layout14x14_P0.5mm.kicad_mod (all 153 pads 0.22 mm NSMD per v2; those five are through-hole pads so the packer's cross-side hole check and native DRC see them). Scoped rule in telemetry-pod.kicad_dru: U14 through-hole pads hole_size min 0.15 mm, annular_width min 0.05 mm (JLCPCB 4-layer via minimum 0.15/0.25). Order-form requirement: via covering = epoxy filled and capped (JLCPCB option); if the order form does not offer it on the 4-layer JLC04161H-7628 stack, see D-PCB-11. Cost accepted: the small-hole and fill-and-cap surcharges on one board; the alternative (VSS open) is not JEDEC-compliant. Evidence: evidence/d-pcb-3-v3/ (iteration-3 board before, derived board after: native DRC 0 silk, 0 annular/hole findings; the 6 clearance + 4 pth_inside_courtyard findings are U14's via-in-pad sites under U1's F.Cu pads 19-22, a cross-side placement conflict that the next seed must avoid; the patched footprint makes the packer's hole-conflict check enforce it). Reverse: restore the stock Package_BGA footprint and delete the U14 rule. RETIRED 2026-10-21: the owner dropped the eMMC for a microSD socket (expansion/storage-microsd/). U14, the BGA_EMMC net class, the U14 via-in-pad rule and the patched Package_BGA footprint are withdrawn; the evidence directories stay as history.",
+    "D-PCB-12 J3 microSD socket 85 C rating exception (2026-10-21)": "J3 Hirose DM3AT-SF-PEJM5 (-25..+85 C per the LCSC listing) is accepted as an exact 85 C exception on the owner's U1/U2/U4 terms (tested against its actual limit, thermal evidence required). Basis: microSD sockets are not offered at 105 C in JLCPCB stock with a KiCad library footprint; the socket is a passive contact set with no self-heating; the enclosure thermal validation already required for U1/U2/U4 covers it. Reverse: substitute a 105 C-rated socket when one is stocked. Decided autonomously (owner ruling 2026-10-20); owner review after the fact.",
+    "D-PCB-10 J1 orientation (owner ruling 2026-10-21)": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1), as REQUIREMENTS.md rev 3 specifies and as every candidate board already carries. Owner, 2026-10-21: 'the J1 connector should be right angle, that much is fixed.' The earlier D-PCB-10 text (written the same day) wrongly discussed the superseded 23-position 776228-1/776087-1 pair from AGENTEE-209; that question is closed by the 35-position requirement. Not reversible without an owner change.",
+    "D-PCB-13 microSD card envelope in the J3 courtyard (2026-10-21)": "The Hirose DM3AT-SF-PEJM5 footprint's courtyard (KiCad 10.0.7 library, body to y=8.88 mm) is extended to y=13.98 mm, 0.25 mm past the inserted card the library draws on F.Fab (to y=13.725), in footprints/Connector_Card.pretty. Basis: the iteration-5 review found TP2/TP5 pogo-pad copper 0.06 mm from the seated card's edge; with the card inside the courtyard every packer keeps the card path clear and native DRC sees overlaps. Cosmetic/mechanical only; pads unchanged. Reverse: use the stock footprint. Decided autonomously; owner review after the fact. v2 (2026-10-21, iteration-6 review): the courtyard now extends to y=29.0 mm, i.e. the seated card plus a 15 mm insertion lane plus 0.25 mm, because the two-level placer put the ADC U4 0.52 mm beyond the seated card's tip, inside the lane the card must slide through. Any part may still sit beside the lane; nothing may sit in it. v3 (owner, 2026-10-21: 'obviously point the slot off the board edge'): J3 is fixed at (8.9, 32.0) on B, rotation 90, mouth at the left board edge, so the seated card and its 15 mm lane lie outside the outline (declared overhang band, left edge, 20.3 mm) and the 600 mm2 reserve on the back side returns to placement. The enclosure's left wall gets a card opening or a blind pocket at y 24-40 mm (card loaded with the board out of the box either way).",
+    "D-PCB-14 SD bus length (2026-10-21)": "The microSD SDMMC bus (SD_CLK/CMD/DAT0-3, 4-bit SDR) may run up to 90 mm pad-to-pad between U1 and J3: iteration 7 places the storage block in the bottom-left corner with 73.9-88.3 mm spans, because the 15 mm card insertion lane (D-PCB-13 v2) no longer fits under the ESP32 module. Basis: the storage stage targets 20 MHz SDR (storage-candidate README; ESP32-S3 SDMMC default), where a 90 mm trace (about 0.6 ns) is a small fraction of the 50 ns period and 10 k pull-ups at the socket suffice; the default-SDR 25 MHz and high-speed 50 MHz modes lose margin and would need the block re-placed near U1 or series termination. Routing constraint: route the six SD nets as one bundle on one layer pair with matched lengths within 10 mm and no stubs; no 40 MHz claim. Reverse: move the storage block next to U1 with the lane pointing along the board edge (an arrangement keepout/preference), then re-review. Decided autonomously (owner ruling 2026-10-20); owner review after the fact.",
+    "D-PCB-15 EFUSE_SET net class (2026-10-21)": "WITHDRAWN the same day: a full builtin pass on the planed iteration-7 board with the 0.15/0.15 mm class left every eFuse setting net open (33 open, 3 dangling stubs, net_completion regressions), so the thinner class bought nothing and the loosening is removed. The open eFuse nets are a placement-channel problem (blocks compacted at the 0.25 mm gap), to be solved by AGENTEE-376 (fixed pairs exempt from the gap) and a routability-aware block packing, not by thinner copper.",
+    "D-PCB-16 ESP32 antenna overhang and enclosure pocket (owner 2026-10-21)": "U1 ESP32-S3-WROOM-1 stays at (72.5, 6.5) F with its antenna section protruding past the top board edge: module fabrication outline y = -6.46 to 19.51 mm (6.46 mm overhang, module 18 mm wide, x 62.74-81.76), Espressif's preferred antenna placement; the captured footprint's courtyard (y to -21.3, x 48.5-96.5) is the manufacturer antenna keep-out and stays enforced. Owner, 2026-10-21: 'I'll roll with the overhang. I think a 3d printed enclosure could easily accommodate.' Enclosure requirements derived: a pocket above the top edge at least 20 mm wide and 8 mm deep (6.46 mm overhang + clearance) with about 5 mm of air over the antenna face, non-metallic (REQUIREMENTS: non-metallic over the module antenna), no screw boss, insert or metal within the 15 mm keep-out, and no support touching the protruding module (vibration). Alternative recorded if the enclosure cannot: pull U1 inboard 6.5 mm and give the antenna a copper-free strip inside the outline (Espressif option 2), at some pattern cost. Owner decision; not autonomous."
+  }
+}

@@ -1,0 +1,67 @@
+RELAYED OWNER DECISION (agent-drafted, NOT owner-authored, NOT owner-confirmed): J1 board thickness (telemetry pod)
+Date: 2026-10-22
+Decided by: the owner, as RELAYED by agent-509. The wording below was drafted by agents (an fm446c worker, then
+agent-449). The owner did not write or review this text; see the verbatim relays at the end, which are the
+authoritative record. Relabelled 2026-10-22 at the owner's direction.
+Relay chain: owner -> agent-509 -> agent-449 (coordinator)
+Cairn records: d162e001, b706da93, 9561cd0c (component-side fit clarification)
+Tracker item: AGENTEE-446
+Class: owner-relayed (agent-drafted summary of relayed decisions; unconfirmed by the owner)
+
+Agent-drafted summary of the relayed decisions
+
+J1 TE AMPSEAL 1-776163-1 is a through-hole soldered header with a mechanical
+retention pin. Its leads may protrude several mm. Assembly: seat the
+connector, tack one pin, re-seat/align, solder the rest, trim the excess lead
+stickout.
+
+The standard JLCPCB four-layer, nominal 1.6 mm board is ACCEPTED as the
+board choice, with JLCPCB's published +/-10% finished-thickness tolerance
+(1.44-1.76 mm). That fabricator tolerance is a BOARD-SIDE fact only; it is
+not the basis for J1 fit.
+
+Component-side fit rule (as relayed, Cairn 9561cd0c): for ordinary
+soldered through-hole parts the owner uses AT LEAST +/-10% of the
+manufacturer's recommended nominal board thickness as an inclusive
+fit-screening default (often wider). This is independent of, and must not
+be conflated with, the fabricator's finished-thickness tolerance. For J1,
+TE's recommended nominal 1.57 mm gives a screening band of 1.413-1.727 mm;
+the 1.6 mm nominal board is inside it (about 1.9% from nominal), so J1
+screens as fitting. Explicit manufacturer functional limits override the
+default; being outside the heuristic band alone is advisory, not a defect.
+The reusable agent-ee policy is AGENTEE-448.
+
+The TE 1.57 mm recommendation (0.03 mm nominal difference) is NOT a thickness
+gate, and interval arithmetic is NOT an actionable release uncertainty.
+
+No special tolerance, TE confirmation, enclosure CAD or owner harness is
+required for placement, routing or bare-board fab readiness.
+
+Normal footprint, finished-hole/pad, retention and solder-joint checks remain.
+
+A narrower requirement needs a concrete source or an observed failure.
+
+Related relayed owner direction (same day, same relay)
+
+The ECU and telemetry pod are built from the ground up. The enclosure, panel
+and harness are team design deliverables; no CAD exists yet, and that is not a
+blocker. The only existing external constraint is the large seat cowl.
+Installed fit against the seat cowl and the designed enclosure/harness is
+verified once those designs exist.
+
+VERBATIM RELAYS (authoritative record; Cairn record id, version 1, body sha256)
+
+--- Cairn d162e001-8f44-47cb-8960-d68ac9484d14 v1 (sender agent-509), body sha256 bb527bde90807e6255ab1a9cc9dc2d3657cdd55acb43f00e67832a2811b637c6 ---
+Project: agent-ee / fome-mc telemetry pod. Target agent-449, owner of AGENTEE-446 and sole Plane/trunk integrator. This is a narrow correction to the active engineering inputs; the broad telemetry-pod goal remains paused.
+
+Owner correction: J1 AMPSEAL is a through-hole soldered header with a mechanical retention pin. Its leads can protrude several millimeters. Assembly sequence described by owner: secure/seat the connector, tack-solder one pin, re-seat/align, solder remaining pins, trim excess lead stickout. Standard JLCPCB four-layer nominal 1.6 mm board with published ±10% finished-thickness tolerance (1.44–1.76 mm) is accepted. The TE 1.57 mm recommendation and 0.03 mm nominal difference are not a thickness gate, nor should speculative interval arithmetic remain an actionable release uncertainty. No special PCB thickness tolerance, TE confirmation, existing enclosure CAD or owner-provided harness is required for placement, routing or bare-board fabrication readiness. Keep normal footprint, finished-hole/pad, retention and solder-joint checks; a narrower requirement would need a concrete source or observed failure.
+
+Please inspect the actual agent-ee/fome-mc tool inputs, active review scope, release checklist and any executable rules; correct the repo-native artifact(s) that agents/tools consume, not merely Cairn memory or Plane prose. I checked agent-ee source: board_envelope.py enforces the sourced JLC stackup/tolerance but contains no J1-vs-1.57 thickness gate. Do not invent a new code check to prove absence. Update AGENTEE-446 language so it does not suggest an open thickness problem, and link the repo-native correction. Verify the relevant tool/criteria behavior on standard 1.6 mm where feasible. Integrate per your sole-writer protocol, report exact paths/commit and verification. No fab order/purchase.
+
+--- Cairn b706da93-a2c0-4c65-b36f-5e2697146aa3 v1 (sender agent-509), body sha256 be16c0387ba1f0c83495f7c10ddccfb3daed5f420554650612186c2c6a610e2e ---
+Owner decision, 2026-10-22, AGENTEE-446/J1: accept the standard JLCPCB four-layer 1.6 mm nominal finished-board choice and its published standard tolerance. The selected AMPSEAL header is through-hole, TE application spec recommends 1.57 mm, nominal difference is 0.03 mm. This supersedes any 449/509 instruction to keep board thickness OPEN or to require a custom tolerance, supplier exception, TE confirmation, or installed CAD before PCB placement/routing/bare-board fabrication readiness. Treat the JLC +/-10% versus inferred TE general +/-0.13% interval arithmetic as a documented uncertainty, NOT an established connector incompatibility or independent release blocker. Preserve normal footprint, finished-hole, pad, board-lock and solder-tail design checks; escalate only if a concrete source or physical check establishes a real incompatibility. No fabricated TE compliance claim. As sole Plane writer, amend AGENTEE-446 and its latest comment promptly to reflect owner acceptance; do not reopen the same thickness gate based only on worst-case arithmetic. Keep the owner direction that enclosure/harness are future design deliverables and that the board must withstand motorcycle track vibration/temperature. No fab order/purchase. Reply with the tracker disposition.
+
+--- Cairn 9561cd0c-759a-461e-955d-8f32829a5a73 v1 (sender agent-509), body sha256 69da3a94b74f8f8b2542296553a65f683611b58ca74f697500626a27f3ebd100 ---
+Correction to agent-449 request 9a52b697-ac98-4a9f-8969-f8b496637138, project agent-ee/fome-mc telemetry pod. The owner clarified explicitly that +/-10% (or greater) is the ordinary soldered THROUGH-HOLE COMPONENT'S fit tolerance around its recommended nominal PCB thickness, independent of the PCB fabricator's finished-board thickness tolerance. Do not conflate these two tolerances. This is the owner's engineering assumption for an agent-ee reusable default, not a claim that JLCPCB's +/-10% defines component fit or that +/-10% is a universal hard ceiling. For TE recommended 1.57 mm, the baseline +/-10% screening band is 1.413–1.727 mm; selected nominal 1.6 mm differs by only ~1.9%, clearly inside. Long solder tails, trim and retention make arithmetic worst-case overlap a poor blocker. A wider documented fit range or specific feature geometry should govern when available.
+
+Please establish this default in agent-ee's actual consumed policy/check contract (with a targeted positive J1 case and boundary/explicit-limit cases as appropriate), not only in memory or Plane. Make the policy distinguish recommended nominal from an explicit manufacturer hard min/max; do not promote the +/-10% heuristic to a hard rejection without geometry/evidence. Ensure the in-flight fm446c-thickness-accepted lane and AGENTEE-446 use this component-side meaning, not a borrowed fab tolerance. This is a narrow correction while the broad goal is paused. Report concrete source paths, test result, integrated commit; no fab order.

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/work/fome/telemetry-pod/expansion/production-capture/build.py", line 1297, in <module>
+    print(json.dumps(build(args.out, args.agent_ee, args.mechanical_reservations, args.stackup_materials), indent=1, sort_keys=True))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/fome/telemetry-pod/expansion/production-capture/build.py", line 895, in build
+    for path in qualify_external_record(record2, ROOT):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/export/src/agent_ee/part_record.py", line 209, in qualify_external_record
+    observed, artifact, dependencies = _external_sources(root, document['identity_source'], document['datasheets'],
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/export/src/agent_ee/part_record.py", line 155, in _external_sources
+    if not _read_blob(root, ref, reads):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/export/src/agent_ee/parts_manifest.py", line 213, in _read_blob
+    raise ValueError('captured dependency hash mismatch: ' + blob['path'])
+ValueError: captured dependency hash mismatch: telemetry-pod/expansion/agentee-494-j2/source-manifest.json
+Traceback (most recent call last):
+  File "/work/fome/build/ee485-producer.py", line 8, in <module>
+    subprocess.run([sys.executable, '-B', str(h/'build.py'), '/work/export', '--out', 'build/ee485-precheck/capture'],check=True)
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '-B', 'telemetry-pod/expansion/production-capture/build.py', '/work/export', '--out', 'build/ee485-precheck/capture']' returned non-zero exit status 1.
+
+exit=1

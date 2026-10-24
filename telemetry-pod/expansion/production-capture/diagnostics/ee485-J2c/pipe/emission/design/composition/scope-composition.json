@@ -1,0 +1,1873 @@
+{
+ "added_checks": [
+  "assembly",
+  "parts",
+  "antenna-facts",
+  "envelope-outline",
+  "envelope-layer-count",
+  "envelope-stackup",
+  "envelope-hole-h1",
+  "envelope-hole-h2",
+  "envelope-hole-h3",
+  "envelope-hole-h4",
+  "envelope-keepout-radio-antenna",
+  "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+  "envelope-keepout-d-pcb-6-rf-reference",
+  "envelope-fixed-j1",
+  "envelope-fixed-j2",
+  "envelope-fixed-u1",
+  "envelope-fixed-u2",
+  "envelope-fixed-j3",
+  "envelope-containment",
+  "electrical-locality",
+  "envelope-fab-profile"
+ ],
+ "added_requirements": [
+  "POD-DERIVED-AC-5-ASSEMBLY",
+  "R-envelope-expanded-pod-microsd-production-outline",
+  "R-envelope-expanded-pod-microsd-production-layer-count",
+  "R-envelope-expanded-pod-microsd-production-stackup",
+  "R-envelope-expanded-pod-microsd-production-fab-profile",
+  "R-envelope-expanded-pod-microsd-production-hole-H1",
+  "R-envelope-expanded-pod-microsd-production-hole-H2",
+  "R-envelope-expanded-pod-microsd-production-hole-H3",
+  "R-envelope-expanded-pod-microsd-production-hole-H4",
+  "R-envelope-expanded-pod-microsd-production-keepout-radio-antenna",
+  "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-7v2-In1-no-tracks",
+  "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-6-RF-reference",
+  "R-envelope-expanded-pod-microsd-production-fixed-J1",
+  "R-envelope-expanded-pod-microsd-production-fixed-J2",
+  "R-envelope-expanded-pod-microsd-production-fixed-U1",
+  "R-envelope-expanded-pod-microsd-production-fixed-U2",
+  "R-envelope-expanded-pod-microsd-production-fixed-J3",
+  "POD-DERIVED-OVERHANG-CONTAINMENT",
+  "POD-DERIVED-ELECTRICAL-LOCALITY",
+  "POD-DERIVED-PARTS-MEMBERSHIP",
+  "POD-DERIVED-ANTENNA-FACTS"
+ ],
+ "assembly": {
+  "check": {
+   "id": "assembly",
+   "kind": "assembly_readiness",
+   "params": {
+    "boards": 1,
+    "catalog": "assembly-stock/catalog.json",
+    "deviations": "composition/deviations.json",
+    "hand_fit_policy": [
+     {
+      "identities": [
+       {
+        "lcsc": "C596198",
+        "mpn": "1-776163-1"
+       }
+      ],
+      "line": 139,
+      "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+      "selection": {
+       "category": "AMPSEAL",
+       "line": 175,
+       "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+       "records": [
+        {
+         "pointer": "",
+         "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+         "source": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+        },
+        {
+         "pointer": "/parts/326",
+         "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+         "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+        },
+        {
+         "pointer": "/parts/303",
+         "sha256": "f9686b14a7904ab5c0d11aba07baffbab5253d199383202317dbc9235e4c8cc4",
+         "source": "composition/parts.json"
+        }
+       ],
+       "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+       "source": "telemetry-pod/expansion/design-rules/constraints.json"
+      },
+      "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+      "source": "telemetry-pod/REQUIREMENTS.md"
+     },
+     {
+      "identities": [
+       {
+        "lcsc": null,
+        "mpn": "132134"
+       }
+      ],
+      "line": 6,
+      "mapping": {
+       "pointer": "",
+       "sha256": "d8ce07bc5ed60d0bf6f1dff7f930066e3f5b2665b07ec05413190a4b70e43200",
+       "source": "composition/j2-hand-fit-mapping.json"
+      },
+      "quote": "it's a bigass connector, that's the least of my worries, it's easy to hand fit, goddammit, it's a through hole part. I asked your predecessor the same thing, ever soldered a through-hole part?",
+      "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+      "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+     }
+    ],
+    "max_age_hours": 24,
+    "require_passive_ratings": true
+   },
+   "stage": "verification"
+  },
+  "hand_fit": {
+   "agent_ee": {
+    "approvals": [
+     {
+      "class": "owner_hand_fit",
+      "identities": [
+       {
+        "lcsc": "C596198",
+        "mpn": "1-776163-1"
+       }
+      ],
+      "line": 139,
+      "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+      "selection": {
+       "association": "category_selection",
+       "category": "AMPSEAL",
+       "decision": "D-PCB-10 J1 orientation (owner ruling 2026-10-21)",
+       "footprint": "PodConnector:AMPSEAL_35_1-776163-1",
+       "footprints": [
+        {
+         "footprint": "PodConnector:AMPSEAL_35_1-776163-1",
+         "lcsc": "C596198",
+         "mpn": "1-776163-1"
+        }
+       ],
+       "lcsc": "C596198",
+       "line": 175,
+       "mpn": "1-776163-1",
+       "part_record_links": [
+        {
+         "part_record": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+         "part_record_sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+         "pointer": "/parts/326",
+         "record": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+        },
+        {
+         "part_record": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+         "part_record_sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+         "pointer": "/parts/303",
+         "record": "composition/parts.json"
+        }
+       ],
+       "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+       "records": [
+        {
+         "pointer": "",
+         "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+         "source": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+        },
+        {
+         "pointer": "/parts/326",
+         "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+         "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+        },
+        {
+         "pointer": "/parts/303",
+         "sha256": "f9686b14a7904ab5c0d11aba07baffbab5253d199383202317dbc9235e4c8cc4",
+         "source": "composition/parts.json"
+        }
+       ],
+       "reference": "J1",
+       "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+       "source": "telemetry-pod/expansion/design-rules/constraints.json"
+      },
+      "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+      "source": "telemetry-pod/REQUIREMENTS.md"
+     },
+     {
+      "class": "owner_hand_fit",
+      "identities": [
+       {
+        "lcsc": null,
+        "mpn": "132134"
+       }
+      ],
+      "line": 6,
+      "mapping": {
+       "identity": {
+        "approval": {
+         "record_id": "ccbe2294@1",
+         "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+         "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+        },
+        "class": "engineering",
+        "context": {
+         "pointer": "",
+         "sha256": "012d5b2ee62e97d45359c7c29c6967204b4afa22993a4e510d3254bb24a2a9fa",
+         "source": "telemetry-pod/expansion/production-capture/sources/j2-adoption-f8/132134.json"
+        },
+        "lcsc": null,
+        "mpn": "132134",
+        "reference": "J2"
+       },
+       "pointer": "",
+       "sha256": "d8ce07bc5ed60d0bf6f1dff7f930066e3f5b2665b07ec05413190a4b70e43200",
+       "source": "composition/j2-hand-fit-mapping.json"
+      },
+      "quote": "it's a bigass connector, that's the least of my worries, it's easy to hand fit, goddammit, it's a through hole part. I asked your predecessor the same thing, ever soldered a through-hole part?",
+      "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+      "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+     }
+    ],
+    "status": "expressible"
+   },
+   "declared": {
+    "path": "composition/hand-fit-policy.json",
+    "sha256": "0ba78051e6cf186ab1a7d07332bfa19269d4a69f80f65c0ec73d2d5e94f2578d"
+   },
+   "declared_in_scope": true,
+   "links": {
+    "telemetry-pod/REQUIREMENTS.md": {
+     "equals_fome_mc": true,
+     "recorded_by_agent_509": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+     "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+    },
+    "telemetry-pod/expansion/complete-parts-manifest/parts.json": {
+     "equals_fome_mc": true,
+     "recorded_by_agent_509": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+     "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff"
+    },
+    "telemetry-pod/expansion/design-rules/constraints.json": {
+     "equals_fome_mc": true,
+     "recorded_by_agent_509": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+     "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+    },
+    "telemetry-pod/expansion/j1-historical-source/C596198.json": {
+     "equals_fome_mc": true,
+     "recorded_by_agent_509": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+     "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5"
+    }
+   }
+  },
+  "stock": {
+   "bom_lcsc": 80,
+   "capture": {
+    "as_of": "2026-10-23T14:08:02.963448+00:00",
+    "completed_at": "2026-10-23T14:15:27.545608+00:00",
+    "endpoint": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+    "failed": {},
+    "method": "POST",
+    "not_found": [],
+    "path": "assembly-stock/catalog.json",
+    "requested": 83,
+    "sha256": "c26cca7b464b78ab2faa46d16ccecc80cc373b366be2527136a4d6580778253f",
+    "source": "telemetry-pod/expansion/production-capture/sources/assembly-stock-20261023-491b"
+   },
+   "deviated": [
+    "C596198"
+   ],
+   "evaluated_at": "2026-10-24T02:02:52.439219+00:00",
+   "external_parts": [
+    {
+     "assembly": "not_assembled",
+     "lcsc": null,
+     "mpn": "132134",
+     "reference": "J2",
+     "stock": null
+    }
+   ],
+   "max_age_hours": 24,
+   "observed": 80,
+   "outside_bom": [
+    "C841205",
+    "C861226",
+    "C861521"
+   ],
+   "per_id": {
+    "C105579": {
+     "age_hours": 11.896,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:08.018746+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RC0603FR-0747KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C105579.json",
+      "sha256": "7423af58c715c915fcca5eb044d5ca9b9d218335f21fb088c26368dc1f94e530",
+      "size_bytes": 4415
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 10145
+    },
+    "C105588": {
+     "age_hours": 11.894,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:13.415464+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RC0603FR-07100RL",
+     "quantity_per_board": 8,
+     "reason": null,
+     "response": {
+      "path": "responses/C105588.json",
+      "sha256": "896c6dd6e0cb7f66a34316f942dc2349ee0aa2c3158cf64340901ba0c7cde326",
+      "size_bytes": 4425
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2196522
+    },
+    "C108080": {
+     "age_hours": 11.893,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:18.804911+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RC1206FR-0710RL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C108080.json",
+      "sha256": "cb84df9989b3cb2586262d6efff00af5de71d45a9cdb949a48cdd88ca5359e01",
+      "size_bytes": 4408
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1144725
+    },
+    "C110776": {
+     "age_hours": 11.891,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:24.173953+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD071KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C110776.json",
+      "sha256": "9b1d991e6bf8dfebf676fce4360dd362bc01ec9d3c5c60d6cbcb1841728afdc4",
+      "size_bytes": 5255
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1667726
+    },
+    "C112305": {
+     "age_hours": 11.89,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:29.585337+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RC0603FR-071RL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C112305.json",
+      "sha256": "fd4b23b3c376bfd399605e7439a59f0303b9027d7fcaac7b4b338b6287cdf7a3",
+      "size_bytes": 4405
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 9360
+    },
+    "C114218": {
+     "age_hours": 11.888,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:34.955597+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "DM3AT-SF-PEJM5",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C114218.json",
+      "sha256": "429de78eb2a8875c74596b54cbb8047e3054174857ef4803c2ec58f4568e1c69",
+      "size_bytes": 4586
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 15855
+    },
+    "C122538": {
+     "age_hours": 11.887,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:40.367390+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07100KL",
+     "quantity_per_board": 4,
+     "reason": null,
+     "response": {
+      "path": "responses/C122538.json",
+      "sha256": "0e1b3f0f70e4afa7d3b00a7cb14fa50c5a2672a2bb4e31e9339fc7068b7b34be",
+      "size_bytes": 4419
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1370409
+    },
+    "C122970": {
+     "age_hours": 11.885,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:45.748281+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07100RL",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C122970.json",
+      "sha256": "e8937fd3493ede7ff9e2f0fae263e6512ceae5c6833122258f4f9c85128c05a4",
+      "size_bytes": 4414
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 387527
+    },
+    "C124196": {
+     "age_hours": 11.884,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:51.145073+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "BZT52C12-7-F",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C124196.json",
+      "sha256": "3f834cf4a7e1ed53f81db905f74114cb710914319bee4e54c7aad929c1697921",
+      "size_bytes": 4544
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 23365
+    },
+    "C127833": {
+     "age_hours": 11.882,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:56.521213+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C104K5RACTU",
+     "quantity_per_board": 22,
+     "reason": null,
+     "response": {
+      "path": "responses/C127833.json",
+      "sha256": "6600d835d8faae8870bc45d94707dfc3c66ed3ad7c287a42ae40d2265411dbb7",
+      "size_bytes": 4039
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 23
+    },
+    "C129339": {
+     "age_hours": 11.881,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:01.906790+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TPS7B4253QDDARQ1",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C129339.json",
+      "sha256": "ae9221d6f8148f35d9205489e028878f290dc25a2fe3ea817caba7d7f5cde93b",
+      "size_bytes": 5111
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 595
+    },
+    "C130055": {
+     "age_hours": 11.879,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:07.295515+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TPS2553QDBVRQ1",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C130055.json",
+      "sha256": "c84828100a51982017c77083d2bfb857c12da1bba7df7a8a2ccb87b6ea3550e8",
+      "size_bytes": 4812
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 38
+    },
+    "C136970": {
+     "age_hours": 11.878,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:12.747778+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD071K2L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C136970.json",
+      "sha256": "a99d705fe1636aaa61b9c2e3190b012a0e8c0061ba48d690f6b5d56ba58acf17",
+      "size_bytes": 4407
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 6897
+    },
+    "C14675": {
+     "age_hours": 11.912,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:08.489619+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RC0603FR-07100KL",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C14675.json",
+      "sha256": "0e2a206951dd16a24a1f47a2a1ce840181f34be0ead6748355d2b70723e90f99",
+      "size_bytes": 4421
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 8869863
+    },
+    "C1509297": {
+     "age_hours": 11.822,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:33.623705+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TPS389001DSER",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C1509297.json",
+      "sha256": "ad270ed1524dbcc8aaf549d2bd3bc699570b7e5cffec1c2d962e11f072e87cd2",
+      "size_bytes": 4637
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 187
+    },
+    "C151279": {
+     "age_hours": 11.876,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:18.248329+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "SMCJ24CA",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C151279.json",
+      "sha256": "cb711cbe728edc14abe3514e217faabed3a2d0ebc018b9fc90cbb46ca1b41164",
+      "size_bytes": 4828
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 6719
+    },
+    "C1525": {
+     "age_hours": 11.914,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:02.963492+00:00",
+     "http_status": 200,
+     "library_tier": "Basic",
+     "mpn": "CL05B104KO5NNNC",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C1525.json",
+      "sha256": "59dbba120a36ac00330e9a9a630a5ff2ccd40f6dcbf154a7950a191b3ec62898",
+      "size_bytes": 65804
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 36100897
+    },
+    "C154901": {
+     "age_hours": 11.875,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:23.969954+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "DMP6023LE-13",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C154901.json",
+      "sha256": "dd4ea515b96337418acce9a331e183d339f29d261eb9c762368a96fe1162fead",
+      "size_bytes": 4777
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 7040
+    },
+    "C17288249": {
+     "age_hours": 11.792,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:21.708822+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CL32B475KCVZNWE",
+     "quantity_per_board": 4,
+     "reason": null,
+     "response": {
+      "path": "responses/C17288249.json",
+      "sha256": "d3af2dae1d1b139fe0d548485347879a463e4b54577be44dbfc63baefe750df2",
+      "size_bytes": 4113
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 552
+    },
+    "C1864162": {
+     "age_hours": 11.82,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:38.991378+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "LSM6DSO32TR",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C1864162.json",
+      "sha256": "84652c5fbf627d23e71440f8291e1a9e7883be11ee8d47a57a2044cc3a34dd2e",
+      "size_bytes": 4745
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 345
+    },
+    "C190245": {
+     "age_hours": 11.873,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:29.361329+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TL431BQDBZR",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C190245.json",
+      "sha256": "685c6a6246caa8fa9fe12bcbd2bfc501981115ff8a850b2aa7471c534a75f996",
+      "size_bytes": 4859
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 13471
+    },
+    "C19947708": {
+     "age_hours": 11.79,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:27.094675+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "SRP7050WA-6R8M",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C19947708.json",
+      "sha256": "a3620f1194580956c7e7d30efc8c216335a6f42494a5e5e524e920d70d5b58aa",
+      "size_bytes": 4016
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 62
+    },
+    "C2045384": {
+     "age_hours": 11.819,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:44.565411+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "SRP7050TA-150M",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C2045384.json",
+      "sha256": "e135b74f3866317c3bd393eab64a2ed0d99793befd5995b1d1d23b461f734d0d",
+      "size_bytes": 4185
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 445
+    },
+    "C2073505": {
+     "age_hours": 11.817,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:49.976948+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CRCW2512200RFKEGHP",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C2073505.json",
+      "sha256": "fd6094499630e62143f7902f800a83ad50702d15afaea92c2c95ff31bfa7da31",
+      "size_bytes": 4315
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 67
+    },
+    "C208539": {
+     "age_hours": 11.872,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:34.741374+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "ADA4096-4ARUZ-R7",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C208539.json",
+      "sha256": "7c2177f5bcb15fe2a7857339d163c68b2f82b34ef2d66bb9c2f4b68cf1e40652",
+      "size_bytes": 5172
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 32
+    },
+    "C2167136": {
+     "age_hours": 11.816,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:55.386870+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C223K5RACTU",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C2167136.json",
+      "sha256": "c911c34181b27ca19aab1f95ffde4d1f3ded49ced04b7f8f550ca54b8db3c5ed",
+      "size_bytes": 4057
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 5544
+    },
+    "C2167328": {
+     "age_hours": 11.814,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:00.797065+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C101J5GACTU",
+     "quantity_per_board": 8,
+     "reason": null,
+     "response": {
+      "path": "responses/C2167328.json",
+      "sha256": "a4d1bd0d75d4f4444499047d8d74865bfad0ef8bb1bcd6d13e5a05e7429382f5",
+      "size_bytes": 4057
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 6386
+    },
+    "C2167386": {
+     "age_hours": 11.813,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:06.217570+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C105K4RACTU",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C2167386.json",
+      "sha256": "adc9a64e81c1b9adcf4171cfbd02424f28a9aceb0b3cb5c64e4467e139ddf0d1",
+      "size_bytes": 4046
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 4068
+    },
+    "C2168350": {
+     "age_hours": 11.811,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:11.570744+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C180J5GACTU",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C2168350.json",
+      "sha256": "43f678087b5f583d4067a9b335c7d85d4c7637d1e93ae3f0272756f83f795b8d",
+      "size_bytes": 4051
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 11233
+    },
+    "C2174822": {
+     "age_hours": 11.81,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:16.969877+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C1206C106K4RACTU",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C2174822.json",
+      "sha256": "9a53957773c508dd4206de2f71ee218bac31d235c8d846d1fc216f1f9d8bfb84",
+      "size_bytes": 4035
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2676
+    },
+    "C22787": {
+     "age_hours": 11.911,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:13.863828+00:00",
+     "http_status": 200,
+     "library_tier": "Basic",
+     "mpn": "0603WAF1200T5E",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C22787.json",
+      "sha256": "42f539d8abf57a45d2d622107150a1c60e53c8801076435f318ae99e9b18da72",
+      "size_bytes": 4466
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2483636
+    },
+    "C27804": {
+     "age_hours": 11.909,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:19.608147+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "REF5050AIDR",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C27804.json",
+      "sha256": "8653429d9746fabd77bde0038f9efda893aedf63b282148ffd4fced0c852bb07",
+      "size_bytes": 4877
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 10168
+    },
+    "C2862873": {
+     "age_hours": 11.808,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:22.327054+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TPS26625DRCR",
+     "quantity_per_board": 4,
+     "reason": null,
+     "response": {
+      "path": "responses/C2862873.json",
+      "sha256": "a0add97c899f037032513911cc1fe970c9ed02b5da15fb71caa4707b8e5ac88e",
+      "size_bytes": 4708
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2526
+    },
+    "C2879422": {
+     "age_hours": 11.807,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:27.750631+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "LMR36520ADDAR",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C2879422.json",
+      "sha256": "03cb72ab271179fa4dacc4f5f55bf1d6c33e301342f3aeae81b5c199c9285438",
+      "size_bytes": 4920
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 7013
+    },
+    "C2913198": {
+     "age_hours": 11.805,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:33.148095+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "ESP32-S3-WROOM-1-N8",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C2913198.json",
+      "sha256": "78d497ee88352761fd9019e0078a4c7ff787b4f8ded9b4d5e053e1d8220302b7",
+      "size_bytes": 4824
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 3682
+    },
+    "C2979740": {
+     "age_hours": 11.804,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:38.524915+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "MCP3208-BI/SL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C2979740.json",
+      "sha256": "03edff86524b35b871ecddd58751d687055e932d2c744532b585942df5c7b5be",
+      "size_bytes": 5073
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 221
+    },
+    "C3018567": {
+     "age_hours": 11.802,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:43.914139+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0805C105K5RACTU",
+     "quantity_per_board": 11,
+     "reason": null,
+     "response": {
+      "path": "responses/C3018567.json",
+      "sha256": "5ba8f57314ab420fc95b4cbbb9ab6bd1f0d6e38b07c3dc2a7e1771a5073f1ba1",
+      "size_bytes": 5033
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 458
+    },
+    "C307542": {
+     "age_hours": 11.87,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:40.133302+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CL21B224KCFSFNE",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C307542.json",
+      "sha256": "e1083d3789265a97bc47797832d4c96a3fe83d7dba621b999e53d337e60f6454",
+      "size_bytes": 4246
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 32788
+    },
+    "C3659057": {
+     "age_hours": 11.801,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:49.279941+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "LM2903BQDRQ1",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C3659057.json",
+      "sha256": "1c18d67be951c7fa9258ba24b60b96629eace1277bfcb98c72c96ff5f0776901",
+      "size_bytes": 4892
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 6207
+    },
+    "C38695": {
+     "age_hours": 11.908,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:24.997860+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "TJA1051T/3/1J",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C38695.json",
+      "sha256": "b05f7a441927b4b2f97161ff20dc0865f42247ac7a29f5a026c0288e2ba03f37",
+      "size_bytes": 4554
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 113089
+    },
+    "C3988368": {
+     "age_hours": 11.799,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:14:54.685114+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CRCW2512620RFKEG",
+     "quantity_per_board": 4,
+     "reason": null,
+     "response": {
+      "path": "responses/C3988368.json",
+      "sha256": "96785f48908430bc5b996844f7d880fa1d5e16ad22db9b0bc9febc45ca2f51bd",
+      "size_bytes": 3847
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1000
+    },
+    "C403723": {
+     "age_hours": 11.869,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:45.531952+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "SN74LVC1G132DBVR",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C403723.json",
+      "sha256": "220b4b479cf194ae80fb8ef796e12b5297bfa505531d5ad5948c856b9402f5f8",
+      "size_bytes": 5283
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 25856
+    },
+    "C40919": {
+     "age_hours": 11.906,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:30.413644+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "BAV199,215",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C40919.json",
+      "sha256": "c62f648c71082831ff095a29ea0e8690f8f72599dde1c6a5075ca99969cbba83",
+      "size_bytes": 4413
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 71467
+    },
+    "C452747": {
+     "age_hours": 11.867,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:50.898190+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C221J5GACTU",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C452747.json",
+      "sha256": "e764798d7d0c7108bf70a9767d513f4471f272be033476f570c63c65a999faee",
+      "size_bytes": 4039
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2262
+    },
+    "C452751": {
+     "age_hours": 11.866,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:10:56.360267+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0603C471J5GACTU",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C452751.json",
+      "sha256": "79ee6e1403217a70d3c0f0c5cec7d2c9f2b18a50ed6eb36c828e3007d662496e",
+      "size_bytes": 3757
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2517
+    },
+    "C469656": {
+     "age_hours": 11.864,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:01.734956+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0722KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C469656.json",
+      "sha256": "78dd7648815ac1d01c0f08606df44bda8d92faa10a64d044325ef0ee9dae553d",
+      "size_bytes": 4412
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 45669
+    },
+    "C5119087": {
+     "age_hours": 11.798,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:00.091952+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "NEO-M9N-00B",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C5119087.json",
+      "sha256": "dda8c3d7fa3eddcf64e46fe58024361b51bf908ee1928f13b438be2178844ca0",
+      "size_bytes": 4312
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 543
+    },
+    "C513565": {
+     "age_hours": 11.863,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:07.111708+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD074K7L",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C513565.json",
+      "sha256": "2cb63de276df960daeb9d2712a8bb173e8fcac4e15263d55ce7839db8f9db8cc",
+      "size_bytes": 4296
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 110033
+    },
+    "C515607": {
+     "age_hours": 11.861,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:12.507172+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07499KL",
+     "quantity_per_board": 27,
+     "reason": null,
+     "response": {
+      "path": "responses/C515607.json",
+      "sha256": "ebfd89e369dafc6cb53d8567d7aa5bbb22965372b3254d711c880dfdb3566f1f",
+      "size_bytes": 4421
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 100730
+    },
+    "C5311564": {
+     "age_hours": 11.796,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:05.483090+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "PESD5V0C1BLS-QYL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C5311564.json",
+      "sha256": "2a604fc0915ab937887b4784bc4ad86c17dc2d9010df123ad1dece33e3943f38",
+      "size_bytes": 4702
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 6
+    },
+    "C552486": {
+     "age_hours": 11.86,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:17.879652+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "PESD2CANFD24V-TR",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C552486.json",
+      "sha256": "5421f87b1e157d1acb282b9cf326c9c92250fba0b562696ced46c4dd1fad677d",
+      "size_bytes": 4887
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 10033
+    },
+    "C596198": {
+     "age_hours": 11.858,
+     "deviated": true,
+     "fetched_at": "2026-10-23T14:11:23.445681+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "1-776163-1",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C596198.json",
+      "sha256": "43cf2561fb04cae3941c38a8905506b05a612fa7a4564ce2a8c38d4f276d3e29",
+      "size_bytes": 4917
+     },
+     "stale": false,
+     "status": "zero_stock",
+     "stock": 0
+    },
+    "C626758": {
+     "age_hours": 11.857,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:28.865200+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "MCP2518FDT-E/SL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C626758.json",
+      "sha256": "0296f53d1730aa9de1a48b194317adfce55b47b2e1106c5fa33d8248b36c69ff",
+      "size_bytes": 4364
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 20355
+    },
+    "C694521": {
+     "age_hours": 11.855,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:34.264769+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CGA6P3X7R1E226MT000N",
+     "quantity_per_board": 9,
+     "reason": null,
+     "response": {
+      "path": "responses/C694521.json",
+      "sha256": "b00e9afadfcd67ee7bbf4079eb41f767d29ddf2a4cce1791acc21d5fac0ede0b",
+      "size_bytes": 4145
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 327
+    },
+    "C701613": {
+     "age_hours": 11.854,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:39.664360+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "ADS1119IPWR",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C701613.json",
+      "sha256": "be2e00085b16a60df9b1af33c0e8c322a5f2dc7816f352ef55bcafaab424072d",
+      "size_bytes": 4889
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 5
+    },
+    "C705764": {
+     "age_hours": 11.852,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:45.079681+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0730K1L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C705764.json",
+      "sha256": "5c58bf86d4aef13809484ae5a27766b885356d7f677fc477ec88a58fe697c72b",
+      "size_bytes": 5286
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 330
+    },
+    "C705785": {
+     "age_hours": 11.851,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:50.456349+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0756KL",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C705785.json",
+      "sha256": "09eb76d4a681cb117ea54e28e40cb101208e6f683aa29c8481a12d21aa7b363a",
+      "size_bytes": 4412
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 69500
+    },
+    "C7224519": {
+     "age_hours": 11.795,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:10.932107+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "C0805C475K4RACTU",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C7224519.json",
+      "sha256": "df56bcc841bfbabf652a2d2ef8eed8fa097d5de1704916c44262bbb0e57847b6",
+      "size_bytes": 4037
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 4837
+    },
+    "C723532": {
+     "age_hours": 11.849,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:11:55.883070+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD074K99L",
+     "quantity_per_board": 9,
+     "reason": null,
+     "response": {
+      "path": "responses/C723532.json",
+      "sha256": "72598c521b55ae2661af891c025c991db7c994f27b1d5f83897665dd64b936f0",
+      "size_bytes": 4421
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 14493
+    },
+    "C723587": {
+     "age_hours": 11.848,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:01.324162+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0775KL",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C723587.json",
+      "sha256": "fffa7bf38b5376f08821e6c1d7f7734820ee32f6778bc66ec04dd9b616b6416a",
+      "size_bytes": 4414
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 182779
+    },
+    "C725712": {
+     "age_hours": 11.846,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:06.712207+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "X1E0003410031",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C725712.json",
+      "sha256": "8727133c4448e93e4e4de9d6b1044f1eb2892aee66e935962d3b0a73f6c68e09",
+      "size_bytes": 4165
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1218
+    },
+    "C728587": {
+     "age_hours": 11.844,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:12.365344+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0726K7L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C728587.json",
+      "sha256": "54b1c34fce1e93c8ecc55dc33cd3d073d1f6275e3c8606a9cab3f5efc036810e",
+      "size_bytes": 4411
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 11752
+    },
+    "C728588": {
+     "age_hours": 11.843,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:17.744317+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD072KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C728588.json",
+      "sha256": "753d4fc57c0cb1d71bc878ac7dd6d49206206728ccea2c80e378ec3a07c57d12",
+      "size_bytes": 4401
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 607
+    },
+    "C7353633": {
+     "age_hours": 11.793,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:15:16.332433+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0805BRD071M05L",
+     "quantity_per_board": 4,
+     "reason": null,
+     "response": {
+      "path": "responses/C7353633.json",
+      "sha256": "17a526b682460192df56a6a71db2214ad81d1c97806a99faa82d549c448482e0",
+      "size_bytes": 3831
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 4616
+    },
+    "C76706": {
+     "age_hours": 11.905,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:35.782593+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CGA3E1X7R1C105KT0Y0N",
+     "quantity_per_board": 10,
+     "reason": null,
+     "response": {
+      "path": "responses/C76706.json",
+      "sha256": "83bd261d802310b230e8b57d828c1689e03e52f94607899cf1b169f43b2272dd",
+      "size_bytes": 4153
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 7442
+    },
+    "C76711": {
+     "age_hours": 11.903,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:41.141082+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "CGA3E2X7R1H104KT0Y0N",
+     "quantity_per_board": 24,
+     "reason": null,
+     "response": {
+      "path": "responses/C76711.json",
+      "sha256": "2688431d051a32c0a05fca3f68f0faf03be60d50db5b949b50d24d7c56456b6a",
+      "size_bytes": 4164
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 456026
+    },
+    "C85973": {
+     "age_hours": 11.902,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:46.550691+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "GRM1885C1H103JA01D",
+     "quantity_per_board": 5,
+     "reason": null,
+     "response": {
+      "path": "responses/C85973.json",
+      "sha256": "744039e0afd353619137277179cd4d93e413db5610d0d84177864e7bdae7ca09",
+      "size_bytes": 4218
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 292625
+    },
+    "C861094": {
+     "age_hours": 11.84,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:28.551554+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07120RL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861094.json",
+      "sha256": "77deb02efa893b9437050c48a6e9fd4be042cfe9147dabce57508cf3f121dd7b",
+      "size_bytes": 4413
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 47313
+    },
+    "C861156": {
+     "age_hours": 11.838,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:33.979579+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0716K9L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861156.json",
+      "sha256": "212ab339ac35096c771f9ecf884b8ee9a68728d42a2630ddfa4e9fafb501032a",
+      "size_bytes": 4423
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 26389
+    },
+    "C861219": {
+     "age_hours": 11.837,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:39.408145+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07208KL",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C861219.json",
+      "sha256": "ba6995e3b1103cdfed128cc0bb05c76abddd2bdd2fa1459b5fb8c581f2dddef4",
+      "size_bytes": 4217
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1901
+    },
+    "C861279": {
+     "age_hours": 11.834,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:50.367837+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD07287KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861279.json",
+      "sha256": "e165da83c2b69b13e80759a6f0da56f8b6c97ef9a9126e5c28a065d6a77aad67",
+      "size_bytes": 4414
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 4417
+    },
+    "C861295": {
+     "age_hours": 11.832,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:12:55.776799+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD072K2L",
+     "quantity_per_board": 2,
+     "reason": null,
+     "response": {
+      "path": "responses/C861295.json",
+      "sha256": "bd51169f7e119cf6fbb3a07b84026b3f0a490febaea23551fd8700b22993e5df",
+      "size_bytes": 4408
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 131897
+    },
+    "C861410": {
+     "age_hours": 11.831,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:01.185815+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0744K2L",
+     "quantity_per_board": 3,
+     "reason": null,
+     "response": {
+      "path": "responses/C861410.json",
+      "sha256": "807a6027e760b9f9619c6b0251a4066aee5d1f0fc2cdf0bd2d817739502cb222",
+      "size_bytes": 4417
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 3899
+    },
+    "C861458": {
+     "age_hours": 11.829,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:06.560773+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0751KL",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861458.json",
+      "sha256": "06885700f89ea96b11398d4a9163d5da625c72c6f2d8c4ae8feea1992b59f61a",
+      "size_bytes": 4408
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 51507
+    },
+    "C861510": {
+     "age_hours": 11.828,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:12.034597+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0764K9L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861510.json",
+      "sha256": "a2ccd14f2011ed7cb2c86f2d1d15d41d6ab8d1a4640b9be1e2dc5cd2cd25dfe3",
+      "size_bytes": 4419
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 15838
+    },
+    "C861605": {
+     "age_hours": 11.825,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:22.792854+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0795K3L",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C861605.json",
+      "sha256": "77599f0c5217f0efd87c1133756acea284cf1b8ca9569bad1e1b665301c70bac",
+      "size_bytes": 4417
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 1267
+    },
+    "C907839": {
+     "age_hours": 11.823,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:13:28.161285+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "PESD1CAN-UX",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C907839.json",
+      "sha256": "a9fc7f9c4cd757f76a13f94e03b9a6c6465ab5482ff38f3da611514eb1a840b3",
+      "size_bytes": 4945
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 11948
+    },
+    "C92494": {
+     "age_hours": 11.9,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:51.891853+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "OPA320AIDBVR",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C92494.json",
+      "sha256": "42b2ef9188a55e7cb6e05e2ea3adf739e3dbfe7c834edd81ea3b497fa4f87e72",
+      "size_bytes": 5500
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 25282
+    },
+    "C95204": {
+     "age_hours": 11.899,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:08:57.288304+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "RT0603BRD0710KL",
+     "quantity_per_board": 51,
+     "reason": null,
+     "response": {
+      "path": "responses/C95204.json",
+      "sha256": "0bcb1703a581844777559f27728f0a66c950a753098b85398d3a505bd8ea0051",
+      "size_bytes": 4410
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 2019480
+    },
+    "C98080": {
+     "age_hours": 11.897,
+     "deviated": false,
+     "fetched_at": "2026-10-23T14:09:02.647969+00:00",
+     "http_status": 200,
+     "library_tier": "Extended",
+     "mpn": "LQW18AN56NJ00D",
+     "quantity_per_board": 1,
+     "reason": null,
+     "response": {
+      "path": "responses/C98080.json",
+      "sha256": "b2bf3f9c30ff64ba9abc96702aa5f6f795306a436691dbb32cb06ac5bceedf39",
+      "size_bytes": 4143
+     },
+     "stale": false,
+     "status": "in_stock",
+     "stock": 10724
+    }
+   },
+   "short_for_one_board": [],
+   "stale": [],
+   "status_counts": {
+    "in_stock": 79,
+    "zero_stock": 1
+   },
+   "unobserved": []
+  }
+ },
+ "base": {
+  "path": "/work/fome/telemetry-pod/expansion/requirements/rev3-microsd/compiled/scope.json",
+  "sha256": "a7a4c9542c563ec04855f184b3070955bef526475643ddd03504390fc3f9defe"
+ },
+ "blocks": {
+  "blocks": {
+   "buck-3v3": [
+    "buck-3v3-board-region-copper-native-check",
+    "buck-3v3-witness-pose-equivalence"
+   ],
+   "pre-6v3": [
+    "pre-6v3-board-region-copper-native-check",
+    "pre-6v3-witness-pose-equivalence"
+   ]
+  },
+  "candidate_policy_sha256": [
+   "3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c"
+  ],
+  "library_entries": {
+   "buck-3v3": "146d735c22734a13c2b933a5008307b8c91a841e28aff5099223dd87fa0daa24",
+   "pre-6v3": "1c913acb67d87af9b2b0e1be57cc6bae9e54b48248138a081f7453dc85a652d9"
+  },
+  "limitations": {
+   "buck-3v3-board-region-copper-native-check": "POD-DERIVED-BLOCK-BUCK-3V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): The buck-3v3 library entry (U7) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+   "buck-3v3-witness-pose-equivalence": "POD-DERIVED-BLOCK-BUCK-3V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): Witness-pose equivalence between the generic buck-3v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+   "pre-6v3-board-region-copper-native-check": "POD-DERIVED-BLOCK-PRE-6V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): The pre-6v3 library entry (U5) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+   "pre-6v3-witness-pose-equivalence": "POD-DERIVED-BLOCK-PRE-6V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): Witness-pose equivalence between the generic pre-6v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate."
+  },
+  "path": "composition/block-obligations.json",
+  "repack": {
+   "path": "/work/fome/telemetry-pod/expansion/production-capture/evidence/repack-8ab3b0b9-485c/repack.json",
+   "sha256": "b36be97be3cfc3578559427210e8b7c94b02d80f4cb168e032f9c18f9240179d"
+  },
+  "seed_board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+  "sha256": "5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2"
+ },
+ "envelope": {
+  "complete": true,
+  "envelope_id": "expanded-pod-microsd-production",
+  "path": "composition/envelope.json",
+  "sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24",
+  "unresolved": []
+ },
+ "fab_package_declarations": {
+  "assembly_exclusion": "JLCPCB_Assembly=not_assembled",
+  "copper_features": [
+   "JP1",
+   "JP2",
+   "JP3",
+   "JP4",
+   "JP5"
+  ],
+  "hand_fit_deviation_references": [
+   "J1",
+   "J2"
+  ],
+  "probe_manifest": "composition/parts.json",
+  "probes": [
+   "TP1",
+   "TP2",
+   "TP3",
+   "TP4",
+   "TP5",
+   "TP6"
+  ]
+ },
+ "layers": [
+  "assembly",
+  "blocks",
+  "envelope",
+  "requirement-source"
+ ],
+ "planes": [
+  {
+   "path": "composition/planes.json",
+   "sha256": "9e592e3ee4bdf5b6042fd3a595235cc5425359f4a69f87787ce00fc3624779aa"
+  }
+ ],
+ "planes_binding": "stage-owned add-planes producer",
+ "requirement_source": {
+  "captured_from": "telemetry-pod/expansion/requirements/compiled/requirements-map",
+  "delta": {
+   "acceptance_equal": true,
+   "added": [
+    "POD-CD-STORAGE"
+   ],
+   "changed": [
+    "POD-ME-1"
+   ],
+   "prose_differ": [],
+   "removed": []
+  },
+  "microsd_spec_as_source": {
+   "error": "RequirementSetError: unapproved-source: telemetry-pod-rev3: spec sha256 dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208 and record sha256 21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5 are not its pinned capture",
+   "reason": "unapproved-source",
+   "status": "refused"
+  },
+  "record": {
+   "path": "requirements-source/spec-record.json",
+   "sha256": "1d978fc1ddeddfe64a6900a719c437dabb31b2999feb258265b0fbad1ab4820b"
+  },
+  "scope_spec": {
+   "path": "requirements-map/spec.md",
+   "record_sha256": "21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5",
+   "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+  },
+  "source": "telemetry-pod-rev3",
+  "spec": {
+   "path": "requirements-source/spec.md",
+   "sha256": "e71dcca744f4b520fc4698402202d7d9efff2d316f8ad3c5eb6403cdf9d036c6"
+  }
+ },
+ "schema": "pod-capture.scope-composition/4",
+ "unmapped": [
+  {
+   "field": "obligations",
+   "id": "R-envelope-expanded-pod-microsd-production-obligation-corner-holes",
+   "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+  },
+  {
+   "field": "obligations",
+   "id": "R-envelope-expanded-pod-microsd-production-obligation-height",
+   "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+  },
+  {
+   "field": "obligations",
+   "id": "R-envelope-expanded-pod-microsd-production-obligation-harness-edge",
+   "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+  },
+  {
+   "field": "obligations",
+   "id": "R-envelope-expanded-pod-microsd-production-obligation-antenna",
+   "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+  },
+  {
+   "field": "obligations",
+   "id": "R-envelope-expanded-pod-microsd-production-obligation-imu-separation",
+   "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+  }
+ ]
+}

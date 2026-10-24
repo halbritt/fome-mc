@@ -1,0 +1,214 @@
+fome-gate: fome-mc e1b91c5feb828da4ac88ba6f2bf5585a5a7d2fb2, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_retention_snapshots.py' -v
+test_changed_prepared_manifest_refuses (test_retention_snapshots.HistoricalSnapshots.test_changed_prepared_manifest_refuses) ... ok
+test_live_composition_change_and_exact_reconstruction (test_retention_snapshots.HistoricalSnapshots.test_live_composition_change_and_exact_reconstruction) ... ok
+test_missing_recovery_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_missing_recovery_blob_refuses) ... ok
+test_recorded_commit_is_immutable_and_verified (test_retention_snapshots.HistoricalSnapshots.test_recorded_commit_is_immutable_and_verified) ... ok
+test_tampered_original_retained_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_tampered_original_retained_blob_refuses) ... ok
+test_tampered_recovery_blob_refuses (test_retention_snapshots.HistoricalSnapshots.test_tampered_recovery_blob_refuses) ... recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+separate repair store: 2 files (outside historical counts)
+retained emission OK: 5 retained files, 3 design inputs (1 repository paths), 0 installed project files, prepared tree 2 files (1 blobs)
+materialized 2 prepared files and 1 empty directories into /work/fome-mc/build/tmpr13jz71s/reconstructed
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+recovered 1 immutable historical blobs; historical records unchanged
+ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.128s
+
+OK
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_verify_j2.py' -v
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+test_exact_native_identity (test_verify_j2.J2Identity.test_exact_native_identity) ... ok
+test_same_prefix_wrong_uuid_refuses (test_verify_j2.J2Identity.test_same_prefix_wrong_uuid_refuses) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_all_prohibitions_are_checked (test_verify_j2.RuleAreaControls.test_all_prohibitions_are_checked) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_exact_native_identity (test_verify_j2.RuleAreaControls.test_exact_native_identity) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_same_prefix_wrong_uuid_refuses (test_verify_j2.RuleAreaControls.test_same_prefix_wrong_uuid_refuses) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_source_to_native_rules (test_verify_j2.RuleAreaControls.test_source_to_native_rules) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_wrong_layer_refuses (test_verify_j2.RuleAreaControls.test_wrong_layer_refuses) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+test_wrong_source_uuid_refuses (test_verify_j2.RuleAreaControls.test_wrong_source_uuid_refuses) ... 01:55:20: Debug: Adding duplicate image handler for 'PNG file'
+01:55:20: Debug: Adding duplicate image handler for 'JPEG file'
+01:55:20: Debug: Adding duplicate image handler for 'TIFF file'
+01:55:20: Debug: Adding duplicate image handler for 'GIF file'
+01:55:20: Debug: Adding duplicate image handler for 'PNM file'
+01:55:20: Debug: Adding duplicate image handler for 'PCX file'
+01:55:20: Debug: Adding duplicate image handler for 'IFF file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows icon file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+01:55:20: Debug: Adding duplicate image handler for 'TGA file'
+01:55:20: Debug: Adding duplicate image handler for 'XPM file'
+ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.191s
+
+OK
+PYTHONPATH=/work/home/git/agent-ee/src python3 -B -m unittest discover -s telemetry-pod/expansion/production-capture -p 'test_launch_preflight.py' -v
+test_active_default_is_the_delivered_retention_and_pending_is_explicit (test_launch_preflight.ActiveRetention.test_active_default_is_the_delivered_retention_and_pending_is_explicit) ... ok
+test_c1_timeout_is_explicit_and_pending (test_launch_preflight.AdvisoriesAndUnderside.test_c1_timeout_is_explicit_and_pending) ... ok
+test_f3_exceeded_advisories_are_surfaced_from_the_real_repack (test_launch_preflight.AdvisoriesAndUnderside.test_f3_exceeded_advisories_are_surfaced_from_the_real_repack) ... ok
+test_h3_relationship_references_cover_from_and_to (test_launch_preflight.AdvisoriesAndUnderside.test_h3_relationship_references_cover_from_and_to) ... ok
+test_485d_receipt_records_the_image_runner_and_refuses (test_launch_preflight.LaunchPreflight.test_485d_receipt_records_the_image_runner_and_refuses) ... ok
+test_committed_receipt_positive (test_launch_preflight.LaunchPreflight.test_committed_receipt_positive) ... ok
+test_image_positive (test_launch_preflight.LaunchPreflight.test_image_positive) ... ok
+test_import_problems_altered_export (test_launch_preflight.LaunchPreflight.test_import_problems_altered_export) ... ok
+test_mismatched_image_refuses (test_launch_preflight.LaunchPreflight.test_mismatched_image_refuses) ... ok
+test_mounted_runner_receipt_positive (test_launch_preflight.LaunchPreflight.test_mounted_runner_receipt_positive) ... ok
+test_stale_or_copied_receipt_refuses (test_launch_preflight.LaunchPreflight.test_stale_or_copied_receipt_refuses) ... ok
+test_all_accepted_positive_and_refused_c1_negative (test_launch_preflight.RequiredStages.test_all_accepted_positive_and_refused_c1_negative) ... ok
+test_c1_hold_mode_is_not_run_and_refuses (test_launch_preflight.RequiredStages.test_c1_hold_mode_is_not_run_and_refuses)
+AGENTEE-485 R4: POD_C1=validation-only-c1-not-in-scope records C1 NOT_RUN without invoking the producer; ... ok
+test_delivered_retention_has_a_refused_required_stage (test_launch_preflight.RequiredStages.test_delivered_retention_has_a_refused_required_stage) ... ok
+test_dispatch_five_are_required (test_launch_preflight.RequiredStages.test_dispatch_five_are_required) ... ok
+test_every_pipeline_stage_is_classified (test_launch_preflight.RequiredStages.test_every_pipeline_stage_is_classified) ... ok
+test_hand_fit_guard_admits_exactly_j1_and_j2 (test_launch_preflight.RequiredStages.test_hand_fit_guard_admits_exactly_j1_and_j2)
+AGENTEE-485 J2: the fab_package hand-fit guard runs from pipeline.py's own text; it admits exactly J1 + J2 ... ok
+test_launch_refuses_the_delivered_receipt (test_launch_preflight.RequiredStages.test_launch_refuses_the_delivered_receipt)
+The full launch preflight on the real committed 485d receipt refuses before any container (H1 runner, X1). ... ok
+test_receipt_write_and_retain_refuse_a_refused_required_stage (test_launch_preflight.RequiredStages.test_receipt_write_and_retain_refuse_a_refused_required_stage) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.419s
+
+OK
+fome-gate: make ee485-tests MAKEFILES=build/ee485.mk rc=0
+
+exit=0

@@ -1,0 +1,37 @@
+fome-gate: fome-mc 3db711151c1c98edbe598f72f9a77d116eaf9f32, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+timeout 450 python3 -B build/ee485-native.py
+erc PASS {'sheets_checked': 1, 'violations': 0, 'by_severity': {}, 'by_type': {}, 'ignored_checks': ['single_global_label', 'four_way_junction', 'simulation_model_issue', 'footprint_filter']}
+drc PASS {'violations': 15, 'unconnected_items': 499, 'schematic_parity': 0, 'by_severity': {'error': 500, 'warning': 14}, 'by_type': {'unconnected_items': 499, 'text_thickness': 6, 'text_height': 6, 'lib_footprint_mismatch': 2, 'courtyards_overlap': 1}, 'ignored_checks': ['missing_courtyard', 'track_not_centered_on_via', 'tuning_profile_track_geometries', 'footprint_filters_mismatch', 'footprint_type_mismatch']}
+kicad-cli pcb export pos --format csv --units mm --side both --exclude-dnp -o /work/fome-mc/build/ee485-J2c-run/native-positions.csv /work/fome-mc/build/runs/project/telemetry-pod-j2c/20261024T021512.649777Z/snapshot/project/telemetry-pod.kicad_pcb
+Wrote position data to '/work/fome-mc/build/ee485-J2c-run/native-positions.csv'.
+
+
+
+exit=0
+Native tools PASS; design findings remain explicit. Source bytes unchanged.
+fome-gate: make ee485-native MAKEFILES=build/ee485.mk rc=0
+PYTHONPATH=/work/home/git/agent-ee/src timeout 180 python3 -B telemetry-pod/expansion/production-capture/verify_j2.py build/ee485-J2c-run > build/ee485-J2c-verify.json
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+Traceback (most recent call last):
+  File "/work/fome-mc/telemetry-pod/expansion/production-capture/verify_j2.py", line 261, in <module>
+    print(json.dumps(verify(args.run), indent=1))
+                     ^^^^^^^^^^^^^^^^
+  File "/work/fome-mc/telemetry-pod/expansion/production-capture/verify_j2.py", line 181, in verify
+    inventory = verify_inventory(board, native, intent, run / 'cap')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/fome-mc/telemetry-pod/expansion/production-capture/verify_j2.py", line 52, in verify_inventory
+    raise ValueError('native footprint inventory differs from frozen source references')
+ValueError: native footprint inventory differs from frozen source references
+make: *** [build/ee485.mk:19: ee485-verify] Error 1
+fome-gate: make ee485-verify MAKEFILES=build/ee485.mk rc=2
+python3 -B build/ee485-compare-ecu.py
+ECU before/after gate results identical; 94 snapshot source files byte unchanged
+fome-gate: make ee485-compare-ecu MAKEFILES=build/ee485.mk rc=0
+python3 telemetry-pod/expansion/production-capture/retain.py --check
+separate repair store: 572 files (outside historical counts)
+retained emission OK: 428 retained files, 576 design inputs (368 repository paths), 8 installed project files, prepared tree 4336 files (94 blobs)
+fome-gate: make ee485-retain MAKEFILES=build/ee485.mk rc=0
+
+exit=2

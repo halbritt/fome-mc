@@ -1,0 +1,34 @@
+{
+ "schema": "agentee485.j2c-diagnostic/1",
+ "verdict": "PARTIAL; no candidate or receipt acceptance",
+ "assigned_base": "037fe6c274d25967cc214e22d27e939b9d628446",
+ "worker_start_marker": "ec6ae4735a7fd479eb60af44369289e99d2eef02",
+ "j2b_input": "5a1cb6f531141f22937d3b1da0b200b0af2ba247",
+ "merge_commit": "e1b91c5feb828da4ac88ba6f2bf5585a5a7d2fb2",
+ "emission_source": "3db711151c1c98edbe598f72f9a77d116eaf9f32",
+ "agent_ee": {
+  "blobs": 2253,
+  "commit": "00d3243a2fd0c963adc7f010bb778359d4cb7f2a",
+  "export": "/work/export",
+  "tree": "aec28d904e6c096272d8d3724a61941ff101465f"
+ },
+ "runtime_manifest": "telemetry-pod/expansion/production-capture/runtime/agentee-485j2c.json",
+ "runtime_manifest_sha256": "74040ff653b8a2e8057c00e0d5f0f49ed3df086acf45fa3ccf20d78d4adb66a3",
+ "limits": {
+  "class": "test",
+  "weight": 1,
+  "cpus": 3,
+  "memory": "12g",
+  "timeout_s": 1800,
+  "jobs": 1
+ },
+ "c1": "validation-only-c1-not-in-scope",
+ "pipeline_exit": 3,
+ "emission_invocations": 1,
+ "start": "2026-10-24T01:59:56Z",
+ "stop": "2026-10-24T02:13:59Z",
+ "board_sha256": "fec5170a497bfad0d56be7e12c8d2597fe4541a0ed2c1bb60c3980933a6704c9",
+ "late_source_boundary": "The one emission was frozen at 3db711151c1c98edbe598f72f9a77d116eaf9f32 before a remaining prefix-only UUID guard was found in pipeline.py. No second emission is authorized. The delivered guard will be strengthened and exercised against native data; final-candidate verify_j2 checks the complete UUID independently. Preserve this source boundary explicitly in the result.\nThe emission also refused at access-row materialization: its child interpreter had no agent_ee import path. The failed stage is not repaired or retried. verify_j2 now preserves a PARTIAL native-checks.json before its existing strict access checks, so successful independent native checks can be reviewed without accepting missing access evidence. Its positional interface and failing exit remain.\n",
+ "receipt_metadata_scope": "Only receipt.json metadata retained here; no receipt acceptance or production retention.",
+ "worker_model": "Sol (Codex), HIGH as dispatched; exact runtime model identifier is not exposed by the harness; no subagents"
+}
