@@ -16,7 +16,9 @@ insertion. This is an engineering pose, not an owner-specified anchor or final
 placement approval. It puts the published footprint inside the right board
 edge. The RF corridor follows U3's historical RF endpoint (77.5,29.1) to J2
 pad 1 (80,28); its 1.5 mm margin is class: default, advisory. The associated
-native inner-layer rule areas keep their identifiers and tracks/vias prohibitions.
+native inner-layer rule areas keep their tracks/vias prohibitions. The producer
+records the original logical identities 460352a8 and 93d1ddf1 and maps them to
+the UUIDs the existing scaffold derives from the changed envelope hash.
 Actual routed connectivity, return fill and neighbouring bodies remain unqualified.
 
 J1 retains its existing POD-AC-5 selection chain. J2 separately cites the

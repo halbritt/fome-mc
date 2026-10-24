@@ -31,7 +31,7 @@ def verify(run):
     before = digest(board_path)
     board = pcbnew.LoadBoard(str(board_path))
     fp = next(f for f in board.GetFootprints() if f.GetReference() == 'J2')
-    if not fp.m_Uuid.AsString().startswith('18c6ebf4') or (fp.GetFPID().GetLibNickname(), fp.GetFPID().GetLibItemName()) != ('Agentee494', 'SMA_Amphenol_132134_Manufacturer'):
+    if not fp.m_Uuid.AsString().startswith('18c6ebf4') or fp.GetFPID().GetUniStringLibId() != 'Agentee494:SMA_Amphenol_132134_Manufacturer':
         raise ValueError('wrong J2 native UUID or part footprint')
     stock = pcbnew.FootprintLoad('/usr/share/kicad/footprints/Connector_Coaxial.pretty',
                                  'SMA_Amphenol_132134_Vertical')
@@ -50,14 +50,13 @@ def verify(run):
     binding = json.loads((run / 'cap/composition/j2-rf-binding.json').read_text())
     areas = {z.m_Uuid.AsString(): z for z in board.Zones()}
     found = []
-    for uuid in binding['rule_area_uuids']:
+    for uuid, expected_area in binding['rule_area_bindings'].items():
         if uuid not in areas:
             raise ValueError(f'RF area {uuid} absent')
         zone = areas[uuid]
         points = [[round(pcbnew.ToMM(zone.Outline().CVertex(i).x), 4),
                    round(pcbnew.ToMM(zone.Outline().CVertex(i).y), 4)]
                   for i in range(zone.Outline().TotalVertices())]
-        expected_area = binding['rule_area_bindings'][uuid]
         if sorted(points) != sorted(expected_area['polygon_mm']):
             raise ValueError(f'RF area {uuid} not rebound to chosen J2: {points}')
         if (zone.GetDoNotAllowTracks() != expected_area['tracks_forbidden'] or
@@ -88,7 +87,7 @@ def verify(run):
         native_fp = next(f for f in board.GetFootprints() if f.GetReference() == ref)
         components[ref] = {'dnp': any(p.get('name') == 'dnp' for p in symbol.findall('property')), 'fields': fields}
         footprints.append({'ref': ref, 'dnp': native_fp.IsDNP(),
-                           'fields': {marker_name: dict(native_fp.GetProperties()).get(marker_name)}})
+                           'fields': {marker_name: native_fp.GetFieldText(marker_name)}})
     excluded, unsupported = assembly_exclusions('JLCPCB_Assembly=not_assembled', components, footprints)
     if unsupported or sorted(e['designator'] for e in excluded) != ['J1', 'J2']:
         raise ValueError(f'BOM/CPL hand-fit exclusions differ: {excluded}, {unsupported}')

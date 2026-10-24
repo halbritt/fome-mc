@@ -1,0 +1,9 @@
+fome-gate: fome-mc a90353d807f35121c5e940fec7db7657dc8a5b67, image sha256:3d57118c47f35c24fe42af03d100e0167ba2ec0cf57d3827f14783905db4559c, agent-ee 00d3243a2fd0c963adc7f010bb778359d4cb7f2a, fome-fw 6717a8ca44bd1db3dd58509353ad6a64000b06ec
+PYTHONPATH=/work/home/git/agent-ee/src /usr/bin/python3 -B telemetry-pod/expansion/agentee-489-source/materialize.py . --board telemetry-pod/telemetry-pod.kicad_pcb --out build/ee485-fullsource-access-control
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+44 rows; 0 unmaterialized
+fome-gate: make ee485-fullsource-access-control MAKEFILES=build/ee485.mk rc=0
+
+exit=0

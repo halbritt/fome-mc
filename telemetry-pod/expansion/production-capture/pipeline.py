@@ -960,20 +960,13 @@ def production_content(scaffold_out, work):
     board = pcbnew.LoadBoard(str(work / BOARD))
     j2 = next(f for f in board.GetFootprints() if f.GetReference() == 'J2')
     if (not str(j2.m_Uuid.AsString()).startswith('18c6ebf4') or
-            j2.GetFPID().GetLibItemName() != 'SMA_Amphenol_132134_Manufacturer'):
+            j2.GetFPID().GetUniStringLibItemName() != 'SMA_Amphenol_132134_Manufacturer'):
         raise ValueError('native J2 is not the adopted UUID/Amphenol footprint')
     pattern = sorted((p.GetNumber(), round(pcbnew.ToMM(p.GetDrillSize().x), 3)) for p in j2.Pads())
     if pattern != [('1', 1.5), ('2', 1.7), ('2', 1.7), ('2', 1.7), ('2', 1.7)]:
         raise ValueError('native J2 drill pattern differs from published 132134')
-    access_out = OUT / 'access-rebound'
-    subprocess.run([sys.executable, '-B', str(X / 'agentee-489-source/materialize.py'), str(ROOT),
-                    '--board', str(work / BOARD), '--out', str(access_out)], check=True)
-    reservations = json.loads((access_out / 'reservations.json').read_text())
-    if len(reservations['reservations']) != 44:
-        raise ValueError('rederived mechanical access inventory must contain 44 rows')
     return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
-            'j2_native_pattern': pattern, 'access_rows': len(reservations['reservations']),
-            'access_sha256': sha(access_out / 'reservations.json'),
+            'j2_native_pattern': pattern,
             'fixed': sorted(f.GetReference() for f in board.GetFootprints()
                             if f.GetReference() in {'J1', 'J2', 'J3', 'U1', 'U2', 'H1', 'H2', 'H3', 'H4'})}
 stage('scaffold.scaffold production scope', lambda: run_scaffold(planning, OUT / 'scaffold'))
@@ -1226,7 +1219,15 @@ def emit_schematic():
     if refs != expected:
         raise ValueError(f'emitted schematic references differ from the 305 subjects: '
                          f'missing {sorted(set(expected) - set(refs))[:10]}, extra {sorted(set(refs) - set(expected))[:10]}')
+    # The scaffold has fixed owners only. Materialize complete access inventory after annotation adds every part.
+    access_out = OUT / 'access-rebound'
+    subprocess.run([sys.executable, '-B', str(X / 'agentee-489-source/materialize.py'), str(ROOT),
+                    '--board', str(design / BOARD), '--out', str(access_out)], check=True)
+    reservations = json.loads((access_out / 'reservations.json').read_text())
+    if len(reservations['reservations']) != 44:
+        raise ValueError('rederived mechanical access inventory must contain 44 rows')
     return {'candidate_id': candidate['candidate_id'], 'receipts': receipts, 'changed': changed,
+            'access_rows': 44, 'access_sha256': sha(access_out / 'reservations.json'),
             'schematic': {'path': scope['schematic'], 'sha256': after[scope['schematic']]},
             'board': {'path': scope['board'], 'sha256': after[scope['board']]},
             'native_components': len(refs), 'native_nets': len(native.get('nets', {})),

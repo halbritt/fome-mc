@@ -39,6 +39,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import uuid
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -102,7 +103,8 @@ GENERATED = ['refs.json', 'parts.json', 'footprints.json', 'assignments.json', '
              'captured-rule-areas.json', 'library-updates.json', 'intent.writer.json', 'binding-ledger.json',
              'binding-migration.json', 'rating-comparison.json', 'rating-sources.json', 'rating-facts.json',
              'datasheet-source-selection.json', 'fab-profile.json', 'project-models.json', 'hand-fit-policy.json',
-             'j2-hand-fit-mapping.json', 'j2-rf-binding.json', 'J2.external-part-record.json', 'intent.adopted.json']
+             'j2-hand-fit-mapping.json', 'j2-rf-binding.json', 'J2.external-part-record.json', 'intent.adopted.json',
+             'j1-j2-assembly-source.json']
 # FOMEMC-34 (agent-449 pod lane): both 3D models bound into the prepared scope at the path the footprints name.
 MODELS_AT = 'project/inputs/models/'
 MODEL_REFERENCE = '${KIPRJMOD}/inputs/models/'
@@ -896,7 +898,9 @@ def build(out, agent_ee, mechanical=False, materials=False):
     production_deviations = {'schema': 'agent-ee.part-deviations/1',
                             'deviations': [j1_deviation(spec_blob['path'], j1_source),
                                            *json.loads((J2_SOURCE / 'deviations.json').read_text())['deviations']]}
-    production_deviations_blob = root.write('composition/deviations.json', production_deviations)
+    root.write('composition/deviations.json', production_deviations)
+    # The writer owns deviations.json; parts provenance must pin an immutable source with the same full document.
+    production_deviations_blob = root.write('composition/j1-j2-assembly-source.json', production_deviations)
     record2 = prepare_external_record(out, record2['identity_source'], record2['datasheets'], 'J2',
                                       {**production_deviations_blob, 'index': 1})
     record2_blob = root.write('composition/J2.external-part-record.json', record2)
@@ -1136,20 +1140,26 @@ def build(out, agent_ee, mechanical=False, materials=False):
             layer.update({k: material[k] for k in ('dielectric_type', 'epsilon_r', 'loss_tangent')})
         root.copy(STACKUP_MATERIALS, 'mechanics/stackup-materials.json')
     envelope_blob = root.write('composition/envelope.json', revised)
+    from agent_ee.scaffold import NAMESPACE as scaffold_namespace
+    area_sources = {'460352a8-dace-51a2-842b-c1e4ef7ad212': 'D-PCB-7v2-In1-no-tracks',
+                    '93d1ddf1-382d-5ed8-abfa-2bf617ad0cae': 'D-PCB-6-RF-reference'}
+    area_bindings = {}
+    for source_uuid, name in area_sources.items():
+        native_uuid = str(uuid.uuid5(scaffold_namespace, envelope_blob['sha256'] + ':area:' + name))
+        area = next(k for k in revised['keepouts'] if k['id'] == name)
+        area_bindings[native_uuid] = {
+            'source_uuid': source_uuid, 'name': name, 'polygon_mm': area['polygon'],
+            'tracks_forbidden': 'tracks' in area['forbid'], 'vias_forbidden': 'vias' in area['forbid']}
     root.write('composition/j2-rf-binding.json', {
         'class': 'engineering', 'reference': 'J2', 'footprint': J2_FP,
         'anchor_mm': [80, 28], 'side': 'front', 'rotation_deg': 0, 'insertion': 'from_top',
         'signal_pad': {'number': '1', 'centre_mm': [80, 28]},
         'ground_pads': {'number': '2', 'centres_mm': [[80 + x, 28 + y] for x in (-2.54, 2.54) for y in (-2.54, 2.54)]},
         'rule_area_uuids': ['460352a8-dace-51a2-842b-c1e4ef7ad212', '93d1ddf1-382d-5ed8-abfa-2bf617ad0cae'],
-        'rule_area_bindings': {
-            '460352a8-dace-51a2-842b-c1e4ef7ad212': {
-                'role': 'whole-board In1 no-tracks reference; unchanged',
-                'polygon_mm': [[0, 0], [90, 0], [90, 65], [0, 65]], 'tracks_forbidden': True, 'vias_forbidden': False},
-            '93d1ddf1-382d-5ed8-abfa-2bf617ad0cae': {
-                'role': 'RF corridor rebound to chosen J2 pad 1',
-                'polygon_mm': [[76, 26.5], [81.5, 26.5], [81.5, 30.6], [76, 30.6]],
-                'tracks_forbidden': True, 'vias_forbidden': True}},
+        'rule_area_bindings': area_bindings,
+        'native_uuid_derivation': {'class': 'engineering', 'envelope': envelope_blob,
+                                   'algorithm': 'scaffold.NAMESPACE / uuid5(envelope sha256 + :area: + keepout id)',
+                                   'note': 'Original logical area identities map to generated UUIDs; changing envelope bytes changes native area UUIDs.'},
         'polygon_mm': [[76, 26.5], [81.5, 26.5], [81.5, 30.6], [76, 30.6]],
         'source': {'path': rel(J2_132134 / 'pad-map.json'), 'sha256': sha(J2_132134 / 'pad-map.json')},
         'limitations': 'Writer pose and advisory corridor; final native geometry checked separately. No routed RF or filled-return-path qualification.'})

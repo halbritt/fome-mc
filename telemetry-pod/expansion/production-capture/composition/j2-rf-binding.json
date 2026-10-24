@@ -28,6 +28,15 @@
  },
  "insertion": "from_top",
  "limitations": "Writer pose and advisory corridor; final native geometry checked separately. No routed RF or filled-return-path qualification.",
+ "native_uuid_derivation": {
+  "algorithm": "scaffold.NAMESPACE / uuid5(envelope sha256 + :area: + keepout id)",
+  "class": "engineering",
+  "envelope": {
+   "path": "composition/envelope.json",
+   "sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24"
+  },
+  "note": "Original logical area identities map to generated UUIDs; changing envelope bytes changes native area UUIDs."
+ },
  "polygon_mm": [
   [
    76,
@@ -49,30 +58,8 @@
  "reference": "J2",
  "rotation_deg": 0,
  "rule_area_bindings": {
-  "460352a8-dace-51a2-842b-c1e4ef7ad212": {
-   "polygon_mm": [
-    [
-     0,
-     0
-    ],
-    [
-     90,
-     0
-    ],
-    [
-     90,
-     65
-    ],
-    [
-     0,
-     65
-    ]
-   ],
-   "role": "whole-board In1 no-tracks reference; unchanged",
-   "tracks_forbidden": true,
-   "vias_forbidden": false
-  },
-  "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae": {
+  "705c792f-c04f-5860-8811-e0aa4c8dd2ab": {
+   "name": "D-PCB-6-RF-reference",
    "polygon_mm": [
     [
      76,
@@ -91,9 +78,33 @@
      30.6
     ]
    ],
-   "role": "RF corridor rebound to chosen J2 pad 1",
+   "source_uuid": "93d1ddf1-382d-5ed8-abfa-2bf617ad0cae",
    "tracks_forbidden": true,
    "vias_forbidden": true
+  },
+  "f39763c6-ea61-5acc-bbd6-2b71fb762cc3": {
+   "name": "D-PCB-7v2-In1-no-tracks",
+   "polygon_mm": [
+    [
+     0,
+     0
+    ],
+    [
+     90,
+     0
+    ],
+    [
+     90,
+     65
+    ],
+    [
+     0,
+     65
+    ]
+   ],
+   "source_uuid": "460352a8-dace-51a2-842b-c1e4ef7ad212",
+   "tracks_forbidden": true,
+   "vias_forbidden": false
   }
  },
  "rule_area_uuids": [

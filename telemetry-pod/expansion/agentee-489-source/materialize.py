@@ -25,7 +25,7 @@ Rules kept here (agent-ee docs/mechanical-reservations.md):
 Usage (native KiCad environment, via native-admit):
   PYTHONPATH=<frozen-agent-ee>/src python3 -B materialize.py <repo-root>
 """
-import argparse, hashlib, json, math, re, shutil, sys, tempfile
+import argparse, copy, hashlib, json, math, re, shutil, sys, tempfile
 from decimal import Decimal
 from pathlib import Path
 
@@ -182,6 +182,32 @@ def require_coverage(recipe, rows):
         raise ValueError('materialized reservation IDs differ from complete source recipe inventory')
 
 
+def candidate_owners(recipe, capture):
+    """Bind preserved source row/reference identities to the explicit candidate's unique native owners."""
+    recipe = copy.deepcopy(recipe)
+    migrations = []
+    for row in recipe['base_486_items'] + recipe['board_side_access_closure']['rows']:
+        owners = [fp for fp in capture['footprints'] if fp['ref'] == row['reference']]
+        if len(owners) != 1:
+            raise ValueError('candidate reference must resolve one native owner: ' + row['id'])
+        fp = owners[0]
+        before = {'uuid': row['uuid']}
+        row['uuid'] = fp['uuid']
+        geometry = row['geometry']
+        if 'pad_uuid' in geometry:
+            pads = [p for p in fp['pads'] if p['number'] == geometry['pad_number']]
+            if len(pads) != 1:
+                raise ValueError('candidate pad number must resolve one native pad: ' + row['id'])
+            before['pad_uuid'] = geometry['pad_uuid']
+            geometry['pad_uuid'] = pads[0]['uuid']
+        after = {'uuid': row['uuid']}
+        if 'pad_uuid' in geometry:
+            after['pad_uuid'] = geometry['pad_uuid']
+        if before != after:
+            migrations.append({'id': row['id'], 'reference': row['reference'], 'source': before, 'candidate': after})
+    return recipe, migrations
+
+
 def main():
     recipe = json.loads(SRC.read_text())
     if recipe['schema'] != 'agentee-490.bound-reservations/1':
@@ -189,6 +215,9 @@ def main():
     text = BOARD.read_text()
     side = sides(text)
     capture = native_capture()
+    migrations = []
+    if args.board:
+        recipe, migrations = candidate_owners(recipe, capture)
     rows, skipped = [], []
     for r in recipe['base_486_items']:
         uuid, ref = r['uuid'], r['reference']
@@ -266,6 +295,15 @@ def main():
     if sha(BOARD) != capture['board_sha256']:
         raise ValueError('mechanical source board changed before publication')
     (OUT / 'reservations.json').write_text(json.dumps(doc, indent=1) + '\n')
+    if args.board:
+        for source, relative in ((BOARD, BOARD_REL), (SRC, SRC_REL)):
+            target = OUT / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
+        (OUT / 'owner-migrations.json').write_text(json.dumps({
+            'class': 'engineering', 'board_sha256': capture['board_sha256'],
+            'source_recipe_sha256': sha(SRC), 'migrations': migrations,
+            'limitations': 'Reference/row identities preserved; actual candidate UUIDs re-derived. Native pad shape/size checks remain mandatory; no geometry or physical-access acceptance.'}, indent=1) + '\n')
     (OUT / 'unmaterialized.json').write_text(json.dumps(
         {'schema': 'agentee-489.unmaterialized/1', 'rows': skipped,
          'note': 'Producer carriage inventory only. Empty rows means all source recipes were emitted; '
