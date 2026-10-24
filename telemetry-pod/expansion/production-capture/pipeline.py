@@ -723,8 +723,9 @@ def compose_scope(base):
                        if d.get('assembly') == 'hand_soldered'})
     hand_fit_refs = sorted(i['reference'] for x in manifest['parts'] if (x.get('mpn'), x.get('lcsc')) in hand_fit
                            for i in x['instances'])
-    if hand_fit_refs != ['J1']:
-        raise ValueError(f'expected J1 as the only hand-soldered part, found {hand_fit_refs}')
+    # AGENTEE-485 J2: exactly J1 (POD-AC-5) and J2 (owner clarification ccbe2294@1), both owner_hand_fit.
+    if hand_fit_refs != ['J1', 'J2']:
+        raise ValueError(f'expected exactly J1 and J2 as the hand-soldered parts, found {hand_fit_refs}')
     if set(fab['params']) != {'netlist_check'} or not copper or not probes:
         raise ValueError(f"unexpected fab_package params {fab['params']} or empty copper/probe declarations")
     checks[checks.index(fab)] = {**fab, 'params': {**fab['params'], 'copper_features': copper,
@@ -1398,16 +1399,18 @@ def exceeded_advisories(value, where=''):
         for i, v in enumerate(value):
             found += exceeded_advisories(v, f'{where}/{i}')
     return found
-# AGENTEE-485 R4: one explicit, recorded emission-validation mode. POD_C1=held-owner-pause-AGENTEE-507 records C1 as
-# NOT_RUN and does not invoke the block-variants producer. C1 stays REQUIRED (X1), so such a run exits 3 with no
-# receipt and no retention, and launch.py refuses it; it is validation evidence only. Any other value refuses.
-C1_HOLD = 'held-owner-pause-AGENTEE-507'
+# AGENTEE-485 R4/J2: one explicit, recorded diagnostic-validation mode. POD_C1=validation-only-c1-not-in-scope records
+# C1 as NOT_RUN and does not invoke the block-variants producer: C1 is not in that validation slice (the C1 correction
+# is AGENTEE-511). C1 stays REQUIRED (X1), so such a run exits 3 with no receipt and no retention, and launch.py
+# refuses it; it is validation evidence only. Any other value refuses.
+C1_HOLD = 'validation-only-c1-not-in-scope'
+C1_REASON = 'C1 not in this validation slice; C1 correction is AGENTEE-511'
 C1_MODE = os.environ.get('POD_C1', '')
 if C1_MODE == C1_HOLD:
     stages['blocks.stage_owned_variants C1 (AGENTEE-485 R2)'] = {
-        'status': 'NOT_RUN', 'mode': 'POD_C1=' + C1_HOLD, 'reason': 'owner pause, AGENTEE-507',
-        'error': 'NOT_RUN: owner pause, AGENTEE-507 (POD_C1=' + C1_HOLD + '); the block-variants producer was not invoked'}
-    print('NOT_RUN   blocks.stage_owned_variants C1 (AGENTEE-485 R2): owner pause, AGENTEE-507', flush=True)
+        'status': 'NOT_RUN', 'mode': 'POD_C1=' + C1_HOLD, 'reason': C1_REASON,
+        'error': 'NOT_RUN: ' + C1_REASON + ' (POD_C1=' + C1_HOLD + '); the block-variants producer was not invoked'}
+    print('NOT_RUN   blocks.stage_owned_variants C1 (AGENTEE-485 R2): ' + C1_REASON, flush=True)
 elif C1_MODE:
     raise SystemExit(f'POD_C1={C1_MODE!r} is not the one recorded hold mode {C1_HOLD!r}')
 else:

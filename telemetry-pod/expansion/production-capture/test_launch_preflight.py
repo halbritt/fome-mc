@@ -149,19 +149,39 @@ class RequiredStages(unittest.TestCase):
         stages['new.unclassified'] = {'status': 'accepted'}
         self.assertTrue(any('not classified' in p for p in required_stages.problems(stages)))
 
+    def test_hand_fit_guard_admits_exactly_j1_and_j2(self):
+        """AGENTEE-485 J2: the fab_package hand-fit guard runs from pipeline.py's own text; it admits exactly J1 + J2
+        (both owner_hand_fit) and refuses J1 alone, J2 alone and any third hand-soldered part."""
+        text = (HERE / 'pipeline.py').read_text()
+        block = text[text.index("    hand_fit = sorted({(d['original']['mpn']"):text.index("    if set(fab['params'])")]
+        code = compile('\n'.join(line[4:] for line in block.splitlines()), 'pipeline.py hand-fit guard', 'exec')
+        parts = {'J1': ('1-776163-1', 'C596198'), 'J2': ('132134', None), 'J3': ('DM3AT-SF-PEJM5', 'C114218')}
+        def run(refs):
+            deviations = {'deviations': [{'assembly': 'hand_soldered', 'policy': 'owner_hand_fit',
+                                          'original': {'mpn': parts[r][0], 'lcsc': parts[r][1]}} for r in refs]}
+            manifest = {'parts': [{'mpn': m, 'lcsc': l, 'instances': [{'reference': r}]} for r, (m, l) in parts.items()]}
+            scope = {'manifest': manifest, 'read': lambda rel: deviations, 'inputs': {'deviations': 'd'}}
+            exec(code, scope)
+            return scope['hand_fit_refs']
+        self.assertEqual(run(['J1', 'J2']), ['J1', 'J2'])
+        for refs in (['J1'], ['J2'], ['J1', 'J2', 'J3'], []):
+            with self.assertRaisesRegex(ValueError, 'exactly J1 and J2'):
+                run(refs)
+
     def test_c1_hold_mode_is_not_run_and_refuses(self):
-        """AGENTEE-485 R4: POD_C1=held-owner-pause-AGENTEE-507 records C1 NOT_RUN without invoking the producer;
+        """AGENTEE-485 R4: POD_C1=validation-only-c1-not-in-scope records C1 NOT_RUN without invoking the producer;
         C1 stays required, so the stage records are not a valid candidate (no receipt, no retention, no launch)."""
         text = (HERE / 'pipeline.py').read_text()
-        self.assertIn("C1_HOLD = 'held-owner-pause-AGENTEE-507'", text)
+        self.assertIn("C1_HOLD = 'validation-only-c1-not-in-scope'", text)
+        self.assertNotIn('owner pause', text)
         hold = text[text.index('if C1_MODE == C1_HOLD:'):text.index('elif C1_MODE:')]
         self.assertNotIn('block_variants_c1', hold)
         self.assertIn("'status': 'NOT_RUN'", hold)
         self.assertIn('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', required_stages.REQUIRED)
         stages = {name: {'status': 'accepted'} for name in required_stages.REQUIRED}
         stages['blocks.stage_owned_variants C1 (AGENTEE-485 R2)'] = {
-            'status': 'NOT_RUN', 'reason': 'owner pause, AGENTEE-507',
-            'error': 'NOT_RUN: owner pause, AGENTEE-507'}
+            'status': 'NOT_RUN', 'reason': 'C1 not in this validation slice; C1 correction is AGENTEE-511',
+            'error': 'NOT_RUN: C1 not in this validation slice; C1 correction is AGENTEE-511'}
         found = required_stages.problems(stages)
         self.assertEqual(len(found), 1)
         self.assertIn("is 'NOT_RUN'", found[0])
