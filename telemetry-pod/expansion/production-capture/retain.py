@@ -10,7 +10,7 @@ This script copies, never regenerates or edits:
 - evidence/emission-7d5b0d4d/design/: the complete emitted candidate tree (every emitter input and output:
   bound intent, layout, captured symbol and footprint libraries, scaffold project). Files under telemetry-pod/
   are byte copies of this repository's files at the same paths; they are pinned by sha256 in MANIFEST.json and
-  checked against the repository instead of being duplicated;
+  resolved by their original digest from immutable snapshots;
 - evidence/emission-7d5b0d4d/receipts/: each step's receipt.json with its execution record, console and
   outputs (the receipts' own input copies are the design tree above);
 - evidence/emission-7d5b0d4d/prepared/: the driver receipt, campaign, plan, scope, dry-run record and result of
@@ -25,8 +25,8 @@ references resolve. --check verifies all of it.
 
 j6b (review H1): the complete prepared directory the campaign launches from (inputs/, the scaffold and content
 pre-receipts, dry-run/) is retained exactly as prepared-tree.json (every relative path with its sha256, and the
-empty directories), its bytes either a repository file outside this evidence (by path) or a content-addressed
-blob under prepared-blobs/. --materialize-prepared OUT rebuilds it byte for byte for the runtime check and launch.
+empty directories), its bytes either a historical repository snapshot resolved through the separate digest repair store,
+or a content-addressed blob under prepared-blobs/. New retentions always retain content-addressed blobs. --materialize-prepared OUT rebuilds it byte for byte for the runtime check and launch.
 
 Usage (fome-mc root):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py PIPELINE_OUT [--install]
@@ -39,6 +39,7 @@ import hashlib
 import json
 import shutil
 import sys
+import subprocess
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -74,9 +75,6 @@ PREPARED = ('driver-receipt.json', 'campaign.json', 'plan.json', 'scope.json', '
 RECEIPT_SKIP = ('inputs', 'run/design', 'run/home')
 MODELS = 'inputs/models/'  # relative to the candidate project directory (composition/project-models.json)
 PREPARED_TREE, BLOBS = 'prepared-tree.json', 'prepared-blobs'
-# Repository bytes a prepared file may be recorded by: tracked or unignored files outside the retained evidence.
-EXCLUDE = tuple(d.relative_to(ROOT).as_posix() + '/'
-                for d in (DEST, PENDING_DEST, SUPERSEDED, HERE / 'evidence/production-runtime-j6b'))
 
 
 def select(dest):
@@ -124,7 +122,10 @@ def retain(out):
         if rel.startswith(REPO_SUBTREE):
             if not (ROOT / rel).is_file() or sha(ROOT / rel) != digest:
                 raise SystemExit(f'design file {rel} is not the repository file at that path')
-            manifest['design'][rel] = {'sha256': digest, 'retained': 'repository path'}
+            blob = DEST / BLOBS / digest
+            blob.parent.mkdir(parents=True, exist_ok=True)
+            blob.write_bytes((design / rel).read_bytes())
+            manifest['design'][rel] = {'sha256': digest, 'retained': f'{BLOBS}/{digest}'}
             continue
         (DEST / 'design' / rel).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(design / rel, DEST / 'design' / rel)
@@ -162,22 +163,9 @@ def retain(out):
     return manifest
 
 
-def repository_index():
-    import subprocess
-    listed = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '-z', '--cached', '--others', '--exclude-standard'],
-                            capture_output=True, check=True).stdout.split(b'\0')
-    index = {}
-    for rel in sorted(r.decode() for r in listed if r):
-        path = ROOT / rel
-        if rel.startswith(EXCLUDE) or path.is_symlink() or not path.is_file():
-            continue
-        index.setdefault(sha(path), rel)
-    return index
-
-
 def retain_prepared(prepared):
     """The exact prepared tree: path -> sha256 (repository file or blob), and its empty directories."""
-    index, tree, empty = repository_index(), {}, []
+    tree, empty = {}, []
     for path in sorted(Path(prepared).rglob('*')):
         rel = path.relative_to(prepared).as_posix()
         if path.is_symlink():
@@ -189,14 +177,11 @@ def retain_prepared(prepared):
         digest = sha(path)
         if (path.stat().st_mode & 0o777) != 0o644:
             raise SystemExit(f'prepared file {rel} mode {oct(path.stat().st_mode & 0o777)} is not 0644')
-        if digest in index:
-            tree[rel] = {'sha256': digest, 'repository': index[digest]}
-        else:
-            blob = DEST / BLOBS / digest
-            blob.parent.mkdir(parents=True, exist_ok=True)
-            if not blob.exists():
-                shutil.copyfile(path, blob)
-            tree[rel] = {'sha256': digest, 'blob': f'{BLOBS}/{digest}'}
+        blob = DEST / BLOBS / digest
+        blob.parent.mkdir(parents=True, exist_ok=True)
+        if not blob.exists():
+            shutil.copyfile(path, blob)
+        tree[rel] = {'sha256': digest, 'blob': f'{BLOBS}/{digest}'}
     record = {'schema': 'pod-capture.prepared-tree/1', 'files': tree, 'empty_directories': empty,
               'mode': '0644', 'count': len(tree)}
     (DEST / PREPARED_TREE).write_text(json.dumps(record, indent=1, sort_keys=True) + '\n')
@@ -204,13 +189,88 @@ def retain_prepared(prepared):
             'blobs': len({e['sha256'] for e in tree.values() if 'blob' in e})}
 
 
+def repair_store():
+    return HERE / 'retention-repairs' / DEST.name
+
+
+def resolve_snapshot(item):
+    """Return verified immutable bytes; never use a live repository path."""
+    if 'repository' in item or item.get('retained') == 'repository path':
+        rel = item.get('repository') or item['path']
+        if item.get('commit'):
+            commit = item['commit']
+            if len(commit) != 40 or any(c not in '0123456789abcdef' for c in commit):
+                raise ValueError('historical repository commit must be a complete immutable object ID')
+            data = subprocess.run(['git', '-C', str(ROOT), 'show', item['commit'] + ':' + rel],
+                                  capture_output=True, check=True).stdout
+        else:
+            # Legacy records have no repository commit. Recovery is explicit and separately documented.
+            data = (repair_store() / 'blobs' / item['sha256']).read_bytes()
+    else:
+        data = (DEST / (item.get('blob') or item['retained'])).read_bytes()
+    if hashlib.sha256(data).hexdigest() != item['sha256']:
+        raise ValueError('historical snapshot digest mismatch: ' + item['sha256'])
+    return data
+
+
+def repair_repository_snapshots():
+    """Recover legacy bytes by digest from git history, without claiming an original commit."""
+    manifest = json.loads((DEST / 'MANIFEST.json').read_text())
+    tree = json.loads((DEST / PREPARED_TREE).read_text())
+    wanted = {i['sha256']: i['repository'] for i in tree['files'].values() if 'repository' in i}
+    wanted.update({i['sha256']: rel for rel, i in manifest['design'].items()
+                   if i['retained'] == 'repository path'})
+    store = repair_store()
+    if store.exists():
+        raise SystemExit(f'{store} exists; repair stores are never overwritten')
+    recovered, cache = {}, {}
+    # All bytes come from git objects, including currently unchanged repository snapshots.
+    for digest, rel in sorted(wanted.items()):
+        commits = subprocess.run(['git', '-C', str(ROOT), 'rev-list', '--all', '--', rel],
+                                 capture_output=True, text=True, check=True).stdout.splitlines()
+        for commit in commits:
+            key = commit + ':' + rel
+            obj = subprocess.run(['git', '-C', str(ROOT), 'rev-parse', key], capture_output=True)
+            if obj.returncode:
+                continue
+            oid = obj.stdout.decode().strip()
+            if oid not in cache:
+                data = subprocess.run(['git', '-C', str(ROOT), 'cat-file', 'blob', oid],
+                                      capture_output=True, check=True).stdout
+                cache[oid] = (hashlib.sha256(data).hexdigest(), data)
+            actual, data = cache[oid]
+            if actual == digest:
+                recovered[digest] = {'recovery_commit': commit, 'git_blob': oid, 'path': rel}
+                (store / 'blobs').mkdir(parents=True, exist_ok=True)
+                (store / 'blobs' / digest).write_bytes(data)
+                break
+        else:
+            raise SystemExit(f'cannot recover historical digest {digest} at {rel}; no original commit invented')
+    record = {'schema': 'pod-capture.digest-recovery/1',
+              'purpose': 'Legacy retention omitted repository commits. These are digest-matching recovery locations, not original-source commit claims.',
+              'retention': DEST.relative_to(ROOT).as_posix(),
+              'historical_manifest_sha256': sha(DEST / 'MANIFEST.json'),
+              'historical_prepared_tree_sha256': sha(DEST / PREPARED_TREE),
+              'historical_sums_sha256': sha(DEST / 'SHA256SUMS'), 'blobs': recovered}
+    (store / 'RECOVERY.json').write_text(json.dumps(record, indent=1, sort_keys=True) + '\n')
+    print(f'recovered {len(recovered)} immutable historical blobs; historical records unchanged')
+
+
+def prepared_record():
+    manifest = json.loads((DEST / 'MANIFEST.json').read_text())
+    if sha(DEST / PREPARED_TREE) != manifest['prepared_tree']['sha256']:
+        raise SystemExit('prepared-tree.json differs from MANIFEST.json')
+    return json.loads((DEST / PREPARED_TREE).read_text())
+
+
 def prepared_problems():
-    record = json.loads((DEST / PREPARED_TREE).read_text())
+    record = prepared_record()
     problems = []
     for rel, item in record['files'].items():
-        source = ROOT / item['repository'] if 'repository' in item else DEST / item['blob']
-        if not source.is_file() or sha(source) != item['sha256']:
-            problems.append(f'prepared tree {rel} ({item.get("repository") or item["blob"]})')
+        try:
+            resolve_snapshot(item)
+        except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+            problems.append(f'prepared tree {rel}: {exc}')
     return problems
 
 
@@ -222,11 +282,11 @@ def materialize(out):
     problems = prepared_problems()
     if problems:
         raise SystemExit('prepared tree unresolvable: ' + '; '.join(problems[:5]))
-    record = json.loads((DEST / PREPARED_TREE).read_text())
+    record = prepared_record()
     for rel, item in record['files'].items():
         target = out / rel
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / item['repository'] if 'repository' in item else DEST / item['blob'], target)
+        target.write_bytes(resolve_snapshot(item))
         target.chmod(0o644)
         if sha(target) != item['sha256']:
             raise SystemExit(f'materialized {rel} differs')
@@ -253,9 +313,10 @@ def check():
     problems += [f'unlisted: {rel}' for rel in files(DEST) if rel != 'SHA256SUMS' and rel not in listed]
     manifest = json.loads((DEST / 'MANIFEST.json').read_text())
     for rel, item in manifest['design'].items():
-        path = ROOT / rel if item['retained'] == 'repository path' else DEST / item['retained']
-        if not path.is_file() or sha(path) != item['sha256']:
-            problems.append(f'design input {rel} ({item["retained"]})')
+        try:
+            resolve_snapshot(dict(item, path=rel))
+        except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+            problems.append(f'design input {rel}: {exc}')
     for name, item in manifest['project_install'].items():
         if not (POD / name).is_file() or sha(POD / name) != item['sha256']:
             problems.append(f'installed telemetry-pod/{name} differs from the retained emission')
@@ -272,6 +333,8 @@ def check():
             problems.append(f'emitted {key} differs from the emission stage record')
     if problems:
         raise SystemExit('retained emission check failed:\n  ' + '\n  '.join(problems))
+    if repair_store().exists():
+        print(f"separate repair store: {len(files(repair_store()))} files (outside historical counts)")
     print(f"retained emission OK: {len(listed)} retained files, {len(manifest['design'])} design inputs "
           f"({sum(i['retained'] == 'repository path' for i in manifest['design'].values())} repository paths), "
           f"{len(manifest['project_install'])} installed project files"
@@ -282,10 +345,14 @@ def check():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('pipeline_out', nargs='?')
+    parser.add_argument('--repair-repository-snapshots', action='store_true')
     parser.add_argument('--install', action='store_true')
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--materialize-prepared', metavar='OUT')
     args = parser.parse_args()
+    if args.repair_repository_snapshots:
+        repair_repository_snapshots()
+        sys.exit(0)
     if args.materialize_prepared:
         materialize(args.materialize_prepared)
         sys.exit(0)

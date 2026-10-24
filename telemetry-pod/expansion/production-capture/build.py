@@ -70,7 +70,8 @@ STACKUP_MATERIALS = MECHANICAL / 'stackup-materials.json'
 # AGENTEE-485 F6: the retained J2 132134 Rev C drawing (1ec1d365...) and its source/PCB-pattern bindings.
 J2_132134 = X / 'agentee-494-j2'
 J2_SOURCE = X / 'j2-historical-source'
-J2_RECORD = J2_SOURCE / '132134.json'
+# F8 changed the drawing's surrounding source manifest; historical import stays untouched.
+J2_RECORD = HERE / 'sources/j2-adoption-f8/132134.json'
 J2_FP = 'Agentee494:SMA_Amphenol_132134_Manufacturer'
 J2_132134_CARRIED = ('132134-revC.pdf', 'source-manifest.json', 'pad-map.json')
 J3_CATALOG = MICROSD / 'stock/catalog.json'

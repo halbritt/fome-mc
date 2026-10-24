@@ -1,0 +1,31 @@
+{
+ "schema": "agentee-489.stackup-materials/1",
+ "status": "DECLARED_NOT_CONSUMED",
+ "authority": "agent-529 1f09c567@1 (relayed by agent-519; agent-449 re-hashed the captures), class coordinator decision, not owner text",
+ "stackup": "jlc04161h-7628 (production-capture/sources/fab-profile/fab-profile.json; thickness and copper unchanged)",
+ "layers": [
+  {"name": "dielectric 1", "kind": "dielectric", "thickness_mm": 0.2104, "dielectric_type": "prepreg", "epsilon_r": 4.4, "loss_tangent": null,
+   "source": {"ref": "jlc-impedance", "locator": "1. Prepreg dielectric constant: 7628 row; 2) JLC04161H-7628 Stackup"}},
+  {"name": "dielectric 2", "kind": "dielectric", "thickness_mm": 1.065, "dielectric_type": "core", "epsilon_r": 4.6, "loss_tangent": null,
+   "source": {"ref": "jlc-impedance", "locator": "3. Core dielectric constant; 2) JLC04161H-7628 Stackup"}},
+  {"name": "dielectric 3", "kind": "dielectric", "thickness_mm": 0.2104, "dielectric_type": "prepreg", "epsilon_r": 4.4, "loss_tangent": null,
+   "source": {"ref": "jlc-impedance", "locator": "1. Prepreg dielectric constant: 7628 row; 2) JLC04161H-7628 Stackup"}}
+ ],
+ "sources": {
+  "jlc-impedance": {"url": "https://jlcpcb.com/impedance", "retrieved_utc": "2026-10-23T13:56:10Z",
+   "capture": "/home/halbritt/.cache/agent-ee-evidence/agent529-jlc-material-20261023/impedance.html",
+   "sha256": "26b40bb942810310fd468abd1585e877956957abeb67805b08db5029ce88cad0",
+   "text_sha256": "2bc823abf3d6a07f078cc41ab146c604449ad1597c85cb079cb468cdfa1450ba"},
+  "jlc-calculator-guide": {"url": "https://jlcpcb.com/help/article/user-guide-to-the-jlcpcb-impedance-calculator", "retrieved_utc": "2026-10-23T13:56:10Z",
+   "capture": "/home/halbritt/.cache/agent-ee-evidence/agent529-jlc-material-20261023/calculator-guide.html",
+   "sha256": "c31fd22ceb87748ce659b206096d4d490df9d1fc16af3abcd033dbc81a42f198",
+   "text_sha256": "f7d8d14b67b736c59334d0f17735fe4a42bd1563647ee2507cda0657db5ce6c3",
+   "locator": "4- to 8-layer results assume Nan Ya NP-155F core material"}
+ },
+ "applicability": "Er values apply under the calculator's stated NP-155F assumption for 4-8 layer boards. This is NOT a general FR4 guarantee and NOT an ordering authorization; material selection at any future order is an owner-side matter.",
+ "loss_tangent": "null: no captured source publishes it. KiCad's 0.02 default stays an explicitly unqualified tool serialization.",
+ "unchanged": ["thickness", "copper", "RF solver query", "physical gap", "loss tangent"],
+ "closes": "the missing 4.6 citation only (agent-ee stackup follow-up G1 at source level; G3 dielectric_type declared on every dielectric that declares a material field); NOT the native/material check or manufacturing acceptance",
+ "fixture_note": "agent-524's authored stackup regression stays a fixture, not vendor evidence",
+ "consumption_gap": "The production fab-profile stackup is compiled unsourced-per-layer (agent-ee fab_profile.compile_stackup -> validate_stackup without per-layer source), so these fields are not yet carried into the envelope or the native .kicad_pcb stackup; that needs the envelope stackup (sourced per-layer) and a production regeneration (AGENTEE-485/445)."
+}

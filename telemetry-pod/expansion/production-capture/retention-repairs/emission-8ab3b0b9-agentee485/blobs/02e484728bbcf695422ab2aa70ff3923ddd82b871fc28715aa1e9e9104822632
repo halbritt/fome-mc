@@ -1,0 +1,206 @@
+{
+  "schema": "agent-ee.fab-profile/2",
+  "name": "jlc04161h-7628",
+  "as_of": "2026-10-18",
+  "limits": [
+    {
+      "id": "trace",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_trace_mm",
+      "value": 0.09,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "trace / spacing: 0.09 / 0.09 mm"
+      }
+    },
+    {
+      "id": "clearance",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_clearance_mm",
+      "value": 0.09,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "trace / spacing: 0.09 / 0.09 mm"
+      }
+    },
+    {
+      "id": "via-drill",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_via_drill_mm",
+      "value": 0.15,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "via / drill / diameter: 0.15 / 0.25 mm"
+      }
+    },
+    {
+      "id": "via-pad",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_via_pad_mm",
+      "value": 0.25,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "via / drill / diameter: 0.15 / 0.25 mm"
+      }
+    },
+    {
+      "id": "edge",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_edge_clearance_mm",
+      "value": 0.2,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "routed / copper / edge: 0.2 mm"
+      }
+    },
+    {
+      "id": "holes",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "min_hole_to_hole_mm",
+      "value": 0.45,
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "pad / hole / hole: 0.45 mm"
+      }
+    },
+    {
+      "id": "layers",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "max_layers",
+      "value": 4,
+      "unit": "count",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-stackup.txt",
+        "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/impedance",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "layers: 4"
+      }
+    },
+    {
+      "id": "size",
+      "requirement": "R-envelope-telemetry-pod-fab-profile",
+      "key": "max_board_mm",
+      "value": [
+        663,
+        593
+      ],
+      "unit": "mm",
+      "tier": "minimum",
+      "source": {
+        "path": "sources/jlcpcb-capabilities.txt",
+        "sha256": "0e2ce035765ed8a3679582633ea380512a4666920ecb9c596730c8e9aaba873e",
+        "source": "Agent-ee recorded numeric facts from https://jlcpcb.com/capabilities/pcb-capabilities",
+        "as_of": "2026-10-18",
+        "page": 1,
+        "quote": "FR4 / 4-layer / maximum: 663 / 593 mm"
+      }
+    }
+  ],
+  "finished_thickness_tolerance": {
+    "percent": 10,
+    "min_nominal_thickness_mm": 1,
+    "source": {
+      "path": "sources/jlcpcb-thickness.txt",
+      "sha256": "fae784b6527c2b2e641fddb26a09b7d93d3ae126c130a84ba2351f9470cbb25e",
+      "source": "https://jlcpcb.com/capabilities/pcb-capabilities",
+      "as_of": "2026-10-18",
+      "page": 1,
+      "quote": "nominal >= 1.0 mm / finished thickness: +/-10 %"
+    }
+  },
+  "stackup": {
+    "name": "jlc04161h-7628",
+    "layer_count": 4,
+    "nominal_thickness_mm": 1.6,
+    "thickness_mm": 1.5862,
+    "layers": [
+      {
+        "name": "F.Cu",
+        "kind": "copper",
+        "thickness_mm": 0.035,
+        "copper_weight_oz": 1
+      },
+      {
+        "name": "dielectric 1",
+        "kind": "dielectric",
+        "thickness_mm": 0.2104
+      },
+      {
+        "name": "In1.Cu",
+        "kind": "copper",
+        "thickness_mm": 0.0152,
+        "copper_weight_oz": 0.5
+      },
+      {
+        "name": "dielectric 2",
+        "kind": "dielectric",
+        "thickness_mm": 1.065
+      },
+      {
+        "name": "In2.Cu",
+        "kind": "copper",
+        "thickness_mm": 0.0152,
+        "copper_weight_oz": 0.5
+      },
+      {
+        "name": "dielectric 3",
+        "kind": "dielectric",
+        "thickness_mm": 0.2104
+      },
+      {
+        "name": "B.Cu",
+        "kind": "copper",
+        "thickness_mm": 0.035,
+        "copper_weight_oz": 1
+      }
+    ],
+    "layer_thickness_tolerance_mm": 0,
+    "source": {
+      "path": "sources/jlcpcb-stackup.txt",
+      "sha256": "02e61b5b1b54092a5930a3ddf601186bc9ea29adb6595c94afb3595aa89a75a4",
+      "source": "https://jlcpcb.com/impedance#JLC04161H-7628",
+      "as_of": "2026-10-18",
+      "page": 1,
+      "quote": "layers: 4\nnominal: 1.6 mm\nF.Cu / copper: 0.035 mm\n7628 / prepreg: 0.21040 mm\nIn1.Cu / copper: 0.0152 mm\ncore: 1.065 mm\nIn2.Cu / copper: 0.0152 mm\n7628 / prepreg: 0.21040 mm\nB.Cu / copper: 0.035 mm\nouter / copper: 1 oz\ninner / copper: 0.5 oz\n"
+    }
+  }
+}
