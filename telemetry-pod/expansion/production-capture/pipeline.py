@@ -130,6 +130,9 @@ def verify_export(export, git):
 
 AGENT_EE = verify_export(A, Path(os.environ['AGENT_EE_GIT']).resolve())
 sys.path[:0] = [str(A / 'src')]
+# A child interpreter does not inherit sys.path: it gets the same verified export through PYTHONPATH, first, with the
+# rest of the caller's environment unchanged (AGENTEE-485 J2d).
+AGENT_EE_ENV = {**os.environ, 'PYTHONPATH': os.pathsep.join(filter(None, [str(A / 'src'), os.environ.get('PYTHONPATH')]))}
 from agent_ee import (add_planes, assembly_readiness, binding_fill, board_envelope,  # noqa: E402
                       placement_adapter, pod_driver, routing_adapter, scaffold, schematic_stage)
 from agent_ee.storage import identity  # noqa: E402
@@ -1221,7 +1224,7 @@ def emit_schematic():
     # The scaffold has fixed owners only. Materialize complete access inventory after annotation adds every part.
     access_out = OUT / 'access-rebound'
     subprocess.run([sys.executable, '-B', str(X / 'agentee-489-source/materialize.py'), str(ROOT),
-                    '--board', str(design / BOARD), '--out', str(access_out)], check=True)
+                    '--board', str(design / BOARD), '--out', str(access_out)], check=True, env=AGENT_EE_ENV)
     reservations = json.loads((access_out / 'reservations.json').read_text())
     if len(reservations['reservations']) != 44:
         raise ValueError('rederived mechanical access inventory must contain 44 rows')
