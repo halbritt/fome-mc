@@ -27,6 +27,30 @@
    "stock_deviation": {
     "reason": "Requirement-named hand-fit part with zero captured stock; generation-day stock evidence is still required for release."
    }
+  },
+  {
+   "assembly": "hand_soldered",
+   "evidence_refs": [
+    {
+     "locator": "lines 6-9 (owner words, verbatim)",
+     "path": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+    },
+    {
+     "locator": "sheet 3 of 3",
+     "path": "telemetry-pod/expansion/agentee-494-j2/132134-revC.pdf"
+    }
+   ],
+   "original": {
+    "lcsc": null,
+    "mpn": "132134"
+   },
+   "policy": "owner_hand_fit",
+   "purchase_source": "Amphenol RF 132134 from a distributor of the owner's choice (no supplier row captured)",
+   "reason": "J2 (Amphenol RF 132134 SMA PCB jack, through-hole) is hand-fitted after delivery on the owner clarification relayed verbatim as Cairn ccbe2294@1; it is not JLC-assembled.",
+   "requirement_id": "POD-AC-5",
+   "stock_deviation": {
+    "reason": "Manual through-hole assembly is the owner-approved choice; supplier stock is not a gate on it. No LCSC id or stock figure exists for this part, and none is claimed."
+   }
   }
  ],
  "schema": "agent-ee.part-deviations/1"

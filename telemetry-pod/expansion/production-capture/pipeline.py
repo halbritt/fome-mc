@@ -65,7 +65,7 @@ Usage (fome-mc root, system python with pcbnew, inside the pinned agent-ee CI im
 SCOPE_DIR is a compiled Rev-3 scope directory (scope.json plus requirements-map/). STOCK_CAPTURE_DIR is
 an agent-ee.jlc-catalog/1 producer capture (catalog.json plus responses/); it defaults to
 sources/assembly-stock-20261022. REPACK_DIR is a repack.py output (repack.json, block-obligations.json,
-cand/, logs/); it defaults to evidence/repack-a9dac2f-j5. AGENT_EE_GIT is a git checkout holding
+cand/, logs/); it defaults to evidence/repack-8ab3b0b9-485c (AGENTEE-485 R1). AGENT_EE_GIT is a git checkout holding
 AGENT_EE_PIN.
 """
 import copy
@@ -82,12 +82,24 @@ from pathlib import Path
 A, R, SCOPE_DIR, CAPTURE, OUT = (Path(p).resolve() for p in sys.argv[1:6])
 HERE = Path(__file__).resolve().parent
 STOCK = Path(sys.argv[6]).resolve() if len(sys.argv) > 6 else HERE / 'sources/assembly-stock-20261023-491b'  # AGENTEE-491: 81 ids + C723587/C861219, one capture
-REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-a9dac2f-j5'
+# AGENTEE-485 R1: the repack of the A3-locality policy (policy.py, afd1e2f7) with agent-ee 8ab3b0b9; repack-a9dac2f-j5
+# binds the superseded 12-obligation policy 5fab430a and stays as history.
+REPACK = Path(sys.argv[7]).resolve() if len(sys.argv) > 7 else HERE / 'evidence/repack-8ab3b0b9-485c'
 # agent-ee main 7d5b0d4d, the AGENTEE-466 qualified runtime (contains the AGENTEE-454 read-once fix, the AGENTEE-450
 # router pin b5774496 and everything of the earlier 81e387ee pin): explicitly repinned by agent-449 for the j6b2
 # preparation (coordinator decision relaying agent-521 a9cb03ad/2fbe5f08; not owner-stated). The preparation runs in
 # that runtime's own image (runtime_receipt.py binds it). 81e387ee (j6, j6b) predates read-once.
 AGENT_EE_PIN = '7d5b0d4de65a5b8e8f925ad6f366a46653aae563'
+# AGENTEE-485 G1 (chief agent-531 f8ee7804): POD_RUNTIME (production_run.sh) selects an immutable runtime manifest
+# under runtime/; its agent_ee_commit replaces the historical pin above, which stays the default. The export is
+# still checked blob by blob against AGENT_EE_GIT. Provenance only: fome-mc keeps no versions.toml agent-ee pin.
+if os.environ.get('POD_RUNTIME'):
+    _selected = json.loads((HERE / os.environ['POD_RUNTIME']).read_text())
+    _commit = str(_selected.get('agent_ee_commit'))
+    if (_selected.get('schema') != 'pod-capture.runtime-manifest/1' or len(_commit) != 40
+            or set(_commit) - set('0123456789abcdef')):
+        raise SystemExit(f"POD_RUNTIME {os.environ['POD_RUNTIME']} is not a pod-capture.runtime-manifest/1")
+    AGENT_EE_PIN = _selected['agent_ee_commit']
 
 
 def verify_export(export, git):
@@ -125,6 +137,9 @@ import importlib.util  # noqa: E402
 _spec = importlib.util.spec_from_file_location('candidate_checks', Path(__file__).resolve().parent / 'candidate_checks.py')
 candidate_checks = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(candidate_checks)
+_spec = importlib.util.spec_from_file_location('required_stages', Path(__file__).resolve().parent / 'required_stages.py')
+required_stages = importlib.util.module_from_spec(_spec)  # AGENTEE-485 X1
+_spec.loader.exec_module(required_stages)
 
 ROOT = HERE.parents[2]
 X = ROOT / 'telemetry-pod/expansion'
@@ -186,6 +201,45 @@ shutil.copytree(CAPTURE, planning, symlinks=False)
 (planning / 'reconstruction.json').unlink()
 shutil.copyfile(X / 'design-rules/planes.json', planning / 'composition/planes.json')
 shutil.copyfile(COMPOSED / 'placement-policy.json', planning / 'composition/placement-policy.json')
+# AGENTEE-485 R2 (C1): the stage-owned block-variant inputs (agent-ee block_variant_stage, 485-A). The immutable
+# recipe is the A3 packet's unbound templates and its block-allocation/1 bridge (26 blocks) plus the iter8n
+# arrangement (advisory terms only); each is pinned by sha256. The producer outputs start as empty captured
+# placeholders and the report as the producer/1 pending marker, so placement refuses until the campaign's own
+# block-variants step (after forward-annotate) has produced /1 sets on the native board.
+A3_BLOCKS = X / 'agentee-485-blocks'
+BLOCK_STAGE = 'composition/block-stage/'
+BLOCK_STAGE_SOURCES = {  # captured path -> (source, sha256)
+    'allocation.json': (A3_BLOCKS / 'allocation-bridge.json',
+                        'd15969302cd7de8aa3b0c9eb60f8a81c4c439e12534049fb4653fc2004166eb9'),
+    'arrangement.json': (ITER8N / 'arrangement.json',  # iter8n SHA256SUMS
+                         '32711f182eedca99b38f5ba9fe255b2a83fc360870a8b42c27ea8766b082384e'),
+    'eligibility-template.json': (A3_BLOCKS / 'eligibility-template.json',
+                                  'a63bac6db79778b44c972b4a478249963e736afe8fce4489e1275b11f5855066'),
+    'contract-template.json': (A3_BLOCKS / 'block-contract-template.json',
+                               '289e2d63fa3b7108ae6618b4086e68037ca5779ea74422fac9fa29f41d03c06c')}
+block_allocation = json.loads(BLOCK_STAGE_SOURCES['allocation.json'][0].read_text())
+block_section = {
+    'netlist': BLOCK_STAGE + 'native.xml', 'arrangement': BLOCK_STAGE + 'arrangement.json',
+    'allocation': BLOCK_STAGE + 'allocation.json',
+    'candidates': [f'{BLOCK_STAGE}cand/{i:02d}-{b["id"]}.json' for i, b in enumerate(block_allocation['blocks'], 1)],
+    'side_eligibility': BLOCK_STAGE + 'eligibility.json', 'contract': BLOCK_STAGE + 'contract.json',
+    'stage_owned': {'eligibility': BLOCK_STAGE + 'eligibility-template.json',
+                    'contract': BLOCK_STAGE + 'contract-template.json', 'report': BLOCK_STAGE + 'producer.json'}}
+
+
+def stage_block_inputs():
+    for name, (source, want) in BLOCK_STAGE_SOURCES.items():
+        if sha(source) != want:
+            raise SystemExit(f'{source} is {sha(source)}, not the pinned {want}')
+        (planning / BLOCK_STAGE).mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, planning / BLOCK_STAGE / name)
+    for path in [block_section['netlist'], block_section['side_eligibility'], block_section['contract'],
+                 *block_section['candidates']]:
+        (planning / path).parent.mkdir(parents=True, exist_ok=True)
+        (planning / path).write_bytes(b'')
+    (planning / block_section['stage_owned']['report']).write_text(
+        json.dumps({'schema': 'agent-ee.block-variant-producer/1', 'status': 'pending'}, indent=2, sort_keys=True) + '\n')
+stage_block_inputs()
 project = planning / 'project'
 project.mkdir(exist_ok=True)  # the capture holds project/inputs/models/ (FOMEMC-34, build.py project_models)
 shutil.copyfile(X / 'design-rules/board-setup.kicad_pro', project / 'telemetry-pod.kicad_pro')
@@ -216,9 +270,10 @@ def stock_coverage():
     from agent_ee.jlc_stock_capture import validate_capture
     doc = read(STOCK_AT + '/catalog.json')
     info = validate_capture(doc, lambda rel: (planning / STOCK_AT / rel).read_bytes())
-    lcsc = {p['lcsc'] for p in read(inputs['parts'])['parts'] if p.get('lcsc')}
+    lcsc = {p['lcsc'] for p in read(inputs['parts'])['parts'] if p.get('lcsc', '').startswith('C')}
     observed = set(doc['parts']) | set(info['not_found'])
-    deviated = sorted(d['original']['lcsc'] for d in read(inputs['deviations'])['deviations'])
+    deviated = sorted(d['original']['lcsc'] for d in read(inputs['deviations'])['deviations']
+                      if d['original']['lcsc'] is not None)
     key = lambda c: int(c[1:])  # noqa: E731
     per_id = stock_status(doc, lcsc, deviated)
     return {'capture': {'path': STOCK_AT + '/catalog.json', 'sha256': sha(planning / STOCK_AT / 'catalog.json'),
@@ -226,6 +281,10 @@ def stock_coverage():
                         'endpoint': doc['source']['endpoint'], 'method': doc['source']['method'],
                         'requested': len(info['requested']), 'not_found': info['not_found'], 'failed': info['failed']},
             'bom_lcsc': len(lcsc), 'observed': len(lcsc & observed),
+            'external_parts': [{'reference': p['instances'][0]['reference'], 'mpn': p['mpn'],
+                                'lcsc': None, 'stock': None, 'assembly': 'not_assembled'}
+                               for p in read(inputs['parts'])['parts']
+                               if p.get('selection', {}).get('kind') == 'external'],
             'unobserved': sorted(lcsc - observed, key=key), 'outside_bom': sorted(observed - lcsc, key=key),
             'deviated': deviated, 'evaluated_at': EVALUATED_AT, 'max_age_hours': 24,
             'status_counts': {k: sum(1 for r in per_id.values() if r['status'] == k)
@@ -243,7 +302,7 @@ def stock_status(doc, lcsc, deviated):
     """Per BOM LCSC id: what this capture observed, when, from which source, and whether it is stale."""
     quantity = {}
     for p in read(inputs['parts'])['parts']:
-        if p.get('lcsc'):
+        if p.get('lcsc', '').startswith('C'):
             quantity[p['lcsc']] = quantity.get(p['lcsc'], 0) + len(p['instances'])
     requests = {r['lcsc']: r for r in doc['requests']}
     now = datetime.fromisoformat(EVALUATED_AT)
@@ -270,47 +329,22 @@ def stock_status(doc, lcsc, deviated):
 
 
 def hand_fit_chain():
-    """The J1 source chain (agent-509): recompute every link; ask the pinned export whether it can express it."""
-    declared = json.loads(HAND_FIT.read_text())['hand_fit_policy']
+    """Independent J1 and J2 approvals; validate captured quotes and engineering mapping with the runtime."""
+    declared = read('composition/hand-fit-policy.json')
     links = {}
     for rel, expected in HAND_FIT_CHAIN.items():
         links[rel] = {'sha256': sha(planning / rel), 'recorded_by_agent_509': expected,
                       'equals_fome_mc': (planning / rel).read_bytes() == (ROOT / rel).read_bytes()}
         if links[rel]['sha256'] != expected or not links[rel]['equals_fome_mc']:
             raise ValueError(f'hand-fit chain source {rel} is not the recorded bytes')
-    cited = [declared, declared['selection'], *declared['selection']['records']]
-    for c in cited:
-        if sha(planning / c['source']) != c['sha256']:
-            raise ValueError(f"declared hand-fit citation {c['source']} differs from its sha256")
-    line = (planning / declared['source']).read_text().split('\n')[declared['line'] - 1]
-    chosen = (planning / declared['selection']['source']).read_text().split('\n')[declared['selection']['line'] - 1]
-    if declared['quote'] not in line or declared['selection']['quote'] not in chosen:
-        raise ValueError('a hand-fit quote is not on its cited line')
-    record = sha(planning / 'telemetry-pod/expansion/j1-historical-source/C596198.json')
-    for r in declared['selection']['records']:
-        obj = json.loads((planning / r['source']).read_text())
-        for token in [t for t in r['pointer'].split('/')[1:]]:
-            obj = obj[int(token)] if isinstance(obj, list) else obj[token]
-        if (obj['mpn'], obj['lcsc']) != ('1-776163-1', 'C596198'):
-            raise ValueError(f"{r['source']}{r['pointer']} is not the selected J1 identity")
-        if 'selection' in obj and obj['selection'].get('part_record_sha256') != record:
-            raise ValueError(f"{r['source']}{r['pointer']} names another part record")
-    deviation = next(d for d in read(inputs['deviations'])['deviations'] if d.get('policy') == 'owner_hand_fit')
-    if deviation['original'] not in declared['identities']:
-        raise ValueError('the owner_hand_fit deviation identity is not the chain identity')
-    try:
-        validated = assembly_readiness._validate_hand_fit_policy(copy.deepcopy(declared), inputs['deviations'])
-        verified = assembly_readiness._verify_hand_fit_policy(planning, validated)
-        export = {'status': 'expressible', 'class': verified['class'],
-                  'association': verified.get('selection', {}).get('association'),
-                  'part_record_links': verified.get('selection', {}).get('part_record_links')}
-    except Exception as exc:  # the pinned validator's own refusal, kept verbatim
-        validated, export = None, {'status': 'refused by this agent-ee export', 'error': f'{type(exc).__name__}: {exc}'}
-    # The scope carries the declared citation, which the check validates again at run time; the validator's
-    # normalized result (with the reviewed decision fields) is not a check parameter.
-    return {'declared': {'path': HAND_FIT.relative_to(ROOT).as_posix(), 'sha256': sha(HAND_FIT)},
-            'links': links, 'deviation_identity': deviation['original'], 'agent_ee': export,
-            'declared_in_scope': validated is not None}, (copy.deepcopy(declared) if validated is not None else None)
+    validated = assembly_readiness._validate_hand_fit_policy(copy.deepcopy(declared), inputs['deviations'])
+    verified = assembly_readiness._verify_hand_fit_policy(planning, validated)
+    if len(verified) != 2:
+        raise ValueError('exactly two independent hand-fit approvals required')
+    return {'declared': {'path': 'composition/hand-fit-policy.json',
+                          'sha256': sha(planning / 'composition/hand-fit-policy.json')},
+            'links': links, 'agent_ee': {'status': 'expressible', 'approvals': verified},
+            'declared_in_scope': True}, declared
 
 
 # 0a. The assembly layer: one assembly_readiness check, so --ratings reaches rating_provenance.
@@ -600,6 +634,12 @@ def compose_scope(base):
             reference = record['fixed_footprints'][int(item['source']['locator'].rsplit('/', 1)[1])]['reference']
             specs = [dict(id=cid, kind='placement', stage='placement',
                           params=dict(criterion='connector-edge/1', envelope=env, reference=reference, drc_check=drc))]
+        elif field == 'mechanical_reservations':
+            # AGENTEE-485 N1: the existing agent-ee mechanical-access/1 contract exactly as agent-533 states it
+            # (agentee-485-pb RESULT.md, N1-check.json): executable coverage, not mechanical acceptance. Its check id
+            # is that JSON's exact id, not the generic suffix id ('envelope-mechanical-access' for this envelope id).
+            specs = [dict(id='envelope-production-mechanical-access', kind='placement', stage='placement',
+                          params=dict(criterion='mechanical-access/1', envelope=env, drc_check=drc))]
         else:  # no registered criterion binds this field; it stays visible as unmapped
             unmapped.append({'id': item['id'], 'field': field, 'reason': board_envelope.UNBOUND[field]})
             continue
@@ -661,10 +701,13 @@ def compose_scope(base):
     probes = sorted(i['reference'] for x in manifest['parts'] if x.get('kind') == 'bare_copper_probe' for i in x['instances'])
     hand_fit = sorted({(d['original']['mpn'], d['original']['lcsc']) for d in read(inputs['deviations'])['deviations']
                        if d.get('assembly') == 'hand_soldered'})
-    hand_fit_refs = sorted(i['reference'] for x in manifest['parts'] if (x.get('mpn'), x.get('lcsc')) in hand_fit
+    hand_fit_refs = sorted(i['reference'] for x in manifest['parts']
+                           if any(mpn == x.get('mpn') and (lcsc is None or lcsc == x.get('lcsc'))
+                                  for mpn, lcsc in hand_fit)
                            for i in x['instances'])
-    if hand_fit_refs != ['J1']:
-        raise ValueError(f'expected J1 as the only hand-soldered part, found {hand_fit_refs}')
+    # AGENTEE-485 J2: exactly J1 (POD-AC-5) and J2 (owner clarification ccbe2294@1), both owner_hand_fit.
+    if hand_fit_refs != ['J1', 'J2']:
+        raise ValueError(f'expected exactly J1 and J2 as the hand-soldered parts, found {hand_fit_refs}')
     if set(fab['params']) != {'netlist_check'} or not copper or not probes:
         raise ValueError(f"unexpected fab_package params {fab['params']} or empty copper/probe declarations")
     checks[checks.index(fab)] = {**fab, 'params': {**fab['params'], 'copper_features': copper,
@@ -796,7 +839,28 @@ derivation = {**derivation, 'schema': 'pod-capture.scope-composition/4',
               'assembly': {'check': next(c for c in assembled['checks'] if c['id'] == 'assembly'),
                            'stock': coverage, 'hand_fit': hand_fit},
               'blocks': obligation_record}
+# AGENTEE-485 P1 (agent-533 485-B contract, agent-ee docs/add-planes.md "Final DRC obligation binding"): the
+# composition names the exact plan link, the final full DRC check declares the in-campaign add-planes producer by
+# path and stage only (its report hash is resolved after production, never precomputed), and an EMPTY output slot
+# reserves the report path in the inventory. Runtimes without add_planes.report_path keep the unbound DRC params
+# and their unbound-obligation refusal; the binding mode is recorded either way.
+PLANES_PRODUCER = add_planes.report_path(inputs['planes']) if hasattr(add_planes, 'report_path') else None
+if PLANES_PRODUCER is not None:
+    derivation['planes'] = [{'path': inputs['planes'], 'sha256': sha(planning / inputs['planes'])}]
+derivation['planes_binding'] = 'stage-owned add-planes producer' if PLANES_PRODUCER else 'unsupported by runtime'
 (planning / 'composition/scope-composition.json').write_text(text(derivation))
+if PLANES_PRODUCER is not None:
+    final_drc = next(c for c in composed['checks'] if c['id'] == 'drc')
+    if final_drc['kind'] != 'drc' or final_drc['stage'] != 'routing' or final_drc['params'] != {}:
+        raise SystemExit(f'unexpected final DRC check {final_drc}')
+    if (planning / PLANES_PRODUCER).exists():
+        raise SystemExit(f'{PLANES_PRODUCER} already exists in the planning capture')
+    (planning / PLANES_PRODUCER).write_bytes(b'')
+    composed['checks'][composed['checks'].index(final_drc)] = {**final_drc, 'params': {'plane_obligations': [{
+        'plan': {'path': inputs['planes'], 'sha256': sha(planning / inputs['planes'])},
+        'producer': {'path': PLANES_PRODUCER, 'stage': 'add-planes'},
+        'composition': {'path': 'composition/scope-composition.json',
+                        'sha256': sha(planning / 'composition/scope-composition.json')}}]}}
 scope = write_scope(planning, composed)
 
 
@@ -885,10 +949,24 @@ def production_content(scaffold_out, work):
     if not scaffold_out.exists():
         raise ValueError('scaffold not available')
     shutil.copytree(scaffold_out / 'inputs', work)
-    scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs)
+    # AGENTEE-485 B0: the content writer validates against the same-root capture (agent-ee c69bf8b3+ accepts
+    # captured=(files, work); earlier runtimes have no such parameter and are called unchanged).
+    import inspect
+    extra = {}
+    if 'captured' in inspect.signature(scaffold.write_envelope_content).parameters:
+        extra['captured'] = ({p.relative_to(work).as_posix(): sha(p) for p in work.rglob('*') if p.is_file()}, work)
+    scaffold.write_envelope_content(work, inputs['envelope'], inputs['parts'], BOARD, **content_kwargs, **extra)
     import pcbnew
     board = pcbnew.LoadBoard(str(work / BOARD))
+    j2 = next(f for f in board.GetFootprints() if f.GetReference() == 'J2')
+    if (not str(j2.m_Uuid.AsString()).startswith('18c6ebf4') or
+            j2.GetFPID().GetUniStringLibItemName() != 'SMA_Amphenol_132134_Manufacturer'):
+        raise ValueError('native J2 is not the adopted UUID/Amphenol footprint')
+    pattern = sorted((p.GetNumber(), round(pcbnew.ToMM(p.GetDrillSize().x), 3)) for p in j2.Pads())
+    if pattern != [('1', 1.5), ('2', 1.7), ('2', 1.7), ('2', 1.7), ('2', 1.7)]:
+        raise ValueError('native J2 drill pattern differs from published 132134')
     return {'board_sha256': sha(work / BOARD), 'footprints': len(board.GetFootprints()),
+            'j2_native_pattern': pattern,
             'fixed': sorted(f.GetReference() for f in board.GetFootprints()
                             if f.GetReference() in {'J1', 'J2', 'J3', 'U1', 'U2', 'H1', 'H2', 'H3', 'H4'})}
 stage('scaffold.scaffold production scope', lambda: run_scaffold(planning, OUT / 'scaffold'))
@@ -904,7 +982,10 @@ stage('scaffold.content_step', lambda: steps.update(content=scaffold.content_ste
 stage('schematic_stage.configuration', lambda: steps.update(schematic=schematic_stage.configuration(
     SRC, board=BOARD, schematic=SCHEMATIC, intent=bound, layout=inputs['layout'], captures='.',
     footprints=inputs['footprints'])) or [s['step'] for s in steps['schematic']['implementation_steps']])
-stage('add_planes.step', lambda: steps.update(planes=add_planes.step(SRC, board=BOARD, plan=inputs['planes'])) or None)
+# AGENTEE-485 (487c residual, agent-522 4f63e270): the pod planes are a pre-routing fill, so the declared step names
+# that phase explicitly (agent-ee add_planes PRE_ROUTING); agent-ee refuses any other phase value.
+stage('add_planes.step', lambda: steps.update(planes=add_planes.step(SRC, board=BOARD, plan=inputs['planes'],
+                                                                     phase=add_planes.PRE_ROUTING)) or None)
 
 
 def declared_imports():
@@ -950,7 +1031,11 @@ stage('producers.import_from_declared_mount', declared_imports)
 
 # 4. The final derived request policy (captured policy minus caller-authored overhangs).
 policy = read(inputs['policy'])
-envelope_record = board_envelope.validate((planning / inputs['envelope']).read_bytes())
+# AGENTEE-485 B0: validate against the planning capture inventory (mechanical_reservations require captured
+# immutable inputs; agent-ee refuses an uncaptured envelope that carries them).
+envelope_files = {p.relative_to(planning).as_posix(): sha(p) for p in planning.rglob('*') if p.is_file()}
+envelope_record = board_envelope.validate((planning / inputs['envelope']).read_bytes(),
+                                          captured=(envelope_files, planning))
 stage('placement.refuse_policy_sources', lambda: placement_adapter.refuse_policy_sources(policy))
 stage('placement.envelope_overhangs', lambda: placement_adapter.envelope_overhangs(envelope_record))
 
@@ -995,6 +1080,27 @@ stage('routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)',
                {k: p[k] for k in ('commit', 'pin', 'checkout')})(routing_adapter.preflight(R)))
 implementation = [s for s in (steps.get('fill'), *(steps.get('schematic', {}).get('implementation_steps', [])),
                               steps.get('planes')) if s is not None]
+# AGENTEE-485 R2 (C1): the opt-in stage-owned block request and its owned block-variants producer, scheduled
+# immediately after forward-annotate (pod_driver STEPS order); pod_driver.build validates its exact contract.
+from agent_ee import block_variant_stage
+adapter['blocks'] = block_section
+block_mutable = sorted(set(scope.get('mutable_inputs', [scope['board'], scope['schematic']]))
+                       | {writer, inputs['deviations']} | {p for s in implementation for p in s['writes']}
+                       | set(block_variant_stage.output_paths(block_section)))
+# AGENTEE-485 C1 timeout plumbing: the timeout is passed EXPLICITLY. Its VALUE stays pinned to the agent-ee 8ab3b0b9
+# block_variant_stage.step default (600 s) and is PENDING slice B: B measures the producer wall time T on the emitted
+# board, and only if ceil(1.25 * T) <= 1500 may a derived value replace it (set by agent-530 in slice C). A timed-out
+# or partial variant set is never adopted (stage_receipts.adopt refuses it) and so never becomes a campaign input.
+BLOCK_VARIANTS_TIMEOUT_S = 600
+BLOCK_VARIANTS_TIMEOUT = {'value_s': BLOCK_VARIANTS_TIMEOUT_S, 'status': 'PENDING slice B',
+                          'source': 'agent-ee 8ab3b0b9 block_variant_stage.step default timeout_s=600 (unsourced default)',
+                          'rule': 'a derived value only if ceil(1.25 * measured T) <= 1500; set in slice C'}
+block_step = block_variant_stage.step(SRC, scope=scope, declaration=adapter, mutable_inputs=block_mutable,
+                                      timeout_s=BLOCK_VARIANTS_TIMEOUT_S)
+if block_step['timeout_s'] != BLOCK_VARIANTS_TIMEOUT_S:
+    raise SystemExit('the block-variants step does not carry the explicit timeout_s')
+_annotate = [s['step'] for s in implementation].index('forward-annotate')
+implementation.insert(_annotate + 1, block_step)
 if not AUTHORIZED['placement_timeout_s'][0] <= adapter['timeout_s'] <= AUTHORIZED['placement_timeout_s'][1]:
     raise SystemExit('placement timeout_s outside the authorized 900-1500 s')
 # The bound is explicit; max_seconds is left to the driver's derivation (two routing receipts plus review).
@@ -1085,8 +1191,10 @@ def emit_schematic():
     config = json.loads((prepared / 'campaign.json').read_text())
     candidate = json.loads((prepared / 'dry-run/candidate.json').read_text())
     specs = [s for s in config['implementation_steps'] if s['stage'] == 'schematic']
-    if [s['step'] for s in specs] != ['binding-fill', 'emit-schematic', 'forward-annotate']:
+    # AGENTEE-485 R2: the owned block-variants producer follows forward-annotate; it runs in its own C1 stage below.
+    if [s['step'] for s in specs] != ['binding-fill', 'emit-schematic', 'forward-annotate', 'block-variants']:
         raise ValueError(f"unexpected schematic-stage steps {[s['step'] for s in specs]}")
+    specs = specs[:3]
     design = OUT / EMISSION / 'design'
     shutil.copytree(prepared / 'inputs', design)
     before = stage_receipts.file_tree(design)[0]
@@ -1111,12 +1219,200 @@ def emit_schematic():
     if refs != expected:
         raise ValueError(f'emitted schematic references differ from the 305 subjects: '
                          f'missing {sorted(set(expected) - set(refs))[:10]}, extra {sorted(set(refs) - set(expected))[:10]}')
+    # The scaffold has fixed owners only. Materialize complete access inventory after annotation adds every part.
+    access_out = OUT / 'access-rebound'
+    subprocess.run([sys.executable, '-B', str(X / 'agentee-489-source/materialize.py'), str(ROOT),
+                    '--board', str(design / BOARD), '--out', str(access_out)], check=True)
+    reservations = json.loads((access_out / 'reservations.json').read_text())
+    if len(reservations['reservations']) != 44:
+        raise ValueError('rederived mechanical access inventory must contain 44 rows')
     return {'candidate_id': candidate['candidate_id'], 'receipts': receipts, 'changed': changed,
+            'access_rows': 44, 'access_sha256': sha(access_out / 'reservations.json'),
             'schematic': {'path': scope['schematic'], 'sha256': after[scope['schematic']]},
             'board': {'path': scope['board'], 'sha256': after[scope['board']]},
             'native_components': len(refs), 'native_nets': len(native.get('nets', {})),
             'intent': {'path': bound, 'sha256': after.get(bound)}}
 stage('emission.schematic_stage production (AGENTEE-445)', emit_schematic)
+
+
+def block_variants_c1():
+    """AGENTEE-485 R2 (C1): the prepared campaign's own block-variants step on a copy of the emitted design.
+
+    Pending control: the production consumer (placement_adapter.binding, require_produced) refuses the pending
+    report. The step then runs and is adopted through agent-ee's stage receipts; the consumer accepts the produced
+    /1 sets with the same campaign recipe binding. The legal-underside count is the produced B variants the
+    eligibility admits. Stale controls: a moved, rotated or flipped footprint refuses in run_placement_iteration
+    before any helper launch. No placement runs here."""
+    import time
+    import pcbnew
+    from agent_ee import stage_receipts, placement_adapter as pa
+    config = json.loads((OUT / PREPARED / 'campaign.json').read_text())
+    prepared_scope = json.loads((OUT / PREPARED / 'scope.json').read_text())
+    declaration, mutable = config['placement_adapter'], prepared_scope['mutable_inputs']
+    spec = next(s for s in config['implementation_steps'] if s['step'] == block_variant_stage.STEP)
+    block_variant_stage.validate_step_contract(spec, prepared_scope, declaration, mutable)
+    root = OUT / EMISSION / 'block-variants'
+    design = root / 'design'
+    shutil.copytree(OUT / EMISSION / 'design', design)
+
+    def manifest():
+        files, other = stage_receipts.file_tree(design)
+        if other:
+            raise ValueError(f'links or non-files in the design copy: {other[:5]}')
+        return {'candidate_id': 'emission', 'scope': prepared_scope, 'files': files}
+    initial = pa.binding(declaration, manifest(), design, mutable)[0]
+    try:
+        pa.binding(declaration, manifest(), design, mutable, require_produced=True)
+        raise AssertionError('pending block variants were consumed')
+    except ValueError as exc:
+        pending = str(exc)
+    receipt = stage_receipts.run_step(root / 'receipt', design, spec, {'emission': 'AGENTEE-485 C1',
+                                      'receipt_index': 4}, deadline=time.monotonic() + spec['timeout_s'])
+    stage_receipts.adopt(root / 'receipt', receipt, design)
+    produced = pa.binding(declaration, manifest(), design, mutable, require_produced=True)[0]
+    if produced != initial:
+        raise ValueError('the campaign recipe binding changed across stage generation')
+    sets = {p: json.loads((design / p).read_text())
+            for p in block_section['candidates']}
+    faces = {s['block_id']: {f: v.get('status') for f, v in s['variants'].items()} for s in sets.values()}
+    if any(s['schema'] != 'agent-ee.block-candidate-set/1' for s in sets.values()):
+        raise ValueError('a produced candidate is not a /1 set')
+    underside = sorted(b for b, f in faces.items() if f.get('B') == 'packed')
+    report = json.loads((design / block_section['stage_owned']['report']).read_text())
+    board = design / prepared_scope['board']
+    underside_control = legal_underside_applied(design, board, sets, root / 'underside')
+    original, stale = board.read_bytes(), {}
+    probe_ref = next(m['ref'] for s in sets.values() for m in s['captured_members'])
+    for n, mutation in enumerate(('move', 'rotate', 'flip'), 1):
+        b = pcbnew.LoadBoard(str(board))
+        fp = next(f for f in b.GetFootprints() if f.GetReference() == probe_ref)
+        if mutation == 'move':
+            fp.SetPosition(fp.GetPosition() + pcbnew.VECTOR2I(1000000, 0))
+        elif mutation == 'rotate':
+            fp.SetOrientationDegrees(fp.GetOrientationDegrees() + 90)
+        else:
+            fp.Flip(fp.GetPosition(), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+        pcbnew.SaveBoard(str(board), b)
+        work = root / 'stale' / str(n)
+        copy_ = work / 'review-work/implementation/design'
+        shutil.copytree(design, copy_)
+        state = {'history': [{'earliest_failing_stage': 'placement'}], 'mutable_inputs': mutable, 'stage_receipts': {}}
+        try:
+            pa.run_placement_iteration(work, copy_, design, manifest(), state, declaration, time.monotonic() + 60)
+            raise AssertionError(f'stale {mutation} was consumed')
+        except ValueError as exc:
+            if 'stale' not in str(exc) or (work / 'receipts').exists():
+                raise
+            stale[mutation] = str(exc)
+        board.write_bytes(original)
+    return {'step': spec['step'], 'receipt_sha256': sha(root / 'receipt/receipt.json'),
+            'exit': (receipt.get('execution') or {}).get('exit_code', receipt.get('status')),
+            'pending_refusal': pending, 'binding_stable': True, 'report_sha256': sha(design / block_section['stage_owned']['report']),
+            'report_board': report['board'], 'sets': len(sets), 'faces': faces,
+            'legal_underside_packed': underside, 'legal_underside_applied': underside_control,
+            'advisory_exceedances': exceeded_advisories({'sets': sets, 'report': report,
+                                                         'underside': underside_control}),
+            'stale_probe_ref': probe_ref, 'stale_refusals': stale}
+
+
+def references(value):
+    """Every footprint reference a contract obligation names (its from/to endpoints, at any depth)."""
+    if isinstance(value, dict):
+        return ({value['reference']} if isinstance(value.get('reference'), str) else set()).union(
+            *(references(v) for v in value.values()))
+    if isinstance(value, list):
+        return set().union(*(references(v) for v in value))
+    return set()
+
+
+def legal_underside_applied(design, board, sets, work):
+    """AGENTEE-485 H3: the legal B-side control through the actual consumer. A non-empty B list is not enough:
+
+    1. SELECT: a produced /1 set whose B variant is 'packed' AND whose eligibility (block_variants.eligible_faces on
+       the produced side-eligibility record) admits B, among blocks that the produced contract gives at least one
+       block/pin relationship (so the relationship check below is never vacuous). None refuses.
+    2. VERIFY: block_variants.verify_native recreates every declared variant from the original native board bytes.
+    3. APPLY: block_variants._native_variant applies the B variant's member sides to a native copy with pcbnew; the
+       saved capture must hash to the variant's capture_sha256 and its native rows (side, flipped, pad-inventory
+       digest) must equal the variant's members, so pad identity survives the flip.
+    4. RELATE: block_contract.check_complete on the APPLIED capture with the produced contract; any defect naming
+       the block, one of its members or one of its relationships refuses, and every block relationship must have
+       been evaluated. Exceeded advisory targets are returned, never waived or hidden (F3).
+    Runs on the real emitted board copy in the production run; no simplified fixture replaces it."""
+    from agent_ee import block_contract, block_variants as bv
+    from agent_ee.placement_probe import extract
+    eligibility = json.loads((design / block_section['side_eligibility']).read_text())
+    contract = json.loads((design / block_section['contract']).read_text())
+    obligations = contract['relationships']['obligations']
+    capture = extract(board)
+    legal = []
+    for document in sorted(sets.values(), key=lambda d: d['block_id']):
+        bid = document['block_id']
+        if (document['variants'].get('B') or {}).get('status') != 'packed' or 'B' not in bv.eligible_faces(eligibility, bid):
+            continue
+        rows = bv._structure(document, capture, eligibility)
+        refs = {row['ref'] for row in rows}
+        related = sorted(o['id'] for o in obligations if references(o) & refs)
+        if related:
+            legal.append((document, rows, refs, related))
+    if not legal:
+        raise ValueError('no produced block has a legal, packed B variant with block/pin relationships; '
+                         'an empty or relationship-free underside is not a legal-underside pass')
+    document, rows, refs, related = legal[0]
+    bid, variant = document['block_id'], document['variants']['B']
+    bv.verify_native(board, document, capture)
+    members = [{'ref': row['ref'], 'uuid': row['uuid'], 'side': row['side']} for row in rows]
+    sides = {m['ref']: m['side'] for m in variant['members']}
+    applied, native_rows = bv._native_variant(board, work / board.name, members, sides)
+    if (bv.digest(applied) != variant['capture_sha256'] or native_rows != variant['members']
+            or not any(row['flipped'] for row in native_rows)):
+        raise ValueError(f'the applied B variant of {bid} differs from its produced native variant')
+    check = block_contract.check_complete(applied, contract)
+    evaluated = {row['relationship'] for row in check['relationships']}
+    mine = [d for d in check['defects'] if d.get('relationship') in related or d.get('reference') in refs
+            or d.get('block') == bid]
+    if mine or not set(related) <= evaluated:
+        raise ValueError(f'B variant of {bid}: block/pin relationship defects {mine[:5]}, '
+                         f'unevaluated {sorted(set(related) - evaluated)[:5]}')
+    return {'block': bid, 'legal_b_blocks': [d['block_id'] for d, *_ in legal], 'members': sorted(refs),
+            'flipped': sorted(row['ref'] for row in native_rows if row['flipped']),
+            'applied_capture_sha256': bv.digest(applied), 'relationships': related,
+            'contract_check_status': check['status'], 'block_defects': [],
+            'advisories_exceeded': [a for a in check['advisories'] if a.get('exceeded')
+                                    and a.get('relationship') in related]}
+
+
+def exceeded_advisories(value, where=''):
+    """AGENTEE-485 F3: every exceeded ADVISORY engineering target in a report, with its JSON location. A contract
+    check reports status 'pass'/'info' when advisories are its only findings (agent-ee block_contract.check_complete,
+    chief 9ff29dfd@1), so fome reports surface the exceedances themselves, not only the status."""
+    found = []
+    if isinstance(value, dict):
+        if value.get('exceeded') is True:
+            return [{'at': where or '/', **{k: value[k] for k in ('kind', 'relationship', 'role', 'citation', 'distance_mm')
+                                            if k in value}}]
+        for k, v in value.items():
+            found += exceeded_advisories(v, f'{where}/{k}')
+    elif isinstance(value, list):
+        for i, v in enumerate(value):
+            found += exceeded_advisories(v, f'{where}/{i}')
+    return found
+# AGENTEE-485 R4/J2: one explicit, recorded diagnostic-validation mode. POD_C1=validation-only-c1-not-in-scope records
+# C1 as NOT_RUN and does not invoke the block-variants producer: C1 is not in that validation slice (the C1 correction
+# is AGENTEE-511). C1 stays REQUIRED (X1), so such a run exits 3 with no receipt and no retention, and launch.py
+# refuses it; it is validation evidence only. Any other value refuses.
+C1_HOLD = 'validation-only-c1-not-in-scope'
+C1_REASON = 'C1 not in this validation slice; C1 correction is AGENTEE-511'
+C1_MODE = os.environ.get('POD_C1', '')
+if C1_MODE == C1_HOLD:
+    stages['blocks.stage_owned_variants C1 (AGENTEE-485 R2)'] = {
+        'status': 'NOT_RUN', 'mode': 'POD_C1=' + C1_HOLD, 'reason': C1_REASON,
+        'error': 'NOT_RUN: ' + C1_REASON + ' (POD_C1=' + C1_HOLD + '); the block-variants producer was not invoked'}
+    print('NOT_RUN   blocks.stage_owned_variants C1 (AGENTEE-485 R2): ' + C1_REASON, flush=True)
+elif C1_MODE:
+    raise SystemExit(f'POD_C1={C1_MODE!r} is not the one recorded hold mode {C1_HOLD!r}')
+else:
+    stage('blocks.stage_owned_variants C1 (AGENTEE-485 R2)', block_variants_c1)
 MODELS = 'composition/project-models.json'
 
 
@@ -1269,7 +1565,20 @@ def record_of(directory):
     return json.loads(path.read_text()) if path.exists() else None
 
 
-result = dict(schema='pod-capture.pipeline/6', done=False, inference=False,
+def advisory_report():
+    """AGENTEE-485 F3: exceeded advisory engineering targets of this preparation's reports, surfaced at the top of
+    pipeline.json (repack candidates and the C1 stage), never waived; an advisory is not a hard limit."""
+    repack = {p.name: found for p in sorted((REPACK / 'cand').glob('*.candidate.json'))
+              if (found := exceeded_advisories(json.loads(p.read_text())))}
+    c1 = (stages.get('blocks.stage_owned_variants C1 (AGENTEE-485 R2)') or {}).get('detail') or {}
+    return {'meaning': 'advisory engineering targets exceeded (enforcement advisory); not a hard-limit failure and '
+                       'not waived; status pass/info does not hide them',
+            'repack': {'path': str(REPACK / 'cand'), 'count': sum(map(len, repack.values())), 'by_candidate': repack},
+            'c1': {'count': len(c1.get('advisory_exceedances', [])), 'rows': c1.get('advisory_exceedances', []),
+                   'status': 'produced' if c1 else 'not produced (C1 refused or absent)'}}
+
+
+result = dict(schema='pod-capture.pipeline/7', done=False, inference=False,
               authority='Producer execution and declarations on a fresh capture copy and the real pod_driver dry run '
                         'of the bounded plan; no placement, routing, campaign or model run. The diagnostic is '
                         'scratch-only and never an input.',
@@ -1285,6 +1594,13 @@ result = dict(schema='pod-capture.pipeline/6', done=False, inference=False,
                        'routing_timeout_s': route['timeout'], 'review_budget_s': review_budget,
                        'driver_max_seconds_minimum': 2 * (route['timeout'] + routing_adapter.STEP_MARGIN_S) + review_budget},
               initial_candidate=stages['campaign.initial_candidate'].get('detail'),
-              stages=stages, diagnostics=diagnostics,
+              stages=stages, required_stages=required_stages.summary(stages),
+              advisory_exceedances=advisory_report(),
+              block_variants_timeout=BLOCK_VARIANTS_TIMEOUT, diagnostics=diagnostics,
               dry_run_records={'production (bounded plan)': record_of(PREPARED)})
 (OUT / 'pipeline.json').write_text(text(result))
+# AGENTEE-485 X1: pipeline.json (all stage records and diagnostics) is retained above; a refused, missing or
+# unclassified required stage then makes preparation exit non-zero, so production_run.sh stops before observe/write.
+if result['required_stages']['problems']:
+    print('\nrequired stages refused: ' + '; '.join(result['required_stages']['problems']), flush=True)
+    sys.exit(3)

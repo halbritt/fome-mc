@@ -6,7 +6,14 @@ first failure; never retries. Each step's exit status is printed on its own line
    reproduces byte for byte (the same files are committed afterwards);
 3. pipeline.py: the preparation, emission and native checks (ROUTER_CHECKOUT is the image's own /opt/kicad-route);
 4. runtime_receipt.py observe: the runtime identities and the runtime validation of the prepared campaign.
+
+AGENTEE-485: POD_BUILD_OPTIN (production_run.sh passes it through), e.g. "--mechanical-reservations
+--stackup-materials", adds a build-optin step after build-check: build.py EXPORT --out /work/cap-optin with those
+flags, and the pipeline then consumes that capture. Steps 1-2 still reproduce the committed (non-opt-in) capture.
+POD_RUNTIME selects the observe runtime record (default runtime/agentee-484r2.json). A mounted /work/rust (POD_RUST_DIR)
+is passed to observe as --rust-binary/--rust-receipt.
 """
+import os
 import ast
 import re
 import shutil
@@ -35,7 +42,16 @@ for name in generated:
     shutil.copyfile(CAP / 'composition' / name, HERE / 'composition' / name)
 shutil.copyfile(CAP / 'reconstruction.json', HERE / 'reconstruction.json')
 step('build-check', [*py, HERE / 'build.py', EXPORT, '--check'])
+optin = os.environ.get('POD_BUILD_OPTIN', '').split()
+if set(optin) - {'--mechanical-reservations', '--stackup-materials'}:
+    sys.exit(f'unknown POD_BUILD_OPTIN flags: {optin}')
+if optin:
+    CAP = W / 'cap-optin'
+    step('build-optin', [*py, HERE / 'build.py', EXPORT, '--out', CAP, *optin])
 step('pipeline', [*py, HERE / 'pipeline.py', EXPORT, '/opt/kicad-route', SCOPE, CAP, PIPE])
-step('observe', [*py, HERE / 'runtime_receipt.py', '--runtime', HERE / 'runtime/agentee-484r2.json', 'observe', PIPE / 'prepared',
+runtime = HERE / os.environ.get('POD_RUNTIME', 'runtime/agentee-484r2.json')
+RUST = W / 'rust'  # AGENTEE-485 R1: the mounted Rust planner and its build receipt (production_run.sh POD_RUST_DIR)
+rust = ['--rust-binary', RUST / 'agent-ee-placement', '--rust-receipt', RUST / 'agent-ee-placement.json'] if RUST.is_dir() else []
+step('observe', [*py, HERE / 'runtime_receipt.py', '--runtime', runtime, *rust, 'observe', PIPE / 'prepared',
                   W / 'observation.json', EXPORT])  # AGENTEE-487 H4: explicit runtime selection
 print('\nsteps=done', flush=True)

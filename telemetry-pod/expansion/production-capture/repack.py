@@ -87,10 +87,14 @@ for block in blocks:
     path = OUT / 'cand' / f'{block}.candidate.json'
     if path.exists():
         doc = json.loads(path.read_text())
+        # AGENTEE-485 R1: a packer refusal record (e.g. electrical_locality_unavailable) has no sources; it is kept
+        # with its status and reason and counts as not packed (all_packed), never as a candidate.
+        sources = doc.get('sources', {})
         candidates[block] = {'sha256': sha(path), 'status': doc.get('status'), 'members': len(doc.get('members', [])),
                              'path': packed[block]['path'],
-                             'policy_sha256': doc['sources'].get('policy_sha256'),
-                             'board_sha256': doc['sources'].get('board_sha256')}
+                             'policy_sha256': sources.get('policy_sha256'),
+                             'board_sha256': sources.get('board_sha256'),
+                             **({'reason': doc.get('reason')} if 'sources' not in doc else {})}
 
 
 def library_refusal(block):
@@ -156,7 +160,7 @@ summary = {
     'iter8n_policy_sha256': sorted({json.loads(p.read_text())['sources'].get('policy_sha256')
                                     for p in (ITER8N / 'cand').glob('*.candidate.json')}),
     'candidates': candidates, 'all_packed': len(candidates) == len(blocks) and all(
-        r['rc'] == 0 for r in packed.values()),
+        r['rc'] == 0 for r in packed.values()) and all(c['status'] == 'packed' for c in candidates.values()),
     'limitations': [
         'Every candidate binds the iter8n seed board; the campaign placement step needs candidates bound to its own '
         'placement source board, so they are repacked there in the bounded first run (agent-509 go required).',

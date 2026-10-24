@@ -523,6 +523,83 @@ PYTHONPATH=AGENT_EE_EXPORT/src /usr/bin/python3 -m agent_ee.jlc_stock_capture --
 coordinator's iter8n cache (seed, netlist, allocation, library entries). The build exports the microSD
 netlist on a temporary copy; no design file is re-saved.
 
+## AGENTEE-485 correction (R1-R3)
+
+- **R1 policy.** `policy.py ITER8N_POLICY [--check]` is the producer of `composition/placement-policy.json`: the
+  recorded derivation (iter8n policy `63138a34…` minus `fixed_overhangs`) with the embedded `electrical_locality`
+  replaced by the scope's A3 document (`electrical-locality.json` `9852c3ed…`, 201 obligations), so
+  `placement_adapter.bind_locality` binds it. The repack of that policy is `evidence/repack-8ab3b0b9-485c/` (agent-ee
+  `8ab3b0b9`, the pipeline REPACK default); `repack-a9dac2f-j5/` binds the superseded `5fab430a` and stays as history.
+- **R2 block variants.** pipeline.py stages the 485-A stage-owned block request (`composition/block-stage/`: the A3
+  templates, the A3 allocation bridge, the iter8n arrangement, empty producer placeholders and the pending report),
+  declares it as `placement_adapter.blocks`, and inserts agent-ee's own `block-variants` step after forward-annotate.
+  The stage `blocks.stage_owned_variants C1` runs that step on a copy of the emission and records the pending
+  refusal, the consumed /1 sets, the legal-underside count and the stale move/rotate/flip refusals.
+- **R3 launch.** Preparation (`production_run.sh`, `retain.py`, `runtime_receipt.py write`) and launch are separate.
+  The one launch command, from the fome-mc root of the integrated commit (RUN as for production_run.sh):
+
+  ```sh
+  POD_RUST_DIR=~/.cache/agent-ee-evidence/agentee-485-runtime-503 ~/.local/bin/native-admit run --class suite \
+    --weight 4 --label LANE -- /usr/bin/python3 -I -B telemetry-pod/expansion/production-capture/launch.py \
+    telemetry-pod/expansion/production-capture/evidence/RECEIPT_DIR RUN NEW_OUT [--preflight]
+  ```
+
+  `launch.py` refuses unless the committed receipt checks, `retain.py --check` passes, the materialized prepared tree
+  hashes to the receipt's campaign/plan/driver bindings, the mounted Rust pair hashes to the receipt, the image is
+  present by digest and the receipt's pre-launch identity check (observe) reports no problems. `--preflight` stops
+  there; without it the receipt's own `agent_ee.cli campaign` command runs. It is the existing runner, unchanged.
+
+## AGENTEE-485 slice A (H1, H2, H5, H6, X1, H3, C1 timeout, F3; H4 partial)
+
+Agent-drafted (claude-opus-5-5 writer, 530 slice A dispatch; chief 531 f18681e3@1 relayed by agent-530). It is not owner text.
+Nothing here launches, places or qualifies anything.
+
+- **H1, runner identity.** `launch.container_argv` is the ONE container argv shared by the pre-launch check, the
+  import probe and the campaign. For a `mounted-export` runtime it runs `PYTHONPATH=/pod/export/src` with
+  `cwd /pod/export`, never the image's `/opt/agent-ee/src`. `runtime_receipt.runner_paths` records the same values
+  in new receipts.
+  - Preflight refuses a receipt that records another runner.
+  - It then imports `agent_ee` in that same argv. Every loaded `agent_ee/*.py` must equal the mounted export, and the
+    export's `cli.py` must equal the pin's git blob.
+  - `runtime_import_probe.py RUN SCRATCH` is the live control: a positive, an altered-runtime negative and the pre-fix
+    image-runner negative.
+- **H5, committed receipt and image.** `launch.py [--commit SHA]` (default HEAD) refuses unless every file of
+  RECEIPT_DIR byte-equals its tracked blob at that commit, with nothing untracked beside it. It also refuses unless the
+  invocation image equals the bound runtime `config` digest and the receipt's proximal digest, and the local image ID
+  is exactly that digest.
+- **X1, required stages.** `required_stages.py` lists every stage `pipeline.py` runs as REQUIRED, including the
+  dispatch's five. A stage that is not named there refuses as unclassified.
+  - On a refused, missing or unclassified required stage, `pipeline.py` writes `pipeline.json` (schema
+    `pod-capture.pipeline/7`, all stage records and diagnostics retained, plus `required_stages`) and then exits 3.
+  - In that case `retain.py PIPELINE_OUT`, `runtime_receipt.py write` and `launch.py` all refuse.
+  - The delivered retention `emission-8ab3b0b9-agentee485/` has `placement.scope_locality_binding` refused (it
+    predates R1), so its receipt `production-runtime-485d` cannot launch. It also records the pre-H1 image runner.
+- **H2, one active retention.** `retain.py` DEST (check, install, materialize and the runtime receipt default) stays on
+  the DELIVERED `evidence/emission-8ab3b0b9-agentee485/`. `PENDING_DEST = evidence/emission-8ab3b0b9-agentee485c/` is
+  explicit and absent. `retain.py PIPELINE_OUT` writes only there. Slice C moves DEST in the same commit that adds the
+  new retention and receipt.
+- **C1 timeout.** `pipeline.py` passes `timeout_s=BLOCK_VARIANTS_TIMEOUT_S` explicitly. The value stays 600, the
+  agent-ee 8ab3b0b9 default, and is PENDING slice B: B measures T, and a derived value is allowed only if
+  ceil(1.25*T) <= 1500 (agent-530 sets it in slice C). A timed-out or partial set is never adopted.
+- **H3, legal underside.** `pipeline.legal_underside_applied` replaces the bare B list. Through the agent-ee
+  consumer it:
+  - SELECTS a produced set whose B variant is packed and eligible and that has block/pin relationships;
+  - VERIFIES it (`block_variants.verify_native`);
+  - APPLIES its member sides natively (`block_variants._native_variant`, capture and pad inventories equal to the variant);
+  - runs `block_contract.check_complete` on the applied capture; any defect for that block refuses.
+  The move/rotate/flip stale refusals stay. It executes on the real emitted board in the production run (slice C).
+  It has NOT executed yet, because C1 produced no sets.
+- **F3.** `pipeline.json` `advisory_exceedances` lists every exceeded advisory engineering target of the repack
+  candidates and the C1 stage, with its JSON location. Status `pass`/`info` does not hide them. Advisories are not
+  hard limits and are not waived.
+- **H6.** `SHA256SUMS` keeps its bytes and path, because a sealed record cites the path (ERRATA-20261023.md). It is
+  HISTORICAL and verifies only at 769c6c66. `SHA256SUMS.ee485-slice-A` is the current scoped manifest. MANIFESTS.md
+  says which verifier applies to which revision.
+- **H4/R4 (partial).**
+  - `agentee-494-j2/board-side-correction.json` status is corrected (landed review 701f9df; chief 8ee7fe2f).
+  - The 132134 Manufacturer footprint's native pattern is checked. The producer adoption is NOT done in this slice;
+    see the slice A result.
+
 ## Remaining
 
 - **Launch.** The prepared two-iteration campaign is not launched. agent-521 (telemetry-pod lead since

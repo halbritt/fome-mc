@@ -1,0 +1,126 @@
+{
+  "added_supported_obligations": [
+    "U6.8-C16-ldo-cap",
+    "U6.1-C17-ldo-cap",
+    "U12.8-C20-ldo-cap",
+    "U12.1-C19-ldo-cap",
+    "U1.2-C46-hf-decoupler",
+    "U1.2-C50-hf-decoupler",
+    "U100.3-C100-hf-decoupler",
+    "U13.4-C62-hf-decoupler",
+    "U16.4-C72-hf-decoupler",
+    "U18.4-C76-hf-decoupler",
+    "U19.4-C78-hf-decoupler",
+    "U20.14-C79-hf-decoupler",
+    "U21.3-C83-hf-decoupler",
+    "U21.5-C84-hf-decoupler",
+    "U22.5-C85-hf-decoupler",
+    "U23.1-C86-hotswap-input",
+    "U24.1-C89-hotswap-input",
+    "U25.1-C92-hotswap-input",
+    "U30.1-C124-hotswap-input",
+    "U27.12-C118-hf-decoupler",
+    "U27.13-C119-hf-decoupler",
+    "U28.12-C120-hf-decoupler",
+    "U28.13-C121-hf-decoupler",
+    "U29.12-C122-hf-decoupler",
+    "U29.13-C123-hf-decoupler",
+    "J3.4-C65-hf-decoupler",
+    "U2.8-C38-hf-decoupler",
+    "U2.5-C41-hf-decoupler",
+    "U3.23-C44-hf-decoupler",
+    "U3.22-C44-hf-decoupler",
+    "U10.1-C43-hf-decoupler",
+    "U11.2-C18-hf-decoupler",
+    "U4.16-C130-hf-decoupler",
+    "U8.4-C131-hf-decoupler",
+    "U9.5-C132-hf-decoupler",
+    "U100.5-C133-hf-decoupler",
+    "paired:U20.5-Y1-crystal|U20.6-Y1-crystal",
+    "paired:J1.29-D101-esd-connector|U21.6-D101-esd-connector",
+    "paired:U21.6-D101-esd-connector|U21.7-D101-esd-connector",
+    "paired:U23.2-R74-sense-network|U23.3-R74-sense-network",
+    "paired:U24.2-R78-sense-network|U24.3-R78-sense-network",
+    "paired:U25.2-R82-sense-network|U25.3-R82-sense-network",
+    "paired:U30.2-R163-sense-network|U30.3-R163-sense-network",
+    "paired:J1.1-D100-esd-connector|U100.6-D100-esd-connector",
+    "paired:U100.6-D100-esd-connector|U100.7-D100-esd-connector",
+    "paired:U100.6-R100-termination|U100.7-R100-termination"
+  ],
+  "bulk_vin_corrections": [
+    {
+      "id": "u5-input-bulk-C1",
+      "new_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "2",
+        "reference": "U5"
+      },
+      "old_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U5"
+      },
+      "reason": "Correct EN3 to VIN2 from primary TI pin table p.4 and layout p.27; preserve ADVISORY radius."
+    },
+    {
+      "id": "u5-input-bulk-C2",
+      "new_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "2",
+        "reference": "U5"
+      },
+      "old_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U5"
+      },
+      "reason": "Correct EN3 to VIN2 from primary TI pin table p.4 and layout p.27; preserve ADVISORY radius."
+    },
+    {
+      "id": "u7-input-bulk-C8",
+      "new_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "2",
+        "reference": "U7"
+      },
+      "old_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U7"
+      },
+      "reason": "Correct EN3 to VIN2 from primary TI pin table p.4 and layout p.27; preserve ADVISORY radius."
+    },
+    {
+      "id": "u7-input-bulk-C9",
+      "new_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "2",
+        "reference": "U7"
+      },
+      "old_from": {
+        "net": "/POD_12V_PROTECTED",
+        "pad": "3",
+        "reference": "U7"
+      },
+      "reason": "Correct EN3 to VIN2 from primary TI pin table p.4 and layout p.27; preserve ADVISORY radius."
+    }
+  ],
+  "existing_numeric_limits_changed": false,
+  "old_policy_sha256": "576a0115e4f66841fa36381f82ec201f954ed221e5e1e89dc8ee332f73773e74",
+  "pairing_note": "Supply/return are consumer role names; paired single-leg roles retain their original electrical kind and actual declared endpoints. No new electrical edge is synthesized.",
+  "preserved_original_obligations": [
+    "u5-input-hf-C3",
+    "u5-input-bulk-C1",
+    "u5-input-bulk-C2",
+    "u5-vcc-C4",
+    "u5-boot-C5",
+    "u7-input-hf-C10",
+    "u7-input-bulk-C8",
+    "u7-input-bulk-C9",
+    "u7-vcc-C11",
+    "u7-boot-C12",
+    "u26-bypass-C97",
+    "u26-bypass-C98"
+  ],
+  "source": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json"
+}

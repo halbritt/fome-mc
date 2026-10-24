@@ -12,7 +12,8 @@
   "schema",
   "step_budget"
  ],
- "output_sha256": "5fab430acae213aac94943c4183db8f8b44d18e9190ba22ca20218254e50f29d",
+ "output_sha256": "afd1e2f7c081ea15d490f1fc3e628d59ed860f5728dd39b16c7b52d73fd12f5e",
+ "producer": "production-capture/policy.py",
  "removed": {
   "fixed_overhangs": {
    "count": 4,
@@ -26,7 +27,18 @@
    "stale_source": "every entry cites envelope ad0a3597 (placement-inputs/envelope.json); its J3 pointer /fixed_footprints/3 names U2 there"
   }
  },
- "schema": "pod-capture.policy-derivation/1",
+ "replaced": {
+  "electrical_locality": {
+   "obligations": 201,
+   "reason": "placement_adapter.bind_locality refuses a policy locality that differs from the scope's captured locality; the scope grades the A3 document (AGENTEE-485 R1)",
+   "replaced_obligations": 12,
+   "source": {
+    "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+    "sha256": "9852c3ed0127a5b40c957f0624a8cecddf67c1ff2fc8597fba3a1a1e8dc69b7c"
+   }
+  }
+ },
+ "schema": "pod-capture.policy-derivation/2",
  "source": {
   "path": "~/.cache/agent449-pod/iter8n/policy.json (agent-449 iter8n packing policy, latest microSD policy)",
   "sha256": "63138a34d197485673ac8a5615f3d8f39a5a0e50bab95f2e09ff71af5a81c5fb"

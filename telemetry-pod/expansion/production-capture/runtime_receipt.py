@@ -61,6 +61,23 @@ RUNTIME_KEYS = ('agent_ee_commit', 'config', 'router_commit', 'source_sha256', '
 RUNTIME = None  # selected by configure(runtime=...): 'historical-j6b' or a runtime manifest file
 
 
+def required_stage_problems(pipeline):
+    """AGENTEE-485 X1: required_stages.problems over a retained pipeline.json (one definition, required_stages.py)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('required_stages', HERE / 'required_stages.py')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.problems(pipeline.get('stages'))
+
+
+def runner_paths():
+    """AGENTEE-485 H1: (PYTHONPATH, cwd) of the ACTUAL campaign interpreter for the selected runtime. A mounted-export
+    runtime runs the mounted export (/pod/export/src, cwd /pod/export), never the image's /opt/agent-ee/src."""
+    if runtime().get('runtime_agent_ee', 'image') == 'mounted-export':
+        return '/pod/export/src', '/pod/export'
+    return '/opt/agent-ee/src', '/opt/agent-ee'
+
+
 def select_runtime(selection):
     """AGENTEE-487 H4: the runtime identities are SELECTED, never assumed. 'historical-j6b' selects the retained j6b
     identities explicitly; any other value is an immutable pod-capture.runtime-manifest/1 file whose sha256 is bound."""
@@ -184,15 +201,78 @@ def tree(root):
     return found
 
 
+def export_tree_problems(export, git, commit):
+    """AGENTEE-485 R1: the mounted export must be exactly COMMIT's tree in GIT, every blob by its git hash."""
+    listing = subprocess.run(['git', '-C', str(git), 'ls-tree', '-r', '-z', '--full-tree', commit], capture_output=True)
+    if listing.returncode:
+        return [f'agent-ee {commit} is not in {git}']
+    expected = {}
+    for entry in filter(None, listing.stdout.split(b'\0')):
+        meta, path = entry.split(b'\t', 1)
+        mode, kind, oid = meta.decode().split()
+        if kind != 'blob':
+            return [f'agent-ee {commit} entry {path!r} is a {kind}']
+        expected[path.decode()] = (mode, oid)
+    export = Path(export)
+    found = {p.relative_to(export).as_posix() for p in export.rglob('*')
+             if (p.is_file() or p.is_symlink()) and '__pycache__' not in p.parts}
+    differ = set(found ^ set(expected))
+    for rel, (mode, oid) in expected.items():
+        path = export / rel
+        data = os.readlink(path).encode() if mode == '120000' else path.read_bytes() if path.is_file() else None
+        if data is None or hashlib.sha1(b'blob %d\0' % len(data) + data).hexdigest() != oid:
+            differ.add(rel)
+    return [f'mounted export {export} is not the tree of {commit}: {sorted(differ)[:10]}'] if differ else []
+
+
+def rust_source_problems(receipt_path, export):
+    """AGENTEE-485 R1: the mounted Rust build receipt's sources must be the mounted export's files, byte for byte."""
+    try:
+        sources = json.loads(Path(receipt_path).read_text())['source_sha256']
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return [f'rust build receipt has no source_sha256: {exc}']
+    if not isinstance(sources, dict) or not sources:
+        return ['rust build receipt source_sha256 is empty']
+    differ = sorted(rel for rel, want in sources.items()
+                    if not (Path(export) / rel).is_file() or sha(Path(export) / rel) != want)
+    return [f'rust build receipt sources differ from the mounted export: {differ[:10]}'] if differ else []
+
+
 def observe(prepared, out, export):
-    """Inside the production image; the runtime agent-ee is the image's /opt/agent-ee/src."""
-    sys.path[:0] = ['/opt/agent-ee/src']
+    """Inside the production image. The runtime agent-ee is the image's /opt/agent-ee/src, or (AGENTEE-485 R1, a
+    runtime manifest with runtime_agent_ee 'mounted-export') the MOUNTED export of the selected commit, verified blob
+    by blob against AGENT_EE_GIT, with the MOUNTED Rust binary and build receipt (--rust-binary/--rust-receipt) whose
+    binary digest and sources must match. Any mismatch is a problem; nothing is waived."""
+    mounted = runtime().get('runtime_agent_ee', 'image') == 'mounted-export'
+    if runtime().get('runtime_agent_ee', 'image') not in ('image', 'mounted-export'):
+        raise SystemExit(f"unknown runtime_agent_ee {runtime().get('runtime_agent_ee')!r}")
+    runtime_src = str(Path(export).resolve() / 'src') if mounted else '/opt/agent-ee/src'
+    sys.path[:0] = [runtime_src]
     from agent_ee import candidate, pod_driver, routing_adapter as adapter, kicad_route_attempt as attempt
     from agent_ee import tool_source
     prepared, problems = Path(prepared).resolve(), []
     image_tree, export_tree = tree('/opt/agent-ee'), tree(export)
     differ = sorted(k for k in set(image_tree) | set(export_tree) if image_tree.get(k) != export_tree.get(k))
-    if differ:
+    rust, export_problems = None, []
+    if mounted:
+        if not str(Path(candidate.__file__).resolve()).startswith(runtime_src + '/'):
+            problems.append(f'agent_ee loaded from {candidate.__file__}, not the mounted export {runtime_src}')
+        git = os.environ.get('AGENT_EE_GIT')
+        export_problems = (export_tree_problems(export, git, runtime()['agent_ee_commit']) if git
+                           else ['AGENT_EE_GIT is not set; the mounted export cannot be verified'])
+        problems += export_problems
+        if not (PARAMS['rust_binary'] and PARAMS['rust_receipt']):
+            problems.append('a mounted-export runtime requires the mounted --rust-binary and --rust-receipt')
+        else:
+            problem = rust_receipt_problem(PARAMS['rust_binary'], PARAMS['rust_receipt'])
+            problems += [problem] if problem else []
+            problems += rust_source_problems(PARAMS['rust_receipt'], export)
+            receipt_doc = json.loads(Path(PARAMS['rust_receipt']).read_text()) if not problem else {}
+            rust = {'binary': {'path': PARAMS['rust_binary'], 'sha256': sha(PARAMS['rust_binary'])},
+                    'receipt': {'path': PARAMS['rust_receipt'], 'sha256': sha(PARAMS['rust_receipt'])},
+                    'receipt_schema': receipt_doc.get('schema'), 'receipt_sources': len(receipt_doc.get('source_sha256', {})),
+                    'sources_equal_export': not rust_source_problems(PARAMS['rust_receipt'], export)}
+    elif differ:
         problems.append(f'image /opt/agent-ee differs from the {runtime()["agent_ee_commit"]} export: {differ[:10]}')
     preflight = adapter.preflight(CHECKOUT)
     manifest = json.loads((CHECKOUT / 'manifest.json').read_text())
@@ -205,6 +285,21 @@ def observe(prepared, out, export):
     interpreter = CHECKOUT / '.venv-krt/bin/python'
     version = subprocess.run([str(interpreter), '-I', '-c', 'import sys; print(sys.version.split()[0])'],
                              capture_output=True, text=True, check=True).stdout.strip()
+    if not (prepared / 'campaign.json').is_file():
+        # AGENTEE-485 R1: the runtime identities are still recorded when the preparation produced no campaign; the
+        # missing campaign is a problem (fail closed), never a pass.
+        problems.append(f'prepared campaign {prepared / "campaign.json"} is missing; the preparation was refused')
+        result = {'schema': 'pod-capture.runtime-observation/2', 'problems': problems, 'rust': rust,
+                  'runtime_agent_ee': {'path': runtime_src, 'mode': 'mounted-export' if mounted else 'image',
+                                       'equals_export': not export_problems if mounted else not differ,
+                                       'image_opt_agent_ee_equals_export': not differ, 'export': str(export),
+                                       'pinned_router': attempt.PIN},
+                  'router': {'checkout': str(CHECKOUT), 'preflight': preflight, 'source_sha256_recomputed': source,
+                             'extension': {'path': str(module), 'sha256_recomputed': sha(module)},
+                             'krt': {k: krt.get(k) for k in ('commit', 'source_sha256', 'extension_module')}}}
+        Path(out).write_text(text(result))
+        print(json.dumps({'problems': problems, 'rust': rust and rust['binary']['sha256']}))
+        return 1
     campaign = json.loads((prepared / 'campaign.json').read_text())
     declaration = campaign['routing_adapter']
     adapter.validate_declaration(declaration)
@@ -223,8 +318,12 @@ def observe(prepared, out, export):
                        'equals_export_src': files == export_src}
     result = {
         'schema': 'pod-capture.runtime-observation/2',
-        'runtime_agent_ee': {'path': '/opt/agent-ee', 'files': len(image_tree), 'equals_export': not differ,
-                             'export': str(export), 'pinned_router': attempt.PIN},
+        'runtime_agent_ee': {'path': runtime_src if mounted else '/opt/agent-ee', 'files': len(image_tree),
+                             'equals_export': not export_problems if mounted else not differ, 'export': str(export),
+                             'pinned_router': attempt.PIN, 'mode': 'mounted-export' if mounted else 'image',
+                             **({'image_opt_agent_ee_equals_export': not differ,
+                                 'export_verified_against_git': not export_problems} if mounted else {})},
+        'rust': rust,
         'router': {'checkout': str(CHECKOUT), 'preflight': preflight,
                    'manifest': {'path': str(CHECKOUT / 'manifest.json'), 'sha256': sha(CHECKOUT / 'manifest.json'),
                                 'krt': {k: krt.get(k) for k in ('commit', 'generation', 'describe', 'source_sha256',
@@ -330,8 +429,8 @@ def invocation(run_dir, producer_mount):
                  '--cpus', '$NATIVE_ADMISSION_CPUS', '--pids-limit', '$NATIVE_ADMISSION_PIDS',
                  '--security-opt', 'seccomp=unconfined', '--security-opt', 'apparmor=unconfined',
                  '--security-opt', 'systempaths=unconfined', '--user', 'UID:GID', '-e', 'HOME=/tmp',
-                 '-e', 'PYTHONPATH=/opt/agent-ee/src', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
-                 '-w', '/opt/agent-ee', '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',
+                 '-e', f'PYTHONPATH={runner_paths()[0]}', '-e', 'PYTHONDONTWRITEBYTECODE=1', '-e', 'AGENT_EE_REQUIRE_TOOLCHAIN=1',
+                 '-w', runner_paths()[1], '-v', 'PREPARED_DIR:/pod/prepared:ro', '-v', 'EXPORT_7D5B0D4D:/pod/export:ro',
                  '-v', f'EXPORT_7D5B0D4D/src:{producer_mount}:ro', '-v', 'RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro',
                  '-v', 'NEW_OUTPUT_PARENT:/pod/out',
                  *(['-v', 'RUNTIME_MANIFEST:/pod/runtime-manifest.json:ro'] if sel['kind'] == 'manifest' else []),
@@ -339,7 +438,8 @@ def invocation(run_dir, producer_mount):
     return {'image': {'by': 'config digest (proximal classic store)', 'reference': runtime()['config'],
                       'tag_on_c4': runtime().get('image_tag'), 'c4_index': runtime().get('c4_index')},
             'pre_launch_identity_check': {'argv': pre, 'requires': 'exit 0 and problems []'},
-            'campaign_command': argv, 'container': container, 'cwd': '/opt/agent-ee',
+            'campaign_command': argv, 'container': container, 'cwd': runner_paths()[1],
+            'runner_pythonpath': runner_paths()[0],
             'placeholders': {
                 'PREPARED_DIR': '`retain.py --materialize-prepared OUT` (prepared-tree.json), byte-equal to the observed tree',
                 'EXPORT_7D5B0D4D': f'`git archive {runtime()["agent_ee_commit"]}`; its src is the producer mount at the exact '
@@ -365,6 +465,9 @@ def write(observation, image_dir, run_dir):
     if obs['problems']:
         raise SystemExit(f'observation has problems: {obs["problems"]}')
     pipeline = json.loads((EVIDENCE / 'pipeline.json').read_text())
+    refused = required_stage_problems(pipeline)
+    if refused:  # AGENTEE-485 X1: no receipt for a candidate with a refused required stage
+        raise SystemExit('required stages refused; no receipt written: ' + '; '.join(refused))
     retained = {name: sha(EVIDENCE / 'prepared' / name) for name in PREPARED}
     if retained != obs['prepared']:
         raise SystemExit('observed prepared files differ from the retained evidence')

@@ -1,0 +1,274 @@
+{
+ "agent_ee": {
+  "blobs": 2251,
+  "commit": "8ab3b0b95dd3ece043e67fff6bd226c36427ff22",
+  "export": "/work/export",
+  "image_equals_export": true,
+  "image_files": 1804,
+  "producer_mounts": {
+   "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c": {
+    "equals_export_src": true,
+    "files": 243,
+    "identity": "406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c",
+    "name_is_identity": true
+   }
+  },
+  "same_for_producer_and_runtime": true,
+  "tree": "fd49f6408b5fd44bde2b1284791e2ea6fcfb04d1"
+ },
+ "authority": "integrator agent-530 AGENTEE-485 production-regeneration dispatch relaying chief agent-531 (4fc935cf/7b59065d, cdb83de3; coordinator decision, not owner text): preparation only, not a launch authorization",
+ "binding": {
+  "campaign": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/prepared/campaign.json",
+   "sha256": "f4bfc67253921533ba48a90bbbfd791388e989f534400a1dc28bc527061893b5"
+  },
+  "driver_receipt": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/prepared/driver-receipt.json",
+   "sha256": "9c0ef06a3ca40586a1fd02f49573f652dfdb9fcabfc5c572863908889b49c248"
+  },
+  "initial_candidate": {
+   "candidate_id": "2ab4a27c644cef0a7cc55cda46d7a73ff31d6adc67625e4659d226ee3cf6bf3e",
+   "dry_run_candidate_sha256": "5a21f0e5d695681b4860623165f41a3b2d11277dfae10c5fd31f18695033423c",
+   "files": 575
+  },
+  "pipeline": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/pipeline.json",
+   "sha256": "b1133244117697aa37ffe521e937292e3ef113f15012741200743052f23cce8b"
+  },
+  "plan": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/prepared/plan.json",
+   "sha256": "d790f6ec945afc67c845dd4ed995d5f0cc48bdd5c6e64ce498edadd5f6128fa4"
+  },
+  "prepared_tree": {
+   "files": 4336,
+   "path": "evidence/emission-8ab3b0b9-agentee485/prepared-tree.json",
+   "sha256": "d4bb13722d1bcf02053825e151bba262920e2df1e23e4842c1b3a56f951c44d9"
+  },
+  "retained_manifest": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/MANIFEST.json",
+   "sha256": "2d60d151d5455af252c13b3af5a0f976308c0480f4a17395b6aafa754ff2d41e"
+  },
+  "scope": {
+   "path": "evidence/emission-8ab3b0b9-agentee485/prepared/scope.json",
+   "sha256": "08224d081aed7ef30ac852e70009152b3d76da1ca676c05b3ac3d4a7cbc6d769"
+  }
+ },
+ "image": {
+  "c4_amd64_manifest": null,
+  "c4_oci_index": null,
+  "created": "2026-10-22T22:35:57.470107585Z",
+  "ee466_review": "not selected",
+  "entrypoint": [
+   "/usr/bin/tini",
+   "--"
+  ],
+  "files": {
+   "image/blobs__sha256__9724a2d0269250e2a44725a0d2b24b43a6a05f1598d0bd6ff2496b2fba7042e3": "9724a2d0269250e2a44725a0d2b24b43a6a05f1598d0bd6ff2496b2fba7042e3",
+   "image/blobs__sha256__d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7": "d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "image/index.json": "284d873f7aacaed08299a81c49c8c5f8b033e9a1a3618cf54f33a9faa0682683",
+   "image/manifest.json": "f9c31e46e1d1b320da3dff47ee81b491afef81597a412bb848ed4fde532eb13f",
+   "image/save-report.json": "aa2c9bd837737370f48e3d31d49b49cbdb196fea45f5ef8a9a60e61b603bfae9"
+  },
+  "proximal_config_digest": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+  "recomputed_on_proximal": {
+   "blobs_hash_to_names": true,
+   "c4": "not selected by the runtime manifest",
+   "config_blob_sha256": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "docker_save_rc": 0,
+   "layers_equal_diff_ids": true,
+   "oci_manifest_config": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "review_verdict": null
+  },
+  "relation": "not selected: the image is bound by its proximal docker-save identity only",
+  "tag_on_c4": null
+ },
+ "invocation": {
+  "campaign_command": [
+   "/usr/bin/python3",
+   "-B",
+   "-m",
+   "agent_ee.cli",
+   "campaign",
+   "/pod/prepared/campaign.json",
+   "--out",
+   "/pod/out/campaign"
+  ],
+  "container": [
+   "docker",
+   "run",
+   "--rm",
+   "--label",
+   "native-admission.lease=$NATIVE_ADMISSION_LEASE",
+   "--cpus",
+   "$NATIVE_ADMISSION_CPUS",
+   "--pids-limit",
+   "$NATIVE_ADMISSION_PIDS",
+   "--security-opt",
+   "seccomp=unconfined",
+   "--security-opt",
+   "apparmor=unconfined",
+   "--security-opt",
+   "systempaths=unconfined",
+   "--user",
+   "UID:GID",
+   "-e",
+   "HOME=/tmp",
+   "-e",
+   "PYTHONPATH=/opt/agent-ee/src",
+   "-e",
+   "PYTHONDONTWRITEBYTECODE=1",
+   "-e",
+   "AGENT_EE_REQUIRE_TOOLCHAIN=1",
+   "-w",
+   "/opt/agent-ee",
+   "-v",
+   "PREPARED_DIR:/pod/prepared:ro",
+   "-v",
+   "EXPORT_7D5B0D4D:/pod/export:ro",
+   "-v",
+   "EXPORT_7D5B0D4D/src:/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c:ro",
+   "-v",
+   "RUNTIME_RECEIPT_PY:/pod/runtime_receipt.py:ro",
+   "-v",
+   "NEW_OUTPUT_PARENT:/pod/out",
+   "-v",
+   "RUNTIME_MANIFEST:/pod/runtime-manifest.json:ro",
+   "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7"
+  ],
+  "cwd": "/opt/agent-ee",
+  "image": {
+   "by": "config digest (proximal classic store)",
+   "c4_index": null,
+   "reference": "sha256:d96f8e00a50a1bb6fab119ac8973a083af9373e2c9c235f3df20f655cfc3b5b7",
+   "tag_on_c4": null
+  },
+  "open": "Network and inference-provider credentials for the review profile belong to the launcher's environment (launch authority: the --authority parameter of this receipt); this receipt does not choose them. The preparation ran with --network none.",
+  "placeholders": {
+   "$NATIVE_ADMISSION_*": "the admitted native-admit lease the launch runs in",
+   "EXPORT_7D5B0D4D": "`git archive 8ab3b0b95dd3ece043e67fff6bd226c36427ff22`; its src is the producer mount at the exact container path the campaign steps name",
+   "NEW_OUTPUT_PARENT": "a new, empty directory",
+   "PREPARED_DIR": "`retain.py --materialize-prepared OUT` (prepared-tree.json), byte-equal to the observed tree",
+   "RUNTIME_MANIFEST": "the selected runtime manifest bound in runtime_selection (path and sha256)",
+   "RUNTIME_RECEIPT_PY": "this script at the integrated fome-mc commit",
+   "UID:GID": "the launching user"
+  },
+  "pre_launch_identity_check": {
+   "argv": [
+    "/usr/bin/python3",
+    "-B",
+    "/pod/runtime_receipt.py",
+    "--runtime",
+    "/pod/runtime-manifest.json",
+    "observe",
+    "/pod/prepared",
+    "/pod/pre-launch.json",
+    "/pod/export"
+   ],
+   "requires": "exit 0 and problems []"
+  },
+  "preparation_run": {
+   "run_dir": "/tmp/agent-ee-burndown-20261017/workers/ee485-regeneration/scratch/run1",
+   "script": "evidence/production-runtime-485d/production_run.sh",
+   "steps": "evidence/production-runtime-485d/production_steps.py"
+  },
+  "router": "the image's own /opt/kicad-route (no override, no legacy /tool/kicad-route mount)"
+ },
+ "launch": "NOT launched by this receipt. Launch authority is the authority parameter above, not this script.",
+ "observation": {
+  "path": "evidence/production-runtime-485d/observation.json",
+  "sha256": "ecddf3f630a2aa065b5995d5d2a562dd0bd82ff55bcc8a7d764ad004739e654a"
+ },
+ "router": {
+  "checkout": "/opt/kicad-route",
+  "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+  "extension": {
+   "path": "/opt/kicad-route/.venv-krt/lib/python3.12/site-packages/grid_router.so",
+   "sha256_recomputed": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9"
+  },
+  "install_record": {
+   "path": "/opt/kicad-route.install.json",
+   "sha256": "470539a116e6eb2bdf9b3b578b4bc0761e8bedc1e533a8151232979a2cd9db32"
+  },
+  "interpreter": {
+   "manifest_python": {
+    "executable": "/usr/bin/python3",
+    "version": "3.12.3"
+   },
+   "path": "/opt/kicad-route/.venv-krt/bin/python",
+   "resolved": "/usr/bin/python3.12",
+   "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+   "version": "3.12.3"
+  },
+  "manifest": {
+   "krt": {
+    "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+    "describe": "owned-9cfc5d5e9369",
+    "extension_module": {
+     "path": ".venv-krt/lib/python3.12/site-packages/grid_router.so",
+     "sha256": "ec5fb733d321343456917b2925ec275af233e3a44d34b2f332800d51352b2cd9"
+    },
+    "generation": null,
+    "source_path": "src/kicad_route/router",
+    "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2"
+   },
+   "path": "/opt/kicad-route/manifest.json",
+   "sha256": "b86a7c93f798991320c3cdc5304e52b283f951056b5b91ad839f634fcd356660"
+  },
+  "preflight_problems": [],
+  "source_sha256": "9cfc5d5e9369fd044ac6555afe57bdc4ccc829421e5496d42599c2d4a71951b2"
+ },
+ "run_bindings": {
+  "contracts": [
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/ee485-regeneration/telemetry-pod/expansion/agentee-485-blocks/block-contract-template.json",
+    "sha256": "289e2d63fa3b7108ae6618b4086e68037ca5779ea74422fac9fa29f41d03c06c"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/ee485-regeneration/telemetry-pod/expansion/agentee-485-blocks/eligibility-template.json",
+    "sha256": "a63bac6db79778b44c972b4a478249963e736afe8fce4489e1275b11f5855066"
+   },
+   {
+    "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/ee485-regeneration/telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+    "sha256": "9852c3ed0127a5b40c957f0624a8cecddf67c1ff2fc8597fba3a1a1e8dc69b7c"
+   }
+  ],
+  "mounted_python_source": {
+   "/work/source-cache/406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c": {
+    "equals_export_src": true,
+    "files": 243,
+    "identity": "406df8597b33268b2a1641fe77e90a74d236a66d07dfdbb624f49dff2a560b7c",
+    "name_is_identity": true
+   }
+  },
+  "native_artifact": null,
+  "rust": {
+   "binary": {
+    "path": "/home/halbritt/.cache/agent-ee-evidence/agentee-485-runtime-503/agent-ee-placement",
+    "sha256": "581f4e4fa34eb4a2f7cfee41bd44603f3d8b2882b1727984809503003d983c13"
+   },
+   "receipt": {
+    "path": "/home/halbritt/.cache/agent-ee-evidence/agentee-485-runtime-503/agent-ee-placement.json",
+    "sha256": "5a6967abcb1e289ab1cfb531b89309a3839720ad7982dcf41f6f78f26ec2033d"
+   },
+   "receipt_schema": "agent-ee.placement-engine-install/1"
+  },
+  "source_commit": "c8bcaeae72d1cdb656d5098c37032ed72ab1bc06"
+ },
+ "runtime_selection": {
+  "kind": "manifest",
+  "path": "/home/halbritt/.cache/agent-worktrees/fome-mc/ee485-regeneration/telemetry-pod/expansion/production-capture/runtime/agentee-485d.json",
+  "sha256": "a3e4ab9d7d6a18842c9ba942aa25d4bc93c52639e2080951f684eac297eaf75e"
+ },
+ "runtime_validation": {
+  "initial_candidate_recaptured": "2ab4a27c644cef0a7cc55cda46d7a73ff31d6adc67625e4659d226ee3cf6bf3e",
+  "plan_bounds": {
+   "max_iterations": 2,
+   "max_seconds": 8400
+  },
+  "routing_declaration": "accepted",
+  "routing_step": "kicad-route-builtin",
+  "routing_step_sha256": "eb783a951efb0102c0ef0ef589e03ff4ede9ba8f5f7608bd4d6fd8fba72073ac",
+  "scope": "accepted"
+ },
+ "schema": "pod-capture.production-runtime-receipt/2"
+}

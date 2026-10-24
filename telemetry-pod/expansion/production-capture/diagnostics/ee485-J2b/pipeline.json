@@ -1,0 +1,3025 @@
+{
+ "advisory_exceedances": {
+  "c1": {
+   "count": 0,
+   "rows": [],
+   "status": "not produced (C1 refused or absent)"
+  },
+  "meaning": "advisory engineering targets exceeded (enforcement advisory); not a hard-limit failure and not waived; status pass/info does not hide them",
+  "repack": {
+   "by_candidate": {
+    "adc.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/7",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U4.4-R21-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 6.560405856347608,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "afe.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/10",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U8.12-R19-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.83602356832529,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/12",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U9.3-C39-input-filter; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 6.090005131360728,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/14",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U9.3-R23-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.485682500837977,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "aux-afe.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/0",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U13.4-C62-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 3.8938035710600505,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/12",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U13.12-R43-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.628154670937891,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "aux-power.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U30.1-C124-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 4.487206814935099,
+      "kind": "unsourced",
+      "role": "return"
+     }
+    ],
+    "buck-3v3.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/0",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 3.805160968999866,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 4.328746931849909,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/2",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 8.906719373596543,
+      "kind": "unsourced",
+      "role": "switch"
+     }
+    ],
+    "diagnostic.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/0",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.12-C118-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 4.731218791178443,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/2",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.13-C119-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 5.658646591721381,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/4",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.12-C120-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 7.734371843433699,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/6",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.13-C121-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 12.3861709680595,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/7",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.13-C121-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "distance_mm": 12.885000242530072,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/8",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.12-C122-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 11.735294254938816,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/9",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.12-C122-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "distance_mm": 17.767108128505328,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/10",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.13-C123-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 11.859573400843725,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/11",
+      "citation": "telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.37; telemetry-pod/expansion/interface-preparation/diagnostics/ads1119.pdf sha256 32237c38221c5cb12ab000190c2a5a353198deb4adc290e6124a091950f432e7 p.38; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.13-C123-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; TI ADS1119 p.3 PW package: AVDD12/AGND5; DVDD13/DGND4. Exclude grounded address pins.",
+      "distance_mm": 17.74040532936043,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/14",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.7-R139-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 6.675809056773568,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/16",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.10-R134-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 10.829440486470205,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/17",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.10-R135-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 13.936912823954234,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/19",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.11-R130-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 9.68827908157584,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/20",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U27.11-R131-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 10.662961669372164,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/21",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.10-C114-input-filter; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 13.282123559506589,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/22",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.10-R146-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 9.519089045176539,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/23",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U28.10-R147-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.567491245983273,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/25",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.7-R158-series-input; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 11.698187092451548,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/27",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.10-C116-input-filter; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.367020452347418,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/30",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U29.11-C115-input-filter; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 7.322996739723431,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "pre-6v3.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/0",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1: input capacitors as close as possible to the VIN and GND terminals; VIN and GND pins adjacent. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 3.805160968999866,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 1 and p.27 hot-loop paragraph: loop of input capacitors and power ground must be wide, short and small. PGND is pin 1 per pin table p.4. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 4.328746931849909,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/2",
+      "citation": "TI LMR36520 SNVSBF0C rev. Nov 2025, retained PDF sha256 c5be6bd4f8a480f1dc9a6bea9469e7ab8867a0c83341c1a1f9c153bc015db09b, section 8.5.1 Layout Guidelines p.27 item 8: copper from SW to the inductor as short and wide as possible, minimal switch-node area. agent-derived bound (agent-499, 2026-10-20: 2026-10-20), class ADVISORY: not owner-chosen and not yet validated against a component figure or the JLCPCB manufacturable floor (owner direction 2026-10-21; AGENTEE-337): numeric pad-centre bound chosen by the agent from package and capacitor geometry; the datasheet gives prose only, no manufacturer radius",
+      "distance_mm": 8.556314919403095,
+      "kind": "unsourced",
+      "role": "switch"
+     }
+    ],
+    "sensor-power-front.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U23.1-C86-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 4.487206814935099,
+      "kind": "unsourced",
+      "role": "return"
+     }
+    ],
+    "sensor-power-rear.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U24.1-C89-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 4.487206814935099,
+      "kind": "unsourced",
+      "role": "return"
+     }
+    ],
+    "sensor-power-tire.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/1",
+      "citation": "telemetry-pod/expansion/interface-preparation/sensor-power/tps2662.pdf sha256 ff038eaa557fb618f93c0b6276a5ae08d0d3d9fbff1dddf0c45974a89120aefa p.35; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U25.1-C92-hotswap-input; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 4.487206814935099,
+      "kind": "unsourced",
+      "role": "return"
+     }
+    ],
+    "supervision.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/2",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U18.4-C76-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 3.941576461265213,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/3",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U18.4-C76-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 5.345654777480491,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/8",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U16.5-C71-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.15509699229801,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/10",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U18.1-R61-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 6.934170822816525,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/13",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U19.1-R63-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.762171899553153,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/14",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U19.5-C77-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.463801332405855,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "supplies-5v.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/6",
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.1-C19-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 10.915426010926005,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/7",
+      "citation": "telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/interface-preparation/aux-power/tps7b4253-q1.pdf sha256 a045677f8bb2b173e62689f5a7998a3c4afb7b1b9949a1d0e82e67803771b37a p.19; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U12.1-C19-ldo-cap; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Engineering designation of adjacent electrical GND pin (TPS7B4253 p.3 GND3/GND6), excluding thermal EP9.",
+      "distance_mm": 11.311464317231433,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/9",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U11.5-C21-reference-cap; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 5.581991132203633,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "tire-can.candidate.json": [
+     {
+      "at": "/plan/locality_grading/advisories/0",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.14-C79-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 1092.2048354132114,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/1",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.14-C79-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 1099.82480191165,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/2",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.3-C83-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 1090.2963253285777,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/3",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.3-C83-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 1089.029849510563,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/4",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.5-C84-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 1087.7598551725468,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/5",
+      "citation": "telemetry-pod/expansion/interface-preparation/sources/sn74lvc1g132.pdf sha256 fae33d78fe46834ab99230aaa1106f58321f23cf06c65be9cf08ea9c0dbcb623 p.14; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U22.5-C85-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 1087.4416817725214,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/6",
+      "citation": "telemetry-pod/expansion/interface-preparation/sources/sn74lvc1g132.pdf sha256 fae33d78fe46834ab99230aaa1106f58321f23cf06c65be9cf08ea9c0dbcb623 p.14; telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U22.5-C85-hf-decoupler; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.; Unique captured GND pad; retained relationship declares a GND return.",
+      "distance_mm": 1089.3416788392199,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/7",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.5-Y1-crystal; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 89.44147541828679,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/8",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.6-Y1-crystal; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 89.71053798188927,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/9",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.6-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 919.1713346168112,
+      "kind": "unsourced",
+      "role": "supply"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/10",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.7-D101-esd-connector; Numeric maximum is an ADVISORY engineering default; qualitative manufacturer prose does not establish a radius.",
+      "distance_mm": 919.801330278039,
+      "kind": "unsourced",
+      "role": "return"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/11",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.14-C80-secondary-decoupler; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 1088.3948523399033,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/12",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.1-R69-strap; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 541.0300642293365,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/13",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.5-C82-crystal-load; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 1085.8513307538929,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/14",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.6-C81-crystal-load; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 1090.9313245571418,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/15",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U20.9-R68-strap; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 551.1898787169445,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/16",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.7-R70-termination; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 549.2849129777733,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/plan/locality_grading/advisories/17",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U21.8-R71-strap; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 544.1975013954033,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ],
+    "wheel-input.candidate.json": [
+     {
+      "at": "/grade/electrical_locality/advisories/10",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U26.5-R123-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 7.611006832213462,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/11",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U26.5-R124-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.93134508346867,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/12",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U26.5-R125-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.999073563428627,
+      "kind": "unsourced",
+      "role": "leg"
+     },
+     {
+      "at": "/grade/electrical_locality/advisories/15",
+      "citation": "telemetry-pod/expansion/agentee-478-prep/relationship-bounds.json /relationships/U26.6-R122-sense-network; retained ADVISORY engineering default, not a manufacturer or owner numeric radius.",
+      "distance_mm": 8.038085903994807,
+      "kind": "unsourced",
+      "role": "leg"
+     }
+    ]
+   },
+   "count": 67,
+   "path": "/work/fome/telemetry-pod/expansion/production-capture/evidence/repack-8ab3b0b9-485c/cand"
+  }
+ },
+ "agent_ee": {
+  "blobs": 2253,
+  "commit": "00d3243a2fd0c963adc7f010bb778359d4cb7f2a",
+  "export": "/work/export",
+  "tree": "aec28d904e6c096272d8d3724a61941ff101465f"
+ },
+ "authority": "Producer execution and declarations on a fresh capture copy and the real pod_driver dry run of the bounded plan; no placement, routing, campaign or model run. The diagnostic is scratch-only and never an input.",
+ "block_variants_timeout": {
+  "rule": "a derived value only if ceil(1.25 * measured T) <= 1500; set in slice C",
+  "source": "agent-ee 8ab3b0b9 block_variant_stage.step default timeout_s=600 (unsourced default)",
+  "status": "PENDING slice B",
+  "value_s": 600
+ },
+ "budgets": {
+  "authorized": {
+   "max_iterations": 2,
+   "placement_timeout_s": [
+    900,
+    1500
+   ],
+   "routing_budget_s_max": 900
+  },
+  "driver_max_seconds_minimum": 8400,
+  "plan_of_record": {
+   "max_iterations": 2,
+   "placement_timeout_s": 1500,
+   "routing_budget_s": 900
+  },
+  "review_budget_s": 3600,
+  "routing_timeout_s": 2100
+ },
+ "composed_scope_sha256": "1392940816125a518f6f5541ce94fbf1019028bad331e5aea2ce9d315ac0da0b",
+ "derived_request_policy_identity": "3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c",
+ "diagnostics": {
+  "diagnostic.J3_transform": {
+   "anchor_mm": [
+    "8.9",
+    "32"
+   ],
+   "courtyard_bbox_mm": [
+    -20.145,
+    24.075,
+    17.765,
+    39.865
+   ],
+   "declared_max_mm": 20.3,
+   "iter8n_seed_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+   "left_overhang_mm": 20.145,
+   "pads_equal_iter8n_seed": true,
+   "right_edge_inside_outline": true,
+   "rotation_deg": "90",
+   "side": "back",
+   "status": "ok",
+   "within_declared_overhang": true
+  }
+ },
+ "done": false,
+ "dry_run_records": {
+  "production (bounded plan)": null
+ },
+ "evaluated_at": "2026-10-24T00:50:20.846468+00:00",
+ "inference": false,
+ "initial_candidate": null,
+ "plan_sha256": "18677cd8e5b9d33e600292f02edc266e9919ad461ea3b2deec6efd2ad914d346",
+ "repack": {
+  "path": "/work/fome/telemetry-pod/expansion/production-capture/evidence/repack-8ab3b0b9-485c",
+  "sha256": "b36be97be3cfc3578559427210e8b7c94b02d80f4cb168e032f9c18f9240179d"
+ },
+ "required_stages": {
+  "problems": [
+   "required stage 'placement.block_candidates_repack' is 'refused': ValueError: 18 iter8n block candidates bind policy ['a8b2585ed4060bb5bd5efc1565af6b2f793c97744570c53f596c647f5e8bb563']; the derived request policy is 3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c. The repack waits on a preparation that is not refused (none), per the coordinator i",
+   "required stage 'blocks.stage_owned_variants C1 (AGENTEE-485 R2)' is 'NOT_RUN': NOT_RUN: C1 not in this validation slice; C1 correction is AGENTEE-511 (POD_C1=validation-only-c1-not-in-scope); the block-variants producer was not invoked",
+   "required stage 'campaign.authorized_budget production scope' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/driver-receipt.json'",
+   "required stage 'scaffold.write_envelope_content production scope' is 'refused': ValueError: native J2 is not the adopted UUID/Amphenol footprint",
+   "required stage 'pod_driver.build(dry_run) production scope' is 'refused': ValueError: unsupported capability parts: [{'code': 'invalid_contract', 'message': 'parts dependency cannot be mutable: composition/deviations.json'}]",
+   "required stage 'emission.schematic_stage production (AGENTEE-445)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/campaign.json'",
+   "required stage 'models.candidate_resolution (FOMEMC-34)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/inputs/project/inputs/models/c-1-776163-1-t-3d.stp'",
+   "required stage 'fab.copper_features JP1-JP5 (agent-509 ruling)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/scope.json'",
+   "required stage 'j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)' is 'refused': AttributeError: 'NoneType' object has no attribute 'FindFootprintByReference'",
+   "required stage 'campaign.initial_candidate' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/candidate.json'",
+   "required stage 'review.packet_obligations production scope' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/result.json'"
+  ],
+  "required": [
+   "placement.scope_locality_binding",
+   "pod_driver.validate_plan",
+   "placement.block_candidates_repack",
+   "blocks.stage_owned_variants C1 (AGENTEE-485 R2)",
+   "campaign.authorized_budget production scope",
+   "scope.envelope_obligation_coverage",
+   "placement.scope_envelope_binding",
+   "binding_fill.configuration",
+   "binding_fill.fill",
+   "scaffold.scaffold production scope",
+   "scaffold.write_envelope_content production scope",
+   "scaffold.content_step",
+   "schematic_stage.configuration",
+   "add_planes.step",
+   "producers.import_from_declared_mount",
+   "placement.refuse_policy_sources",
+   "placement.envelope_overhangs",
+   "placement.policy_vs_subjects",
+   "engine.placement_adapter.blocks_request (AGENTEE-439 G1)",
+   "routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)",
+   "pod_driver.build(dry_run) production scope",
+   "pod_driver.rating_provenance",
+   "emission.schematic_stage production (AGENTEE-445)",
+   "models.candidate_resolution (FOMEMC-34)",
+   "fab.copper_features JP1-JP5 (agent-509 ruling)",
+   "j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)",
+   "campaign.initial_candidate",
+   "review.packet_obligations production scope",
+   "scope.block_obligations production scope"
+  ],
+  "schema": "pod-capture.required-stages/1",
+  "valid_candidate": false
+ },
+ "router_checkout": "/opt/kicad-route",
+ "schema": "pod-capture.pipeline/7",
+ "scope": {
+  "path": "/work/fome/telemetry-pod/expansion/requirements/rev3-microsd/compiled/scope.json",
+  "sha256": "a7a4c9542c563ec04855f184b3070955bef526475643ddd03504390fc3f9defe"
+ },
+ "scope_composition": {
+  "added_checks": [
+   "assembly",
+   "parts",
+   "antenna-facts",
+   "envelope-outline",
+   "envelope-layer-count",
+   "envelope-stackup",
+   "envelope-hole-h1",
+   "envelope-hole-h2",
+   "envelope-hole-h3",
+   "envelope-hole-h4",
+   "envelope-keepout-radio-antenna",
+   "envelope-keepout-d-pcb-7v2-in1-no-tracks",
+   "envelope-keepout-d-pcb-6-rf-reference",
+   "envelope-fixed-j1",
+   "envelope-fixed-j2",
+   "envelope-fixed-u1",
+   "envelope-fixed-u2",
+   "envelope-fixed-j3",
+   "envelope-containment",
+   "electrical-locality",
+   "envelope-fab-profile"
+  ],
+  "added_requirements": [
+   "POD-DERIVED-AC-5-ASSEMBLY",
+   "R-envelope-expanded-pod-microsd-production-outline",
+   "R-envelope-expanded-pod-microsd-production-layer-count",
+   "R-envelope-expanded-pod-microsd-production-stackup",
+   "R-envelope-expanded-pod-microsd-production-fab-profile",
+   "R-envelope-expanded-pod-microsd-production-hole-H1",
+   "R-envelope-expanded-pod-microsd-production-hole-H2",
+   "R-envelope-expanded-pod-microsd-production-hole-H3",
+   "R-envelope-expanded-pod-microsd-production-hole-H4",
+   "R-envelope-expanded-pod-microsd-production-keepout-radio-antenna",
+   "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-7v2-In1-no-tracks",
+   "R-envelope-expanded-pod-microsd-production-keepout-D-PCB-6-RF-reference",
+   "R-envelope-expanded-pod-microsd-production-fixed-J1",
+   "R-envelope-expanded-pod-microsd-production-fixed-J2",
+   "R-envelope-expanded-pod-microsd-production-fixed-U1",
+   "R-envelope-expanded-pod-microsd-production-fixed-U2",
+   "R-envelope-expanded-pod-microsd-production-fixed-J3",
+   "POD-DERIVED-OVERHANG-CONTAINMENT",
+   "POD-DERIVED-ELECTRICAL-LOCALITY",
+   "POD-DERIVED-PARTS-MEMBERSHIP",
+   "POD-DERIVED-ANTENNA-FACTS"
+  ],
+  "assembly": {
+   "check": {
+    "id": "assembly",
+    "kind": "assembly_readiness",
+    "params": {
+     "boards": 1,
+     "catalog": "assembly-stock/catalog.json",
+     "deviations": "composition/deviations.json",
+     "hand_fit_policy": [
+      {
+       "identities": [
+        {
+         "lcsc": "C596198",
+         "mpn": "1-776163-1"
+        }
+       ],
+       "line": 139,
+       "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+       "selection": {
+        "category": "AMPSEAL",
+        "line": 175,
+        "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+        "records": [
+         {
+          "pointer": "",
+          "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+          "source": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+         },
+         {
+          "pointer": "/parts/326",
+          "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+          "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+         },
+         {
+          "pointer": "/parts/303",
+          "sha256": "fb876114b0282b381d21b236d925ef9f2416088831b0870aa45a77f89b4104f8",
+          "source": "composition/parts.json"
+         }
+        ],
+        "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+        "source": "telemetry-pod/expansion/design-rules/constraints.json"
+       },
+       "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+       "source": "telemetry-pod/REQUIREMENTS.md"
+      },
+      {
+       "identities": [
+        {
+         "lcsc": null,
+         "mpn": "132134"
+        }
+       ],
+       "line": 6,
+       "mapping": {
+        "pointer": "",
+        "sha256": "15e524897e269ff9911f39887fd9f04ea79cf23ca754bd7cc7d7c73bc537dfea",
+        "source": "composition/j2-hand-fit-mapping.json"
+       },
+       "quote": "it's a bigass connector, that's the least of my worries, it's easy to hand fit, goddammit, it's a through hole part. I asked your predecessor the same thing, ever soldered a through-hole part?",
+       "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+       "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+      }
+     ],
+     "max_age_hours": 24,
+     "require_passive_ratings": true
+    },
+    "stage": "verification"
+   },
+   "hand_fit": {
+    "agent_ee": {
+     "approvals": [
+      {
+       "class": "owner_hand_fit",
+       "identities": [
+        {
+         "lcsc": "C596198",
+         "mpn": "1-776163-1"
+        }
+       ],
+       "line": 139,
+       "quote": "Parts JLCPCB does not stock or assemble (the AMPSEAL header, and the NEO-M9N or SMA connector if unstocked) are hand-fitted after delivery",
+       "selection": {
+        "association": "category_selection",
+        "category": "AMPSEAL",
+        "decision": "D-PCB-10 J1 orientation (owner ruling 2026-10-21)",
+        "footprint": "PodConnector:AMPSEAL_35_1-776163-1",
+        "footprints": [
+         {
+          "footprint": "PodConnector:AMPSEAL_35_1-776163-1",
+          "lcsc": "C596198",
+          "mpn": "1-776163-1"
+         }
+        ],
+        "lcsc": "C596198",
+        "line": 175,
+        "mpn": "1-776163-1",
+        "part_record_links": [
+         {
+          "part_record": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+          "part_record_sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+          "pointer": "/parts/326",
+          "record": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+         },
+         {
+          "part_record": "telemetry-pod/expansion/j1-historical-source/C596198.json",
+          "part_record_sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+          "pointer": "/parts/303",
+          "record": "composition/parts.json"
+         }
+        ],
+        "quote": "J1 is the 35-position RIGHT-ANGLE TE AMPSEAL 1-776163-1 (LCSC C596198; footprint PodConnector:AMPSEAL_35_1-776163-1)",
+        "records": [
+         {
+          "pointer": "",
+          "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+          "source": "telemetry-pod/expansion/j1-historical-source/C596198.json"
+         },
+         {
+          "pointer": "/parts/326",
+          "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+          "source": "telemetry-pod/expansion/complete-parts-manifest/parts.json"
+         },
+         {
+          "pointer": "/parts/303",
+          "sha256": "fb876114b0282b381d21b236d925ef9f2416088831b0870aa45a77f89b4104f8",
+          "source": "composition/parts.json"
+         }
+        ],
+        "reference": "J1",
+        "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+        "source": "telemetry-pod/expansion/design-rules/constraints.json"
+       },
+       "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+       "source": "telemetry-pod/REQUIREMENTS.md"
+      },
+      {
+       "class": "owner_hand_fit",
+       "identities": [
+        {
+         "lcsc": null,
+         "mpn": "132134"
+        }
+       ],
+       "line": 6,
+       "mapping": {
+        "identity": {
+         "approval": {
+          "record_id": "ccbe2294@1",
+          "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+          "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+         },
+         "class": "engineering",
+         "context": {
+          "pointer": "",
+          "sha256": "ce100b76764fe12592b13f97f877b16356c52a738a67b4e83aca3313f12a8701",
+          "source": "telemetry-pod/expansion/j2-historical-source/132134.json"
+         },
+         "lcsc": null,
+         "mpn": "132134",
+         "reference": "J2"
+        },
+        "pointer": "",
+        "sha256": "15e524897e269ff9911f39887fd9f04ea79cf23ca754bd7cc7d7c73bc537dfea",
+        "source": "composition/j2-hand-fit-mapping.json"
+       },
+       "quote": "it's a bigass connector, that's the least of my worries, it's easy to hand fit, goddammit, it's a through hole part. I asked your predecessor the same thing, ever soldered a through-hole part?",
+       "sha256": "aacf1b9103eba3c579854ea91f37436de00a77d6e6add8574bcd508dfec0026f",
+       "source": "telemetry-pod/expansion/j2-historical-source/owner-handfit-ccbe2294.md"
+      }
+     ],
+     "status": "expressible"
+    },
+    "declared": {
+     "path": "composition/hand-fit-policy.json",
+     "sha256": "16406e33838a4cf2b3539d4d4824568ad49dbc78e77ffa132ec4a151c0f5f9ca"
+    },
+    "declared_in_scope": true,
+    "links": {
+     "telemetry-pod/REQUIREMENTS.md": {
+      "equals_fome_mc": true,
+      "recorded_by_agent_509": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208",
+      "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+     },
+     "telemetry-pod/expansion/complete-parts-manifest/parts.json": {
+      "equals_fome_mc": true,
+      "recorded_by_agent_509": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff",
+      "sha256": "759d3be5f3d96bc10b306763559afef94a2d901ccb164bc6a4161f24b662e0ff"
+     },
+     "telemetry-pod/expansion/design-rules/constraints.json": {
+      "equals_fome_mc": true,
+      "recorded_by_agent_509": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4",
+      "sha256": "e7e095b3ca595fdfb3c73fc22ad87c326fbc1c152523e85f2da4df4d908ea2e4"
+     },
+     "telemetry-pod/expansion/j1-historical-source/C596198.json": {
+      "equals_fome_mc": true,
+      "recorded_by_agent_509": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5",
+      "sha256": "f07570cc3502c504acf520e0102dd516f06363589adda81c9c9fb34003641cb5"
+     }
+    }
+   },
+   "stock": {
+    "bom_lcsc": 80,
+    "capture": {
+     "as_of": "2026-10-23T14:08:02.963448+00:00",
+     "completed_at": "2026-10-23T14:15:27.545608+00:00",
+     "endpoint": "https://jlcpcb.com/api/overseas-pcb-order/v1/shoppingCart/smtGood/selectSmtComponentList",
+     "failed": {},
+     "method": "POST",
+     "not_found": [],
+     "path": "assembly-stock/catalog.json",
+     "requested": 83,
+     "sha256": "c26cca7b464b78ab2faa46d16ccecc80cc373b366be2527136a4d6580778253f",
+     "source": "telemetry-pod/expansion/production-capture/sources/assembly-stock-20261023-491b"
+    },
+    "deviated": [
+     "C596198"
+    ],
+    "evaluated_at": "2026-10-24T00:50:20.846468+00:00",
+    "external_parts": [
+     {
+      "assembly": "not_assembled",
+      "lcsc": null,
+      "mpn": "132134",
+      "reference": "J2",
+      "stock": null
+     }
+    ],
+    "max_age_hours": 24,
+    "observed": 80,
+    "outside_bom": [
+     "C841205",
+     "C861226",
+     "C861521"
+    ],
+    "per_id": {
+     "C105579": {
+      "age_hours": 10.687,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:08.018746+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RC0603FR-0747KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C105579.json",
+       "sha256": "7423af58c715c915fcca5eb044d5ca9b9d218335f21fb088c26368dc1f94e530",
+       "size_bytes": 4415
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 10145
+     },
+     "C105588": {
+      "age_hours": 10.685,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:13.415464+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RC0603FR-07100RL",
+      "quantity_per_board": 8,
+      "reason": null,
+      "response": {
+       "path": "responses/C105588.json",
+       "sha256": "896c6dd6e0cb7f66a34316f942dc2349ee0aa2c3158cf64340901ba0c7cde326",
+       "size_bytes": 4425
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2196522
+     },
+     "C108080": {
+      "age_hours": 10.684,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:18.804911+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RC1206FR-0710RL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C108080.json",
+       "sha256": "cb84df9989b3cb2586262d6efff00af5de71d45a9cdb949a48cdd88ca5359e01",
+       "size_bytes": 4408
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1144725
+     },
+     "C110776": {
+      "age_hours": 10.682,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:24.173953+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD071KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C110776.json",
+       "sha256": "9b1d991e6bf8dfebf676fce4360dd362bc01ec9d3c5c60d6cbcb1841728afdc4",
+       "size_bytes": 5255
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1667726
+     },
+     "C112305": {
+      "age_hours": 10.681,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:29.585337+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RC0603FR-071RL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C112305.json",
+       "sha256": "fd4b23b3c376bfd399605e7439a59f0303b9027d7fcaac7b4b338b6287cdf7a3",
+       "size_bytes": 4405
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 9360
+     },
+     "C114218": {
+      "age_hours": 10.679,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:34.955597+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "DM3AT-SF-PEJM5",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C114218.json",
+       "sha256": "429de78eb2a8875c74596b54cbb8047e3054174857ef4803c2ec58f4568e1c69",
+       "size_bytes": 4586
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 15855
+     },
+     "C122538": {
+      "age_hours": 10.678,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:40.367390+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07100KL",
+      "quantity_per_board": 4,
+      "reason": null,
+      "response": {
+       "path": "responses/C122538.json",
+       "sha256": "0e1b3f0f70e4afa7d3b00a7cb14fa50c5a2672a2bb4e31e9339fc7068b7b34be",
+       "size_bytes": 4419
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1370409
+     },
+     "C122970": {
+      "age_hours": 10.676,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:45.748281+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07100RL",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C122970.json",
+       "sha256": "e8937fd3493ede7ff9e2f0fae263e6512ceae5c6833122258f4f9c85128c05a4",
+       "size_bytes": 4414
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 387527
+     },
+     "C124196": {
+      "age_hours": 10.675,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:51.145073+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "BZT52C12-7-F",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C124196.json",
+       "sha256": "3f834cf4a7e1ed53f81db905f74114cb710914319bee4e54c7aad929c1697921",
+       "size_bytes": 4544
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 23365
+     },
+     "C127833": {
+      "age_hours": 10.673,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:56.521213+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C104K5RACTU",
+      "quantity_per_board": 22,
+      "reason": null,
+      "response": {
+       "path": "responses/C127833.json",
+       "sha256": "6600d835d8faae8870bc45d94707dfc3c66ed3ad7c287a42ae40d2265411dbb7",
+       "size_bytes": 4039
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 23
+     },
+     "C129339": {
+      "age_hours": 10.672,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:01.906790+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TPS7B4253QDDARQ1",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C129339.json",
+       "sha256": "ae9221d6f8148f35d9205489e028878f290dc25a2fe3ea817caba7d7f5cde93b",
+       "size_bytes": 5111
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 595
+     },
+     "C130055": {
+      "age_hours": 10.67,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:07.295515+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TPS2553QDBVRQ1",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C130055.json",
+       "sha256": "c84828100a51982017c77083d2bfb857c12da1bba7df7a8a2ccb87b6ea3550e8",
+       "size_bytes": 4812
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 38
+     },
+     "C136970": {
+      "age_hours": 10.669,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:12.747778+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD071K2L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C136970.json",
+       "sha256": "a99d705fe1636aaa61b9c2e3190b012a0e8c0061ba48d690f6b5d56ba58acf17",
+       "size_bytes": 4407
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 6897
+     },
+     "C14675": {
+      "age_hours": 10.703,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:08.489619+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RC0603FR-07100KL",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C14675.json",
+       "sha256": "0e2a206951dd16a24a1f47a2a1ce840181f34be0ead6748355d2b70723e90f99",
+       "size_bytes": 4421
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 8869863
+     },
+     "C1509297": {
+      "age_hours": 10.613,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:33.623705+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TPS389001DSER",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C1509297.json",
+       "sha256": "ad270ed1524dbcc8aaf549d2bd3bc699570b7e5cffec1c2d962e11f072e87cd2",
+       "size_bytes": 4637
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 187
+     },
+     "C151279": {
+      "age_hours": 10.667,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:18.248329+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "SMCJ24CA",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C151279.json",
+       "sha256": "cb711cbe728edc14abe3514e217faabed3a2d0ebc018b9fc90cbb46ca1b41164",
+       "size_bytes": 4828
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 6719
+     },
+     "C1525": {
+      "age_hours": 10.705,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:02.963492+00:00",
+      "http_status": 200,
+      "library_tier": "Basic",
+      "mpn": "CL05B104KO5NNNC",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C1525.json",
+       "sha256": "59dbba120a36ac00330e9a9a630a5ff2ccd40f6dcbf154a7950a191b3ec62898",
+       "size_bytes": 65804
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 36100897
+     },
+     "C154901": {
+      "age_hours": 10.666,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:23.969954+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "DMP6023LE-13",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C154901.json",
+       "sha256": "dd4ea515b96337418acce9a331e183d339f29d261eb9c762368a96fe1162fead",
+       "size_bytes": 4777
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 7040
+     },
+     "C17288249": {
+      "age_hours": 10.583,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:21.708822+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CL32B475KCVZNWE",
+      "quantity_per_board": 4,
+      "reason": null,
+      "response": {
+       "path": "responses/C17288249.json",
+       "sha256": "d3af2dae1d1b139fe0d548485347879a463e4b54577be44dbfc63baefe750df2",
+       "size_bytes": 4113
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 552
+     },
+     "C1864162": {
+      "age_hours": 10.612,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:38.991378+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "LSM6DSO32TR",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C1864162.json",
+       "sha256": "84652c5fbf627d23e71440f8291e1a9e7883be11ee8d47a57a2044cc3a34dd2e",
+       "size_bytes": 4745
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 345
+     },
+     "C190245": {
+      "age_hours": 10.664,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:29.361329+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TL431BQDBZR",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C190245.json",
+       "sha256": "685c6a6246caa8fa9fe12bcbd2bfc501981115ff8a850b2aa7471c534a75f996",
+       "size_bytes": 4859
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 13471
+     },
+     "C19947708": {
+      "age_hours": 10.582,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:27.094675+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "SRP7050WA-6R8M",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C19947708.json",
+       "sha256": "a3620f1194580956c7e7d30efc8c216335a6f42494a5e5e524e920d70d5b58aa",
+       "size_bytes": 4016
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 62
+     },
+     "C2045384": {
+      "age_hours": 10.61,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:44.565411+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "SRP7050TA-150M",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C2045384.json",
+       "sha256": "e135b74f3866317c3bd393eab64a2ed0d99793befd5995b1d1d23b461f734d0d",
+       "size_bytes": 4185
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 445
+     },
+     "C2073505": {
+      "age_hours": 10.609,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:49.976948+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CRCW2512200RFKEGHP",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C2073505.json",
+       "sha256": "fd6094499630e62143f7902f800a83ad50702d15afaea92c2c95ff31bfa7da31",
+       "size_bytes": 4315
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 67
+     },
+     "C208539": {
+      "age_hours": 10.663,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:34.741374+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "ADA4096-4ARUZ-R7",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C208539.json",
+       "sha256": "7c2177f5bcb15fe2a7857339d163c68b2f82b34ef2d66bb9c2f4b68cf1e40652",
+       "size_bytes": 5172
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 32
+     },
+     "C2167136": {
+      "age_hours": 10.607,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:55.386870+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C223K5RACTU",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C2167136.json",
+       "sha256": "c911c34181b27ca19aab1f95ffde4d1f3ded49ced04b7f8f550ca54b8db3c5ed",
+       "size_bytes": 4057
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 5544
+     },
+     "C2167328": {
+      "age_hours": 10.606,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:00.797065+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C101J5GACTU",
+      "quantity_per_board": 8,
+      "reason": null,
+      "response": {
+       "path": "responses/C2167328.json",
+       "sha256": "a4d1bd0d75d4f4444499047d8d74865bfad0ef8bb1bcd6d13e5a05e7429382f5",
+       "size_bytes": 4057
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 6386
+     },
+     "C2167386": {
+      "age_hours": 10.604,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:06.217570+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C105K4RACTU",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C2167386.json",
+       "sha256": "adc9a64e81c1b9adcf4171cfbd02424f28a9aceb0b3cb5c64e4467e139ddf0d1",
+       "size_bytes": 4046
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 4068
+     },
+     "C2168350": {
+      "age_hours": 10.603,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:11.570744+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C180J5GACTU",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C2168350.json",
+       "sha256": "43f678087b5f583d4067a9b335c7d85d4c7637d1e93ae3f0272756f83f795b8d",
+       "size_bytes": 4051
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 11233
+     },
+     "C2174822": {
+      "age_hours": 10.601,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:16.969877+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C1206C106K4RACTU",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C2174822.json",
+       "sha256": "9a53957773c508dd4206de2f71ee218bac31d235c8d846d1fc216f1f9d8bfb84",
+       "size_bytes": 4035
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2676
+     },
+     "C22787": {
+      "age_hours": 10.702,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:13.863828+00:00",
+      "http_status": 200,
+      "library_tier": "Basic",
+      "mpn": "0603WAF1200T5E",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C22787.json",
+       "sha256": "42f539d8abf57a45d2d622107150a1c60e53c8801076435f318ae99e9b18da72",
+       "size_bytes": 4466
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2483636
+     },
+     "C27804": {
+      "age_hours": 10.7,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:19.608147+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "REF5050AIDR",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C27804.json",
+       "sha256": "8653429d9746fabd77bde0038f9efda893aedf63b282148ffd4fced0c852bb07",
+       "size_bytes": 4877
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 10168
+     },
+     "C2862873": {
+      "age_hours": 10.6,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:22.327054+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TPS26625DRCR",
+      "quantity_per_board": 4,
+      "reason": null,
+      "response": {
+       "path": "responses/C2862873.json",
+       "sha256": "a0add97c899f037032513911cc1fe970c9ed02b5da15fb71caa4707b8e5ac88e",
+       "size_bytes": 4708
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2526
+     },
+     "C2879422": {
+      "age_hours": 10.598,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:27.750631+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "LMR36520ADDAR",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C2879422.json",
+       "sha256": "03cb72ab271179fa4dacc4f5f55bf1d6c33e301342f3aeae81b5c199c9285438",
+       "size_bytes": 4920
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 7013
+     },
+     "C2913198": {
+      "age_hours": 10.597,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:33.148095+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "ESP32-S3-WROOM-1-N8",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C2913198.json",
+       "sha256": "78d497ee88352761fd9019e0078a4c7ff787b4f8ded9b4d5e053e1d8220302b7",
+       "size_bytes": 4824
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 3682
+     },
+     "C2979740": {
+      "age_hours": 10.595,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:38.524915+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "MCP3208-BI/SL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C2979740.json",
+       "sha256": "03edff86524b35b871ecddd58751d687055e932d2c744532b585942df5c7b5be",
+       "size_bytes": 5073
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 221
+     },
+     "C3018567": {
+      "age_hours": 10.594,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:43.914139+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0805C105K5RACTU",
+      "quantity_per_board": 11,
+      "reason": null,
+      "response": {
+       "path": "responses/C3018567.json",
+       "sha256": "5ba8f57314ab420fc95b4cbbb9ab6bd1f0d6e38b07c3dc2a7e1771a5073f1ba1",
+       "size_bytes": 5033
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 458
+     },
+     "C307542": {
+      "age_hours": 10.661,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:40.133302+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CL21B224KCFSFNE",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C307542.json",
+       "sha256": "e1083d3789265a97bc47797832d4c96a3fe83d7dba621b999e53d337e60f6454",
+       "size_bytes": 4246
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 32788
+     },
+     "C3659057": {
+      "age_hours": 10.592,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:49.279941+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "LM2903BQDRQ1",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C3659057.json",
+       "sha256": "1c18d67be951c7fa9258ba24b60b96629eace1277bfcb98c72c96ff5f0776901",
+       "size_bytes": 4892
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 6207
+     },
+     "C38695": {
+      "age_hours": 10.699,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:24.997860+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "TJA1051T/3/1J",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C38695.json",
+       "sha256": "b05f7a441927b4b2f97161ff20dc0865f42247ac7a29f5a026c0288e2ba03f37",
+       "size_bytes": 4554
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 113089
+     },
+     "C3988368": {
+      "age_hours": 10.591,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:14:54.685114+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CRCW2512620RFKEG",
+      "quantity_per_board": 4,
+      "reason": null,
+      "response": {
+       "path": "responses/C3988368.json",
+       "sha256": "96785f48908430bc5b996844f7d880fa1d5e16ad22db9b0bc9febc45ca2f51bd",
+       "size_bytes": 3847
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1000
+     },
+     "C403723": {
+      "age_hours": 10.66,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:45.531952+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "SN74LVC1G132DBVR",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C403723.json",
+       "sha256": "220b4b479cf194ae80fb8ef796e12b5297bfa505531d5ad5948c856b9402f5f8",
+       "size_bytes": 5283
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 25856
+     },
+     "C40919": {
+      "age_hours": 10.697,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:30.413644+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "BAV199,215",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C40919.json",
+       "sha256": "c62f648c71082831ff095a29ea0e8690f8f72599dde1c6a5075ca99969cbba83",
+       "size_bytes": 4413
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 71467
+     },
+     "C452747": {
+      "age_hours": 10.658,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:50.898190+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C221J5GACTU",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C452747.json",
+       "sha256": "e764798d7d0c7108bf70a9767d513f4471f272be033476f570c63c65a999faee",
+       "size_bytes": 4039
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2262
+     },
+     "C452751": {
+      "age_hours": 10.657,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:10:56.360267+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0603C471J5GACTU",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C452751.json",
+       "sha256": "79ee6e1403217a70d3c0f0c5cec7d2c9f2b18a50ed6eb36c828e3007d662496e",
+       "size_bytes": 3757
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2517
+     },
+     "C469656": {
+      "age_hours": 10.655,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:01.734956+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0722KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C469656.json",
+       "sha256": "78dd7648815ac1d01c0f08606df44bda8d92faa10a64d044325ef0ee9dae553d",
+       "size_bytes": 4412
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 45669
+     },
+     "C5119087": {
+      "age_hours": 10.589,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:00.091952+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "NEO-M9N-00B",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C5119087.json",
+       "sha256": "dda8c3d7fa3eddcf64e46fe58024361b51bf908ee1928f13b438be2178844ca0",
+       "size_bytes": 4312
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 543
+     },
+     "C513565": {
+      "age_hours": 10.654,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:07.111708+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD074K7L",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C513565.json",
+       "sha256": "2cb63de276df960daeb9d2712a8bb173e8fcac4e15263d55ce7839db8f9db8cc",
+       "size_bytes": 4296
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 110033
+     },
+     "C515607": {
+      "age_hours": 10.652,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:12.507172+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07499KL",
+      "quantity_per_board": 27,
+      "reason": null,
+      "response": {
+       "path": "responses/C515607.json",
+       "sha256": "ebfd89e369dafc6cb53d8567d7aa5bbb22965372b3254d711c880dfdb3566f1f",
+       "size_bytes": 4421
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 100730
+     },
+     "C5311564": {
+      "age_hours": 10.588,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:05.483090+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "PESD5V0C1BLS-QYL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C5311564.json",
+       "sha256": "2a604fc0915ab937887b4784bc4ad86c17dc2d9010df123ad1dece33e3943f38",
+       "size_bytes": 4702
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 6
+     },
+     "C552486": {
+      "age_hours": 10.651,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:17.879652+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "PESD2CANFD24V-TR",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C552486.json",
+       "sha256": "5421f87b1e157d1acb282b9cf326c9c92250fba0b562696ced46c4dd1fad677d",
+       "size_bytes": 4887
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 10033
+     },
+     "C596198": {
+      "age_hours": 10.649,
+      "deviated": true,
+      "fetched_at": "2026-10-23T14:11:23.445681+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "1-776163-1",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C596198.json",
+       "sha256": "43cf2561fb04cae3941c38a8905506b05a612fa7a4564ce2a8c38d4f276d3e29",
+       "size_bytes": 4917
+      },
+      "stale": false,
+      "status": "zero_stock",
+      "stock": 0
+     },
+     "C626758": {
+      "age_hours": 10.648,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:28.865200+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "MCP2518FDT-E/SL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C626758.json",
+       "sha256": "0296f53d1730aa9de1a48b194317adfce55b47b2e1106c5fa33d8248b36c69ff",
+       "size_bytes": 4364
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 20355
+     },
+     "C694521": {
+      "age_hours": 10.646,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:34.264769+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CGA6P3X7R1E226MT000N",
+      "quantity_per_board": 9,
+      "reason": null,
+      "response": {
+       "path": "responses/C694521.json",
+       "sha256": "b00e9afadfcd67ee7bbf4079eb41f767d29ddf2a4cce1791acc21d5fac0ede0b",
+       "size_bytes": 4145
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 327
+     },
+     "C701613": {
+      "age_hours": 10.645,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:39.664360+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "ADS1119IPWR",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C701613.json",
+       "sha256": "be2e00085b16a60df9b1af33c0e8c322a5f2dc7816f352ef55bcafaab424072d",
+       "size_bytes": 4889
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 5
+     },
+     "C705764": {
+      "age_hours": 10.643,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:45.079681+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0730K1L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C705764.json",
+       "sha256": "5c58bf86d4aef13809484ae5a27766b885356d7f677fc477ec88a58fe697c72b",
+       "size_bytes": 5286
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 330
+     },
+     "C705785": {
+      "age_hours": 10.642,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:50.456349+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0756KL",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C705785.json",
+       "sha256": "09eb76d4a681cb117ea54e28e40cb101208e6f683aa29c8481a12d21aa7b363a",
+       "size_bytes": 4412
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 69500
+     },
+     "C7224519": {
+      "age_hours": 10.586,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:10.932107+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "C0805C475K4RACTU",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C7224519.json",
+       "sha256": "df56bcc841bfbabf652a2d2ef8eed8fa097d5de1704916c44262bbb0e57847b6",
+       "size_bytes": 4037
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 4837
+     },
+     "C723532": {
+      "age_hours": 10.64,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:11:55.883070+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD074K99L",
+      "quantity_per_board": 9,
+      "reason": null,
+      "response": {
+       "path": "responses/C723532.json",
+       "sha256": "72598c521b55ae2661af891c025c991db7c994f27b1d5f83897665dd64b936f0",
+       "size_bytes": 4421
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 14493
+     },
+     "C723587": {
+      "age_hours": 10.639,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:01.324162+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0775KL",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C723587.json",
+       "sha256": "fffa7bf38b5376f08821e6c1d7f7734820ee32f6778bc66ec04dd9b616b6416a",
+       "size_bytes": 4414
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 182779
+     },
+     "C725712": {
+      "age_hours": 10.637,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:06.712207+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "X1E0003410031",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C725712.json",
+       "sha256": "8727133c4448e93e4e4de9d6b1044f1eb2892aee66e935962d3b0a73f6c68e09",
+       "size_bytes": 4165
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1218
+     },
+     "C728587": {
+      "age_hours": 10.636,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:12.365344+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0726K7L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C728587.json",
+       "sha256": "54b1c34fce1e93c8ecc55dc33cd3d073d1f6275e3c8606a9cab3f5efc036810e",
+       "size_bytes": 4411
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 11752
+     },
+     "C728588": {
+      "age_hours": 10.634,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:17.744317+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD072KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C728588.json",
+       "sha256": "753d4fc57c0cb1d71bc878ac7dd6d49206206728ccea2c80e378ec3a07c57d12",
+       "size_bytes": 4401
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 607
+     },
+     "C7353633": {
+      "age_hours": 10.585,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:15:16.332433+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0805BRD071M05L",
+      "quantity_per_board": 4,
+      "reason": null,
+      "response": {
+       "path": "responses/C7353633.json",
+       "sha256": "17a526b682460192df56a6a71db2214ad81d1c97806a99faa82d549c448482e0",
+       "size_bytes": 3831
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 4616
+     },
+     "C76706": {
+      "age_hours": 10.696,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:35.782593+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CGA3E1X7R1C105KT0Y0N",
+      "quantity_per_board": 10,
+      "reason": null,
+      "response": {
+       "path": "responses/C76706.json",
+       "sha256": "83bd261d802310b230e8b57d828c1689e03e52f94607899cf1b169f43b2272dd",
+       "size_bytes": 4153
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 7442
+     },
+     "C76711": {
+      "age_hours": 10.694,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:41.141082+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "CGA3E2X7R1H104KT0Y0N",
+      "quantity_per_board": 24,
+      "reason": null,
+      "response": {
+       "path": "responses/C76711.json",
+       "sha256": "2688431d051a32c0a05fca3f68f0faf03be60d50db5b949b50d24d7c56456b6a",
+       "size_bytes": 4164
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 456026
+     },
+     "C85973": {
+      "age_hours": 10.693,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:46.550691+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "GRM1885C1H103JA01D",
+      "quantity_per_board": 5,
+      "reason": null,
+      "response": {
+       "path": "responses/C85973.json",
+       "sha256": "744039e0afd353619137277179cd4d93e413db5610d0d84177864e7bdae7ca09",
+       "size_bytes": 4218
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 292625
+     },
+     "C861094": {
+      "age_hours": 10.631,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:28.551554+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07120RL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861094.json",
+       "sha256": "77deb02efa893b9437050c48a6e9fd4be042cfe9147dabce57508cf3f121dd7b",
+       "size_bytes": 4413
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 47313
+     },
+     "C861156": {
+      "age_hours": 10.63,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:33.979579+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0716K9L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861156.json",
+       "sha256": "212ab339ac35096c771f9ecf884b8ee9a68728d42a2630ddfa4e9fafb501032a",
+       "size_bytes": 4423
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 26389
+     },
+     "C861219": {
+      "age_hours": 10.628,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:39.408145+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07208KL",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C861219.json",
+       "sha256": "ba6995e3b1103cdfed128cc0bb05c76abddd2bdd2fa1459b5fb8c581f2dddef4",
+       "size_bytes": 4217
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1901
+     },
+     "C861279": {
+      "age_hours": 10.625,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:50.367837+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD07287KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861279.json",
+       "sha256": "e165da83c2b69b13e80759a6f0da56f8b6c97ef9a9126e5c28a065d6a77aad67",
+       "size_bytes": 4414
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 4417
+     },
+     "C861295": {
+      "age_hours": 10.624,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:12:55.776799+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD072K2L",
+      "quantity_per_board": 2,
+      "reason": null,
+      "response": {
+       "path": "responses/C861295.json",
+       "sha256": "bd51169f7e119cf6fbb3a07b84026b3f0a490febaea23551fd8700b22993e5df",
+       "size_bytes": 4408
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 131897
+     },
+     "C861410": {
+      "age_hours": 10.622,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:01.185815+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0744K2L",
+      "quantity_per_board": 3,
+      "reason": null,
+      "response": {
+       "path": "responses/C861410.json",
+       "sha256": "807a6027e760b9f9619c6b0251a4066aee5d1f0fc2cdf0bd2d817739502cb222",
+       "size_bytes": 4417
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 3899
+     },
+     "C861458": {
+      "age_hours": 10.621,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:06.560773+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0751KL",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861458.json",
+       "sha256": "06885700f89ea96b11398d4a9163d5da625c72c6f2d8c4ae8feea1992b59f61a",
+       "size_bytes": 4408
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 51507
+     },
+     "C861510": {
+      "age_hours": 10.619,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:12.034597+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0764K9L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861510.json",
+       "sha256": "a2ccd14f2011ed7cb2c86f2d1d15d41d6ab8d1a4640b9be1e2dc5cd2cd25dfe3",
+       "size_bytes": 4419
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 15838
+     },
+     "C861605": {
+      "age_hours": 10.616,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:22.792854+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0795K3L",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C861605.json",
+       "sha256": "77599f0c5217f0efd87c1133756acea284cf1b8ca9569bad1e1b665301c70bac",
+       "size_bytes": 4417
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 1267
+     },
+     "C907839": {
+      "age_hours": 10.615,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:13:28.161285+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "PESD1CAN-UX",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C907839.json",
+       "sha256": "a9fc7f9c4cd757f76a13f94e03b9a6c6465ab5482ff38f3da611514eb1a840b3",
+       "size_bytes": 4945
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 11948
+     },
+     "C92494": {
+      "age_hours": 10.691,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:51.891853+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "OPA320AIDBVR",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C92494.json",
+       "sha256": "42b2ef9188a55e7cb6e05e2ea3adf739e3dbfe7c834edd81ea3b497fa4f87e72",
+       "size_bytes": 5500
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 25282
+     },
+     "C95204": {
+      "age_hours": 10.69,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:08:57.288304+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "RT0603BRD0710KL",
+      "quantity_per_board": 51,
+      "reason": null,
+      "response": {
+       "path": "responses/C95204.json",
+       "sha256": "0bcb1703a581844777559f27728f0a66c950a753098b85398d3a505bd8ea0051",
+       "size_bytes": 4410
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 2019480
+     },
+     "C98080": {
+      "age_hours": 10.688,
+      "deviated": false,
+      "fetched_at": "2026-10-23T14:09:02.647969+00:00",
+      "http_status": 200,
+      "library_tier": "Extended",
+      "mpn": "LQW18AN56NJ00D",
+      "quantity_per_board": 1,
+      "reason": null,
+      "response": {
+       "path": "responses/C98080.json",
+       "sha256": "b2bf3f9c30ff64ba9abc96702aa5f6f795306a436691dbb32cb06ac5bceedf39",
+       "size_bytes": 4143
+      },
+      "stale": false,
+      "status": "in_stock",
+      "stock": 10724
+     }
+    },
+    "short_for_one_board": [],
+    "stale": [],
+    "status_counts": {
+     "in_stock": 79,
+     "zero_stock": 1
+    },
+    "unobserved": []
+   }
+  },
+  "base": {
+   "path": "/work/fome/telemetry-pod/expansion/requirements/rev3-microsd/compiled/scope.json",
+   "sha256": "a7a4c9542c563ec04855f184b3070955bef526475643ddd03504390fc3f9defe"
+  },
+  "blocks": {
+   "blocks": {
+    "buck-3v3": [
+     "buck-3v3-board-region-copper-native-check",
+     "buck-3v3-witness-pose-equivalence"
+    ],
+    "pre-6v3": [
+     "pre-6v3-board-region-copper-native-check",
+     "pre-6v3-witness-pose-equivalence"
+    ]
+   },
+   "candidate_policy_sha256": [
+    "3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c"
+   ],
+   "library_entries": {
+    "buck-3v3": "146d735c22734a13c2b933a5008307b8c91a841e28aff5099223dd87fa0daa24",
+    "pre-6v3": "1c913acb67d87af9b2b0e1be57cc6bae9e54b48248138a081f7453dc85a652d9"
+   },
+   "limitations": {
+    "buck-3v3-board-region-copper-native-check": "POD-DERIVED-BLOCK-BUCK-3V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): The buck-3v3 library entry (U7) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+    "buck-3v3-witness-pose-equivalence": "POD-DERIVED-BLOCK-BUCK-3V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): Witness-pose equivalence between the generic buck-3v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+    "pre-6v3-board-region-copper-native-check": "POD-DERIVED-BLOCK-PRE-6V3-BOARD-REGION-COPPER-NATIVE-CHECK: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): The pre-6v3 library entry (U5) was refused by the released engine: copper_unknown: board-region copper application and native checking are unavailable; a placement-only candidate cannot materialize this entry. Its board-region copper application and the native checks over it are not executed; the generic candidate is geometry only and closes neither. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate.",
+    "pre-6v3-witness-pose-equivalence": "POD-DERIVED-BLOCK-PRE-6V3-WITNESS-POSE-EQUIVALENCE: NOT CHECKED (unresolved; composition/block-obligations.json sha256 5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2): Witness-pose equivalence between the generic pre-6v3 candidate and the library entry witness is not established; the generic pose is not the library pose. Generic packing is geometry only. A real placement repacks this block against its own emitted board; it inherits neither the iter8n seed board identity nor any qualification from this candidate."
+   },
+   "path": "composition/block-obligations.json",
+   "repack": {
+    "path": "/work/fome/telemetry-pod/expansion/production-capture/evidence/repack-8ab3b0b9-485c/repack.json",
+    "sha256": "b36be97be3cfc3578559427210e8b7c94b02d80f4cb168e032f9c18f9240179d"
+   },
+   "seed_board_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c",
+   "sha256": "5ef18045f5515f58a1bff171e92b5c216d366b89cefac13ce614ef0297877ae2"
+  },
+  "envelope": {
+   "complete": true,
+   "envelope_id": "expanded-pod-microsd-production",
+   "path": "composition/envelope.json",
+   "sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24",
+   "unresolved": []
+  },
+  "fab_package_declarations": {
+   "assembly_exclusion": "JLCPCB_Assembly=not_assembled",
+   "copper_features": [
+    "JP1",
+    "JP2",
+    "JP3",
+    "JP4",
+    "JP5"
+   ],
+   "hand_fit_deviation_references": [
+    "J1",
+    "J2"
+   ],
+   "probe_manifest": "composition/parts.json",
+   "probes": [
+    "TP1",
+    "TP2",
+    "TP3",
+    "TP4",
+    "TP5",
+    "TP6"
+   ]
+  },
+  "layers": [
+   "assembly",
+   "blocks",
+   "envelope",
+   "requirement-source"
+  ],
+  "planes": [
+   {
+    "path": "composition/planes.json",
+    "sha256": "9e592e3ee4bdf5b6042fd3a595235cc5425359f4a69f87787ce00fc3624779aa"
+   }
+  ],
+  "planes_binding": "stage-owned add-planes producer",
+  "requirement_source": {
+   "captured_from": "telemetry-pod/expansion/requirements/compiled/requirements-map",
+   "delta": {
+    "acceptance_equal": true,
+    "added": [
+     "POD-CD-STORAGE"
+    ],
+    "changed": [
+     "POD-ME-1"
+    ],
+    "prose_differ": [],
+    "removed": []
+   },
+   "microsd_spec_as_source": {
+    "error": "RequirementSetError: unapproved-source: telemetry-pod-rev3: spec sha256 dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208 and record sha256 21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5 are not its pinned capture",
+    "reason": "unapproved-source",
+    "status": "refused"
+   },
+   "record": {
+    "path": "requirements-source/spec-record.json",
+    "sha256": "1d978fc1ddeddfe64a6900a719c437dabb31b2999feb258265b0fbad1ab4820b"
+   },
+   "scope_spec": {
+    "path": "requirements-map/spec.md",
+    "record_sha256": "21288e0126995c9e25f12de759a17ea6fe8200a64dc7c5eeee0f258b30a23ea5",
+    "sha256": "dd6555f706d163709bccb3417d8c366c38de7d603fca8894d0c4a95a58928208"
+   },
+   "source": "telemetry-pod-rev3",
+   "spec": {
+    "path": "requirements-source/spec.md",
+    "sha256": "e71dcca744f4b520fc4698402202d7d9efff2d316f8ad3c5eb6403cdf9d036c6"
+   }
+  },
+  "schema": "pod-capture.scope-composition/4",
+  "unmapped": [
+   {
+    "field": "obligations",
+    "id": "R-envelope-expanded-pod-microsd-production-obligation-corner-holes",
+    "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+   },
+   {
+    "field": "obligations",
+    "id": "R-envelope-expanded-pod-microsd-production-obligation-height",
+    "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+   },
+   {
+    "field": "obligations",
+    "id": "R-envelope-expanded-pod-microsd-production-obligation-harness-edge",
+    "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+   },
+   {
+    "field": "obligations",
+    "id": "R-envelope-expanded-pod-microsd-production-obligation-antenna",
+    "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+   },
+   {
+    "field": "obligations",
+    "id": "R-envelope-expanded-pod-microsd-production-obligation-imu-separation",
+    "reason": "generator mechanics require qualified checks from AGENTEE-177/179"
+   }
+  ]
+ },
+ "stages": {
+  "add_planes.step": {
+   "status": "accepted"
+  },
+  "binding_fill.configuration": {
+   "detail": {
+    "argv_ratings": true,
+    "writes": {
+     "composition/intent.bound.json": "out/intent.json"
+    }
+   },
+   "status": "accepted"
+  },
+  "binding_fill.fill": {
+   "detail": {
+    "components": 309,
+    "ledger_qualification": 174,
+    "output_identity": "e359176fb5fadbc7ef0c7133ae759a9c657ad0ad5c54d03a7d1fe7b834a360c9",
+    "probe_migrations": 6,
+    "ratings_derived": 252,
+    "ratings_missing": {}
+   },
+   "status": "accepted"
+  },
+  "blocks.stage_owned_variants C1 (AGENTEE-485 R2)": {
+   "error": "NOT_RUN: C1 not in this validation slice; C1 correction is AGENTEE-511 (POD_C1=validation-only-c1-not-in-scope); the block-variants producer was not invoked",
+   "mode": "POD_C1=validation-only-c1-not-in-scope",
+   "reason": "C1 not in this validation slice; C1 correction is AGENTEE-511",
+   "status": "NOT_RUN"
+  },
+  "campaign.authorized_budget production scope": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/driver-receipt.json'",
+   "status": "refused",
+   "where": "open"
+  },
+  "campaign.initial_candidate": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/candidate.json'",
+   "status": "refused",
+   "where": "open"
+  },
+  "emission.schematic_stage production (AGENTEE-445)": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/campaign.json'",
+   "status": "refused",
+   "where": "open"
+  },
+  "engine.placement_adapter.blocks_request (AGENTEE-439 G1)": {
+   "detail": "declaration shape accepted (paths not captured)",
+   "status": "accepted"
+  },
+  "fab.copper_features JP1-JP5 (agent-509 ruling)": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/scope.json'",
+   "status": "refused",
+   "where": "open"
+  },
+  "j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)": {
+   "error": "AttributeError: 'NoneType' object has no attribute 'FindFootprintByReference'",
+   "status": "refused",
+   "where": "j1_inspection"
+  },
+  "models.candidate_resolution (FOMEMC-34)": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/inputs/project/inputs/models/c-1-776163-1-t-3d.stp'",
+   "status": "refused",
+   "where": "open"
+  },
+  "placement.block_candidates_repack": {
+   "error": "ValueError: 18 iter8n block candidates bind policy ['a8b2585ed4060bb5bd5efc1565af6b2f793c97744570c53f596c647f5e8bb563']; the derived request policy is 3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c. The repack waits on a preparation that is not refused (none), per the coordinator instruction; nothing was repacked.",
+   "status": "refused",
+   "where": "block_candidates"
+  },
+  "placement.envelope_overhangs": {
+   "detail": [
+    {
+     "edges": [
+      {
+       "end_nm": [
+        0,
+        65000000
+       ],
+       "max_nm": 22850000,
+       "name": "bottom",
+       "outward": "y+",
+       "start_nm": [
+        90000000,
+        65000000
+       ]
+      }
+     ],
+     "reference": "J1",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24",
+      "pointer": "/fixed_footprints/0/courtyard_overhangs"
+     }
+    },
+    {
+     "edges": [
+      {
+       "end_nm": [
+        90000000,
+        0
+       ],
+       "max_nm": 21250000,
+       "name": "top",
+       "outward": "y-",
+       "start_nm": [
+        0,
+        0
+       ]
+      },
+      {
+       "end_nm": [
+        90000000,
+        65000000
+       ],
+       "max_nm": 6500000,
+       "name": "right",
+       "outward": "x+",
+       "start_nm": [
+        90000000,
+        0
+       ]
+      }
+     ],
+     "reference": "U1",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24",
+      "pointer": "/fixed_footprints/2/courtyard_overhangs"
+     }
+    },
+    {
+     "edges": [
+      {
+       "end_nm": [
+        0,
+        0
+       ],
+       "max_nm": 20300000,
+       "name": "left",
+       "outward": "x-",
+       "start_nm": [
+        0,
+        65000000
+       ]
+      }
+     ],
+     "reference": "J3",
+     "source": {
+      "envelope_id": "expanded-pod-microsd-production",
+      "envelope_sha256": "8e1ca6bc0d8ce7be277605a13dafdded5092bebc9734642267b8a6840f286d24",
+      "pointer": "/fixed_footprints/4/courtyard_overhangs"
+     }
+    }
+   ],
+   "status": "accepted"
+  },
+  "placement.policy_vs_subjects": {
+   "status": "accepted"
+  },
+  "placement.refuse_policy_sources": {
+   "status": "accepted"
+  },
+  "placement.scope_envelope_binding": {
+   "detail": [
+    {
+     "envelope_id": "expanded-pod-microsd-production",
+     "overhangs": [
+      "J1",
+      "U1",
+      "J3"
+     ],
+     "path": "composition/envelope.json",
+     "provenance_fixed": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "J1",
+      "J2",
+      "J3",
+      "U1",
+      "U2"
+     ],
+     "references": [
+      "H1",
+      "H2",
+      "H3",
+      "H4",
+      "J1",
+      "J2",
+      "J3",
+      "U1",
+      "U2"
+     ]
+    }
+   ],
+   "status": "accepted"
+  },
+  "placement.scope_locality_binding": {
+   "detail": {
+    "binding": {
+     "path": "telemetry-pod/expansion/electrical-locality/pad-obligations/electrical-locality.json",
+     "sha256": "9852c3ed0127a5b40c957f0624a8cecddf67c1ff2fc8597fba3a1a1e8dc69b7c"
+    },
+    "obligations": 201
+   },
+   "status": "accepted"
+  },
+  "pod_driver.build(dry_run) production scope": {
+   "error": "ValueError: unsupported capability parts: [{'code': 'invalid_contract', 'message': 'parts dependency cannot be mutable: composition/deviations.json'}]",
+   "status": "refused",
+   "where": "compile_coverage"
+  },
+  "pod_driver.rating_provenance": {
+   "detail": {
+    "binding_fill_ratings_step": true,
+    "production scope": "rating-provenance"
+   },
+   "status": "accepted"
+  },
+  "pod_driver.validate_plan": {
+   "detail": {
+    "max_iterations": 2,
+    "max_seconds": 8400
+   },
+   "status": "accepted"
+  },
+  "producers.import_from_declared_mount": {
+   "detail": {
+    "add-planes": {
+     "export_root_control_error": "ModuleNotFoundError: No module named 'agent_ee'",
+     "export_root_control_rc": 1,
+     "import_root_is_mount": true,
+     "loaded_from": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face/agent_ee/add_planes.py",
+     "module": "agent_ee.add_planes",
+     "mount": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face",
+     "rc": 0,
+     "within_mount": true
+    },
+    "binding-fill": {
+     "export_root_control_error": "ModuleNotFoundError: No module named 'agent_ee'",
+     "export_root_control_rc": 1,
+     "import_root_is_mount": true,
+     "loaded_from": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face/agent_ee/binding_fill.py",
+     "module": "agent_ee.binding_fill",
+     "mount": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face",
+     "rc": 0,
+     "within_mount": true
+    },
+    "emit-schematic": {
+     "export_root_control_error": "ModuleNotFoundError: No module named 'agent_ee'",
+     "export_root_control_rc": 1,
+     "import_root_is_mount": true,
+     "loaded_from": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face/agent_ee/schematic_stage.py",
+     "module": "agent_ee.schematic_stage",
+     "mount": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face",
+     "rc": 0,
+     "within_mount": true
+    },
+    "envelope-content": {
+     "export_root_control_error": "ModuleNotFoundError: No module named 'agent_ee'",
+     "export_root_control_rc": 1,
+     "import_root_is_mount": true,
+     "loaded_from": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face/agent_ee/scaffold.py",
+     "module": "agent_ee.scaffold",
+     "mount": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face",
+     "rc": 0,
+     "within_mount": true
+    },
+    "forward-annotate": {
+     "export_root_control_error": "ModuleNotFoundError: No module named 'agent_ee'",
+     "export_root_control_rc": 1,
+     "import_root_is_mount": true,
+     "loaded_from": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face/agent_ee/schematic_stage.py",
+     "module": "agent_ee.schematic_stage",
+     "mount": "/work/source-cache/710735b5d97d63e75b5b9d23bf31e9be82382ef5c24354150c1b4e829de8face",
+     "rc": 0,
+     "within_mount": true
+    }
+   },
+   "status": "accepted"
+  },
+  "review.packet_obligations production scope": {
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/result.json'",
+   "status": "refused",
+   "where": "open"
+  },
+  "routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)": {
+   "detail": {
+    "checkout": "/opt/kicad-route",
+    "commit": "b5774496d8466b67ffa0362b6665fee2108155a3",
+    "pin": "b5774496d8466b67ffa0362b6665fee2108155a3"
+   },
+   "status": "accepted"
+  },
+  "scaffold.content_step": {
+   "status": "accepted"
+  },
+  "scaffold.scaffold production scope": {
+   "detail": {
+    "baseline_id": "19ca159bd9e817110f6d2fde493848d39ca98587ebdd60a5864e7f92613f908a",
+    "candidate_id": "9d4ce3f66ba4e5df901f32b8e25a7b0f744db79ed0920f141a611251adc490de",
+    "status": "completed"
+   },
+   "status": "accepted"
+  },
+  "scaffold.write_envelope_content production scope": {
+   "error": "ValueError: native J2 is not the adopted UUID/Amphenol footprint",
+   "status": "refused",
+   "where": "production_content"
+  },
+  "schematic_stage.configuration": {
+   "detail": [
+    "emit-schematic",
+    "forward-annotate"
+   ],
+   "status": "accepted"
+  },
+  "scope.block_obligations production scope": {
+   "detail": {
+    "expected_obligations": {
+     "buck-3v3": [
+      "buck-3v3-board-region-copper-native-check",
+      "buck-3v3-witness-pose-equivalence"
+     ],
+     "pre-6v3": [
+      "pre-6v3-board-region-copper-native-check",
+      "pre-6v3-witness-pose-equivalence"
+     ]
+    },
+    "obligations": 4,
+    "packet_inputs": [
+     "project/telemetry-pod.kicad_sch",
+     "project/telemetry-pod.kicad_pcb",
+     "composition/block-obligations.json"
+    ]
+   },
+   "status": "accepted"
+  },
+  "scope.envelope_obligation_coverage": {
+   "detail": {
+    "final_qualification": {
+     "error": "final physical qualification refused: staged envelope obligations remain open: R-envelope-expanded-pod-microsd-production-obligation-corner-holes (hole-authority, fabricated-holes); R-envelope-expanded-pod-microsd-production-obligation-height (candidate-heights, cowl-fit, underside-fit, connector-fit, mating-plug-fit, harness-fit); R-envelope-expanded-pod-microsd-production-obligation-harness-edge (panel-cutout, mating-plug, retention, thickness-tolerance, harness-clearance); R-envelope-expanded-pod-microsd-production-obligation-antenna (feed-point-side, housing-pocket, nearby-metal, support, rf-performance); R-envelope-expanded-pod-microsd-production-obligation-imu-separation (placement-assessment, vibration-coupling)",
+     "status": "refused (expected: open qualification items)"
+    },
+    "qualification_open": 20,
+    "staged": {
+     "obligation-antenna": {
+      "open": [
+       "feed-point-side",
+       "housing-pocket",
+       "nearby-metal",
+       "support",
+       "rf-performance"
+      ],
+      "witnesses": [
+       {
+        "checks": [
+         "envelope-fixed-u1"
+        ],
+        "criterion": null,
+        "locator": "/fixed_footprints/2",
+        "requirement": "R-envelope-expanded-pod-microsd-production-fixed-U1",
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-containment"
+        ],
+        "criterion": "outline-containment/1",
+        "locator": "/fixed_footprints/2",
+        "requirement": null,
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-keepout-radio-antenna"
+        ],
+        "criterion": null,
+        "locator": "/keepouts/0",
+        "requirement": "R-envelope-expanded-pod-microsd-production-keepout-radio-antenna",
+        "status": "bound"
+       }
+      ]
+     },
+     "obligation-corner-holes": {
+      "open": [
+       "hole-authority",
+       "fabricated-holes"
+      ],
+      "witnesses": [
+       {
+        "checks": [
+         "envelope-hole-h1"
+        ],
+        "criterion": null,
+        "locator": "/mounting_holes/0",
+        "requirement": "R-envelope-expanded-pod-microsd-production-hole-H1",
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-hole-h2"
+        ],
+        "criterion": null,
+        "locator": "/mounting_holes/1",
+        "requirement": "R-envelope-expanded-pod-microsd-production-hole-H2",
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-hole-h3"
+        ],
+        "criterion": null,
+        "locator": "/mounting_holes/2",
+        "requirement": "R-envelope-expanded-pod-microsd-production-hole-H3",
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-hole-h4"
+        ],
+        "criterion": null,
+        "locator": "/mounting_holes/3",
+        "requirement": "R-envelope-expanded-pod-microsd-production-hole-H4",
+        "status": "bound"
+       }
+      ]
+     },
+     "obligation-harness-edge": {
+      "open": [
+       "panel-cutout",
+       "mating-plug",
+       "retention",
+       "thickness-tolerance",
+       "harness-clearance"
+      ],
+      "witnesses": [
+       {
+        "checks": [
+         "envelope-fixed-j1"
+        ],
+        "criterion": null,
+        "locator": "/fixed_footprints/0",
+        "requirement": "R-envelope-expanded-pod-microsd-production-fixed-J1",
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "envelope-containment"
+        ],
+        "criterion": "outline-containment/1",
+        "locator": "/fixed_footprints/0",
+        "requirement": null,
+        "status": "bound"
+       },
+       {
+        "checks": [
+         "parts"
+        ],
+        "criterion": "part-identity/1",
+        "locator": "/fixed_footprints/0",
+        "requirement": null,
+        "status": "bound"
+       }
+      ]
+     },
+     "obligation-height": {
+      "open": [
+       "candidate-heights",
+       "cowl-fit",
+       "underside-fit",
+       "connector-fit",
+       "mating-plug-fit",
+       "harness-fit"
+      ],
+      "witnesses": []
+     },
+     "obligation-imu-separation": {
+      "open": [
+       "placement-assessment",
+       "vibration-coupling"
+      ],
+      "witnesses": []
+     }
+    },
+    "summary": {
+     "bound": [
+      "fab-profile",
+      "fixed-J1",
+      "fixed-J2",
+      "fixed-J3",
+      "fixed-U1",
+      "fixed-U2",
+      "hole-H1",
+      "hole-H2",
+      "hole-H3",
+      "hole-H4",
+      "keepout-D-PCB-6-RF-reference",
+      "keepout-D-PCB-7v2-In1-no-tracks",
+      "keepout-radio-antenna",
+      "layer-count",
+      "outline",
+      "stackup"
+     ],
+     "staged": [
+      "obligation-antenna",
+      "obligation-corner-holes",
+      "obligation-harness-edge",
+      "obligation-height",
+      "obligation-imu-separation"
+     ]
+    }
+   },
+   "status": "accepted"
+  }
+ }
+}

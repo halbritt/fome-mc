@@ -31,6 +31,8 @@ blob under prepared-blobs/. --materialize-prepared OUT rebuilds it byte for byte
 Usage (fome-mc root):
   /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py PIPELINE_OUT [--install]
   /usr/bin/python3 telemetry-pod/expansion/production-capture/retain.py --check
+PIPELINE_OUT is retained into PENDING_DEST only (AGENTEE-485 H2); --check, --install alone and --materialize-prepared
+act on the active DEST.
 """
 import argparse
 import hashlib
@@ -50,7 +52,17 @@ ROOT = HERE.parents[2]
 # AGENTEE-186: NEW retention for the RF 0.293 mm / CPW gap rules (after emission-7d5b0d4d-agentee488/).
 # AGENTEE-488c/491: NEW retention for the coherent 488c + 186 + 491 (C723587/C861219) + H2-delta production.
 # AGENTEE-488c: NEW retention composed on fome-mc main 33c5ba8 (486 REQUIREMENTS.md correction) + 60f6a78d + 488/186.
-DEST = HERE / 'evidence/emission-7d5b0d4d-agentee491'
+# AGENTEE-485: NEW retention for the production regeneration preparation (runtime agentee-485d.json, agent-ee 8ab3b0b9,
+# fome-mc composed 01398586: A3 all-211 locality + B-JP2 access); emission-7d5b0d4d-agentee491/ stays unchanged.
+# AGENTEE-485 correction (R1 A3 policy + repack, R2 stage-owned block variants): a NEW retention; emission-8ab3b0b9-agentee485/
+# stays unchanged.
+# AGENTEE-485 slice A (H2): ONE coherent active retention. The ACTIVE DEST (check, install, materialize, and the
+# runtime receipt default) stays the DELIVERED emission-8ab3b0b9-agentee485/ until slice C actually writes and binds a
+# new retention and receipt. The PENDING destination is explicit: `retain.py PIPELINE_OUT` writes ONLY to PENDING_DEST
+# (refusing if it exists, or if a required stage refused, required_stages.py), and `--check`/`--install` never point
+# at an absent directory. Slice C moves DEST to the new retention in the same commit that adds it.
+DEST = HERE / 'evidence/emission-8ab3b0b9-agentee485'
+PENDING_DEST = HERE / 'evidence/emission-8ab3b0b9-agentee485c'
 SUPERSEDED = HERE / 'evidence/emission-81e387ee'  # j6/j6b retention (producer 81e387ee); removed at j6b2
 POD = ROOT / 'telemetry-pod'
 REPO_SUBTREE = 'telemetry-pod/'
@@ -63,7 +75,15 @@ RECEIPT_SKIP = ('inputs', 'run/design', 'run/home')
 MODELS = 'inputs/models/'  # relative to the candidate project directory (composition/project-models.json)
 PREPARED_TREE, BLOBS = 'prepared-tree.json', 'prepared-blobs'
 # Repository bytes a prepared file may be recorded by: tracked or unignored files outside the retained evidence.
-EXCLUDE = tuple(d.relative_to(ROOT).as_posix() + '/' for d in (DEST, SUPERSEDED, HERE / 'evidence/production-runtime-j6b'))
+EXCLUDE = tuple(d.relative_to(ROOT).as_posix() + '/'
+                for d in (DEST, PENDING_DEST, SUPERSEDED, HERE / 'evidence/production-runtime-j6b'))
+
+
+def select(dest):
+    """Rebind the retention this run writes/checks (DEST and its table relocation)."""
+    global DEST, RELOCATE
+    DEST = dest
+    RELOCATE = ('${KIPRJMOD}/../', '${KIPRJMOD}/' + DEST.relative_to(POD).as_posix() + '/design/')
 
 
 def sha(path):
@@ -83,6 +103,13 @@ def relocated(table):
 
 def retain(out):
     out = Path(out).resolve()
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('required_stages', HERE / 'required_stages.py')
+    required_stages = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(required_stages)
+    refused = required_stages.problems(json.loads((out / 'pipeline.json').read_text()).get('stages'))
+    if refused:  # AGENTEE-485 X1: the pipeline output stays as the diagnostic record; it is never retained
+        raise SystemExit('required stages refused; not retained: ' + '; '.join(refused))
     stage = json.loads((out / 'pipeline.json').read_text())['stages']['emission.schematic_stage production (AGENTEE-445)']
     if stage['status'] != 'accepted':
         raise SystemExit(f'emission stage not accepted: {stage}')
@@ -267,6 +294,8 @@ if __name__ == '__main__':
         sys.exit(0)
     if not args.pipeline_out:
         parser.error('PIPELINE_OUT required')
+    print(f'active retention {DEST.relative_to(ROOT)}; writing the pending {PENDING_DEST.relative_to(ROOT)}', flush=True)
+    select(PENDING_DEST)  # H2: a new retention goes only to the explicit pending destination
     retain(args.pipeline_out)
     if args.install:
         install()

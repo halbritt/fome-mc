@@ -1,0 +1,303 @@
+=== build-out: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/build.py /work/export --out /work/cap
+{
+ "binding_fill": {
+  "added_fields": {
+   "J1": [
+    "JLCPCB_Assembly"
+   ],
+   "J2": [
+    "JLCPCB_Assembly"
+   ],
+   "J3": [
+    "Datasheet",
+    "PARAM_Datasheet"
+   ]
+  },
+  "assembly_deviations": [
+   "J1",
+   "J2"
+  ],
+  "catalog_only": "refused",
+  "components": 309,
+  "execution": "ok",
+  "newly_rated": 150,
+  "probe_migrations": 6,
+  "rating_fields": {
+   "AGENT_EE_Ratings": 102,
+   "Power": 43,
+   "Voltage": 59
+  },
+  "ratings": {
+   "derived": 252,
+   "missing": 0
+  },
+  "writer_intent": "composition/intent.writer.json"
+ },
+ "declared": 309,
+ "envelope": {
+  "fixed": [
+   "J1",
+   "J2",
+   "U1",
+   "U2",
+   "J3"
+  ],
+  "keepouts": [
+   "radio-antenna",
+   "D-PCB-7v2-In1-no-tracks",
+   "D-PCB-6-RF-reference"
+  ],
+  "outcome": "unknown",
+  "provenance_status": "unknown",
+  "structural": "pass"
+ },
+ "fab_profile": {
+  "limits": 8,
+  "production": {
+   "path": "composition/fab-profile.json",
+   "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
+  },
+  "relabel": {
+   "from": "R-envelope-telemetry-pod-fab-profile",
+   "to": "R-envelope-expanded-pod-microsd-production-fab-profile"
+  },
+  "source": {
+   "path": "sources/fab-profile.json",
+   "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632"
+  }
+ },
+ "gaps": [],
+ "ledger": {
+  "historical-j3": 1,
+  "identity-only": 166,
+  "package-selection": 5,
+  "series-divider": 2
+ },
+ "parts": {
+  "bare_copper_probe": 6,
+  "copper_feature": 5,
+  "named": 298
+ },
+ "project_models": {
+  "J1": {
+   "candidate": "project/inputs/models/c-1-776163-1-t-3d.stp",
+   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+  },
+  "U3": {
+   "candidate": "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+   "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9"
+  }
+ },
+ "qualify_manifest": {
+  "cad": {
+   "coverage": "complete",
+   "execution": "ok",
+   "outcome": "pass"
+  },
+  "dependencies": 411,
+  "missing_provenance": []
+ },
+ "references": 309,
+ "retention": [
+  "radio-antenna"
+ ]
+}
+
+build-out-exit=0
+=== build-check: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/build.py /work/export --check
+{
+ "binding_fill": {
+  "added_fields": {
+   "J1": [
+    "JLCPCB_Assembly"
+   ],
+   "J2": [
+    "JLCPCB_Assembly"
+   ],
+   "J3": [
+    "Datasheet",
+    "PARAM_Datasheet"
+   ]
+  },
+  "assembly_deviations": [
+   "J1",
+   "J2"
+  ],
+  "catalog_only": "refused",
+  "components": 309,
+  "execution": "ok",
+  "newly_rated": 150,
+  "probe_migrations": 6,
+  "rating_fields": {
+   "AGENT_EE_Ratings": 102,
+   "Power": 43,
+   "Voltage": 59
+  },
+  "ratings": {
+   "derived": 252,
+   "missing": 0
+  },
+  "writer_intent": "composition/intent.writer.json"
+ },
+ "declared": 309,
+ "envelope": {
+  "fixed": [
+   "J1",
+   "J2",
+   "U1",
+   "U2",
+   "J3"
+  ],
+  "keepouts": [
+   "radio-antenna",
+   "D-PCB-7v2-In1-no-tracks",
+   "D-PCB-6-RF-reference"
+  ],
+  "outcome": "unknown",
+  "provenance_status": "unknown",
+  "structural": "pass"
+ },
+ "fab_profile": {
+  "limits": 8,
+  "production": {
+   "path": "composition/fab-profile.json",
+   "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
+  },
+  "relabel": {
+   "from": "R-envelope-telemetry-pod-fab-profile",
+   "to": "R-envelope-expanded-pod-microsd-production-fab-profile"
+  },
+  "source": {
+   "path": "sources/fab-profile.json",
+   "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632"
+  }
+ },
+ "gaps": [],
+ "ledger": {
+  "historical-j3": 1,
+  "identity-only": 166,
+  "package-selection": 5,
+  "series-divider": 2
+ },
+ "parts": {
+  "bare_copper_probe": 6,
+  "copper_feature": 5,
+  "named": 298
+ },
+ "project_models": {
+  "J1": {
+   "candidate": "project/inputs/models/c-1-776163-1-t-3d.stp",
+   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+  },
+  "U3": {
+   "candidate": "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+   "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9"
+  }
+ },
+ "qualify_manifest": {
+  "cad": {
+   "coverage": "complete",
+   "execution": "ok",
+   "outcome": "pass"
+  },
+  "dependencies": 411,
+  "missing_provenance": []
+ },
+ "references": 309,
+ "retention": [
+  "radio-antenna"
+ ]
+}
+production capture reproduces byte for byte
+
+build-check-exit=0
+=== pipeline: /usr/bin/python3 -B /work/fome/telemetry-pod/expansion/production-capture/pipeline.py /work/export /opt/kicad-route /work/fome/telemetry-pod/expansion/requirements/rev3-microsd/compiled /work/cap /work/pipe
+accepted  scope.envelope_obligation_coverage
+accepted  placement.scope_envelope_binding
+accepted  placement.scope_locality_binding
+accepted  binding_fill.configuration
+accepted  binding_fill.fill
+accepted  scaffold.scaffold production scope
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+./kicad/include/properties/property.h(607): assert "m_choices.GetCount() > 0" failed in PROPERTY_ENUM(): No enum choices defined
+00:52:16: Debug: Adding duplicate image handler for 'PNG file'
+00:52:16: Debug: Adding duplicate image handler for 'JPEG file'
+00:52:16: Debug: Adding duplicate image handler for 'TIFF file'
+00:52:16: Debug: Adding duplicate image handler for 'GIF file'
+00:52:16: Debug: Adding duplicate image handler for 'PNM file'
+00:52:16: Debug: Adding duplicate image handler for 'PCX file'
+00:52:16: Debug: Adding duplicate image handler for 'IFF file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows icon file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows cursor file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+00:52:16: Debug: Adding duplicate image handler for 'TGA file'
+00:52:16: Debug: Adding duplicate image handler for 'XPM file'
+00:52:16: Debug: Adding duplicate image handler for 'PNG file'
+00:52:16: Debug: Adding duplicate image handler for 'JPEG file'
+00:52:16: Debug: Adding duplicate image handler for 'TIFF file'
+00:52:16: Debug: Adding duplicate image handler for 'GIF file'
+00:52:16: Debug: Adding duplicate image handler for 'PNM file'
+00:52:16: Debug: Adding duplicate image handler for 'PCX file'
+00:52:16: Debug: Adding duplicate image handler for 'IFF file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows icon file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows cursor file'
+00:52:16: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+00:52:16: Debug: Adding duplicate image handler for 'TGA file'
+00:52:16: Debug: Adding duplicate image handler for 'XPM file'
+refused   scaffold.write_envelope_content production scope: ValueError: native J2 is not the adopted UUID/Amphenol footprint
+accepted  scaffold.content_step
+accepted  schematic_stage.configuration
+accepted  add_planes.step
+accepted  producers.import_from_declared_mount
+accepted  placement.refuse_policy_sources
+accepted  placement.envelope_overhangs
+accepted  placement.policy_vs_subjects
+accepted  engine.placement_adapter.blocks_request (AGENTEE-439 G1)
+accepted  routing_adapter.preflight (agent-ee 7d5b0d4d, ROUTER_CHECKOUT)
+accepted  pod_driver.validate_plan
+refused   pod_driver.build(dry_run) production scope: ValueError: unsupported capability parts: [{'code': 'invalid_contract', 'message': 'parts dependency cannot be mutable: composition/deviations.json'}]
+accepted  pod_driver.rating_provenance
+refused   campaign.authorized_budget production scope: FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/driver-receipt.json'
+refused   emission.schematic_stage production (AGENTEE-445): FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/campaign.json'
+NOT_RUN   blocks.stage_owned_variants C1 (AGENTEE-485 R2): C1 not in this validation slice; C1 correction is AGENTEE-511
+refused   models.candidate_resolution (FOMEMC-34): FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/inputs/project/inputs/models/c-1-776163-1-t-3d.stp'
+refused   fab.copper_features JP1-JP5 (agent-509 ruling): FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/scope.json'
+00:53:29: Debug: Adding duplicate image handler for 'PNG file'
+00:53:29: Debug: Adding duplicate image handler for 'JPEG file'
+00:53:29: Debug: Adding duplicate image handler for 'TIFF file'
+00:53:29: Debug: Adding duplicate image handler for 'GIF file'
+00:53:29: Debug: Adding duplicate image handler for 'PNM file'
+00:53:29: Debug: Adding duplicate image handler for 'PCX file'
+00:53:29: Debug: Adding duplicate image handler for 'IFF file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows icon file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows cursor file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+00:53:29: Debug: Adding duplicate image handler for 'TGA file'
+00:53:29: Debug: Adding duplicate image handler for 'XPM file'
+refused   j1.native_inspection (agent-509 iter8t audit, AGENTEE-446): AttributeError: 'NoneType' object has no attribute 'FindFootprintByReference'
+refused   campaign.initial_candidate: FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/candidate.json'
+refused   review.packet_obligations production scope: FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/result.json'
+accepted  scope.block_obligations production scope
+refused   placement.block_candidates_repack: ValueError: 18 iter8n block candidates bind policy ['a8b2585ed4060bb5bd5efc1565af6b2f793c97744570c53f596c647f5e8bb563']; the derived request policy is 3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c. The repack waits on a preparation that is not refused (none), per the coordinator instruction; nothing was repacked.
+00:53:29: Debug: Adding duplicate image handler for 'PNG file'
+00:53:29: Debug: Adding duplicate image handler for 'JPEG file'
+00:53:29: Debug: Adding duplicate image handler for 'TIFF file'
+00:53:29: Debug: Adding duplicate image handler for 'GIF file'
+00:53:29: Debug: Adding duplicate image handler for 'PNM file'
+00:53:29: Debug: Adding duplicate image handler for 'PCX file'
+00:53:29: Debug: Adding duplicate image handler for 'IFF file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows icon file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows cursor file'
+00:53:29: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+00:53:29: Debug: Adding duplicate image handler for 'TGA file'
+00:53:29: Debug: Adding duplicate image handler for 'XPM file'
+diagnostic.J3_transform {"anchor_mm": ["8.9", "32"], "courtyard_bbox_mm": [-20.145, 24.075, 17.765, 39.865], "declared_max_mm": 20.3, "iter8n_seed_sha256": "0365485efbac76fe77e6810baba0fd15077803289e184d1ff4069773a612907c", "left_overhang_mm": 20.145, "pads_equal_iter8n_seed": true, "right_edge_inside_outline": true, "rotation_deg": "90", "side": "back", "status": "ok", "within_declared_overhang": true}
+
+required stages refused: required stage 'placement.block_candidates_repack' is 'refused': ValueError: 18 iter8n block candidates bind policy ['a8b2585ed4060bb5bd5efc1565af6b2f793c97744570c53f596c647f5e8bb563']; the derived request policy is 3ea3547279ce6bbd1c9274ac1cb796f41a6b72ec48449242690ef5a5ff98e45c. The repack waits on a preparation that is not refused (none), per the coordinator i; required stage 'blocks.stage_owned_variants C1 (AGENTEE-485 R2)' is 'NOT_RUN': NOT_RUN: C1 not in this validation slice; C1 correction is AGENTEE-511 (POD_C1=validation-only-c1-not-in-scope); the block-variants producer was not invoked; required stage 'campaign.authorized_budget production scope' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/driver-receipt.json'; required stage 'scaffold.write_envelope_content production scope' is 'refused': ValueError: native J2 is not the adopted UUID/Amphenol footprint; required stage 'pod_driver.build(dry_run) production scope' is 'refused': ValueError: unsupported capability parts: [{'code': 'invalid_contract', 'message': 'parts dependency cannot be mutable: composition/deviations.json'}]; required stage 'emission.schematic_stage production (AGENTEE-445)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/campaign.json'; required stage 'models.candidate_resolution (FOMEMC-34)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/inputs/project/inputs/models/c-1-776163-1-t-3d.stp'; required stage 'fab.copper_features JP1-JP5 (agent-509 ruling)' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/scope.json'; required stage 'j1.native_inspection (agent-509 iter8t audit, AGENTEE-446)' is 'refused': AttributeError: 'NoneType' object has no attribute 'FindFootprintByReference'; required stage 'campaign.initial_candidate' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/candidate.json'; required stage 'review.packet_obligations production scope' is 'refused': FileNotFoundError: [Errno 2] No such file or directory: '/work/pipe/prepared/dry-run/result.json'
+
+pipeline-exit=3
+
+exit=3
+
+outer-exit=3

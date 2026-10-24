@@ -1,0 +1,106 @@
+{
+ "binding_fill": {
+  "added_fields": {
+   "J1": [
+    "JLCPCB_Assembly"
+   ],
+   "J2": [
+    "JLCPCB_Assembly"
+   ],
+   "J3": [
+    "Datasheet",
+    "PARAM_Datasheet"
+   ]
+  },
+  "assembly_deviations": [
+   "J1",
+   "J2"
+  ],
+  "catalog_only": "refused",
+  "components": 309,
+  "execution": "ok",
+  "newly_rated": 150,
+  "probe_migrations": 6,
+  "rating_fields": {
+   "AGENT_EE_Ratings": 102,
+   "Power": 43,
+   "Voltage": 59
+  },
+  "ratings": {
+   "derived": 252,
+   "missing": 0
+  },
+  "writer_intent": "composition/intent.writer.json"
+ },
+ "declared": 309,
+ "envelope": {
+  "fixed": [
+   "J1",
+   "J2",
+   "U1",
+   "U2",
+   "J3"
+  ],
+  "keepouts": [
+   "radio-antenna",
+   "D-PCB-7v2-In1-no-tracks",
+   "D-PCB-6-RF-reference"
+  ],
+  "outcome": "unknown",
+  "provenance_status": "unknown",
+  "structural": "pass"
+ },
+ "fab_profile": {
+  "limits": 8,
+  "production": {
+   "path": "composition/fab-profile.json",
+   "sha256": "4ca626447dc4738dd94688dc7dbbe7a0e2c2a56c9b790752d6a3efd9addd8e64"
+  },
+  "relabel": {
+   "from": "R-envelope-telemetry-pod-fab-profile",
+   "to": "R-envelope-expanded-pod-microsd-production-fab-profile"
+  },
+  "source": {
+   "path": "sources/fab-profile.json",
+   "sha256": "02e484728bbcf695422ab2aa70ff3923ddd82b871fc28715aa1e9e9104822632"
+  }
+ },
+ "gaps": [],
+ "ledger": {
+  "historical-j3": 1,
+  "identity-only": 166,
+  "package-selection": 5,
+  "series-divider": 2
+ },
+ "parts": {
+  "bare_copper_probe": 6,
+  "copper_feature": 5,
+  "named": 298
+ },
+ "project_models": {
+  "J1": {
+   "candidate": "project/inputs/models/c-1-776163-1-t-3d.stp",
+   "sha256": "43ba1f805451c97c81c3e659339e78a5ce25a0cbaeeb0427e809513e38daa473"
+  },
+  "U3": {
+   "candidate": "project/inputs/models/NEO-M9N-00B_visualization-only_datasheet-derived_not-manufacturer-mechanical-qualification.step",
+   "sha256": "8a7f198429247fde472e97f1b8c56820a7206840f56be9a7138b4ec0fa62a5d9"
+  }
+ },
+ "qualify_manifest": {
+  "cad": {
+   "coverage": "complete",
+   "execution": "ok",
+   "outcome": "pass"
+  },
+  "dependencies": 411,
+  "missing_provenance": []
+ },
+ "references": 309,
+ "retention": [
+  "radio-antenna"
+ ]
+}
+production capture reproduces byte for byte
+
+exit=0
