@@ -7,6 +7,7 @@ Use the main-board files in [export/](../export/). The 25 November 2026 JLCPCB c
 | References | Manufacturer part | LCSC |
 |---|---|---|
 | J1, J2 | TE 776163-1 and 776163-2, 35-position right-angle through-hole AMPSEAL | C412117, C5172878 |
+| L1 | Murata LQH32PH2R2NNCL, 2.2 µH power inductor, 1210 | C2043220 |
 | U202 | Texas Instruments DRV8825PWPR, HTSSOP-28 with exposed pad | C81582 |
 | U1003, U1103, U1203 | Nexperia 74HCT125D,653, SO-14 | C5962 |
 | U27 | ST USBLC6-2SC6, two-line USB protection | C7519 |
@@ -20,6 +21,8 @@ Use the main-board files in [export/](../export/). The 25 November 2026 JLCPCB c
 | R212 | UNI-ROYAL 0603WAF2201T5E, 2.2 kΩ tach pull-up | C4190 |
 | D20, D21, D205–D209 | Diodes Incorporated B340A-13-F, 3 A SMA | C85098 |
 | R310, R410 | Panasonic ERA-3AEB61R9V, 61.9 Ω, 0.1%, 0603 | C2087389 |
+
+The 12 V input filter previously called out a Bourns power inductor by name but ordered a 450 mA RF inductor. The selected Murata fits the existing 1210 pads and has 64 mΩ nominal DC resistance, a 2.0 A inductance-change rating and a 1.85 A thermal rating at 85 °C ambient. Check the filtered input during crank and load steps as the lower resistance changes filter damping. [Murata specification](https://www.ic-components.se/files/57/LQH32PH100MNCL.pdf)
 
 The harness mates are the black A-key 776164-1 for J1 and the natural B-key 776164-2 for J2. Specify both headers in the through-hole assembly step and verify the keyed faces against the enclosure. [TE AMPSEAL connector selector](https://www.te.com/content/dam/te-com/custom/media/connector-selector/docs/ict-connector-selector-en.pdf)
 

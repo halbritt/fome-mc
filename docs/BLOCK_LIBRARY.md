@@ -116,7 +116,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   (connected on the root sheet to a local `12V_PROT` label and `PWR_FLAG`).
 - Key parts: D1 SMCJ24A `C224045`; Q1 AO4485 `C51499` with D19 BZT52C12 `C43491`
   and R124 47k `C25819` (reverse block); C4 4.7 µF 50 V X7R 1210 `C417122` via R2
-  1 Ω `C25086`; L1 2.2 µH `C75646` and C6 47 µF hybrid polymer `C454346` (input
+  1 Ω `C25086`; L1 2.2 µH `C2043220` and C6 47 µF hybrid polymer `C454346` (input
   filter); U3 LMR16020PDDAR `C190006` with L2 10 µH `C408412`, D3 `C8678`, R3 10k
   `C25744` on RT, R5/R6 12k/68k (5.00 V); C2, C5, C7 1 µF 50 V X7R 0805 `C354368`;
   C8 10 nF 50 V X7R `C344025`; C10 100 nF 50 V X7R `C161115`; U1, U2 TLS115D0E
