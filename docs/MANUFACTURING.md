@@ -16,6 +16,9 @@ Use the main-board files in [export/](../export/). The 25 November 2026 JLCPCB c
 | U201, U203 | Infineon TLE9201SG, PG-DSO-12 | C2653438 |
 | C303, C403 | Murata GRM155R71H333KE14D, 33 nF, 50 V, X7R, 0402 | C415530 |
 | R23–R34, R39–R42 | Yageo RT0603BRD072K7L, 2.7 kΩ, 0.1%, 0603 | C705760 |
+| R201–R204 | UNI-ROYAL 0603WAF150JT5E, 15 Ω ignition gate resistors | C22810 |
+| R212 | UNI-ROYAL 0603WAF2201T5E, 2.2 kΩ tach pull-up | C4190 |
+| D20, D21, D205–D209 | Diodes Incorporated B340A-13-F, 3 A SMA | C85098 |
 | R310, R410 | Panasonic ERA-3AEB61R9V, 61.9 Ω, 0.1%, 0603 | C2087389 |
 
 The harness mates are the black A-key 776164-1 for J1 and the natural B-key 776164-2 for J2. Specify both headers in the through-hole assembly step and verify the keyed faces against the enclosure. [TE AMPSEAL connector selector](https://www.te.com/content/dam/te-com/custom/media/connector-selector/docs/ict-connector-selector-en.pdf)

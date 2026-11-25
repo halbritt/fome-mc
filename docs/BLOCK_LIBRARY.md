@@ -144,7 +144,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 - Boundary in: `/12V_IGN_SW` (J1-26, also sensed by the MCU), `/12V_MR` (J1-24,
   J1-27), `/Perm_Live` (J1-28). Out: `/12V_RAW`, `/Keep_Alive/Keep_Alive` (to U26
   VBAT path).
-- Key parts: D20, D21 B340A-13-F `C64982` (diode-OR); D22 SMCJ24A `C224045`; U41
+- Key parts: D20, D21 B340A-13-F `C85098` (diode-OR); D22 SMCJ24A `C224045`; U41
   MIC5205-3.3YM5 `C37970`; IC1 PSM712 `C32677`; D16, D17 B5819W `C8598`.
 - Requirements: key-off detection while `/12V_MR` holds `/12V_RAW`; VBAT `4 KB BKPSRAM`
   and backup register retention from `Perm_Live` (`FOMEMC-25`). Bench items in
@@ -228,7 +228,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   `ign4.kicad_sch`, so the IGBT block is two instances: `/ign1/` (U42, U43, with
   inputs `/ign1/IN1..4` from U26) plus `/ign_igbt/` (`contracts/ign_igbt.interface.json`,
   `contracts/ign4.interface.json`).
-- Key parts: Q201..Q204 FGD3040G2-F085 `C606124`; R201..R204 15 Ω `C22938` gate;
+- Key parts: Q201..Q204 FGD3040G2-F085 `C606124`; R201..R204 15 Ω `C22810` gate;
   R205..R208 10k `C25744` gate-emitter; U42, U43 MIC4427 `C461590`; R1501..R1504
   1 kΩ `C11702` input pull-downs.
 - Requirements: 0 V gate during MCU reset; 400 V clamp on coil turn-off; `HV_IGN`
@@ -253,8 +253,8 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   pull-down array `C29718` (`RN5, RN7, RN9`), RN 1k series array `C20197` (`RN6, RN8, RN10`),
   100 nF `C161115`.
 - Cross-block nets named in `contracts/lowside_quad.interface.json` (`FOMEMC-22`): the flyback
-  diodes D201..D209 (`D201..D204` DNP, `D205..D209` populated `B340A-13-F` `C64982`)
-  and the R212 `2.2 kΩ` `C22976` pull-up for `/LS8` live in `stepper_etb.kicad_sch`.
+  diodes D201..D209 (`D201..D204` DNP, `D205..D209` populated `B340A-13-F` `C85098`)
+  and the R212 `2.2 kΩ` `C4190` pull-up for `/LS8` live in `stepper_etb.kicad_sch`.
 - Requirements: 5 V gate drive (FOMEMC-13), 42 V active clamp on injector channels
   with `D201..D204` DNP (FOMEMC-17).
 - Adaptation: channel use (injector, relay, tach, serial), clamp choice.
@@ -311,7 +311,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   `C81582`) with STEP on `/LS9`, DIR on `/LS12`, nENBL on `/PB8_STEP_EN`, outputs
   `/STEP_1A..2B` (J1-19..22); the second TLE9201SG (U203 `C2653438`) with `/ETB2_*`
   (J1-17, J1-18); flyback diodes D201..D204 (DNP) and D205..D209 (`B340A-13-F`
-  `C64982`) for the low-side channels; R212 `2.2 kΩ` `C22976` pull-up on `/LS8`
+  `C85098`) for the low-side channels; R212 `2.2 kΩ` `C4190` pull-up on `/LS8`
   (J1-13); and the J1-35 DFU network (D210 `BZT52C6V8` `C173404`, R209 12k `C25752`,
   R217 10k `C25744`, R218 12k `C25752`, D211 `B5819W` `C8598`).
 - This sheet mixes four unrelated functions. Capture it as four blocks by reference
