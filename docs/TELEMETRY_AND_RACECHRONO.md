@@ -130,57 +130,17 @@ Because `fome-mc`'s six 0–5 V analog inputs on `J2-3..J2-8` (`TPS1` `PA1`, `TP
 
 ### 3.3 FOME Lua Script for Ingesting `0x300..0x301` into ECU `.mlg` Logs
 
-Paste the following script into TunerStudio (**Scripting -> Lua Scripting**) to log Front/Rear Brake Pressure (`AuxLinear1`, `AuxLinear2`), Front Fork (`0..130.00 mm`) / Rear Shock (`0..70.00 mm`) Travel (`AuxLinear3`, `AuxLinear4`), and Lean / Pitch Angle (`LuaGauge1`, `LuaGauge2`) inside the ECU's `.mlg` SDNAND logs alongside engine RPM, TPS, Lambda, and Knock:
+Load the [pod receiver Lua script](../telemetry-pod/ecu/receiver.lua) into the bench ECU through TunerStudio’s Lua Scripting page. If the ECU already uses a script, integrate the two callbacks and the tick handler into it. CAN1 uses human bus number 1. Leave the four AuxLinear ADC inputs unassigned so Lua can register those channels. The firmware registers the Lua gauges at boot and exposes them through `setLuaGauge`.
 
-```lua
--- FOME-MC CAN1 Telemetry Pod Receiver (0x300 Suspension Travel [130 and 70 mm], 0x301 Brake Pressure & Lean/Pitch Angle)
-local sForkTravel  = Sensor.new("AuxLinear3") -- mm (Front Fork Travel, 0..130.00 mm)
-local sShockTravel = Sensor.new("AuxLinear4") -- mm (Rear Shock Travel, 0..70.00 mm)
-local sFrontBrake  = Sensor.new("AuxLinear1") -- bar (Front Brake Pressure, 0..100.00 bar)
-local sRearBrake   = Sensor.new("AuxLinear2") -- bar (Rear Brake Pressure, 0..100.00 bar)
-local sLeanAngle   = Sensor.new("LuaGauge1")  -- deg (Lean Angle, -65..+65 deg)
-local sPitchAngle  = Sensor.new("LuaGauge2")  -- deg (Pitch Angle, -45..+45 deg)
+| ECU SD log channel | Pod measurement | Unit | Stored resolution |
+| --- | --- | --- | --- |
+| Aux linear 1 / 2 | Front / rear brake pressure | bar | 0.1 |
+| Aux linear 3 / 4 | Fork / shock travel | mm | 0.1 |
+| Lua: Gauge 1 / 2 | Lean / pitch | degrees | 32-bit float, from a 0.01° CAN field |
 
-sForkTravel:setTimeout(250)
-sShockTravel:setTimeout(250)
-sFrontBrake:setTimeout(250)
-sRearBrake:setTimeout(250)
-sLeanAngle:setTimeout(250)
-sPitchAngle:setTimeout(250)
+The receiver accepts complete eight-byte frames. It requests a 200 Hz script tick to service FOME’s 32-frame Lua CAN queue. After 250 ms without a complete brake and attitude frame, the tick writes NaN to the two angle channels. The four auxiliary sensors expire independently by frame group after 250 ms. The ECU’s status loop writes zero for expired auxiliary channels, so zero in those four log columns alone cannot distinguish missing input from a genuine zero.
 
-local function getInt16Le(data, offset)
-  local v = data[offset] + (data[offset + 1] * 256)
-  if v >= 32768 then v = v - 65536 end
-  return v
-end
-
-function onCanSuspension(bus, id, dlc, data)
-  if dlc >= 4 then
-    sForkTravel:set(getInt16Le(data, 1) * 0.01)
-    sShockTravel:set(getInt16Le(data, 3) * 0.01)
-  end
-end
-
-function onCanBrakesAndLean(bus, id, dlc, data)
-  if dlc >= 4 then
-    sFrontBrake:set(getInt16Le(data, 1) * 0.01)
-    sRearBrake:set(getInt16Le(data, 3) * 0.01)
-  end
-  if dlc >= 6 then
-    sLeanAngle:set(getInt16Le(data, 5) * 0.01)
-  end
-  if dlc >= 8 then
-    sPitchAngle:set(getInt16Le(data, 7) * 0.01)
-  end
-end
-
-canRxAdd(1, 0x300, onCanSuspension)
-canRxAdd(1, 0x301, onCanBrakesAndLean)
-
-function onTick() end
-```
-
-> **Bench verification obligation (pod acceptance criterion 8 / `POD-AC-8`, `FOMEMC-31`)**: Load the updated Lua script above on the bench ECU. The `FOMEMC-31` Lua change decodes `0x301` bytes `4..5` into `LuaGauge1` (`LeanAngle`, 1-based offset `5`) and bytes `6..7` into `LuaGauge2` (`PitchAngle`, offset `7`). No C++ firmware change is included in this repository. Verify that the deployed firmware supports these Lua sensors and records lean angle, brake pressure (`AuxLinear1..2`) and suspension travel (`AuxLinear3..4`, 130 mm fork / 70 mm shock) in the ECU's `.mlg` file. Also measure all six required CAN frame rates within 5% of the rates in [revision 2, acceptance criterion 8](../telemetry-pod/REQUIREMENTS.md#acceptance-criteria). This document change does not satisfy the built-board bench criterion.
+For POD-AC-8, measure all six frame rates within 5% on a bench CAN bus and recover an ECU-authored `.mlg` file. Exercise nonzero travel and pressure, lean in both directions, and a disconnected pod. Run `python3 telemetry-pod/ecu/read_chassis_mlg.py run.mlg > chassis.csv` from the repository root. The decoder reads the ECU’s field descriptors and checks the rolling counter and checksum on each data block. Compare the exported intervals with the matching CAN capture and its timestamps. [Pod acceptance criteria](../telemetry-pod/REQUIREMENTS.md#acceptance-criteria)
 
 ---
 
