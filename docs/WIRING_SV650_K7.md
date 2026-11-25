@@ -1,6 +1,6 @@
 # 2007 Suzuki SV650 (K7 Dual-Plug) Wiring & Adapter Harness Guide
 
-This document specifies the complete adapter harness, sensor, actuator, dual Bosch LSU 4.9 wideband, and ignition coil wiring between a **2007 Suzuki SV650 / SV650S / SV650A / SV650SA (`K7`, Gen 2 dual-plug 90° V-twin)** and **`fome-mc`** (`J1` 35-pin Black `776163-1` and `J2` 35-pin Grey `776163-2`).
+This document specifies the complete adapter harness, sensor, actuator, dual Bosch LSU 4.9 wideband, and ignition coil wiring between a **2007 Suzuki SV650 / SV650S / SV650A / SV650SA (`K7`, Gen 2 dual-plug 90° V-twin)** and **`fome-mc`** (`J1` 35-pin Black `776163-1` and `J2` 35-pin Natural `776163-2`).
 
 ![fome-mc J1 & J2 AMPSEAL Pinout Diagram](renders/fome-mc-pinout-diagram.png)
 
@@ -33,7 +33,7 @@ flowchart LR
   subgraph ECU["fome-mc Integrated Motorcycle ECU (162 × 115 mm)"]
     direction TB
     J1["J1: 35-Pin TE AMPSEAL (Black 776164-1)\nPower, Grounds, INJ1..4, IGBT1..4\nAUX_LS1..4, MAIN_RLY, ETB1/2, STEP, WBO HTR, DFU"]
-    J2["J2: 35-Pin TE AMPSEAL (Grey 776164-2)\nCLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock\nVR1/2, Hall/DIN, WBO1/2 Cells, IGN_LOG, CAN1, USB"]
+    J2["J2: 35-Pin TE AMPSEAL (Natural 776164-2)\nCLT, IAT, TPS1/2, MAP1, Ext Baro (J2-6), Gear, Knock\nVR1/2, Hall/DIN, WBO1/2 Cells, IGN_LOG, CAN1, USB"]
     H7["U26: STM32H753ZIT6 Main MCU\n+ U25 CSNP32GCR01-AOW 4GB SDNAND\n+ U29 ATWINC1500-MR210UB U.FL Wi-Fi + U24 LPS25HB (DNP)"]
     WBO["U302 & U402: Dual STM32F042K6T6\nOnboard Wideband Controllers (Internal CAN2)"]
     J1 --> H7
@@ -69,7 +69,7 @@ flowchart LR
 | Ref | Description | TE Connectivity MPN | Qty | Notes |
 | :---: | :--- | :--- | :---: | :--- |
 | `J1` Plug | 35-Pos AMPSEAL Plug Housing, **Key 1 Black** | `776164-1` | 1 | Mates with PCB header `776163-1` (`J1`) |
-| `J2` Plug | 35-Pos AMPSEAL Plug Housing, **Key 2 Grey** | `776164-2` | 1 | Mates with PCB header `776163-2` (`J2`) |
+| `J2` Plug | 35-Pos AMPSEAL Plug Housing, **Key 2 Natural** | `776164-2` | 1 | Mates with PCB header `776163-2` (`J2`) |
 | Contacts | AMPSEAL `1.3 mm` Gold-Plated Receptacle Crimp Terminals (16–20 AWG) | `770520-3` (strip) / `770854-3` (loose) | 70 | Rated `17 A` max single contact / `8–11 A` continuous in housing |
 | Cavity Plugs | AMPSEAL Sealing Plugs for unused cavities | `770678-1` | 20 | Required in every unpopulated cavity to maintain IP67/IP69K seal |
 | Strain Relief | AMPSEAL 35-Pos Back-Shell Wire Dress Cover | `776463-1` | 2 | Protects wire exit bundle and mat seal |
@@ -120,7 +120,7 @@ flowchart LR
 
 ---
 
-### 3.2 `J2` (35-Pin Grey `776164-2`) — Sensors, Wideband Cells, Logic Coils, CAN1 & USB
+### 3.2 `J2` (35-Pin Natural `776164-2`) — Sensors, Wideband Cells, Logic Coils, CAN1 & USB
 
 | `J2` Pin | `fome-mc` Signal | `STM32H753` Pin | Stock K7 SV650 Function | Stock K7 Wire Color & ECM Pin | Wire Gauge |
 | :---: | :--- | :---: | :--- | :--- | :---: |

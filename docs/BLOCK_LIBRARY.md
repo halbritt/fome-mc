@@ -145,7 +145,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   J1-27), `/Perm_Live` (J1-28). Out: `/12V_RAW`, `/Keep_Alive/Keep_Alive` (to U26
   VBAT path).
 - Key parts: D20, D21 B340A-13-F `C64982` (diode-OR); D22 SMCJ24A `C224045`; U41
-  MIC5205-3.3YM5 `C5370979`; IC1 PSM712 `C32677`; D16, D17 B5819W `C8598`.
+  MIC5205-3.3YM5 `C37970`; IC1 PSM712 `C32677`; D16, D17 B5819W `C8598`.
 - Requirements: key-off detection while `/12V_MR` holds `/12V_RAW`; VBAT `4 KB BKPSRAM`
   and backup register retention from `Perm_Live` (`FOMEMC-25`). Bench items in
   VALIDATION.md §3.
@@ -164,8 +164,8 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 - Key parts: U26 STM32H753ZIT6 `C730207` (`PC14/PC15` `no_connect`, `FOMEMC-25`); Y1
   8 MHz `C115962`; U23 REF3333 `C130016`; U25 CSNP32GCR01-AOW `C2841139` with
   R127..R131 47k, R132 22 Ω `C23345`, C113 4.7 µF `C19666`, and C114 100 nF `C161115`
-  (`FOMEMC-19`); U29 ATWINC1500-MR210UB `C1558703` with C111 10 µF `C96446` and C112
-  10 nF `C344025` on Pin 24 (`FOMEMC-18`); U27 USBLC6-2SC6 `C111212`; U24 LPS25HB
+  (`FOMEMC-19`); U29 ATWINC1500-MR210UB `C1558698` with C111 10 µF `C96446` and C112
+  10 nF `C344025` on Pin 24 (`FOMEMC-18`); U27 USBLC6-2SC6 `C7519`; U24 LPS25HB
   `C87898` (DNP). DNP bench parts excluded from BOM/CPL: BT1, J8, J9, J11..J16, JP1,
   JP2 (`FOMEMC-24`).
 - Requirements: DESIGN.md §3 row 2 and §6.3.4 (fixed 3.30 V VREF+, non-ratiometric
@@ -204,7 +204,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 - Key parts per channel (WBO1 references; WBO2 is +100): U302 STM32F042K6T6
   `C69216`; U301 MCP6004 `C50282`; U305 AD8628 `C29309`; U303 REF3033 `C36658`;
   U309 XC6206P332MR `C5446`; Q301 VND14NV04 `C2649436`; U307 TJA1051T/3 `C38695`;
-  R310 61.9 Ω `C23092` (pump-current shunt).
+  R310 61.9 Ω `C2087389` (pump-current shunt).
 - Requirements (DESIGN.md §3 row 3 and §5): 1.65 V virtual ground, Nernst ESR
   injection, 500 kbps CAN at 0x190/0x191 (WBO1) and 0x192/0x193 (WBO2) set by the
   PB1/PA8 straps, heater PWM under CAN control with `<= 0.05 Ω` `/WBOn_H-` copper
@@ -229,7 +229,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   inputs `/ign1/IN1..4` from U26) plus `/ign_igbt/` (`contracts/ign_igbt.interface.json`,
   `contracts/ign4.interface.json`).
 - Key parts: Q201..Q204 FGD3040G2-F085 `C606124`; R201..R204 15 Ω `C22938` gate;
-  R205..R208 10k `C25744` gate-emitter; U42, U43 MIC4427 `C171845`; R1501..R1504
+  R205..R208 10k `C25744` gate-emitter; U42, U43 MIC4427 `C461590`; R1501..R1504
   1 kΩ `C11702` input pull-downs.
 - Requirements: 0 V gate during MCU reset; 400 V clamp on coil turn-off; `HV_IGN`
   `0.50 mm` clearance netclass and `1.20 mm` nominal coil traces across all 4 copper layers
@@ -239,7 +239,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 ### Logic ignition (`/ign2/`, `ign4.kicad_sch`)
 
 - Boundary in: `/ign2/IN1..4` from U26, `+5V`. Out: `/IGN5..8` (J2-23..26).
-- Key parts: U44, U45 MIC4427 `C171845`; R112..R115 100 Ω `C17408` series;
+- Key parts: U44, U45 MIC4427 `C461590`; R112..R115 100 Ω `C17408` series;
   R1601..R1604 1 kΩ `C11702` input pull-downs.
 - Reconciled in `README.md` and `docs/DESIGN.md` (`FOMEMC-23`): `U44, U45` in `/ign2/`
   drive `/IGN5..8` (`U8..U10` are `SN74LVC2G17DB` Hall buffers in `triggers.kicad_sch`).
@@ -249,7 +249,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 - Boundary in: `INn` from U26, `+5V` (`contracts/lowside_quad.interface.json`). Out: `/LS1..4`
   (J1-1..4, injectors), `/LS5..8` (J1-10..13), `/LS14` (J2-27 DASH_TECH), `/MAIN_RLY`
   (J1-14). `/LS13` and `/LS16` go nowhere.
-- Key parts per instance: two VNLD5090 `C222209`, one 74HCT125D `C5947`, RN 10k
+- Key parts per instance: two VNLD5090 `C222209`, one 74HCT125D `C5962`, RN 10k
   pull-down array `C29718` (`RN5, RN7, RN9`), RN 1k series array `C20197` (`RN6, RN8, RN10`),
   100 nF `C161115`.
 - Cross-block nets named in `contracts/lowside_quad.interface.json` (`FOMEMC-22`): the flyback
@@ -276,7 +276,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   serves J2-1, J2-2 (CLT, IAT).
 - Key parts per instance: MCP6004 `C50282` (`+5V` unity buffer ahead of the output divider),
   SRV05-4 `C85364`, 470k/10k/5.6k/10k networks, 100 nF `C161115`, 10 nF `C344025`;
-  pull-up variant uses 2.7 kΩ `C13167`. R219 1.5 kΩ `C22843` (gear input pull-up,
+  pull-up variant uses 2.7 kΩ `C705760`. R219 1.5 kΩ `C22843` (gear input pull-up,
   FOMEMC-14) sits on the root sheet.
 - Requirements: 0 to 5 V input range buffered by `+5V` `MCP6004` and scaled by `5.6 kΩ / 10 kΩ` (`1.56:1`) to the 3.30 V ADC, ESD on every input,
   gear-ladder voltages (`0.87..3.19 V` at `PA5`, DESIGN.md §4.4).
@@ -290,7 +290,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
   `/mcu/VR_1`, `/mcu/VR_2`, `/mcu/DIGITAL1..6`.
 - Key parts: U13, U14 MAX9924UAUB+ `C143633` with C38, C39, C109, C110 100 nF
   `C161115`; U8..U10 SN74LVC2G17DB `C10429`; U11, U12 SRV05-4 `C85364`; R23..R28
-  2.7 kΩ `C13167` pull-ups to `/5V_SENSOR_1` and R29..R34 2.7 kΩ `C13167` series resistors.
+  2.7 kΩ `C705760` pull-ups to `/5V_SENSOR_1` and R29..R34 2.7 kΩ `C705760` series resistors.
 - Requirements: **Mode A2** adaptive peak threshold + internal `2.5 V` bias reference
   + `85 ms` zero-crossing watchdog (`Pin 6 ZERO_EN = GND`, `Pin 9 INT_THRS = GND`,
   `Pin 4 BIAS = GND`, `Pin 8 EXT = NC`, `FOMEMC-25`), 50 mVpp to 100 Vpp differential
@@ -308,8 +308,8 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 ### Stepper/ETB (`stepper_etb.kicad_sch`)
 
 - Boundary: 26 hierarchical pins (`contracts/stepper_etb.interface.json`). DRV8825 (U202
-  `C50506`) with STEP on `/LS9`, DIR on `/LS12`, nENBL on `/PB8_STEP_EN`, outputs
-  `/STEP_1A..2B` (J1-19..22); the second TLE9201SG (U203 `C112633`) with `/ETB2_*`
+  `C81582`) with STEP on `/LS9`, DIR on `/LS12`, nENBL on `/PB8_STEP_EN`, outputs
+  `/STEP_1A..2B` (J1-19..22); the second TLE9201SG (U203 `C2653438`) with `/ETB2_*`
   (J1-17, J1-18); flyback diodes D201..D204 (DNP) and D205..D209 (`B340A-13-F`
   `C64982`) for the low-side channels; R212 `2.2 kΩ` `C22976` pull-up on `/LS8`
   (J1-13); and the J1-35 DFU network (D210 `BZT52C6V8` `C173404`, R209 12k `C25752`,
@@ -326,7 +326,7 @@ pins from `io-map.csv`. GND is shared by every block and is not repeated.
 
 - Boundary in: `12V_SUPPLY` (`/12V_MR`), `PWM`, `DIR`, `DIS` (`/ETB1_*` from U26),
   `+3V3` (`contracts/etb-9201.interface.json`). Out: `/ETB1_OUT+`, `/ETB1_OUT-` (J1-15, J1-16).
-- Key parts: U201 TLE9201SG `C112633`, C1201 2.2 µF `C90787`, R210 10k `C25744` DIS pull-up to `+3V3`.
+- Key parts: U201 TLE9201SG `C2653438`, C1201 2.2 µF `C90787`, R210 10k `C25744` DIS pull-up to `+3V3`.
 - The only multi-use candidate in the TLE9201 family: U203 repeats the circuit
   inline in `stepper_etb`. A second instance of this file would replace it.
 
